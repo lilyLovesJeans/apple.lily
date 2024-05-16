@@ -5,19 +5,19 @@
 <meta name="viewport" content="width=device-width">
 <meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="./images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="./images/logo.svg" color="#222">
 
-<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="./css/main.css">
 
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"./","images":"./images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="./js/config.js"></script>
 
     <meta name="description" content="部署hexo (macOS) Hexo 安裝步驟：">
 <meta property="og:type" content="article">
@@ -26,33 +26,33 @@
 <meta property="og:site_name" content="Apple.Lily 技術筆記">
 <meta property="og:description" content="部署hexo (macOS) Hexo 安裝步驟：">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="http://example.com/2024/05/15/hexo/page/HexoStepByStep/macOS.png">
-<meta property="og:image" content="http://example.com/2024/05/15/hexo/page/HexoStepByStep/hexo_install_error.png">
-<meta property="og:image" content="http://example.com/2024/05/15/hexo/page/HexoStepByStep/sudo_npm_install_hexo_cli.png">
-<meta property="og:image" content="http://example.com/2024/05/15/hexo/page/HexoStepByStep/hexo_cli_dir.png">
-<meta property="og:image" content="http://example.com/2024/05/15/hexo/page/HexoStepByStep/hexo_init.png">
-<meta property="og:image" content="http://example.com/2024/05/15/hexo/page/HexoStepByStep/init_project_dir.png">
-<meta property="og:image" content="http://example.com/2024/05/15/hexo/page/HexoStepByStep/npm_install.png">
-<meta property="og:image" content="http://example.com/2024/05/15/hexo/page/HexoStepByStep/chmod_777.png">
-<meta property="og:image" content="http://example.com/2024/05/15/hexo/page/HexoStepByStep/chown.png">
-<meta property="og:image" content="http://example.com/2024/05/15/hexo/page/HexoStepByStep/hexo_config_yml.png">
-<meta property="og:image" content="http://example.com/2024/05/15/hexo/page/HexoStepByStep/first_page.png">
-<meta property="og:image" content="http://example.com/2024/05/15/hexo/page/HexoStepByStep/hexo_server.png">
-<meta property="og:image" content="http://example.com/2024/05/15/hexo/page/HexoStepByStep/localhost_4000.png">
-<meta property="og:image" content="http://example.com/2024/05/15/hexo/page/HexoStepByStep/hexo_deploy.png">
-<meta property="og:image" content="http://example.com/2024/05/15/hexo/page/HexoStepByStep/download_next.png">
-<meta property="og:image" content="http://example.com/2024/05/15/hexo/page/HexoStepByStep/chown_next.png">
-<meta property="og:image" content="http://example.com/2024/05/15/hexo/page/HexoStepByStep/new_about.png">
-<meta property="og:image" content="http://example.com/2024/05/15/hexo/page/HexoStepByStep/hexo_theme.png">
-<meta property="og:image" content="http://example.com/2024/05/15/hexo/page/HexoStepByStep/next_config_yml-01.png">
-<meta property="og:image" content="http://example.com/2024/05/15/hexo/page/HexoStepByStep/next_config_yml-02.png">
-<meta property="og:image" content="http://example.com/2024/05/15/hexo/page/HexoStepByStep/read_more.png">
+<meta property="og:image" content="http://example.com/2024/05/15/hexo/page/HexoStepByStep/2024/05/15/hexo/page/HexoStepByStep/macOS.png">
+<meta property="og:image" content="http://example.com/2024/05/15/hexo/page/HexoStepByStep/2024/05/15/hexo/page/HexoStepByStep/hexo_install_error.png">
+<meta property="og:image" content="http://example.com/2024/05/15/hexo/page/HexoStepByStep/2024/05/15/hexo/page/HexoStepByStep/sudo_npm_install_hexo_cli.png">
+<meta property="og:image" content="http://example.com/2024/05/15/hexo/page/HexoStepByStep/2024/05/15/hexo/page/HexoStepByStep/hexo_cli_dir.png">
+<meta property="og:image" content="http://example.com/2024/05/15/hexo/page/HexoStepByStep/2024/05/15/hexo/page/HexoStepByStep/hexo_init.png">
+<meta property="og:image" content="http://example.com/2024/05/15/hexo/page/HexoStepByStep/2024/05/15/hexo/page/HexoStepByStep/init_project_dir.png">
+<meta property="og:image" content="http://example.com/2024/05/15/hexo/page/HexoStepByStep/2024/05/15/hexo/page/HexoStepByStep/npm_install.png">
+<meta property="og:image" content="http://example.com/2024/05/15/hexo/page/HexoStepByStep/2024/05/15/hexo/page/HexoStepByStep/chmod_777.png">
+<meta property="og:image" content="http://example.com/2024/05/15/hexo/page/HexoStepByStep/2024/05/15/hexo/page/HexoStepByStep/chown.png">
+<meta property="og:image" content="http://example.com/2024/05/15/hexo/page/HexoStepByStep/2024/05/15/hexo/page/HexoStepByStep/hexo_config_yml.png">
+<meta property="og:image" content="http://example.com/2024/05/15/hexo/page/HexoStepByStep/2024/05/15/hexo/page/HexoStepByStep/first_page.png">
+<meta property="og:image" content="http://example.com/2024/05/15/hexo/page/HexoStepByStep/2024/05/15/hexo/page/HexoStepByStep/hexo_server.png">
+<meta property="og:image" content="http://example.com/2024/05/15/hexo/page/HexoStepByStep/2024/05/15/hexo/page/HexoStepByStep/localhost_4000.png">
+<meta property="og:image" content="http://example.com/2024/05/15/hexo/page/HexoStepByStep/2024/05/15/hexo/page/HexoStepByStep/hexo_deploy.png">
+<meta property="og:image" content="http://example.com/2024/05/15/hexo/page/HexoStepByStep/2024/05/15/hexo/page/HexoStepByStep/download_next.png">
+<meta property="og:image" content="http://example.com/2024/05/15/hexo/page/HexoStepByStep/2024/05/15/hexo/page/HexoStepByStep/chown_next.png">
+<meta property="og:image" content="http://example.com/2024/05/15/hexo/page/HexoStepByStep/2024/05/15/hexo/page/HexoStepByStep/new_about.png">
+<meta property="og:image" content="http://example.com/2024/05/15/hexo/page/HexoStepByStep/2024/05/15/hexo/page/HexoStepByStep/hexo_theme.png">
+<meta property="og:image" content="http://example.com/2024/05/15/hexo/page/HexoStepByStep/2024/05/15/hexo/page/HexoStepByStep/next_config_yml-01.png">
+<meta property="og:image" content="http://example.com/2024/05/15/hexo/page/HexoStepByStep/2024/05/15/hexo/page/HexoStepByStep/next_config_yml-02.png">
+<meta property="og:image" content="http://example.com/2024/05/15/hexo/page/HexoStepByStep/2024/05/15/hexo/page/HexoStepByStep/read_more.png">
 <meta property="article:published_time" content="2024-05-15T11:59:05.000Z">
-<meta property="article:modified_time" content="2024-05-15T23:29:01.000Z">
+<meta property="article:modified_time" content="2024-05-16T13:24:48.000Z">
 <meta property="article:author" content="Apple.Lily">
-<meta property="article:tag" content="前端,後端,全端,網頁,技術,網頁開發,前端開發,後端開發,JavaScript,HTML,CSS,SCSS">
+<meta property="article:tag" content="HTML,CSS,JavaScript">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2024/05/15/hexo/page/HexoStepByStep/macOS.png">
+<meta name="twitter:image" content="http://example.com/2024/05/15/hexo/page/HexoStepByStep/2024/05/15/hexo/page/HexoStepByStep/macOS.png">
 
 
 <link rel="canonical" href="http://example.com/2024/05/15/hexo/page/HexoStepByStep/">
@@ -73,7 +73,7 @@
 
 
   <noscript>
-    <link rel="stylesheet" href="/css/noscript.css">
+    <link rel="stylesheet" href="./css/noscript.css">
   </noscript>
 </head>
 
@@ -93,7 +93,7 @@
 
   <div class="site-meta">
 
-    <a href="/" class="brand" rel="start">
+    <a href="./" class="brand" rel="start">
       <i class="logo-line"></i>
       <p class="site-title">Apple.Lily 技術筆記</p>
       <i class="logo-line"></i>
@@ -110,7 +110,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="./" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="./about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-archives"><a href="./archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
   </ul>
 </nav>
 
@@ -144,12 +144,12 @@
     <img class="site-author-image" itemprop="image" alt="Apple.Lily"
       src="https://i.imgur.com/Qxhx2zz.png">
   <p class="site-author-name" itemprop="name">Apple.Lily</p>
-  <div class="site-description" itemprop="description">Front End Engineer <br/> 不斷學習 趕上進度</div>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 不斷學習 趕上進度</div>
 </div>
 <div class="site-state-wrap animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-        <a href="/archives/">
+        <a href="./archives/">
           <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">文章</span>
         </a>
@@ -187,7 +187,7 @@
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Apple.Lily 技術筆記">
-      <meta itemprop="description" content="Front End Engineer <br/> 不斷學習 趕上進度">
+      <meta itemprop="description" content="Front End Engineer <br> 不斷學習 趕上進度">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
@@ -214,7 +214,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新於</span>
-      <time title="修改時間：2024-05-16 07:29:01" itemprop="dateModified" datetime="2024-05-16T07:29:01+08:00">2024-05-16</time>
+      <time title="修改時間：2024-05-16 21:24:48" itemprop="dateModified" datetime="2024-05-16T21:24:48+08:00">2024-05-16</time>
     </span>
 
   
@@ -227,41 +227,65 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="Hexo-安裝步驟："><a href="#Hexo-安裝步驟：" class="headerlink" title="Hexo 安裝步驟："></a>Hexo 安裝步驟：</h2><h3 id="macOS-環境-並假設已安裝好-VScode："><a href="#macOS-環境-並假設已安裝好-VScode：" class="headerlink" title="macOS 環境 , 並假設已安裝好 VScode："></a>macOS 環境 , 並假設已安裝好 VScode：</h3><p>   <img src="/2024/05/15/hexo/page/HexoStepByStep/macOS.png"> </p>
-<h3 id="官方的命令列指令，出現錯誤"><a href="#官方的命令列指令，出現錯誤" class="headerlink" title="官方的命令列指令，出現錯誤:"></a>官方的命令列指令，出現錯誤:</h3><p>   <img src="/2024/05/15/hexo/page/HexoStepByStep/hexo_install_error.png"></p>
+    <div class="post-body" itemprop="articleBody"><h2 id="Hexo-安裝步驟："><a href="#Hexo-安裝步驟：" class="headerlink" title="Hexo 安裝步驟："></a>Hexo 安裝步驟：</h2><h3 id="macOS-環境-並假設已安裝好-VScode："><a href="#macOS-環境-並假設已安裝好-VScode：" class="headerlink" title="macOS 環境 , 並假設已安裝好 VScode："></a>macOS 環境 , 並假設已安裝好 VScode：</h3>   <img src="./2024/05/15/hexo/page/HexoStepByStep/macOS.png" class=""> 
+
+<h3 id="官方的命令列指令，出現錯誤"><a href="#官方的命令列指令，出現錯誤" class="headerlink" title="官方的命令列指令，出現錯誤:"></a>官方的命令列指令，出現錯誤:</h3>   <img src="./2024/05/15/hexo/page/HexoStepByStep/hexo_install_error.png" class="">
+
 <h3 id="用-super-user-權限安裝-hexo-cli-："><a href="#用-super-user-權限安裝-hexo-cli-：" class="headerlink" title="用 super user 權限安裝 hexo-cli ："></a>用 super user 權限安裝 hexo-cli ：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo npm install hexo-cli -g </span><br></pre></td></tr></table></figure>
-<p>   <img src="/2024/05/15/hexo/page/HexoStepByStep/sudo_npm_install_hexo_cli.png"></p>
-<h3 id="安裝好的-hexo-cli-放在這-："><a href="#安裝好的-hexo-cli-放在這-：" class="headerlink" title="安裝好的 hexo-cli 放在這 ："></a>安裝好的 hexo-cli 放在這 ：</h3><p>   <img src="/2024/05/15/hexo/page/HexoStepByStep/hexo_cli_dir.png"></p>
+   <img src="./2024/05/15/hexo/page/HexoStepByStep/sudo_npm_install_hexo_cli.png" class="">
+
+<h3 id="安裝好的-hexo-cli-放在這-："><a href="#安裝好的-hexo-cli-放在這-：" class="headerlink" title="安裝好的 hexo-cli 放在這 ："></a>安裝好的 hexo-cli 放在這 ：</h3>   <img src="./2024/05/15/hexo/page/HexoStepByStep/hexo_cli_dir.png" class="">
+
 <h3 id="初始化專案"><a href="#初始化專案" class="headerlink" title="初始化專案"></a>初始化專案</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo hexo init <span class="string">&quot;你的專案名稱&quot;</span></span><br></pre></td></tr></table></figure>
-<p><img src="/2024/05/15/hexo/page/HexoStepByStep/hexo_init.png"></p>
-<h3 id="切換到-“你的專案名稱”-查看一下-我的專案是-lily-posts"><a href="#切換到-“你的專案名稱”-查看一下-我的專案是-lily-posts" class="headerlink" title="切換到 “你的專案名稱” 查看一下 (我的專案是 lily_posts)"></a>切換到 “你的專案名稱” 查看一下 (我的專案是 lily_posts)</h3><p><img src="/2024/05/15/hexo/page/HexoStepByStep/init_project_dir.png"></p>
+<img src="./2024/05/15/hexo/page/HexoStepByStep/hexo_init.png" class="">
+
+<h3 id="切換到-“你的專案名稱”-查看一下-我的專案是-lily-posts"><a href="#切換到-“你的專案名稱”-查看一下-我的專案是-lily-posts" class="headerlink" title="切換到 “你的專案名稱” 查看一下 (我的專案是 lily_posts)"></a>切換到 “你的專案名稱” 查看一下 (我的專案是 lily_posts)</h3><img src="./2024/05/15/hexo/page/HexoStepByStep/init_project_dir.png" class="">
+
 <h3 id="在專案目錄底下執行-npm-install-，安裝專案-我是用-super-user執行"><a href="#在專案目錄底下執行-npm-install-，安裝專案-我是用-super-user執行" class="headerlink" title="在專案目錄底下執行 npm install ，安裝專案(我是用 super user執行)"></a>在專案目錄底下執行 npm install ，安裝專案(我是用 super user執行)</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo npm install </span><br></pre></td></tr></table></figure>
-<p><img src="/2024/05/15/hexo/page/HexoStepByStep/npm_install.png"></p>
+<img src="./2024/05/15/hexo/page/HexoStepByStep/npm_install.png" class="">
+
 <h3 id="然後在編輯設定檔之前-，先賦予使用者權限「讀寫及檔案擁有者」，否則vscode-無法存檔"><a href="#然後在編輯設定檔之前-，先賦予使用者權限「讀寫及檔案擁有者」，否則vscode-無法存檔" class="headerlink" title="然後在編輯設定檔之前 ，先賦予使用者權限「讀寫及檔案擁有者」，否則vscode 無法存檔"></a>然後在編輯設定檔之前 ，先賦予使用者權限「讀寫及檔案擁有者」，否則vscode 無法存檔</h3>   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo <span class="built_in">chmod</span> 777 <span class="string">&quot;你的專案名稱&quot;</span></span><br></pre></td></tr></table></figure>
 
-<p>   <img src="/2024/05/15/hexo/page/HexoStepByStep/chmod_777.png"></p>
+   <img src="./2024/05/15/hexo/page/HexoStepByStep/chmod_777.png" class="">
+
    <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo <span class="built_in">chown</span> -R <span class="string">&quot;使用者名稱&quot;</span> <span class="string">&quot;你的專案名稱&quot;</span></span><br></pre></td></tr></table></figure>
 
-<p>   <img src="/2024/05/15/hexo/page/HexoStepByStep/chown.png"></p>
-<h3 id="進入-VScode-打開專案目錄-修改-hexo-config-yml"><a href="#進入-VScode-打開專案目錄-修改-hexo-config-yml" class="headerlink" title="進入 VScode 打開專案目錄 修改 hexo&#x2F;.config.yml"></a>進入 VScode 打開專案目錄 修改 hexo&#x2F;.config.yml</h3><p>   <img src="/2024/05/15/hexo/page/HexoStepByStep/hexo_config_yml.png"></p>
+   <img src="./2024/05/15/hexo/page/HexoStepByStep/chown.png" class="">
+
+
+<h3 id="進入-VScode-打開專案目錄-修改-hexo-config-yml"><a href="#進入-VScode-打開專案目錄-修改-hexo-config-yml" class="headerlink" title="進入 VScode 打開專案目錄 修改 hexo&#x2F;.config.yml"></a>進入 VScode 打開專案目錄 修改 hexo&#x2F;.config.yml</h3>   <img src="./2024/05/15/hexo/page/HexoStepByStep/hexo_config_yml.png" class="">
+
 <h3 id="測試-部署一篇文章"><a href="#測試-部署一篇文章" class="headerlink" title="測試 部署一篇文章"></a>測試 部署一篇文章</h3> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;如何部署Hexo&quot;</span> -p <span class="string">&quot;hexo/page/title&quot;</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="/2024/05/15/hexo/page/HexoStepByStep/first_page.png"></p>
+<img src="./2024/05/15/hexo/page/HexoStepByStep/first_page.png" class="">
+
 <h3 id="執行-hexo-server-啓動server-是否有成功看到網頁"><a href="#執行-hexo-server-啓動server-是否有成功看到網頁" class="headerlink" title="執行 hexo server , 啓動server , 是否有成功看到網頁"></a>執行 hexo server , 啓動server , 是否有成功看到網頁</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 
-<p>   <img src="/2024/05/15/hexo/page/HexoStepByStep/hexo_server.png"><br>   <img src="/2024/05/15/hexo/page/HexoStepByStep/localhost_4000.png"></p>
+   <img src="./2024/05/15/hexo/page/HexoStepByStep/hexo_server.png" class="">
+   <img src="./2024/05/15/hexo/page/HexoStepByStep/localhost_4000.png" class="">
+
 <h3 id="部署靜態網頁，執行-hero-deploy-會新增一個-public-的目錄-就是轉成-html-的檔案"><a href="#部署靜態網頁，執行-hero-deploy-會新增一個-public-的目錄-就是轉成-html-的檔案" class="headerlink" title="部署靜態網頁，執行 hero deploy , 會新增一個 public 的目錄,   就是轉成 html 的檔案"></a>部署靜態網頁，執行 hero deploy , 會新增一個 public 的目錄,   就是轉成 html 的檔案</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy (也可簡寫 hexo -d)</span><br></pre></td></tr></table></figure>
 
-<p><img src="/2024/05/15/hexo/page/HexoStepByStep/hexo_deploy.png"></p>
+<img src="./2024/05/15/hexo/page/HexoStepByStep/hexo_deploy.png" class="">
+
 <h3 id="下載nexT-theme-簡約強大"><a href="#下載nexT-theme-簡約強大" class="headerlink" title="下載nexT theme, 簡約強大"></a>下載nexT theme, 簡約強大</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo git <span class="built_in">clone</span> https://github.com/next-theme/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
-<p><img src="/2024/05/15/hexo/page/HexoStepByStep/download_next.png"></p>
+<img src="./2024/05/15/hexo/page/HexoStepByStep/download_next.png" class="">
+
 <h3 id="切換到-themes的目錄，賦予權限"><a href="#切換到-themes的目錄，賦予權限" class="headerlink" title="切換到 themes的目錄，賦予權限"></a>切換到 themes的目錄，賦予權限</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">chown</span> <span class="string">&quot;使用者名稱&quot;</span> next</span><br></pre></td></tr></table></figure>
-<p><img src="/2024/05/15/hexo/page/HexoStepByStep/chown_next.png"></p>
+<img src="./2024/05/15/hexo/page/HexoStepByStep/chown_next.png" class="">
+
 <h3 id="在專案目錄下，新增-about-頁面"><a href="#在專案目錄下，新增-about-頁面" class="headerlink" title="在專案目錄下，新增 about 頁面"></a>在專案目錄下，新增 about 頁面</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$  hexo new page about</span><br></pre></td></tr></table></figure>
-<p><img src="/2024/05/15/hexo/page/HexoStepByStep/new_about.png"></p>
-<h3 id="下載後，到-hexo-config-yml-修改-theme-欄位"><a href="#下載後，到-hexo-config-yml-修改-theme-欄位" class="headerlink" title="下載後，到 hexo&#x2F;_config.yml 修改 theme 欄位"></a>下載後，到 hexo&#x2F;_config.yml 修改 theme 欄位</h3><p><img src="/2024/05/15/hexo/page/HexoStepByStep/hexo_theme.png"></p>
-<h3 id="修改-next-config-yml"><a href="#修改-next-config-yml" class="headerlink" title="修改 next&#x2F;_config.yml"></a>修改 next&#x2F;_config.yml</h3><p><img src="/2024/05/15/hexo/page/HexoStepByStep/next_config_yml-01.png"><br><img src="/2024/05/15/hexo/page/HexoStepByStep/next_config_yml-02.png"></p>
-<h3 id="新增-read-more-按鈕"><a href="#新增-read-more-按鈕" class="headerlink" title="新增 read more 按鈕"></a>新增 read more 按鈕</h3><p><img src="/2024/05/15/hexo/page/HexoStepByStep/read_more.png"></p>
+<img src="./2024/05/15/hexo/page/HexoStepByStep/new_about.png" class="">
+
+<h3 id="下載後，到-hexo-config-yml-修改-theme-欄位"><a href="#下載後，到-hexo-config-yml-修改-theme-欄位" class="headerlink" title="下載後，到 hexo&#x2F;_config.yml 修改 theme 欄位"></a>下載後，到 hexo&#x2F;_config.yml 修改 theme 欄位</h3><img src="./2024/05/15/hexo/page/HexoStepByStep/hexo_theme.png" class="">
+
+<h3 id="修改-next-config-yml"><a href="#修改-next-config-yml" class="headerlink" title="修改 next&#x2F;_config.yml"></a>修改 next&#x2F;_config.yml</h3><img src="./2024/05/15/hexo/page/HexoStepByStep/next_config_yml-01.png" class="">
+<img src="./2024/05/15/hexo/page/HexoStepByStep/next_config_yml-02.png" class="">
+
+<h3 id="新增-read-more-按鈕"><a href="#新增-read-more-按鈕" class="headerlink" title="新增 read more 按鈕"></a>新增 read more 按鈕</h3><img src="./2024/05/15/hexo/page/HexoStepByStep/read_more.png" class="">
+
+
+
 <p>文獻連結:<br>試著學 Hexo <a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10236742?sc=iThelpR">https://ithelp.ithome.com.tw/articles/10236742?sc=iThelpR</a>  by<br>Ray</p>
 <p>用 Hexo + Github Pages 搭建免費個人部落格(五): <a target="_blank" rel="noopener" href="https://shangoyanyi.medium.com/%E7%94%A8-hexo-github-pages-%E6%90%AD%E5%BB%BA%E5%85%8D%E8%B2%BB%E5%80%8B%E4%BA%BA%E9%83%A8%E8%90%BD%E6%A0%BC-%E4%BA%94-45d5390af950">https://shangoyanyi.medium.com/%E7%94%A8-hexo-github-pages-%E6%90%AD%E5%BB%BA%E5%85%8D%E8%B2%BB%E5%80%8B%E4%BA%BA%E9%83%A8%E8%90%BD%E6%A0%BC-%E4%BA%94-45d5390af950</a> by<br>shangoyanyi</p>
 
@@ -277,7 +301,7 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2024/05/14/hello-world/" rel="prev" title="Hello World">
+                <a href="./2024/05/14/hello-world/" rel="prev" title="Hello World">
                   <i class="fa fa-angle-left"></i> Hello World
                 </a>
             </div>
@@ -330,7 +354,7 @@
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+<script src="./js/comments.js"></script><script src="./js/utils.js"></script><script src="./js/motion.js"></script><script src="./js/sidebar.js"></script><script src="./js/next-boot.js"></script>
 
   
 
