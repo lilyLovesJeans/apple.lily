@@ -125,18 +125,19 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/apple.lily/archives/">
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/apple.lily/categories/">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">1</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">4</span>
-        <span class="site-state-item-name">標籤</span>
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
 </div>
@@ -161,7 +162,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="ttps://lilylovesjeans.github.io/apple.lily/2024/05/27/CSS-Basic-Day02/">
+    <link itemprop="mainEntityOfPage" href="ttps://lilylovesjeans.github.io/apple.lily/2024/05/27/hexo-setup-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
@@ -179,7 +180,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/apple.lily/2024/05/27/CSS-Basic-Day02/" class="post-title-link" itemprop="url">金魚都能懂的網頁設計入門-第二天 學習筆記</a>
+          <a href="/apple.lily/2024/05/27/hexo-setup-1/" class="post-title-link" itemprop="url">hexo_setup_1</a>
         </h2>
 
         <div class="post-meta-container">
@@ -191,7 +192,7 @@
       <span class="post-meta-item-text">發表於</span>
       
 
-      <time title="創建時間：2024-05-27 01:07:03 / 修改時間：01:59:20" itemprop="dateCreated datePublished" datetime="2024-05-27T01:07:03+08:00">2024-05-27</time>
+      <time title="創建時間：2024-05-27 22:43:10 / 修改時間：23:23:55" itemprop="dateCreated datePublished" datetime="2024-05-27T22:43:10+08:00">2024-05-27</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -199,7 +200,7 @@
       </span>
       <span class="post-meta-item-text">分類於</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/apple.lily/categories/%E9%87%91%E9%AD%9A%E9%83%BD%E8%83%BD%E6%87%82%E7%9A%84%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E5%85%A5%E9%96%80-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/" itemprop="url" rel="index"><span itemprop="name">金魚都能懂的網頁設計入門-學習筆記</span></a>
+          <a href="/apple.lily/categories/hexo/" itemprop="url" rel="index"><span itemprop="name">hexo</span></a>
         </span>
     </span>
 
@@ -213,525 +214,43 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>金魚都能懂的網頁設計入門-第二天 編寫的工具</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/apple.lily/2024/05/27/CSS-Basic-Day02/">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
+          <h2 id="hexo-設定-categories"><a href="#hexo-設定-categories" class="headerlink" title="hexo 設定 categories"></a>hexo 設定 categories</h2><ol>
+<li>創建 「分類」選項<br>1.1 生成 「分類」頁面添加 type 屬性<br>打開命令列，進入 hexo 的專案夾 ，執行命令：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new page categories</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>成功後會提示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INFO  Created: ~/Documents/blog/source/categories/index.md</span><br></pre></td></tr></table></figure>
+
+<p>根據上面的路徑，找到 index.md 這份文件，打開後default內容是這樣的：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 文章分类</span><br><span class="line">date:  </span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<p>添加 type: “categories” 到內容中, 添加後是這樣的:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">title: 文章分类</span><br><span class="line">date:  </span><br><span class="line">type: &quot;categories&quot;</span><br></pre></td></tr></table></figure>
+
+<p>保存並關閉文件。</p>
+<p>  1.2 給文章添加 “categories” 屬性<br>  打關需要添加的文章，為其添加  “categories” , 注意! 一個文章只能一個類</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 金魚都能懂的網頁設計入門-第一天 學習筆記</span><br><span class="line">date: 2024-05-23 21:12:19</span><br><span class="line">categories: </span><br><span class="line">       - 金魚都能懂的網頁設計入門-學習筆記</span><br><span class="line">tags:  - CSScoke</span><br><span class="line">       - CSS</span><br><span class="line">description: 金魚都能懂的網頁設計入門-第一天 學習筆記</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<p>至此，成功給文章添加分類，點選首頁的 「分類」可以看到分類下的所有文章。<br>當然，只有添加 categories: xxx 的文章才會被收錄到首頁的 「分類」中。</p>
+<p>然後打開 scaffolds&#x2F;post.md文件 ，在 tages: 上面加入 categories: ，存檔後 ，之後執行命令  hexo new 文章名 所生成的文件，頁面裡就有 categories: 了. </p>
+<ol start="2">
+<li><p>創建「標籤」選項<br>2.1 生成「標籤」頁面添加 type 属性</p>
+<p>打開命令行，進入hexo 專案夾 ，執行命令</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new page tags</span><br></pre></td></tr></table></figure>
+
+<p>成功後會提示:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INFO  Created: ~/Documents/blog/source/tags/index.md</span><br></pre></td></tr></table></figure>
+
+<p>根據上面的路徑，找到 index.md 這個文件，打閞後 default 內容是這樣的</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 标签</span><br><span class="line">date: </span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<p>添加 type: “tags” 到內容中，添加後是這樣的：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 文章分類</span><br><span class="line">date: </span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<p>存檔並關閉文件。</p>
+<p>2.2 給文章天加 「tags」屬性<br>打開需要添加標籤的文章，為其添加 tags 屬性.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 金魚都能懂的網頁設計入門-第一天 學習筆記</span><br><span class="line">date: 2024-05-23 21:12:19</span><br><span class="line">categories: </span><br><span class="line">       - 金魚都能懂的網頁設計入門-學習筆記</span><br><span class="line">tags:  - CSScoke</span><br><span class="line">       - CSS</span><br><span class="line">description: 金魚都能懂的網頁設計入門-第一天 學習筆記</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<p>至此，成功給文章添加分類，點選首頁的「標籤」可以看到該標籤下的所有文章，<br>當然，只有添加了tags: xxx 的文章才會被收錄到首頁的「標籤」中.</p>
 
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="ttps://lilylovesjeans.github.io/apple.lily/2024/05/26/OneDayOneNote/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
-      <meta itemprop="name" content="Apple.Lily">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Apple.Lily 前端技術筆記">
-      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Apple.Lily 前端技術筆記">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/apple.lily/2024/05/26/OneDayOneNote/" class="post-title-link" itemprop="url">OneDayOneNote</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">發表於</span>
-
-      <time title="創建時間：2024-05-26 22:46:38" itemprop="dateCreated datePublished" datetime="2024-05-26T22:46:38+08:00">2024-05-26</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新於</span>
-      <time title="修改時間：2024-05-27 00:49:48" itemprop="dateModified" datetime="2024-05-27T00:49:48+08:00">2024-05-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分類於</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>每天一筆記</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/apple.lily/2024/05/26/OneDayOneNote/">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="ttps://lilylovesjeans.github.io/apple.lily/2024/05/23/CSS-Basic-Day01/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
-      <meta itemprop="name" content="Apple.Lily">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Apple.Lily 前端技術筆記">
-      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Apple.Lily 前端技術筆記">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/apple.lily/2024/05/23/CSS-Basic-Day01/" class="post-title-link" itemprop="url">金魚都能懂的網頁設計入門-第一天 學習筆記</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">發表於</span>
-      
-
-      <time title="創建時間：2024-05-23 21:12:19 / 修改時間：22:12:00" itemprop="dateCreated datePublished" datetime="2024-05-23T21:12:19+08:00">2024-05-23</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分類於</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/apple.lily/categories/%E9%87%91%E9%AD%9A%E9%83%BD%E8%83%BD%E6%87%82%E7%9A%84%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E5%85%A5%E9%96%80-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/" itemprop="url" rel="index"><span itemprop="name">金魚都能懂的網頁設計入門-學習筆記</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>金魚都能懂的網頁設計入門-第一天 學習筆記</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/apple.lily/2024/05/23/CSS-Basic-Day01/">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="ttps://lilylovesjeans.github.io/apple.lily/2024/05/17/JavaScriptBasic-02/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
-      <meta itemprop="name" content="Apple.Lily">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Apple.Lily 前端技術筆記">
-      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Apple.Lily 前端技術筆記">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/apple.lily/2024/05/17/JavaScriptBasic-02/" class="post-title-link" itemprop="url">「自學網頁の嬰兒教材：JavaScript（二）作業分享」</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">發表於</span>
-
-      <time title="創建時間：2024-05-17 23:17:46" itemprop="dateCreated datePublished" datetime="2024-05-17T23:17:46+08:00">2024-05-17</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新於</span>
-      <time title="修改時間：2024-05-20 00:37:04" itemprop="dateModified" datetime="2024-05-20T00:37:04+08:00">2024-05-20</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>「自學網頁の嬰兒教材：JavaScript（二）作業分享」</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/apple.lily/2024/05/17/JavaScriptBasic-02/">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="ttps://lilylovesjeans.github.io/apple.lily/2024/05/17/JavaScriptBasic-01/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
-      <meta itemprop="name" content="Apple.Lily">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Apple.Lily 前端技術筆記">
-      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Apple.Lily 前端技術筆記">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/apple.lily/2024/05/17/JavaScriptBasic-01/" class="post-title-link" itemprop="url">「自學網頁の嬰兒教材：JavaScript（一）作業分享」</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">發表於</span>
-
-      <time title="創建時間：2024-05-17 23:06:46" itemprop="dateCreated datePublished" datetime="2024-05-17T23:06:46+08:00">2024-05-17</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新於</span>
-      <time title="修改時間：2024-05-20 00:36:35" itemprop="dateModified" datetime="2024-05-20T00:36:35+08:00">2024-05-20</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>「自學網頁の嬰兒教材：JavaScript（一）作業分享」</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/apple.lily/2024/05/17/JavaScriptBasic-01/">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="ttps://lilylovesjeans.github.io/apple.lily/2024/05/17/JavaScriptBasic-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
-      <meta itemprop="name" content="Apple.Lily">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Apple.Lily 前端技術筆記">
-      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Apple.Lily 前端技術筆記">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/apple.lily/2024/05/17/JavaScriptBasic-1/" class="post-title-link" itemprop="url">HTML & CSS 自學網頁作業分享</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">發表於</span>
-
-      <time title="創建時間：2024-05-17 16:08:25" itemprop="dateCreated datePublished" datetime="2024-05-17T16:08:25+08:00">2024-05-17</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新於</span>
-      <time title="修改時間：2024-05-20 00:37:11" itemprop="dateModified" datetime="2024-05-20T00:37:11+08:00">2024-05-20</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>「自學網頁の嬰兒教材：HTML與CSS作業分享」</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/apple.lily/2024/05/17/JavaScriptBasic-1/">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="ttps://lilylovesjeans.github.io/apple.lily/2024/05/17/HexoStepByStep/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
-      <meta itemprop="name" content="Apple.Lily">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Apple.Lily 前端技術筆記">
-      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Apple.Lily 前端技術筆記">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/apple.lily/2024/05/17/HexoStepByStep/" class="post-title-link" itemprop="url">HexoStepByStep</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">發表於</span>
-
-      <time title="創建時間：2024-05-17 00:20:30" itemprop="dateCreated datePublished" datetime="2024-05-17T00:20:30+08:00">2024-05-17</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新於</span>
-      <time title="修改時間：2024-05-20 00:37:55" itemprop="dateModified" datetime="2024-05-20T00:37:55+08:00">2024-05-20</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Hexo 安裝步驟 for Mac</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/apple.lily/2024/05/17/HexoStepByStep/">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
     </div>
 
