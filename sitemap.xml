@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>ttps://lilylovesjeans.github.io/apple.lily/2024/05/27/hexo-setup-1/</loc>
+    
+    <lastmod>2024-05-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>ttps://lilylovesjeans.github.io/apple.lily/2024/05/17/HexoStepByStep/</loc>
+    
+    <lastmod>2024-05-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>ttps://lilylovesjeans.github.io/apple.lily/google2ec10e748c743b6d.html</loc>
     
     <lastmod>2024-05-27</lastmod>
@@ -57,24 +75,6 @@
   
   <url>
     <loc>ttps://lilylovesjeans.github.io/apple.lily/2024/05/23/CSS-Basic-Day01/</loc>
-    
-    <lastmod>2024-05-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>ttps://lilylovesjeans.github.io/apple.lily/2024/05/17/HexoStepByStep/</loc>
-    
-    <lastmod>2024-05-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>ttps://lilylovesjeans.github.io/apple.lily/2024/05/27/hexo-setup-1/</loc>
     
     <lastmod>2024-05-27</lastmod>
     
@@ -142,7 +142,7 @@
   </url>
   
   <url>
-    <loc>ttps://lilylovesjeans.github.io/apple.lily/tags/Hexo/</loc>
+    <loc>ttps://lilylovesjeans.github.io/apple.lily/tags/hexo/</loc>
     <lastmod>2024-05-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -179,7 +179,7 @@
   </url>
   
   <url>
-    <loc>ttps://lilylovesjeans.github.io/apple.lily/categories/Hexo/</loc>
+    <loc>ttps://lilylovesjeans.github.io/apple.lily/categories/hexo/</loc>
     <lastmod>2024-05-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
