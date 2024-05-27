@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>ttps://lilylovesjeans.github.io/apple.lily/2024/05/28/CSS-Basic-Day03/</loc>
+    
+    <lastmod>2024-05-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>ttps://lilylovesjeans.github.io/apple.lily/2024/05/26/OneDayOneNote/</loc>
     
     <lastmod>2024-05-27</lastmod>
@@ -142,6 +151,13 @@
   </url>
   
   <url>
+    <loc>ttps://lilylovesjeans.github.io/apple.lily/tags/hexo設定/</loc>
+    <lastmod>2024-05-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>ttps://lilylovesjeans.github.io/apple.lily/tags/Javascript/</loc>
     <lastmod>2024-05-27</lastmod>
     <changefreq>weekly</changefreq>
@@ -150,13 +166,6 @@
   
   <url>
     <loc>ttps://lilylovesjeans.github.io/apple.lily/tags/HTML/</loc>
-    <lastmod>2024-05-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>ttps://lilylovesjeans.github.io/apple.lily/tags/hexo設定/</loc>
     <lastmod>2024-05-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -186,14 +195,14 @@
   </url>
   
   <url>
-    <loc>ttps://lilylovesjeans.github.io/apple.lily/categories/愛寫扣自學系列/</loc>
+    <loc>ttps://lilylovesjeans.github.io/apple.lily/categories/hexo/</loc>
     <lastmod>2024-05-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>ttps://lilylovesjeans.github.io/apple.lily/categories/hexo/</loc>
+    <loc>ttps://lilylovesjeans.github.io/apple.lily/categories/愛寫扣自學系列/</loc>
     <lastmod>2024-05-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
