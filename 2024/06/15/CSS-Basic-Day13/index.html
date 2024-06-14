@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="金魚都能懂的網頁設計入門-第十三天 -fixed 定位">
+<meta property="og:type" content="article">
+<meta property="og:title" content="金魚都能懂的網頁設計入門-第十三天 學習筆記">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2024/06/15/CSS-Basic-Day13/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="金魚都能懂的網頁設計入門-第十三天 -fixed 定位">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://lilylovesjeans.github.io/apple.lily/css-basic-13-01.gif">
+<meta property="og:image" content="https://lilylovesjeans.github.io/apple.lily/2024/06/15/CSS-Basic-Day13/css-basic-13-02.gif">
+<meta property="og:image" content="https://lilylovesjeans.github.io/apple.lily/2024/06/15/CSS-Basic-Day13/css-basic-13-03.gif">
+<meta property="article:published_time" content="2024-06-14T16:56:58.000Z">
+<meta property="article:modified_time" content="2024-06-14T17:45:36.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="CSScoke">
+<meta property="article:tag" content="CSS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lilylovesjeans.github.io/apple.lily/css-basic-13-01.gif">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2024/06/15/CSS-Basic-Day13/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2024/06/15/CSS-Basic-Day13/","path":"2024/06/15/CSS-Basic-Day13/","title":"金魚都能懂的網頁設計入門-第十三天 學習筆記"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>金魚都能懂的網頁設計入門-第十三天 學習筆記 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%BD%8D%E6%9C%89%E4%BA%94%E7%A8%AE%E5%AE%9A%E4%BD%8D%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">定位有五種定位：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BA%E5%AE%9A%E5%AE%9A%E4%BD%8D-fixed"><span class="nav-number">1.1.</span> <span class="nav-text">固定定位 fixed</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8B%E5%88%97%E6%98%AF%E9%82%84%E6%B2%92%E8%A8%AD%E5%AE%9A-position-fixed"><span class="nav-number">1.1.1.</span> <span class="nav-text">下列是還沒設定 position: fixed</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%9A%E5%B8%B8%E7%94%A8%E5%9C%A8%E8%93%8B%E7%89%88%E5%BB%A3%E5%91%8A-%E6%B0%B8%E8%BF%BC%E5%9B%BA%E5%AE%9A%E5%9C%A8%E8%A6%96%E7%AA%97%E7%AF%84%E5%9C%8D%E5%85%A7%EF%BC%8C"><span class="nav-number">1.1.2.</span> <span class="nav-text">通常用在蓋版廣告, 永迼固定在視窗範圍內，</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%81%9A%E5%80%8B-nav%E5%B0%8E%E8%A6%BD%E5%88%97"><span class="nav-number">1.1.3.</span> <span class="nav-text">做個 nav導覽列</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2024/06/15/CSS-Basic-Day13/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="金魚都能懂的網頁設計入門-第十三天 學習筆記 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="金魚都能懂的網頁設計入門-第十三天 -fixed 定位">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          金魚都能懂的網頁設計入門-第十三天 學習筆記
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2024-06-15 00:56:58 / 修改時間：01:45:36" itemprop="dateCreated datePublished" datetime="2024-06-15T00:56:58+08:00">2024-06-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/%E9%87%91%E9%AD%9A%E9%83%BD%E8%83%BD%E6%87%82%E7%9A%84%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E5%85%A5%E9%96%80-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/" itemprop="url" rel="index"><span itemprop="name">金魚都能懂的網頁設計入門-學習筆記</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">金魚都能懂的網頁設計入門-第十三天 -fixed 定位</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="定位有五種定位："><a href="#定位有五種定位：" class="headerlink" title="定位有五種定位："></a>定位有五種定位：</h2><p>比不重要： static , sticky<br>較常用: fixed ,relative, absolute</p>
+<p>定位 position的作用: 控制物件就是在畫面中，要依據誰來做對齊，或做位置排列，或定在某個位置上面。</p>
+<h3 id="固定定位-fixed"><a href="#固定定位-fixed" class="headerlink" title="固定定位 fixed"></a>固定定位 fixed</h3><h4 id="下列是還沒設定-position-fixed"><a href="#下列是還沒設定-position-fixed" class="headerlink" title="下列是還沒設定 position: fixed"></a>下列是還沒設定 position: fixed</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>金魚都能懂的網頁設計入門-第十三天 -fixed 定位<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- &lt;link rel=&quot;stylesheet&quot; href=&quot;./reset.css&quot;&gt; --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">        <span class="selector-class">.fix_block</span>&#123;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">width</span>: <span class="number">300px</span>; <span class="comment">/* 來做一個蓋版廣告*/</span></span></span><br><span class="line"><span class="language-css">            <span class="attribute">height</span>: <span class="number">400px</span>;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">background-color</span>: <span class="number">#aaa</span>;</span></span><br><span class="line"><span class="language-css">            <span class="comment">/* position:fixed;  */</span></span></span><br><span class="line"><span class="language-css">             <span class="comment">/*會直接抽出來 自己獨立一層 通常用在蓋版廣告*/</span> </span></span><br><span class="line"><span class="language-css">            <span class="attribute">opacity</span>: <span class="number">0.6</span>; <span class="comment">/* 半透明 */</span></span></span><br><span class="line"><span class="language-css">            <span class="attribute">top</span>: <span class="number">0</span> ;  <span class="comment">/* 通常用在選單 回到頂端，永遠固定在視窗範圍內  */</span></span></span><br><span class="line"><span class="language-css">            <span class="attribute">bottom</span>: <span class="number">0</span> ;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">margin</span>: auto ; <span class="comment">/* top:0 bottom:0 margin: auto 垂直置中*/</span></span></span><br><span class="line"><span class="language-css">            <span class="attribute">left</span>:<span class="number">0</span> ;       <span class="comment">/* 再加個  left:0 right:0 就會變成水平置中 */</span></span></span><br><span class="line"><span class="language-css">            <span class="attribute">right</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- fix定位控制物件在畫面當中依據誰來做對齊 排列 定在某個位置上面. --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 通常用在蓋版廣告  --&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">p</span>&gt;</span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque reiciendis ducimus voluptatem quas aliquid quos sunt ipsam, incidunt esse illo!Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam voluptas veniam ducimus tempore quia nemo soluta provident quasi vero placeat!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">p</span>&gt;</span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque reiciendis ducimus voluptatem quas aliquid quos sunt ipsam, incidunt esse illo!l<span class="tag">&lt;/<span class="name">p</span>&gt;</span> </span><br><span class="line"></span><br><span class="line">   <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;fix_block&quot;</span>&gt;</span>Lily<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui sint, expedita recusandae ut est natus. Incidunt quisquam laborum adipisci nostrum perspiciatis perferendis dolorem et impedit quam a. Perspiciatis, ullam ipsum.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Eligendi quos nulla accusantium nesciunt nobis, veritatis aspernatur nam nihil. Commodi nisi, omnis velit, ad possimus expedita vel hic saepe libero eos nihil, optio eligendi qui repellendus odit minus nostrum?<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Quo, sed! Ex quidem vel laborum sint sunt ratione ipsam eveniet natus cum inventore vero nobis, tenetur, enim nulla laboriosam architecto quisquam alias accusantium atque consequatur quae repellendus aliquid et.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Laborum architecto officiis neque vel, impedit beatae! Commodi ipsum nam, exercitationem, temporibus necessitatibus unde minus quos cupiditate velit pariatur aperiam! Laudantium ad asperiores dolore exercitationem non ullam sequi ipsum ex?<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Commodi quaerat voluptate ullam exercitationem maxime ipsam, quae repellat facilis quis perferendis? Magni, quis beatae placeat veniam sint ipsam incidunt tenetur officia omnis, et distinctio eum tempore commodi doloribus! Rem?<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Distinctio ducimus assumenda aspernatur, perferendis, exercitationem quia error harum ratione corrupti praesentium obcaecati! Optio cumque nam laboriosam accusantium, rem in similique. Maxime natus velit magni? Neque inventore maxime voluptatum eum!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Commodi, consectetur? Molestiae ex velit nisi laborum ipsa minus, ipsam ullam mollitia quasi cumque vitae sint consequuntur excepturi maxime amet? Nulla tempora veritatis accusantium quibusdam deserunt voluptatem sit commodi voluptates!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Cumque ad consequatur delectus perspiciatis accusantium accusamus suscipit hic alias quibusdam dignissimos iusto blanditiis quod quo libero est natus ab dicta nisi consequuntur, explicabo veritatis. Placeat, soluta? Placeat, unde repellat.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Rerum voluptatibus animi minima autem eaque consequuntur aliquid quos repellat nostrum eum id eveniet praesentium impedit ratione, aperiam vero et aut cum quam. Iste ipsa sapiente cum sit, similique vero.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Debitis similique magnam velit iusto iure delectus facere et voluptas nisi vero, alias ad, minima ullam illum quidem eos distinctio repellendus tenetur dicta nostrum quas ducimus, id dolorum incidunt? Natus?<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Natus, nihil? Facere enim officiis maxime aut delectus. Quis nisi distinctio possimus ullam eius veniam illum, incidunt deserunt excepturi alias. Dolorum, eligendi.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Earum itaque dicta accusamus distinctio iusto. Soluta quidem accusantium aut laboriosam? Voluptate, id aut eius doloribus, reprehenderit deserunt unde minima exercitationem dolores sunt incidunt fugiat minus. Officiis vitae nulla possimus.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Tempora in dolorem neque officia possimus, repudiandae esse, mollitia aperiam iste voluptates architecto. Blanditiis laborum a enim nam expedita deleniti dicta reiciendis fuga omnis asperiores. Incidunt repellat dolorem ea autem.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Facilis accusamus velit dolore, repudiandae quaerat distinctio nisi, aliquid voluptatum id sunt nobis exercitationem ipsa. Ad, illum esse ipsam nemo laborum reprehenderit tempore, quibusdam sed repudiandae architecto, iste ea magnam?<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Perferendis nemo rerum recusandae nihil! Voluptate deserunt obcaecati quaerat veniam aspernatur, ab, cum alias qui consequuntur facere in suscipit illo dolore, libero dolor adipisci impedit cupiditate atque ipsa dicta velit.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Dolores recusandae vel exercitationem alias, nisi quos eligendi labore voluptas et sit ipsam iste fugiat placeat possimus accusantium expedita officia obcaecati itaque quis nihil harum nostrum commodi nulla animi. Vitae.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Vero ullam quisquam maiores repellendus at aut dolorum nihil dolores, debitis enim minus et cum corrupti aperiam. Saepe architecto vel praesentium corporis, suscipit similique iure placeat veniam tenetur laboriosam incidunt!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Magni velit quo quis accusamus, doloribus animi nemo possimus, ullam debitis minus, vel iusto soluta? Eligendi, assumenda animi minima laborum vel, dicta officia et corrupti non, reiciendis beatae sequi natus.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Porro error labore commodi itaque enim at fugit voluptatem esse? Itaque distinctio odit, deleniti officiis, corrupti eos tempore consequuntur modi totam excepturi voluptates omnis eius voluptatum veniam praesentium architecto explicabo.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Itaque facilis voluptates saepe sit nobis molestias voluptatum architecto quidem magni atque libero doloremque minima dolore natus, unde neque enim, ex beatae corporis in, excepturi voluptas autem quibusdam. Unde, culpa.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Laboriosam, hic architecto velit, neque, reprehenderit quam vitae magni earum dolorum ducimus laborum esse tenetur blanditiis. Temporibus at, ipsa neque sit veniam libero in maxime illum hic. Ipsa, doloribus suscipit.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Reprehenderit, quos. Sequi, cupiditate dolores? Reprehenderit, ipsam rerum! Dolore nostrum quaerat corporis, assumenda eveniet alias expedita soluta tempora, facilis atque, aliquam nulla in doloremque labore! Corrupti suscipit laudantium natus. Sit!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Ex, possimus alias. Impedit obcaecati, rerum soluta, repellat voluptas, accusantium sint iure ullam earum illum dignissimos expedita inventore error assumenda pariatur hic quis vero iusto molestiae deleniti magni consectetur commodi?<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Cupiditate est quis libero repellendus voluptatem voluptatibus totam vero laboriosam ut dolorum! Natus ipsum quaerat magni officiis, repudiandae delectus porro, debitis tenetur esse sed, molestiae aut labore placeat dicta aspernatur?<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Rerum aliquam iure voluptate repudiandae, nisi tempora cumque veritatis porro cupiditate architecto aut exercitationem quidem fugit ut cum. Molestiae, ullam nam. Minus iure facilis harum hic natus. Vitae, maiores voluptate.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Alias, amet? Ullam voluptas, quidem quam ut, velit maxime harum nesciunt delectus vel aperiam doloribus? Natus officiis quas obcaecati accusantium sequi atque repudiandae veniam, iure aliquam porro, voluptatum, perferendis id.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Minus est id omnis alias iure sequi, hic quisquam quidem dolorum numquam dicta earum at quod deleniti recusandae debitis error accusamus cumque nisi? Praesentium ratione blanditiis sequi inventore autem suscipit.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Accusantium neque ipsum numquam dolorum excepturi, dolore voluptate incidunt magni tempore saepe porro reiciendis nesciunt nobis repudiandae blanditiis reprehenderit veritatis sapiente explicabo iusto nostrum adipisci ab omnis. Voluptatem, eos qui?<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Repellendus nisi tempore reiciendis hic. Quasi blanditiis vitae sed alias eius ab enim ratione, qui vero at maiores distinctio ipsum omnis adipisci nihil consectetur, neque placeat sit dignissimos? Ratione, aperiam?<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Recusandae cum quasi deserunt saepe, sit quisquam, obcaecati mollitia totam, dolores ducimus illum! Aut hic nemo odit odio cumque sit recusandae delectus voluptatum quaerat. Nulla autem ea voluptas quam omnis!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>   <img src="/apple.lily/css-basic-13-01.gif"></p>
+<h4 id="通常用在蓋版廣告-永迼固定在視窗範圍內，"><a href="#通常用在蓋版廣告-永迼固定在視窗範圍內，" class="headerlink" title="通常用在蓋版廣告, 永迼固定在視窗範圍內，"></a>通常用在蓋版廣告, 永迼固定在視窗範圍內，</h4><p>如果要設定在正中間:<br>position:fixed;<br>垂直置中  top:0 bottom:0 margin: auto ,<br>水平置中： left:0 right: 0</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">        <span class="selector-class">.fix_block</span>&#123;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">width</span>: <span class="number">300px</span>; <span class="comment">/* 來做一個蓋版廣告*/</span></span></span><br><span class="line"><span class="language-css">            <span class="attribute">height</span>: <span class="number">400px</span>;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">background-color</span>: <span class="number">#aaa</span>;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">position</span>:fixed; </span></span><br><span class="line"><span class="language-css">             <span class="comment">/*會直接抽出來 自己獨立一層 通常用在蓋版廣告*/</span> </span></span><br><span class="line"><span class="language-css">            <span class="attribute">opacity</span>: <span class="number">0.6</span>; <span class="comment">/* 半透明 */</span></span></span><br><span class="line"><span class="language-css">            <span class="attribute">top</span>: <span class="number">0</span> ;  <span class="comment">/* 通常用在選單 回到頂端，永遠固定在視窗範圍內  */</span></span></span><br><span class="line"><span class="language-css">            <span class="attribute">bottom</span>: <span class="number">0</span> ;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">margin</span>: auto ; <span class="comment">/* top:0 bottom:0 margin: auto 垂直置中*/</span></span></span><br><span class="line"><span class="language-css">            <span class="attribute">left</span>:<span class="number">0</span> ;       <span class="comment">/* 再加個  left:0 right:0 就會變成水平置中 */</span></span></span><br><span class="line"><span class="language-css">            <span class="attribute">right</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>   <img src="/apple.lily/2024/06/15/CSS-Basic-Day13/css-basic-13-02.gif"></p>
+<h4 id="做個-nav導覽列"><a href="#做個-nav導覽列" class="headerlink" title="做個 nav導覽列"></a>做個 nav導覽列</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>金魚都能懂的網頁設計入門-第十三天 -fixed 定位<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;./reset.css&quot;</span>&gt;</span>    <span class="comment">&lt;!-- reset的 CSS 檔 --&gt;</span></span><br><span class="line">   </span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">        <span class="selector-tag">body</span>&#123;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">padding-top</span>: <span class="number">60px</span>; </span></span><br><span class="line"><span class="language-css">            <span class="comment">/*  因為跟內文卡在一起,所以要設定padding-top，讓nav不會盖住內文 */</span></span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css">        <span class="selector-tag">nav</span> &#123;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">background-color</span>: <span class="number">#000</span>;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">text-align</span>: center;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">position</span>: fixed;     <span class="comment">/* 會蓋住內文 , 跟內文卡在一起 */</span></span></span><br><span class="line"><span class="language-css">            <span class="attribute">opacity</span>: <span class="number">0.6</span>; <span class="comment">/* 用半透明來看一下 ，真的卡在一起，所以去 body 去設定一下 padding*/</span> </span></span><br><span class="line"><span class="language-css">            <span class="attribute">width</span>: <span class="number">100%</span>;  <span class="comment">/* 橫列滿版 */</span> </span></span><br><span class="line"><span class="language-css">            <span class="attribute">top</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">    </span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css">        <span class="selector-tag">nav</span> <span class="selector-tag">a</span>&#123;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">color</span>: <span class="number">#fff</span>;           </span></span><br><span class="line"><span class="language-css">            <span class="attribute">text-decoration</span>: none;<span class="comment">/* 不要有文字底線 */</span></span></span><br><span class="line"><span class="language-css">            <span class="attribute">display</span>: inline-block;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">padding</span>:  <span class="number">10px</span> <span class="number">20px</span>;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">        <span class="comment">/* 通常會把多數段落&lt;p&gt; 放在一個 div class=container裹面 */</span></span></span><br><span class="line"><span class="language-css">        <span class="selector-class">.container</span>&#123;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">width</span>: <span class="number">100%</span>;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">max-width</span>: <span class="number">960px</span>;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">margin</span>: auto;</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css">        <span class="selector-class">.container</span> <span class="selector-tag">p</span>&#123;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">margin-bottom</span>: <span class="number">2em</span>; <span class="comment">/* 把每個段落接開一點 */</span></span></span><br><span class="line"><span class="language-css">            <span class="attribute">line-height</span>: <span class="number">1.5</span>; <span class="comment">/* 行高接開一點 */</span>           </span></span><br><span class="line"><span class="language-css">            </span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"> <span class="comment">&lt;!-- 製作導覽列 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">nav</span>&gt;</span>   </span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>Link<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>Link<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>Link<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>Link<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>Link<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>Link<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt commodi veniam labore neque, iste exercitationem officia minus aspernatur et. Vitae at saepe modi sed perferendis nemo officia id ad quos!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Quod ea fuga quaerat tenetur repudiandae? Beatae ipsa nihil, nemo consequuntur iure, nulla doloremque nostrum optio laudantium nesciunt quae id corrupti minima officia fugiat accusantium, omnis dolorem? Voluptatibus, nam mollitia.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Quod, quasi quas nesciunt, perferendis vitae neque accusamus nemo eos aperiam optio iusto expedita qui eius iure eum sequi aspernatur nisi quidem exercitationem. Tenetur, itaque eum repellendus unde obcaecati reprehenderit.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Deleniti ipsam qui hic. Architecto repellendus soluta, eveniet suscipit molestiae aliquid labore est praesentium nisi vero voluptatum, distinctio ab velit quis esse dignissimos enim nam similique quo necessitatibus? Ipsam, expedita?<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Pariatur eligendi rem accusantium, quae impedit consectetur quidem itaque natus porro magni provident ea placeat dolore corporis! Veritatis harum amet ex cupiditate minus nisi, dolorem natus nam voluptatem tempora in.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Deleniti facilis eligendi delectus ut voluptatum incidunt enim omnis quasi ipsam fugit velit fugiat, nostrum temporibus, recusandae odio adipisci. Autem cum fuga dolore fugit alias eaque architecto natus aliquam temporibus?<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Alias, odio repellat non itaque reprehenderit omnis vero enim commodi iusto atque laborum perferendis nulla quam nemo tenetur repellendus quasi soluta aliquid illum obcaecati dolor suscipit numquam? Cumque, aperiam debitis.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Voluptates repellat illo quo saepe, modi sed voluptatibus laborum repellendus atque deleniti praesentium amet, consequuntur incidunt nam. Expedita voluptatibus, illum natus, reprehenderit eius ad quidem deserunt, laborum esse laboriosam unde.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Omnis fuga porro repudiandae quae molestiae rerum quo optio, cum architecto molestias consectetur magni similique exercitationem consequuntur quis. Qui, nesciunt esse odio hic alias corporis illo consectetur porro voluptatem quod.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Culpa reiciendis distinctio exercitationem debitis facere tempore reprehenderit voluptatum molestias, ipsum dolor consequuntur enim quidem totam maxime aliquid. Blanditiis illum corporis culpa quisquam officiis, inventore repudiandae quam vero atque corrupti!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Perferendis reiciendis nulla dolorem saepe numquam, repellendus distinctio veniam cum, fuga magni in. Dolores quidem ex asperiores, excepturi natus eum labore voluptates consectetur eveniet provident sit beatae architecto ut inventore.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Culpa esse, error dolorum earum aliquam, quia temporibus incidunt eos corrupti quo iste doloremque laudantium vero eligendi ullam nihil iusto dolorem sed velit facilis ipsum. Aspernatur odit nulla expedita suscipit!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Esse harum commodi exercitationem delectus odio consequatur nulla voluptates consectetur dolorum suscipit, eius quam excepturi recusandae accusamus, quod mollitia neque nihil modi ratione aliquam! Quasi laborum sint facilis et magnam.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Amet eius tenetur dolor aut quaerat. Hic incidunt sapiente aliquid asperiores soluta error fugit modi, saepe minima quisquam placeat harum, et debitis. Nemo voluptatibus consectetur sint obcaecati ipsam fugit vel.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Sunt recusandae eaque illum deleniti a asperiores ipsa sint ratione dicta fugit, voluptatum quaerat distinctio quam similique eveniet nobis expedita repellat corporis vel nostrum qui, commodi fugiat tempore rem. Velit?<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Voluptatem tenetur placeat voluptate qui! Amet necessitatibus laudantium, autem tenetur possimus atque illo molestias error, ullam est fugit quia sapiente minima quidem voluptatibus. Repudiandae quasi optio, maiores odit perferendis voluptate.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Officiis, rem quisquam? Perspiciatis autem eveniet dignissimos quae suscipit tenetur vero consequuntur quidem veritatis hic molestiae, enim sunt odit laudantium, fugiat distinctio ratione! Sit tempora corrupti dolorum excepturi dolor illo.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Laboriosam ducimus non id. Laboriosam fuga modi alias ad necessitatibus dicta libero adipisci. Voluptates mollitia minus accusamus ea perferendis. Corrupti omnis dignissimos amet, atque quod vitae laudantium eaque provident expedita?<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Magni, minima nulla. Assumenda quae perferendis earum labore repellat veritatis, neque consequuntur distinctio non recusandae quo. Sed cumque nobis, voluptatibus, dolorum natus ipsum corporis reprehenderit pariatur quaerat nesciunt cum explicabo?<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Voluptas nulla, ad eos enim nesciunt aut amet fugit explicabo in magni quibusdam ea exercitationem. Quae, nisi laborum. Fugiat rem cupiditate ipsum, amet totam repudiandae illum natus corporis reprehenderit quis.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Assumenda in dolor numquam mollitia, a tempore ea, expedita accusamus ex blanditiis earum, sed voluptatum beatae libero totam ipsam repellat placeat ratione. Ullam eveniet distinctio dolore vel quidem voluptas placeat?<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Odio, harum nesciunt eligendi mollitia laudantium voluptate velit ut, quas, iste aperiam ad laboriosam! Natus repellendus quam perferendis aperiam voluptate! Earum rerum ipsum deserunt voluptate ipsa maiores veniam a aliquid!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Ab inventore obcaecati modi quae, natus nostrum nihil cupiditate impedit architecto aperiam minus similique! Distinctio corrupti a nobis nesciunt ipsum modi eius aliquam nisi est dolorum. Rerum excepturi ipsum maiores?<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Repudiandae laborum, numquam ipsum eos at possimus repellat ad sapiente perferendis adipisci, consequuntur vel libero est nostrum ipsam, quas eius quidem perspiciatis sint ab corrupti temporibus quasi aperiam corporis. Nostrum?<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Voluptatum corporis iusto ipsum sed. Nam itaque omnis fugiat, vitae ad ratione nihil quos rerum deserunt enim, recusandae ex, iure iusto eos? Ad maxime cumque expedita odit quo, nesciunt obcaecati?<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Expedita inventore, placeat cumque aut obcaecati nemo perferendis quod velit porro, eligendi repellat officiis, rerum voluptatum hic. Laudantium vero sapiente corrupti provident eius nam vitae perspiciatis! Voluptatem esse autem recusandae.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Praesentium nemo asperiores ad, qui quod corporis optio aliquam excepturi modi minima laboriosam recusandae accusantium totam iste iure vero aut architecto. Animi nemo voluptas beatae sapiente minima consectetur quae non?<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Molestias laborum, facilis quas rerum ea aperiam, dignissimos labore a mollitia quaerat esse? Autem est voluptas sunt consectetur! Consectetur sunt vero, a quod maiores adipisci iusto eaque vel praesentium fuga!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Consequatur vero incidunt possimus fugit delectus nemo cupiditate numquam, quasi veritatis, ducimus fuga recusandae eveniet exercitationem enim? Repellat, commodi! Dignissimos odit eveniet facere dolor incidunt dolorum in unde voluptate veritatis.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Harum atque, et quos unde modi dignissimos nemo tempora quo exercitationem distinctio a hic, eveniet obcaecati laborum consequuntur voluptatibus rerum fugit blanditiis nesciunt nostrum illo iure perspiciatis nihil sequi! Fugit!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">   </span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/apple.lily/2024/06/15/CSS-Basic-Day13/css-basic-13-03.gif"></p>
+<p>ps.margin會重疊</p>
+<p>文獻連結:<br>金魚都能懂的網頁設計入門-第十三天 -fixed 定位<br><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=6jwl-XEpXLk&list=PLqivELodHt3iL9PgGHg0_EF86FwdiqCre&index=13">https://www.youtube.com/watch?v=6jwl-XEpXLk&amp;list=PLqivELodHt3iL9PgGHg0_EF86FwdiqCre&amp;index=13</a> by CSScoke Amos</p>
+<p>完整版30集 - 金魚都能懂網頁設計入門<br><a target="_blank" rel="noopener" href="https://www.youtube.com/playlist?list=PLqivELodHt3iL9PgGHg0_EF86FwdiqCre">https://www.youtube.com/playlist?list=PLqivELodHt3iL9PgGHg0_EF86FwdiqCre</a> by CSScoke Amos</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/CSScoke/" rel="tag"># CSScoke</a>
+              <a href="/apple.lily/tags/CSS/" rel="tag"># CSS</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/06/14/CSS-Basic-Day12/" rel="prev" title="金魚都能懂的網頁設計入門-第十二天 學習筆記">
+                  <i class="fa fa-angle-left"></i> 金魚都能懂的網頁設計入門-第十二天 學習筆記
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
