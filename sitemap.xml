@@ -295,6 +295,13 @@
   </url>
   
   <url>
+    <loc>https://lilylovesjeans.github.io/apple.lily/tags/hexo%E8%A8%AD%E5%AE%9A/</loc>
+    <lastmod>2024-06-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://lilylovesjeans.github.io/apple.lily/tags/Javascript/</loc>
     <lastmod>2024-06-19</lastmod>
     <changefreq>weekly</changefreq>
@@ -315,17 +322,17 @@
     <priority>0.2</priority>
   </url>
   
+
+  
   <url>
-    <loc>https://lilylovesjeans.github.io/apple.lily/tags/hexo%E8%A8%AD%E5%AE%9A/</loc>
+    <loc>https://lilylovesjeans.github.io/apple.lily/categories/%E9%87%91%E9%AD%9A%E9%83%BD%E8%83%BD%E6%87%82%E7%9A%84%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E5%85%A5%E9%96%80-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</loc>
     <lastmod>2024-06-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
-
-  
   <url>
-    <loc>https://lilylovesjeans.github.io/apple.lily/categories/%E9%87%91%E9%AD%9A%E9%83%BD%E8%83%BD%E6%87%82%E7%9A%84%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E5%85%A5%E9%96%80-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</loc>
+    <loc>https://lilylovesjeans.github.io/apple.lily/categories/hexo/</loc>
     <lastmod>2024-06-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -340,13 +347,6 @@
   
   <url>
     <loc>https://lilylovesjeans.github.io/apple.lily/categories/OneDayOneNote/</loc>
-    <lastmod>2024-06-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://lilylovesjeans.github.io/apple.lily/categories/hexo/</loc>
     <lastmod>2024-06-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
