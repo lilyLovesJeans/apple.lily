@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="金魚都能懂的網頁設計入門-第二十四天 - Bootstrap 組件入門">
+<meta property="og:type" content="article">
+<meta property="og:title" content="金魚都能懂的網頁設計入門-第二十四天 學習筆記">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2024/06/27/CSS-Basic-Day24/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="金魚都能懂的網頁設計入門-第二十四天 - Bootstrap 組件入門">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://lilylovesjeans.github.io/apple.lily/2024/06/27/CSS-Basic-Day24/css-basic-24-01.gif">
+<meta property="article:published_time" content="2024-06-27T15:36:21.000Z">
+<meta property="article:modified_time" content="2024-06-28T16:40:46.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="CSScoke">
+<meta property="article:tag" content="CSS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lilylovesjeans.github.io/apple.lily/2024/06/27/CSS-Basic-Day24/css-basic-24-01.gif">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2024/06/27/CSS-Basic-Day24/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2024/06/27/CSS-Basic-Day24/","path":"2024/06/27/CSS-Basic-Day24/","title":"金魚都能懂的網頁設計入門-第二十四天 學習筆記"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>金魚都能懂的網頁設計入門-第二十四天 學習筆記 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%88%E8%87%B3%E5%AE%98%E7%B6%B2-Quick-start-copy-%E6%A8%A3%E7%89%88%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">先至官網 Quick start , copy 樣版：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E5%80%8B%E6%AD%A3%E5%B8%B8%E7%B6%B2%E9%A0%81%EF%BC%8C%E6%9C%83%E6%9C%89%E5%B0%8E%E8%A6%BD%E5%88%97%EF%BC%8C%E5%B9%BB%E7%87%88%E7%89%87%EF%BC%8Cbanner-%E2%80%A6"><span class="nav-number">2.</span> <span class="nav-text">一個正常網頁，會有導覽列，幻燈片，banner  ….</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%85%88%E5%81%9A-%E5%B0%8E%E8%A6%BD%E5%88%97"><span class="nav-number">2.1.</span> <span class="nav-text">1. 先做 導覽列 ,</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-banner-%E5%A4%A7%E5%BC%B5%E8%83%8C%E6%99%AF%E5%9C%96"><span class="nav-number">2.2.</span> <span class="nav-text">2. banner 大張背景圖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E9%BA%B5%E5%8C%85%E5%B1%91-path-%E4%BD%BF%E7%94%A8-Breadcrumb-%E9%80%99%E5%80%8Bcomponent"><span class="nav-number">2.3.</span> <span class="nav-text">3.  麵包屑 path 使用 Breadcrumb 這個component</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%BB%BA%E6%A7%8B-%E4%BA%8C%E6%AC%84%E7%89%88%E9%9D%A2-%E6%89%8B%E6%A9%9F%E6%BB%BF%E7%89%88-%EF%BC%8C%E5%B9%B3%E7%89%88%E4%BB%A5%E4%B8%8A%E5%89%87%E7%94%A8-3%E8%B7%9F9%E7%9A%84%E6%AF%94%E4%BE%8B"><span class="nav-number">2.4.</span> <span class="nav-text">4. 建構 二欄版面 , 手機滿版 ，平版以上則用 3跟9的比例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%9C%A8%E4%BA%8C%E6%AC%84%E7%89%88%E9%9D%A2%E8%A3%B9%EF%BC%8C%E5%B7%A6%E9%82%8A%E8%A6%81%E6%9C%89%E4%B8%80%E5%80%8B-%E7%9B%B4%E5%BC%8F%E9%81%B8%E5%96%AE-list-group-%E6%89%BE%E6%9C%89%E8%B6%85%E9%80%A3%E7%B5%90%E7%9A%84%E9%83%A8%E4%BB%BD"><span class="nav-number">2.5.</span> <span class="nav-text">5. 在二欄版面裹，左邊要有一個 直式選單 list group , 找有超連結的部份</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E5%9C%A8%E4%BA%8C%E6%AC%84%E7%89%88%E9%9D%A2%E8%A3%B9%EF%BC%8C%E5%8F%B3%E9%82%8A%E8%A6%81%E6%9C%89%E5%80%8B%E7%B0%A1%E5%96%AE%E7%9A%84%E6%A8%99%E9%A1%8C%E5%8F%8A-6%E5%80%8B%E5%B0%8Fcard%EF%BC%8C%E8%87%AA%E5%B7%B1%E5%AF%AB"><span class="nav-number">2.6.</span> <span class="nav-text">6. 在二欄版面裹，右邊要有個簡單的標題及 6個小card，自己寫</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E5%BA%95%E4%B8%8B%E8%A6%81%E6%9C%89%E4%B8%80%E5%80%8B%E6%8F%9B%E9%A0%81%E7%9A%84%E6%96%B9%E5%BC%8F-%EF%BC%8C%E6%89%BEpagination"><span class="nav-number">2.7.</span> <span class="nav-text">7. 底下要有一個換頁的方式 ，找pagination</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-%E9%82%84%E9%9C%80%E8%A6%81%E4%B8%80%E5%80%8B-footer"><span class="nav-number">2.8.</span> <span class="nav-text">8. 還需要一個 footer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-%E8%A3%9C%E5%85%85%E8%AA%AA%E6%98%8E-%EF%BC%8C%E5%83%8F7-%E7%9A%84%E5%8D%A1%E7%89%87%E6%96%B9%E5%BC%8F%E8%A8%AD%E8%A8%88-bootstrap-%E5%B7%B2%E6%9C%89-card-component"><span class="nav-number">2.9.</span> <span class="nav-text">9. 補充說明 ，像7.的卡片方式設計, bootstrap 已有 card component</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-%E5%B0%87banner-%E6%94%B9%E6%88%90-carousel-%E5%B9%BB%E7%87%88%E7%89%87"><span class="nav-number">2.10.</span> <span class="nav-text">10. 將banner 改成 carousel 幻燈片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-%E8%A3%9C%E5%85%85%E8%AA%AA%E6%98%8E%EF%BC%9A-%E7%99%BB%E5%85%A5%E5%8D%80-modal"><span class="nav-number">2.11.</span> <span class="nav-text">11. 補充說明： 登入區 modal</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-%E7%84%B6%E5%BE%8C%E6%8A%8A-button-%E6%94%B9%E7%82%BAnav-%E7%9A%84%E9%81%B8%E5%96%AE-%E8%B6%85%E9%80%A3%E7%B5%90"><span class="nav-number">2.12.</span> <span class="nav-text">12. 然後把 button 改為nav 的選單 超連結</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-bootstrap-%E5%B0%8D%E8%B6%85%E9%80%A3%E6%8E%A7%E5%88%B6%E6%96%B9%E5%BC%8F-%E6%8A%8A-button%E7%9A%84-data-bs-target%E7%9A%84%E5%85%A7%E5%AE%B9%E8%B2%BC%E5%88%B0-href-%E2%80%9D%E2%80%9D-%EF%BC%8Cdata-bs-toggle-%E8%A3%9C%E5%88%B0%E5%B1%AC%E6%80%A7%E8%A3%B9%E9%9D%A2"><span class="nav-number">2.13.</span> <span class="nav-text">13. bootstrap 對超連控制方式 ,把 button的 data-bs-target的內容貼到 href&#x3D;”” ，data-bs-toggle 補到屬性裹面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-%E6%8A%8Alink-%E7%9A%84%E8%B6%85%E9%80%A3%E7%B5%90%E6%94%B9%E6%88%90%E7%99%BB%E5%85%A5"><span class="nav-number">2.14.</span> <span class="nav-text">14. 把link 的超連結改成登入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-%E5%AE%8C%E6%88%90"><span class="nav-number">2.15.</span> <span class="nav-text">15.完成</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2024/06/27/CSS-Basic-Day24/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="金魚都能懂的網頁設計入門-第二十四天 學習筆記 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="金魚都能懂的網頁設計入門-第二十四天 - Bootstrap 組件入門">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          金魚都能懂的網頁設計入門-第二十四天 學習筆記
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2024-06-27 23:36:21" itemprop="dateCreated datePublished" datetime="2024-06-27T23:36:21+08:00">2024-06-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新於</span>
+      <time title="修改時間：2024-06-29 00:40:46" itemprop="dateModified" datetime="2024-06-29T00:40:46+08:00">2024-06-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/%E9%87%91%E9%AD%9A%E9%83%BD%E8%83%BD%E6%87%82%E7%9A%84%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E5%85%A5%E9%96%80-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/" itemprop="url" rel="index"><span itemprop="name">金魚都能懂的網頁設計入門-學習筆記</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">金魚都能懂的網頁設計入門-第二十四天 - Bootstrap 組件入門</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="先至官網-Quick-start-copy-樣版："><a href="#先至官網-Quick-start-copy-樣版：" class="headerlink" title="先至官網 Quick start , copy 樣版："></a>先至官網 Quick start , copy 樣版：</h2><p><a target="_blank" rel="noopener" href="https://getbootstrap.com/docs/5.3/getting-started/introduction/">https://getbootstrap.com/docs/5.3/getting-started/introduction/</a></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!doctype <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Bootstrap demo<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">integrity</span>=<span class="string">&quot;sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH&quot;</span> <span class="attr">crossorigin</span>=<span class="string">&quot;anonymous&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello, world!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js&quot;</span> <span class="attr">integrity</span>=<span class="string">&quot;sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz&quot;</span> <span class="attr">crossorigin</span>=<span class="string">&quot;anonymous&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="一個正常網頁，會有導覽列，幻燈片，banner-…"><a href="#一個正常網頁，會有導覽列，幻燈片，banner-…" class="headerlink" title="一個正常網頁，會有導覽列，幻燈片，banner  …."></a>一個正常網頁，會有導覽列，幻燈片，banner  ….</h2><h3 id="1-先做-導覽列"><a href="#1-先做-導覽列" class="headerlink" title="1. 先做 導覽列 ,"></a>1. 先做 導覽列 ,</h3><p>在 bootstrap 的 component ,  有一個 navbar:<br><a target="_blank" rel="noopener" href="https://getbootstrap.com/docs/5.3/components/navbar/">https://getbootstrap.com/docs/5.3/components/navbar/</a></p>
+<h3 id="2-banner-大張背景圖"><a href="#2-banner-大張背景圖" class="headerlink" title="2. banner 大張背景圖"></a>2. banner 大張背景圖</h3><p>因Amos 是 bootstrap4 ，但bootstrap5已不支援jumbotron，所以用另種寫法:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 2. 大的banner 背景圖  --&gt;</span></span><br><span class="line">   <span class="comment">&lt;!-- bg-light is background color &amp; p-5 is padding --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;banner container-fluid text-sm-center p-5 bg-light&quot;</span>&gt;</span> </span><br><span class="line">     </span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">&quot;display-4&quot;</span>&gt;</span>Banner<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;lead&quot;</span>&gt;</span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae, voluptate.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span> </span><br></pre></td></tr></table></figure>
+<h3 id="3-麵包屑-path-使用-Breadcrumb-這個component"><a href="#3-麵包屑-path-使用-Breadcrumb-這個component" class="headerlink" title="3.  麵包屑 path 使用 Breadcrumb 這個component"></a>3.  麵包屑 path 使用 Breadcrumb 這個component</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;my_path&quot;</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">       <span class="comment">&lt;!-- 3. 麵包屑 path Breadcrumb--&gt;</span></span><br><span class="line">       </span><br><span class="line">           <span class="tag">&lt;<span class="name">nav</span> <span class="attr">aria-label</span>=<span class="string">&quot;breadcrumb&quot;</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">ol</span> <span class="attr">class</span>=<span class="string">&quot;breadcrumb&quot;</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;breadcrumb-item&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>Home<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;breadcrumb-item&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>Library<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;breadcrumb-item active&quot;</span> <span class="attr">aria-current</span>=<span class="string">&quot;page&quot;</span>&gt;</span>Data<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="4-建構-二欄版面-手機滿版-，平版以上則用-3跟9的比例"><a href="#4-建構-二欄版面-手機滿版-，平版以上則用-3跟9的比例" class="headerlink" title="4. 建構 二欄版面 , 手機滿版 ，平版以上則用 3跟9的比例"></a>4. 建構 二欄版面 , 手機滿版 ，平版以上則用 3跟9的比例</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row&quot;</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-12 col-md-3&quot;</span>&gt;</span></span><br><span class="line">             ...</span><br><span class="line">             ...</span><br><span class="line">             ...</span><br><span class="line">         <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-12 col-md-9&quot;</span>&gt;</span></span><br><span class="line">             ...</span><br><span class="line">             ...</span><br><span class="line">             ...</span><br><span class="line">         <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="5-在二欄版面裹，左邊要有一個-直式選單-list-group-找有超連結的部份"><a href="#5-在二欄版面裹，左邊要有一個-直式選單-list-group-找有超連結的部份" class="headerlink" title="5. 在二欄版面裹，左邊要有一個 直式選單 list group , 找有超連結的部份"></a>5. 在二欄版面裹，左邊要有一個 直式選單 list group , 找有超連結的部份</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;list-group&quot;</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span> <span class="attr">class</span>=<span class="string">&quot;list-group-item list-group-item-action active&quot;</span> <span class="attr">aria-current</span>=<span class="string">&quot;true&quot;</span>&gt;</span></span><br><span class="line">                      The current link item</span><br><span class="line">                    <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span> <span class="attr">class</span>=<span class="string">&quot;list-group-item list-group-item-action&quot;</span>&gt;</span>A second link item<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span> <span class="attr">class</span>=<span class="string">&quot;list-group-item list-group-item-action&quot;</span>&gt;</span>A third link item<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span> <span class="attr">class</span>=<span class="string">&quot;list-group-item list-group-item-action&quot;</span>&gt;</span>A fourth link item<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;list-group-item list-group-item-action disabled&quot;</span> <span class="attr">aria-disabled</span>=<span class="string">&quot;true&quot;</span>&gt;</span>A disabled link item<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">                  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="6-在二欄版面裹，右邊要有個簡單的標題及-6個小card，自己寫"><a href="#6-在二欄版面裹，右邊要有個簡單的標題及-6個小card，自己寫" class="headerlink" title="6. 在二欄版面裹，右邊要有個簡單的標題及 6個小card，自己寫"></a>6. 在二欄版面裹，右邊要有個簡單的標題及 6個小card，自己寫</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-12 col-md-3&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;https://picsum.photos/300/200/?random=31&quot;</span> <span class="attr">class</span>=<span class="string">&quot;img-fluid&quot;</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h3</span>&gt;</span>title<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Earum, veniam.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-12 col-md-3&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;https://picsum.photos/300/200/?random=32&quot;</span> <span class="attr">class</span>=<span class="string">&quot;img-fluid&quot;</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h3</span>&gt;</span>title<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Earum, veniam.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-12 col-md-3&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;https://picsum.photos/300/200/?random=33&quot;</span> <span class="attr">class</span>=<span class="string">&quot;img-fluid&quot;</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h3</span>&gt;</span>title<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Earum, veniam.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-12 col-md-3&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;https://picsum.photos/300/200/?random=34&quot;</span> <span class="attr">class</span>=<span class="string">&quot;img-fluid&quot;</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h3</span>&gt;</span>title<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Earum, veniam.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-12 col-md-3&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;https://picsum.photos/300/200/?random=34&quot;</span> <span class="attr">class</span>=<span class="string">&quot;img-fluid&quot;</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h3</span>&gt;</span>title<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Earum, veniam.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-12 col-md-3&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;https://picsum.photos/300/200/?random=35&quot;</span> <span class="attr">class</span>=<span class="string">&quot;img-fluid&quot;</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h3</span>&gt;</span>title<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Earum, veniam.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-12 col-md-3&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;https://picsum.photos/300/200/?random=36&quot;</span> <span class="attr">class</span>=<span class="string">&quot;img-fluid&quot;</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h3</span>&gt;</span>title<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Earum, veniam.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-12 col-md-3&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;https://picsum.photos/300/200/?random=37&quot;</span> <span class="attr">class</span>=<span class="string">&quot;img-fluid&quot;</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h3</span>&gt;</span>title<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Earum, veniam.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="7-底下要有一個換頁的方式-，找pagination"><a href="#7-底下要有一個換頁的方式-，找pagination" class="headerlink" title="7. 底下要有一個換頁的方式 ，找pagination"></a>7. 底下要有一個換頁的方式 ，找pagination</h3><pre><code>   然後希望pagination 可以置中，先用檢查看看，物件是用什麼方式顯示 display: ? 檢查之後，發現是用 flex , 所以置中方式就用justify-content-center 這個 class
+</code></pre>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">nav</span> <span class="attr">aria-label</span>=<span class="string">&quot;Page navigation example&quot;</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;pagination justify-content-center&quot;</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;page-item&quot;</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;page-link&quot;</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span> <span class="attr">aria-label</span>=<span class="string">&quot;Previous&quot;</span>&gt;</span></span><br><span class="line">                 <span class="tag">&lt;<span class="name">span</span> <span class="attr">aria-hidden</span>=<span class="string">&quot;true&quot;</span>&gt;</span><span class="symbol">&amp;laquo;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;page-item&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;page-link&quot;</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>1<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;page-item&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;page-link&quot;</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>2<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;page-item&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;page-link&quot;</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>3<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;page-item&quot;</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;page-link&quot;</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span> <span class="attr">aria-label</span>=<span class="string">&quot;Next&quot;</span>&gt;</span></span><br><span class="line">                 <span class="tag">&lt;<span class="name">span</span> <span class="attr">aria-hidden</span>=<span class="string">&quot;true&quot;</span>&gt;</span><span class="symbol">&amp;raquo;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="8-還需要一個-footer"><a href="#8-還需要一個-footer" class="headerlink" title="8. 還需要一個 footer"></a>8. 還需要一個 footer</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container-fluid text-center main-footer&quot;</span>&gt;</span></span><br><span class="line">    &amp;copy copyright by Lily</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="9-補充說明-，像7-的卡片方式設計-bootstrap-已有-card-component"><a href="#9-補充說明-，像7-的卡片方式設計-bootstrap-已有-card-component" class="headerlink" title="9. 補充說明 ，像7.的卡片方式設計, bootstrap 已有 card component"></a>9. 補充說明 ，像7.的卡片方式設計, bootstrap 已有 card component</h3><p>上面的banner 可以改成幻燈片 carousel</p>
+<h3 id="10-將banner-改成-carousel-幻燈片"><a href="#10-將banner-改成-carousel-幻燈片" class="headerlink" title="10. 將banner 改成 carousel 幻燈片"></a>10. 將banner 改成 carousel 幻燈片</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;carouselExampleCaptions&quot;</span> <span class="attr">class</span>=<span class="string">&quot;carousel slide&quot;</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;carousel-indicators&quot;</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">data-bs-target</span>=<span class="string">&quot;#carouselExampleCaptions&quot;</span> <span class="attr">data-bs-slide-to</span>=<span class="string">&quot;0&quot;</span> <span class="attr">class</span>=<span class="string">&quot;active&quot;</span> <span class="attr">aria-current</span>=<span class="string">&quot;true&quot;</span> <span class="attr">aria-label</span>=<span class="string">&quot;Slide 1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">data-bs-target</span>=<span class="string">&quot;#carouselExampleCaptions&quot;</span> <span class="attr">data-bs-slide-to</span>=<span class="string">&quot;1&quot;</span> <span class="attr">aria-label</span>=<span class="string">&quot;Slide 2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">data-bs-target</span>=<span class="string">&quot;#carouselExampleCaptions&quot;</span> <span class="attr">data-bs-slide-to</span>=<span class="string">&quot;2&quot;</span> <span class="attr">aria-label</span>=<span class="string">&quot;Slide 3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;carousel-inner&quot;</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;carousel-item active&quot;</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;https://picsum.photos/1200/300/?random=6&quot;</span> <span class="attr">class</span>=<span class="string">&quot;d-block w-100&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;...&quot;</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;carousel-caption d-none d-md-block&quot;</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">h5</span>&gt;</span>First slide label<span class="tag">&lt;/<span class="name">h5</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">p</span>&gt;</span>Some representative placeholder content for the first slide.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;carousel-item&quot;</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;https://picsum.photos/1200/300/?random=7&quot;</span> <span class="attr">class</span>=<span class="string">&quot;d-block w-100&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;...&quot;</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;carousel-caption d-none d-md-block&quot;</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">h5</span>&gt;</span>Second slide label<span class="tag">&lt;/<span class="name">h5</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">p</span>&gt;</span>Some representative placeholder content for the second slide.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;carousel-item&quot;</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;https://picsum.photos/1200/300/?random=8&quot;</span> <span class="attr">class</span>=<span class="string">&quot;d-block w-100&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;...&quot;</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;carousel-caption d-none d-md-block&quot;</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">h5</span>&gt;</span>Third slide label<span class="tag">&lt;/<span class="name">h5</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">p</span>&gt;</span>Some representative placeholder content for the third slide.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;carousel-control-prev&quot;</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">data-bs-target</span>=<span class="string">&quot;#carouselExampleCaptions&quot;</span> <span class="attr">data-bs-slide</span>=<span class="string">&quot;prev&quot;</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;carousel-control-prev-icon&quot;</span> <span class="attr">aria-hidden</span>=<span class="string">&quot;true&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;visually-hidden&quot;</span>&gt;</span>Previous<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;carousel-control-next&quot;</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">data-bs-target</span>=<span class="string">&quot;#carouselExampleCaptions&quot;</span> <span class="attr">data-bs-slide</span>=<span class="string">&quot;next&quot;</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;carousel-control-next-icon&quot;</span> <span class="attr">aria-hidden</span>=<span class="string">&quot;true&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;visually-hidden&quot;</span>&gt;</span>Next<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="11-補充說明：-登入區-modal"><a href="#11-補充說明：-登入區-modal" class="headerlink" title="11. 補充說明： 登入區 modal"></a>11. 補充說明： 登入區 modal</h3><p>先去 copy一個 button 可以控制 modal<br>data-toggle 為你要控制的模組: class&#x3D; modal，<br>data-target 指的是 ID id&#x3D;exampleModal</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 下列這段是 modal --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- Button trigger modal --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">class</span>=<span class="string">&quot;btn btn-primary&quot;</span> <span class="attr">data-bs-toggle</span>=<span class="string">&quot;modal&quot;</span> <span class="attr">data-bs-target</span>=<span class="string">&quot;#exampleModal&quot;</span>&gt;</span></span><br><span class="line">登入</span><br><span class="line"><span class="tag">&lt;/<span class="name">button</span>&gt;</span> </span><br><span class="line">  <span class="comment">&lt;!-- Modal --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;modal fade&quot;</span> <span class="attr">id</span>=<span class="string">&quot;exampleModal&quot;</span> <span class="attr">tabindex</span>=<span class="string">&quot;-1&quot;</span> <span class="attr">aria-labelledby</span>=<span class="string">&quot;exampleModalLabel&quot;</span> <span class="attr">aria-hidden</span>=<span class="string">&quot;true&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;modal-dialog&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;modal-content&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;modal-header&quot;</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">&quot;modal-title fs-5&quot;</span> <span class="attr">id</span>=<span class="string">&quot;exampleModalLabel&quot;</span>&gt;</span>登入<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">class</span>=<span class="string">&quot;btn-close&quot;</span> <span class="attr">data-bs-dismiss</span>=<span class="string">&quot;modal&quot;</span> <span class="attr">aria-label</span>=<span class="string">&quot;Close&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;modal-body&quot;</span>&gt;</span></span><br><span class="line">          用戶註冊</span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;modal-footer&quot;</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">class</span>=<span class="string">&quot;btn btn-secondary&quot;</span> <span class="attr">data-bs-dismiss</span>=<span class="string">&quot;modal&quot;</span>&gt;</span>Close<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">class</span>=<span class="string">&quot;btn btn-primary&quot;</span>&gt;</span>Save changes<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="12-然後把-button-改為nav-的選單-超連結"><a href="#12-然後把-button-改為nav-的選單-超連結" class="headerlink" title="12. 然後把 button 改為nav 的選單 超連結"></a>12. 然後把 button 改為nav 的選單 超連結</h3><h3 id="13-bootstrap-對超連控制方式-把-button的-data-bs-target的內容貼到-href-””-，data-bs-toggle-補到屬性裹面"><a href="#13-bootstrap-對超連控制方式-把-button的-data-bs-target的內容貼到-href-””-，data-bs-toggle-補到屬性裹面" class="headerlink" title="13. bootstrap 對超連控制方式 ,把 button的 data-bs-target的內容貼到 href&#x3D;”” ，data-bs-toggle 補到屬性裹面"></a>13. bootstrap 對超連控制方式 ,把 button的 data-bs-target的內容貼到 href&#x3D;”” ，data-bs-toggle 補到屬性裹面</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#exampleModal&quot;</span> <span class="attr">data-bs-toggle</span>=<span class="string">&quot;modal&quot;</span>  &gt;</span>登入<span class="tag">&lt;/<span class="name">a</span>&gt;</span> </span><br></pre></td></tr></table></figure>
+<h3 id="14-把link-的超連結改成登入"><a href="#14-把link-的超連結改成登入" class="headerlink" title="14. 把link 的超連結改成登入"></a>14. 把link 的超連結改成登入</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;nav-item&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 13. bootstrap 對超連控制方式 ,把  data-bs-target的內容貼到 href=&quot;&quot; ，data-bs-toggle 補到屬性裹面 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 14. 把link 的超連結改成登入 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;nav-link active&quot;</span> <span class="attr">aria-current</span>=<span class="string">&quot;page&quot;</span> <span class="attr">href</span>=<span class="string">&quot;#exampleModal&quot;</span> <span class="attr">data-bs-toggle</span>=<span class="string">&quot;modal&quot;</span>  &gt;</span>登入<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="15-完成"><a href="#15-完成" class="headerlink" title="15.完成"></a>15.完成</h3><p><img src="/apple.lily/2024/06/27/CSS-Basic-Day24/css-basic-24-01.gif"></p>
+<p>文獻連結:<br> 金魚都能懂的網頁設計入門-第二十四天 - Bootstrap 組件入門<br><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=p3CK74T9GHQ&list=PLqivELodHt3iL9PgGHg0_EF86FwdiqCre&index=24">https://www.youtube.com/watch?v=p3CK74T9GHQ&amp;list=PLqivELodHt3iL9PgGHg0_EF86FwdiqCre&amp;index=24</a> by CSScoke Amos</p>
+<p>完整版30集 - 金魚都能懂網頁設計入門<br><a target="_blank" rel="noopener" href="https://www.youtube.com/playlist?list=PLqivELodHt3iL9PgGHg0_EF86FwdiqCre">https://www.youtube.com/playlist?list=PLqivELodHt3iL9PgGHg0_EF86FwdiqCre</a> by CSScoke Amos</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/CSScoke/" rel="tag"># CSScoke</a>
+              <a href="/apple.lily/tags/CSS/" rel="tag"># CSS</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/06/25/CSS-Basic-Day23/" rel="prev" title="金魚都能懂的網頁設計入門-第二十三天 學習筆記">
+                  <i class="fa fa-angle-left"></i> 金魚都能懂的網頁設計入門-第二十三天 學習筆記
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
