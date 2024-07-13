@@ -1,0 +1,23 @@
+<hr>
+<h2 id="title-2024-05-26-CSS-black-overlaydate-2024-07-14-03-42-21categories-OneDayOneNotetags-OneNote-CSS-description-CSS-black-overlay-黑色半透明遮罩-做法"><a href="#title-2024-05-26-CSS-black-overlaydate-2024-07-14-03-42-21categories-OneDayOneNotetags-OneNote-CSS-description-CSS-black-overlay-黑色半透明遮罩-做法" class="headerlink" title="title: 2024-05-26 CSS black overlaydate: 2024-07-14 03:42:21categories: OneDayOneNotetags: [OneNote, CSS]description:  CSS black overlay 黑色半透明遮罩 做法"></a>title: 2024-05-26 CSS black overlay<br>date: 2024-07-14 03:42:21<br>categories: OneDayOneNote<br>tags: [OneNote, CSS]<br>description:  CSS black overlay 黑色半透明遮罩 做法</h2><h2 id="2024-05-26-CSS-black-overlay"><a href="#2024-05-26-CSS-black-overlay" class="headerlink" title="2024-05-26 CSS black overlay"></a>2024-05-26 CSS black overlay</h2><h3 id="CSS-black-overlay-黑色半透明遮罩-做法"><a href="#CSS-black-overlay-黑色半透明遮罩-做法" class="headerlink" title="CSS black overlay 黑色半透明遮罩 做法"></a>CSS black overlay 黑色半透明遮罩 做法</h3><p>在modal 彈出視窗的最外層，需要有一個固定遮罩</p>
+<pre><code class="html">    &lt;div class=&quot;modal_wrap&quot;&gt;
+        &lt;div class=&quot;modal&quot; id=&quot;login-modal&quot;&gt;
+            .....
+            .....
+        &lt;/div&gt;
+    &lt;/div&gt;
+</code></pre>
+<p>modal_wrap 類別選擇器(Class selector) 的設定</p>
+<pre><code class="css">.modal_wrap{
+    display:none;
+    position: fixed;
+    z-index: 1; /*層疊在最上層*/
+    padding-top: 100px;
+    left:0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);  /*黑色半透明遮罩*/
+}
+</code></pre>
