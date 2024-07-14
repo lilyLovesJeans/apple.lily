@@ -1,0 +1,63 @@
+<hr>
+<h2 id="title-2024-05-29-event-preventDefault-date-2024-07-14-14-15-17categories-OneDayOneNotetags-OneNote-CSS-description-event-preventDefault-防止表單提交"><a href="#title-2024-05-29-event-preventDefault-date-2024-07-14-14-15-17categories-OneDayOneNotetags-OneNote-CSS-description-event-preventDefault-防止表單提交" class="headerlink" title="title: 2024-05-29  event.preventDefault()date: 2024-07-14 14:15:17categories: OneDayOneNotetags: [OneNote, CSS]description:   event.preventDefault(); &#x2F;&#x2F; 防止表單提交"></a>title: 2024-05-29  event.preventDefault()<br>date: 2024-07-14 14:15:17<br>categories: OneDayOneNote<br>tags: [OneNote, CSS]<br>description:   event.preventDefault(); &#x2F;&#x2F; 防止表單提交</h2><h2 id="2024-05-29-今天學到了-event-preventDefault-防止表單提交"><a href="#2024-05-29-今天學到了-event-preventDefault-防止表單提交" class="headerlink" title="2024-05-29 今天學到了 event.preventDefault(); &#x2F;&#x2F; 防止表單提交"></a>2024-05-29 今天學到了 event.preventDefault(); &#x2F;&#x2F; 防止表單提交</h2><p>防止秀出系統 default 的訊息 ，使用preventDefault()的medhod()<br>部份程式如下:</p>
+<pre><code class="html">    &lt;button class=&quot;submit&quot; type=&quot;submit&quot; onclick=&quot;btn_submit(event)&quot;&gt;註冊
+    
+        &lt;div class=&quot;toast-success&quot;&gt;
+            ✅ 註冊成功！可以查看 Email 確認細節！
+        &lt;/div&gt;
+    
+    &lt;/button&gt;
+ 
+</code></pre>
+<pre><code class="javascript">function btn_submit(event) {
+    event.preventDefault(); // 防止表單提交
+
+    let valid = true;
+
+    // 驗證暱稱
+    let nickname = document.querySelector(&#39;#nick-name&#39;).value.trim();
+    if (nickname === &quot;&quot; || nickname === null | nickname.length&gt;40) {
+        let elem_err_nickname = document.querySelector(&#39;.err-nick-name&#39;);
+        elem_err_nickname.style.visibility = &#39;visible&#39;;
+        valid = false;
+    } else {
+        let elem_err_nickname = document.querySelector(&#39;.err-nick-name&#39;);
+        elem_err_nickname.style.visibility = &#39;hidden&#39;;
+    }
+
+    // 驗證電子郵件
+    let email = document.querySelector(&#39;#email&#39;).value.trim();
+    if (email === &quot;&quot; || !email.includes(&#39;@&#39;)) {
+        let elem_err_email = document.querySelector(&#39;.err-email&#39;);
+        elem_err_email.style.visibility = &#39;visible&#39;;
+        valid = false;
+    } else {
+        let elem_err_email = document.querySelector(&#39;.err-email&#39;);
+        elem_err_email.style.visibility = &#39;hidden&#39;;
+    }
+
+    // 驗證密碼
+    let password = document.querySelector(&#39;#current-password&#39;).value.trim();
+    if (password === &quot;&quot; || password.length &lt; 8 || password.length &gt; 100) {
+        let elem_err_password = document.querySelector(&#39;.err-password&#39;);
+        elem_err_password.style.visibility = &#39;visible&#39;;
+        valid = false;
+    } else {
+        let elem_err_password = document.querySelector(&#39;.err-password&#39;);
+        elem_err_password.style.visibility = &#39;hidden&#39;;
+    }
+
+    // 如果所有字段都有效，允許表單提交
+    if (valid) {
+                // 清空所有输入字段
+                document.querySelector(&#39;#nick-name&#39;).value = &#39;&#39;;
+                document.querySelector(&#39;#email&#39;).value = &#39;&#39;;
+                document.querySelector(&#39;#current-password&#39;).value = &#39;&#39;;
+                document.querySelector(&#39;.toast-success&#39;).style.display=&#39;block&#39;; //show 出註冊成功的訊息
+        
+    }
+    else{
+                document.querySelector(&#39;.toast-success&#39;).style.display=&#39;none&#39;;
+    }
+}
+</code></pre>

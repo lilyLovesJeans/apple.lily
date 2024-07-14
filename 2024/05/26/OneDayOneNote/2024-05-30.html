@@ -1,0 +1,102 @@
+<hr>
+<h2 id="title-2024-05-30-How-TO-Collapsedate-2024-07-14-14-21-19categories-OneDayOneNotetags-OneNote-CSS-description-How-TO-Collapse-JavaScript-的-addEventListener-事件"><a href="#title-2024-05-30-How-TO-Collapsedate-2024-07-14-14-21-19categories-OneDayOneNotetags-OneNote-CSS-description-How-TO-Collapse-JavaScript-的-addEventListener-事件" class="headerlink" title="title: 2024-05-30 How TO - Collapsedate: 2024-07-14 14:21:19categories: OneDayOneNotetags: [OneNote, CSS]description:    How TO - Collapse  ,JavaScript 的 addEventListener() 事件"></a>title: 2024-05-30 How TO - Collapse<br>date: 2024-07-14 14:21:19<br>categories: OneDayOneNote<br>tags: [OneNote, CSS]<br>description:    How TO - Collapse  ,JavaScript 的 addEventListener() 事件</h2><h2 id="2024-05-30-How-TO-Collapse"><a href="#2024-05-30-How-TO-Collapse" class="headerlink" title="2024-05-30 How TO - Collapse"></a>2024-05-30 How TO - Collapse</h2><p>通常用在 FAQ 常見問題集的頁面 ， 點擊問題按鈕時，才會出現回答，<br>須要配合  javascript 的addEventListner()事件。<br>Javascript 的程式碼大概的意思是：<br>抓取所有 collapsible 選擇器， 並為其添加 click 事件，<br>當事件 click 啓動後，檢查 content 選擇器 屬性為 maxHeight 是有數字的(就是不為 0 或 null),<br>就把maxHeight 設為 null 「閉合」，反之則「展開」</p>
+<p>w3cSchool 的示範程式如下:</p>
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;style&gt;
+.collapsible {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #555;
+}
+
+.collapsible:after {
+  content: &#39;\002B&#39;;
+  color: white;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: &quot;\2212&quot;;
+}
+
+.content {
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: #f1f1f1;
+}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h2&gt;Animated Collapsibles&lt;/h2&gt;
+
+&lt;p&gt;Collapsible Set:&lt;/p&gt;
+&lt;button class=&quot;collapsible&quot;&gt;Open Section 1&lt;/button&gt;
+&lt;div class=&quot;content&quot;&gt;
+  &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.&lt;/p&gt;
+&lt;/div&gt;
+&lt;button class=&quot;collapsible&quot;&gt;Open Section 2&lt;/button&gt;
+&lt;div class=&quot;content&quot;&gt;
+  &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.&lt;/p&gt;
+&lt;/div&gt;
+&lt;button class=&quot;collapsible&quot;&gt;Open Section 3&lt;/button&gt;
+&lt;div class=&quot;content&quot;&gt;
+  &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+var coll = document.getElementsByClassName(&quot;collapsible&quot;);
+var i;
+
+
+for (i = 0; i &lt; coll.length; i++) {
+  coll[i].addEventListener(&quot;click&quot;, function() {
+    this.classList.toggle(&quot;active&quot;);
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + &quot;px&quot;;
+    } 
+  });
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p> <img src="/apple.lily/2024/07/14/OneDayOneNote/2024-05-30/collapse.png"></p>
+<p>…</p>
+<h2 id="2024-05-30-JavaScript-的-addEventListener-事件"><a href="#2024-05-30-JavaScript-的-addEventListener-事件" class="headerlink" title="2024-05-30 JavaScript 的 addEventListener() 事件"></a>2024-05-30 JavaScript 的 addEventListener() 事件</h2><p>addEventListener()</p>
+<p>可以作為事件目標的任何物件,包含Window 和 Document 物件以 Elements,都定義有一個名為 addEventListener()的方法,你可以用它來 冊事件處理器。addEventListener()接受三個引數。第一個是要為之註冊 類型。事件類型(或事件名稱)是一個字串,它不包含設定事件處理器 「on」前綴。<br>addEventListener()的第二個引數是指定類型的事件發生時應該被調用的函式。第三個引數是選擇性的,並且會在下面解釋。</p>
+<p>下列程式碼為一個<code>&lt;button&gt;</code>元素上的「click」事件註冊了兩個處理器。 兩種技巧之間的差異:</p>
+<pre><code class="javascript">&lt;button id=&quot;mybutton&quot;&gt;Click me&lt;/button&gt;
+
+&lt;script&gt;
+
+let b = document.querySelector(&quot;#mybutton&quot;);
+
+b.onclick = function() { console.log(&quot;Thanks for clicking me!&quot;); }; b.addEventListener(&quot;click&quot;, () =&gt; { console.log(&quot;Thanks again!&quot;); });
+
+&lt;/script&gt;
+</code></pre>
+<p>以”click” 作為其第一引數來呼叫 addEventListener()並不會影響到 onclick特性的值。<br> 這段程式碼中,一次按鈕點擊(button click)會在開發人員主控台記錄兩個訊息。<br> 如果我們先呼叫 addEventListener()然後再設定 onclick,我們仍然會看到兩個訊息，只是順序相反。<br> 更重要的是,你可以多次呼叫 addEventListener()以在同一個物件上為相同的事件類型註冊一個以上的處理器函式,<br> 當一個事件在一個物件上發生,為那個註冊的所有處理器都會被調用,並以它們當初註冊的順序進行。<br> 在同一個物件以上以相同的引數調用 addEventListener()超過一次,不會有什麼效果,該處理器函式仍然只註冊了一次,<br> 而這種重複調用並不會改變處理器被調用的順序。</p>
+<p> 摘錄 JavaScript 大全第七版 第456頁</p>
+<p>…</p>
