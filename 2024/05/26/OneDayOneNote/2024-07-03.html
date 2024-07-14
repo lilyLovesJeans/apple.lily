@@ -1,0 +1,25 @@
+<hr>
+<h2 id="title-2024-07-03-vanilla-lazyload-套件date-2024-07-14-20-22-39categories-OneDayOneNotetags-OneNote-JavaScript-description-2024-07-03-JavaScript-系列四：第2課-──-vanilla-lazyload-套件"><a href="#title-2024-07-03-vanilla-lazyload-套件date-2024-07-14-20-22-39categories-OneDayOneNotetags-OneNote-JavaScript-description-2024-07-03-JavaScript-系列四：第2課-──-vanilla-lazyload-套件" class="headerlink" title="title: 2024-07-03  vanilla-lazyload 套件date: 2024-07-14 20:22:39categories: OneDayOneNotetags: [OneNote, JavaScript]description: 2024-07-03  JavaScript 系列四：第2課 ── vanilla-lazyload 套件"></a>title: 2024-07-03  vanilla-lazyload 套件<br>date: 2024-07-14 20:22:39<br>categories: OneDayOneNote<br>tags: [OneNote, JavaScript]<br>description: 2024-07-03  JavaScript 系列四：第2課 ── vanilla-lazyload 套件</h2><p>2024-07-03  vanilla-lazyload 套件<br>JavaScript 系列四：第2課 ── vanilla-lazyload 套件<br>課程目標<br>認識並且能使用 vanilla-lazyload 套件</p>
+<p>課程內容<br>這次的套件是 <a href="https://github.com/verlok/vanilla-lazyload">https://github.com/verlok/vanilla-lazyload</a></p>
+<p>文件與 demo 在 <a href="https://www.andreaverlicchi.eu/vanilla-lazyload/">https://www.andreaverlicchi.eu/vanilla-lazyload/</a></p>
+<p>當畫面上圖片很多的時候，頁面載入會很慢</p>
+<p>lazy load 是所謂的延遲載入技術</p>
+<p>也就是不會在一開始就通通載入，而是使用者在網頁上下滑動的時候，圖片元素出現在畫面中的時候，才動態去載入圖片</p>
+<p><code>&lt;img alt=&quot;A lazy image&quot; class=&quot;lazy&quot; data-src=&quot;lazy.jpg&quot; /&gt;</code><br>使用了 img 元素，class 設為 lazy，但不設定 src 屬性（因為設了瀏覽器就會直接去抓圖片），而是使用 data attribute 來另外給一個 data-src 屬性</p>
+<p>這是一種常用的 API 設計，套件會自己去找出 .lazy 的元素，然後去找元素的 data-src 屬性，接著載入圖片</p>
+<p>要啟用套件，需要以下 javascript</p>
+<p>var lazyLoadInstance &#x3D; new LazyLoad({<br>  &#x2F;&#x2F; Your custom settings go here<br>});<br>這樣就完成了，很簡單吧？</p>
+<p>這邊用到了 javascript 的 OOP 物件導向語法，new 出一個新物件。可以先不管 OOP 細節，照做就好，反正就是創造一個物件然後執行一些函式</p>
+<p>創造的同時，會傳一個用大括號 {} 包起來的物件進去，當作套件的設定值。這邊因為都用預設的設定，所以傳空物件進去就好</p>
+<p>&#x2F;&#x2F; 開頭的是註解，是給開發者自己看的提醒文字，沒有實際功能</p>
+<p>比較進階的用法會類似這樣</p>
+<p>var lazyLazy &#x3D; new LazyLoad({<br>  elements_selector: “.horizContainer”,<br>  callback_enter: initOneLazyLoad,<br>  unobserve_entered: true &#x2F;&#x2F; Stop observing .horizContainer(s) after they entered<br>});<br>這個例子傳了有三個屬性的物件進去</p>
+<p>各個設定與功能效果，可以再查文件，反正會用 {} 包起來的物件去進行參數設定就對了</p>
+<p>這種「傳一個物件當參數，來進行套件的功能設定」的設計，也是 javascript 套件的常用 API 設計</p>
+<p>關於物件這種資料型態，之後的課程會再進一步學習</p>
+<p>課後作業<br>請使用 <a href="https://jsfiddle.net/">https://jsfiddle.net</a></p>
+<p>接著上網尋找 10 張漂亮圖片。參考圖庫：<a href="https://unsplash.com/">https://unsplash.com/</a></p>
+<p>假設正在開發一個包含大量高畫質、大圖片的企業形象網站，包含這 10 張圖片，上往下依序排列</p>
+<p>一次載入，實在太慢了，尤其是手機用戶、舊電腦的用戶、或者網速很慢的用戶</p>
+<p>請替這些圖片加上 lazy loading 功能</p>
+<p>做出以上功能，你就完成這次的課程目標了！</p>

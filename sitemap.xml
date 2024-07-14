@@ -2,6 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://lilylovesjeans.github.io/apple.lily/2024/07/14/OneDayOneNote/2024-07-02/</loc>
+    
+    <lastmod>2024-07-14</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://lilylovesjeans.github.io/apple.lily/2024/07/14/OneDayOneNote/2024-07-04/</loc>
+    
+    <lastmod>2024-07-14</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://lilylovesjeans.github.io/apple.lily/2024/07/14/OneDayOneNote/2024-07-03/</loc>
+    
+    <lastmod>2024-07-14</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://lilylovesjeans.github.io/apple.lily/2024/07/14/OneDayOneNote/2024-07-01/</loc>
     
     <lastmod>2024-07-14</lastmod>
@@ -740,6 +767,13 @@
   
   <url>
     <loc>https://lilylovesjeans.github.io/apple.lily/tags/OneNote/</loc>
+    <lastmod>2024-07-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://lilylovesjeans.github.io/apple.lily/tags/JavaScript/</loc>
     <lastmod>2024-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
