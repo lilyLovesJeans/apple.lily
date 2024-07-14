@@ -1,0 +1,130 @@
+<hr>
+<h2 id="title-2024-06-18-CSS-Input-Field-Label-Animation-留言版文字框特效date-2024-07-14-19-42-06categories-OneDayOneNotetags-OneNote-CSS-description-2024-06-18-CSS-Input-Field-Label-Animation-留言版文字框特效"><a href="#title-2024-06-18-CSS-Input-Field-Label-Animation-留言版文字框特效date-2024-07-14-19-42-06categories-OneDayOneNotetags-OneNote-CSS-description-2024-06-18-CSS-Input-Field-Label-Animation-留言版文字框特效" class="headerlink" title="title: 2024-06-18 CSS Input Field Label Animation 留言版文字框特效date: 2024-07-14 19:42:06categories: OneDayOneNotetags: [OneNote, CSS]description: 2024-06-18 CSS Input Field Label Animation 留言版文字框特效"></a>title: 2024-06-18 CSS Input Field Label Animation 留言版文字框特效<br>date: 2024-07-14 19:42:06<br>categories: OneDayOneNote<br>tags: [OneNote, CSS]<br>description: 2024-06-18 CSS Input Field Label Animation 留言版文字框特效</h2><h2 id="2024-06-18-CSS-Input-Field-Label-Animation-留言版文字框特效"><a href="#2024-06-18-CSS-Input-Field-Label-Animation-留言版文字框特效" class="headerlink" title="2024-06-18 CSS Input Field Label Animation 留言版文字框特效"></a>2024-06-18 CSS Input Field Label Animation 留言版文字框特效</h2><pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;JavaScript 系列四：第1課 ── autosize 套件&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;./01_js_autosize.css&quot;&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&quot;bbs&quot;&gt;
+        &lt;div class=&quot;inputBox&quot;&gt;
+            &lt;input type=&quot;text&quot; required spellcheck=&quot;false&quot;&gt;
+            &lt;span class=&quot;labelline&quot; &gt;暱稱&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;inputBox&quot;&gt;
+            &lt;textarea name=&quot;message&quot; rows=&quot;3&quot; spellcheck=&quot;false&quot; required&gt;&lt;/textarea&gt;  
+            &lt;span class=&quot;labelline&quot; &gt;留言&lt;/span&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;btn-container&quot;&gt;
+            &lt;a href=&quot;#&quot; class=&quot;btn&quot;&gt;送出&lt;/a&gt;
+        &lt;/div&gt;
+
+    &lt;/div&gt; 
+
+
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/autosize.js/6.0.1/autosize.min.js&quot; integrity=&quot;sha512-OjjaC+tijryqhyPqy7jWSPCRj7fcosu1zreTX1k+OWSwu6uSqLLQ2kxaqL9UpR7xFaPsCwhMf1bQABw2rCxMbg==&quot; crossorigin=&quot;anonymous&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;./01_js_autosize.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<pre><code class="css">* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+
+}
+body{
+    background-color: #f1f1f1;
+}
+.bbs {
+    display: flex;
+    align-items: center;
+    flex-direction: column;   
+    margin: 40px auto;
+    max-width: 560px;
+    min-height: 50vh;
+    background-color: #1d2b3a;
+    border-radius: 8px;
+    box-shadow: rgba(116, 114, 114, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+    padding: 30px;
+    gap: 30px;
+}
+
+.inputBox{
+    position: relative;
+    width: 400px;
+}
+.inputBox input , textarea{
+    width: 100%;
+    border: 1px solid rgba(255,255,255,0.25);
+    background: #1d2b3a;
+    border-radius: 5px;
+    outline: none;
+    padding: 10px;
+    /* color: #fff; */
+    color: #bdbabac9;
+    font-size: 1.5em;
+    transition: 0.5s;
+ }
+
+ .inputBox textarea{
+    resize: none;
+ }
+
+.inputBox span{
+    position: absolute;
+    left: 0;
+    padding: 10px;
+    pointer-events: none;
+    font-size: 1em;
+    color: rgba(255,255,255,0.25);
+    transition: 0.5s;
+}
+ .inputBox input:focus ~ span ,
+ .inputBox input:valid ~ span ,
+ .inputBox textarea:focus ~ span,
+ .inputBox textarea:valid ~ span
+ { 
+    color: #00dfc4;
+    transform: translateX(10px) translateY(-9px);
+    font-size: 0.9em;
+    padding: 0 10px ;
+    background: #1d2b3a;
+    /* border-left: 1px solid #00dfc4 ;
+    border-right: 1px solid #00dfc4 ; */
+ }
+
+ .inputBox input:focus  ,
+ .inputBox input:valid  ,
+ .inputBox textarea:focus,
+ .inputBox textarea:valid 
+ { 
+    border: 1px solid #00dfc4 ;
+ }
+
+ 
+
+
+ .btn {
+    
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #000;
+    color: #fff;
+    border-radius: 5px;
+    width: auto;
+}
+ .btn:hover{
+    background-color: #00dfc5a5;
+    
+}
+</code></pre>
+<pre><code class="javascript">autosize(document.querySelectorAll(&#39;textarea&#39;));
+</code></pre>
+<p><img src="/apple.lily/2024/07/14/OneDayOneNote/2024-06-18/js-input-animation-01.gif"></p>

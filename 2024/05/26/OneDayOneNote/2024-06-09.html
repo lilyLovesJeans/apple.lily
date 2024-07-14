@@ -1,0 +1,95 @@
+<hr>
+<h2 id="title-2024-06-09-carousel實做輪播，第二步-實作左右鍵date-2024-07-14-19-25-23categories-OneDayOneNotetags-OneNote-CSS-description-2024-06-09-carousel實做輪播，第二步-實作左右鍵"><a href="#title-2024-06-09-carousel實做輪播，第二步-實作左右鍵date-2024-07-14-19-25-23categories-OneDayOneNotetags-OneNote-CSS-description-2024-06-09-carousel實做輪播，第二步-實作左右鍵" class="headerlink" title="title: 2024-06-09 carousel實做輪播，第二步, 實作左右鍵date: 2024-07-14 19:25:23categories: OneDayOneNotetags: [OneNote, CSS]description:  2024-06-09 carousel實做輪播，第二步, 實作左右鍵"></a>title: 2024-06-09 carousel實做輪播，第二步, 實作左右鍵<br>date: 2024-07-14 19:25:23<br>categories: OneDayOneNote<br>tags: [OneNote, CSS]<br>description:  2024-06-09 carousel實做輪播，第二步, 實作左右鍵</h2><h2 id="2024-06-09-carousel實做輪播，第二步-實作左右鍵"><a href="#2024-06-09-carousel實做輪播，第二步-實作左右鍵" class="headerlink" title="2024-06-09 carousel實做輪播，第二步, 實作左右鍵"></a>2024-06-09 carousel實做輪播，第二步, 實作左右鍵</h2><p> html的部份</p>
+<pre><code class="html">    &lt;button class=&quot;left-slide-btn&quot;&gt;❮&lt;/button&gt;
+   &lt;button class=&quot;right-slide-btn&quot;&gt;❯&lt;/button&gt;
+</code></pre>
+<p>CSS 妝飾左右箭頭</p>
+<pre><code class="CSS">.left-slide-btn, .right-slide-btn {
+   position: absolute;
+   top: 50%;
+   transform: translateY(-50%);
+   background-color: rgba(0, 0, 0, 0.5);
+   border: none;
+   color: white;
+   font-size: 2rem;
+   padding: 10px;
+   cursor: pointer;
+   z-index: 10;
+   outline: none;
+}
+
+.left-slide-btn {
+   left: 10px;
+}
+
+.right-slide-btn {
+   right: 10px;
+}
+</code></pre>
+<p>javascript實作按左右鍵輪播</p>
+<pre><code class="javascript">const carsouselInner = document.querySelector(&#39;.carousel-inner&#39;);
+const slides = carsouselInner.children;
+const imgCount = slides.length;
+const slides_position = [];
+
+
+// Initialize the carousel
+function showDefault() {
+    for (let i = 0; i &lt; imgCount; i++) {
+        slides[i].style.left = i * 100 + `%`;
+        slides_position[i] = i * 100;
+    }
+}
+
+function showDefault_left() {
+    for (let i = 0; i &lt; imgCount; i++) {
+        slides[i].style.left = slides_position[i] + `%`;
+    }
+}
+
+function skipSlide(targetSlide, dist) {
+    slides_position.forEach((x, i, positions) =&gt; {
+        positions[i] = x - dist;
+        slides[i].style.left = `${positions[i]}%`;
+    });
+
+}
+
+const rightSlideBtn = document.querySelector(&#39;.right-slide-btn&#39;);
+var currentIndex = 0;
+rightSlideBtn.addEventListener(&#39;click&#39;, function () {
+    let dist = 100;
+    if (currentIndex &lt; (imgCount - 1)) {
+        currentIndex += 1;
+        skipSlide(currentIndex, dist);
+    } else {
+        currentIndex = 0;
+        showDefault();
+    }
+});
+
+const leftSlideBtn = document.querySelector(&#39;.left-slide-btn&#39;);
+leftSlideBtn.addEventListener(&#39;click&#39;, function () {
+    let dist = 100;
+    if (currentIndex === 0) {
+        currentIndex = imgCount - 1;
+        showDefault_left();
+        skipSlide(currentIndex, dist * (imgCount - 1));
+    } else {
+        currentIndex -= 1;
+        skipSlide(currentIndex, -dist);
+    }
+});
+
+// Add click event to dots
+slideDots.addEventListener(&#39;click&#39;, function (e) {
+    if (e.target.classList.contains(&#39;slide-dot&#39;)) {
+        const targetIndex = Number(e.target.dataset.index);
+        const dist = 100 * (targetIndex - currentIndex);
+        skipSlide(targetIndex, dist);
+        currentIndex = targetIndex;
+    }
+});
+
+showDefault();
+</code></pre>

@@ -1,0 +1,21 @@
+<hr>
+<h2 id="title-2024-06-11-carousel實做輪播，-測試dots-的bug記錄date-2024-07-14-19-29-04categories-OneDayOneNotetags-OneNote-CSS-description-2024-06-11-carousel實做輪播，-測試dots-的bug記錄"><a href="#title-2024-06-11-carousel實做輪播，-測試dots-的bug記錄date-2024-07-14-19-29-04categories-OneDayOneNotetags-OneNote-CSS-description-2024-06-11-carousel實做輪播，-測試dots-的bug記錄" class="headerlink" title="title: 2024-06-11 carousel實做輪播， 測試dots 的bug記錄date: 2024-07-14 19:29:04categories: OneDayOneNotetags: [OneNote, CSS]description:  2024-06-11 carousel實做輪播， 測試dots 的bug記錄"></a>title: 2024-06-11 carousel實做輪播， 測試dots 的bug記錄<br>date: 2024-07-14 19:29:04<br>categories: OneDayOneNote<br>tags: [OneNote, CSS]<br>description:  2024-06-11 carousel實做輪播， 測試dots 的bug記錄</h2><h2 id="2024-06-11-carousel實做輪播，-測試dots-的bug記錄"><a href="#2024-06-11-carousel實做輪播，-測試dots-的bug記錄" class="headerlink" title="2024-06-11 carousel實做輪播， 測試dots 的bug記錄:"></a>2024-06-11 carousel實做輪播， 測試dots 的bug記錄:</h2><p>  按 click 左右鍵時，出現錯誤:<br> <img src="/apple.lily/2024/07/14/OneDayOneNote/2024-06-11/js-slide-dot-error.png"></p>
+<p>  原來是忘了判斷click元素裏是否含有 “slide-dot” 這個類別</p>
+<pre><code class="javascript">addEventListener(&#39;click&#39;,
+function(e){
+   if (e.target.classList.contains
+   (&#39;slide-dot&#39;)) //需加上這個判斷是否含有&#39;slide-dot&#39; 這個類別
+   {
+      console.log(e);
+      console.log(&#39;curentIndex: &#39; +currentIndex);
+      console.log(&#39;dataset-index: &#39;+e.target.dataset.index)
+      const targetIndex = Number(e.target.dataset.index);
+      const dist = 100 * (targetIndex-currentIndex);
+      console.log(&#39;dist: &#39;+dist);
+      skipSlide(targetIndex, dist);
+      currentIndex = targetIndex;
+      console.log(&#39;currentIndex: &#39;+currentIndex)
+   }
+}
+)
+</code></pre>

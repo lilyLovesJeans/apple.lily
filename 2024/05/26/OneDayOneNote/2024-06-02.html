@@ -1,0 +1,71 @@
+<hr>
+<h2 id="title-2024-06-02-關於我們-下拉式選單的切版date-2024-07-14-19-03-17categories-OneDayOneNotetags-OneNote-CSS-description-2024-06-02-關於我們-下拉式選單的切版"><a href="#title-2024-06-02-關於我們-下拉式選單的切版date-2024-07-14-19-03-17categories-OneDayOneNotetags-OneNote-CSS-description-2024-06-02-關於我們-下拉式選單的切版" class="headerlink" title="title: 2024-06-02 關於我們-下拉式選單的切版date: 2024-07-14 19:03:17categories: OneDayOneNotetags: [OneNote, CSS]description:    2024-06-02 關於我們-下拉式選單的切版"></a>title: 2024-06-02 關於我們-下拉式選單的切版<br>date: 2024-07-14 19:03:17<br>categories: OneDayOneNote<br>tags: [OneNote, CSS]<br>description:    2024-06-02 關於我們-下拉式選單的切版</h2><h2 id="2024-06-02-關於我們-下拉式選單的切版"><a href="#2024-06-02-關於我們-下拉式選單的切版" class="headerlink" title="2024-06-02 關於我們-下拉式選單的切版"></a>2024-06-02 關於我們-下拉式選單的切版</h2><pre><code class="html">  &lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;JavaScript 系列三：練習6 ── dropdown 下拉式選單&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;./06_js_dropdown.css&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;div class=&quot;nav_container&quot;&gt;
+    &lt;a href=&quot;#&quot;&gt;首頁&lt;/a&gt;
+    &lt;a href=&quot;#&quot;&gt;全部商品&lt;/a&gt;
+    &lt;a href=&quot;#&quot;&gt;全部品牌&lt;/a&gt;
+    &lt;div class=&quot;about_wrap&quot;&gt;
+        &lt;div class=&quot;about_click&quot;&gt;
+            &lt;a href=&quot;#&quot;&gt;關於我們 &lt;/a&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;about&quot;&gt;
+            &lt;a href=&quot;#&quot;&gt;企業宗旨&lt;/a&gt;
+            &lt;a href=&quot;#&quot;&gt;團隊介紹&lt;/a&gt;
+            &lt;a href=&quot;#&quot;&gt;創業故事&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+&lt;/div&gt;
+
+
+    &lt;script src=&quot;./06_js_dropdown.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+</code></pre>
+<p>「關於我們」的 display 設定為 none, 不顯示: </p>
+<pre><code class="css">  .nav_container a + .about_wrap{
+    display: inline-block;
+}
+
+.about_click{
+    position: relative;
+}
+.about {
+    display: none;
+    position: absolute;
+}
+.about a{
+    display: block;
+}
+</code></pre>
+<p> <img src="/apple.lily/2024/07/14/OneDayOneNote/2024-06-02/dropdown-none.png"></p>
+<p>「關於我們」的 display default 顯示: </p>
+<pre><code class="css">.nav_container a + .about_wrap{
+    display: inline-block;
+}
+
+.about_click{
+    position: relative;
+}
+.about {
+    /* display: none; */
+    position: absolute;
+}
+.about a{
+    display: block;
+}
+</code></pre>
+<p> <img src="/apple.lily/2024/07/14/OneDayOneNote/2024-06-02/dropdown-block.png"></p>
+<p> …</p>

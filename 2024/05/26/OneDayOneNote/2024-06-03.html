@@ -1,0 +1,87 @@
+<hr>
+<p>title: 2024-06-03 使用 flex 下拉式切版 及 學習巢狀 CSS<br>date: 2024-07-14 19:06:35<br>categories: OneDayOneNote<br>tags: [OneNote, CSS]<br>description:   2024-06-03 使用 flex 下拉式切版 及 學習巢狀 CSS</p>
+<hr>
+<h2 id="2024-06-03-使用-flex-下拉式切版-及-學習巢狀-CSS"><a href="#2024-06-03-使用-flex-下拉式切版-及-學習巢狀-CSS" class="headerlink" title="2024-06-03 使用 flex 下拉式切版 及 學習巢狀 CSS"></a>2024-06-03 使用 flex 下拉式切版 及 學習巢狀 CSS</h2><pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;JavaScript 系列三：練習6 ── dropdown 下拉式選單&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;./reset.css&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;./06_js_dropdown.css&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;nav&gt;
+    &lt;ul class=&quot;main_nav&quot;&gt;
+        &lt;li&gt;
+            &lt;a href=&quot;#&quot;&gt;首頁&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;a href=&quot;#&quot;&gt;全部&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;a href=&quot;#&quot;&gt;全部品牌&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li class=&quot;about_me&quot;&gt;
+            &lt;a href=&quot;#&quot;&gt;關於我們&lt;/a&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;a href=&quot;#&quot;&gt;企業宗旨&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;#&quot;&gt;團隊介紹&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;#&quot;&gt;創業故事&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+
+&lt;/nav&gt;
+
+
+
+    &lt;script src=&quot;./06_js_dropdown.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+</code></pre>
+<pre><code class="css">nav{
+    .main_nav{
+        display: flex;
+        justify-content: space-around;
+        
+        li{
+            position: relative;
+        }
+        ul{
+            position: absolute;
+            display: none;
+            width: fit-content;
+            flex-direction: column;
+            top: 100%;
+            right: 0;
+            
+            
+        }
+     
+        .about_me.open_list ul{
+            display: flex;
+            background-color: black;
+        }
+
+    }
+}
+
+a{
+    text-decoration: none;
+    line-height: 1.5;
+}
+</code></pre>
+<pre><code class="javascript">const elem_about_list = document.querySelector(&#39;.about_me&#39;);
+function open_list(){
+    
+    elem_about_list.classList.toggle(&#39;open_list&#39;);
+}
+
+elem_about_list.onclick = open_list;
+</code></pre>
+<p>…</p>

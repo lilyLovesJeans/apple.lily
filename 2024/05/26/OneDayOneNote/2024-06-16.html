@@ -1,0 +1,72 @@
+<hr>
+<h2 id="title-2024-06-16-CSS-Absolute-絕對定位date-2024-07-14-19-36-16categories-OneDayOneNotetags-OneNote-CSS-description-2024-06-16-CSS-Absolute-絕對定位"><a href="#title-2024-06-16-CSS-Absolute-絕對定位date-2024-07-14-19-36-16categories-OneDayOneNotetags-OneNote-CSS-description-2024-06-16-CSS-Absolute-絕對定位" class="headerlink" title="title: 2024-06-16 CSS Absolute 絕對定位date: 2024-07-14 19:36:16categories: OneDayOneNotetags: [OneNote, CSS]description:  2024-06-16 CSS Absolute 絕對定位 "></a>title: 2024-06-16 CSS Absolute 絕對定位<br>date: 2024-07-14 19:36:16<br>categories: OneDayOneNote<br>tags: [OneNote, CSS]<br>description:  2024-06-16 CSS Absolute 絕對定位 </h2><h2 id="2024-06-16-CSS-Absolute-絕對定位"><a href="#2024-06-16-CSS-Absolute-絕對定位" class="headerlink" title="2024-06-16 CSS Absolute 絕對定位"></a>2024-06-16 CSS Absolute 絕對定位</h2><p>Absolute 絕對定位原理:<br>特性： 當你將物件做絕對定位時，第一件事它就會將物件從資料中抽掉，原理跟 fixed 非當相似。<br>例如 a&gt;b&gt;c : 如果將 c 做absolute 絕對定位，<br>那麼 b就不知邊c 的位置在那裹，其實c 就在原本資料所在的位置，只是c被抽離， b就無法包覆它。</p>
+<p> <img src="/apple.lily/2024/07/14/OneDayOneNote/2024-06-16/css-basic-15-02.png"></p>
+<p>絕對定位使用時機: 購物網站圖片 右上方 熱賣hot 標籤的效果 ，或是蓋版廣告「X」關閉鈕的位置</p>
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;絕對定位 absolute 試範&lt;/title&gt;
+&lt;/head&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;./reset.css&quot;&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+    .wrap{
+        width: 960px;
+        margin: auto;
+        display: flex;
+    }
+    .item{
+        position: relative;
+        width:300px;
+        margin: 15px 10px;
+        border: 1px solid #aaa;
+        padding: 10px; /*線條跟邊框連起來不太好看，設定一下 padding*/
+    }
+    /* 布望圖片大小都一樣，設定 width: 100% */
+    .item img{
+        width: 100%;
+    }
+    .item .tab{
+        background-color: #f00;
+        color:#fff;
+        padding: 6px 10px;
+        position: absolute;
+        /* 但父層沒有做定位時，畫面會壞掉，它會定到 window去，所以父層要設定位，因為圖片是要和大家排在一起，不要獨立出去，所以父層item 的定位設定 relative */
+        top: -4px; 
+        right:-4px;
+        border-radius: 5px;
+        transform: rotate(45deg); /* 旋转 45 度 */
+
+     
+    }
+&lt;/style&gt;
+&lt;body&gt;
+    &lt;!-- 購物網站 ，有熱賣小小圖案的效果 --&gt;
+    &lt;div class=&quot;wrap&quot;&gt;
+        &lt;div class=&quot;item&quot;&gt;
+            &lt;div class=&quot;tab&quot;&gt;Hot&lt;/div&gt;
+            &lt;img src=&quot;https://picsum.photos/300/200/?random=1&quot;&gt;
+            &lt;h2&gt;title&lt;/h2&gt;
+            &lt;p&gt;Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ut, maxime?&lt;/p&gt;
+
+        &lt;/div&gt;
+        &lt;div class=&quot;item&quot;&gt;
+            &lt;div class=&quot;tab&quot;&gt;Hot&lt;/div&gt;
+            &lt;img src=&quot;https://picsum.photos/300/200/?random=2&quot;&gt;
+            &lt;h2&gt;title&lt;/h2&gt;
+            &lt;p&gt;Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ut, maxime?&lt;/p&gt;
+
+        &lt;/div&gt;
+        &lt;div class=&quot;item&quot;&gt;
+            &lt;div class=&quot;tab&quot;&gt;Hot&lt;/div&gt;
+            &lt;img src=&quot;https://picsum.photos/300/200/?random=3&quot;&gt;
+            &lt;h2&gt;title&lt;/h2&gt;
+            &lt;p&gt;Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ut, maxime?&lt;/p&gt;
+
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="/apple.lily/2024/07/14/OneDayOneNote/2024-06-16/css-basic-15-06.png"></p>

@@ -1,0 +1,101 @@
+<hr>
+<h2 id="title-2024-06-08-carousel實做輪播，第一步date-2024-07-14-19-23-10categories-OneDayOneNotetags-OneNote-CSS-description-2024-06-08-carousel實做輪播，第一步"><a href="#title-2024-06-08-carousel實做輪播，第一步date-2024-07-14-19-23-10categories-OneDayOneNotetags-OneNote-CSS-description-2024-06-08-carousel實做輪播，第一步" class="headerlink" title="title: 2024-06-08 carousel實做輪播，第一步date: 2024-07-14 19:23:10categories: OneDayOneNotetags: [OneNote, CSS]description:  2024-06-08 carousel實做輪播，第一步"></a>title: 2024-06-08 carousel實做輪播，第一步<br>date: 2024-07-14 19:23:10<br>categories: OneDayOneNote<br>tags: [OneNote, CSS]<br>description:  2024-06-08 carousel實做輪播，第一步</h2><h2 id="2024-06-08-carousel實做輪播，第一步"><a href="#2024-06-08-carousel實做輪播，第一步" class="headerlink" title="2024-06-08 carousel實做輪播，第一步"></a>2024-06-08 carousel實做輪播，第一步</h2><p>先架構 html</p>
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;JavaScript 系列三：練習7 ── carousel 輪播元件&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;./js_carousel.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;!-- image 
+https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&amp;w=1470&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+
+https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&amp;w=1469&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+
+https://images.unsplash.com/photo-1492175742197-ed20dc5a6bed?q=80&amp;w=987&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+
+https://images.unsplash.com/photo-1600038938045-b5fadbc55083?q=80&amp;w=987&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+
+https://images.unsplash.com/photo-1567620820240-238399e9e438?q=80&amp;w=988&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+
+--&gt;
+&lt;section class=&quot;main-carousel&quot;&gt;
+    &lt;div class=&quot;carousel-inner&quot;&gt;
+        &lt;div class=&quot;slide&quot;&gt;
+            &lt;img src=&quot;https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&amp;w=1470&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&quot; alt=&quot;image 1&quot;&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;slide&quot;&gt;
+            &lt;img src=&quot;https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&amp;w=1469&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&quot; alt=&quot;image 2&quot;&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;slide&quot;&gt;
+            &lt;img src=&quot;https://images.unsplash.com/photo-1492175742197-ed20dc5a6bed?q=80&amp;w=987&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&quot; alt=&quot;image 3&quot;&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;slide&quot;&gt;
+            &lt;img src=&quot;https://images.unsplash.com/photo-1600038938045-b5fadbc55083?q=80&amp;w=987&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&quot; alt=&quot;image 4&quot;&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;slide&quot;&gt;
+            &lt;img src=&quot;https://images.unsplash.com/photo-1567620820240-238399e9e438?q=80&amp;w=988&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&quot; alt=&quot;image 5&quot;&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;button class=&quot;left-slide-btn&quot; &gt;123&lt;/button&gt;
+    &lt;button class=&quot;right-slide-btn&quot;&gt;456&lt;/button&gt;
+    &lt;div class=&quot;slide-dots&quot;&gt;.....&lt;/div&gt;
+&lt;/section&gt;
+
+
+    &lt;script src=&quot;./js_carousel.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>佈置畫面圖片的部份</p>
+<pre><code class="CSS">*{
+    margin: 0;
+    padding: 0;
+    
+}
+/* 整個carousel區塊 */
+.main-carousel{
+    position: relative;
+    width:100%;
+    height: 600px;
+    /* overflow: hidden; */
+}
+/* 圖片顯示區域 */
+.main-carousel .carousel-inner{
+    width: 100%;
+    height: 100%;
+}
+
+/* 所有圖片的 div，設定為絕對位置讓圖片層疊 */
+.main-carousel .carousel-inner .slide{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    transition: left .5s;
+}
+
+/* 圖片本身 */
+.main-carousel .carousel-inner .slide &gt; img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+</code></pre>
+<p>實作畫面中圖片的部份</p>
+<pre><code class="javascript">
+//抓取圖片顯示區的區域
+const carsouselInner  = document.querySelector(&#39;.carousel-inner&#39;);
+const slides = carsouselInner.children;
+
+//先將圖片展開於carsoousel_inner , 因為width設為100% ，左向右延伸依續為: 0, 100%,200%,300%,400% ...
+for (i = 0; i &lt; slides.length ; i++)
+{
+    slides[i].style.left=i*100 +`%`;
+    console.log(slides[i].style.left);
+}
+
+</code></pre>
+<p>步驟一畫面呈現的樣子<br> <img src="/apple.lily/2024/07/14/OneDayOneNote/2024-06-08/carousel-01.gif"></p>

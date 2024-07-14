@@ -1,0 +1,184 @@
+<hr>
+<h2 id="title-2024-06-17-CSS-Input-Field-Label-Animationdate-2024-07-14-19-38-20categories-OneDayOneNotetags-OneNote-CSS-description-2024-06-17-CSS-Input-Field-Label-Animation"><a href="#title-2024-06-17-CSS-Input-Field-Label-Animationdate-2024-07-14-19-38-20categories-OneDayOneNotetags-OneNote-CSS-description-2024-06-17-CSS-Input-Field-Label-Animation" class="headerlink" title="title: 2024-06-17 CSS Input Field Label Animationdate: 2024-07-14 19:38:20categories: OneDayOneNotetags: [OneNote, CSS]description: 2024-06-17 CSS Input Field Label Animation"></a>title: 2024-06-17 CSS Input Field Label Animation<br>date: 2024-07-14 19:38:20<br>categories: OneDayOneNote<br>tags: [OneNote, CSS]<br>description:<br> 2024-06-17 CSS Input Field Label Animation</h2><h2 id="2024-06-17-CSS-Input-Field-Label-Animation"><a href="#2024-06-17-CSS-Input-Field-Label-Animation" class="headerlink" title="2024-06-17 CSS Input Field Label Animation"></a>2024-06-17 CSS Input Field Label Animation</h2><pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;JavaScript 系列三：練習4 ── 表單驗證&lt;/title&gt;
+    &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
+&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;
+&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;./js_form_validation.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&quot;container&quot;&gt;
+        &lt;form action=&quot;&quot; method=&quot;get&quot; &gt;
+            &lt;div class=&quot;header&quot;&gt;註冊帳戶
+                &lt;hr&gt;
+            &lt;/div&gt;
+                  
+            &lt;input type=&quot;text&quot; name=&quot;NickName&quot; id=&quot;nick-name&quot; required&gt;
+            &lt;div class=&quot;labelline&quot;&gt;暱稱&lt;/div&gt;
+            &lt;div class=&quot;err err-nick-name&quot;&gt;
+                *不能為空白、必須在40字以內
+            &lt;/div&gt;
+                                
+            &lt;input type=&quot;email&quot;
+            name=&quot;Email&quot; id=&quot;email&quot; required&gt;
+            &lt;div class=&quot;labelline&quot;&gt;Email 電子郵件&lt;/div&gt;
+            &lt;div class=&quot;err err-email&quot;&gt;*不能為空白、必須包含 @ 符號&lt;/div&gt;
+    
+            &lt;input type=&quot;password&quot; 
+            name=&quot;current-password&quot; id=&quot;current-password&quot; required&gt;
+            &lt;div class=&quot;labelline&quot;&gt;密碼&lt;/div&gt;
+            &lt;div class=&quot;err err-password&quot;&gt;
+                * 不能為空白、必須在8字以上、必須在100字以內
+            &lt;/div&gt;
+    
+            &lt;div class=&quot;button-container&quot;&gt;
+                &lt;button class=&quot;submit&quot; type=&quot;submit&quot; onclick=&quot;btn_submit(event)&quot;&gt;註冊
+                
+                    &lt;div class=&quot;toast-success&quot;&gt;
+                        ✅ 註冊成功！可以查看 Email 確認細節！
+                    &lt;/div&gt;
+                
+                &lt;/button&gt;
+ 
+            &lt;/div&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;
+ 
+
+&lt;script src=&quot;./js_form_validation.js&quot;&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<pre><code class="css">    /* Hex Color Code 
+    #ebcbbb 膚色
+    #6c999a tiffiny綠
+    #0e2222 深藍色
+    #DF3079 粉色  
+
+    */
+*{
+    font-family: &quot;Noto Sans TC&quot;, sans-serif;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    min-height: 100vh;   /* 要設定高度 align-items 才有效 */
+    background-color: #ebcbbb ;
+}
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #0e2222;
+    width: 540px;
+    height: 450px ;
+    background: #6c999a;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+    position: relative;
+}
+.header{
+    text-align: center;
+    font-size: 1.5em;
+    margin-bottom: 35px;
+}
+
+input{
+    margin-top: 30px;
+    width: 450px;
+    height: 40px ;
+    font-size: 18px;
+    background: transparent;
+    transition: 0.1s ease;
+    border: 1px solid #0e2222;
+    border-radius: 5px;
+    color: #212121;
+}
+
+
+.labelline{
+    position: absolute;
+    background: #6c999a;
+    margin-top: -33px;
+    margin-left: 5px;;
+    transition: 0.2s ease;
+}
+
+input:focus{
+    outline: none;   /* 不要秀出邊框 */
+   
+}
+
+input:focus + .labelline ,
+input:valid + .labelline{
+    /* color: #0e2222; */
+    color: #DF3079;
+    padding: 0.12px;
+    transform: translate(1.5px, -21px) scale(0.9);
+    z-index: 1111;
+}
+
+.err{
+    visibility: hidden;
+    color:#f00;
+    font-size: 13px;
+}
+
+ /* button 要變更位置，需要在外面包一層wrap .button-container */
+.button-container {    
+    display: flex;
+    justify-content:end;
+    width: 100%;
+    margin-top: 20px;
+
+}
+button.submit {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #0056b3 ;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+button.submit:hover {
+    background-color: #0e2222;
+}
+
+
+.toast-success{
+    display:none;
+    font-size:15px;
+    position: absolute;
+    background-color: #C6F6D5;
+    color: #276749;
+    border-radius: 15px;
+    padding: 12px 15px;
+    top:0;
+    left: 20px;
+
+}
+
+ .toast-success {
+    animation: my_message 5s;
+    opacity:0;
+}
+
+@keyframes my_message{
+        from {
+            top: -20px; opacity: 100;}
+        to{ top: -80px;
+            opacity: 0;}
+    
+} 
+</code></pre>
+<p><img src="/apple.lily/2024/07/14/OneDayOneNote/2024-06-17/js-input-animation.gif"></p>

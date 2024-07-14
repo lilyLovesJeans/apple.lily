@@ -1,0 +1,12 @@
+<hr>
+<h2 id="title-2024-06-01-使用-js-forEach-遍歷所有所屬的元素date-2024-07-14-19-01-30categories-OneDayOneNotetags-OneNote-CSS-description-2024-06-01-使用-js-forEach-遍歷所有所屬的元素"><a href="#title-2024-06-01-使用-js-forEach-遍歷所有所屬的元素date-2024-07-14-19-01-30categories-OneDayOneNotetags-OneNote-CSS-description-2024-06-01-使用-js-forEach-遍歷所有所屬的元素" class="headerlink" title="title: 2024-06-01 使用 js forEach 遍歷所有所屬的元素date: 2024-07-14 19:01:30categories: OneDayOneNotetags: [OneNote, CSS]description:    2024-06-01 使用 js forEach 遍歷所有所屬的元素"></a>title: 2024-06-01 使用 js forEach 遍歷所有所屬的元素<br>date: 2024-07-14 19:01:30<br>categories: OneDayOneNote<br>tags: [OneNote, CSS]<br>description:    2024-06-01 使用 js forEach 遍歷所有所屬的元素</h2><h2 id="2024-06-01-使用-js-forEach-遍歷所有所屬的元素"><a href="#2024-06-01-使用-js-forEach-遍歷所有所屬的元素" class="headerlink" title="2024-06-01 使用 js forEach 遍歷所有所屬的元素"></a>2024-06-01 使用 js forEach 遍歷所有所屬的元素</h2><p>在 click 事件處理器中遍歷所有 .collapsible 元素，將它們的內容全部閉合，然後再處理當前點擊的內容。</p>
+<pre><code class="javascript">   // 先將所有的內容閉合
+      coll.forEach(function(item) {
+        item.classList.remove(&quot;active&quot;);
+        var content = item.nextElementSibling;
+        content.style.maxHeight = null;
+      });
+  
+    // 再處理當前點擊的內容
+    this.classList.toggle(&quot;active&quot;);
+</code></pre>
