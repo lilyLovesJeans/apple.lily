@@ -1,0 +1,95 @@
+<hr>
+<p>title: 2024-08-05 JavaScript 系列四：第4課 ── jQuery 套件<br>date: 2024-07-24 01:50:14<br>categories: OneDayOneNote<br>tags: [OneNote, Javascript]<br>description: 2024-08-05 JavaScript 系列四：第4課 ── jQuery 套件</p>
+<hr>
+<p>2024-08-05<br>JavaScript 系列四：第4課 ── jQuery 套件<br>課程目標<br>認識並且能使用 jQuery 套件</p>
+<p>課程內容<br>這一課要教的東西比較有爭議</p>
+<p>jQuery 是 2006 - 2015 年代，前端網頁開發的王者</p>
+<p>當時的瀏覽器廠商眾多，網頁規格 API 支援方式不同、不完整（尤其是 IE 一堆奇怪的 API）</p>
+<p>當時的前端工程師，非常痛苦，要為了 IE 多改很多寫法</p>
+<p>加上當時很多瀏覽器沒有支援 .querySelector .querySelectorAll 這些 Selector API</p>
+<p>所以 jQuery 的出現，強大的選擇器語法，以及眾多方便的功能，大幅降低了前端開發的成本</p>
+<p>不過，時至今日，jQuery 的大部份功能，都已在瀏覽器 JavaScript 語法中原生支援了</p>
+<p>再加上開發大型應用程式，DOM 的管理一旦複雜起來，就會直接使用 React 或者 Vue 這種框架來管理 DOM，不會再手動去操作 DOM</p>
+<p>（前端框架會處理完 DOM 互動的部份。此時如果再手動操作 DOM，那程式碼就會一團混亂）</p>
+<p>也就是說，小型專案，「不需要」用 jQuery；大型專案，「不可以」用 jQuery</p>
+<p>除此之外，jQuery 套件本身檔案不小，引入此套件會影響網頁載入速度，影響 UX，同時會影響搜尋引擎 SEO 排名</p>
+<p>因為上述種種原因，在今天，前端工程師普遍鄙視 jQuery，避之惟恐不及</p>
+<p>我個人的建議是：團隊在開發複雜的前端應用時，的確不要再用 jQuery 了！</p>
+<p>但是，當只是做小網站，接小案子賺錢，或者做個人的業餘專案（side project），只是希望快速做完某些功能時，jQuery 還是非常好用！</p>
+<p>原因有兩個</p>
+<p>第一，jQuery 選擇器寫起來很短，可以少打很多字，開發很快速</p>
+<p>第二，jQuery 外掛生態系存在已久，很多強大的 UI 元件會用到 jQuery，適合的話，實在沒道理全面放棄不用</p>
+<p>而且，並不是所有網站，都需要直接導入 React 跟 Vue 這種大型框架！沒必要！</p>
+<p>除此之外，維護一大堆現有的程式碼，難免已經用到 jQuery，還是能看懂 API 比較好</p>
+<p>所以，還是稍微教大家一些 jQuery 的用法。至於什麼場合要使用，你就自行判斷吧</p>
+<p>官網 <a href="https://jquery.com/">https://jquery.com/</a></p>
+<p>API 用法 <a href="https://api.jquery.com/">https://api.jquery.com/</a></p>
+<p>CDN 連結 <a href="https://releases.jquery.com/">https://releases.jquery.com/</a></p>
+<p>請自行逛一逛，大概知道 jQuery 有哪些 API 就好，不用花太多時間學習 jQuery</p>
+<p>你應該會發現，一大堆功能，你自己就寫得出來，而且寫起來也不複雜，例如 .hide() .show()，你之前的作業就寫過，根本不需要用 jQuery</p>
+<p>剩下的一大堆功能，目前看不懂沒關係、覺得自己做不出來沒關係，未來的課程會教你</p>
+<p>簡單地說，jQuery 選擇器就是使用金錢符號來呼叫函示</p>
+<p>$() 其實是 jQuery() 的簡寫而已</p>
+<pre><code class="html">&lt;h1 class=&quot;title&quot;&gt;
+  Hide me
+&lt;/h1&gt;
+
+&lt;p class=&quot;para&quot;&gt;
+  Hide me
+&lt;/p&gt;
+&lt;p class=&quot;para&quot;&gt;
+  Hide me
+&lt;/p&gt;
+&lt;p class=&quot;para&quot;&gt;
+  Hide me
+&lt;/p&gt;
+</code></pre>
+<pre><code class="javascript">document.querySelector(&#39;.title&#39;).style.display = &#39;none&#39;;
+
+for (var p of document.querySelectorAll(&#39;.para&#39;)) {
+  p.style.display = &#39;none&#39;;
+}
+</code></pre>
+<p>像這樣的程式，隱藏了畫面上多個元素</p>
+<p>使用 jQuery 的寫法會變成</p>
+<pre><code class="javascript">$(&#39;.title&#39;).hide();
+
+$(&#39;.para&#39;).hide();
+</code></pre>
+<p>很多人覺得，jQuery 只剩一些少打字的功能，卻讓網頁多載入整個 jQuery 套件，很沒意義、不值得</p>
+<p>我倒是覺得，還是滿方便的。快速開發時，少打很多字。而且 jQuery 可以自動處理多個元素，可以少寫 for 迴圈</p>
+<p>當然了，上面的程式碼，跟下面這段是完全一樣的</p>
+<pre><code class="javascript">jQuery(&#39;.title&#39;).hide();
+
+jQuery(&#39;.para&#39;).hide();
+</code></pre>
+<p>jQuery 基本上就這樣而已，你喜歡嗎？</p>
+<p>實務上，使用時，如果翻文件，還是不知怎麼寫，就去搜尋引擎找關鍵字 jquery 改變顏色 jquery change color 之類的</p>
+<p>別忘了，軟體工程師在工作時，會花很多時間在翻文件、上網到處看文章、搜尋範例程式碼，所以要習慣這件事</p>
+<p>坊間很多課程，會在一開始就教 jQuery。這跟直接教前端框架的問題一樣：學生的基本功，因此變得很差</p>
+<p>但是本課程已讓你知道最基本的原生 DOM 寫法，所以你在用 jQuery 時，會知道背後發生什麼事，也知道刪掉 jQuery 的話，要怎麼用原生語法改寫</p>
+<p>所以，我認為在本課程的安排下，jQuery 並不會耽誤你的學習旅程</p>
+<p>喜歡 jQuery 的話，就把 API 網頁，多逛一逛，工作上想用的話，就大方使用吧！</p>
+<p>課後作業<br>請使用 <a href="https://jsfiddle.net/">https://jsfiddle.net</a></p>
+<p>這次的作業要交兩份</p>
+<p>請建立兩份 jsfiddle，並使用以下 html</p>
+<pre><code class="html">&lt;h1 class=&quot;title&quot;&gt;
+  Make me green
+&lt;/h1&gt;
+
+&lt;p class=&quot;para&quot;&gt;
+  Make me red
+&lt;/p&gt;
+&lt;p class=&quot;para&quot;&gt;
+  Me red too
+&lt;/p&gt;
+&lt;p class=&quot;para&quot;&gt;
+  Also me
+&lt;/p&gt;
+</code></pre>
+<p>在第一份，不使用 jQuery，把 h1 文字變為綠色，p 文字變為紅色</p>
+<p>在第二份，請使用 jQuery，把 h1 文字變為綠色，p 文字變為紅色</p>
+<p>寫完之後，你自行比較一下，網頁多加一個肥大的套件，但是可以少打這些字，你覺得值得嗎？</p>
+<p>這是一個主觀問題，你就根據情況決定你的答案吧！</p>
+<p>做出以上功能，你就完成這次的課程目標了！</p>
+<p>JavaScript 系列四：第4課 ── jQuery 套件:<br><a href="https://codelove.tw/@howtomakeaturn/post/AqJW1x">https://codelove.tw/@howtomakeaturn/post/AqJW1x</a><br> CodeLove 愛寫扣論壇  站長阿川 </p>
