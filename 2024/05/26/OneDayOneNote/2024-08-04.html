@@ -1,0 +1,31 @@
+<hr>
+<h2 id="title-2024-08-04-Javascript-的Math-min-…date-2024-07-23-21-54-07categories-OneDayOneNotetags-OneNote-Javascript-description-2024-08-03-Chart-js-的-plugins"><a href="#title-2024-08-04-Javascript-的Math-min-…date-2024-07-23-21-54-07categories-OneDayOneNotetags-OneNote-Javascript-description-2024-08-03-Chart-js-的-plugins" class="headerlink" title="title: 2024-08-04 Javascript 的Math.min(…date: 2024-07-23 21:54:07categories: OneDayOneNotetags: [OneNote, Javascript]description: 2024-08-03 Chart.js 的 plugins"></a>title: 2024-08-04 Javascript 的Math.min(…<br>date: 2024-07-23 21:54:07<br>categories: OneDayOneNote<br>tags: [OneNote, Javascript]<br>description: 2024-08-03 Chart.js 的 plugins</h2><p><code>Math.min(...</code> 是 JavaScript 中的一個常見用法，特別是用於從數組中找出最小值。讓我們來詳細解釋一下這個用法的運行機制。</p>
+<h3>基本概念</h3>
+. ``Math.min()``：這是 JavaScript 標準庫中的一個函數，用於返回其參數中最小的一個數值。例如：
+```javascript
+Math.min(1, 2, 3); // 返回 1
+
+<pre><code>. 展開運算符 (...)：這是一個 ES6（ECMAScript 2015）中引入的新語法，用於將數組展開成個別元素。例如：
+```javascript
+const arr = [1, 2, 3];
+console.log(...arr); // 輸出 1 2 3
+</code></pre>
+<h3>結合使用 ``Math.min()`` 和 展開運算符</h3>
+當 ``Math.min()`` 與展開運算符 ... 結合使用時，我們可以輕鬆地找出數組中的最小值。這樣可以將數組展開成為個別元素，然後將這些元素作為參數傳遞給 Math.min()。
+
+<p>例如：</p>
+<pre><code class="javascript">const grades = [77, 74, 77, 68, 36, 60, 80, 93, 66, 58];
+const minGrade = Math.min(...grades);
+console.log(minGrade); // 輸出 36
+</code></pre>
+<p>這裡，展開運算符 …grades 將 grades 數組展開成為獨立的數字元素，然後 Math.min 函數計算並返回這些數字中的最小值。</p>
+<h3>應用在 Chart.js</h3>
+在 Chart.js 的例子中，我們使用 Math.min(...data_1.map(row => row.grade), ...data_2.map(row => row.grade), ...data_3.map(row => row.grade)) 來計算 Y 軸的最小值。這確保了 Y 軸的範圍覆蓋所有數據集中的最小值。
+
+<pre><code class="javascript">ticks: {
+    beginAtZero: true,
+    min: Math.min(...data_1.map(row =&gt; row.grade), ...data_2.map(row =&gt; row.grade), ...data_3.map(row =&gt; row.grade)),
+    max: Math.max(...data_1.map(row =&gt; row.grade), ...data_2.map(row =&gt; row.grade), ...data_3.map(row =&gt; row.grade))
+}
+</code></pre>
+<p>. <code>data_1.map(row =&gt; row.grade)</code>：這將 data_1 數組中的 grade 屬性提取成一個新數組。<br>. <code>...data_1.map(row =&gt; row.grade)</code>：這會將上述數組展開成個別元素。<br>. <code>Math.min(...data_1.map(row =&gt; row.grade), ...data_2.map(row =&gt; row.grade), ...data_3.map(row =&gt; row.grade))</code>：這會找到所有數組中 grade 屬性的最小值。<br>這樣，我們就能夠動態地設置 Y 軸的範圍，使其涵蓋所有數據集中的數值範圍。</p>

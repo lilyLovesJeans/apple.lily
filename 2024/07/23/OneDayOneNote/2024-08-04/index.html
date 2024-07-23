@@ -19,30 +19,29 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
 
-    <meta name="description" content="2024-07-13 金魚都能懂的網頁切版 變化你的導覽列 NO008">
+    <meta name="description" content="2024-08-03 Chart.js 的 plugins">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2024-07-13 金魚都能懂的網頁切版 變化你的導覽列 NO008">
-<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2024/07/14/OneDayOneNote/2024-07-13/index.html">
+<meta property="og:title" content="2024-08-04 Javascript 的Math.min(...">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2024/07/23/OneDayOneNote/2024-08-04/index.html">
 <meta property="og:site_name" content="Apple.Lily 前端學習筆記">
-<meta property="og:description" content="2024-07-13 金魚都能懂的網頁切版 變化你的導覽列 NO008">
+<meta property="og:description" content="2024-08-03 Chart.js 的 plugins">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2024-07-14T13:07:01.000Z">
-<meta property="article:modified_time" content="2024-07-16T12:25:19.000Z">
+<meta property="article:published_time" content="2024-07-23T13:54:07.000Z">
+<meta property="article:modified_time" content="2024-07-23T14:02:03.000Z">
 <meta property="article:author" content="Apple.Lily">
-<meta property="article:tag" content="CSScoke">
-<meta property="article:tag" content="CSS">
+<meta property="article:tag" content="Javascript">
 <meta property="article:tag" content="OneNote">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2024/07/14/OneDayOneNote/2024-07-13/">
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2024/07/23/OneDayOneNote/2024-08-04/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2024/07/14/OneDayOneNote/2024-07-13/","path":"2024/07/14/OneDayOneNote/2024-07-13/","title":"2024-07-13 金魚都能懂的網頁切版 變化你的導覽列 NO008"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2024/07/23/OneDayOneNote/2024-08-04/","path":"2024/07/23/OneDayOneNote/2024-08-04/","title":"2024-08-04 Javascript 的Math.min(..."}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>2024-07-13 金魚都能懂的網頁切版 變化你的導覽列 NO008 | Apple.Lily 前端學習筆記</title>
+<title>2024-08-04 Javascript 的Math.min(... | Apple.Lily 前端學習筆記</title>
   
 
 
@@ -102,7 +101,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目錄
@@ -115,6 +114,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">結合使用 &#96;&#96;Math.min()&#96;&#96; 和 展開運算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">應用在 Chart.js</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -167,7 +167,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2024/07/14/OneDayOneNote/2024-07-13/">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2024/07/23/OneDayOneNote/2024-08-04/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
@@ -180,12 +180,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="2024-07-13 金魚都能懂的網頁切版 變化你的導覽列 NO008 | Apple.Lily 前端學習筆記">
-      <meta itemprop="description" content="2024-07-13 金魚都能懂的網頁切版 變化你的導覽列 NO008">
+      <meta itemprop="name" content="2024-08-04 Javascript 的Math.min(... | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2024-08-03 Chart.js 的 plugins">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          2024-07-13 金魚都能懂的網頁切版 變化你的導覽列 NO008
+          2024-08-04 Javascript 的Math.min(...
         </h1>
 
         <div class="post-meta-container">
@@ -195,15 +195,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">發表於</span>
+      
 
-      <time title="創建時間：2024-07-14 21:07:01" itemprop="dateCreated datePublished" datetime="2024-07-14T21:07:01+08:00">2024-07-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新於</span>
-      <time title="修改時間：2024-07-16 20:25:19" itemprop="dateModified" datetime="2024-07-16T20:25:19+08:00">2024-07-16</time>
+      <time title="創建時間：2024-07-23 21:54:07 / 修改時間：22:02:03" itemprop="dateCreated datePublished" datetime="2024-07-23T21:54:07+08:00">2024-07-23</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -225,17 +219,32 @@
     </span>
 </div>
 
-            <div class="post-description">2024-07-13 金魚都能懂的網頁切版 變化你的導覽列 NO008</div>
+            <div class="post-description">2024-08-03 Chart.js 的 plugins</div>
         </div>
       </header>
 
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>金魚都能懂的網頁切版 變化你的導覽列 NO008:<br><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=9xT8kziyYko&list=PLqivELodHt3hxeuLX8PYaI8u1GcDaBoJo&index=9">https://www.youtube.com/watch?v=9xT8kziyYko&amp;list=PLqivELodHt3hxeuLX8PYaI8u1GcDaBoJo&amp;index=9</a></p>
-<p>本影片同步發表於 2019 iT 邦幫忙鐵人賽<br><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10220327">https://ithelp.ithome.com.tw/articles/10220327</a></p>
-<p>code: <a target="_blank" rel="noopener" href="https://codepen.io/bad_printer/pen/OJLdqBm">https://codepen.io/bad_printer/pen/OJLdqBm</a><br><a target="_blank" rel="noopener" href="https://codepen.io/bad_printer/pen/VwZgRge">https://codepen.io/bad_printer/pen/VwZgRge</a><br><a target="_blank" rel="noopener" href="https://codepen.io/bad_printer/pen/ExYrMrB">https://codepen.io/bad_printer/pen/ExYrMrB</a></p>
-<p>上列文章取自 ：<br> <a target="_blank" rel="noopener" href="https://www.youtube.com/playlist?list=PLqivELodHt3hxeuLX8PYaI8u1GcDaBoJo">https://www.youtube.com/playlist?list=PLqivELodHt3hxeuLX8PYaI8u1GcDaBoJo</a></p>
+    <div class="post-body" itemprop="articleBody"><p><code>Math.min(...</code> 是 JavaScript 中的一個常見用法，特別是用於從數組中找出最小值。讓我們來詳細解釋一下這個用法的運行機制。</p>
+<h3>基本概念</h3>
+. ``Math.min()``：這是 JavaScript 標準庫中的一個函數，用於返回其參數中最小的一個數值。例如：
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Math</span>.<span class="title function_">min</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>); <span class="comment">// 返回 1</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+. 展開運算符 (...)：這是一個 ES6（ECMAScript 2015）中引入的新語法，用於將數組展開成個別元素。例如：
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(...arr); <span class="comment">// 輸出 1 2 3</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3>結合使用 ``Math.min()`` 和 展開運算符</h3>
+當 ``Math.min()`` 與展開運算符 ... 結合使用時，我們可以輕鬆地找出數組中的最小值。這樣可以將數組展開成為個別元素，然後將這些元素作為參數傳遞給 Math.min()。
+
+<p>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> grades = [<span class="number">77</span>, <span class="number">74</span>, <span class="number">77</span>, <span class="number">68</span>, <span class="number">36</span>, <span class="number">60</span>, <span class="number">80</span>, <span class="number">93</span>, <span class="number">66</span>, <span class="number">58</span>];</span><br><span class="line"><span class="keyword">const</span> minGrade = <span class="title class_">Math</span>.<span class="title function_">min</span>(...grades);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(minGrade); <span class="comment">// 輸出 36</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>這裡，展開運算符 …grades 將 grades 數組展開成為獨立的數字元素，然後 Math.min 函數計算並返回這些數字中的最小值。</p>
+<h3>應用在 Chart.js</h3>
+在 Chart.js 的例子中，我們使用 Math.min(...data_1.map(row => row.grade), ...data_2.map(row => row.grade), ...data_3.map(row => row.grade)) 來計算 Y 軸的最小值。這確保了 Y 軸的範圍覆蓋所有數據集中的最小值。
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">ticks</span>: &#123;</span><br><span class="line">    <span class="attr">beginAtZero</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">min</span>: <span class="title class_">Math</span>.<span class="title function_">min</span>(...data_1.<span class="title function_">map</span>(<span class="function"><span class="params">row</span> =&gt;</span> row.<span class="property">grade</span>), ...data_2.<span class="title function_">map</span>(<span class="function"><span class="params">row</span> =&gt;</span> row.<span class="property">grade</span>), ...data_3.<span class="title function_">map</span>(<span class="function"><span class="params">row</span> =&gt;</span> row.<span class="property">grade</span>)),</span><br><span class="line">    <span class="attr">max</span>: <span class="title class_">Math</span>.<span class="title function_">max</span>(...data_1.<span class="title function_">map</span>(<span class="function"><span class="params">row</span> =&gt;</span> row.<span class="property">grade</span>), ...data_2.<span class="title function_">map</span>(<span class="function"><span class="params">row</span> =&gt;</span> row.<span class="property">grade</span>), ...data_3.<span class="title function_">map</span>(<span class="function"><span class="params">row</span> =&gt;</span> row.<span class="property">grade</span>))</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>. <code>data_1.map(row =&gt; row.grade)</code>：這將 data_1 數組中的 grade 屬性提取成一個新數組。<br>. <code>...data_1.map(row =&gt; row.grade)</code>：這會將上述數組展開成個別元素。<br>. <code>Math.min(...data_1.map(row =&gt; row.grade), ...data_2.map(row =&gt; row.grade), ...data_3.map(row =&gt; row.grade))</code>：這會找到所有數組中 grade 屬性的最小值。<br>這樣，我們就能夠動態地設置 Y 軸的範圍，使其涵蓋所有數據集中的數值範圍。</p>
 
     </div>
 
@@ -245,8 +254,7 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/apple.lily/tags/CSScoke/" rel="tag"># CSScoke</a>
-              <a href="/apple.lily/tags/CSS/" rel="tag"># CSS</a>
+              <a href="/apple.lily/tags/Javascript/" rel="tag"># Javascript</a>
               <a href="/apple.lily/tags/OneNote/" rel="tag"># OneNote</a>
           </div>
 
@@ -254,14 +262,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/apple.lily/2024/07/14/OneDayOneNote/2024-07-12/" rel="prev" title="2024-07-12 金魚都能懂的網頁切版 導覽列 NO007">
-                  <i class="fa fa-angle-left"></i> 2024-07-12 金魚都能懂的網頁切版 導覽列 NO007
+                <a href="/apple.lily/2024/07/23/OneDayOneNote/2024-08-03/" rel="prev" title="2024-08-03 Chart.js 的 plugins">
+                  <i class="fa fa-angle-left"></i> 2024-08-03 Chart.js 的 plugins
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/apple.lily/2024/07/14/OneDayOneNote/2024-07-14/" rel="next" title="2024-07-14 金魚都能懂的網頁切版  網站麵包屑 NO009">
-                  2024-07-14 金魚都能懂的網頁切版  網站麵包屑 NO009 <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>
