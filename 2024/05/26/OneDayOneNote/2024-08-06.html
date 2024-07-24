@@ -1,0 +1,39 @@
+<hr>
+<h2 id="title-2024-08-06-Javascript-使用-reduce-方法的ES5-及-ES6比較date-2024-07-25-01-41-20categories-OneDayOneNotetags-OneNote-Javascript-description-2024-08-06-Javascript-使用-reduce-方法的ES5-及-ES6比較"><a href="#title-2024-08-06-Javascript-使用-reduce-方法的ES5-及-ES6比較date-2024-07-25-01-41-20categories-OneDayOneNotetags-OneNote-Javascript-description-2024-08-06-Javascript-使用-reduce-方法的ES5-及-ES6比較" class="headerlink" title="title: 2024-08-06 Javascript 使用 reduce 方法的ES5 及 ES6比較date: 2024-07-25 01:41:20categories: OneDayOneNotetags: [OneNote, Javascript]description:  2024-08-06 Javascript 使用 reduce 方法的ES5 及 ES6比較"></a>title: 2024-08-06 Javascript 使用 reduce 方法的ES5 及 ES6比較<br>date: 2024-07-25 01:41:20<br>categories: OneDayOneNote<br>tags: [OneNote, Javascript]<br>description:  2024-08-06 Javascript 使用 reduce 方法的ES5 及 ES6比較</h2><p> 2024-08-06 Javascript 使用 reduce 方法</p>
+<h4>寫法演進</h4>
+
+<p>.for 廻圈寫法</p>
+<pre><code class="javascript">var data_pie = [
+  { CO2e_percentage: 10 },
+  { CO2e_percentage: 20 },
+  { CO2e_percentage: 30 },
+];
+
+var totalPie = 0;
+for (var i = 0; i &lt; data_pie.length; i++) {
+  totalPie += data_pie[i].CO2e_percentage;
+}
+
+console.log(totalPie); // 60
+</code></pre>
+<p>.ES5 寫法</p>
+<pre><code class="javascript">var data_pie = [
+  { CO2e_percentage: 10 },
+  { CO2e_percentage: 20 },
+  { CO2e_percentage: 30 },
+];
+
+var totalPie = data_pie.reduce(function(acc, row) {
+  return acc + row.CO2e_percentage;
+}, 0);
+
+console.log(totalPie); // 60
+</code></pre>
+<p>.ES6寫法</p>
+<pre><code class="javascript">var data_pie = [
+  { CO2e_percentage: 10 },
+  { CO2e_percentage: 20 },
+  { CO2e_percentage: 30 },
+];
+const totalPie = data_pie.reduce((acc, row) =&gt; acc + row.CO2e_percentage, 0);
+</code></pre>

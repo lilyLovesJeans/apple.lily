@@ -1,0 +1,40 @@
+<hr>
+<h2 id="title-2024-08-07-JavaScript-的-Array-prototype-reduce-方法date-2024-07-25-01-52-38categories-OneDayOneNotetags-OneNote-Javascript-description-2024-08-07-JavaScript-的-Array-prototype-reduce-方法"><a href="#title-2024-08-07-JavaScript-的-Array-prototype-reduce-方法date-2024-07-25-01-52-38categories-OneDayOneNotetags-OneNote-Javascript-description-2024-08-07-JavaScript-的-Array-prototype-reduce-方法" class="headerlink" title="title: 2024-08-07  JavaScript 的 Array.prototype.reduce 方法date: 2024-07-25 01:52:38categories: OneDayOneNotetags: [OneNote, Javascript]description:2024-08-07  JavaScript 的 Array.prototype.reduce 方法"></a>title: 2024-08-07  JavaScript 的 Array.prototype.reduce 方法<br>date: 2024-07-25 01:52:38<br>categories: OneDayOneNote<br>tags: [OneNote, Javascript]<br>description:<br>2024-08-07  JavaScript 的 Array.prototype.reduce 方法</h2><h3>JavaScript 的 Array.prototype.reduce 方法。</h3> reduce 方法接受一個回調函數和一個可選的初始值，用於將數組中的每個元素匯總成一個單一的值。這裡我們一步一步解析這段程式碼：
+
+<pre><code class="js">const totalPie = data_pie.reduce((acc, row) =&gt; acc + row.CO2e_percentage, 0);
+</code></pre>
+<h4>reduce 方法</h4>
+reduce 方法用於對數組中的所有元素執行一個累加器函數，從而將數組簡化為一個單一的值。語法如下：
+
+<pre><code class="js">array.reduce(callback(accumulator, currentValue[, index[, array]])[, initialValue])
+</code></pre>
+<p>.callback 是一個回調函數，對數組中的每個值（從左到右）依次執行該函數，最後匯總為一個單一的值。這個回調函數接受四個參數：</p>
+<p> .accumulator（acc）：累加器，它累積回調函數的返回值，是上一次調用回調函數的結果。<br> .currentValue（row）：數組中正在處理的當前元素。<br> .currentIndex（可選）：數組中正在處理的當前元素的索引。<br> .array（可選）：調用 reduce 的數組。<br>.initialValue（0）：作為第一次調用回調函數時 accumulator 的初始值。如果未提供初始值，則 reduce 會將數組中的第一個元素作為初始值，從第二個元素開始執行回調函數。</p>
+<h4>解析這段程式碼</h4>
+1. data_pie 是一個數組，其中每個元素都是一個對象，包含 CO2e_percentage 屬性。
+2. reduce 方法的回調函數 (acc, row) => acc + row.CO2e_percentage 被調用來計算所有 CO2e_percentage 值的總和。
+3. acc 是累加器，初始值為 0。
+4. row 是數組中的當前元素。
+   
+<p>當 reduce 方法執行時，它會這樣運作：</p>
+<ol>
+<li>第一輪：acc 是初始值 0，row 是 data_pie 的第一個元素。計算 0 + row.CO2e_percentage 並將結果儲存在 acc 中。</li>
+<li>第二輪：acc 是第一輪的結果，row 是 data_pie 的第二個元素。計算 acc + row.CO2e_percentage 並將結果儲存在 acc 中。</li>
+<li>如此重複，直到遍歷完整個數組。<br>最後，reduce 方法返回累加的總和，並將其賦值給 totalPie。</li>
+</ol>
+<h4>範例</h4>
+假設 data_pie 的數據如下：
+
+<pre><code class="js">const data_pie = [
+  { CO2e_percentage: 10 },
+  { CO2e_percentage: 20 },
+  { CO2e_percentage: 30 },
+];
+</code></pre>
+<p>運行這段程式碼會如下所示：</p>
+<ol>
+<li>初始值：acc &#x3D; 0</li>
+<li>第一輪：acc &#x3D; 0 + 10 &#x3D; 10</li>
+<li>第二輪：acc &#x3D; 10 + 20 &#x3D; 30</li>
+<li>第三輪：acc &#x3D; 30 + 30 &#x3D; 60<br>最後，totalPie 的值為 60。</li>
+</ol>
