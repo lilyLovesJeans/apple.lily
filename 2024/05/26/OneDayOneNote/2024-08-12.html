@@ -19,25 +19,29 @@
 <p>就可以開始寫了，但是右邊的預覽視窗，因為是 iframe，一樣不能用 cookie</p>
 <p>請點擊右上方的 Open in a new tab，就可以正常跑 cookie 功能了</p>
 <p>來看一些範例程式碼吧</p>
-<p>Your Age: <input type="text"><br>Your Name: <input type="text"><br><button onclick="save()">Save</button></p>
-<script>
+<pre><code class="html">Your Age: &lt;input type=&quot;text&quot;&gt;
+Your Name: &lt;input type=&quot;text&quot;&gt;
+&lt;button onclick=&quot;save()&quot;&gt;Save&lt;/button&gt;
+
+&lt;script&gt;
   if (document.cookie) {
     alert(document.cookie);
-    var arr = document.cookie.split(';');
-    var myage = arr[0].split('=')[1];
-    var myname = arr[1].split('=')[1];
-    document.querySelectorAll('input')[0].value = myage;
-    document.querySelectorAll('input')[1].value = myname;
+    var arr = document.cookie.split(&#39;;&#39;);
+    var myage = arr[0].split(&#39;=&#39;)[1];
+    var myname = arr[1].split(&#39;=&#39;)[1];
+    document.querySelectorAll(&#39;input&#39;)[0].value = myage;
+    document.querySelectorAll(&#39;input&#39;)[1].value = myname;
   }
 
   function save() {
-    var myage = document.querySelectorAll('input')[0].value;
-    var myname = document.querySelectorAll('input')[1].value;
-    document.cookie = 'myage=' + myage;
-    document.cookie = 'myname=' + myname;
-    alert('saved!');
+    var myage = document.querySelectorAll(&#39;input&#39;)[0].value;
+    var myname = document.querySelectorAll(&#39;input&#39;)[1].value;
+    document.cookie = &#39;myage=&#39; + myage;
+    document.cookie = &#39;myname=&#39; + myname;
+    alert(&#39;saved!&#39;);
   }
-</script>
+&lt;/script&gt;
+</code></pre>
 <p>這個範例中，輸入年齡、名字一次，接著重新整理網頁，會發現資料一樣存在欄位裡面，不用重新輸入！</p>
 <p>存取值，都是透過 document.cookie 這個物件屬性，值的格式是 name&#x3D;value</p>
 <p>雖然 document.cookie&#x3D; 寫了兩次，但第二次並不會蓋掉第一次的值，而是兩個都存進 cookie 了</p>
