@@ -1,0 +1,62 @@
+<hr>
+<h2 id="title-2024-08-12-JavaScript-系列五：第1課-──-學會-Cookie-相關功能date-2024-08-04-06-08-10categories-OneDayOneNotetags-OneNote-Javascript-CSS-description-2024-08-12-JavaScript-系列五：第1課-──-學會-Cookie-相關功能"><a href="#title-2024-08-12-JavaScript-系列五：第1課-──-學會-Cookie-相關功能date-2024-08-04-06-08-10categories-OneDayOneNotetags-OneNote-Javascript-CSS-description-2024-08-12-JavaScript-系列五：第1課-──-學會-Cookie-相關功能" class="headerlink" title="title: 2024-08-12 JavaScript 系列五：第1課 ── 學會 Cookie 相關功能date: 2024-08-04 06:08:10categories: OneDayOneNotetags:  [OneNote, Javascript,CSS]description: 2024-08-12 JavaScript 系列五：第1課 ── 學會 Cookie 相關功能"></a>title: 2024-08-12 JavaScript 系列五：第1課 ── 學會 Cookie 相關功能<br>date: 2024-08-04 06:08:10<br>categories: OneDayOneNote<br>tags:  [OneNote, Javascript,CSS]<br>description: 2024-08-12 JavaScript 系列五：第1課 ── 學會 Cookie 相關功能</h2><p>JavaScript 系列五：第1課 ── 學會 Cookie 相關功能<br>課程目標<br>認識並且能使用 Cookie 相關功能</p>
+<p>課程內容<br>大名鼎鼎的 cookie，很多人在科技新聞上都聽過</p>
+<p>某某公司利用網頁 cookie 追蹤個資、某某公司偷偷用 cookie 分享個資</p>
+<p>這類新聞提到的 cookie，就是本課在說的 cookie</p>
+<p>目前為止的作業，你會發現只要重新整理網頁，畫面上的所有東西就都歸零回預設值了</p>
+<p>因為我們說網頁 HTTP 協議是「無狀態」的，也就是每次打開網頁的「狀態」不會被保留</p>
+<p>這樣的設計當然有好處以及方便的地方，因為每次打開網頁都是獨立事件、彼此不會互相影響，開發起來單純很多</p>
+<p>但是在實務上，經常需要「有狀態」才能完成某些功能，例如「已登入帳號」的狀態，否則網站會變很難用</p>
+<p>Cookie 技術就是為了這個原因而誕生</p>
+<p>Cookie 主要有兩個特性</p>
+<p>cookie 的內容，主機端也能存取<br>cookie 的內容，網頁重新整理之後還會保留<br>Cookie 會出現在 HTTP Request 內，一起送到主機</p>
+<p>會員登入功能、各種廣告追蹤功能，就是這樣做到的</p>
+<p>HTTP 協議不熟沒關係，反正就是前端工程師設定過 cookie 值之後，後端工程師也能在主機端拿到那些值就對了</p>
+<p>注意，由於 cookie 會包含一些網站上的敏感資訊，jsfiddle 等等線上程式碼實驗工具、以及各種免費架站工具，幾乎通通都關閉了 cookie 功能</p>
+<p>我目前找到一個可以用 cookie 的架站工具 <a href="https://replit.com/">https://replit.com/</a></p>
+<p>本課請使用 replit 來跑範例程式碼、寫作業</p>
+<p>註冊登入之後，點 Create -&gt; Templates -&gt; 選 HTML, CSS, JS 那個 -&gt; Create Repl</p>
+<p>就可以開始寫了，但是右邊的預覽視窗，因為是 iframe，一樣不能用 cookie</p>
+<p>請點擊右上方的 Open in a new tab，就可以正常跑 cookie 功能了</p>
+<p>來看一些範例程式碼吧</p>
+<p>Your Age: <input type="text"><br>Your Name: <input type="text"><br><button onclick="save()">Save</button></p>
+<script>
+  if (document.cookie) {
+    alert(document.cookie);
+    var arr = document.cookie.split(';');
+    var myage = arr[0].split('=')[1];
+    var myname = arr[1].split('=')[1];
+    document.querySelectorAll('input')[0].value = myage;
+    document.querySelectorAll('input')[1].value = myname;
+  }
+
+  function save() {
+    var myage = document.querySelectorAll('input')[0].value;
+    var myname = document.querySelectorAll('input')[1].value;
+    document.cookie = 'myage=' + myage;
+    document.cookie = 'myname=' + myname;
+    alert('saved!');
+  }
+</script>
+<p>這個範例中，輸入年齡、名字一次，接著重新整理網頁，會發現資料一樣存在欄位裡面，不用重新輸入！</p>
+<p>存取值，都是透過 document.cookie 這個物件屬性，值的格式是 name&#x3D;value</p>
+<p>雖然 document.cookie&#x3D; 寫了兩次，但第二次並不會蓋掉第一次的值，而是兩個都存進 cookie 了</p>
+<p>（這個設計，很糟糕，沒錯，讓人看得很混亂。應該是瀏覽器的設計者，有他們的苦衷，我們先不細究原因，先知道怎麼用就好）</p>
+<p>然後，讀取的時候，多個值會用分號 ; 隔開，所以讀取時我用了 .split() 這個字串函式</p>
+<p>除此之外，cookie 還可以設定「使用期限」以及「限定網域」，但我這邊就先不示範</p>
+<p>總之，cookie 的效果大概就是這樣，稍微理解就好。然後這些值，後端工程師在伺服器端，也會收到，就這樣！</p>
+<p>如上所示，cookie 寫起來，有點麻煩</p>
+<p>實務上，每次都這樣手寫，太囉唆，通常會直接找套件來用，我是用這款</p>
+<p><a href="https://github.com/js-cookie/js-cookie">https://github.com/js-cookie/js-cookie</a></p>
+<p>用來操作 cookie 的 API，漂亮多了！</p>
+<p>關於 cookie 的 debug 除錯，也要知道一下</p>
+<p>打開瀏覽器開發者工具 -&gt; Application -&gt; Cookies 可以看到網站上有哪些 cookie，也可以直接在這邊修改、刪除 cookie</p>
+<p>cookie 還有一些特性，以及大小限制、使用限制</p>
+<p>這邊不細談，稍微知道怎麼用 cookie 就好</p>
+<p>有興趣的話，請上網搜尋一下，多研究一些 cookie 的細節</p>
+<p>課後作業<br>請使用 <a href="https://replit.com/">https://replit.com/</a> 來寫作業</p>
+<p>假設你正在幫客戶寫一個「成人限制級網站」</p>
+<p>頁面第一次打開會顯示蓋板警告，下方有兩個按鈕</p>
+<p>警告︰您即將進入之網頁內容需滿十八歲方可瀏覽。</p>
+<p>根據「兒童及少年福利與權益保障法」規定，本網站已於非闔家皆宜之網頁加以標示。若您尚未年滿十八歲，請點選離開。若您已滿十八歲，亦不可將本站之內容派發、傳閱、出售、出租、交給或借予年齡未滿18歲的人士瀏覽，或將本網站內容向該人士出示、播放或放映。<br>您年滿十八歲嗎？</p>
+<p>[離開] [是，我已年滿十八歲]<br>點擊離開，把用戶跳轉到 google 首頁<br>點擊確認，就關閉蓋板警告，在網頁上顯示一張美女 or 帥哥圖片：參考圖庫 <a href="https://unsplash.com/">https://unsplash.com/</a><br>只要按過確認，重新整理之後，蓋板警告就不會再跳出來<br>做出以上功能，你就完成這次的課程目標了！</p>
