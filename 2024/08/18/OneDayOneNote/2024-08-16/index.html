@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2024-08-16 RFC6265 Request for Comments  6265">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024-08-16 RFC6265 Request for Comments  6265">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2024/08/18/OneDayOneNote/2024-08-16/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2024-08-16 RFC6265 Request for Comments  6265">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2024-08-18T06:21:40.000Z">
+<meta property="article:modified_time" content="2024-08-18T06:24:36.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content="OneNote">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2024/08/18/OneDayOneNote/2024-08-16/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2024/08/18/OneDayOneNote/2024-08-16/","path":"2024/08/18/OneDayOneNote/2024-08-16/","title":"2024-08-16 RFC6265 Request for Comments  6265"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2024-08-16 RFC6265 Request for Comments  6265 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">120</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2024/08/18/OneDayOneNote/2024-08-16/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2024-08-16 RFC6265 Request for Comments  6265 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2024-08-16 RFC6265 Request for Comments  6265">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2024-08-16 RFC6265 Request for Comments  6265
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2024-08-18 14:21:40 / 修改時間：14:24:36" itemprop="dateCreated datePublished" datetime="2024-08-18T14:21:40+08:00">2024-08-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2024-08-16 RFC6265 Request for Comments  6265</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>RFC6265 Request for Comments: 6265<br>Internet Engineering Task Force (IETF)                          A. Barth<br>Request for Comments: 6265                                 U.C. Berkeley<br>Obsoletes: 2965                                               April 2011<br>Category: Standards Track<br>ISSN: 2070-1721</p>
+<pre><code>                HTTP State Management Mechanism
+</code></pre>
+<p>Abstract</p>
+<p>   This document defines the HTTP Cookie and Set-Cookie header fields.<br>   These header fields can be used by HTTP servers to store state<br>   (called cookies) at HTTP user agents, letting the servers maintain a<br>   stateful session over the mostly stateless HTTP protocol.  Although<br>   cookies have many historical infelicities that degrade their security<br>   and privacy, the Cookie and Set-Cookie header fields are widely used<br>   on the Internet.  This document obsoletes RFC 2965.</p>
+<p>Status of This Memo</p>
+<p>   This is an Internet Standards Track document.</p>
+<p>   This document is a product of the Internet Engineering Task Force<br>   (IETF).  It represents the consensus of the IETF community.  It has<br>   received public review and has been approved for publication by the<br>   Internet Engineering Steering Group (IESG).  Further information on<br>   Internet Standards is available in Section 2 of RFC 5741.</p>
+<p>   Information about the current status of this document, any errata,<br>   and how to provide feedback on it may be obtained at<br>   <a target="_blank" rel="noopener" href="http://www.rfc-editor.org/info/rfc6265">http://www.rfc-editor.org/info/rfc6265</a>.</p>
+<p>Copyright Notice</p>
+<p>   Copyright (c) 2011 IETF Trust and the persons identified as the<br>   document authors.  All rights reserved.</p>
+<p>   This document is subject to BCP 78 and the IETF Trust’s Legal<br>   Provisions Relating to IETF Documents<br>   (<a target="_blank" rel="noopener" href="http://trustee.ietf.org/license-info">http://trustee.ietf.org/license-info</a>) in effect on the date of<br>   publication of this document.  Please review these documents<br>   carefully, as they describe your rights and restrictions with respect<br>   to this document.  Code Components extracted from this document must<br>   include Simplified BSD License text as described in Section 4.e of<br>   the Trust Legal Provisions and are provided without warranty as<br>   described in the Simplified BSD License.</p>
+<p>Barth                        Standards Track                    [Page 1]</p>
+<p>RFC 6265             HTTP State Management Mechanism          April 2011</p>
+<p>   This document may contain material from IETF Documents or IETF<br>   Contributions published or made publicly available before November<br>   10, 2008.  The person(s) controlling the copyright in some of this<br>   material may not have granted the IETF Trust the right to allow<br>   modifications of such material outside the IETF Standards Process.<br>   Without obtaining an adequate license from the person(s) controlling<br>   the copyright in such materials, this document may not be modified<br>   outside the IETF Standards Process, and derivative works of it may<br>   not be created outside the IETF Standards Process, except to format<br>   it for publication as an RFC or to translate it into languages other<br>   than English.</p>
+<p>Table of Contents</p>
+<ol>
+<li>Introduction …………………………………………….3</li>
+<li>Conventions ……………………………………………..4<br>2.1. Conformance Criteria …………………………………4<br>2.2. Syntax Notation ……………………………………..5<br>2.3. Terminology …………………………………………5</li>
+<li>Overview ………………………………………………..6<br>3.1. Examples ……………………………………………6</li>
+<li>Server Requirements ………………………………………8<br>4.1. Set-Cookie ………………………………………….8<br> 4.1.1. Syntax ……………………………………….8<br> 4.1.2. Semantics (Non-Normative) ……………………..10<br>4.2. Cookie …………………………………………….13<br> 4.2.1. Syntax ………………………………………13<br> 4.2.2. Semantics ……………………………………13</li>
+<li>User Agent Requirements ………………………………….14<br>5.1. Subcomponent Algorithms ……………………………..14<br> 5.1.1. Dates ……………………………………….14<br> 5.1.2. Canonicalized Host Names ………………………16<br> 5.1.3. Domain Matching ………………………………16<br> 5.1.4. Paths and Path-Match ………………………….16<br>5.2. The Set-Cookie Header ……………………………….17<br> 5.2.1. The Expires Attribute …………………………19<br> 5.2.2. The Max-Age Attribute …………………………20<br> 5.2.3. The Domain Attribute ………………………….20<br> 5.2.4. The Path Attribute ……………………………21<br> 5.2.5. The Secure Attribute ………………………….21<br> 5.2.6. The HttpOnly Attribute ………………………..21<br>5.3. Storage Model ………………………………………21<br>5.4. The Cookie Header …………………………………..25</li>
+<li>Implementation Considerations …………………………….27<br>6.1. Limits …………………………………………….27<br>6.2. Application Programming Interfaces ……………………27<br>6.3. IDNA Dependency and Migration ………………………..27</li>
+<li>Privacy Considerations …………………………………..28</li>
+</ol>
+<p>Barth                        Standards Track                    [Page 2]</p>
+<p>RFC 6265             HTTP State Management Mechanism          April 2011</p>
+<pre><code>  7.1. Third-Party Cookies .......................................28
+  7.2. User Controls .............................................28
+  7.3. Expiration Dates ..........................................29
+</code></pre>
+<ol start="8">
+<li><p>Security Considerations ………………………………….29<br>8.1. Overview …………………………………………..29<br>8.2. Ambient Authority …………………………………..30<br>8.3. Clear Text …………………………………………30<br>8.4. Session Identifiers …………………………………31<br>8.5. Weak Confidentiality ………………………………..32<br>8.6. Weak Integrity ……………………………………..32<br>8.7. Reliance on DNS …………………………………….33</p>
+</li>
+<li><p>IANA Considerations ……………………………………..33<br>9.1. Cookie …………………………………………….34<br>9.2. Set-Cookie …………………………………………34<br>9.3. Cookie2 ……………………………………………34<br>9.4. Set-Cookie2 ………………………………………..34</p>
+</li>
+<li><p>References …………………………………………….35<br>  10.1. Normative References ……………………………….35<br>  10.2. Informative References ……………………………..35<br>   Appendix A. Acknowledgements ………………………………..37</p>
+</li>
+<li><p>Introduction</p>
+</li>
+</ol>
+<p>   This document defines the HTTP Cookie and Set-Cookie header fields.<br>   Using the Set-Cookie header field, an HTTP server can pass name&#x2F;value<br>   pairs and associated metadata (called cookies) to a user agent.  When<br>   the user agent makes subsequent requests to the server, the user<br>   agent uses the metadata and other information to determine whether to<br>   return the name&#x2F;value pairs in the Cookie header.</p>
+<p>   Although simple on their surface, cookies have a number of<br>   complexities.  For example, the server indicates a scope for each<br>   cookie when sending it to the user agent.  The scope indicates the<br>   maximum amount of time in which the user agent should return the<br>   cookie, the servers to which the user agent should return the cookie,<br>   and the URI schemes for which the cookie is applicable.</p>
+<p>   For historical reasons, cookies contain a number of security and<br>   privacy infelicities.  For example, a server can indicate that a<br>   given cookie is intended for “secure” connections, but the Secure<br>   attribute does not provide integrity in the presence of an active<br>   network attacker.  Similarly, cookies for a given host are shared<br>   across all the ports on that host, even though the usual “same-origin<br>   policy” used by web browsers isolates content retrieved via different<br>   ports.</p>
+<p>   There are two audiences for this specification: developers of cookie-<br>   generating servers and developers of cookie-consuming user agents.</p>
+<p>Barth                        Standards Track                    [Page 3]</p>
+<p>RFC 6265             HTTP State Management Mechanism          April 2011</p>
+<p>   To maximize interoperability with user agents, servers SHOULD limit<br>   themselves to the well-behaved profile defined in Section 4 when<br>   generating cookies.</p>
+<p>   User agents MUST implement the more liberal processing rules defined<br>   in Section 5, in order to maximize interoperability with existing<br>   servers that do not conform to the well-behaved profile defined in<br>   Section 4.</p>
+<p>   This document specifies the syntax and semantics of these headers as<br>   they are actually used on the Internet.  In particular, this document<br>   does not create new syntax or semantics beyond those in use today.<br>   The recommendations for cookie generation provided in Section 4<br>   represent a preferred subset of current server behavior, and even the<br>   more liberal cookie processing algorithm provided in Section 5 does<br>   not recommend all of the syntactic and semantic variations in use<br>   today.  Where some existing software differs from the recommended<br>   protocol in significant ways, the document contains a note explaining<br>   the difference.</p>
+<p>   Prior to this document, there were at least three descriptions of<br>   cookies: the so-called “Netscape cookie specification” [Netscape],<br>   RFC 2109 [RFC2109], and RFC 2965 [RFC2965].  However, none of these<br>   documents describe how the Cookie and Set-Cookie headers are actually<br>   used on the Internet (see [Kri2001] for historical context).  In<br>   relation to previous IETF specifications of HTTP state management<br>   mechanisms, this document requests the following actions:</p>
+<ol>
+<li><p>Change the status of [RFC2109] to Historic (it has already been<br>obsoleted by [RFC2965]).</p>
+</li>
+<li><p>Change the status of [RFC2965] to Historic.</p>
+</li>
+<li><p>Indicate that [RFC2965] has been obsoleted by this document.</p>
+</li>
+</ol>
+<p>   In particular, in moving RFC 2965 to Historic and obsoleting it, this<br>   document deprecates the use of the Cookie2 and Set-Cookie2 header<br>   fields.</p>
+<ol start="2">
+<li>Conventions</li>
+</ol>
+<p>2.1.  Conformance Criteria</p>
+<p>   The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”,<br>   “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in this<br>   document are to be interpreted as described in [RFC2119].</p>
+<p>Barth                        Standards Track                    [Page 4]</p>
+<p>RFC 6265             HTTP State Management Mechanism          April 2011</p>
+<p>   Requirements phrased in the imperative as part of algorithms (such as<br>   “strip any leading space characters” or “return false and abort these<br>   steps”) are to be interpreted with the meaning of the key word<br>   (“MUST”, “SHOULD”, “MAY”, etc.) used in introducing the algorithm.</p>
+<p>   Conformance requirements phrased as algorithms or specific steps can<br>   be implemented in any manner, so long as the end result is<br>   equivalent.  In particular, the algorithms defined in this<br>   specification are intended to be easy to understand and are not<br>   intended to be performant.</p>
+<p>2.2.  Syntax Notation</p>
+<p>   This specification uses the Augmented Backus-Naur Form (ABNF)<br>   notation of [RFC5234].</p>
+<p>   The following core rules are included by reference, as defined in<br>   [RFC5234], Appendix B.1: ALPHA (letters), CR (carriage return), CRLF<br>   (CR LF), CTLs (controls), DIGIT (decimal 0-9), DQUOTE (double quote),<br>   HEXDIG (hexadecimal 0-9&#x2F;A-F&#x2F;a-f), LF (line feed), NUL (null octet),<br>   OCTET (any 8-bit sequence of data except NUL), SP (space), HTAB<br>   (horizontal tab), CHAR (any [USASCII] character), VCHAR (any visible<br>   [USASCII] character), and WSP (whitespace).</p>
+<p>   The OWS (optional whitespace) rule is used where zero or more linear<br>   whitespace characters MAY appear:</p>
+<p>   OWS            &#x3D; *( [ obs-fold ] WSP )<br>                    ; “optional” whitespace<br>   obs-fold       &#x3D; CRLF</p>
+<p>   OWS SHOULD either not be produced or be produced as a single SP<br>   character.</p>
+<p>2.3.  Terminology</p>
+<p>   The terms user agent, client, server, proxy, and origin server have<br>   the same meaning as in the HTTP&#x2F;1.1 specification ([RFC2616], Section<br>   1.3).</p>
+<p>   The request-host is the name of the host, as known by the user agent,<br>   to which the user agent is sending an HTTP request or from which it<br>   is receiving an HTTP response (i.e., the name of the host to which it<br>   sent the corresponding HTTP request).</p>
+<p>   The term request-uri is defined in Section 5.1.2 of [RFC2616].</p>
+<p>Barth                        Standards Track                    [Page 5]</p>
+<p>RFC 6265             HTTP State Management Mechanism          April 2011</p>
+<p>   Two sequences of octets are said to case-insensitively match each<br>   other if and only if they are equivalent under the i;ascii-casemap<br>   collation defined in [RFC4790].</p>
+<p>   The term string means a sequence of non-NUL octets.</p>
+<ol start="3">
+<li>Overview</li>
+</ol>
+<p>   This section outlines a way for an origin server to send state<br>   information to a user agent and for the user agent to return the<br>   state information to the origin server.</p>
+<p>   To store state, the origin server includes a Set-Cookie header in an<br>   HTTP response.  In subsequent requests, the user agent returns a<br>   Cookie request header to the origin server.  The Cookie header<br>   contains cookies the user agent received in previous Set-Cookie<br>   headers.  The origin server is free to ignore the Cookie header or<br>   use its contents for an application-defined purpose.</p>
+<p>   Origin servers MAY send a Set-Cookie response header with any<br>   response.  User agents MAY ignore Set-Cookie headers contained in<br>   responses with 100-level status codes but MUST process Set-Cookie<br>   headers contained in other responses (including responses with 400-<br>   and 500-level status codes).  An origin server can include multiple<br>   Set-Cookie header fields in a single response.  The presence of a<br>   Cookie or a Set-Cookie header field does not preclude HTTP caches<br>   from storing and reusing a response.</p>
+<p>   Origin servers SHOULD NOT fold multiple Set-Cookie header fields into<br>   a single header field.  The usual mechanism for folding HTTP headers<br>   fields (i.e., as defined in [RFC2616]) might change the semantics of<br>   the Set-Cookie header field because the %x2C (“,”) character is used<br>   by Set-Cookie in a way that conflicts with such folding.</p>
+<p>3.1.  Examples</p>
+<p>   Using the Set-Cookie header, a server can send the user agent a short<br>   string in an HTTP response that the user agent will return in future<br>   HTTP requests that are within the scope of the cookie.  For example,<br>   the server can send the user agent a “session identifier” named SID<br>   with the value 31d4d96e407aad42.  The user agent then returns the<br>   session identifier in subsequent requests.</p>
+<p>Barth                        Standards Track                    [Page 6]</p>
+<p>RFC 6265             HTTP State Management Mechanism          April 2011</p>
+<p>   &#x3D;&#x3D; Server -&gt; User Agent &#x3D;&#x3D;</p>
+<p>   Set-Cookie: SID&#x3D;31d4d96e407aad42</p>
+<p>   &#x3D;&#x3D; User Agent -&gt; Server &#x3D;&#x3D;</p>
+<p>   Cookie: SID&#x3D;31d4d96e407aad42</p>
+<p>   The server can alter the default scope of the cookie using the Path<br>   and Domain attributes.  For example, the server can instruct the user<br>   agent to return the cookie to every path and every subdomain of<br>   example.com.</p>
+<p>   &#x3D;&#x3D; Server -&gt; User Agent &#x3D;&#x3D;</p>
+<p>   Set-Cookie: SID&#x3D;31d4d96e407aad42; Path&#x3D;&#x2F;; Domain&#x3D;example.com</p>
+<p>   &#x3D;&#x3D; User Agent -&gt; Server &#x3D;&#x3D;</p>
+<p>   Cookie: SID&#x3D;31d4d96e407aad42</p>
+<p>   As shown in the next example, the server can store multiple cookies<br>   at the user agent.  For example, the server can store a session<br>   identifier as well as the user’s preferred language by returning two<br>   Set-Cookie header fields.  Notice that the server uses the Secure and<br>   HttpOnly attributes to provide additional security protections for<br>   the more sensitive session identifier (see Section 4.1.2.)</p>
+<p>   &#x3D;&#x3D; Server -&gt; User Agent &#x3D;&#x3D;</p>
+<p>   Set-Cookie: SID&#x3D;31d4d96e407aad42; Path&#x3D;&#x2F;; Secure; HttpOnly<br>   Set-Cookie: lang&#x3D;en-US; Path&#x3D;&#x2F;; Domain&#x3D;example.com</p>
+<p>   &#x3D;&#x3D; User Agent -&gt; Server &#x3D;&#x3D;</p>
+<p>   Cookie: SID&#x3D;31d4d96e407aad42; lang&#x3D;en-US</p>
+<p>   Notice that the Cookie header above contains two cookies, one named<br>   SID and one named lang.  If the server wishes the user agent to<br>   persist the cookie over multiple “sessions” (e.g., user agent<br>   restarts), the server can specify an expiration date in the Expires<br>   attribute.  Note that the user agent might delete the cookie before<br>   the expiration date if the user agent’s cookie store exceeds its<br>   quota or if the user manually deletes the server’s cookie.</p>
+<p>Barth                        Standards Track                    [Page 7]</p>
+<p>RFC 6265             HTTP State Management Mechanism          April 2011</p>
+<p>   &#x3D;&#x3D; Server -&gt; User Agent &#x3D;&#x3D;</p>
+<p>   Set-Cookie: lang&#x3D;en-US; Expires&#x3D;Wed, 09 Jun 2021 10:18:14 GMT</p>
+<p>   &#x3D;&#x3D; User Agent -&gt; Server &#x3D;&#x3D;</p>
+<p>   Cookie: SID&#x3D;31d4d96e407aad42; lang&#x3D;en-US</p>
+<p>   Finally, to remove a cookie, the server returns a Set-Cookie header<br>   with an expiration date in the past.  The server will be successful<br>   in removing the cookie only if the Path and the Domain attribute in<br>   the Set-Cookie header match the values used when the cookie was<br>   created.</p>
+<p>   &#x3D;&#x3D; Server -&gt; User Agent &#x3D;&#x3D;</p>
+<p>   Set-Cookie: lang&#x3D;; Expires&#x3D;Sun, 06 Nov 1994 08:49:37 GMT</p>
+<p>   &#x3D;&#x3D; User Agent -&gt; Server &#x3D;&#x3D;</p>
+<p>   Cookie: SID&#x3D;31d4d96e407aad42</p>
+<ol start="4">
+<li>Server Requirements</li>
+</ol>
+<p>   This section describes the syntax and semantics of a well-behaved<br>   profile of the Cookie and Set-Cookie headers.</p>
+<p>4.1.  Set-Cookie</p>
+<p>   The Set-Cookie HTTP response header is used to send cookies from the<br>   server to the user agent.</p>
+<p>4.1.1.  Syntax</p>
+<p>   Informally, the Set-Cookie response header contains the header name<br>   “Set-Cookie” followed by a “:” and a cookie.  Each cookie begins with<br>   a name-value-pair, followed by zero or more attribute-value pairs.<br>   Servers SHOULD NOT send Set-Cookie headers that fail to conform to<br>   the following grammar:</p>
+<p>Barth                        Standards Track                    [Page 8]</p>
+<p>RFC 6265             HTTP State Management Mechanism          April 2011</p>
+<p> set-cookie-header &#x3D; “Set-Cookie:” SP set-cookie-string<br> set-cookie-string &#x3D; cookie-pair *( “;” SP cookie-av )<br> cookie-pair       &#x3D; cookie-name “&#x3D;” cookie-value<br> cookie-name       &#x3D; token<br> cookie-value      &#x3D; *cookie-octet &#x2F; ( DQUOTE *cookie-octet DQUOTE )<br> cookie-octet      &#x3D; %x21 &#x2F; %x23-2B &#x2F; %x2D-3A &#x2F; %x3C-5B &#x2F; %x5D-7E<br>                       ; US-ASCII characters excluding CTLs,<br>                       ; whitespace DQUOTE, comma, semicolon,<br>                       ; and backslash<br> token             &#x3D; &lt;token, defined in [RFC2616], Section 2.2&gt;</p>
+<p> cookie-av         &#x3D; expires-av &#x2F; max-age-av &#x2F; domain-av &#x2F;<br>                     path-av &#x2F; secure-av &#x2F; httponly-av &#x2F;<br>                     extension-av<br> expires-av        &#x3D; “Expires&#x3D;” sane-cookie-date<br> sane-cookie-date  &#x3D; &lt;rfc1123-date, defined in [RFC2616], Section 3.3.1&gt;<br> max-age-av        &#x3D; “Max-Age&#x3D;” non-zero-digit *DIGIT<br>                       ; In practice, both expires-av and max-age-av<br>                       ; are limited to dates representable by the<br>                       ; user agent.<br> non-zero-digit    &#x3D; %x31-39<br>                       ; digits 1 through 9<br> domain-av         &#x3D; “Domain&#x3D;” domain-value<br> domain-value      &#x3D; <subdomain><br>                       ; defined in [RFC1034], Section 3.5, as<br>                       ; enhanced by [RFC1123], Section 2.1<br> path-av           &#x3D; “Path&#x3D;” path-value<br> path-value        &#x3D; &lt;any CHAR except CTLs or “;”&gt;<br> secure-av         &#x3D; “Secure”<br> httponly-av       &#x3D; “HttpOnly”<br> extension-av      &#x3D; &lt;any CHAR except CTLs or “;”&gt;</p>
+<p>   Note that some of the grammatical terms above reference documents<br>   that use different grammatical notations than this document (which<br>   uses ABNF from [RFC5234]).</p>
+<p>   The semantics of the cookie-value are not defined by this document.</p>
+<p>   To maximize compatibility with user agents, servers that wish to<br>   store arbitrary data in a cookie-value SHOULD encode that data, for<br>   example, using Base64 [RFC4648].</p>
+<p>   The portions of the set-cookie-string produced by the cookie-av term<br>   are known as attributes.  To maximize compatibility with user agents,<br>   servers SHOULD NOT produce two attributes with the same name in the<br>   same set-cookie-string.  (See Section 5.3 for how user agents handle<br>   this case.)</p>
+<p>Barth                        Standards Track                    [Page 9]</p>
+<p>RFC 6265             HTTP State Management Mechanism          April 2011</p>
+<p>   Servers SHOULD NOT include more than one Set-Cookie header field in<br>   the same response with the same cookie-name.  (See Section 5.2 for<br>   how user agents handle this case.)</p>
+<p>   If a server sends multiple responses containing Set-Cookie headers<br>   concurrently to the user agent (e.g., when communicating with the<br>   user agent over multiple sockets), these responses create a “race<br>   condition” that can lead to unpredictable behavior.</p>
+<p>   NOTE: Some existing user agents differ in their interpretation of<br>   two-digit years.  To avoid compatibility issues, servers SHOULD use<br>   the rfc1123-date format, which requires a four-digit year.</p>
+<p>   NOTE: Some user agents store and process dates in cookies as 32-bit<br>   UNIX time_t values.  Implementation bugs in the libraries supporting<br>   time_t processing on some systems might cause such user agents to<br>   process dates after the year 2038 incorrectly.</p>
+<p>4.1.2.  Semantics (Non-Normative)</p>
+<p>   This section describes simplified semantics of the Set-Cookie header.<br>   These semantics are detailed enough to be useful for understanding<br>   the most common uses of cookies by servers.  The full semantics are<br>   described in Section 5.</p>
+<p>   When the user agent receives a Set-Cookie header, the user agent<br>   stores the cookie together with its attributes.  Subsequently, when<br>   the user agent makes an HTTP request, the user agent includes the<br>   applicable, non-expired cookies in the Cookie header.</p>
+<p>   If the user agent receives a new cookie with the same cookie-name,<br>   domain-value, and path-value as a cookie that it has already stored,<br>   the existing cookie is evicted and replaced with the new cookie.<br>   Notice that servers can delete cookies by sending the user agent a<br>   new cookie with an Expires attribute with a value in the past.</p>
+<p>   Unless the cookie’s attributes indicate otherwise, the cookie is<br>   returned only to the origin server (and not, for example, to any<br>   subdomains), and it expires at the end of the current session (as<br>   defined by the user agent).  User agents ignore unrecognized cookie<br>   attributes (but not the entire cookie).</p>
+<p>Barth                        Standards Track                   [Page 10]</p>
+<p>RFC 6265             HTTP State Management Mechanism          April 2011</p>
+<p>4.1.2.1.  The Expires Attribute</p>
+<p>   The Expires attribute indicates the maximum lifetime of the cookie,<br>   represented as the date and time at which the cookie expires.  The<br>   user agent is not required to retain the cookie until the specified<br>   date has passed.  In fact, user agents often evict cookies due to<br>   memory pressure or privacy concerns.</p>
+<p>4.1.2.2.  The Max-Age Attribute</p>
+<p>   The Max-Age attribute indicates the maximum lifetime of the cookie,<br>   represented as the number of seconds until the cookie expires.  The<br>   user agent is not required to retain the cookie for the specified<br>   duration.  In fact, user agents often evict cookies due to memory<br>   pressure or privacy concerns.</p>
+<pre><code>  NOTE: Some existing user agents do not support the Max-Age
+  attribute.  User agents that do not support the Max-Age attribute
+  ignore the attribute.
+</code></pre>
+<p>   If a cookie has both the Max-Age and the Expires attribute, the Max-<br>   Age attribute has precedence and controls the expiration date of the<br>   cookie.  If a cookie has neither the Max-Age nor the Expires<br>   attribute, the user agent will retain the cookie until “the current<br>   session is over” (as defined by the user agent).</p>
+<p>4.1.2.3.  The Domain Attribute</p>
+<p>   The Domain attribute specifies those hosts to which the cookie will<br>   be sent.  For example, if the value of the Domain attribute is<br>   “example.com”, the user agent will include the cookie in the Cookie<br>   header when making HTTP requests to example.com, <a target="_blank" rel="noopener" href="http://www.example.com/">www.example.com</a>, and<br>   <a target="_blank" rel="noopener" href="http://www.corp.example.com/">www.corp.example.com</a>.  (Note that a leading %x2E (“.”), if present,<br>   is ignored even though that character is not permitted, but a<br>   trailing %x2E (“.”), if present, will cause the user agent to ignore<br>   the attribute.)  If the server omits the Domain attribute, the user<br>   agent will return the cookie only to the origin server.</p>
+<pre><code>  WARNING: Some existing user agents treat an absent Domain
+  attribute as if the Domain attribute were present and contained
+  the current host name.  For example, if example.com returns a Set-
+  Cookie header without a Domain attribute, these user agents will
+  erroneously send the cookie to www.example.com as well.
+</code></pre>
+<p>Barth                        Standards Track                   [Page 11]</p>
+<p>RFC 6265             HTTP State Management Mechanism          April 2011</p>
+<p>   The user agent will reject cookies unless the Domain attribute<br>   specifies a scope for the cookie that would include the origin<br>   server.  For example, the user agent will accept a cookie with a<br>   Domain attribute of “example.com” or of “foo.example.com” from<br>   foo.example.com, but the user agent will not accept a cookie with a<br>   Domain attribute of “bar.example.com” or of “baz.foo.example.com”.</p>
+<p>   NOTE: For security reasons, many user agents are configured to reject<br>   Domain attributes that correspond to “public suffixes”.  For example,<br>   some user agents will reject Domain attributes of “com” or “co.uk”.<br>   (See Section 5.3 for more information.)</p>
+<p>4.1.2.4.  The Path Attribute</p>
+<p>   The scope of each cookie is limited to a set of paths, controlled by<br>   the Path attribute.  If the server omits the Path attribute, the user<br>   agent will use the “directory” of the request-uri’s path component as<br>   the default value.  (See Section 5.1.4 for more details.)</p>
+<p>   The user agent will include the cookie in an HTTP request only if the<br>   path portion of the request-uri matches (or is a subdirectory of) the<br>   cookie’s Path attribute, where the %x2F (“&#x2F;“) character is<br>   interpreted as a directory separator.</p>
+<p>   Although seemingly useful for isolating cookies between different<br>   paths within a given host, the Path attribute cannot be relied upon<br>   for security (see Section 8).</p>
+<p>4.1.2.5.  The Secure Attribute</p>
+<p>   The Secure attribute limits the scope of the cookie to “secure”<br>   channels (where “secure” is defined by the user agent).  When a<br>   cookie has the Secure attribute, the user agent will include the<br>   cookie in an HTTP request only if the request is transmitted over a<br>   secure channel (typically HTTP over Transport Layer Security (TLS)<br>   [RFC2818]).</p>
+<p>   Although seemingly useful for protecting cookies from active network<br>   attackers, the Secure attribute protects only the cookie’s<br>   confidentiality.  An active network attacker can overwrite Secure<br>   cookies from an insecure channel, disrupting their integrity (see<br>   Section 8.6 for more details).</p>
+<p>Barth                        Standards Track                   [Page 12]</p>
+<p>RFC 6265             HTTP State Management Mechanism          April 2011</p>
+<p>4.1.2.6.  The HttpOnly Attribute</p>
+<p>   The HttpOnly attribute limits the scope of the cookie to HTTP<br>   requests.  In particular, the attribute instructs the user agent to<br>   omit the cookie when providing access to cookies via “non-HTTP” APIs<br>   (such as a web browser API that exposes cookies to scripts).</p>
+<p>   Note that the HttpOnly attribute is independent of the Secure<br>   attribute: a cookie can have both the HttpOnly and the Secure<br>   attribute.</p>
+<p>4.2.  Cookie</p>
+<p>4.2.1.  Syntax</p>
+<p>   The user agent sends stored cookies to the origin server in the<br>   Cookie header.  If the server conforms to the requirements in<br>   Section 4.1 (and the user agent conforms to the requirements in<br>   Section 5), the user agent will send a Cookie header that conforms to<br>   the following grammar:</p>
+<p>   cookie-header &#x3D; “Cookie:” OWS cookie-string OWS<br>   cookie-string &#x3D; cookie-pair *( “;” SP cookie-pair )</p>
+<p>4.2.2.  Semantics</p>
+<p>   Each cookie-pair represents a cookie stored by the user agent.  The<br>   cookie-pair contains the cookie-name and cookie-value the user agent<br>   received in the Set-Cookie header.</p>
+<p>   Notice that the cookie attributes are not returned.  In particular,<br>   the server cannot determine from the Cookie header alone when a<br>   cookie will expire, for which hosts the cookie is valid, for which<br>   paths the cookie is valid, or whether the cookie was set with the<br>   Secure or HttpOnly attributes.</p>
+<p>   The semantics of individual cookies in the Cookie header are not<br>   defined by this document.  Servers are expected to imbue these<br>   cookies with application-specific semantics.</p>
+<p>   Although cookies are serialized linearly in the Cookie header,<br>   servers SHOULD NOT rely upon the serialization order.  In particular,<br>   if the Cookie header contains two cookies with the same name (e.g.,<br>   that were set with different Path or Domain attributes), servers<br>   SHOULD NOT rely upon the order in which these cookies appear in the<br>   header.</p>
+<p>Barth                        Standards Track                   [Page 13]</p>
+<p>RFC 6265             HTTP State Management Mechanism          April 2011</p>
+<ol start="5">
+<li>User Agent Requirements</li>
+</ol>
+<p>   This section specifies the Cookie and Set-Cookie headers in<br>   sufficient detail that a user agent implementing these requirements<br>   precisely can interoperate with existing servers (even those that do<br>   not conform to the well-behaved profile described in Section 4).</p>
+<p>   A user agent could enforce more restrictions than those specified<br>   herein (e.g., for the sake of improved security); however,<br>   experiments have shown that such strictness reduces the likelihood<br>   that a user agent will be able to interoperate with existing servers.</p>
+<p>5.1.  Subcomponent Algorithms</p>
+<p>   This section defines some algorithms used by user agents to process<br>   specific subcomponents of the Cookie and Set-Cookie headers.</p>
+<p>5.1.1.  Dates</p>
+<p>   The user agent MUST use an algorithm equivalent to the following<br>   algorithm to parse a cookie-date.  Note that the various boolean<br>   flags defined as a part of the algorithm (i.e., found-time, found-<br>   day-of-month, found-month, found-year) are initially “not set”.</p>
+<ol>
+<li>Using the grammar below, divide the cookie-date into date-tokens.</li>
+</ol>
+<p>   cookie-date     &#x3D; *delimiter date-token-list <em>delimiter<br>   date-token-list &#x3D; date-token <em>( 1</em>delimiter date-token )<br>   date-token      &#x3D; 1</em>non-delimiter</p>
+<p>   delimiter       &#x3D; %x09 &#x2F; %x20-2F &#x2F; %x3B-40 &#x2F; %x5B-60 &#x2F; %x7B-7E<br>   non-delimiter   &#x3D; %x00-08 &#x2F; %x0A-1F &#x2F; DIGIT &#x2F; “:” &#x2F; ALPHA &#x2F; %x7F-FF<br>   non-digit       &#x3D; %x00-2F &#x2F; %x3A-FF</p>
+<p>   day-of-month    &#x3D; 1*2DIGIT ( non-digit *OCTET )<br>   month           &#x3D; ( “jan” &#x2F; “feb” &#x2F; “mar” &#x2F; “apr” &#x2F;<br>                       “may” &#x2F; “jun” &#x2F; “jul” &#x2F; “aug” &#x2F;<br>                       “sep” &#x2F; “oct” &#x2F; “nov” &#x2F; “dec” ) <em>OCTET<br>   year            &#x3D; 2</em>4DIGIT ( non-digit *OCTET )<br>   time            &#x3D; hms-time ( non-digit <em>OCTET )<br>   hms-time        &#x3D; time-field “:” time-field “:” time-field<br>   time-field      &#x3D; 1</em>2DIGIT</p>
+<ol start="2">
+<li>Process each date-token sequentially in the order the date-tokens<br>appear in the cookie-date:</li>
+</ol>
+<p>Barth                        Standards Track                   [Page 14]</p>
+<p>RFC 6265             HTTP State Management Mechanism          April 2011</p>
+<pre><code>   1.  If the found-time flag is not set and the token matches the
+       time production, set the found-time flag and set the hour-
+       value, minute-value, and second-value to the numbers denoted
+       by the digits in the date-token, respectively.  Skip the
+       remaining sub-steps and continue to the next date-token.
+
+   2.  If the found-day-of-month flag is not set and the date-token
+       matches the day-of-month production, set the found-day-of-
+       month flag and set the day-of-month-value to the number
+       denoted by the date-token.  Skip the remaining sub-steps and
+       continue to the next date-token.
+
+   3.  If the found-month flag is not set and the date-token matches
+       the month production, set the found-month flag and set the
+       month-value to the month denoted by the date-token.  Skip the
+       remaining sub-steps and continue to the next date-token.
+
+   4.  If the found-year flag is not set and the date-token matches
+       the year production, set the found-year flag and set the
+       year-value to the number denoted by the date-token.  Skip the
+       remaining sub-steps and continue to the next date-token.
+</code></pre>
+<ol start="3">
+<li><p>If the year-value is greater than or equal to 70 and less than or<br>equal to 99, increment the year-value by 1900.</p>
+</li>
+<li><p>If the year-value is greater than or equal to 0 and less than or<br>equal to 69, increment the year-value by 2000.</p>
+<ol>
+<li>NOTE: Some existing user agents interpret two-digit years<br>differently.</li>
+</ol>
+</li>
+<li><p>Abort these steps and fail to parse the cookie-date if:</p>
+<ul>
+<li><p>at least one of the found-day-of-month, found-month, found-<br>year, or found-time flags is not set,</p>
+</li>
+<li><p>the day-of-month-value is less than 1 or greater than 31,</p>
+</li>
+<li><p>the year-value is less than 1601,</p>
+</li>
+<li><p>the hour-value is greater than 23,</p>
+</li>
+<li><p>the minute-value is greater than 59, or</p>
+</li>
+<li><p>the second-value is greater than 59.</p>
+</li>
+</ul>
+<p>(Note that leap seconds cannot be represented in this syntax.)</p>
+</li>
+</ol>
+<p>Barth                        Standards Track                   [Page 15]</p>
+<p>RFC 6265             HTTP State Management Mechanism          April 2011</p>
+<ol start="6">
+<li><p>Let the parsed-cookie-date be the date whose day-of-month, month,<br>year, hour, minute, and second (in UTC) are the day-of-month-<br>value, the month-value, the year-value, the hour-value, the<br>minute-value, and the second-value, respectively.  If no such<br>date exists, abort these steps and fail to parse the cookie-date.</p>
+</li>
+<li><p>Return the parsed-cookie-date as the result of this algorithm.</p>
+</li>
+</ol>
+<p>5.1.2.  Canonicalized Host Names</p>
+<p>   A canonicalized host name is the string generated by the following<br>   algorithm:</p>
+<ol>
+<li><p>Convert the host name to a sequence of individual domain name<br>labels.</p>
+</li>
+<li><p>Convert each label that is not a Non-Reserved LDH (NR-LDH) label,<br>to an A-label (see Section 2.3.2.1 of [RFC5890] for the former<br>and latter), or to a “punycode label” (a label resulting from the<br>“ToASCII” conversion in Section 4 of [RFC3490]), as appropriate<br>(see Section 6.3 of this specification).</p>
+</li>
+<li><p>Concatenate the resulting labels, separated by a %x2E (“.”)<br>character.</p>
+</li>
+</ol>
+<p>5.1.3.  Domain Matching</p>
+<p>   A string domain-matches a given domain string if at least one of the<br>   following conditions hold:</p>
+<p>   o  The domain string and the string are identical.  (Note that both<br>      the domain string and the string will have been canonicalized to<br>      lower case at this point.)</p>
+<p>   o  All of the following conditions hold:</p>
+<pre><code>  *  The domain string is a suffix of the string.
+
+  *  The last character of the string that is not included in the
+     domain string is a %x2E (&quot;.&quot;) character.
+
+  *  The string is a host name (i.e., not an IP address).
+</code></pre>
+<p>5.1.4.  Paths and Path-Match</p>
+<p>   The user agent MUST use an algorithm equivalent to the following<br>   algorithm to compute the default-path of a cookie:</p>
+<p>Barth                        Standards Track                   [Page 16]</p>
+<p>RFC 6265             HTTP State Management Mechanism          April 2011</p>
+<ol>
+<li><p>Let uri-path be the path portion of the request-uri if such a<br>portion exists (and empty otherwise).  For example, if the<br>request-uri contains just a path (and optional query string),<br>then the uri-path is that path (without the %x3F (“?”) character<br>or query string), and if the request-uri contains a full<br>absoluteURI, the uri-path is the path component of that URI.</p>
+</li>
+<li><p>If the uri-path is empty or if the first character of the uri-<br>path is not a %x2F (“&#x2F;“) character, output %x2F (“&#x2F;“) and skip<br>the remaining steps.</p>
+</li>
+<li><p>If the uri-path contains no more than one %x2F (“&#x2F;“) character,<br>output %x2F (“&#x2F;“) and skip the remaining step.</p>
+</li>
+<li><p>Output the characters of the uri-path from the first character up<br>to, but not including, the right-most %x2F (“&#x2F;“).</p>
+</li>
+</ol>
+<p>   A request-path path-matches a given cookie-path if at least one of<br>   the following conditions holds:</p>
+<p>   o  The cookie-path and the request-path are identical.</p>
+<p>   o  The cookie-path is a prefix of the request-path, and the last<br>      character of the cookie-path is %x2F (“&#x2F;“).</p>
+<p>   o  The cookie-path is a prefix of the request-path, and the first<br>      character of the request-path that is not included in the cookie-<br>      path is a %x2F (“&#x2F;“) character.</p>
+<p>5.2.  The Set-Cookie Header</p>
+<p>   When a user agent receives a Set-Cookie header field in an HTTP<br>   response, the user agent MAY ignore the Set-Cookie header field in<br>   its entirety.  For example, the user agent might wish to block<br>   responses to “third-party” requests from setting cookies (see<br>   Section 7.1).</p>
+<p>   If the user agent does not ignore the Set-Cookie header field in its<br>   entirety, the user agent MUST parse the field-value of the Set-Cookie<br>   header field as a set-cookie-string (defined below).</p>
+<p>   NOTE: The algorithm below is more permissive than the grammar in<br>   Section 4.1.  For example, the algorithm strips leading and trailing<br>   whitespace from the cookie name and value (but maintains internal<br>   whitespace), whereas the grammar in Section 4.1 forbids whitespace in<br>   these positions.  User agents use this algorithm so as to<br>   interoperate with servers that do not follow the recommendations in<br>   Section 4.</p>
+<p>Barth                        Standards Track                   [Page 17]</p>
+<p>RFC 6265             HTTP State Management Mechanism          April 2011</p>
+<p>   A user agent MUST use an algorithm equivalent to the following<br>   algorithm to parse a “set-cookie-string”:</p>
+<ol>
+<li><p>If the set-cookie-string contains a %x3B (“;”) character:</p>
+<p>   The name-value-pair string consists of the characters up to,<br>   but not including, the first %x3B (“;”), and the unparsed-<br>   attributes consist of the remainder of the set-cookie-string<br>   (including the %x3B (“;”) in question).</p>
+<p>Otherwise:</p>
+<p>   The name-value-pair string consists of all the characters<br>   contained in the set-cookie-string, and the unparsed-<br>   attributes is the empty string.</p>
+</li>
+<li><p>If the name-value-pair string lacks a %x3D (“&#x3D;”) character,<br>ignore the set-cookie-string entirely.</p>
+</li>
+<li><p>The (possibly empty) name string consists of the characters up<br>to, but not including, the first %x3D (“&#x3D;”) character, and the<br>(possibly empty) value string consists of the characters after<br>the first %x3D (“&#x3D;”) character.</p>
+</li>
+<li><p>Remove any leading or trailing WSP characters from the name<br>string and the value string.</p>
+</li>
+<li><p>If the name string is empty, ignore the set-cookie-string<br>entirely.</p>
+</li>
+<li><p>The cookie-name is the name string, and the cookie-value is the<br>value string.</p>
+</li>
+</ol>
+<p>   The user agent MUST use an algorithm equivalent to the following<br>   algorithm to parse the unparsed-attributes:</p>
+<ol>
+<li><p>If the unparsed-attributes string is empty, skip the rest of<br>these steps.</p>
+</li>
+<li><p>Discard the first character of the unparsed-attributes (which<br>will be a %x3B (“;”) character).</p>
+</li>
+<li><p>If the remaining unparsed-attributes contains a %x3B (“;”)<br>character:</p>
+<p>   Consume the characters of the unparsed-attributes up to, but<br>   not including, the first %x3B (“;”) character.</p>
+</li>
+</ol>
+<p>Barth                        Standards Track                   [Page 18]</p>
+<p>RFC 6265             HTTP State Management Mechanism          April 2011</p>
+<pre><code>   Otherwise:
+
+      Consume the remainder of the unparsed-attributes.
+
+   Let the cookie-av string be the characters consumed in this step.
+</code></pre>
+<ol start="4">
+<li><p>If the cookie-av string contains a %x3D (“&#x3D;”) character:</p>
+<p>   The (possibly empty) attribute-name string consists of the<br>   characters up to, but not including, the first %x3D (“&#x3D;”)<br>   character, and the (possibly empty) attribute-value string<br>   consists of the characters after the first %x3D (“&#x3D;”)<br>   character.</p>
+<p>Otherwise:</p>
+<p>   The attribute-name string consists of the entire cookie-av<br>   string, and the attribute-value string is empty.</p>
+</li>
+<li><p>Remove any leading or trailing WSP characters from the attribute-<br>name string and the attribute-value string.</p>
+</li>
+<li><p>Process the attribute-name and attribute-value according to the<br>requirements in the following subsections.  (Notice that<br>attributes with unrecognized attribute-names are ignored.)</p>
+</li>
+<li><p>Return to Step 1 of this algorithm.</p>
+</li>
+</ol>
+<p>   When the user agent finishes parsing the set-cookie-string, the user<br>   agent is said to “receive a cookie” from the request-uri with name<br>   cookie-name, value cookie-value, and attributes cookie-attribute-<br>   list.  (See Section 5.3 for additional requirements triggered by<br>   receiving a cookie.)</p>
+<p>5.2.1.  The Expires Attribute</p>
+<p>   If the attribute-name case-insensitively matches the string<br>   “Expires”, the user agent MUST process the cookie-av as follows.</p>
+<p>   Let the expiry-time be the result of parsing the attribute-value as<br>   cookie-date (see Section 5.1.1).</p>
+<p>   If the attribute-value failed to parse as a cookie date, ignore the<br>   cookie-av.</p>
+<p>   If the expiry-time is later than the last date the user agent can<br>   represent, the user agent MAY replace the expiry-time with the last<br>   representable date.</p>
+<p>Barth                        Standards Track                   [Page 19]</p>
+<p>RFC 6265             HTTP State Management Mechanism          April 2011</p>
+<p>   If the expiry-time is earlier than the earliest date the user agent<br>   can represent, the user agent MAY replace the expiry-time with the<br>   earliest representable date.</p>
+<p>   Append an attribute to the cookie-attribute-list with an attribute-<br>   name of Expires and an attribute-value of expiry-time.</p>
+<p>5.2.2.  The Max-Age Attribute</p>
+<p>   If the attribute-name case-insensitively matches the string “Max-<br>   Age”, the user agent MUST process the cookie-av as follows.</p>
+<p>   If the first character of the attribute-value is not a DIGIT or a “-“<br>   character, ignore the cookie-av.</p>
+<p>   If the remainder of attribute-value contains a non-DIGIT character,<br>   ignore the cookie-av.</p>
+<p>   Let delta-seconds be the attribute-value converted to an integer.</p>
+<p>   If delta-seconds is less than or equal to zero (0), let expiry-time<br>   be the earliest representable date and time.  Otherwise, let the<br>   expiry-time be the current date and time plus delta-seconds seconds.</p>
+<p>   Append an attribute to the cookie-attribute-list with an attribute-<br>   name of Max-Age and an attribute-value of expiry-time.</p>
+<p>5.2.3.  The Domain Attribute</p>
+<p>   If the attribute-name case-insensitively matches the string “Domain”,<br>   the user agent MUST process the cookie-av as follows.</p>
+<p>   If the attribute-value is empty, the behavior is undefined.  However,<br>   the user agent SHOULD ignore the cookie-av entirely.</p>
+<p>   If the first character of the attribute-value string is %x2E (“.”):</p>
+<pre><code>  Let cookie-domain be the attribute-value without the leading %x2E
+  (&quot;.&quot;) character.
+</code></pre>
+<p>   Otherwise:</p>
+<pre><code>  Let cookie-domain be the entire attribute-value.
+</code></pre>
+<p>   Convert the cookie-domain to lower case.</p>
+<p>   Append an attribute to the cookie-attribute-list with an attribute-<br>   name of Domain and an attribute-value of cookie-domain.</p>
+<p>Barth                        Standards Track                   [Page 20]</p>
+<p>RFC 6265             HTTP State Management Mechanism          April 2011</p>
+<p>5.2.4.  The Path Attribute</p>
+<p>   If the attribute-name case-insensitively matches the string “Path”,<br>   the user agent MUST process the cookie-av as follows.</p>
+<p>   If the attribute-value is empty or if the first character of the<br>   attribute-value is not %x2F (“&#x2F;“):</p>
+<pre><code>  Let cookie-path be the default-path.
+</code></pre>
+<p>   Otherwise:</p>
+<pre><code>  Let cookie-path be the attribute-value.
+</code></pre>
+<p>   Append an attribute to the cookie-attribute-list with an attribute-<br>   name of Path and an attribute-value of cookie-path.</p>
+<p>5.2.5.  The Secure Attribute</p>
+<p>   If the attribute-name case-insensitively matches the string “Secure”,<br>   the user agent MUST append an attribute to the cookie-attribute-list<br>   with an attribute-name of Secure and an empty attribute-value.</p>
+<p>5.2.6.  The HttpOnly Attribute</p>
+<p>   If the attribute-name case-insensitively matches the string<br>   “HttpOnly”, the user agent MUST append an attribute to the cookie-<br>   attribute-list with an attribute-name of HttpOnly and an empty<br>   attribute-value.</p>
+<p>5.3.  Storage Model</p>
+<p>   The user agent stores the following fields about each cookie: name,<br>   value, expiry-time, domain, path, creation-time, last-access-time,<br>   persistent-flag, host-only-flag, secure-only-flag, and http-only-<br>   flag.</p>
+<p>   When the user agent “receives a cookie” from a request-uri with name<br>   cookie-name, value cookie-value, and attributes cookie-attribute-<br>   list, the user agent MUST process the cookie as follows:</p>
+<ol>
+<li>A user agent MAY ignore a received cookie in its entirety.  For<br>example, the user agent might wish to block receiving cookies<br>from “third-party” responses or the user agent might not wish to<br>store cookies that exceed some size.</li>
+</ol>
+<p>Barth                        Standards Track                   [Page 21]</p>
+<p>RFC 6265             HTTP State Management Mechanism          April 2011</p>
+<ol start="2">
+<li><p>Create a new cookie with name cookie-name, value cookie-value.<br>Set the creation-time and the last-access-time to the current<br>date and time.</p>
+</li>
+<li><p>If the cookie-attribute-list contains an attribute with an<br>attribute-name of “Max-Age”:</p>
+<p>   Set the cookie’s persistent-flag to true.</p>
+<p>   Set the cookie’s expiry-time to attribute-value of the last<br>   attribute in the cookie-attribute-list with an attribute-name<br>   of “Max-Age”.</p>
+<p>Otherwise, if the cookie-attribute-list contains an attribute<br>with an attribute-name of “Expires” (and does not contain an<br>attribute with an attribute-name of “Max-Age”):</p>
+<p>   Set the cookie’s persistent-flag to true.</p>
+<p>   Set the cookie’s expiry-time to attribute-value of the last<br>   attribute in the cookie-attribute-list with an attribute-name<br>   of “Expires”.</p>
+<p>Otherwise:</p>
+<p>   Set the cookie’s persistent-flag to false.</p>
+<p>   Set the cookie’s expiry-time to the latest representable<br>   date.</p>
+</li>
+<li><p>If the cookie-attribute-list contains an attribute with an<br>attribute-name of “Domain”:</p>
+<p>   Let the domain-attribute be the attribute-value of the last<br>   attribute in the cookie-attribute-list with an attribute-name<br>   of “Domain”.</p>
+<p>Otherwise:</p>
+<p>   Let the domain-attribute be the empty string.</p>
+</li>
+<li><p>If the user agent is configured to reject “public suffixes” and<br>the domain-attribute is a public suffix:</p>
+<p>   If the domain-attribute is identical to the canonicalized<br>   request-host:</p>
+<pre><code>  Let the domain-attribute be the empty string.
+</code></pre>
+</li>
+</ol>
+<p>Barth                        Standards Track                   [Page 22]</p>
+<p>RFC 6265             HTTP State Management Mechanism          April 2011</p>
+<pre><code>       Otherwise:
+
+          Ignore the cookie entirely and abort these steps.
+
+       NOTE: A &quot;public suffix&quot; is a domain that is controlled by a
+       public registry, such as &quot;com&quot;, &quot;co.uk&quot;, and &quot;pvt.k12.wy.us&quot;.
+       This step is essential for preventing attacker.com from
+       disrupting the integrity of example.com by setting a cookie
+       with a Domain attribute of &quot;com&quot;.  Unfortunately, the set of
+       public suffixes (also known as &quot;registry controlled domains&quot;)
+       changes over time.  If feasible, user agents SHOULD use an
+       up-to-date public suffix list, such as the one maintained by
+       the Mozilla project at &lt;http://publicsuffix.org/&gt;.
+</code></pre>
+<ol start="6">
+<li><p>If the domain-attribute is non-empty:</p>
+<p>   If the canonicalized request-host does not domain-match the<br>   domain-attribute:</p>
+<pre><code>  Ignore the cookie entirely and abort these steps.
+</code></pre>
+<p>   Otherwise:</p>
+<pre><code>  Set the cookie&#39;s host-only-flag to false.
+
+  Set the cookie&#39;s domain to the domain-attribute.
+</code></pre>
+<p>Otherwise:</p>
+<p>   Set the cookie’s host-only-flag to true.</p>
+<p>   Set the cookie’s domain to the canonicalized request-host.</p>
+</li>
+<li><p>If the cookie-attribute-list contains an attribute with an<br>attribute-name of “Path”, set the cookie’s path to attribute-<br>value of the last attribute in the cookie-attribute-list with an<br>attribute-name of “Path”.  Otherwise, set the cookie’s path to<br>the default-path of the request-uri.</p>
+</li>
+<li><p>If the cookie-attribute-list contains an attribute with an<br>attribute-name of “Secure”, set the cookie’s secure-only-flag to<br>true.  Otherwise, set the cookie’s secure-only-flag to false.</p>
+</li>
+<li><p>If the cookie-attribute-list contains an attribute with an<br>attribute-name of “HttpOnly”, set the cookie’s http-only-flag to<br>true.  Otherwise, set the cookie’s http-only-flag to false.</p>
+</li>
+</ol>
+<p>Barth                        Standards Track                   [Page 23]</p>
+<p>RFC 6265             HTTP State Management Mechanism          April 2011</p>
+<ol start="10">
+<li><p>If the cookie was received from a “non-HTTP” API and the<br>cookie’s http-only-flag is set, abort these steps and ignore the<br>cookie entirely.</p>
+</li>
+<li><p>If the cookie store contains a cookie with the same name,<br>domain, and path as the newly created cookie:</p>
+<ol>
+<li><p>Let old-cookie be the existing cookie with the same name,<br>domain, and path as the newly created cookie.  (Notice that<br>this algorithm maintains the invariant that there is at most<br>one such cookie.)</p>
+</li>
+<li><p>If the newly created cookie was received from a “non-HTTP”<br>API and the old-cookie’s http-only-flag is set, abort these<br>steps and ignore the newly created cookie entirely.</p>
+</li>
+<li><p>Update the creation-time of the newly created cookie to<br>match the creation-time of the old-cookie.</p>
+</li>
+<li><p>Remove the old-cookie from the cookie store.</p>
+</li>
+</ol>
+</li>
+<li><p>Insert the newly created cookie into the cookie store.</p>
+</li>
+</ol>
+<p>   A cookie is “expired” if the cookie has an expiry date in the past.</p>
+<p>   The user agent MUST evict all expired cookies from the cookie store<br>   if, at any time, an expired cookie exists in the cookie store.</p>
+<p>   At any time, the user agent MAY “remove excess cookies” from the<br>   cookie store if the number of cookies sharing a domain field exceeds<br>   some implementation-defined upper bound (such as 50 cookies).</p>
+<p>   At any time, the user agent MAY “remove excess cookies” from the<br>   cookie store if the cookie store exceeds some predetermined upper<br>   bound (such as 3000 cookies).</p>
+<p>   When the user agent removes excess cookies from the cookie store, the<br>   user agent MUST evict cookies in the following priority order:</p>
+<ol>
+<li><p>Expired cookies.</p>
+</li>
+<li><p>Cookies that share a domain field with more than a predetermined<br>number of other cookies.</p>
+</li>
+<li><p>All cookies.</p>
+</li>
+</ol>
+<p>   If two cookies have the same removal priority, the user agent MUST<br>   evict the cookie with the earliest last-access date first.</p>
+<p>Barth                        Standards Track                   [Page 24]</p>
+<p>RFC 6265             HTTP State Management Mechanism          April 2011</p>
+<p>   When “the current session is over” (as defined by the user agent),<br>   the user agent MUST remove from the cookie store all cookies with the<br>   persistent-flag set to false.</p>
+<p>5.4.  The Cookie Header</p>
+<p>   The user agent includes stored cookies in the Cookie HTTP request<br>   header.</p>
+<p>   When the user agent generates an HTTP request, the user agent MUST<br>   NOT attach more than one Cookie header field.</p>
+<p>   A user agent MAY omit the Cookie header in its entirety.  For<br>   example, the user agent might wish to block sending cookies during<br>   “third-party” requests from setting cookies (see Section 7.1).</p>
+<p>   If the user agent does attach a Cookie header field to an HTTP<br>   request, the user agent MUST send the cookie-string (defined below)<br>   as the value of the header field.</p>
+<p>   The user agent MUST use an algorithm equivalent to the following<br>   algorithm to compute the “cookie-string” from a cookie store and a<br>   request-uri:</p>
+<ol>
+<li><p>Let cookie-list be the set of cookies from the cookie store that<br>meets all of the following requirements:</p>
+<ul>
+<li><p>Either:</p>
+<p>   The cookie’s host-only-flag is true and the canonicalized<br>   request-host is identical to the cookie’s domain.</p>
+<p>Or:</p>
+<p>   The cookie’s host-only-flag is false and the canonicalized<br>   request-host domain-matches the cookie’s domain.</p>
+</li>
+<li><p>The request-uri’s path path-matches the cookie’s path.</p>
+</li>
+<li><p>If the cookie’s secure-only-flag is true, then the request-<br>uri’s scheme must denote a “secure” protocol (as defined by<br>the user agent).</p>
+<p>   NOTE: The notion of a “secure” protocol is not defined by<br>   this document.  Typically, user agents consider a protocol<br>   secure if the protocol makes use of transport-layer</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>Barth                        Standards Track                   [Page 25]</p>
+<p>RFC 6265             HTTP State Management Mechanism          April 2011</p>
+<pre><code>         security, such as SSL or TLS.  For example, most user
+         agents consider &quot;https&quot; to be a scheme that denotes a
+         secure protocol.
+
+   *  If the cookie&#39;s http-only-flag is true, then exclude the
+      cookie if the cookie-string is being generated for a &quot;non-
+      HTTP&quot; API (as defined by the user agent).
+</code></pre>
+<ol start="2">
+<li><p>The user agent SHOULD sort the cookie-list in the following<br>order:</p>
+<ul>
+<li><p>Cookies with longer paths are listed before cookies with<br>shorter paths.</p>
+</li>
+<li><p>Among cookies that have equal-length path fields, cookies with<br>earlier creation-times are listed before cookies with later<br>creation-times.</p>
+</li>
+</ul>
+<p>NOTE: Not all user agents sort the cookie-list in this order, but<br>this order reflects common practice when this document was<br>written, and, historically, there have been servers that<br>(erroneously) depended on this order.</p>
+</li>
+<li><p>Update the last-access-time of each cookie in the cookie-list to<br>the current date and time.</p>
+</li>
+<li><p>Serialize the cookie-list into a cookie-string by processing each<br>cookie in the cookie-list in order:</p>
+<ol>
+<li><p>Output the cookie’s name, the %x3D (“&#x3D;”) character, and the<br>cookie’s value.</p>
+</li>
+<li><p>If there is an unprocessed cookie in the cookie-list, output<br>the characters %x3B and %x20 (“; “).</p>
+</li>
+</ol>
+</li>
+</ol>
+<p>   NOTE: Despite its name, the cookie-string is actually a sequence of<br>   octets, not a sequence of characters.  To convert the cookie-string<br>   (or components thereof) into a sequence of characters (e.g., for<br>   presentation to the user), the user agent might wish to try using the<br>   UTF-8 character encoding [RFC3629] to decode the octet sequence.<br>   This decoding might fail, however, because not every sequence of<br>   octets is valid UTF-8.</p>
+<p>Barth                        Standards Track                   [Page 26]</p>
+<p>RFC 6265             HTTP State Management Mechanism          April 2011</p>
+<ol start="6">
+<li>Implementation Considerations</li>
+</ol>
+<p>6.1.  Limits</p>
+<p>   Practical user agent implementations have limits on the number and<br>   size of cookies that they can store.  General-use user agents SHOULD<br>   provide each of the following minimum capabilities:</p>
+<p>   o  At least 4096 bytes per cookie (as measured by the sum of the<br>      length of the cookie’s name, value, and attributes).</p>
+<p>   o  At least 50 cookies per domain.</p>
+<p>   o  At least 3000 cookies total.</p>
+<p>   Servers SHOULD use as few and as small cookies as possible to avoid<br>   reaching these implementation limits and to minimize network<br>   bandwidth due to the Cookie header being included in every request.</p>
+<p>   Servers SHOULD gracefully degrade if the user agent fails to return<br>   one or more cookies in the Cookie header because the user agent might<br>   evict any cookie at any time on orders from the user.</p>
+<p>6.2.  Application Programming Interfaces</p>
+<p>   One reason the Cookie and Set-Cookie headers use such esoteric syntax<br>   is that many platforms (both in servers and user agents) provide a<br>   string-based application programming interface (API) to cookies,<br>   requiring application-layer programmers to generate and parse the<br>   syntax used by the Cookie and Set-Cookie headers, which many<br>   programmers have done incorrectly, resulting in interoperability<br>   problems.</p>
+<p>   Instead of providing string-based APIs to cookies, platforms would be<br>   well-served by providing more semantic APIs.  It is beyond the scope<br>   of this document to recommend specific API designs, but there are<br>   clear benefits to accepting an abstract “Date” object instead of a<br>   serialized date string.</p>
+<p>6.3.  IDNA Dependency and Migration</p>
+<p>   IDNA2008 [RFC5890] supersedes IDNA2003 [RFC3490].  However, there are<br>   differences between the two specifications, and thus there can be<br>   differences in processing (e.g., converting) domain name labels that<br>   have been registered under one from those registered under the other.<br>   There will be a transition period of some time during which IDNA2003-<br>   based domain name labels will exist in the wild.  User agents SHOULD<br>   implement IDNA2008 [RFC5890] and MAY implement [UTS46] or [RFC5895]</p>
+<p>Barth                        Standards Track                   [Page 27]</p>
+<p>RFC 6265             HTTP State Management Mechanism          April 2011</p>
+<p>   in order to facilitate their IDNA transition.  If a user agent does<br>   not implement IDNA2008, the user agent MUST implement IDNA2003<br>   [RFC3490].</p>
+<ol start="7">
+<li>Privacy Considerations</li>
+</ol>
+<p>   Cookies are often criticized for letting servers track users.  For<br>   example, a number of “web analytics” companies use cookies to<br>   recognize when a user returns to a web site or visits another web<br>   site.  Although cookies are not the only mechanism servers can use to<br>   track users across HTTP requests, cookies facilitate tracking because<br>   they are persistent across user agent sessions and can be shared<br>   between hosts.</p>
+<p>7.1.  Third-Party Cookies</p>
+<p>   Particularly worrisome are so-called “third-party” cookies.  In<br>   rendering an HTML document, a user agent often requests resources<br>   from other servers (such as advertising networks).  These third-party<br>   servers can use cookies to track the user even if the user never<br>   visits the server directly.  For example, if a user visits a site<br>   that contains content from a third party and then later visits<br>   another site that contains content from the same third party, the<br>   third party can track the user between the two sites.</p>
+<p>   Some user agents restrict how third-party cookies behave.  For<br>   example, some of these user agents refuse to send the Cookie header<br>   in third-party requests.  Others refuse to process the Set-Cookie<br>   header in responses to third-party requests.  User agents vary widely<br>   in their third-party cookie policies.  This document grants user<br>   agents wide latitude to experiment with third-party cookie policies<br>   that balance the privacy and compatibility needs of their users.<br>   However, this document does not endorse any particular third-party<br>   cookie policy.</p>
+<p>   Third-party cookie blocking policies are often ineffective at<br>   achieving their privacy goals if servers attempt to work around their<br>   restrictions to track users.  In particular, two collaborating<br>   servers can often track users without using cookies at all by<br>   injecting identifying information into dynamic URLs.</p>
+<p>7.2.  User Controls</p>
+<p>   User agents SHOULD provide users with a mechanism for managing the<br>   cookies stored in the cookie store.  For example, a user agent might<br>   let users delete all cookies received during a specified time period</p>
+<p>Barth                        Standards Track                   [Page 28]</p>
+<p>RFC 6265             HTTP State Management Mechanism          April 2011</p>
+<p>   or all the cookies related to a particular domain.  In addition, many<br>   user agents include a user interface element that lets users examine<br>   the cookies stored in their cookie store.</p>
+<p>   User agents SHOULD provide users with a mechanism for disabling<br>   cookies.  When cookies are disabled, the user agent MUST NOT include<br>   a Cookie header in outbound HTTP requests and the user agent MUST NOT<br>   process Set-Cookie headers in inbound HTTP responses.</p>
+<p>   Some user agents provide users the option of preventing persistent<br>   storage of cookies across sessions.  When configured thusly, user<br>   agents MUST treat all received cookies as if the persistent-flag were<br>   set to false.  Some popular user agents expose this functionality via<br>   “private browsing” mode [Aggarwal2010].</p>
+<p>   Some user agents provide users with the ability to approve individual<br>   writes to the cookie store.  In many common usage scenarios, these<br>   controls generate a large number of prompts.  However, some privacy-<br>   conscious users find these controls useful nonetheless.</p>
+<p>7.3.  Expiration Dates</p>
+<p>   Although servers can set the expiration date for cookies to the<br>   distant future, most user agents do not actually retain cookies for<br>   multiple decades.  Rather than choosing gratuitously long expiration<br>   periods, servers SHOULD promote user privacy by selecting reasonable<br>   cookie expiration periods based on the purpose of the cookie.  For<br>   example, a typical session identifier might reasonably be set to<br>   expire in two weeks.</p>
+<ol start="8">
+<li>Security Considerations</li>
+</ol>
+<p>8.1.  Overview</p>
+<p>   Cookies have a number of security pitfalls.  This section overviews a<br>   few of the more salient issues.</p>
+<p>   In particular, cookies encourage developers to rely on ambient<br>   authority for authentication, often becoming vulnerable to attacks<br>   such as cross-site request forgery [CSRF].  Also, when storing<br>   session identifiers in cookies, developers often create session<br>   fixation vulnerabilities.</p>
+<p>   Transport-layer encryption, such as that employed in HTTPS, is<br>   insufficient to prevent a network attacker from obtaining or altering<br>   a victim’s cookies because the cookie protocol itself has various<br>   vulnerabilities (see “Weak Confidentiality” and “Weak Integrity”,</p>
+<p>Barth                        Standards Track                   [Page 29]</p>
+<p>RFC 6265             HTTP State Management Mechanism          April 2011</p>
+<p>   below).  In addition, by default, cookies do not provide<br>   confidentiality or integrity from network attackers, even when used<br>   in conjunction with HTTPS.</p>
+<p>8.2.  Ambient Authority</p>
+<p>   A server that uses cookies to authenticate users can suffer security<br>   vulnerabilities because some user agents let remote parties issue<br>   HTTP requests from the user agent (e.g., via HTTP redirects or HTML<br>   forms).  When issuing those requests, user agents attach cookies even<br>   if the remote party does not know the contents of the cookies,<br>   potentially letting the remote party exercise authority at an unwary<br>   server.</p>
+<p>   Although this security concern goes by a number of names (e.g.,<br>   cross-site request forgery, confused deputy), the issue stems from<br>   cookies being a form of ambient authority.  Cookies encourage server<br>   operators to separate designation (in the form of URLs) from<br>   authorization (in the form of cookies).  Consequently, the user agent<br>   might supply the authorization for a resource designated by the<br>   attacker, possibly causing the server or its clients to undertake<br>   actions designated by the attacker as though they were authorized by<br>   the user.</p>
+<p>   Instead of using cookies for authorization, server operators might<br>   wish to consider entangling designation and authorization by treating<br>   URLs as capabilities.  Instead of storing secrets in cookies, this<br>   approach stores secrets in URLs, requiring the remote entity to<br>   supply the secret itself.  Although this approach is not a panacea,<br>   judicious application of these principles can lead to more robust<br>   security.</p>
+<p>8.3.  Clear Text</p>
+<p>   Unless sent over a secure channel (such as TLS), the information in<br>   the Cookie and Set-Cookie headers is transmitted in the clear.</p>
+<ol>
+<li><p>All sensitive information conveyed in these headers is exposed to<br>an eavesdropper.</p>
+</li>
+<li><p>A malicious intermediary could alter the headers as they travel<br>in either direction, with unpredictable results.</p>
+</li>
+<li><p>A malicious client could alter the Cookie header before<br>transmission, with unpredictable results.</p>
+</li>
+</ol>
+<p>Barth                        Standards Track                   [Page 30]</p>
+<p>RFC 6265             HTTP State Management Mechanism          April 2011</p>
+<p>   Servers SHOULD encrypt and sign the contents of cookies (using<br>   whatever format the server desires) when transmitting them to the<br>   user agent (even when sending the cookies over a secure channel).<br>   However, encrypting and signing cookie contents does not prevent an<br>   attacker from transplanting a cookie from one user agent to another<br>   or from replaying the cookie at a later time.</p>
+<p>   In addition to encrypting and signing the contents of every cookie,<br>   servers that require a higher level of security SHOULD use the Cookie<br>   and Set-Cookie headers only over a secure channel.  When using<br>   cookies over a secure channel, servers SHOULD set the Secure<br>   attribute (see Section 4.1.2.5) for every cookie.  If a server does<br>   not set the Secure attribute, the protection provided by the secure<br>   channel will be largely moot.</p>
+<p>   For example, consider a webmail server that stores a session<br>   identifier in a cookie and is typically accessed over HTTPS.  If the<br>   server does not set the Secure attribute on its cookies, an active<br>   network attacker can intercept any outbound HTTP request from the<br>   user agent and redirect that request to the webmail server over HTTP.<br>   Even if the webmail server is not listening for HTTP connections, the<br>   user agent will still include cookies in the request.  The active<br>   network attacker can intercept these cookies, replay them against the<br>   server, and learn the contents of the user’s email.  If, instead, the<br>   server had set the Secure attribute on its cookies, the user agent<br>   would not have included the cookies in the clear-text request.</p>
+<p>8.4.  Session Identifiers</p>
+<p>   Instead of storing session information directly in a cookie (where it<br>   might be exposed to or replayed by an attacker), servers commonly<br>   store a nonce (or “session identifier”) in a cookie.  When the server<br>   receives an HTTP request with a nonce, the server can look up state<br>   information associated with the cookie using the nonce as a key.</p>
+<p>   Using session identifier cookies limits the damage an attacker can<br>   cause if the attacker learns the contents of a cookie because the<br>   nonce is useful only for interacting with the server (unlike non-<br>   nonce cookie content, which might itself be sensitive).  Furthermore,<br>   using a single nonce prevents an attacker from “splicing” together<br>   cookie content from two interactions with the server, which could<br>   cause the server to behave unexpectedly.</p>
+<p>   Using session identifiers is not without risk.  For example, the<br>   server SHOULD take care to avoid “session fixation” vulnerabilities.<br>   A session fixation attack proceeds in three steps.  First, the<br>   attacker transplants a session identifier from his or her user agent<br>   to the victim’s user agent.  Second, the victim uses that session</p>
+<p>Barth                        Standards Track                   [Page 31]</p>
+<p>RFC 6265             HTTP State Management Mechanism          April 2011</p>
+<p>   identifier to interact with the server, possibly imbuing the session<br>   identifier with the user’s credentials or confidential information.<br>   Third, the attacker uses the session identifier to interact with<br>   server directly, possibly obtaining the user’s authority or<br>   confidential information.</p>
+<p>8.5.  Weak Confidentiality</p>
+<p>   Cookies do not provide isolation by port.  If a cookie is readable by<br>   a service running on one port, the cookie is also readable by a<br>   service running on another port of the same server.  If a cookie is<br>   writable by a service on one port, the cookie is also writable by a<br>   service running on another port of the same server.  For this reason,<br>   servers SHOULD NOT both run mutually distrusting services on<br>   different ports of the same host and use cookies to store security-<br>   sensitive information.</p>
+<p>   Cookies do not provide isolation by scheme.  Although most commonly<br>   used with the http and https schemes, the cookies for a given host<br>   might also be available to other schemes, such as ftp and gopher.<br>   Although this lack of isolation by scheme is most apparent in non-<br>   HTTP APIs that permit access to cookies (e.g., HTML’s document.cookie<br>   API), the lack of isolation by scheme is actually present in<br>   requirements for processing cookies themselves (e.g., consider<br>   retrieving a URI with the gopher scheme via HTTP).</p>
+<p>   Cookies do not always provide isolation by path.  Although the<br>   network-level protocol does not send cookies stored for one path to<br>   another, some user agents expose cookies via non-HTTP APIs, such as<br>   HTML’s document.cookie API.  Because some of these user agents (e.g.,<br>   web browsers) do not isolate resources received from different paths,<br>   a resource retrieved from one path might be able to access cookies<br>   stored for another path.</p>
+<p>8.6.  Weak Integrity</p>
+<p>   Cookies do not provide integrity guarantees for sibling domains (and<br>   their subdomains).  For example, consider foo.example.com and<br>   bar.example.com.  The foo.example.com server can set a cookie with a<br>   Domain attribute of “example.com” (possibly overwriting an existing<br>   “example.com” cookie set by bar.example.com), and the user agent will<br>   include that cookie in HTTP requests to bar.example.com.  In the<br>   worst case, bar.example.com will be unable to distinguish this cookie<br>   from a cookie it set itself.  The foo.example.com server might be<br>   able to leverage this ability to mount an attack against<br>   bar.example.com.</p>
+<p>Barth                        Standards Track                   [Page 32]</p>
+<p>RFC 6265             HTTP State Management Mechanism          April 2011</p>
+<p>   Even though the Set-Cookie header supports the Path attribute, the<br>   Path attribute does not provide any integrity protection because the<br>   user agent will accept an arbitrary Path attribute in a Set-Cookie<br>   header.  For example, an HTTP response to a request for<br>   <a target="_blank" rel="noopener" href="http://example.com/foo/bar">http://example.com/foo/bar</a> can set a cookie with a Path attribute of<br>   “&#x2F;qux”.  Consequently, servers SHOULD NOT both run mutually<br>   distrusting services on different paths of the same host and use<br>   cookies to store security-sensitive information.</p>
+<p>   An active network attacker can also inject cookies into the Cookie<br>   header sent to <a target="_blank" rel="noopener" href="https://example.com/">https://example.com/</a> by impersonating a response from<br>   <a target="_blank" rel="noopener" href="http://example.com/">http://example.com/</a> and injecting a Set-Cookie header.  The HTTPS<br>   server at example.com will be unable to distinguish these cookies<br>   from cookies that it set itself in an HTTPS response.  An active<br>   network attacker might be able to leverage this ability to mount an<br>   attack against example.com even if example.com uses HTTPS<br>   exclusively.</p>
+<p>   Servers can partially mitigate these attacks by encrypting and<br>   signing the contents of their cookies.  However, using cryptography<br>   does not mitigate the issue completely because an attacker can replay<br>   a cookie he or she received from the authentic example.com server in<br>   the user’s session, with unpredictable results.</p>
+<p>   Finally, an attacker might be able to force the user agent to delete<br>   cookies by storing a large number of cookies.  Once the user agent<br>   reaches its storage limit, the user agent will be forced to evict<br>   some cookies.  Servers SHOULD NOT rely upon user agents retaining<br>   cookies.</p>
+<p>8.7.  Reliance on DNS</p>
+<p>   Cookies rely upon the Domain Name System (DNS) for security.  If the<br>   DNS is partially or fully compromised, the cookie protocol might fail<br>   to provide the security properties required by applications.</p>
+<ol start="9">
+<li>IANA Considerations</li>
+</ol>
+<p>   The permanent message header field registry (see [RFC3864]) has been<br>   updated with the following registrations.</p>
+<p>Barth                        Standards Track                   [Page 33]</p>
+<p>RFC 6265             HTTP State Management Mechanism          April 2011</p>
+<p>9.1.  Cookie</p>
+<p>   Header field name: Cookie</p>
+<p>   Applicable protocol: http</p>
+<p>   Status: standard</p>
+<p>   Author&#x2F;Change controller: IETF</p>
+<p>   Specification document: this specification (Section 5.4)</p>
+<p>9.2.  Set-Cookie</p>
+<p>   Header field name: Set-Cookie</p>
+<p>   Applicable protocol: http</p>
+<p>   Status: standard</p>
+<p>   Author&#x2F;Change controller: IETF</p>
+<p>   Specification document: this specification (Section 5.2)</p>
+<p>9.3.  Cookie2</p>
+<p>   Header field name: Cookie2</p>
+<p>   Applicable protocol: http</p>
+<p>   Status: obsoleted</p>
+<p>   Author&#x2F;Change controller: IETF</p>
+<p>   Specification document: [RFC2965]</p>
+<p>9.4.  Set-Cookie2</p>
+<p>   Header field name: Set-Cookie2</p>
+<p>   Applicable protocol: http</p>
+<p>   Status: obsoleted</p>
+<p>   Author&#x2F;Change controller: IETF</p>
+<p>   Specification document: [RFC2965]</p>
+<p>Barth                        Standards Track                   [Page 34]</p>
+<p>RFC 6265             HTTP State Management Mechanism          April 2011</p>
+<ol start="10">
+<li>References</li>
+</ol>
+<p>10.1.  Normative References</p>
+<p>   [RFC1034]  Mockapetris, P., “Domain names - concepts and facilities”,<br>              STD 13, RFC 1034, November 1987.</p>
+<p>   [RFC1123]  Braden, R., “Requirements for Internet Hosts - Application<br>              and Support”, STD 3, RFC 1123, October 1989.</p>
+<p>   [RFC2119]  Bradner, S., “Key words for use in RFCs to Indicate<br>              Requirement Levels”, BCP 14, RFC 2119, March 1997.</p>
+<p>   [RFC2616]  Fielding, R., Gettys, J., Mogul, J., Frystyk, H.,<br>              Masinter, L., Leach, P., and T. Berners-Lee, “Hypertext<br>              Transfer Protocol – HTTP&#x2F;1.1”, RFC 2616, June 1999.</p>
+<p>   [RFC3490]  Faltstrom, P., Hoffman, P., and A. Costello,<br>              “Internationalizing Domain Names in Applications (IDNA)”,<br>              RFC 3490, March 2003.</p>
+<pre><code>          See Section 6.3 for an explanation why the normative
+          reference to an obsoleted specification is needed.
+</code></pre>
+<p>   [RFC4790]  Newman, C., Duerst, M., and A. Gulbrandsen, “Internet<br>              Application Protocol Collation Registry”, RFC 4790,<br>              March 2007.</p>
+<p>   [RFC5234]  Crocker, D., Ed. and P. Overell, “Augmented BNF for Syntax<br>              Specifications: ABNF”, STD 68, RFC 5234, January 2008.</p>
+<p>   [RFC5890]  Klensin, J., “Internationalized Domain Names for<br>              Applications (IDNA): Definitions and Document Framework”,<br>              RFC 5890, August 2010.</p>
+<p>   [USASCII]  American National Standards Institute, “Coded Character<br>              Set – 7-bit American Standard Code for Information<br>              Interchange”, ANSI X3.4, 1986.</p>
+<p>10.2.  Informative References</p>
+<p>   [RFC2109]  Kristol, D. and L. Montulli, “HTTP State Management<br>              Mechanism”, RFC 2109, February 1997.</p>
+<p>   [RFC2965]  Kristol, D. and L. Montulli, “HTTP State Management<br>              Mechanism”, RFC 2965, October 2000.</p>
+<p>Barth                        Standards Track                   [Page 35]</p>
+<p>RFC 6265             HTTP State Management Mechanism          April 2011</p>
+<p>   [RFC2818]  Rescorla, E., “HTTP Over TLS”, RFC 2818, May 2000.</p>
+<p>   [Netscape] Netscape Communications Corp., “Persistent Client State –<br>              HTTP Cookies”, 1999, &lt;<a target="_blank" rel="noopener" href="http://web.archive.org/web/">http://web.archive.org/web/</a><br>              20020803110822&#x2F;<a target="_blank" rel="noopener" href="http://wp.netscape.com/newsref/std/">http://wp.netscape.com/newsref/std/</a><br>              cookie_spec.html&gt;.</p>
+<p>   [Kri2001]  Kristol, D., “HTTP Cookies: Standards, Privacy, and<br>              Politics”, ACM Transactions on Internet Technology Vol. 1,<br>              #2, November 2001, <a target="_blank" rel="noopener" href="http://arxiv.org/abs/cs.SE/0105018">http://arxiv.org/abs/cs.SE/0105018</a>.</p>
+<p>   [RFC3629]  Yergeau, F., “UTF-8, a transformation format of ISO<br>              10646”, STD 63, RFC 3629, November 2003.</p>
+<p>   [RFC4648]  Josefsson, S., “The Base16, Base32, and Base64 Data<br>              Encodings”, RFC 4648, October 2006.</p>
+<p>   [RFC3864]  Klyne, G., Nottingham, M., and J. Mogul, “Registration<br>              Procedures for Message Header Fields”, BCP 90, RFC 3864,<br>              September 2004.</p>
+<p>   [RFC5895]  Resnick, P. and P. Hoffman, “Mapping Characters for<br>              Internationalized Domain Names in Applications (IDNA)<br>              2008”, RFC 5895, September 2010.</p>
+<p>   [UTS46]    Davis, M. and M. Suignard, “Unicode IDNA Compatibility<br>              Processing”, Unicode Technical Standards # 46, 2010,<br>              <a target="_blank" rel="noopener" href="http://unicode.org/reports/tr46/">http://unicode.org/reports/tr46/</a>.</p>
+<p>   [CSRF]     Barth, A., Jackson, C., and J. Mitchell, “Robust Defenses<br>              for Cross-Site Request Forgery”, 2008,<br>              <a target="_blank" rel="noopener" href="http://portal.acm.org/citation.cfm?id=1455770.1455782">http://portal.acm.org/citation.cfm?id=1455770.1455782</a>.</p>
+<p>   [Aggarwal2010]<br>              Aggarwal, G., Burzstein, E., Jackson, C., and D. Boneh,<br>              “An Analysis of Private Browsing Modes in Modern<br>              Browsers”, 2010, &lt;<a target="_blank" rel="noopener" href="http://www.usenix.org/events/sec10/tech/">http://www.usenix.org/events/sec10/tech/</a><br>              full_papers&#x2F;Aggarwal.pdf&gt;.</p>
+<p>Barth                        Standards Track                   [Page 36]</p>
+<p>RFC 6265             HTTP State Management Mechanism          April 2011</p>
+<p>Appendix A.  Acknowledgements</p>
+<p>   This document borrows heavily from RFC 2109 [RFC2109].  We are<br>   indebted to David M. Kristol and Lou Montulli for their efforts to<br>   specify cookies.  David M. Kristol, in particular, provided<br>   invaluable advice on navigating the IETF process.  We would also like<br>   to thank Thomas Broyer, Tyler Close, Alissa Cooper, Bil Corry,<br>   corvid, Lisa Dusseault, Roy T. Fielding, Blake Frantz, Anne van<br>   Kesteren, Eran Hammer-Lahav, Jeff Hodges, Bjoern Hoehrmann, Achim<br>   Hoffmann, Georg Koppen, Dean McNamee, Alexey Melnikov, Mark Miller,<br>   Mark Pauley, Yngve N. Pettersen, Julian Reschke, Peter Saint-Andre,<br>   Mark Seaborn, Maciej Stachowiak, Daniel Stenberg, Tatsuhiro<br>   Tsujikawa, David Wagner, Dan Winship, and Dan Witte for their<br>   valuable feedback on this document.</p>
+<p>Author’s Address</p>
+<p>   Adam Barth<br>   University of California, Berkeley</p>
+<p>   EMail: <a href="mailto:&#97;&#98;&#97;&#114;&#116;&#104;&#64;&#x65;&#x65;&#x63;&#x73;&#x2e;&#98;&#x65;&#x72;&#107;&#101;&#108;&#x65;&#121;&#x2e;&#101;&#x64;&#x75;">&#97;&#98;&#97;&#114;&#116;&#104;&#64;&#x65;&#x65;&#x63;&#x73;&#x2e;&#98;&#x65;&#x72;&#107;&#101;&#108;&#x65;&#121;&#x2e;&#101;&#x64;&#x75;</a><br>   URI:   <a target="_blank" rel="noopener" href="http://www.adambarth.com/">http://www.adambarth.com/</a></p>
+<p>   文章取自： <a target="_blank" rel="noopener" href="https://datatracker.ietf.org/doc/html/rfc6265">https://datatracker.ietf.org/doc/html/rfc6265</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/Javascript/" rel="tag"># Javascript</a>
+              <a href="/apple.lily/tags/OneNote/" rel="tag"># OneNote</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/08/15/OneDayOneNote/2024-08-15/" rel="prev" title="2024-08-15 【官網設計】建議圖片尺寸">
+                  <i class="fa fa-angle-left"></i> 2024-08-15 【官網設計】建議圖片尺寸
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
