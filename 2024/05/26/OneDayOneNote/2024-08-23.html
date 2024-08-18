@@ -1,0 +1,21 @@
+<hr>
+<h2 id="title-2024-08-23-使用-Cookie-實現-Client-端數據存儲-–-前端工程師必學的-Web-Storage-技術（第一篇）date-2024-08-18-19-23-52categories-OneDayOneNotetags-OneNote-Javascript-description-2024-08-23-使用-Cookie-實現-Client-端數據存儲-–-前端工程師必學的-Web-Storage-技術（第一篇）"><a href="#title-2024-08-23-使用-Cookie-實現-Client-端數據存儲-–-前端工程師必學的-Web-Storage-技術（第一篇）date-2024-08-18-19-23-52categories-OneDayOneNotetags-OneNote-Javascript-description-2024-08-23-使用-Cookie-實現-Client-端數據存儲-–-前端工程師必學的-Web-Storage-技術（第一篇）" class="headerlink" title="title: 2024-08-23 使用 Cookie 實現 Client 端數據存儲 – 前端工程師必學的 Web Storage 技術（第一篇）date: 2024-08-18 19:23:52categories: OneDayOneNotetags:  [OneNote, Javascript]description:  2024-08-23 使用 Cookie 實現 Client 端數據存儲 – 前端工程師必學的 Web Storage 技術（第一篇）"></a>title: 2024-08-23 使用 Cookie 實現 Client 端數據存儲 – 前端工程師必學的 Web Storage 技術（第一篇）<br>date: 2024-08-18 19:23:52<br>categories: OneDayOneNote<br>tags:  [OneNote, Javascript]<br>description:  2024-08-23 使用 Cookie 實現 Client 端數據存儲 – 前端工程師必學的 Web Storage 技術（第一篇）</h2><p>使用 Cookie 實現 Client 端數據存儲 – 前端工程師必學的 Web Storage 技術（第一篇）<br>使用 Cookie 實現 Client 端數據存儲 - 前端工程師必學的 Web Storage 技術（第一篇）使用 Cookie 實現 Client 端數據存儲 - 前端工程師必學的 Web Storage 技術（第一篇）<br>本篇大綱<br>本篇要解決的問題<br>Cookie<br>Demo 及原始碼<br>瀏覽器上的儲存空間系列<br>本篇要解決的問題<br>不是每次要取資料時，都必須調用 API 後才能拿到，因為瀏覽器本身就有提供一些空間可以暫存，我們可以把一些不常更新的資料存在瀏覽器上，調用 API 前就先加個判斷，瀏覽器上有存的話就直接取用，沒有存再去調用，這樣可以減少 API 主機的呼叫次數。</p>
+<p>關於瀏覽器上的儲存空間，預計會寫成系列文，項目包含：</p>
+<p>Cookie<br>Session Storage、Local Storage<br>IndexedDB<br>主要是實作一個 Demo 出來，也會推薦 August 用過後覺得好用的套件，寫起來更快更方便。</p>
+<p>最後完成的 Demo 會在這：</p>
+<p><a href="https://letswritetw.github.io/letswrite-client-storage/">https://letswritetw.github.io/letswrite-client-storage/</a></p>
+<p>參考資源：</p>
+<p>Browser storage: Local Storage, Session Storage, Cookie, IndexedDB and WebSQL</p>
+<p>Storage for the web</p>
+<p>Cookie<br>限制數量：180 個（Chrome）<br>限制大小：4KB<br>限制期限：可設定，未設定則頁籤關閉就會被刪除<br>把 Cookie 寫在第一篇，是因為我們真的很常會把一些資料存在 Cookie 裡，基本上隨便進一個網站，打開檢查面版看一下，就會看見 Cookie 被塞了資料，比方我們進到 Google 首頁，會看到以下：</p>
+<p>進到 Google 首頁 Cookie 就會被存值<br>進到 Google 首頁 Cookie 就會被存值<br>參考資源的第二篇，寫到 Cookie 的部份介紹的很好，一般 Cookie 不是什麼都往裡面存，會存的資料都有著特定目的，因為 Cookie 會隨每個 HTTP 請求一起發送。</p>
+<p>常見儲存在 Cookie 的資料，比方登入會員後，如果想要讓瀏覽器保留登入狀態，一般就是在 Cookie 裡面存某些加密過的值。</p>
+<p>Cookie 有限制，Chrome 的話最多可存 180 個 Cookie，每個 Cookie 的大小限制為 4MB。</p>
+<p>那當然，請不要真的用到這麼緊繃，August 曾發生過存了太多的資料到 Cookie，結果頁面打開時直接報 400 Bad Request，就是因為 Cookie 會跟著 HTTP request 出去，變成送出去的資料太多，最後是清掉 Cookie 才解決。</p>
+<p>Cookie 用原生寫起來會落落長，這邊推薦一個超好用套件：JavaScript Cookie。</p>
+<p>CDN 引用或用 import 安裝完後，以下是常用的功能：</p>
+<p>JavaScript<br>1<br>&#x2F;&#x2F; 存 Cookie<br>2<br>Cookies.set(‘foo’, ‘bar’);<br>3<br>​<br>4<br>&#x2F;&#x2F; 存 Cookie + 設定期限<br>5<br>Cookies.set(‘foo’, ‘bar’, { expires: 7 });<br>6<br>​<br>7<br>&#x2F;&#x2F; 存 Cookie + 設期限 + 限網域<br>8<br>Cookies.set(‘foo’, ‘bar’,<br>9<br>    { expires: 7, domain: ‘.example.com’, path: ‘&#x2F;‘ }<br>10<br>);<br>11<br>​<br>12<br>&#x2F;&#x2F; 抓 Cookie 的值<br>13<br>Cookies.get(‘foo’); &#x2F;&#x2F; &#x3D;&gt; ‘bar’<br>14<br>​<br>15<br>&#x2F;&#x2F; 刪 Cookie<br>16<br>Cookies.remove(‘foo’);<br>17<br>​<br>18<br>&#x2F;&#x2F; 刪 Cookie，如果存的時候有指定網域時<br>19<br>Cookies.remove(‘foo’,<br>20<br>    { domain: ‘.example.com’, path: ‘&#x2F;‘ }<br>21<br>);<br>Demo 及原始碼<br>Demo 及原始碼都放在 GitHub 上了，取用之前麻煩分享本篇或在 GitHub 上按個星星，你的小小動作對本站都是大大的鼓勵。</p>
+<p>Demo：<a href="https://letswritetw.github.io/letswrite-client-storage/">https://letswritetw.github.io/letswrite-client-storage/</a></p>
+<p>原始碼：<a href="https://github.com/letswritetw/letswrite-client-storage">https://github.com/letswritetw/letswrite-client-storage</a></p>
+<p>瀏覽器上的儲存空間系列<br>Cookies<br>sessionStorage、localStorage<br>IndexedDB</p>
+<p>原文取自：<br><a href="https://www.letswrite.tw/client-storage-cookie/">https://www.letswrite.tw/client-storage-cookie/</a><br>by  2024 Let’s Write. All Rights Reserved.</p>

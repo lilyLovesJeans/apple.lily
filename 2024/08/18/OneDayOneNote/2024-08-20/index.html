@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2024-08-20 Stateful vs Stateless 兩者差異比較">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024-08-20 Stateful vs Stateless 兩者差異比較">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2024/08/18/OneDayOneNote/2024-08-20/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2024-08-20 Stateful vs Stateless 兩者差異比較">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2024-08-18T11:07:34.000Z">
+<meta property="article:modified_time" content="2024-08-18T11:25:37.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="OneNote">
+<meta property="article:tag" content="Http">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2024/08/18/OneDayOneNote/2024-08-20/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2024/08/18/OneDayOneNote/2024-08-20/","path":"2024/08/18/OneDayOneNote/2024-08-20/","title":"2024-08-20 Stateful vs Stateless 兩者差異比較"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2024-08-20 Stateful vs Stateless 兩者差異比較 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">127</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2024/08/18/OneDayOneNote/2024-08-20/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2024-08-20 Stateful vs Stateless 兩者差異比較 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2024-08-20 Stateful vs Stateless 兩者差異比較">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2024-08-20 Stateful vs Stateless 兩者差異比較
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2024-08-18 19:07:34 / 修改時間：19:25:37" itemprop="dateCreated datePublished" datetime="2024-08-18T19:07:34+08:00">2024-08-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2024-08-20 Stateful vs Stateless 兩者差異比較</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>Stateful vs Stateless 兩者差異比較<br> 2019&#x2F;09&#x2F;28  Web<br>常常會看到HTTP是Stateless(無狀態)的，但是到底什麼是無狀態? 跟有狀態又有什麼差別呢?</p>
+<p>剛好看到一篇不錯的文，這邊把它翻譯並整理起來，之後可以回來複習。</p>
+<p>有狀態 Stateful<br>要能夠清楚地理解無狀態，那就必須先搞懂有狀態是什麼。</p>
+<p>在電腦的系統裡，所謂狀態(State)指得是某個東西在某個時間點下的狀況，而有狀態(Stateful)的意思則是，輸出的值會依賴不同時間點下的狀態而改變。</p>
+<p>比如說在二進制的系統，1跟0分別代表著”On”與”Off”。一個系統不能同時為1和0。</p>
+<p>現在想像一個狀況，我如果給你一張紙請你依據現在的狀態寫下答案:</p>
+<p>如果狀態是0，請寫下”Yes”，如果是1，請寫下”No”</p>
+<p>這就是一個有狀態(Stateful)的系統，你的答案會隨著狀態不同而改變，你無法在不知道狀態的情況下作答。</p>
+<p>那什麼是有狀態的Web Service?<br>假設你要準備要登入一個網站，你輸入了你的帳號及密碼。如果網站的伺服器將你的資料存在後台，每次登入時就會利用儲存的資料來驗證你的身分的話，我們可以說這個登入服務就是有狀態的。</p>
+<p>當你使用該服務時，對你每個操作都會參考已經預先存好的狀態(這邊指使用者資料)，當你請求一個帳戶資料的頁面時，伺服器會做兩件事:</p>
+<p>誰在請求?<br>根據請求者的ID，要秀出什麼頁面給他們看?<br>像這樣有狀態的網路服務，對每個GET請求的回覆都必須要依賴儲存在伺服器裡的狀態，如果沒有這個狀態就無法正確的回傳資料。</p>
+<p>聽起來好像沒什麼問題啊? 但其實不盡然。</p>
+<p>有狀態的網路服務其實只能應用在非常少數的情況，並且會有不少的問題。</p>
+<p>首先，如果你必須要參考某個狀態才能作回覆，將可能面對到許多不完整的session或是transaction的狀況。什麼意思呢? 假設在一個有狀態的系統，伺服器的狀態決定於客戶端。此時假如某個客戶端請求了一筆資料，那伺服器要維持連線狀態多久? 伺服器要如何知道客戶端是不是連線失敗或是斷線了? 又或者我們要如何追蹤使用者的操作及同時記錄每個操作所帶來的更動，然後在需要時還要能夠返回呢?</p>
+<p>雖然這些問題都會有一些解決方法，但是其實大部分的客戶端都能夠即時且正確地回覆伺服器，也因為這樣，讓伺服器單方面的去維持狀態是很浪費且不必要的。</p>
+<p>無狀態 Stateless<br>不同於有狀態，無狀態(Stateless)可以說是現代網際網路的基礎，幾乎在每個面向都應用了無狀態的服務。例如你在讀網路新聞時使用了HTTP，在滑Facebook時使用了Facebook REST API來調出版面上的貼文。</p>
+<p>每個伺服器的回覆都不依賴任何存於伺服器的狀態，而是以快取的形式存在客戶端。</p>
+<p>這邊來看一個POST的例子:</p>
+<p>POST <a target="_blank" rel="noopener" href="http://hypotheticalservice/Entity">http://HypotheticalService/Entity</a><br>Host: HypotheticalService<br>Content-Type: text&#x2F;xml; charset&#x3D;utf-8<br>Content-Length: 123</p>
+<!--?xml version="1.0" encoding="utf-8"?-->
+<entity>
+  <id>1</id>
+  <title>Example</title>
+  <content>This is an example</content>
+</entity>
+這個範例中我們創建了一筆資料，而這個資料並不依賴於任何的狀態。意思就是我們不需要等待伺服器來確認我們的操作是否被正確地處理了。
+
+<p>像是REST(Representational State Transfer)就是一個無狀態的設計概念，重點在於必須在發出請求時，將所有處理該請求的必要資料都包含在請求裡，這樣也就不需要依賴於伺服器裡的狀態。</p>
+<p>參考來源: <a target="_blank" rel="noopener" href="https://nordicapis.com/defining-stateful-vs-stateless-web-services/">https://nordicapis.com/defining-stateful-vs-stateless-web-services/</a></p>
+<p>文章取自:<br><a target="_blank" rel="noopener" href="https://ryanchen34057.github.io/2019/09/28/statefulAndStateless/">https://ryanchen34057.github.io/2019/09/28/statefulAndStateless/</a><br>by Ryan’s Tech Notes</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/OneNote/" rel="tag"># OneNote</a>
+              <a href="/apple.lily/tags/Http/" rel="tag"># Http</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/08/18/OneDayOneNote/2024-08-19/" rel="prev" title="2024-08-19 Session 與 Cookie-3 深入 Session 與 Cookie：Express、PHP 與 Rails 的實作">
+                  <i class="fa fa-angle-left"></i> 2024-08-19 Session 與 Cookie-3 深入 Session 與 Cookie：Express、PHP 與 Rails 的實作
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/08/18/OneDayOneNote/2024-08-21/" rel="next" title="2024-08-21 接觸資安才發現我不懂前端about XSS">
+                  2024-08-21 接觸資安才發現我不懂前端about XSS <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
