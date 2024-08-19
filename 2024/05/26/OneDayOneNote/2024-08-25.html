@@ -1,0 +1,106 @@
+<hr>
+<h2 id="title-2024-08-25-JavaScript-系列五：第3課-──-變數作用域、箭頭函式、ES6-語法date-2024-08-20-01-20-01categories-OneDayOneNotetags-OneNote-Javascript-description-2024-08-25-JavaScript-系列五：第3課-──-變數作用域、箭頭函式、ES6-語法"><a href="#title-2024-08-25-JavaScript-系列五：第3課-──-變數作用域、箭頭函式、ES6-語法date-2024-08-20-01-20-01categories-OneDayOneNotetags-OneNote-Javascript-description-2024-08-25-JavaScript-系列五：第3課-──-變數作用域、箭頭函式、ES6-語法" class="headerlink" title="title: 2024-08-25 JavaScript 系列五：第3課 ── 變數作用域、箭頭函式、ES6 語法date: 2024-08-20 01:20:01categories: OneDayOneNotetags:  [OneNote, Javascript]description:  2024-08-25 JavaScript 系列五：第3課 ── 變數作用域、箭頭函式、ES6 語法"></a>title: 2024-08-25 JavaScript 系列五：第3課 ── 變數作用域、箭頭函式、ES6 語法<br>date: 2024-08-20 01:20:01<br>categories: OneDayOneNote<br>tags:  [OneNote, Javascript]<br>description:  2024-08-25 JavaScript 系列五：第3課 ── 變數作用域、箭頭函式、ES6 語法</h2><p>JavaScript 系列五：第3課 ── 變數作用域、箭頭函式、ES6 語法<br>課程目標<br>認識變數作用域</p>
+<p>認識函式的不同寫法與特性</p>
+<p>課程內容<br>來認識一些程式語言觀念與名詞</p>
+<pre><code class="html">&lt;button onclick=&quot;action1()&quot;&gt;
+  global scope
+&lt;/button&gt;
+&lt;button onclick=&quot;action2()&quot;&gt;
+  local scope
+&lt;/button&gt;
+</code></pre>
+<pre><code class="js">var counterA = 0;
+
+function action1()
+{
+  counterA = counterA + 1;
+  alert(counterA);
+}
+
+function action2()
+{
+  var counterB = 0;
+  counterB = counterB + 1;
+  alert(counterB);
+}
+</code></pre>
+<p>到 jsfiddle 跑跑看，會發現第一個計數器會不斷 +1 疊加上去；第二個計數器卻永遠顯示 1</p>
+<p>這就是變數作用域的區別：變數宣告在很外面的，會在很大的範圍內都可使用這變數；變數宣告在很裡面的，只在裡面的範圍內才可使用這變數</p>
+<p>宣告在最外面的稱為全域變數（global），反之則稱為區域變數（local）</p>
+<p>目前為止的作業，其實你已經到處在寫 global 與 local 變數了，這觀念還算簡單、直觀</p>
+<p>用精確的技術名詞來說明的話</p>
+<p>在 ES6 (2015) 之前，JavaScript 中的變數作用域只有 Global Scope 跟 Function Scope 兩種</p>
+<p>並且，在使用 var 關鍵字時，要留意一種名為 Hoisting 的現象，這是一種會讓人搞錯變數作用域的現象</p>
+<p>在 ES6 之後，有了 const 與 let 兩種新關鍵字，宣告的變數為 Block Scope</p>
+<p>使用這兩種關鍵字，就不會出現 Hoisting 的現象</p>
+<p>我個人認為，Hoisting 是一個設計失敗的程式語言特性</p>
+<p>應該要讓 JavaScript 引擎直接報錯、程式直接壞掉比較好</p>
+<p>一般程式語言沒有 Hoisting 這種現象，此為 JavaScript 獨有特性</p>
+<p>這是當年 Netscape 瀏覽器公司，為了衝市占率、歡迎大家亂寫 JS 程式碼的產物</p>
+<p>我不想細談 Hoisting，反正改天你真的遇到問題，大概知道要往這方向研究就是了</p>
+<p>實務上，現在大家都寫 const 與 let，比較不寫 var 了</p>
+<p>所以 Function Scope 跟 Block Scope 的差別在哪？</p>
+<p>簡單來說，這樣的程式碼，x 正常顯示，y 會報錯</p>
+<p>if (true) {<br>  var x &#x3D; 1;<br>  const y &#x3D; 2;<br>}</p>
+<p>alert(x);<br>alert(y);<br>var 會覺得變數作用域，只有 function 函式 內、外的差別，內就是同樣 local，外就是 global</p>
+<p>const let 會覺得變數作用域，每次遇到 大括號 {} 都算一次內、外的差別，大括號裡面就是 local，裡面的裡面就是 local 中的 local</p>
+<p>看不太懂沒關係，總之，變數宣告時，遇到 bug，就往前面找大括號，把變數搬來搬去，試試看，會慢慢搞懂的</p>
+<p>本課先教你區分 global 與 local 兩種概念就好，這在大多數程式語言都是通用概念</p>
+<p>在本系列教材內容以及作業中，const let var 隨便混著用，都可以</p>
+<p>大概知道當前變數是 global 還是 local 就好</p>
+<p>反正改天你真的遇到問題，大概知道要往這方向研究就是了</p>
+<p>接下來談一談 JavaScript 中的函式</p>
+<p>之前的課程中，有過這樣的範例</p>
+<pre><code class="html">&lt;button id=&quot;my-btn&quot;&gt;Click me&lt;/button&gt;
+</code></pre>
+<pre><code class="js">function myFunction()
+{
+  alert(&#39;你點擊了按鈕！&#39;);
+}
+
+var btn = document.getElementById(&#39;my-btn&#39;);
+btn.onclick = myFunction;
+</code></pre>
+<p>myFunction 被當成變數一樣，被指派給一個物件的屬性了</p>
+<p>在很多程式語言中，函式是不能這樣使用的！函式永遠只能單獨加上小括號去執行 myFunction()</p>
+<p>這個差別有點像是，其他程式語言認為變數是「名詞」，函式是「動詞」。那些語言認為這樣才能溝通、描述世界</p>
+<p>而 JavaScript 認為變數是「名詞」，函式是「動詞」也是「動名詞」，也就是認為函式也是一種「名詞」。JavaScript 認為這樣才能溝通、描述世界</p>
+<p>中文說「我開車」跟「開車很好玩」，沒有在管「開車」是動詞還是名詞，中文使用者就是習慣這樣溝通</p>
+<p>英文說「I drive」跟「Driving is fun」，句子裡面主詞的部份一定要是名詞，如果想放動詞，就先改寫成 +ing 動名詞，英文使用者就是習慣這樣溝通</p>
+<p>上面通通看不懂沒關係，反正知道各種程式語言，都是設計者與社群的主觀偏好，然後都能完成任務、各有不同長處短處就好</p>
+<p>最後，跟大家談一下函式的不同寫法</p>
+<pre><code class="js">function func1()
+{
+  alert(1);
+}
+
+var func2 = () =&gt; {
+  alert(2);
+}
+
+func1();
+func2();
+</code></pre>
+<p>ES6 之後有所謂的箭頭函式</p>
+<p>他跟傳統寫法的主要差別，在於對於 this 關鍵字的認定</p>
+<p>在工程師主流推崇 OOP（物件導向程式設計）的年代，this 的使用很巧妙、也很讓人困惑</p>
+<p>實務上現在寫前端，比較少用 OOP 寫法，稍微偏向 FP（函數式程式設計）多一點，所以 this 問題變比較小</p>
+<p>我不想細談 this 以及兩種函式寫法的差別，在本系列教材內容以及作業中，隨便混著用，都可以</p>
+<p>反正改天你真的遇到問題，大概知道要往這方向研究就是了</p>
+<p>課後作業<br>請使用 <a href="https://jsfiddle.net/">https://jsfiddle.net</a></p>
+<p>用以下 html 為基礎（你可以稍微修改），id 跟 class 之類的你可以自由決定</p>
+<p>simple counter:</p>
+<pre><code class="html">&lt;button&gt;-&lt;/button&gt;
+&lt;button&gt;+&lt;/button&gt;
+
+&lt;hr&gt;
+
+simple calculator:
+&lt;input type=&quot;text&quot; /&gt;
+&lt;input type=&quot;text&quot; /&gt;
+&lt;button&gt;加/減/乘/除&lt;/button&gt;
+</code></pre>
+<p>這邊有兩個小型應用程式</p>
+<p>第一個應用程式，是簡單的計數器</p>
+<p>第一次點擊 + 號按鈕，會用 alert 跳出 1<br>第二次點擊 + 號按鈕，會用 alert 跳出 2<br>依此類推，每次點 + 都會遞增，每次點 - 都會遞減<br>你會宣告一個全域變數，記錄這個累積的值，才能完成此功能<br>第二個應用程式，是簡單的計算機</p>
+<p>有兩個欄位可以輸入數字<br>點擊按鈕，連續跳出四個 alert，分別顯示「加&#x2F;減&#x2F;乘&#x2F;除」的計算結果<br>例如：輸入 6 與 2 -&gt; alert 顯示 8 -&gt; alert 顯示 4 -&gt; alert 顯示 12 -&gt; alert 顯示 3<br>你會宣告兩個區域變數，分別記錄兩個輸入的值，接著用來進行四種計算，才能完成此功能<br>做出以上功能，你就完成這次的課程目標了！</p>

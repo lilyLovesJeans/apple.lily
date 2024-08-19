@@ -1,0 +1,48 @@
+<hr>
+<h2 id="title-2024-08-24-JavaScript-系列五：第2課-──-學會-Local-Storage-相關功能date-2024-08-18-23-52-59categories-OneDayOneNotetags-OneNote-Javascript-description-2024-08-24-JavaScript-系列五：第2課-──-學會-Local-Storage-相關功能"><a href="#title-2024-08-24-JavaScript-系列五：第2課-──-學會-Local-Storage-相關功能date-2024-08-18-23-52-59categories-OneDayOneNotetags-OneNote-Javascript-description-2024-08-24-JavaScript-系列五：第2課-──-學會-Local-Storage-相關功能" class="headerlink" title="title: 2024-08-24 JavaScript 系列五：第2課 ── 學會 Local Storage 相關功能date: 2024-08-18 23:52:59categories: OneDayOneNotetags:  [OneNote, Javascript]description:  2024-08-24 JavaScript 系列五：第2課 ── 學會 Local Storage 相關功能"></a>title: 2024-08-24 JavaScript 系列五：第2課 ── 學會 Local Storage 相關功能<br>date: 2024-08-18 23:52:59<br>categories: OneDayOneNote<br>tags:  [OneNote, Javascript]<br>description:  2024-08-24 JavaScript 系列五：第2課 ── 學會 Local Storage 相關功能</h2><p>JavaScript 系列五：第2課 ── 學會 Local Storage 相關功能<br>課程目標<br>認識並且能使用 Local Storage 相關功能</p>
+<p>課程內容<br>Local Storage 提供了前端開發者簡易的儲存功能，能夠把資料儲存在瀏覽器上</p>
+<p>跟 cookie 不同的是，local storage 的資料不會挾帶在 http request 中發送，也就是伺服器端無法直接存取</p>
+<p>並且 local storage 能儲存的資料大小，比 cookie 大很多</p>
+<pre><code class="js">Name: &lt;input type=&quot;text&quot;&gt;
+Age: &lt;input type=&quot;text&quot;&gt;
+&lt;button onclick=&quot;save()&quot;&gt;Save&lt;/button&gt;
+if (localStorage.getItem(&quot;me&quot;)) {
+  var me = JSON.parse(localStorage.getItem(&quot;me&quot;));
+  alert(&#39;hello, &#39; + me.name + &#39; (&#39; + me.age + &#39;)&#39;);
+}
+
+function save()
+{
+  var name = document.querySelectorAll(&#39;input&#39;)[0].value;
+
+  var age = document.querySelectorAll(&#39;input&#39;)[1].value;
+
+  var me = {
+    name: name,
+    age: age
+  };
+
+  localStorage.setItem(&quot;me&quot;, JSON.stringify(me));
+
+  alert(&#39;saved&#39;);
+}
+</code></pre>
+<p>在這邊的範例中，使用 localStorage.setItem() 來儲存資料，使用 localStorage.getItem() 來取得資料</p>
+<p>因為只能在 local storage 中儲存字串，所以使用 JSON.stringify 將物件轉換成字串，使用 JSON.parse 將字串轉換成物件</p>
+<p>在 JavaScript 中，表達物件的字串格式又稱為 JSON 字串，反正就是一種格式而已，資料類型是字串</p>
+<p>上述的程式碼，寫起來比 cookie 簡單很多，API 乾淨很多</p>
+<p>實務上，如果儲存的資料，不需要在主機端使用，就都用 local storage 即可</p>
+<p>關於 local storage 的 debug 除錯，也要知道一下</p>
+<p>跟 cookie 差不多</p>
+<p>打開瀏覽器開發者工具 -&gt; Application -&gt; Storage -&gt; Local Storage 可以看到網站上有哪些資料，也可以直接在這邊修改、刪除資料</p>
+<p>課後作業<br>請回頭找出你在系列課程二寫的作業</p>
+<p><a href="https://codelove.tw/@howtomakeaturn/course/vx8gqZ">https://codelove.tw/@howtomakeaturn/course/vx8gqZ</a></p>
+<p>當初的待辦事項小工具，少了一個重要功能：儲存按鈕</p>
+<p>也就是重新整理之後，待辦事項就通通不見了</p>
+<p>請在「匯出」按鈕旁邊，增加一個「儲存」按鈕，讓待辦事項在頁面重新整理之後，還可以繼續使用</p>
+<p>按下按鈕之後，使用 local storage 儲存待辦事項資料，並跳出 alert 提示「儲存成功！」<br>頁面載入的時候，檢查 local storage，有資料的話，就復原到畫面上<br>做出以上功能，你就完成這次的課程目標了！</p>
+<p>歡迎將作業成果，在下方留言，跟大家分享，讓大家給你一些回饋！</p>
+<p>可以將每課學到的觀念、關鍵字，丟到網路上去搜尋、研究一下！</p>
+<p>發問請在「討論專區」為主，或者分享學習筆記、寫學習心得！</p>
+<p>貼文都會出現在個人檔案頁面，成為學習歷程、部落格紀錄！</p>
+<p>未來面試時，分享給面試官看，會讓人知道你的積極程度！</p>

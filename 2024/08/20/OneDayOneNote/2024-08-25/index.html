@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2024-08-25 JavaScript 系列五：第3課 ── 變數作用域、箭頭函式、ES6 語法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024-08-25 JavaScript 系列五：第3課 ── 變數作用域、箭頭函式、ES6 語法">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2024/08/20/OneDayOneNote/2024-08-25/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2024-08-25 JavaScript 系列五：第3課 ── 變數作用域、箭頭函式、ES6 語法">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2024-08-19T17:20:01.000Z">
+<meta property="article:modified_time" content="2024-08-19T17:22:25.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content="OneNote">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2024/08/20/OneDayOneNote/2024-08-25/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2024/08/20/OneDayOneNote/2024-08-25/","path":"2024/08/20/OneDayOneNote/2024-08-25/","title":"2024-08-25 JavaScript 系列五：第3課 ── 變數作用域、箭頭函式、ES6 語法"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2024-08-25 JavaScript 系列五：第3課 ── 變數作用域、箭頭函式、ES6 語法 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">129</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2024/08/20/OneDayOneNote/2024-08-25/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2024-08-25 JavaScript 系列五：第3課 ── 變數作用域、箭頭函式、ES6 語法 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2024-08-25 JavaScript 系列五：第3課 ── 變數作用域、箭頭函式、ES6 語法">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2024-08-25 JavaScript 系列五：第3課 ── 變數作用域、箭頭函式、ES6 語法
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2024-08-20 01:20:01 / 修改時間：01:22:25" itemprop="dateCreated datePublished" datetime="2024-08-20T01:20:01+08:00">2024-08-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2024-08-25 JavaScript 系列五：第3課 ── 變數作用域、箭頭函式、ES6 語法</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>JavaScript 系列五：第3課 ── 變數作用域、箭頭函式、ES6 語法<br>課程目標<br>認識變數作用域</p>
+<p>認識函式的不同寫法與特性</p>
+<p>課程內容<br>來認識一些程式語言觀念與名詞</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">&quot;action1()&quot;</span>&gt;</span></span><br><span class="line">  global scope</span><br><span class="line"><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">&quot;action2()&quot;</span>&gt;</span></span><br><span class="line">  local scope</span><br><span class="line"><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> counterA = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">action1</span>(<span class="params"></span>)</span><br><span class="line">&#123;</span><br><span class="line">  counterA = counterA + <span class="number">1</span>;</span><br><span class="line">  <span class="title function_">alert</span>(counterA);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">action2</span>(<span class="params"></span>)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">var</span> counterB = <span class="number">0</span>;</span><br><span class="line">  counterB = counterB + <span class="number">1</span>;</span><br><span class="line">  <span class="title function_">alert</span>(counterB);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>到 jsfiddle 跑跑看，會發現第一個計數器會不斷 +1 疊加上去；第二個計數器卻永遠顯示 1</p>
+<p>這就是變數作用域的區別：變數宣告在很外面的，會在很大的範圍內都可使用這變數；變數宣告在很裡面的，只在裡面的範圍內才可使用這變數</p>
+<p>宣告在最外面的稱為全域變數（global），反之則稱為區域變數（local）</p>
+<p>目前為止的作業，其實你已經到處在寫 global 與 local 變數了，這觀念還算簡單、直觀</p>
+<p>用精確的技術名詞來說明的話</p>
+<p>在 ES6 (2015) 之前，JavaScript 中的變數作用域只有 Global Scope 跟 Function Scope 兩種</p>
+<p>並且，在使用 var 關鍵字時，要留意一種名為 Hoisting 的現象，這是一種會讓人搞錯變數作用域的現象</p>
+<p>在 ES6 之後，有了 const 與 let 兩種新關鍵字，宣告的變數為 Block Scope</p>
+<p>使用這兩種關鍵字，就不會出現 Hoisting 的現象</p>
+<p>我個人認為，Hoisting 是一個設計失敗的程式語言特性</p>
+<p>應該要讓 JavaScript 引擎直接報錯、程式直接壞掉比較好</p>
+<p>一般程式語言沒有 Hoisting 這種現象，此為 JavaScript 獨有特性</p>
+<p>這是當年 Netscape 瀏覽器公司，為了衝市占率、歡迎大家亂寫 JS 程式碼的產物</p>
+<p>我不想細談 Hoisting，反正改天你真的遇到問題，大概知道要往這方向研究就是了</p>
+<p>實務上，現在大家都寫 const 與 let，比較不寫 var 了</p>
+<p>所以 Function Scope 跟 Block Scope 的差別在哪？</p>
+<p>簡單來說，這樣的程式碼，x 正常顯示，y 會報錯</p>
+<p>if (true) {<br>  var x &#x3D; 1;<br>  const y &#x3D; 2;<br>}</p>
+<p>alert(x);<br>alert(y);<br>var 會覺得變數作用域，只有 function 函式 內、外的差別，內就是同樣 local，外就是 global</p>
+<p>const let 會覺得變數作用域，每次遇到 大括號 {} 都算一次內、外的差別，大括號裡面就是 local，裡面的裡面就是 local 中的 local</p>
+<p>看不太懂沒關係，總之，變數宣告時，遇到 bug，就往前面找大括號，把變數搬來搬去，試試看，會慢慢搞懂的</p>
+<p>本課先教你區分 global 與 local 兩種概念就好，這在大多數程式語言都是通用概念</p>
+<p>在本系列教材內容以及作業中，const let var 隨便混著用，都可以</p>
+<p>大概知道當前變數是 global 還是 local 就好</p>
+<p>反正改天你真的遇到問題，大概知道要往這方向研究就是了</p>
+<p>接下來談一談 JavaScript 中的函式</p>
+<p>之前的課程中，有過這樣的範例</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">&quot;my-btn&quot;</span>&gt;</span>Click me<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">myFunction</span>(<span class="params"></span>)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="title function_">alert</span>(<span class="string">&#x27;你點擊了按鈕！&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> btn = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;my-btn&#x27;</span>);</span><br><span class="line">btn.<span class="property">onclick</span> = myFunction;</span><br></pre></td></tr></table></figure>
+<p>myFunction 被當成變數一樣，被指派給一個物件的屬性了</p>
+<p>在很多程式語言中，函式是不能這樣使用的！函式永遠只能單獨加上小括號去執行 myFunction()</p>
+<p>這個差別有點像是，其他程式語言認為變數是「名詞」，函式是「動詞」。那些語言認為這樣才能溝通、描述世界</p>
+<p>而 JavaScript 認為變數是「名詞」，函式是「動詞」也是「動名詞」，也就是認為函式也是一種「名詞」。JavaScript 認為這樣才能溝通、描述世界</p>
+<p>中文說「我開車」跟「開車很好玩」，沒有在管「開車」是動詞還是名詞，中文使用者就是習慣這樣溝通</p>
+<p>英文說「I drive」跟「Driving is fun」，句子裡面主詞的部份一定要是名詞，如果想放動詞，就先改寫成 +ing 動名詞，英文使用者就是習慣這樣溝通</p>
+<p>上面通通看不懂沒關係，反正知道各種程式語言，都是設計者與社群的主觀偏好，然後都能完成任務、各有不同長處短處就好</p>
+<p>最後，跟大家談一下函式的不同寫法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">func1</span>(<span class="params"></span>)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="title function_">alert</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> <span class="title function_">func2</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="title function_">alert</span>(<span class="number">2</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">func1</span>();</span><br><span class="line"><span class="title function_">func2</span>();</span><br></pre></td></tr></table></figure>
+<p>ES6 之後有所謂的箭頭函式</p>
+<p>他跟傳統寫法的主要差別，在於對於 this 關鍵字的認定</p>
+<p>在工程師主流推崇 OOP（物件導向程式設計）的年代，this 的使用很巧妙、也很讓人困惑</p>
+<p>實務上現在寫前端，比較少用 OOP 寫法，稍微偏向 FP（函數式程式設計）多一點，所以 this 問題變比較小</p>
+<p>我不想細談 this 以及兩種函式寫法的差別，在本系列教材內容以及作業中，隨便混著用，都可以</p>
+<p>反正改天你真的遇到問題，大概知道要往這方向研究就是了</p>
+<p>課後作業<br>請使用 <a target="_blank" rel="noopener" href="https://jsfiddle.net/">https://jsfiddle.net</a></p>
+<p>用以下 html 為基礎（你可以稍微修改），id 跟 class 之類的你可以自由決定</p>
+<p>simple counter:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>-<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>+<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line"></span><br><span class="line">simple calculator:</span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>加/減/乘/除<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>這邊有兩個小型應用程式</p>
+<p>第一個應用程式，是簡單的計數器</p>
+<p>第一次點擊 + 號按鈕，會用 alert 跳出 1<br>第二次點擊 + 號按鈕，會用 alert 跳出 2<br>依此類推，每次點 + 都會遞增，每次點 - 都會遞減<br>你會宣告一個全域變數，記錄這個累積的值，才能完成此功能<br>第二個應用程式，是簡單的計算機</p>
+<p>有兩個欄位可以輸入數字<br>點擊按鈕，連續跳出四個 alert，分別顯示「加&#x2F;減&#x2F;乘&#x2F;除」的計算結果<br>例如：輸入 6 與 2 -&gt; alert 顯示 8 -&gt; alert 顯示 4 -&gt; alert 顯示 12 -&gt; alert 顯示 3<br>你會宣告兩個區域變數，分別記錄兩個輸入的值，接著用來進行四種計算，才能完成此功能<br>做出以上功能，你就完成這次的課程目標了！</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/Javascript/" rel="tag"># Javascript</a>
+              <a href="/apple.lily/tags/OneNote/" rel="tag"># OneNote</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/08/18/OneDayOneNote/2024-08-24/" rel="prev" title="2024-08-24 JavaScript 系列五：第2課 ── 學會 Local Storage 相關功能">
+                  <i class="fa fa-angle-left"></i> 2024-08-24 JavaScript 系列五：第2課 ── 學會 Local Storage 相關功能
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
