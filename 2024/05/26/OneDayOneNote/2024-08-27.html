@@ -1,0 +1,75 @@
+<hr>
+<h2 id="title-2024-08-27-Javascript-IIFE（立即執行函式表達式，Immediately-Invoked-Function-Expression）date-2024-08-21-07-26-16categories-OneDayOneNotetags-OneNote-Javascript-description-2024-08-27-Javascript-IIFE（立即執行函式表達式，Immediately-Invoked-Function-Expression）"><a href="#title-2024-08-27-Javascript-IIFE（立即執行函式表達式，Immediately-Invoked-Function-Expression）date-2024-08-21-07-26-16categories-OneDayOneNotetags-OneNote-Javascript-description-2024-08-27-Javascript-IIFE（立即執行函式表達式，Immediately-Invoked-Function-Expression）" class="headerlink" title="title: 2024-08-27 Javascript IIFE（立即執行函式表達式，Immediately Invoked Function Expression）date: 2024-08-21 07:26:16categories: OneDayOneNotetags:  [OneNote, Javascript]description: 2024-08-27 Javascript IIFE（立即執行函式表達式，Immediately Invoked Function Expression）"></a>title: 2024-08-27 Javascript IIFE（立即執行函式表達式，Immediately Invoked Function Expression）<br>date: 2024-08-21 07:26:16<br>categories: OneDayOneNote<br>tags:  [OneNote, Javascript]<br>description: 2024-08-27 Javascript IIFE（立即執行函式表達式，Immediately Invoked Function Expression）</h2><p>IIFE（立即執行函式表達式，Immediately Invoked Function Expression）是一種在 JavaScript 中定義並立即執行的函式。這種模式通常用來創建一個獨立的作用域，以避免污染全域命名空間，或是用來創建閉包。</p>
+<p>IIFE 的基本語法<br>IIFE 的語法結構如下：</p>
+<pre><code class="js">(function() {
+    // 這裡是函式的主體
+    console.log(&quot;這個函式立即執行&quot;);
+})();
+</code></pre>
+<h2>逐步解釋</h2>
+1. 函式表達式：
+
+<pre><code class="js">(function() {
+    console.log(&quot;這個函式立即執行&quot;);
+})
+</code></pre>
+<p>. 這裡的 function() 是一個匿名函式（沒有名稱），我們把它包在小括號裡，使其成為函式表達式，而不是函式聲明。</p>
+<ol start="2">
+<li>立即執行：</li>
+</ol>
+<pre><code class="js">();
+</code></pre>
+<p>. 小括號 () 用來立即調用這個函式。當 JavaScript 引擎解析到這裡時，會立即執行這個函式表達式。</p>
+<ol start="3">
+<li>整體結構：</li>
+</ol>
+<pre><code class="js">(function() {
+    console.log(&quot;這個函式立即執行&quot;);
+})();
+</code></pre>
+<p>. 將這兩部分結合起來，函式在定義後立即被執行。</p>
+<h2>IIFE 的用途</h2>
+1. 避免變數污染全域命名空間：IIFE 在其自己的作用域內運行，變數不會泄露到外部作用域，因此不會干擾全域變數。
+
+<pre><code class="js">(function() {
+    let temp = &quot;I&#39;m inside IIFE&quot;;
+    console.log(temp);
+})();
+
+// console.log(temp); // 這裡會報錯，因為 temp 不在全域作用域內
+</code></pre>
+<ol start="2">
+<li>創建閉包：IIFE 可以用來創建閉包，以保持某些變數的狀態。</li>
+</ol>
+<pre><code class="js">const counter = (function() {
+    let count = 0;
+    return function() {
+        count++;
+        console.log(count);
+    };
+})();
+
+counter(); // 輸出 1
+counter(); // 輸出 2
+</code></pre>
+<ol start="3">
+<li>模組模式：IIFE 可以用來創建模組，將功能封裝起來，並只暴露需要的接口。</li>
+</ol>
+<pre><code class="js">const myModule = (function() {
+    let privateVar = &quot;I&#39;m private&quot;;
+
+    function privateMethod() {
+        console.log(privateVar);
+    }
+
+    return {
+        publicMethod: function() {
+            privateMethod();
+        }
+    };
+})();
+
+myModule.publicMethod(); // 輸出 &quot;I&#39;m private&quot;
+</code></pre>
+<h2>總結</h2>
+IIFE 是一種強大的工具，能夠在 JavaScript 中創建獨立的作用域、保護變數、以及實現閉包等功能。這種模式在模組化編程、避免命名衝突、和處理異步行為時特別有用
