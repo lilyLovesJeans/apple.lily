@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2024-08-29 JavaScript 系列五：第4課 ── 學會 AJAX 基本原理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024-08-29 JavaScript 系列五：第4課 ── 學會 AJAX 基本原理">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2024/08/24/OneDayOneNote/2024-08-29/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2024-08-29 JavaScript 系列五：第4課 ── 學會 AJAX 基本原理">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2024-08-24T06:12:49.000Z">
+<meta property="article:modified_time" content="2024-08-24T06:18:16.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content="OneNote">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2024/08/24/OneDayOneNote/2024-08-29/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2024/08/24/OneDayOneNote/2024-08-29/","path":"2024/08/24/OneDayOneNote/2024-08-29/","title":"2024-08-29 JavaScript 系列五：第4課 ── 學會 AJAX 基本原理"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2024-08-29 JavaScript 系列五：第4課 ── 學會 AJAX 基本原理 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">133</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2024/08/24/OneDayOneNote/2024-08-29/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2024-08-29 JavaScript 系列五：第4課 ── 學會 AJAX 基本原理 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2024-08-29 JavaScript 系列五：第4課 ── 學會 AJAX 基本原理">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2024-08-29 JavaScript 系列五：第4課 ── 學會 AJAX 基本原理
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2024-08-24 14:12:49 / 修改時間：14:18:16" itemprop="dateCreated datePublished" datetime="2024-08-24T14:12:49+08:00">2024-08-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2024-08-29 JavaScript 系列五：第4課 ── 學會 AJAX 基本原理</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>課程目標<br>認識基本的 AJAX 原理</p>
+<p>課程內容<br>這一課來認識大名鼎鼎的 AJAX 觀念</p>
+<p>AJAX 全名 Asynchronous JavaScript and XML</p>
+<p>簡單來說，就是「非同步從主機取得資料來更新網頁內容」的技術</p>
+<p>舊式的網頁，都是瀏覽器向主機發送 HTTP 請求 -&gt; 主機回應一大坨 html 內容 -&gt; 瀏覽器顯示漂亮網頁給用戶看</p>
+<p>因為是一次拿到一大坨 html 內容，我們說「網頁上全部內容都是同步取得」</p>
+<p>現代的網頁，也是有很多頁面是這樣直接取得，但有更多功能，是依靠非同步取得資料之後來更新的</p>
+<p>滑動到網頁下方，動態載入了更多貼文<br>對內容按讚，按讚成功網頁出現了小變化<br>聊天室與別人聊天，網頁也是一段一段文字更新<br>這些都是使用 AJAX 技術的例子</p>
+<p>也就是先載入基本網頁內容，再接著根據需求，於不同時間點發送 HTTP 請求取得部份內容，所以叫做非同步</p>
+<p>實務上，我們會說「這邊要發一個 AJAX 跟主機要資料」</p>
+<p>讓我們拿一個「模擬線上購物網站 API」來當作例子</p>
+<p><a target="_blank" rel="noopener" href="https://fakestoreapi.com/">https://fakestoreapi.com/</a></p>
+<p>發一個 AJAX 取得 ID 為 1 的用戶資料</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">fetch</span>(<span class="string">&#x27;https://fakestoreapi.com/users/1&#x27;</span>)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function"><span class="params">res</span>=&gt;</span>res.<span class="title function_">json</span>())</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function"><span class="params">json</span>=&gt;</span><span class="variable language_">console</span>.<span class="title function_">log</span>(json))</span><br></pre></td></tr></table></figure>
+<p>請在 jsfiddle 試試，看看結果</p>
+<p>會看到一個包含信箱、ID、姓名、電話等等欄位的用戶個資，以物件的形式呈現</p>
+<p>這邊使用了內建的 fetch 函式，參數放入要呼叫的 API 網址</p>
+<p>接著使用 .then() 函式，由於是直接寫在後面，這相當於把 fetch() 回傳的東西，直接當成物件再接著呼叫 .then() 函式，然後再把結果當成物件再呼叫 .then() 一次</p>
+<p>也就是跟這段一模一樣</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> result1 = <span class="title function_">fetch</span>(<span class="string">&#x27;https://fakestoreapi.com/users/1&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> result2 = result1.<span class="title function_">then</span>(<span class="function"><span class="params">res</span>=&gt;</span>res.<span class="title function_">json</span>());</span><br><span class="line"><span class="keyword">var</span> result3 = result2.<span class="title function_">then</span>(<span class="function"><span class="params">json</span>=&gt;</span><span class="variable language_">console</span>.<span class="title function_">log</span>(json));</span><br><span class="line"></span><br><span class="line"><span class="title function_">alert</span>(result1)</span><br><span class="line"><span class="title function_">alert</span>(result2)</span><br><span class="line"><span class="title function_">alert</span>(result3)</span><br></pre></td></tr></table></figure>
+<p>請在 jsfiddle 試試，會發現 console 顯示的個資一樣，這邊用三個 alert 觀察過程中的東西</p>
+<p>會發現顯示三次 [object Promise]，這個 Promise 是一個進階觀念，這邊不細談，簡單講就是處理非同步請求的一種資料格式</p>
+<p>.then() 參數傳進一個箭頭函式，這是省略大括號 {} 的箭頭函式寫法，其實就只是會自動回傳結果的函式寫法而已</p>
+<p>但參數放了個函式，看起來有點怪，為何要這樣寫？</p>
+<p>記得我們之前寫過的動態綁定 onclick 事件嗎？</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">&quot;my-btn&quot;</span>&gt;</span>Click me<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第一種寫法</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">myFunction</span>(<span class="params"></span>)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="title function_">alert</span>(<span class="string">&#x27;你點擊了按鈕！&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> btn = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;my-btn&#x27;</span>);</span><br><span class="line">btn.<span class="property">onclick</span> = myFunction;</span><br></pre></td></tr></table></figure>
+<p>網頁元素的事件處理，也是一種「非同步」程式設計</p>
+<p>也就是我不確定「點擊」事件何時會發生，但我先「綁定」好事件發生時要做的任務，綁完就讓網頁正常呈現就好</p>
+<p>上面的程式碼，可以改寫成這樣</p>
+<p>&#x2F;&#x2F; 第二種寫法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> btn = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;my-btn&#x27;</span>);</span><br><span class="line">btn.<span class="property">onclick</span> = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="title function_">alert</span>(<span class="string">&#x27;你點擊了按鈕！&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果使用 jQuery，那還可以這樣改寫</p>
+<p>&#x2F;&#x2F; 第三種寫法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&#x27;#my-btn&#x27;</span>).<span class="title function_">click</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="title function_">alert</span>(<span class="string">&#x27;你點擊了按鈕！&#x27;</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>第一種寫法，看起來像是：我先定義好函式，接著把函式名稱當作變數，綁定到 onclick 屬性</p>
+<p>第二種寫法，看起來像是：onclick 這邊現場寫一個箭頭函式，把要執行的任務，當場交待清楚</p>
+<p>第三種寫法，看起來像是：jQuery 提供的 .click() 函式，會負責把事件綁好，參數傳任務進去就對了</p>
+<p>以上三種寫法，效果是完全一模一樣的！</p>
+<p>所以你早就接觸過「非同步」程式設計了</p>
+<p>也就是「有些任務現在還不會立刻執行，但我先把要執行的任務交待清楚，時間點到的時候，就執行」</p>
+<p>以 UI 動作來說，時間點就是 onclick 之時、onchange 之時</p>
+<p>以 AJAX 動作來說，時間點就是 拿到主機回應 之時</p>
+<p>像這種不是馬上執行的動作，在 JavaScript 領域，我們習慣用「寫一段函式定義當作參數傳進去」來表達！</p>
+<p>回頭看一下我們的範例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">fetch</span>(<span class="string">&#x27;https://fakestoreapi.com/users/1&#x27;</span>)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function"><span class="params">res</span>=&gt;</span>res.<span class="title function_">json</span>())</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function"><span class="params">json</span>=&gt;</span><span class="variable language_">console</span>.<span class="title function_">log</span>(json))</span><br></pre></td></tr></table></figure>
+<p>因為 fetch 第一個回傳的結果，代表的是一個 HTTP 回應物件，這個回應物件的 HTTP body 是實際的 JSON 內容，可以用 .json() 函式取得內容</p>
+<p>所以第二個 .then() 的參數，才是我們真正想做的事情</p>
+<p>看不懂沒關係，我們多看幾個例子吧</p>
+<p>取得全部用戶個資的 AJAX。觀察 console 結果，會看到一個陣列，內含大量個資物件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">fetch</span>(<span class="string">&#x27;https://fakestoreapi.com/users&#x27;</span>)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function"><span class="params">res</span>=&gt;</span>res.<span class="title function_">json</span>())</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function"><span class="params">json</span>=&gt;</span><span class="variable language_">console</span>.<span class="title function_">log</span>(json))</span><br></pre></td></tr></table></figure>
+<p>取得五筆用戶個資，也是拿到陣列</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">fetch</span>(<span class="string">&#x27;https://fakestoreapi.com/users?limit=5&#x27;</span>)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function"><span class="params">res</span>=&gt;</span>res.<span class="title function_">json</span>())</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function"><span class="params">json</span>=&gt;</span><span class="variable language_">console</span>.<span class="title function_">log</span>(json))</span><br></pre></td></tr></table></figure>
+<p>以上內容，全部通通看不懂沒關係，畢竟，需要多了解一些 HTTP 協定與術語，比較好理解</p>
+<p>你就先照做就好：要發 AJAX，就用 fetch() 函式，接著第一個 then() 要執行 .json() 函式，然後第二個函式才是你真正要執行的任務！</p>
+<p>課後作業<br>請使用 <a target="_blank" rel="noopener" href="https://jsfiddle.net/">https://jsfiddle.net/</a></p>
+<p>請使用「模擬線上購物網站 API」 <a target="_blank" rel="noopener" href="https://fakestoreapi.com/">https://fakestoreapi.com/</a></p>
+<p>假設正在開發一個讀取全部商品資料的頁面</p>
+<p>用以下 html 為基礎</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>Load Products<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>點擊按鈕，發送 AJAX 到 <a target="_blank" rel="noopener" href="https://fakestoreapi.com/products">https://fakestoreapi.com/products</a> 請求全部商品資料</p>
+<p>拿到資料之後，將每筆資料用以下格式呈現，塞進<code> &lt;ul&gt;</code> 元素裡面</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span>&gt;</span>xxx<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span>&gt;</span>Details<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>xxx 是商品名稱。點擊 Details 按鈕，連續跳出三個 alert，分別顯示 id category description</p>
+<p>請注意，在 for 迴圈裡面綁定 onclick 事件的時候，for 迴圈的參數請加上 const</p>
+<p>舉例來說，請這樣寫</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> product <span class="keyword">of</span> json) &#123;</span><br></pre></td></tr></table></figure>
+<p>請「不要」這樣寫</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for (product of json) &#123;</span><br></pre></td></tr></table></figure>
+<p>否則，在迴圈裡面的 onclick 事件，執行起來會有 bug</p>
+<p>原因跟上一課提到的 Hoisting 現象有關</p>
+<p>我認為這是 JavaScript 的設計失敗，所以詳細原因我不想說明</p>
+<p>這是屬於上個世代 JS 工程師的痛苦回憶，這一代的 JS 工程師不需要經歷</p>
+<p>現在就用 ES6 語法，宣告變數一律記得加上 const 或 let 就對了</p>
+<p>做出以上功能，你就完成這次的課程目標了！</p>
+<p>原文取自: <a target="_blank" rel="noopener" href="https://codelove.tw/@howtomakeaturn/post/VaG5lx">https://codelove.tw/@howtomakeaturn/post/VaG5lx</a>  by 站長阿川  ·</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/Javascript/" rel="tag"># Javascript</a>
+              <a href="/apple.lily/tags/OneNote/" rel="tag"># OneNote</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/08/21/OneDayOneNote/2024-08-28/" rel="prev" title="2024-08-28 IIFE 是 es6 的範圍嗎?">
+                  <i class="fa fa-angle-left"></i> 2024-08-28 IIFE 是 es6 的範圍嗎?
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
