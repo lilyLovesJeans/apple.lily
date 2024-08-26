@@ -1,9 +1,12 @@
+https://lilylovesjeans.github.io/apple.lily/2024/08/26/Oracle/010_INMEMORY/
+https://lilylovesjeans.github.io/apple.lily/2024/08/26/Oracle/009_JSON/
+https://lilylovesjeans.github.io/apple.lily/2024/08/26/Oracle/002_19c21cFeature/
+https://lilylovesjeans.github.io/apple.lily/2024/08/26/Oracle/008_LISTAGG/
 https://lilylovesjeans.github.io/apple.lily/2024/08/26/Oracle/007_TableFunctions/
 https://lilylovesjeans.github.io/apple.lily/2024/08/26/Oracle/006_InsertAll/
 https://lilylovesjeans.github.io/apple.lily/2024/08/26/Oracle/005_SQLMacros/
 https://lilylovesjeans.github.io/apple.lily/2024/08/26/Oracle/003_PDB/
 https://lilylovesjeans.github.io/apple.lily/2024/08/26/Oracle/001_Oracle19cVS21c/
-https://lilylovesjeans.github.io/apple.lily/2024/08/26/Oracle/002_19c21cFeature/
 https://lilylovesjeans.github.io/apple.lily/2024/08/26/Oracle/004_Sharding/
 https://lilylovesjeans.github.io/apple.lily/2024/08/26/Oracle/
 https://lilylovesjeans.github.io/apple.lily/2024/07/03/CSS-Basic-Day28/

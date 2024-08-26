@@ -1,0 +1,74 @@
+<hr>
+<h2 id="title-Oracle-21c-JSON-範例date-2024-08-26-23-24-25categories-Oracletags-Oracle-DataBase-description-在-Oracle-21c-中，對-JSON-的支持得到了進一步增強，提供了更加直接和高效的-JSON-操作功能。以下是一些常見的-JSON-操作範例，展示如何在-Oracle-21c-中使用-JSON-功能。"><a href="#title-Oracle-21c-JSON-範例date-2024-08-26-23-24-25categories-Oracletags-Oracle-DataBase-description-在-Oracle-21c-中，對-JSON-的支持得到了進一步增強，提供了更加直接和高效的-JSON-操作功能。以下是一些常見的-JSON-操作範例，展示如何在-Oracle-21c-中使用-JSON-功能。" class="headerlink" title="title: Oracle 21c JSON 範例date: 2024-08-26 23:24:25categories: Oracletags:  [Oracle , DataBase]description: 在 Oracle 21c 中，對 JSON 的支持得到了進一步增強，提供了更加直接和高效的 JSON 操作功能。以下是一些常見的 JSON 操作範例，展示如何在 Oracle 21c 中使用 JSON 功能。"></a>title: Oracle 21c JSON 範例<br>date: 2024-08-26 23:24:25<br>categories: Oracle<br>tags:  [Oracle , DataBase]<br>description: 在 Oracle 21c 中，對 JSON 的支持得到了進一步增強，提供了更加直接和高效的 JSON 操作功能。以下是一些常見的 JSON 操作範例，展示如何在 Oracle 21c 中使用 JSON 功能。</h2><p>在 Oracle 21c 中，對 JSON 的支持得到了進一步增強，提供了更加直接和高效的 JSON 操作功能。以下是一些常見的 JSON 操作範例，展示如何在 Oracle 21c 中使用 JSON 功能。</p>
+<ol>
+<li><h2>創建 JSON 表</h2>
+首先，你可以創建一個包含 JSON 列的表。這樣的表可以存儲 JSON 格式的數據。</li>
+</ol>
+<pre><code class="sql">CREATE TABLE employees (
+    id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name VARCHAR2(100),
+    data CLOB CHECK (data IS JSON)
+);
+</code></pre>
+<ol start="2">
+<li><h2>插入 JSON 數據</h2>
+可以將 JSON 格式的數據插入到表中。Oracle 支持使用 JSON 格式的字串直接插入到 CLOB 列。</li>
+</ol>
+<pre><code class="sql">INSERT INTO employees (name, data)
+VALUES (&#39;Alice&#39;, &#39;{&quot;age&quot;: 30, &quot;department&quot;: &quot;HR&quot;, &quot;skills&quot;: [&quot;communication&quot;, &quot;recruitment&quot;]}&#39;);
+</code></pre>
+<ol start="3">
+<li><h2>查詢 JSON 數據</h2>
+Oracle 21c 提供了多種 JSON 函數來查詢和操作 JSON 數據。例如，使用 JSON_VALUE 函數提取 JSON 列中的單個值。</li>
+</ol>
+<pre><code class="sql">SELECT name,
+       JSON_VALUE(data, &#39;$.age&#39;) AS age,
+       JSON_VALUE(data, &#39;$.department&#39;) AS department
+FROM employees;
+</code></pre>
+<ol start="4">
+<li><h2>更新 JSON 數據</h2>
+可以使用 JSON_SET 函數更新 JSON 列中的數據。例如，修改某個員工的技能列表。</li>
+</ol>
+<pre><code class="sql">UPDATE employees
+SET data = JSON_SET(data, &#39;$.skills[1]&#39;, &#39;talent acquisition&#39;)
+WHERE name = &#39;Alice&#39;;
+</code></pre>
+<ol start="5">
+<li><h2>使用 JSON Table 函數</h2>
+Oracle 21c 引入了 JSON_TABLE 函數，這是一種強大的方法，用於將 JSON 數據轉換為關聯數據表格式，從而更容易進行查詢和分析。</li>
+</ol>
+<pre><code class="sql">SELECT *
+FROM JSON_TABLE(
+    (SELECT data FROM employees WHERE name = &#39;Alice&#39;),
+    &#39;$&#39;
+    COLUMNS (
+        age NUMBER PATH &#39;$.age&#39;,
+        department VARCHAR2(50) PATH &#39;$.department&#39;,
+        skills VARCHAR2(100) PATH &#39;$.skills[*]&#39;
+    )
+);
+</code></pre>
+<ol start="6">
+<li><h2>範例：JSON 索引</h2>
+Oracle 21c 支持對 JSON 列創建索引，提升查詢性能。例如，創建一個基於 JSON 列的索引。</li>
+</ol>
+<pre><code class="sql">CREATE INDEX idx_employee_skills ON employees (data)
+   INDEXTYPE IS JSON;
+</code></pre>
+<ol start="7">
+<li><h2>範例：JSON 聚合</h2>
+可以使用 JSON_AGG 函數來聚合查詢結果為 JSON 格式。</li>
+</ol>
+<pre><code class="sql">SELECT JSON_AGG(
+           JSON_OBJECT(
+               &#39;id&#39; VALUE id,
+               &#39;name&#39; VALUE name,
+               &#39;age&#39; VALUE JSON_VALUE(data, &#39;$.age&#39;),
+               &#39;department&#39; VALUE JSON_VALUE(data, &#39;$.department&#39;)
+           )
+       ) AS employees_json
+FROM employees;
+</code></pre>
+<h2>總結</h2>
+Oracle 21c 在 JSON 處理上提供了強大的功能，從創建 JSON 表、插入和更新 JSON 數據，到使用 JSON 表函數和索引，都能有效地處理 JSON 數據。這些功能使得在 Oracle 資料庫中操作和分析 JSON 數據變得更加方便和高效。

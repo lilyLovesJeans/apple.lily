@@ -1,0 +1,69 @@
+<hr>
+<h2 id="title-Oracle-21c-INMEMORY-範例date-2024-08-26-23-33-58categories-Oracletags-Oracle-DataBase-description-在-Oracle-21c-中，INMEMORY-是一項用於提升查詢性能的功能。它允許將表的數據存儲在內存中，以加快對這些數據的查詢速度"><a href="#title-Oracle-21c-INMEMORY-範例date-2024-08-26-23-33-58categories-Oracletags-Oracle-DataBase-description-在-Oracle-21c-中，INMEMORY-是一項用於提升查詢性能的功能。它允許將表的數據存儲在內存中，以加快對這些數據的查詢速度" class="headerlink" title="title: Oracle 21c INMEMORY 範例date: 2024-08-26 23:33:58categories: Oracletags:  [Oracle , DataBase]description: 在 Oracle 21c 中，INMEMORY 是一項用於提升查詢性能的功能。它允許將表的數據存儲在內存中，以加快對這些數據的查詢速度"></a>title: Oracle 21c INMEMORY 範例<br>date: 2024-08-26 23:33:58<br>categories: Oracle<br>tags:  [Oracle , DataBase]<br>description: 在 Oracle 21c 中，INMEMORY 是一項用於提升查詢性能的功能。它允許將表的數據存儲在內存中，以加快對這些數據的查詢速度</h2><p>在 Oracle 21c 中，INMEMORY 是一項用於提升查詢性能的功能。它允許將表的數據存儲在內存中，以加快對這些數據的查詢速度。以下是一些關於如何在 Oracle 21c 中使用 INMEMORY 的範例。</p>
+<ol>
+<li><h2>啓用 INMEMORY</h2>
+首先，你需要確保你的 Oracle 資料庫版本支持 INMEMORY，並且啟用了 INMEMORY 功能。可以通過以下 SQL 查詢檢查 INMEMORY 功能的狀態：</li>
+</ol>
+<pre><code class="sql">SELECT INMEMORY_SIZE FROM V$DATABASE;
+</code></pre>
+<ol start="2">
+<li><h2>在表上啟用 INMEMORY</h2>
+要啟用 INMEMORY，可以在創建表時指定 INMEMORY 選項，或者在已存在的表上進行修改。</li>
+</ol>
+<h3>創建表並啟用 INMEMORY</h3>
+
+<pre><code class="sql">CREATE TABLE sales_data (
+    id NUMBER PRIMARY KEY,
+    product_name VARCHAR2(100),
+    sale_date DATE,
+    amount NUMBER
+) INMEMORY;
+</code></pre>
+<h3>對已存在的表啟用 INMEMORY</h3>
+
+<pre><code class="sql">ALTER TABLE sales_data INMEMORY;
+</code></pre>
+<ol start="3">
+<li><h2>插入數據</h2>
+在表啟用 INMEMORY 功能後，可以像平常一樣插入數據。這些數據將被自動加載到內存中以提高查詢性能。</li>
+</ol>
+<pre><code class="sql">INSERT INTO sales_data (id, product_name, sale_date, amount)
+VALUES (1, &#39;Product A&#39;, SYSDATE, 100);
+</code></pre>
+<ol start="4">
+<li><h2>查詢 INMEMORY 表</h2>
+對於啟用了 INMEMORY 的表，查詢性能應該會顯著提升。你可以使用常規的 SQL 查詢來檢索數據：</li>
+</ol>
+<pre><code class="sql">SELECT *
+FROM sales_data
+WHERE sale_date = SYSDATE;
+</code></pre>
+<ol start="5">
+<li><h2>使用 INMEMORY 选项</h2>
+你可以使用 INMEMORY 选项来控制表在内存中的存储方式。以下是一些常见的选项：</li>
+</ol>
+<h3>指定存储优先级</h3>
+
+<pre><code class="sql">ALTER TABLE sales_data INMEMORY PRIORITY HIGH;
+</code></pre>
+<h3>指定列优先级</h3>
+
+<pre><code class="sql">ALTER TABLE sales_data INMEMORY (amount PRIORITY HIGH);
+</code></pre>
+<ol start="6">
+<li><h2>查看 INMEMORY 状态</h2>
+可以通过以下查询来查看 INMEMORY 表的状态以及存储在内存中的数据情况：</li>
+</ol>
+<pre><code class="sql">SELECT table_name, in_memory, in_memory_priority
+FROM all_tables
+WHERE table_name = &#39;SALES_DATA&#39;;
+</code></pre>
+<ol start="7">
+<li><h2>监控 INMEMORY 性能</h2>
+使用 Oracle 的动态性能视图来监控 INMEMORY 的性能和使用情况：</li>
+</ol>
+<pre><code class="sql">SELECT table_name, in_memory_size, in_memory_rows
+FROM v$inmemory_area;
+</code></pre>
+<h2>總結</h2>
+Oracle 21c 的 INMEMORY 功能可以顯著提升查詢性能，特別是對於需要快速讀取和分析大量數據的場景。通過啟用 INMEMORY、插入數據、查詢和監控，可以有效地利用這項技術來優化你的數據庫性能。

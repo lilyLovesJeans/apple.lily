@@ -1,0 +1,22 @@
+<hr>
+<h2 id="title-Oracle-LISTAGGdate-2024-08-26-23-15-18categories-Oracletags-Oracle-DataBase-description-LISTAGG-是-Oracle-資料庫中的一個聚合函數，用於將多行數據的值連接成一個字串。這個函數特別適用於當你希望將查詢結果中的多行數據按某種分隔符連接成一個單一的字串時。"><a href="#title-Oracle-LISTAGGdate-2024-08-26-23-15-18categories-Oracletags-Oracle-DataBase-description-LISTAGG-是-Oracle-資料庫中的一個聚合函數，用於將多行數據的值連接成一個字串。這個函數特別適用於當你希望將查詢結果中的多行數據按某種分隔符連接成一個單一的字串時。" class="headerlink" title="title: Oracle LISTAGGdate: 2024-08-26 23:15:18categories: Oracletags:  [Oracle , DataBase]description: LISTAGG 是 Oracle 資料庫中的一個聚合函數，用於將多行數據的值連接成一個字串。這個函數特別適用於當你希望將查詢結果中的多行數據按某種分隔符連接成一個單一的字串時。"></a>title: Oracle LISTAGG<br>date: 2024-08-26 23:15:18<br>categories: Oracle<br>tags:  [Oracle , DataBase]<br>description: LISTAGG 是 Oracle 資料庫中的一個聚合函數，用於將多行數據的值連接成一個字串。這個函數特別適用於當你希望將查詢結果中的多行數據按某種分隔符連接成一個單一的字串時。</h2><p>LISTAGG 是 Oracle 資料庫中的一個聚合函數，用於將多行數據的值連接成一個字串。這個函數特別適用於當你希望將查詢結果中的多行數據按某種分隔符連接成一個單一的字串時。</p>
+<h2>使用情境</h2>
+例如，假設你有一個包含員工信息的表，你希望將某個部門的所有員工姓名連接成一個以逗號分隔的字串，LISTAGG 函數可以實現這個需求。
+
+<p>語法</p>
+<pre><code class="sql">LISTAGG (expression, delimiter) WITHIN GROUP (ORDER BY column)
+</code></pre>
+<p>. expression：要連接的列或表達式。<br>. delimiter：用來分隔連接後字串的分隔符，例如逗號（,）或分號（;）。<br>. WITHIN GROUP (ORDER BY column)：指定在連接之前的排序方式。</p>
+<h2>示例</h2>
+假設有一個 employees 表，包含 department_id 和 employee_name 兩列，你想要將每個部門的員工姓名連接成一個以逗號分隔的字串，並按照姓名的字母順序排序，可以使用以下查詢：
+
+<pre><code class="sql">SELECT department_id,
+       LISTAGG(employee_name, &#39;, &#39;) WITHIN GROUP (ORDER BY employee_name) AS employee_names
+FROM employees
+GROUP BY department_id;
+</code></pre>
+<p>這樣會返回每個部門的員工姓名連接成一個以逗號和空格分隔的字串，並按照姓名的字母順序排序。</p>
+<h2>注意事項</h2>
+. LISTAGG 函數的結果長度有可能會超過數據庫中設置的最大字串長度，如果超過，將會引發錯誤。從 Oracle 19c 開始，LISTAGG 支援 ON OVERFLOW 子句來處理長度超過限制的情況。
+
+<p>LISTAGG 函數能夠簡化需要將多行數據合併成一個字串的查詢，提供了強大的字符串處理能力。</p>
