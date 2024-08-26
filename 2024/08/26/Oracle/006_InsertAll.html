@@ -1,0 +1,37 @@
+<hr>
+<h2 id="title-多行插入语句date-2024-08-26-20-23-41categories-Oracletags-Oracle-DataBase-description-多行插入语句"><a href="#title-多行插入语句date-2024-08-26-20-23-41categories-Oracletags-Oracle-DataBase-description-多行插入语句" class="headerlink" title="title: 多行插入语句date: 2024-08-26 20:23:41categories: Oracletags:  [Oracle , DataBase]description: 多行插入语句"></a>title: 多行插入语句<br>date: 2024-08-26 20:23:41<br>categories: Oracle<br>tags:  [Oracle , DataBase]<br>description: 多行插入语句</h2><p>在 Oracle 中，使用多行插入語句可以一次性向表中插入多條記錄。以下是使用多行插入的幾種方法：</p>
+<h2>方法 1: 使用 INSERT ALL</h2>
+這種方法可以在單個 SQL 語句中插入多條記錄。
+
+<pre><code class="sql">INSERT ALL
+    INTO table_name (column1, column2, column3) VALUES (value1a, value2a, value3a)
+    INTO table_name (column1, column2, column3) VALUES (value1b, value2b, value3b)
+    INTO table_name (column1, column2, column3) VALUES (value1c, value2c, value3c)
+SELECT * FROM dual;
+</code></pre>
+<p>在這個範例中，table_name 是你要插入數據的表名，column1, column2, column3 是你要插入數據的列名，value1a, value2a, value3a 等是對應列的數據值。</p>
+<h2>方法 2: 使用 INSERT INTO ... SELECT ... FROM dual</h2>
+這種方法可以使用 UNION ALL 將多行記錄插入到表中。
+
+<pre><code class="sql">INSERT INTO table_name (column1, column2, column3)
+SELECT value1a, value2a, value3a FROM dual
+UNION ALL
+SELECT value1b, value2b, value3b FROM dual
+UNION ALL
+SELECT value1c, value2c, value3c FROM dual;
+</code></pre>
+<p>在這個範例中，每個 SELECT … FROM dual 語句代表一行要插入的數據，UNION ALL 用於合併多個 SELECT 結果。</p>
+<h2>方法 3: 使用多行 INSERT 語句 (批量插入)</h2>
+你可以將多個單獨的 INSERT 語句放在一起作為一個批次執行：
+
+<pre><code class="sql">BEGIN
+    INSERT INTO table_name (column1, column2, column3) VALUES (value1a, value2a, value3a);
+    INSERT INTO table_name (column1, column2, column3) VALUES (value1b, value2b, value3b);
+    INSERT INTO table_name (column1, column2, column3) VALUES (value1c, value2c, value3c);
+    -- 其他插入語句
+    COMMIT;
+END;
+</code></pre>
+<p>這種方法適用於 PL&#x2F;SQL 塊中進行批量插入操作。</p>
+<h2>總結</h2>
+多行插入語句可以有效地減少插入操作的數量，提高數據插入的效率。根據具體需求，可以選擇 INSERT ALL、INSERT INTO ... SELECT ... FROM dual 或批量插入的方法來實現。

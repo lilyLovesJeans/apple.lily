@@ -1,0 +1,29 @@
+<hr>
+<h2 id="title-数据库-Shardingdate-2024-08-26-19-24-09categories-Oracletags-Oracle-DataBase-description-数据库-Sharding"><a href="#title-数据库-Shardingdate-2024-08-26-19-24-09categories-Oracletags-Oracle-DataBase-description-数据库-Sharding" class="headerlink" title="title: 数据库 Shardingdate: 2024-08-26 19:24:09categories: Oracletags:  [Oracle , DataBase]description:  数据库 Sharding"></a>title: 数据库 Sharding<br>date: 2024-08-26 19:24:09<br>categories: Oracle<br>tags:  [Oracle , DataBase]<br>description:  数据库 Sharding</h2><p>在 Oracle 19c 和 21c 中，資料庫 Sharding 是指將大型資料庫劃分為多個較小的、獨立的資料庫實例（稱為分片），這些分片共同構成一個邏輯上的完整資料庫。Sharding 主要用於水平擴展，以處理大規模的資料量和高並發負載。</p>
+<h2>增強的分片架構:</h2>
+ 1. 支持更多的分片節點
+
+<p>  . 更高的擴展性: Oracle 19c 和 21c 增強了 Sharding 的架構，允許在單個 Sharded Database (SDB) 中支持更多的分片節點。通過添加更多的分片節點，可以進一步分散資料儲存和負載，提升系統的整體吞吐量和可用性。</p>
+<p> . 動態分片: 在新版本中，Sharding 支持動態增加分片節點。新的分片可以被自動配置並整合到現有的分片集群中，原有的資料會被重新平衡到新的分片中，從而減少分片管理的複雜性。</p>
+<ol start="2">
+<li>簡化的管理<br> . 簡化的部署和管理工具: Oracle 提供了增強的管理工具，簡化了分片資料庫的部署、監控和維護過程。例如，Oracle 提供了更直觀的圖形使用者介面（GUI）和命令列工具，幫助資料庫管理員快速設置和管理 Sharding 環境。</li>
+</ol>
+<p> . 自動化管理: 通過自動化功能，Oracle Sharding 可以自動處理分片的負載平衡、資料遷移和容錯管理。這些功能減少了人工操作帶來的風險，並提升了系統的穩定性和效率。</p>
+<p> . 改進的分片目錄服務: 分片目錄服務（Sharding Catalog Service）在 Oracle 19c 和 21c 中得到了改進，支持更多的分片配置和查詢優化。目錄服務負責跟蹤各個分片的元資料，並幫助路由 SQL 查詢到正確的分片節點。</p>
+<ol start="3">
+<li>改進的資料分佈與路由</li>
+</ol>
+<p> . 多種分片策略: Oracle 19c 和 21c 支持多種資料分片策略，例如基於哈希、範圍或列表的分片。這些策略可以更好地適應不同類型的應用需求，從而優化資料訪問和儲存。</p>
+<p> . 智能查詢路由: Oracle Sharding 具備智能查詢路由功能，可以自動將查詢請求路由到儲存相關資料的分片。這減少了跨分片查詢的延遲，並提升了查詢性能。</p>
+<h2>Sharding 的典型應用場景:</h2>
+
+<ol>
+<li><p>大規模分佈式系統: 適用於需要處理海量資料和高並發訪問的大型企業應用，如電商平台、社交媒體、線上遊戲等。</p>
+</li>
+<li><p>地理分佈式資料庫: 通過 Sharding，可以在全球不同地區部署分片，實現資料的就近訪問，從而減少延遲。</p>
+</li>
+<li><p>高可用性要求: 由於 Sharding 具有天然的分佈式特性，當某個分片發生故障時，其他分片仍能正常運作，從而提高了系統的可用性。</p>
+</li>
+</ol>
+<h2>總結</h2>
+增強的分片架構使得 Oracle 19c 和 21c 在處理大規模資料和高並發訪問方面更為強大。支持更多的分片節點和簡化的管理工具，讓企業在擴展資料庫時更加靈活高效，同時保證了資料的高可用性和安全性。

@@ -27,7 +27,7 @@
 <meta property="og:description" content="Oracle 19c VS 21c">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2024-08-26T07:56:57.000Z">
-<meta property="article:modified_time" content="2024-08-26T08:05:42.000Z">
+<meta property="article:modified_time" content="2024-08-26T12:01:34.000Z">
 <meta property="article:author" content="Apple.Lily">
 <meta property="article:tag" content="Oracle">
 <meta property="article:tag" content="DataBase">
@@ -114,7 +114,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Oracle 12c</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">Oracle 19c</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">Oracle 21c</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Oracle 12c</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">Oracle 19c</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">Oracle 21c</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">總結</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -129,7 +129,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/apple.lily/archives/">
-          <span class="site-state-item-count">135</span>
+          <span class="site-state-item-count">141</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -197,7 +197,7 @@
       <span class="post-meta-item-text">發表於</span>
       
 
-      <time title="創建時間：2024-08-26 15:56:57 / 修改時間：16:05:42" itemprop="dateCreated datePublished" datetime="2024-08-26T15:56:57+08:00">2024-08-26</time>
+      <time title="創建時間：2024-08-26 15:56:57 / 修改時間：20:01:34" itemprop="dateCreated datePublished" datetime="2024-08-26T15:56:57+08:00">2024-08-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -226,37 +226,39 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2>Oracle 12c</h2>
-. 发布时间: 2013年
-. 主要特点:
- .多租户架构: Oracle 12c 引入了多租户架构（Pluggable Database，PDB），允许在一个容器数据库（Container Database，CDB）中托管多个可插拔数据库。
- .自动数据优化: 引入了分层存储和自动数据优化功能，通过根据数据使用模式自动优化存储来提高性能。
- . In-Memory 选项: 允许在内存中执行数据分析，显著提升查询性能。
-. 支持: Oracle 12c R2 是长期支持版本，已在 2023 年 7 月结束了标准支持（但仍提供扩展支持）。
+    <div class="post-body" itemprop="articleBody"><ol>
+<li><h2>Oracle 12c</h2>
+ . 發布時間: 2013年
+ . 主要特點:
+. 多租戶架構: Oracle 12c 引入了多租戶架構（Pluggable Database，PDB），允許在一個容器資料庫（Container Database，CDB）中託管多個可插拔資料庫。
+. 自動資料優化: 引入了分層存儲和自動資料優化功能，通過根據資料使用模式自動優化存儲來提高性能。
+. In-Memory 選項: 允許在內存中執行資料分析，顯著提升查詢性能。
+. 支持: Oracle 12c R2 是長期支持版本，已在 2023 年 7 月結束了標準支持（但仍提供擴展支持）。
+</li>
+<li><h2>Oracle 19c</h2>
+ . 發布時間: 2019年
+ . 主要特點:
+. 長期支持版本（LTS）: Oracle 19c 是 Oracle Database 12.2 版本系列的最終版本，並且是長期支持（LTS）版本，提供到 2027 年的標準支持，以及到 2030 年的擴展支持。
+. 自動化功能增強: 引入了更多的自動化功能，如自動資料庫診斷監視器（ADDM）增強版和自動內存管理增強版。
+. 混合負載優化: 對在線交易處理（OLTP）和資料倉庫負載進行了更好的優化。
+. 增強的安全功能: 增強了資料保護、加密和用戶管理功能。
+</li>
+<li><h2>Oracle 21c</h2>
+ . 發布時間: 2021年
+ . 主要特點:
+. 創新版本: Oracle 21c 被認為是創新版本，提供了許多新的功能，但不是長期支持版本（LTS），支持週期較短。
+. Blockchain Tables: 引入了區塊鏈表，用於不可篡改的記錄存儲。
+. 自動機器學習（AutoML）: 引入了自動機器學習（AutoML）功能，簡化了機器學習模型的構建和部署。
+. 增強的多租戶架構: 在多租戶架構方面繼續優化，支持更多的 PDB 並改進了性能。
+. 內存增強: 增強的內存資料庫功能和混合存儲技術。
+. 新型資料類型支持: 引入了 JSON 資料類型，增強了對非結構化資料的支持。</li>
+</ol>
+<h2>總結</h2>
+ . Oracle 12c 引入了許多革命性的功能，如多租戶架構，適合傳統資料庫部署。
+ . Oracle 19c 是一個穩健的長期支持版本，廣泛應用於企業級生產環境，適合需要長期支持和穩定性的用戶。
+ . Oracle 21c 提供了最新的功能和創新，但由於不是長期支持版本，更適合實驗和採用新技術的環境。
 
-<h2>Oracle 19c</h2>
-. 发布时间: 2019年
-. 主要特点:
- . 长期支持版本（LTS）: Oracle 19c 是 Oracle Database 12.2 版本系列的最终版本，并且是长期支持（LTS）版本，提供到 2027 年的标准支持，及到 2030 年的扩展支持。
- . 自动化功能增强: 引入了更多的自动化功能，如自动数据库诊断监视器（ADDM）增强版和自动内存管理增强版。
- . 混合负载优化: 对在线事务处理（OLTP）和数据仓库负载进行了更好的优化。
- . 增强的安全功能: 增强了数据保护、加密和用户管理功能。
 
-
-<h2>Oracle 21c</h2>
-. 发布时间: 2021年
-. 主要特点:
- . 创新版本: Oracle 21c 被认为是创新版本，提供了许多新的功能，但不是长期支持版本（LTS），支持周期较短。
- . Blockchain Tables: 引入了区块链表，用于不可篡改的记录存储。
- .自动ML: 引入了自动机器学习（AutoML）功能，简化了机器学习模型的构建和部署。
- . 增强的多租户架构: 在多租户架构方面继续优化，支持更多的 PDB 并改进了性能。
- .内存增强: 增强的内存数据库功能和混合存储技术。
- . 新型数据类型支持: 引入了 JSON 数据类型，增强了对非结构化数据的支持。
-
-<h2>总结</h2>
-. Oracle 12c 引入了许多革命性的功能，如多租户架构，适合传统数据库部署。
-. Oracle 19c 是一个稳健的长期支持版本，广泛应用于企业级生产环境，适合需要长期支持和稳定性的用户。
-. Oracle 21c 提供了最新的功能和创新，但由于不是长期支持版本，更适合实验和采用新技术的环境。
     </div>
 
     
@@ -278,6 +280,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/apple.lily/2024/08/26/Oracle/002_19c21cFeature/" rel="next" title="Oracle 19c 及 21c 資料庫 及 SQL 語法上的改變">
+                  Oracle 19c 及 21c 資料庫 及 SQL 語法上的改變 <i class="fa fa-angle-right"></i>
+                </a>
             </div>
           </div>
     </footer>

@@ -1,0 +1,64 @@
+<hr>
+<h2 id="title-SQL-Macrosdate-2024-08-26-20-15-22categories-Oracletags-Oracle-DataBase-description-SQL-Macros"><a href="#title-SQL-Macrosdate-2024-08-26-20-15-22categories-Oracletags-Oracle-DataBase-description-SQL-Macros" class="headerlink" title="title: SQL Macrosdate: 2024-08-26 20:15:22categories: Oracletags:  [Oracle , DataBase]description: SQL Macros"></a>title: SQL Macros<br>date: 2024-08-26 20:15:22<br>categories: Oracle<br>tags:  [Oracle , DataBase]<br>description: SQL Macros</h2><h2>SQL Macros 概述</h2>
+SQL Macros 是 Oracle 21c 引入的一項強大功能，允許開發人員創建可重用的 SQL 代碼片段，這些片段可以在查詢中像函數一樣使用。SQL Macros 透過簡化和模組化 SQL 代碼，使得複雜查詢更具可讀性和可維護性。
+
+<h2>SQL Macros 的類型</h2>
+Oracle 21c 支援兩種類型的 SQL Macros：
+
+<ol>
+<li><p>Scalar SQL Macros（標量 SQL 宏）</p>
+</li>
+<li><p>Table SQL Macros（表 SQL 宏）</p>
+</li>
+<li><p>Scalar SQL Macros（標量 SQL 宏）<br>標量 SQL 宏生成一個標量表達式，並返回一個單一值。它類似於標量函數，但在 SQL 執行期間，宏會直接展開成相應的 SQL 代碼，從而避免了函數調用的性能開銷。</p>
+</li>
+</ol>
+<p>範例：</p>
+<p>假設你有一個用於計算折扣價格的常用公式，你可以將其封裝到一個 SQL Macro 中。</p>
+<pre><code class="sql">CREATE OR REPLACE FUNCTION discount_price(price NUMBER, discount_pct NUMBER)
+RETURN VARCHAR2 SQL_MACRO IS
+BEGIN
+  RETURN q&#39;{
+    price - (price * discount_pct / 100)
+  }&#39;;
+END discount_price;
+/
+</code></pre>
+<p>現在，你可以在查詢中使用這個 SQL Macro 來計算折扣後的價格：</p>
+<pre><code class="sql">SELECT product_id, price, discount_price(price, 10) AS discounted_price
+FROM products;
+</code></pre>
+<p>在執行期間，discount_price(price, 10) 將被替換為 price - (price * 10 &#x2F; 100)。</p>
+<ol start="2">
+<li>Table SQL Macros（表 SQL 宏）<br>表 SQL 宏生成一個返回行集（表）的表達式，類似於視圖或表函數。在查詢執行時，宏會被展開成一個完整的 SQL 查詢語句。</li>
+</ol>
+<p>範例：</p>
+<p>你可以創建一個動態過濾器的 SQL Macro，它根據輸入條件返回特定的數據集。</p>
+<pre><code class="sql">CREATE OR REPLACE FUNCTION filter_employees(dept_id NUMBER)
+RETURN VARCHAR2 SQL_MACRO IS
+BEGIN
+  RETURN q&#39;{
+    SELECT employee_id, first_name, last_name, department_id
+    FROM employees
+    WHERE department_id = dept_id
+  }&#39;;
+END filter_employees;
+/
+</code></pre>
+<p>然後可以在查詢中使用這個宏來獲取某個部門的員工列表：</p>
+<pre><code class="sql">SELECT *
+FROM filter_employees(10);
+</code></pre>
+<p>這裡的 filter_employees(10) 在查詢執行時會被展開為：</p>
+<pre><code class="sql">SELECT employee_id, first_name, last_name, department_id
+FROM employees
+WHERE department_id = 10;
+</code></pre>
+<h2>SQL Macros 的優勢</h2>
+ . 提高代碼可讀性和重用性: SQL Macros 允許開發者將複雜的 SQL 邏輯封裝成簡單的、可重用的片段，提升了 SQL 代碼的可讀性。
+
+<p> . 性能優化: 由於 SQL Macros 在查詢執行前被展開為原生 SQL 代碼，因此沒有函數調用的額外開銷，可以提升查詢性能。</p>
+<p> . 簡化 SQL 代碼: SQL Macros 有助於減少代碼重複，使得 SQL 查詢更加簡潔和易於維護。</p>
+<p> . 靈活的代碼模組化: 可以將複雜的邏輯提取到 SQL Macros 中，通過參數化實現靈活的代碼模組化，增強了 SQL 查詢的可擴展性。</p>
+<h2>總結</h2>
+SQL Macros 是 Oracle 21c 中一項非常有用的新特性，特別適合用來簡化複雜的 SQL 查詢。透過模組化和重用代碼，提升了開發效率，同時優化了 SQL 執行的性能。

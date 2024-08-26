@@ -1,0 +1,38 @@
+<hr>
+<h2 id="title-表函数Table-Functions-增强date-2024-08-26-20-31-06categories-Oracletags-Oracle-DataBase-description-表函数Table-Functions-增强"><a href="#title-表函数Table-Functions-增强date-2024-08-26-20-31-06categories-Oracletags-Oracle-DataBase-description-表函数Table-Functions-增强" class="headerlink" title="title: 表函数Table Functions  增强date: 2024-08-26 20:31:06categories: Oracletags:  [Oracle , DataBase]description: 表函数Table Functions  增强"></a>title: 表函数Table Functions  增强<br>date: 2024-08-26 20:31:06<br>categories: Oracle<br>tags:  [Oracle , DataBase]<br>description: 表函数Table Functions  增强</h2><p>在 Oracle 21c 中，表函數（Table Functions）得到了進一步增強，這些增強功能旨在提高性能和靈活性，使得表函數在處理複雜數據集和並行處理方面更加高效。以下是表函數增強的幾個主要方面：</p>
+<h2>1. 並行處理增强</h2>
+Oracle 21c 中的表函數增強了對並行處理的支持，允許表函數在並行模式下運行，以提高性能。當數據量大且處理需求高時，這種並行處理方式能夠顯著縮短查詢時間。
+
+<p>示例：<br>假設你有一個表函數 my_table_function，它需要處理大量數據，你可以使用 PARALLEL 提示來啟用並行處理：</p>
+<pre><code class="sql">SELECT /*+ PARALLEL(4) */ *
+FROM TABLE(my_table_function());
+</code></pre>
+<p>在這個範例中，PARALLEL(4) 表示使用 4 個並行工作進程來執行這個查詢，從而加快處理速度。</p>
+<h2>2. 自动结果缓存</h2>
+Oracle 21c 為表函數引入了自動結果緩存（Result Cache）功能，允許表函數的結果被緩存以供後續使用。這樣做可以避免每次執行表函數時都重新計算相同的結果，從而提高效率。
+
+<p>示例：<br>你可以在創建表函數時啟用結果緩存，如下所示：</p>
+<pre><code class="sql">CREATE OR REPLACE FUNCTION my_table_function
+RETURN TABLE_TYPE
+RESULT_CACHE RELIES_ON (some_table)
+IS
+BEGIN
+  -- 函數邏輯
+END my_table_function;
+</code></pre>
+<p>在這裡，RESULT_CACHE 表示將函數的結果緩存在內存中，而 RELIES_ON (some_table) 則指定了當這個表 some_table 發生變更時，自動刷新緩存。</p>
+<h2>3. 增强的管道表函数</h2>
+管道表函數（Pipelined Table Functions）在 Oracle 21c 中得到了增強，允許這些函數以流的方式返回結果集，而不是一次性返回整個結果。這對於需要處理大量數據並逐步返回結果的場景非常有用。
+
+<p>示例：<br>以下是一個管道表函數的示例：</p>
+<pre><code class="sql">CREATE OR REPLACE FUNCTION my_pipelined_function
+RETURN TABLE_TYPE PIPELINED IS
+BEGIN
+  FOR rec IN (SELECT * FROM some_table) LOOP
+    PIPE ROW (rec);
+  END LOOP;
+END my_pipelined_function;
+</code></pre>
+<p>在這裡，PIPELINED 關鍵字允許函數在生成結果時逐行返回，而不是等整個結果集準備好後再返回，從而提高了內存使用效率和響應速度。</p>
+<h2>總結</h2>
+Oracle 21c 中表函數的增強使其在處理大量數據和複雜查詢方面更加高效，並且更好地支持並行處理和結果緩存功能。這些改進有助於提升數據處理性能，並使開發人員能夠更加靈活地使用表函數來解決各種業務需求。

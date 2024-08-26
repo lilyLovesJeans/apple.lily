@@ -1,0 +1,56 @@
+<hr>
+<h2 id="title-什麼是PDBdate-2024-08-26-19-17-34categories-Oracletags-Oracle-DataBase-description-什麼是PDB"><a href="#title-什麼是PDBdate-2024-08-26-19-17-34categories-Oracletags-Oracle-DataBase-description-什麼是PDB" class="headerlink" title="title: 什麼是PDBdate: 2024-08-26 19:17:34categories: Oracletags:  [Oracle , DataBase]description:  什麼是PDB"></a>title: 什麼是PDB<br>date: 2024-08-26 19:17:34<br>categories: Oracle<br>tags:  [Oracle , DataBase]<br>description:  什麼是PDB</h2><p>PDB 指的是 Pluggable Database（可插拔資料庫），這是 Oracle 從 12c 版本開始引入的一種新的資料庫架構。</p>
+<h2>PDB 的主要特點和作用</h2>
+
+<p>多租戶架構:<br> . CDB（Container Database）: 是容器資料庫，負責管理系統資源並包含一組 PDB。<br> . PDB: 是可插拔資料庫，可以看作是一個獨立的資料庫，但它共享 CDB 的系統資源。一個 CDB 可以包含多個 PDB。</p>
+<p>資源隔離與管理:<br> . 每個 PDB 都是獨立的資料庫實例，擁有自己的使用者、資料字典、資料檔案等，但共享 CDB 的內核進程和記憶體。<br> . PDB 之間是相互隔離的，這意味著它們可以獨立備份、恢復和管理。</p>
+<p>靈活性與便捷性:<br> . PDB 可以在不同的 CDB 之間輕鬆遷移，支持資料庫的快速克隆和移動。<br> . 簡化了資料庫的管理和維護，例如，可以在不影響其他 PDB 的情況下關閉或重啟某個 PDB。</p>
+<p>多租戶環境:<br>. PDB 的引入使得一個資料庫實例可以服務於多個租戶（即多個獨立的使用者或應用），這對於雲計算和大型企業環境非常有用。</p>
+<h2>什麼時候使用 PDB</h2>
+ . 多租戶環境: 當需要在一個資料庫實例中托管多個獨立的資料庫時，PDB 是最佳選擇。這種架構在雲服務和大規模應用中非常流行。
+ . 資料庫整合: 企業通常需要將多個獨立的資料庫整合到一個統一的平台上，PDB 提供了這種靈活性和管理便利性。
+ . 資源優化: 在需要優化硬體資源使用的場景下，使用 PDB 可以減少每個資料庫的系統開銷，最大化硬體資源的利用率。
+<h2>PDB 的優勢</h2>
+ . 降低資源消耗: 共享 CDB 的資源，降低了每個資料庫實例的資源佔用。
+ . 簡化管理: 可以通過單個容器資料庫（CDB）對多個資料庫進行集中管理，簡化資料庫的維護和操作。
+ . 靈活的資料庫移動性: PDB 可以輕鬆地在不同的 CDB 之間遷移，增強了資料庫的靈活性。
+
+<p>PDB 是 Oracle 資料庫多租戶架構的核心，廣泛應用於需要高效資源利用和簡化資料庫管理的場景。</p>
+<h2>PDB  在 windows 系統實際上如何運作? 例如要將某個庫料庫檔案移至另一個硬碟</h2>
+<h2>PDB 在 Windows 系統中的運作方式</h2>
+
+<p><strong>存儲位置</strong>: 在 Windows 系統中，PDB 的數據文件（包括表空間、控制文件、日誌文件等）存儲在磁碟上的特定目錄中。默認情況下，這些文件通常存放在 Oracle 安裝目錄下的 ORACLE_HOME 目錄中。</p>
+<p><strong>PDB 的管理</strong>: PDB 是通過 SQL*Plus 或 Oracle SQL Developer 等工具來管理的。管理員可以啟動、關閉、創建、刪除 PDB，以及進行其他操作。</p>
+<p><strong>文件系統的管理</strong>: 每個 PDB 的數據文件可以位於不同的磁碟驅動器或目錄中。Windows 系統的文件系統操作，比如複製、移動文件等，同樣適用於 PDB 的數據文件。</p>
+<h3>將 PDB 數據庫文件移動到另一個硬碟</h3>
+如果你希望將某個 PDB 的數據庫文件移動到另一個硬碟上，需要按照以下步驟進行操作：
+
+<p><strong>步驟 1: 關閉 PDB</strong> 首先，你需要將 PDB 關閉以確保數據文件不會被使用。</p>
+<pre><code class="sql">ALTER PLUGGABLE DATABASE pdb_name CLOSE IMMEDIATE;
+</code></pre>
+<p><strong>步驟 2: 確定 PDB 數據文件的位置</strong> 使用以下 SQL 查詢來確定 PDB 數據文件的當前存儲位置：</p>
+<pre><code class="sql">SELECT file_name FROM dba_data_files WHERE tablespace_name IN (
+  SELECT tablespace_name FROM dba_tablespaces WHERE con_id = (SELECT con_id FROM v$pdbs WHERE pdb_name = &#39;PDB_NAME&#39;)
+);
+</code></pre>
+<p><strong>步驟 3: 移動數據文件</strong> 使用 Windows 文件管理器或命令行工具（如 xcopy 或 robocopy）將文件從原始位置移動到目標硬碟。</p>
+<p><strong>步驟 4: 更新文件路徑</strong> 移動文件後，需要在 Oracle 中更新 PDB 的文件路徑。使用 ALTER DATABASE 語句來修改文件的位置。</p>
+<pre><code class="sql">
+ALTER PLUGGABLE DATABASE pdb_name 
+RENAME FILE &#39;C:\old_path\pdb_datafile.dbf&#39; TO &#39;D:\new_path\pdb_datafile.dbf&#39;;
+</code></pre>
+<p><strong>步驟 5: 啟動 PDB</strong> 最後，重新啟動 PDB：</p>
+<pre><code class="sql">ALTER PLUGGABLE DATABASE pdb_name OPEN;
+</code></pre>
+<h2>注意事項</h2>
+
+<p> . 權限: 確保 Oracle 用戶對目標硬碟的目錄有足夠的讀寫權限。<br> . 備份: 在移動文件前，建議先對 PDB 數據進行備份，以防出現意外問題。<br> . 確保在移動文件時 Oracle 服務處於適當狀態，通常建議在 PDB 關閉的情況下進行文件操作。</p>
+<h2>總結</h2>
+在 Windows 系統中，將 PDB 數據庫文件移動到另一個硬碟上主要涉及到關閉 PDB、移動文件、更新路徑和重新啟動 PDB 的過程。通過這些步驟，你可以靈活地管理 PDB 的存儲位置，從而優化存儲資源的使用。
+
+
+
+
+
+
+
