@@ -1,0 +1,33 @@
+<hr>
+<h2 id="title-2024-08-30-JavaScript-系列五：第5課-──-學會-AJAX-錯誤處理date-2024-08-28-05-01-55categories-OneDayOneNotetags-OneNote-Javascript-description-2024-08-30-JavaScript-系列五：第5課-──-學會-AJAX-錯誤處理"><a href="#title-2024-08-30-JavaScript-系列五：第5課-──-學會-AJAX-錯誤處理date-2024-08-28-05-01-55categories-OneDayOneNotetags-OneNote-Javascript-description-2024-08-30-JavaScript-系列五：第5課-──-學會-AJAX-錯誤處理" class="headerlink" title="title: 2024-08-30 JavaScript 系列五：第5課 ── 學會 AJAX 錯誤處理date: 2024-08-28 05:01:55categories: OneDayOneNotetags:  [OneNote, Javascript]description:  2024-08-30 JavaScript 系列五：第5課 ── 學會 AJAX 錯誤處理"></a>title: 2024-08-30 JavaScript 系列五：第5課 ── 學會 AJAX 錯誤處理<br>date: 2024-08-28 05:01:55<br>categories: OneDayOneNote<br>tags:  [OneNote, Javascript]<br>description:  2024-08-30 JavaScript 系列五：第5課 ── 學會 AJAX 錯誤處理</h2><p>JavaScript 系列五：第5課 ── 學會 AJAX 錯誤處理<br>課程目標<br>認識 AJAX 錯誤處理</p>
+<p>課程內容<br>在前一課，我們說過以下的話</p>
+<p>有些任務現在還不會立刻執行，但我先把要執行的任務交待清楚，時間點到的時候，就執行</p>
+<p>以 UI 動作來說，時間點就是 onclick 之時、onchange 之時</p>
+<p>以 AJAX 動作來說，時間點就是 拿到主機回應 之時</p>
+<p>實際上，AJAX 的時間點，除了 拿到主機回應 之時，還有一個，就是 發現主機回應失敗 之時</p>
+<p>把原本的範例</p>
+<pre><code class="js">fetch(&#39;https://fakestoreapi.com/users/1&#39;)
+  .then(res=&gt;res.json())
+  .then(json=&gt;console.log(json))
+故意打錯字試試看，然後加上錯誤處理機制
+
+fetch(&#39;https://fakestoreapi.com/users1&#39;)
+  .then(res=&gt;res.json())
+  .then(json=&gt;console.log(json))
+  .catch(error =&gt; {
+    alert(error);
+  })
+</code></pre>
+<p>就跟 .then() 函式把任務傳進去類似，.catch() 一樣是把任務傳進去，只是改傳「AJAX 失敗的時候要執行的任務」</p>
+<p>這邊只是舉例，才故意打錯字</p>
+<p>實務上，AJAX 失敗可能是</p>
+<p>主機故障、或者過度忙碌無法回應<br>呼叫 API 時，登入驗證資訊過期<br>API 設計成有額度限制，用戶額度耗完了，被主機拒絕<br>用戶自己的網路斷線了（網頁打開時正常，但發送 AJAX 時已斷線）<br>等等很多可能，要看 API 主機是如何設計的</p>
+<p>實務上，.catch() 內要提醒使用者，剛才的動作失敗，請他重新嘗試</p>
+<p>我個人通常就用 alert 跳一個訊息「抱歉，系統出現錯誤，請稍後重新嘗試。若持續出錯，請聯絡客服信箱」就結束了</p>
+<p>但在公司的大型專案，需要更好 UX 的話，請與設計師討論後決定如何優雅地處理錯誤情境</p>
+<p>課後作業<br>接續前一課的作業，請加上錯誤處理機制</p>
+<p>用 alert 跳出 抱歉，請稍後重新嘗試。 就好了</p>
+<p>接著，請把電腦的 wifi 或有線網路，斷線</p>
+<p>然後點擊「Load Products」按鈕，應該會看到錯誤提示訊息</p>
+<p>做出以上功能，你就完成這次的課程目標了！</p>
+<p>原文取自: <a href="https://codelove.tw/@howtomakeaturn/post/yx0Ag3">https://codelove.tw/@howtomakeaturn/post/yx0Ag3</a> by  站長阿川  </p>
