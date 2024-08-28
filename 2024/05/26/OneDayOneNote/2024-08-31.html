@@ -1,0 +1,95 @@
+<hr>
+<h2 id="title-2024-08-31-JavaScript-系列五：第6課-──-學會-AJAX-與各種-HTTP-請求方法date-2024-08-28-23-58-28categories-OneDayOneNotetags-OneNote-Javascript-description-2024-08-31-JavaScript-系列五：第6課-──-學會-AJAX-與各種-HTTP-請求方法"><a href="#title-2024-08-31-JavaScript-系列五：第6課-──-學會-AJAX-與各種-HTTP-請求方法date-2024-08-28-23-58-28categories-OneDayOneNotetags-OneNote-Javascript-description-2024-08-31-JavaScript-系列五：第6課-──-學會-AJAX-與各種-HTTP-請求方法" class="headerlink" title="title: 2024-08-31 JavaScript 系列五：第6課 ── 學會 AJAX 與各種 HTTP 請求方法date: 2024-08-28 23:58:28categories: OneDayOneNotetags:  [OneNote, Javascript]description:  2024-08-31 JavaScript 系列五：第6課 ── 學會 AJAX 與各種 HTTP 請求方法"></a>title: 2024-08-31 JavaScript 系列五：第6課 ── 學會 AJAX 與各種 HTTP 請求方法<br>date: 2024-08-28 23:58:28<br>categories: OneDayOneNote<br>tags:  [OneNote, Javascript]<br>description:  2024-08-31 JavaScript 系列五：第6課 ── 學會 AJAX 與各種 HTTP 請求方法</h2><p>JavaScript 系列五：第6課 ── 學會 AJAX 與各種 HTTP 請求方法<br>課程目標<br>認識 AJAX 與不同的 HTTP 請求方法</p>
+<p>課程內容<br>HTTP 協定中，HTTP Request 有多種不同的方法</p>
+<p>前面幾課的寫法，都是 HTTP GET 類型，這一課來接著談談更多不同的請求方法</p>
+<p>繼續使用模擬電商網站的範例 API</p>
+<p>使用 HTTP POST 新增一筆用戶資料</p>
+<pre><code class="js">fetch(&#39;https://fakestoreapi.com/users&#39;, {
+    method: &quot;POST&quot;,
+    body: JSON.stringify({
+      email: &#39;John@gmail.com&#39;,
+      username: &#39;johnd&#39;,
+      password: &#39;m38rmF$&#39;,
+      name: {
+        firstname: &#39;John&#39;,
+        lastname: &#39;Doe&#39;
+      },
+      address: {
+        city: &#39;kilcoole&#39;,
+        street: &#39;7835 new road&#39;,
+        number: 3,
+        zipcode: &#39;12926-3874&#39;,
+        geolocation: {
+          lat: &#39;-37.3159&#39;,
+          long: &#39;81.1496&#39;
+        }
+      },
+      phone: &#39;1-570-236-7033&#39;
+    })
+  })
+  .then(res =&gt; res.json())
+  .then(json =&gt; console.log(json))
+</code></pre>
+<p>在這個範例中，fetch() 函式的第二個參數是一個物件，把 method 屬性設定好，然後 body 代表 HTTP body 的內容</p>
+<p>必須是字串，所以用 JSON.stringify() 把物件轉換成 JSON 字串</p>
+<p>整段看不太懂沒關係，需要了解 HTTP 協定的細節才比較看得懂，現在就先照做即可</p>
+<p>要注意我們是用模擬電商 API，一切都是模擬的</p>
+<p>最後主機會回應一個新的用戶 ID，看起來是新增成功了，但實際上並沒有東西新增到資料庫喔～</p>
+<p>使用 HTTP PUT 更新一筆用戶資料</p>
+<pre><code class="js">fetch(&#39;https://fakestoreapi.com/users/7&#39;, {
+    method: &quot;PUT&quot;,
+    body: JSON.stringify({
+      email: &#39;John@gmail.com&#39;,
+      username: &#39;johnd&#39;,
+      password: &#39;m38rmF$&#39;,
+      name: {
+        firstname: &#39;John&#39;,
+        lastname: &#39;Doe&#39;
+      },
+      address: {
+        city: &#39;kilcoole&#39;,
+        street: &#39;7835 new road&#39;,
+        number: 3,
+        zipcode: &#39;12926-3874&#39;,
+        geolocation: {
+          lat: &#39;-37.3159&#39;,
+          long: &#39;81.1496&#39;
+        }
+      },
+      phone: &#39;1-570-236-7033&#39;
+    })
+  })
+  .then(res =&gt; res.json())
+  .then(json =&gt; console.log(json))
+</code></pre>
+<p>在這個範例中，去更新用戶 ID 為 7 的使用者資料</p>
+<p>方法設定為 PUT，body 一樣放整個 JSON 字串</p>
+<p>使用 HTTP DELETE 刪除一筆用戶資料</p>
+<pre><code class="js">fetch(&#39;https://fakestoreapi.com/users/6&#39;, {
+    method: &quot;DELETE&quot;
+  })
+  .then(res =&gt; res.json())
+  .then(json =&gt; console.log(json))
+</code></pre>
+<p>在這個範例中，去刪除用戶 ID 為 6 的使用者資料</p>
+<p>方法設定為 DELETE，不需要提供 body</p>
+<p>實務上，API 設計時，有人偏好這種 GET POST PUT DELETE 都用到的寫法</p>
+<p>有人則偏好只使用 GET 與 POST</p>
+<p>撈資料一律都用 GET，除此之外，會更新到資料庫內容的動作，通通都用 POST</p>
+<p>這屬於主觀偏好，沒有對錯問題，團隊討論後有共識即可</p>
+<p>上面的範例，用戶參數都是在網址最後加上 &#x2F;{ID} 這種格式帶入</p>
+<p>實務上，GET 參數也可能用 ?id&#x3D;{ID} 這種格式</p>
+<p>而在 POST 或其他類型的請求中，用戶參數也可能直接加在<code> body: JSON.stringify({</code> 裡面的屬性之中</p>
+<p>各種做法，都可以，一樣屬於主觀偏好，沒有對錯問題，團隊討論後有共識即可</p>
+<p>課後作業<br>接續上一課的作業，加上刪除按鈕</p>
+<p>請翻閱 API 文件說明 <a href="https://fakestoreapi.com/docs">https://fakestoreapi.com/docs</a></p>
+<p>找出「刪除商品」的 API</p>
+<p>把每個商品的 html 改成</p>
+<pre><code class="html">&lt;li&gt;
+  &lt;span&gt;xxx&lt;/span&gt;
+  &lt;button&gt;Details&lt;/button&gt;
+  &lt;button&gt;Delete&lt;/button&gt;
+&lt;/li&gt;
+</code></pre>
+<p>點擊 Delete 按鈕，就發送 API 出去</p>
+<p>主機回應成功的話，就把整個<code>&lt;li&gt;</code>元素刪掉<br>主機回應失敗的話，就跳 alert 提醒用戶稍後再試<br>做出以上功能，你就完成這次的課程目標了！</p>
