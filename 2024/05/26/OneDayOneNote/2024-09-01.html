@@ -1,0 +1,53 @@
+<hr>
+<h2 id="title-2024-09-01-JavaScript-系列五：第7課-──-學會-AJAX-與-data-attribute-的結合date-2024-08-30-23-44-41categories-OneDayOneNotetags-OneNote-Javascript-description-2024-09-01-JavaScript-系列五：第7課-──-學會-AJAX-與-data-attribute-的結合"><a href="#title-2024-09-01-JavaScript-系列五：第7課-──-學會-AJAX-與-data-attribute-的結合date-2024-08-30-23-44-41categories-OneDayOneNotetags-OneNote-Javascript-description-2024-09-01-JavaScript-系列五：第7課-──-學會-AJAX-與-data-attribute-的結合" class="headerlink" title="title: 2024-09-01 JavaScript 系列五：第7課 ── 學會 AJAX 與 data attribute 的結合date: 2024-08-30 23:44:41categories: OneDayOneNotetags:  [OneNote, Javascript]description:  2024-09-01 JavaScript 系列五：第7課 ── 學會 AJAX 與 data attribute 的結合"></a>title: 2024-09-01 JavaScript 系列五：第7課 ── 學會 AJAX 與 data attribute 的結合<br>date: 2024-08-30 23:44:41<br>categories: OneDayOneNote<br>tags:  [OneNote, Javascript]<br>description:  2024-09-01 JavaScript 系列五：第7課 ── 學會 AJAX 與 data attribute 的結合</h2><p>JavaScript 系列五：第7課 ── 學會 AJAX 與 data attribute 的結合<br>課程目標<br>學會結合 AJAX 與 data attribute 來製作應用程式</p>
+<p>課程內容<br>打造應用程式的時候，有些資料不會直接顯示在畫面上，但之後的其他動作會用到</p>
+<p>這時可以把資料存在 data attribute 裡面</p>
+<pre><code class="html">&lt;div data-email=&quot;don&#39;t know yet&quot; data-phone=&quot;0987654321&quot;&gt;
+  &lt;span&gt;&lt;/span&gt;
+  &lt;button onclick=&quot;showEmail()&quot;&gt;show email&lt;/button&gt;
+  &lt;button onclick=&quot;showPhone()&quot;&gt;show phone&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;hr&gt;
+
+&lt;button onclick=&quot;load()&quot;&gt;Load User&lt;/button&gt;
+</code></pre>
+<pre><code class="js">function showEmail()
+{
+    alert(document.querySelector(&#39;div&#39;).dataset.email)
+}
+
+function showPhone()
+{
+    alert(document.querySelector(&#39;div&#39;).dataset.phone)
+}
+
+function load()
+{
+  fetch(&#39;https://fakestoreapi.com/users/1&#39;)
+    .then(res =&gt; res.json())
+    .then(json =&gt; {
+      const element = document.querySelector(&#39;div&#39;);
+      element.querySelector(&#39;span&#39;).textContent = json.username;
+      element.dataset.email = json.email;
+      element.dataset.phone = json.phone;
+    })
+}
+</code></pre>
+<p>到 jsfiddle 跑跑看，按鈕到處點點看，就知道 data attribute 的用法了</p>
+<p>非常簡單，寫 html 的時候，直接設定 data-* 屬性就是了</p>
+<p>寫 js 的時候，直接存取 DOM 元素的 dataset 屬性就是了</p>
+<p>如果 AJAX 撈到了大量資料，但畫面上只需先顯示一部分資料</p>
+<p>那麼就可以用 data attribute 先把資料整理起來放著</p>
+<p>之後要擴充這個應用程式，或者有同事接手維護，要拿資料時，就很方便，也可以避免一直重複發 AJAX 拿同樣的資料</p>
+<p>課後作業<br>接續上一課的作業，這次要改得更漂亮</p>
+<p>點擊 Details 按鈕，本來是連續跳出三個 alert</p>
+<p>實務上不可能用連續跳出 alert 來說明商品細節，太醜了</p>
+<p>這次要拿掉 alert，改成跳出一個 modal 互動視窗元件，</p>
+<p>你可以使用之前課程中，自己製作過的 modal 元件</p>
+<p>也可以上網找套件，找一款現成的使用</p>
+<p>這個 modal 視窗要包含以下資訊</p>
+<p>名稱<br>分類<br>描述<br>圖片<br>價格<br>請使用 data attribute 將資料存放在 <li> 元素</p>
+<p>點擊 Details 按鈕時，再將這些資料撈出來，放進 modal 元件內</p>
+<p>做出以上功能，你就完成這次的課程目標了！</p>
+<p>文章取自: <a href="https://codelove.tw/@howtomakeaturn/post/X3KXRa">https://codelove.tw/@howtomakeaturn/post/X3KXRa</a><br>by 站長阿川  </p>
