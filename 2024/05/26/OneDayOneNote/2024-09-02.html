@@ -1,0 +1,136 @@
+<hr>
+<h2 id="title-2024-09-02-JavaScript-系列六：第1課-──-認識-data-model-與-render-functiondate-2024-09-05-04-28-30categories-OneDayOneNotetags-OneNote-Javascript-description-2024-09-02-JavaScript-系列六：第1課-──-認識-data-model-與-render-function"><a href="#title-2024-09-02-JavaScript-系列六：第1課-──-認識-data-model-與-render-functiondate-2024-09-05-04-28-30categories-OneDayOneNotetags-OneNote-Javascript-description-2024-09-02-JavaScript-系列六：第1課-──-認識-data-model-與-render-function" class="headerlink" title="title: 2024-09-02 JavaScript 系列六：第1課 ── 認識 data model 與 render functiondate: 2024-09-05 04:28:30categories: OneDayOneNotetags:  [OneNote, Javascript]description:  2024-09-02 JavaScript 系列六：第1課 ── 認識 data model 與 render function"></a>title: 2024-09-02 JavaScript 系列六：第1課 ── 認識 data model 與 render function<br>date: 2024-09-05 04:28:30<br>categories: OneDayOneNote<br>tags:  [OneNote, Javascript]<br>description:  2024-09-02 JavaScript 系列六：第1課 ── 認識 data model 與 render function</h2><p>JavaScript 系列六：第1課 ── 認識 data model 與 render function<br>課程目標<br>認識 data model 的觀念</p>
+<p>認識 render function 的觀念</p>
+<p>課程內容<br>如果電商網站上有這樣的內容</p>
+<pre><code class="html">&lt;div&gt;
+  商品名稱：&lt;span id=&quot;name&quot;&gt;冬季外套&lt;/span&gt;
+  價格：&lt;span id=&quot;price&quot;&gt;$1,990&lt;/span&gt;
+  分類：&lt;span id=&quot;category&quot;&gt;女裝&lt;/span&gt;
+  剩餘數量：&lt;span id=&quot;remain&quot;&gt;5&lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+<p>在網站上的任何操作，菜鳥工程師會覺得就直接去更新 DOM 就好了</p>
+<p>在程式還小的時候，這樣開發沒問題</p>
+<p>但是當專案變大之後，這樣的開發會遇到問題，程式碼會越來越難維護</p>
+<p>這種很難維護的寫法，我稱之為「在各處胡亂更新各處 DOM」的寫法</p>
+<p>有經驗的工程師在開發的時候，會習慣將應用程式的「狀態」與程式的其他部份分開來</p>
+<p>這個「狀態」我們叫 state 或者 model 或者 data model</p>
+<p>實務上，這三種名詞都很常看到，我在文章中也會混雜著交互使用</p>
+<p>同樣的電商頁面，資深工程師會覺得看到了以下 data model</p>
+<pre><code class="js">var product = {
+  name: &quot;冬季外套&quot;,
+  price: 1990,
+  category: &quot;women&quot;,
+  remain: 5
+}
+</code></pre>
+<p>而在開發各種功能的時候，資深工程師會覺得，一律先更新 data model，再接著拿 data model 來呈現出 UI 比較好</p>
+<p>這樣在開發複雜應用程式的時候，相關函式一律只要關心 data model 就好，不用管 UI</p>
+<p>在思考的時候，腦子的負擔會小很多，因為你變得只要想著應用程式的「狀態」就好</p>
+<p>那麽只更新 data model，那何時更新 UI 呢？</p>
+<p>這邊介紹一個簡單的方法，叫做 render function</p>
+<p>就是放一個 root 元素，作為程式 UI 的容器</p>
+<p>接著寫一個 render 函式，來根據 data model，畫出全部 UI 到 root 裡面</p>
+<p>這個 render 函式有三個注意事項</p>
+<p>第一行要先清空 UI<br>在所有跟「狀態」有關操作的最後一行，都要呼叫這個函式<br>所有 DOM 操作一律由 render 函式處理（其他全部函式，通通禁止更新 DOM）<br>請在 jsfiddle 嘗試以下範例</p>
+<pre><code class="html">&lt;div id=&quot;root&quot;&gt;
+
+&lt;/div&gt;
+&lt;button onclick=&quot;decrease()&quot;&gt;decrese&lt;/button&gt;
+&lt;button onclick=&quot;increase()&quot;&gt;increase&lt;/button&gt;
+</code></pre>
+<pre><code class="js">var product = {
+  name: &quot;冬季外套&quot;,
+  price: 1990,
+  category: &quot;women&quot;,
+  remain: 5
+};
+
+render();
+
+function render()
+{
+  var root = document.querySelector(&#39;#root&#39;);
+  root.textContent = &quot;&quot;;
+
+  var name = document.createElement(&#39;div&#39;);
+  name.textContent = &#39;商品名稱：&#39; + product.name;
+  var price = document.createElement(&#39;div&#39;);
+  price.textContent = &#39;價格：&#39; + product.price;
+  var category = document.createElement(&#39;div&#39;);
+  category.textContent = &#39;分類：&#39; + product.category;
+  var remain = document.createElement(&#39;div&#39;);
+  remain.textContent = &#39;剩餘數量：&#39; + product.remain;
+
+  root.append(name);
+  root.append(price);
+  root.append(category);
+  root.append(remain);
+}
+
+function decrease()
+{
+  product.remain = product.remain - 1;
+
+  render();
+}
+
+function increase()
+{
+  product.remain = product.remain + 1;
+
+  render();
+}
+</code></pre>
+<p>這樣的寫法，很神奇地，關於 DOM 的操作通通放在 render 即可</p>
+<p>雖然 render 函式變得很多行、很大、寫起來比較麻煩</p>
+<p>但是除了 render 以外的函式，通通都變簡單了</p>
+<p>這是「短期麻煩，長期方便」的一個明顯例子</p>
+<p>課後作業<br>在之前的課程，你開發過一個「待辦事項小工具」，甚至還加上了 local storage 儲存功能</p>
+<p>在開發的過程中，我相信你有感覺到，程式碼越來越大團了，新功能雖然寫得出來，但越來越難寫了</p>
+<p>回頭看看當初的程式碼，你會發現讀起來不容易，要再維護、擴充功能，也都不太容易</p>
+<p>讓我們使用新方法，重新開發一次這個小工具</p>
+<p>請使用 <a href="https://jsfiddle.net/">https://jsfiddle.net</a> 並且建立一份新的 fiddle</p>
+<p>這一課，不開發任何功能，先實作把 data model 給 render 出來的效果</p>
+<p>請使用以下 html 作為 root 元素</p>
+<pre><code class="html">&lt;div id=&quot;root&quot;&gt;
+&lt;/div&gt;
+</code></pre>
+<p>然後複製以下 js 使用，將 render 函式完成</p>
+<pre><code class="js">var todos = [
+  {
+    title: &quot;倒垃圾&quot;
+  },
+  {
+    title: &quot;繳電話費&quot;
+  },
+  {
+    title: &quot;採買本週食材&quot;
+  },
+];
+
+function render()
+{
+  // 請寫出此函式內容
+}
+
+render();
+</code></pre>
+<p>在這段 js 中，todos 陣列，就是我們的 data model</p>
+<p>最後，在畫面上，應該會出現以下內容</p>
+<pre><code class="html">&lt;div id=&quot;root&quot;&gt;
+  &lt;ul&gt;
+    &lt;li&gt;
+        &lt;span&gt;倒垃圾&lt;/span&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+        &lt;span&gt;繳電話費&lt;/span&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+        &lt;span&gt;採買本週食材&lt;/span&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+</code></pre>
+<p>做出以上功能，你就完成這次的課程目標了！</p>
+<p>文章取自: <a href="https://codelove.tw/@howtomakeaturn/post/9xLo5q">https://codelove.tw/@howtomakeaturn/post/9xLo5q</a><br>by 站長阿川  </p>

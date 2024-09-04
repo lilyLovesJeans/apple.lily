@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2024-09-02 JavaScript 系列六：第1課 ── 認識 data model 與 render function">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024-09-02 JavaScript 系列六：第1課 ── 認識 data model 與 render function">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2024/09/05/OneDayOneNote/2024-09-02/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2024-09-02 JavaScript 系列六：第1課 ── 認識 data model 與 render function">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2024-09-04T20:28:30.000Z">
+<meta property="article:modified_time" content="2024-09-04T20:33:04.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content="OneNote">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2024/09/05/OneDayOneNote/2024-09-02/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2024/09/05/OneDayOneNote/2024-09-02/","path":"2024/09/05/OneDayOneNote/2024-09-02/","title":"2024-09-02 JavaScript 系列六：第1課 ── 認識 data model 與 render function"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2024-09-02 JavaScript 系列六：第1課 ── 認識 data model 與 render function | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">149</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2024/09/05/OneDayOneNote/2024-09-02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2024-09-02 JavaScript 系列六：第1課 ── 認識 data model 與 render function | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2024-09-02 JavaScript 系列六：第1課 ── 認識 data model 與 render function">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2024-09-02 JavaScript 系列六：第1課 ── 認識 data model 與 render function
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2024-09-05 04:28:30 / 修改時間：04:33:04" itemprop="dateCreated datePublished" datetime="2024-09-05T04:28:30+08:00">2024-09-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2024-09-02 JavaScript 系列六：第1課 ── 認識 data model 與 render function</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>JavaScript 系列六：第1課 ── 認識 data model 與 render function<br>課程目標<br>認識 data model 的觀念</p>
+<p>認識 render function 的觀念</p>
+<p>課程內容<br>如果電商網站上有這樣的內容</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  商品名稱：<span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;name&quot;</span>&gt;</span>冬季外套<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  價格：<span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;price&quot;</span>&gt;</span>$1,990<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  分類：<span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;category&quot;</span>&gt;</span>女裝<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  剩餘數量：<span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;remain&quot;</span>&gt;</span>5<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在網站上的任何操作，菜鳥工程師會覺得就直接去更新 DOM 就好了</p>
+<p>在程式還小的時候，這樣開發沒問題</p>
+<p>但是當專案變大之後，這樣的開發會遇到問題，程式碼會越來越難維護</p>
+<p>這種很難維護的寫法，我稱之為「在各處胡亂更新各處 DOM」的寫法</p>
+<p>有經驗的工程師在開發的時候，會習慣將應用程式的「狀態」與程式的其他部份分開來</p>
+<p>這個「狀態」我們叫 state 或者 model 或者 data model</p>
+<p>實務上，這三種名詞都很常看到，我在文章中也會混雜著交互使用</p>
+<p>同樣的電商頁面，資深工程師會覺得看到了以下 data model</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> product = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;冬季外套&quot;</span>,</span><br><span class="line">  <span class="attr">price</span>: <span class="number">1990</span>,</span><br><span class="line">  <span class="attr">category</span>: <span class="string">&quot;women&quot;</span>,</span><br><span class="line">  <span class="attr">remain</span>: <span class="number">5</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>而在開發各種功能的時候，資深工程師會覺得，一律先更新 data model，再接著拿 data model 來呈現出 UI 比較好</p>
+<p>這樣在開發複雜應用程式的時候，相關函式一律只要關心 data model 就好，不用管 UI</p>
+<p>在思考的時候，腦子的負擔會小很多，因為你變得只要想著應用程式的「狀態」就好</p>
+<p>那麽只更新 data model，那何時更新 UI 呢？</p>
+<p>這邊介紹一個簡單的方法，叫做 render function</p>
+<p>就是放一個 root 元素，作為程式 UI 的容器</p>
+<p>接著寫一個 render 函式，來根據 data model，畫出全部 UI 到 root 裡面</p>
+<p>這個 render 函式有三個注意事項</p>
+<p>第一行要先清空 UI<br>在所有跟「狀態」有關操作的最後一行，都要呼叫這個函式<br>所有 DOM 操作一律由 render 函式處理（其他全部函式，通通禁止更新 DOM）<br>請在 jsfiddle 嘗試以下範例</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;root&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">&quot;decrease()&quot;</span>&gt;</span>decrese<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">&quot;increase()&quot;</span>&gt;</span>increase<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> product = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;冬季外套&quot;</span>,</span><br><span class="line">  <span class="attr">price</span>: <span class="number">1990</span>,</span><br><span class="line">  <span class="attr">category</span>: <span class="string">&quot;women&quot;</span>,</span><br><span class="line">  <span class="attr">remain</span>: <span class="number">5</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="title function_">render</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">render</span>(<span class="params"></span>)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">var</span> root = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;#root&#x27;</span>);</span><br><span class="line">  root.<span class="property">textContent</span> = <span class="string">&quot;&quot;</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> name = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>);</span><br><span class="line">  name.<span class="property">textContent</span> = <span class="string">&#x27;商品名稱：&#x27;</span> + product.<span class="property">name</span>;</span><br><span class="line">  <span class="keyword">var</span> price = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>);</span><br><span class="line">  price.<span class="property">textContent</span> = <span class="string">&#x27;價格：&#x27;</span> + product.<span class="property">price</span>;</span><br><span class="line">  <span class="keyword">var</span> category = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>);</span><br><span class="line">  category.<span class="property">textContent</span> = <span class="string">&#x27;分類：&#x27;</span> + product.<span class="property">category</span>;</span><br><span class="line">  <span class="keyword">var</span> remain = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>);</span><br><span class="line">  remain.<span class="property">textContent</span> = <span class="string">&#x27;剩餘數量：&#x27;</span> + product.<span class="property">remain</span>;</span><br><span class="line"></span><br><span class="line">  root.<span class="title function_">append</span>(name);</span><br><span class="line">  root.<span class="title function_">append</span>(price);</span><br><span class="line">  root.<span class="title function_">append</span>(category);</span><br><span class="line">  root.<span class="title function_">append</span>(remain);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">decrease</span>(<span class="params"></span>)</span><br><span class="line">&#123;</span><br><span class="line">  product.<span class="property">remain</span> = product.<span class="property">remain</span> - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">render</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">increase</span>(<span class="params"></span>)</span><br><span class="line">&#123;</span><br><span class="line">  product.<span class="property">remain</span> = product.<span class="property">remain</span> + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">render</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>這樣的寫法，很神奇地，關於 DOM 的操作通通放在 render 即可</p>
+<p>雖然 render 函式變得很多行、很大、寫起來比較麻煩</p>
+<p>但是除了 render 以外的函式，通通都變簡單了</p>
+<p>這是「短期麻煩，長期方便」的一個明顯例子</p>
+<p>課後作業<br>在之前的課程，你開發過一個「待辦事項小工具」，甚至還加上了 local storage 儲存功能</p>
+<p>在開發的過程中，我相信你有感覺到，程式碼越來越大團了，新功能雖然寫得出來，但越來越難寫了</p>
+<p>回頭看看當初的程式碼，你會發現讀起來不容易，要再維護、擴充功能，也都不太容易</p>
+<p>讓我們使用新方法，重新開發一次這個小工具</p>
+<p>請使用 <a target="_blank" rel="noopener" href="https://jsfiddle.net/">https://jsfiddle.net</a> 並且建立一份新的 fiddle</p>
+<p>這一課，不開發任何功能，先實作把 data model 給 render 出來的效果</p>
+<p>請使用以下 html 作為 root 元素</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;root&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>然後複製以下 js 使用，將 render 函式完成</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> todos = [</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">title</span>: <span class="string">&quot;倒垃圾&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">title</span>: <span class="string">&quot;繳電話費&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">title</span>: <span class="string">&quot;採買本週食材&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">render</span>(<span class="params"></span>)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">// 請寫出此函式內容</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">render</span>();</span><br></pre></td></tr></table></figure>
+<p>在這段 js 中，todos 陣列，就是我們的 data model</p>
+<p>最後，在畫面上，應該會出現以下內容</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;root&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span>&gt;</span>倒垃圾<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span>&gt;</span>繳電話費<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span>&gt;</span>採買本週食材<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>做出以上功能，你就完成這次的課程目標了！</p>
+<p>文章取自: <a target="_blank" rel="noopener" href="https://codelove.tw/@howtomakeaturn/post/9xLo5q">https://codelove.tw/@howtomakeaturn/post/9xLo5q</a><br>by 站長阿川  </p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/Javascript/" rel="tag"># Javascript</a>
+              <a href="/apple.lily/tags/OneNote/" rel="tag"># OneNote</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/08/30/JavaScriptBasic-05/" rel="prev" title="自學網頁の嬰兒教材：JavaScript（五）—— 打造功能豐富的前端應用程式 作業分享">
+                  <i class="fa fa-angle-left"></i> 自學網頁の嬰兒教材：JavaScript（五）—— 打造功能豐富的前端應用程式 作業分享
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
