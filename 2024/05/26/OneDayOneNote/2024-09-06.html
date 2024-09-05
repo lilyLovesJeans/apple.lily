@@ -1,0 +1,91 @@
+<hr>
+<h2 id="title-2024-09-06-JavaScript-系列六：第3課-──-認識匿名函式date-2024-09-05-22-36-11categories-OneDayOneNotetags-OneNote-Javascript-description-2024-09-06-JavaScript-系列六：第3課-──-認識匿名函式"><a href="#title-2024-09-06-JavaScript-系列六：第3課-──-認識匿名函式date-2024-09-05-22-36-11categories-OneDayOneNotetags-OneNote-Javascript-description-2024-09-06-JavaScript-系列六：第3課-──-認識匿名函式" class="headerlink" title="title: 2024-09-06 JavaScript 系列六：第3課 ── 認識匿名函式date: 2024-09-05 22:36:11categories: OneDayOneNotetags:  [OneNote, Javascript]description: 2024-09-06 JavaScript 系列六：第3課 ── 認識匿名函式"></a>title: 2024-09-06 JavaScript 系列六：第3課 ── 認識匿名函式<br>date: 2024-09-05 22:36:11<br>categories: OneDayOneNote<br>tags:  [OneNote, Javascript]<br>description: 2024-09-06 JavaScript 系列六：第3課 ── 認識匿名函式</h2><p>JavaScript 系列六：第3課 ── 認識匿名函式<br>課程目標<br>能夠從陣列刪除元素</p>
+<p>認識 for in 迴圈寫法</p>
+<p>認識匿名函式（anonymous function）</p>
+<p>課程內容<br>在 JavaScript 中，刪除陣列元素的方法，有超多種</p>
+<p>這邊介紹一種根據索引刪除的方法</p>
+<pre><code class="js">var fruits = [&quot;apple&quot;, &quot;banana&quot;, &quot;orange&quot;];
+
+var index = 1;
+
+var num = 1;
+
+fruits.splice(index, num)
+
+console.log(fruits)
+</code></pre>
+<p><code>.splice() </code>函式第一個傳索引，第二個傳要刪的數量，通常就傳 1 就好了（一次刪一個即可）</p>
+<p>實務上，你就根據情況，隨便找一個能用的方式，來操作陣列就對了</p>
+<p>之前我們介紹過 for of 的寫法，很簡單好用</p>
+<pre><code class="js">var fruits = [&quot;apple&quot;, &quot;banana&quot;, &quot;orange&quot;];
+
+for (const fruit of fruits) {
+  console.log(fruit)
+}
+</code></pre>
+<p>這邊多介紹一個 for in 的寫法，需要索引時可以用</p>
+<pre><code class="js">var fruits = [&quot;apple&quot;, &quot;banana&quot;, &quot;orange&quot;];
+
+for (const index in fruits) {
+  const fruit = fruits[index];
+  console.log(index);
+  console.log(fruit);
+}
+</code></pre>
+<p>最後來介紹匿名函式（anonymous function）</p>
+<p>聽起來很玄，但其實就只是沒有名字的函式而已</p>
+<p>以下是有名字的函式</p>
+<pre><code class="js">function hello1()
+{
+  alert(&quot;hello1&quot;);
+}
+
+var hello2 = () =&gt; {
+  alert(&quot;hello2&quot;);
+}
+</code></pre>
+<p>以下是沒有名字的函式</p>
+<pre><code class="html">&lt;button&gt;
+  hello
+&lt;/button&gt;
+</code></pre>
+<pre><code class="js">var button = document.querySelector(&#39;button&#39;);
+
+button.onclick = () =&gt; {
+  alert(123)
+};
+</code></pre>
+<p>動態宣告一個函式，然後直接指派、使用，就是匿名函式</p>
+<p>在 JavaScript 中，很多時候，有些小任務，需要宣告新函式來用，但又懶得去設計命名那些的</p>
+<p>這時候就可以用匿名函式來節省時間</p>
+<p>雖然看起來有點不習慣、有點奇怪</p>
+<p>但在實務上，非常多地方，其實都會用到匿名函式，算是 JavaScript 非常好用的一個功能、特性</p>
+<p>課後作業<br>接續上一課作業，這次來實作「刪除事項」</p>
+<p>請更新 render 函式，讓 UI 看起來像這樣</p>
+<pre><code class="html">&lt;ul&gt;
+  &lt;li&gt;
+    &lt;span&gt;倒垃圾&lt;/span&gt;
+    &lt;button&gt;刪除&lt;/button&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;span&gt;繳電話費&lt;/span&gt;
+    &lt;button&gt;刪除&lt;/button&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;span&gt;採買本週食材&lt;/span&gt;
+    &lt;button&gt;刪除&lt;/button&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+<p>然後在過程中，動態產生 button 的時候，將 .onclick 屬性設定為一個 arrow function</p>
+<p>這個 arrow function 不能直接更新 DOM，而是先去更新 data model，接著 render，用這種方式間接更新 DOM</p>
+<pre><code class="js">deleteBtn.onclick = () =&gt; {
+  // 請寫出此 arrow function 內容（更新 todos 陣列）
+
+  render();
+};
+</code></pre>
+<p>提示：由於 javascript 中 hoisting 的特性，for loop 拿到的索引，在裡面的 arrow function 中使用，很容易抓錯</p>
+<p>關於索引一直拿不到的問題，請參閱這邊我跟 birdie 同學的討論</p>
+<p><a href="https://codelove.tw/@birdie2019/post/2anbka">https://codelove.tw/@birdie2019/post/2anbka</a></p>
+<p>文章取自: <a href="https://codelove.tw/@howtomakeaturn/post/Aq5V0x">https://codelove.tw/@howtomakeaturn/post/Aq5V0x</a><br>by 站長阿川  </p>
