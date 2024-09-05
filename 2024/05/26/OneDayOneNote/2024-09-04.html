@@ -1,0 +1,36 @@
+<hr>
+<h2 id="title-2024-09-04-JavaScript-系列六：第2課-──-認識陣列操作date-2024-09-05-10-49-56categories-OneDayOneNotetags-OneNote-Javascript-description-2024-09-04-JavaScript-系列六：第2課-──-認識陣列操作"><a href="#title-2024-09-04-JavaScript-系列六：第2課-──-認識陣列操作date-2024-09-05-10-49-56categories-OneDayOneNotetags-OneNote-Javascript-description-2024-09-04-JavaScript-系列六：第2課-──-認識陣列操作" class="headerlink" title="title: 2024-09-04 JavaScript 系列六：第2課 ── 認識陣列操作date: 2024-09-05 10:49:56categories: OneDayOneNotetags:  [OneNote, Javascript]description:  2024-09-04 JavaScript 系列六：第2課 ── 認識陣列操作"></a>title: 2024-09-04 JavaScript 系列六：第2課 ── 認識陣列操作<br>date: 2024-09-05 10:49:56<br>categories: OneDayOneNote<br>tags:  [OneNote, Javascript]<br>description:  2024-09-04 JavaScript 系列六：第2課 ── 認識陣列操作</h2><p>課程目標<br>能夠新增元素到陣列</p>
+<p>課程內容<br>因為我們不再使用「在各處胡亂更新各處 DOM」的寫法</p>
+<p>現在要認真開始學習，如何在 JavaScript 中，用各種變數、資料型別，建立出 data model</p>
+<p>這一課來學學新增元素到陣列的方法</p>
+<pre><code class="html">&lt;button onclick=&quot;more()&quot;&gt;
+  more
+&lt;/button&gt;
+</code></pre>
+<pre><code class="js">var fruits = [&quot;apple&quot;, &quot;banana&quot;];
+
+function more()
+{
+  fruits.push(&quot;orange&quot;);
+  console.log(fruits);
+}
+</code></pre>
+<p>非常簡單，使用陣列的 <code>.push()</code> 函式就可以</p>
+<p>在 JavaScript 中，陣列相關操作的函式、寫法，有非常多種</p>
+<p>我的建議是，各種寫法都可以，如果你有查到，隨便挑你喜歡的用就可以了</p>
+<p>課後作業<br>接續上一課作業，這次來實作「新增事項」</p>
+<p>請在 html 的部份加入「輸入資料的 UI」，大概類似這樣</p>
+<pre><code class="html">&lt;input type=&quot;text&quot;&gt;
+&lt;button onclick=&quot;add()&quot;&gt;新增&lt;/button&gt;
+&lt;div id=&quot;root&quot;&gt;
+&lt;/div&gt;
+</code></pre>
+<p>接著請將 add 函式完成，過程中不能直接更新 DOM，而是先去更新 data model，接著 render，用這種方式間接更新 DOM</p>
+<pre><code class="js">function add()
+{
+  // 請寫出此函式內容（更新 todos 陣列）
+
+  render();
+}
+</code></pre>
+<p>做出以上功能，你就完成這次的課程目標了</p>
