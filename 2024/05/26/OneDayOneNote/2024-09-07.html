@@ -1,0 +1,72 @@
+<hr>
+<h2 id="title-2024-09-07-JavaScript-系列六：第4課-──-熟悉-render-functiondate-2024-09-07-00-54-00categories-OneDayOneNotetags-OneNote-Javascript-description-2024-09-07-JavaScript-系列六：第4課-──-熟悉-render-function"><a href="#title-2024-09-07-JavaScript-系列六：第4課-──-熟悉-render-functiondate-2024-09-07-00-54-00categories-OneDayOneNotetags-OneNote-Javascript-description-2024-09-07-JavaScript-系列六：第4課-──-熟悉-render-function" class="headerlink" title="title: 2024-09-07 JavaScript 系列六：第4課 ── 熟悉 render functiondate: 2024-09-07 00:54:00categories: OneDayOneNotetags:  [OneNote, Javascript]description: 2024-09-07 JavaScript 系列六：第4課 ── 熟悉 render function"></a>title: 2024-09-07 JavaScript 系列六：第4課 ── 熟悉 render function<br>date: 2024-09-07 00:54:00<br>categories: OneDayOneNote<br>tags:  [OneNote, Javascript]<br>description: 2024-09-07 JavaScript 系列六：第4課 ── 熟悉 render function</h2><p>JavaScript 系列六：第4課 ── 熟悉 render function<br>課程目標<br>繼續熟悉 render function 的觀念</p>
+<p>課程內容<br>render function 雖然只是將 data model 轉換成 UI 呈現在 root 裡面</p>
+<p>但是根據資料內容的不同，render function 當然也可以有各種條件判斷、巢狀結構等等，較複雜的邏輯</p>
+<pre><code class="html">&lt;div id=&quot;root&quot;&gt;
+
+&lt;/div&gt;
+</code></pre>
+<pre><code class="js">var products = [
+  {
+    name: &quot;冬季外套&quot;,
+    category: &quot;women&quot;,
+  },
+  {
+    name: &quot;男士大衣&quot;,
+    category: &quot;men&quot;,
+  },
+]
+
+render();
+
+function render()
+{
+  var root = document.querySelector(&#39;#root&#39;);
+  root.textContent = &quot;&quot;;
+
+  for (product of products) {
+    var name = document.createElement(&#39;div&#39;);
+    name.textContent = &#39;商品名稱：&#39; + product.name;
+    if (product.category == &#39;men&#39;) {
+      name.style.color = &#39;blue&#39;;
+    } else if (product.category == &#39;women&#39;) {
+      name.style.color = &#39;red&#39;;
+    }
+    root.append(name);
+  }
+
+}
+</code></pre>
+<p>別忘了 render function 肩負呈現 UI 的重責大任</p>
+<p>所以 render 會看起來比較複雜</p>
+<p>但是，除了 render 以外的函式，通通都變簡單了</p>
+<p>課後作業<br>接續上一課作業，這次來實作「急迫性分類」</p>
+<p>data model 的結構請更新成這樣</p>
+<pre><code class="js">var todos = [
+  {
+    title: &quot;倒垃圾&quot;,
+    category: &quot;normal&quot;
+  },
+  {
+    title: &quot;繳電話費&quot;,
+    category: &quot;important&quot;
+  },
+  {
+    title: &quot;採買本週食材&quot;,
+    category: &quot;urgent&quot;
+  },
+];
+</code></pre>
+<p>然後 html 的部份會變成像這樣</p>
+<pre><code class="html">&lt;input type=&quot;text&quot;&gt;
+&lt;button onclick=&quot;add()&quot;&gt;新增&lt;/button&gt;
+&lt;select&gt;
+  &lt;option value=&quot;normal&quot;&gt;一般&lt;/option&gt;
+  &lt;option value=&quot;important&quot;&gt;重要&lt;/option&gt;
+  &lt;option value=&quot;urgent&quot;&gt;緊急&lt;/option&gt;
+&lt;/select&gt;
+&lt;div id=&quot;root&quot;&gt;
+&lt;/div&gt;
+</code></pre>
+<p>請更新 render 函式，將重要事項顯示為「橘色」，緊急事項顯示為「紅色」</p>
+<p>做出以上功能，你就完成這次的課程目標了！</p>
