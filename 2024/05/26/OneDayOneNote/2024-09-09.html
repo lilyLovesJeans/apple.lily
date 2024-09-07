@@ -1,0 +1,71 @@
+<hr>
+<h2 id="title-2024-09-09-JavaScript-系列六：第5課-──-熟悉匿名函式date-2024-09-07-23-43-00categories-OneDayOneNotetags-OneNote-Javascript-description-2024-09-09-JavaScript-系列六：第5課-──-熟悉匿名函式"><a href="#title-2024-09-09-JavaScript-系列六：第5課-──-熟悉匿名函式date-2024-09-07-23-43-00categories-OneDayOneNotetags-OneNote-Javascript-description-2024-09-09-JavaScript-系列六：第5課-──-熟悉匿名函式" class="headerlink" title="title: 2024-09-09 JavaScript 系列六：第5課 ── 熟悉匿名函式date: 2024-09-07 23:43:00categories: OneDayOneNotetags:  [OneNote, Javascript]description: 2024-09-09 JavaScript 系列六：第5課 ── 熟悉匿名函式"></a>title: 2024-09-09 JavaScript 系列六：第5課 ── 熟悉匿名函式<br>date: 2024-09-07 23:43:00<br>categories: OneDayOneNote<br>tags:  [OneNote, Javascript]<br>description: 2024-09-09 JavaScript 系列六：第5課 ── 熟悉匿名函式</h2><p>JavaScript 系列六：第5課 ── 熟悉匿名函式<br>課程目標<br>能夠在陣列更新元素</p>
+<p>繼續熟悉 anonymous function 的觀念</p>
+<p>課程內容<br>這課先介紹一種資料型態：布林（boolean）</p>
+<p>這種資料型態，幾乎所有程式語言都有，是一種寫程式必備的基本資料型態</p>
+<pre><code class="js">var x = true;
+var y = false;
+
+if (x) {
+  alert(&#39;hello x&#39;);
+}
+
+if (y) {
+  alert(&#39;hello y&#39;);
+}
+</code></pre>
+<p>布林值只有 true 跟 false 兩種，在 if&#x2F;else 條件流程控制中，會影響程式流程</p>
+<p>這種型態，也是建造 data model 時一定會用到的型態</p>
+<p>在 JavaScript 更新陣列元素的方法，一樣有非常多種</p>
+<p>這邊介紹一種根據索引更新的方法</p>
+<pre><code class="js">var fruits = [&#39;apple&#39;, &#39;banana&#39;, &#39;orange&#39;];
+
+fruits[2] = &#39;lemon&#39;;
+
+console.log(fruits)
+</code></pre>
+<p>老話一句，就是實務上，你就根據情況，隨便找一個能用的方式，來操作陣列就對了</p>
+<p>課後作業<br>接續上一課作業，這次來實作「已完成」按鈕</p>
+<p>data model 的結構請更新成這樣</p>
+<pre><code class="js">var todos = [
+  {
+    title: &quot;倒垃圾&quot;,
+    category: &quot;normal&quot;,
+    isCompleted: false
+  },
+  {
+    title: &quot;繳電話費&quot;,
+    category: &quot;important&quot;,
+    isCompleted: false
+  },
+  {
+    title: &quot;採買本週食材&quot;,
+    category: &quot;urgent&quot;,
+    isCompleted: false
+  },
+];
+</code></pre>
+<p>請更新 render 函式，讓 UI 看起來像這樣</p>
+<ul>
+<li><p>倒垃圾 [標示為已完成][刪除]</p>
+</li>
+<li><p>繳電話費 [標示為已完成][刪除]</p>
+</li>
+<li><p>採買本週食材 [標示為已完成][刪除]<br>如果倒完垃圾了，就可以點擊按鈕，來備註已完成，這時才顯示 （已完成） 文字</p>
+</li>
+<li><p>倒垃圾（已完成）[標示為未完成][刪除]</p>
+</li>
+<li><p>繳電話費 [標示為已完成][刪除]</p>
+</li>
+<li><p>採買本週食材 [標示為已完成][刪除]<br>然後在 render 過程中，動態產生 button 的時候，將 .onclick 屬性設定為一個 arrow function</p>
+</li>
+</ul>
+<p>這個 arrow function 不能直接更新 DOM，而是先去更新 data model，接著 render，用這種方式間接更新 DOM</p>
+<pre><code class="js">toggleBtn.onclick = () =&gt; {
+  // 請寫出此 arrow function 內容（更新 todos 陣列）
+
+  render();
+};
+</code></pre>
+<p>做出以上功能，你就完成這次的課程目標了！</p>
+<p>文章取自: <a href="https://codelove.tw/@howtomakeaturn/post/Ja66Xa">https://codelove.tw/@howtomakeaturn/post/Ja66Xa</a><br>by 站長阿川  </p>
