@@ -1,0 +1,43 @@
+<hr>
+<h2 id="title-2024-09-08-JavaScript-filter-陣列方法date-2024-09-07-22-59-27categories-OneDayOneNotetags-OneNote-Javascript-description-2024-09-08-JavaScript-filter-陣列方法"><a href="#title-2024-09-08-JavaScript-filter-陣列方法date-2024-09-07-22-59-27categories-OneDayOneNotetags-OneNote-Javascript-description-2024-09-08-JavaScript-filter-陣列方法" class="headerlink" title="title: 2024-09-08 JavaScript filter() 陣列方法date: 2024-09-07 22:59:27categories: OneDayOneNotetags:  [OneNote, Javascript]description: 2024-09-08 JavaScript filter() 陣列方法"></a>title: 2024-09-08 JavaScript filter() 陣列方法<br>date: 2024-09-07 22:59:27<br>categories: OneDayOneNote<br>tags:  [OneNote, Javascript]<br>description: 2024-09-08 JavaScript filter() 陣列方法</h2><p><code>todos = todos.filter((_, i) =&gt; i != index);</code> 是用來過濾陣列的一行 JavaScript 語句，它的目的是移除某一個待辦事項（<code>todo</code>）並更新 <code>todos</code> 陣列。讓我們拆解這段程式碼的各部分：</p>
+<ol>
+<li><p>**<code>todos.filter()</code>**：</p>
+<ul>
+<li><code>filter()</code> 是一個 JavaScript 陣列方法，用來創建一個新陣列，包含所有通過特定條件測試的元素。</li>
+<li>這裡 <code>filter()</code> 方法會遍歷 <code>todos</code> 陣列中的每個元素，並且根據回傳的布林值決定該元素是否應該保留在新的陣列中。如果回傳 <code>true</code>，該元素會被保留；如果回傳 <code>false</code>，該元素會被移除。</li>
+</ul>
+</li>
+<li><p>**<code>(_, i)</code>**：</p>
+<ul>
+<li><p><code>filter()</code> 的回呼函數有兩個參數：</p>
+<ul>
+<li>第一個參數 <code>_</code>：是陣列中目前正在處理的元素（我們這裡沒有使用這個值，所以用 <code>_</code> 來表示無用的參數）。</li>
+<li>第二個參數 <code>i</code>：是目前元素的索引（位置）。</li>
+</ul>
+</li>
+<li><p>這裡我們只關心每個元素的索引 <code>i</code>，以便與我們要刪除的索引 <code>index</code> 進行比較。</p>
+</li>
+</ul>
+</li>
+<li><p>**<code>i != index</code>**：</p>
+<ul>
+<li><code>i != index</code> 是用來比較目前元素的索引（<code>i</code>）是否不等於我們要刪除的那個項目的索引（<code>index</code>）。</li>
+<li>如果 <code>i</code> 和 <code>index</code> 不相等，這個元素會被保留在新陣列中，否則就會被過濾掉（即刪除）。</li>
+</ul>
+</li>
+<li><p>**更新 <code>todos</code>**：</p>
+<ul>
+<li>最後，這段語句會將新的陣列（即已經過濾掉刪除項目後的陣列）賦值給 <code>todos</code>，從而更新 <code>todos</code> 變數。</li>
+</ul>
+</li>
+</ol>
+<h3 id="簡單示範"><a href="#簡單示範" class="headerlink" title="簡單示範"></a>簡單示範</h3><p>假設我們的 <code>todos</code> 是這樣的陣列：</p>
+<pre><code class="javascript">let todos = [&#39;倒垃圾&#39;, &#39;繳電話費&#39;, &#39;採買本週食材&#39;];
+</code></pre>
+<p>如果我們要刪除索引 <code>1</code> 的項目（即 <code>&#39;繳電話費&#39;</code>），那麼使用 <code>filter</code> 的結果如下：</p>
+<pre><code class="javascript">todos = todos.filter((_, i) =&gt; i != 1);
+</code></pre>
+<p>結果是：</p>
+<pre><code class="javascript">[&#39;倒垃圾&#39;, &#39;採買本週食材&#39;]
+</code></pre>
+<p>這樣就成功刪除了索引為 <code>1</code> 的待辦事項。</p>
