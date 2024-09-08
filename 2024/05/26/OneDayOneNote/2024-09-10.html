@@ -1,0 +1,20 @@
+<hr>
+<h2 id="title-2024-09-10-JavaScript-系列六：第6課-──-認識-data-model-的優點date-2024-09-08-12-31-37categories-OneDayOneNotetags-OneNote-Javascript-description-2024-09-10-JavaScript-系列六：第6課-──-認識-data-model-的優點"><a href="#title-2024-09-10-JavaScript-系列六：第6課-──-認識-data-model-的優點date-2024-09-08-12-31-37categories-OneDayOneNotetags-OneNote-Javascript-description-2024-09-10-JavaScript-系列六：第6課-──-認識-data-model-的優點" class="headerlink" title="title: 2024-09-10 JavaScript 系列六：第6課 ── 認識 data model 的優點date: 2024-09-08 12:31:37categories: OneDayOneNotetags:  [OneNote, Javascript]description: 2024-09-10 JavaScript 系列六：第6課 ── 認識 data model 的優點"></a>title: 2024-09-10 JavaScript 系列六：第6課 ── 認識 data model 的優點<br>date: 2024-09-08 12:31:37<br>categories: OneDayOneNote<br>tags:  [OneNote, Javascript]<br>description: 2024-09-10 JavaScript 系列六：第6課 ── 認識 data model 的優點</h2><p>JavaScript 系列六：第6課 ── 認識 data model 的優點<br>課程目標<br>繼續熟悉 data model 的觀念</p>
+<p>課程內容<br>有了 data model 與 render function 之後</p>
+<p>除了在更新資料時，腦中一律只要想著 data model 就好</p>
+<p>就連在撈資料時，也一樣只要思考 data model 就好，非常方便</p>
+<p>反觀，原本的原始寫法，需要從 UI 結構中，分析出當前的資料狀態，麻煩得多</p>
+<p>課後作業<br>接續上一課作業，這次來實作「匯出」按鈕</p>
+<p>請加入類似這樣的按鈕</p>
+<pre><code class="html">&lt;button onclick=&quot;export()&quot;&gt;匯出&lt;/button&gt;
+</code></pre>
+<p>接著請將 export 函式完成，過程中不能去讀取 DOM，只能去讀取 data model</p>
+<pre><code class="js">function export()
+{
+  // 請寫出此函式內容
+}
+</code></pre>
+<p>匯出時用 alert 跳出訊息「今日待辦：1. 洗衣服 2. 買文具 3. 去健身房」</p>
+<p>根據事項，如果是重要事項，請用星號包起來 <em>重要任務</em>，如果是緊急事項，請用雙星號包起來 <strong>緊急任務</strong></p>
+<p>舉例來說，按下匯出按鈕之後，就用 alert 跳出訊息「今日待辦：1. 洗衣服 2. <em>買文具</em> 3. <strong>去健身房</strong>」</p>
+<p>做出以上功能，你就完成這次的課程目標了！</p>
