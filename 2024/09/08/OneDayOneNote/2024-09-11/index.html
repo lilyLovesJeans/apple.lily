@@ -19,29 +19,29 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
 
-    <meta name="description" content="2024-09-03 JavaScript .forEach() 和 for...in 二者只是寫法不同嗎? 跟執行速度上 或都 佔用memory上有差別嗎?">
+    <meta name="description" content="2024-09-11 JavaScript 系列六：第7課 ── 資料序列化">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2024-09-03 JavaScript .forEach() 和 for...in 二者只是寫法不同嗎? 跟執行速度上 或都 佔用memory上有差別嗎?">
-<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2024/09/05/OneDayOneNote/2024-09-03/index.html">
+<meta property="og:title" content="2024-09-11 JavaScript 系列六：第7課 ── 資料序列化">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2024/09/08/OneDayOneNote/2024-09-11/index.html">
 <meta property="og:site_name" content="Apple.Lily 前端學習筆記">
-<meta property="og:description" content="2024-09-03 JavaScript .forEach() 和 for...in 二者只是寫法不同嗎? 跟執行速度上 或都 佔用memory上有差別嗎?">
+<meta property="og:description" content="2024-09-11 JavaScript 系列六：第7課 ── 資料序列化">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2024-09-05T02:46:40.000Z">
-<meta property="article:modified_time" content="2024-09-05T02:48:34.000Z">
+<meta property="article:published_time" content="2024-09-08T15:59:48.000Z">
+<meta property="article:modified_time" content="2024-09-08T16:07:24.000Z">
 <meta property="article:author" content="Apple.Lily">
 <meta property="article:tag" content="Javascript">
 <meta property="article:tag" content="OneNote">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2024/09/05/OneDayOneNote/2024-09-03/">
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2024/09/08/OneDayOneNote/2024-09-11/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2024/09/05/OneDayOneNote/2024-09-03/","path":"2024/09/05/OneDayOneNote/2024-09-03/","title":"2024-09-03 JavaScript .forEach() 和 for...in 二者只是寫法不同嗎? 跟執行速度上 或都 佔用memory上有差別嗎?"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2024/09/08/OneDayOneNote/2024-09-11/","path":"2024/09/08/OneDayOneNote/2024-09-11/","title":"2024-09-11 JavaScript 系列六：第7課 ── 資料序列化"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>2024-09-03 JavaScript .forEach() 和 for...in 二者只是寫法不同嗎? 跟執行速度上 或都 佔用memory上有差別嗎? | Apple.Lily 前端學習筆記</title>
+<title>2024-09-11 JavaScript 系列六：第7課 ── 資料序列化 | Apple.Lily 前端學習筆記</title>
   
 
 
@@ -101,7 +101,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目錄
@@ -114,7 +114,6 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%94%A8%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">1. 用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%9F%B7%E8%A1%8C%E9%80%9F%E5%BA%A6"><span class="nav-number">2.</span> <span class="nav-text">2. 執行速度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%85%A7%E5%AD%98%E4%BD%94%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">3. 內存佔用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%80%A7%E8%83%BD%E6%AF%94%E8%BC%83"><span class="nav-number">4.</span> <span class="nav-text">4. 性能比較</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E6%9C%80%E4%BD%B3%E4%BD%BF%E7%94%A8%E6%83%85%E5%A2%83"><span class="nav-number">5.</span> <span class="nav-text">5. 最佳使用情境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B8%BD%E7%B5%90"><span class="nav-number">6.</span> <span class="nav-text">總結</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -167,7 +166,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2024/09/05/OneDayOneNote/2024-09-03/">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2024/09/08/OneDayOneNote/2024-09-11/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
@@ -180,12 +179,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="2024-09-03 JavaScript .forEach() 和 for...in 二者只是寫法不同嗎? 跟執行速度上 或都 佔用memory上有差別嗎? | Apple.Lily 前端學習筆記">
-      <meta itemprop="description" content="2024-09-03 JavaScript .forEach() 和 for...in 二者只是寫法不同嗎? 跟執行速度上 或都 佔用memory上有差別嗎?">
+      <meta itemprop="name" content="2024-09-11 JavaScript 系列六：第7課 ── 資料序列化 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2024-09-11 JavaScript 系列六：第7課 ── 資料序列化">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          2024-09-03 JavaScript .forEach() 和 for...in 二者只是寫法不同嗎? 跟執行速度上 或都 佔用memory上有差別嗎?
+          2024-09-11 JavaScript 系列六：第7課 ── 資料序列化
         </h1>
 
         <div class="post-meta-container">
@@ -195,9 +194,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">發表於</span>
-      
 
-      <time title="創建時間：2024-09-05 10:46:40 / 修改時間：10:48:34" itemprop="dateCreated datePublished" datetime="2024-09-05T10:46:40+08:00">2024-09-05</time>
+      <time title="創建時間：2024-09-08 23:59:48" itemprop="dateCreated datePublished" datetime="2024-09-08T23:59:48+08:00">2024-09-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新於</span>
+      <time title="修改時間：2024-09-09 00:07:24" itemprop="dateModified" datetime="2024-09-09T00:07:24+08:00">2024-09-09</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -219,47 +224,27 @@
     </span>
 </div>
 
-            <div class="post-description">2024-09-03 JavaScript .forEach() 和 for...in 二者只是寫法不同嗎? 跟執行速度上 或都 佔用memory上有差別嗎?</div>
+            <div class="post-description">2024-09-11 JavaScript 系列六：第7課 ── 資料序列化</div>
         </div>
       </header>
 
     
     
     
-    <div class="post-body" itemprop="articleBody"><p><code>.forEach()</code> 和 <code>for...in</code> 迭代語法在功能上類似，但它們在底層執行和用法上有一些差異。以下是一些關於這兩者的差異，尤其在執行速度和內存佔用方面的討論：</p>
-<h3 id="1-用法"><a href="#1-用法" class="headerlink" title="1. 用法"></a>1. <strong>用法</strong></h3><ul>
-<li><p><strong><code>for...in</code></strong>:</p>
-<ul>
-<li>用來迭代物件的屬性名稱，主要適用於物件，雖然可以用來迭代陣列的索引，但不建議這麼做。</li>
-<li>迭代的是<strong>鍵名</strong>，而不是陣列中的值。因此在陣列中，<code>for...in</code> 會迭代索引，並且需要額外透過索引存取元素。</li>
-<li>可能會迭代陣列中可枚舉的屬性，包括從原型鏈繼承的屬性。</li>
-</ul>
-</li>
-<li><p><strong><code>.forEach()</code></strong>:</p>
-<ul>
-<li>是陣列的內建方法，設計用來直接對陣列中的每個元素進行迭代操作。</li>
-<li>迭代的是陣列中的每個值，不會訪問索引或繼承的屬性。</li>
-<li>執行起來更直觀，不需要關注索引或陣列長度問題。</li>
-</ul>
-</li>
-</ul>
-<h3 id="2-執行速度"><a href="#2-執行速度" class="headerlink" title="2. 執行速度"></a>2. <strong>執行速度</strong></h3><ul>
-<li><strong><code>for...in</code></strong> 由於是迭代屬性名稱，而不是專門針對陣列設計的，會有一些額外的開銷，比如會遍歷所有可枚舉的屬性，因此在操作大型陣列時，性能可能較差。</li>
-<li><strong><code>.forEach()</code></strong> 是專為陣列迭代設計的，執行效率通常比 <code>for...in</code> 好。它直接在陣列內部運行，無需處理額外的屬性檢查。</li>
-</ul>
-<h3 id="3-內存佔用"><a href="#3-內存佔用" class="headerlink" title="3. 內存佔用"></a>3. <strong>內存佔用</strong></h3><ul>
-<li>**<code>for...in</code>**：因為是迭代索引，額外的內存開銷相對較少，但由於它會檢查所有可枚舉的屬性，可能會涉及到更多的內部檢查和記憶體使用。</li>
-<li>**<code>.forEach()</code>**：由於是設計來處理陣列的原生方法，內部有優化處理，相對來說更有效率，但會分配一個回呼函式來處理每個元素，可能會有些微的內存開銷。</li>
-</ul>
-<h3 id="4-性能比較"><a href="#4-性能比較" class="headerlink" title="4. 性能比較"></a>4. <strong>性能比較</strong></h3><p>   在大多數情況下，**<code>.forEach()</code>** 在處理陣列時的性能比 <code>for...in</code> 更快。這是因為 <code>for...in</code> 需要檢查陣列之外的屬性，而 <code>.forEach()</code> 是針對每個元素進行操作，無需這些額外的檢查。</p>
-<h3 id="5-最佳使用情境"><a href="#5-最佳使用情境" class="headerlink" title="5. 最佳使用情境"></a>5. <strong>最佳使用情境</strong></h3><ul>
-<li>使用 <strong><code>for...in</code></strong> 來迭代物件的屬性（不建議用來迭代陣列）。</li>
-<li>使用 <strong><code>.forEach()</code></strong> 或其他適合的迭代方法（如 <code>for...of</code>）來迭代陣列，這些方法更高效，且專為陣列而設計。</li>
-</ul>
-<h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h3><ul>
-<li>在迭代陣列時，**<code>.forEach()</code>** 通常比 <code>for...in</code> 更合適，因為它更高效且避免了遍歷原型鏈中的屬性。</li>
-<li>雖然兩者的內存差異不大，但 <strong><code>.forEach()</code></strong> 在性能上有優勢，尤其在大型陣列的情況下。</li>
-</ul>
+    <div class="post-body" itemprop="articleBody"><p>JavaScript 系列六：第7課 ── 資料序列化<br>課程目標<br>繼續熟悉 data model 的觀念</p>
+<p>課程內容<br>有了 data model 與 render function 之後，還有一個很大的好處</p>
+<p>就是當應用程式的狀態，作為資料，需要跟外部溝通時，也很好用</p>
+<p>直接把 data model 轉換為字串，傳出去就可以了</p>
+<p>在跟第三方程式溝通、或者要儲存到資料庫、或者某種儲存機制的時候，都會用到</p>
+<p>將 data model 轉為字串這種行為，我們叫：資料序列化（serialization）</p>
+<p>有了序列化資料，要接著轉換回來，變成程式可用的資料，也很容易，我們叫：反序列化（deserialization）</p>
+<p>課後作業<br>接續上一課作業，這次來實作「儲存」按鈕</p>
+<p>請在「匯出」按鈕旁邊，增加一個「儲存」按鈕，讓待辦事項在頁面重新整理之後，還可以繼續使用</p>
+<p>按下按鈕之後，使用 local storage 儲存待辦事項資料，並跳出 alert 提示「儲存成功！」</p>
+<p>頁面載入的時候，檢查 local storage，有資料的話，就復原到畫面上</p>
+<p>過程中，不能更新 DOM，只能更新 data model</p>
+<p>做出以上功能，你就完成這次的課程目標了！</p>
+<p>文章取自: <a target="_blank" rel="noopener" href="https://codelove.tw/@howtomakeaturn/post/NxN6yx">https://codelove.tw/@howtomakeaturn/post/NxN6yx</a><br>by 站長阿川  </p>
 
     </div>
 
@@ -277,14 +262,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/apple.lily/2024/09/05/OneDayOneNote/2024-09-02/" rel="prev" title="2024-09-02 JavaScript 系列六：第1課 ── 認識 data model 與 render function">
-                  <i class="fa fa-angle-left"></i> 2024-09-02 JavaScript 系列六：第1課 ── 認識 data model 與 render function
+                <a href="/apple.lily/2024/09/08/OneDayOneNote/2024-09-10/" rel="prev" title="2024-09-10 JavaScript 系列六：第6課 ── 認識 data model 的優點">
+                  <i class="fa fa-angle-left"></i> 2024-09-10 JavaScript 系列六：第6課 ── 認識 data model 的優點
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/apple.lily/2024/09/05/OneDayOneNote/2024-09-04/" rel="next" title="2024-09-04 JavaScript 系列六：第2課 ── 認識陣列操作">
-                  2024-09-04 JavaScript 系列六：第2課 ── 認識陣列操作 <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>

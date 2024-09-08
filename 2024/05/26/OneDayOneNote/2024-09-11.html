@@ -1,0 +1,15 @@
+<hr>
+<h2 id="title-2024-09-11-JavaScript-系列六：第7課-──-資料序列化date-2024-09-08-23-59-48categories-OneDayOneNotetags-OneNote-Javascript-description-2024-09-11-JavaScript-系列六：第7課-──-資料序列化"><a href="#title-2024-09-11-JavaScript-系列六：第7課-──-資料序列化date-2024-09-08-23-59-48categories-OneDayOneNotetags-OneNote-Javascript-description-2024-09-11-JavaScript-系列六：第7課-──-資料序列化" class="headerlink" title="title: 2024-09-11 JavaScript 系列六：第7課 ── 資料序列化date: 2024-09-08 23:59:48categories: OneDayOneNotetags:  [OneNote, Javascript]description: 2024-09-11 JavaScript 系列六：第7課 ── 資料序列化"></a>title: 2024-09-11 JavaScript 系列六：第7課 ── 資料序列化<br>date: 2024-09-08 23:59:48<br>categories: OneDayOneNote<br>tags:  [OneNote, Javascript]<br>description: 2024-09-11 JavaScript 系列六：第7課 ── 資料序列化</h2><p>JavaScript 系列六：第7課 ── 資料序列化<br>課程目標<br>繼續熟悉 data model 的觀念</p>
+<p>課程內容<br>有了 data model 與 render function 之後，還有一個很大的好處</p>
+<p>就是當應用程式的狀態，作為資料，需要跟外部溝通時，也很好用</p>
+<p>直接把 data model 轉換為字串，傳出去就可以了</p>
+<p>在跟第三方程式溝通、或者要儲存到資料庫、或者某種儲存機制的時候，都會用到</p>
+<p>將 data model 轉為字串這種行為，我們叫：資料序列化（serialization）</p>
+<p>有了序列化資料，要接著轉換回來，變成程式可用的資料，也很容易，我們叫：反序列化（deserialization）</p>
+<p>課後作業<br>接續上一課作業，這次來實作「儲存」按鈕</p>
+<p>請在「匯出」按鈕旁邊，增加一個「儲存」按鈕，讓待辦事項在頁面重新整理之後，還可以繼續使用</p>
+<p>按下按鈕之後，使用 local storage 儲存待辦事項資料，並跳出 alert 提示「儲存成功！」</p>
+<p>頁面載入的時候，檢查 local storage，有資料的話，就復原到畫面上</p>
+<p>過程中，不能更新 DOM，只能更新 data model</p>
+<p>做出以上功能，你就完成這次的課程目標了！</p>
+<p>文章取自: <a href="https://codelove.tw/@howtomakeaturn/post/NxN6yx">https://codelove.tw/@howtomakeaturn/post/NxN6yx</a><br>by 站長阿川  </p>
