@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2024-09-13 用  ASP .NET + DAPPER 來舉例餐廳">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024-09-13 用  ASP .NET + DAPPER 來舉例餐廳">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2024/09/12/OneDayOneNote/2024-09-13/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2024-09-13 用  ASP .NET + DAPPER 來舉例餐廳">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2024-09-12T12:19:51.000Z">
+<meta property="article:modified_time" content="2024-09-12T12:22:41.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="OneNote">
+<meta property="article:tag" content="ASP.NET">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2024/09/12/OneDayOneNote/2024-09-13/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2024/09/12/OneDayOneNote/2024-09-13/","path":"2024/09/12/OneDayOneNote/2024-09-13/","title":"2024-09-13 用  ASP .NET + DAPPER 來舉例餐廳"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2024-09-13 用  ASP .NET + DAPPER 來舉例餐廳 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-ASP-NET%EF%BC%9A%E5%BB%BA%E7%AB%8B%E9%A4%90%E5%BB%B3%E7%AE%A1%E7%90%86%E7%B3%BB%E7%B5%B1"><span class="nav-number">1.</span> <span class="nav-text">1. ASP.NET：建立餐廳管理系統</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Dapper%EF%BC%9A%E8%88%87%E8%B3%87%E6%96%99%E5%BA%AB%E4%BA%A4%E4%BA%92"><span class="nav-number">2.</span> <span class="nav-text">2. Dapper：與資料庫交互</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A4%90%E5%BB%B3%E7%AE%A1%E7%90%86%E7%B3%BB%E7%B5%B1%E7%9A%84%E6%AF%94%E5%96%BB%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">餐廳管理系統的比喻：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E9%A1%A7%E5%AE%A2%E9%BB%9E%E9%A4%90%EF%BC%88ASP-NET-%E6%8E%A7%E5%88%B6%E5%99%A8%EF%BC%89"><span class="nav-number">3.1.</span> <span class="nav-text">1. 顧客點餐（ASP.NET 控制器）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%BB%9A%E6%88%BF%E8%99%95%E7%90%86%E8%A8%82%E5%96%AE%EF%BC%88Dapper%EF%BC%89"><span class="nav-number">3.2.</span> <span class="nav-text">2. 廚房處理訂單（Dapper）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E9%A1%A7%E5%AE%A2%E6%8E%A5%E6%94%B6%E8%8F%9C%E5%93%81%EF%BC%88ASP-NET-%E6%8E%A7%E5%88%B6%E5%99%A8%E5%9B%9E%E6%87%89%EF%BC%89"><span class="nav-number">3.3.</span> <span class="nav-text">3. 顧客接收菜品（ASP.NET 控制器回應）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B8%BD%E7%B5%90"><span class="nav-number">4.</span> <span class="nav-text">總結</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number"></span> <span class="nav-text">那如果再細分到自己寫的  CONTROLLER呢</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A4%90%E5%BB%B3%E7%B3%BB%E7%B5%B1%E7%9A%84-Controller-%E8%88%87-Dapper-%E4%BE%8B%E5%AD%90"><span class="nav-number">1.</span> <span class="nav-text">餐廳系統的 Controller 與 Dapper 例子</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Controller%EF%BC%88%E6%9C%8D%E5%8B%99%E5%93%A1%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">1. Controller（服務員）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Service%EF%BC%88%E5%BB%9A%E6%88%BF%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">2. Service（廚房）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Dapper%EF%BC%88%E5%BB%9A%E6%88%BF%E7%9A%84%E8%A8%AD%E5%82%99%E5%92%8C%E9%A3%9F%E6%9D%90%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">3. Dapper（廚房的設備和食材）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B8%BD%E7%B5%90-1"><span class="nav-number">2.</span> <span class="nav-text">總結</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">162</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2024/09/12/OneDayOneNote/2024-09-13/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2024-09-13 用  ASP .NET + DAPPER 來舉例餐廳 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2024-09-13 用  ASP .NET + DAPPER 來舉例餐廳">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2024-09-13 用  ASP .NET + DAPPER 來舉例餐廳
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2024-09-12 20:19:51 / 修改時間：20:22:41" itemprop="dateCreated datePublished" datetime="2024-09-12T20:19:51+08:00">2024-09-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2024-09-13 用  ASP .NET + DAPPER 來舉例餐廳</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>當用 ASP.NET 和 Dapper 來類比餐廳時，我們可以用這些技術來模擬餐廳的運作，以下是一個如何把 ASP.NET 和 Dapper 應用於餐廳管理的比喻：</p>
+<h3 id="1-ASP-NET：建立餐廳管理系統"><a href="#1-ASP-NET：建立餐廳管理系統" class="headerlink" title="1. ASP.NET：建立餐廳管理系統"></a>1. <strong>ASP.NET：建立餐廳管理系統</strong></h3><p>ASP.NET 是用來建立餐廳管理系統的框架。這個系統能夠處理顧客點餐、菜品管理、訂單處理等操作。它就像餐廳的前台系統，負責接收顧客的點餐要求，處理訂單，並展示菜品的資訊。</p>
+<h3 id="2-Dapper：與資料庫交互"><a href="#2-Dapper：與資料庫交互" class="headerlink" title="2. Dapper：與資料庫交互"></a>2. <strong>Dapper：與資料庫交互</strong></h3><p>Dapper 是一個輕量級的 ORM（對象關聯映射）庫，用來快速簡便地與資料庫交互。它就像是餐廳中的點菜系統，快速將顧客的訂單資料傳送到廚房，並從廚房那裡取得製作完成的菜品資料。</p>
+<h3 id="餐廳管理系統的比喻："><a href="#餐廳管理系統的比喻：" class="headerlink" title="餐廳管理系統的比喻："></a>餐廳管理系統的比喻：</h3><h4 id="1-顧客點餐（ASP-NET-控制器）"><a href="#1-顧客點餐（ASP-NET-控制器）" class="headerlink" title="1. 顧客點餐（ASP.NET 控制器）"></a><strong>1. 顧客點餐（ASP.NET 控制器）</strong></h4><p><strong>比喻</strong>：顧客在餐廳點餐，前台服務員（ASP.NET 控制器）接收顧客的點餐要求（HTTP 請求），並將其轉交給廚房（資料庫）處理。</p>
+<ul>
+<li><strong>ASP.NET 控制器</strong>：接收點餐請求（例如，菜品查詢、訂單創建）。</li>
+<li><strong>HTTP 請求</strong>：顧客的點餐要求，例如「我要一個披薩」。</li>
+</ul>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">Route(<span class="string">&quot;api/[controller]&quot;</span>)</span>]</span><br><span class="line">[<span class="meta">ApiController</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MenuController</span> : <span class="title">ControllerBase</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> IMenuService _menuService;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MenuController</span>(<span class="params">IMenuService menuService</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        _menuService = menuService;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    [<span class="meta">HttpGet(<span class="string">&quot;items&quot;</span>)</span>]</span><br><span class="line">    <span class="function"><span class="keyword">public</span> IActionResult <span class="title">GetMenuItems</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> items = _menuService.GetMenuItems();</span><br><span class="line">        <span class="keyword">return</span> Ok(items);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    [<span class="meta">HttpPost(<span class="string">&quot;order&quot;</span>)</span>]</span><br><span class="line">    <span class="function"><span class="keyword">public</span> IActionResult <span class="title">PlaceOrder</span>(<span class="params">[FromBody] OrderRequest orderRequest</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> result = _menuService.PlaceOrder(orderRequest);</span><br><span class="line">        <span class="keyword">return</span> Ok(result);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-廚房處理訂單（Dapper）"><a href="#2-廚房處理訂單（Dapper）" class="headerlink" title="2. 廚房處理訂單（Dapper）"></a><strong>2. 廚房處理訂單（Dapper）</strong></h4><p><strong>比喻</strong>：廚房（資料庫）接收到訂單後，根據菜單準備菜品。Dapper 就像是廚房的工作流程，用來快速從食材庫存中提取所需的資料並準備菜品。</p>
+<ul>
+<li><strong>Dapper</strong>：執行 SQL 查詢，從資料庫中檢索菜品資訊或儲存訂單。</li>
+</ul>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MenuService</span> : <span class="title">IMenuService</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> IDbConnection _dbConnection;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MenuService</span>(<span class="params">IDbConnection dbConnection</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        _dbConnection = dbConnection;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> IEnumerable&lt;MenuItem&gt; <span class="title">GetMenuItems</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> sql = <span class="string">&quot;SELECT * FROM MenuItems&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span> _dbConnection.Query&lt;MenuItem&gt;(sql);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="built_in">bool</span> <span class="title">PlaceOrder</span>(<span class="params">OrderRequest orderRequest</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> sql = <span class="string">&quot;INSERT INTO Orders (CustomerId, ItemId, Quantity) VALUES (@CustomerId, @ItemId, @Quantity)&quot;</span>;</span><br><span class="line">        <span class="keyword">var</span> rowsAffected = _dbConnection.Execute(sql, orderRequest);</span><br><span class="line">        <span class="keyword">return</span> rowsAffected &gt; <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-顧客接收菜品（ASP-NET-控制器回應）"><a href="#3-顧客接收菜品（ASP-NET-控制器回應）" class="headerlink" title="3. 顧客接收菜品（ASP.NET 控制器回應）"></a><strong>3. 顧客接收菜品（ASP.NET 控制器回應）</strong></h4><p><strong>比喻</strong>：當廚房完成菜品後，服務員（ASP.NET 控制器）將菜品送到顧客的桌上。這相當於將資料庫的查詢結果回傳給顧客的點餐應用。</p>
+<ul>
+<li><strong>ASP.NET 控制器回應</strong>：將廚房（資料庫）處理完成的菜品資訊或訂單狀態返回給顧客。</li>
+</ul>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MenuController</span> : <span class="title">ControllerBase</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> IMenuService _menuService;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MenuController</span>(<span class="params">IMenuService menuService</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        _menuService = menuService;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    [<span class="meta">HttpGet(<span class="string">&quot;items&quot;</span>)</span>]</span><br><span class="line">    <span class="function"><span class="keyword">public</span> IActionResult <span class="title">GetMenuItems</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> items = _menuService.GetMenuItems();</span><br><span class="line">        <span class="keyword">return</span> Ok(items); <span class="comment">// 返回菜單項目</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    [<span class="meta">HttpPost(<span class="string">&quot;order&quot;</span>)</span>]</span><br><span class="line">    <span class="function"><span class="keyword">public</span> IActionResult <span class="title">PlaceOrder</span>(<span class="params">[FromBody] OrderRequest orderRequest</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> result = _menuService.PlaceOrder(orderRequest);</span><br><span class="line">        <span class="keyword">return</span> result ? Ok(<span class="string">&quot;Order placed successfully&quot;</span>) : BadRequest(<span class="string">&quot;Failed to place order&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h3><ul>
+<li><strong>ASP.NET</strong>：就像是餐廳的點餐系統，負責接收顧客的點餐請求和展示菜單。</li>
+<li><strong>Dapper</strong>：就像是廚房的工作流程，快速處理資料庫的查詢和更新。</li>
+<li><strong>顧客、點餐</strong>：顧客向前台服務員（ASP.NET 控制器）點餐。</li>
+<li><strong>廚房、製作菜品</strong>：廚房（資料庫）使用 Dapper 準備菜品並回應前台服務員。</li>
+</ul>
+<p>這個比喻幫助理解 ASP.NET 和 Dapper 如何協同工作，處理點餐請求和數據交互。</p>
+<h2>那如果再細分到自己寫的  CONTROLLER呢</h2>
+當然可以！我們可以使用您提供的程式結構，將餐廳的比喻應用到 ASP.NET Core + Dapper 的實際程式碼中。這裡是如何用您給的程式結構來比喻這些概念：
+
+<h3 id="餐廳系統的-Controller-與-Dapper-例子"><a href="#餐廳系統的-Controller-與-Dapper-例子" class="headerlink" title="餐廳系統的 Controller 與 Dapper 例子"></a>餐廳系統的 Controller 與 Dapper 例子</h3><h4 id="1-Controller（服務員）"><a href="#1-Controller（服務員）" class="headerlink" title="1. Controller（服務員）"></a>1. <strong>Controller（服務員）</strong></h4><p>在餐廳中，服務員（Controller）接收顧客的點餐要求，並將其轉交給廚房（Service）。這就像我們的 <code>SYSM001Controller</code> 類別，處理顧客的請求，並將結果返回給顧客。</p>
+<p><strong>程式碼示例</strong>：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">Route(<span class="string">&quot;api/[controller]&quot;</span>)</span>]</span><br><span class="line">[<span class="meta">ApiController</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SYSM001Controller</span> : <span class="title">ControllerBase</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> SYSM001Service _service;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> CommonService _commonService;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SYSM001Controller</span>(<span class="params">SYSM001Service service, CommonService commonService, ILogger&lt;SYSM001Controller&gt; logger</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        _service = service;</span><br><span class="line">        _commonService = commonService;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 系統參數資料明細查詢作業</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    [<span class="meta">HttpPost(<span class="string">&quot;Query&quot;</span>)</span>]</span><br><span class="line">    <span class="function"><span class="keyword">public</span> IActionResult <span class="title">Get</span>(<span class="params">[FromBody] SYSM001Q_InputVo inputVo</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> result = _service.QueryDetailResult(inputVo);</span><br><span class="line">        <span class="keyword">return</span> ProcessResult(result);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 系統別資料查詢作業</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    [<span class="meta">HttpPost(<span class="string">&quot;QuerySyst&quot;</span>)</span>]</span><br><span class="line">    <span class="function"><span class="keyword">public</span> IActionResult <span class="title">QuerySyst</span>(<span class="params">[FromBody] SubSyst_InputVo inputVo</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> result = _commonService.QuerySubSystemResult(inputVo);</span><br><span class="line">        <span class="keyword">return</span> ProcessResult(result);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 系統參數資料編輯作業</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    [<span class="meta">HttpPut(<span class="string">&quot;Edit&quot;</span>)</span>]</span><br><span class="line">    <span class="function"><span class="keyword">public</span> IActionResult <span class="title">Edit</span>(<span class="params">[FromBody] List&lt;SYSM001E_TotVo&gt; inputVo</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> result = _service.EditResult(inputVo);</span><br><span class="line">        <span class="keyword">return</span> ProcessResult(result);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> IActionResult <span class="title">ProcessResult</span>(<span class="params">ServiceResult result</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">switch</span> (result.status)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">case</span> CommonEnum.ACTION_STATUS.SUCCESS:</span><br><span class="line">                <span class="keyword">return</span> Ok(<span class="keyword">new</span> ApiResult &#123; RESULT_CODE = SysMessage.S0000001, RESULT = result.result, RESULT_MESSAGE = result.message &#125;);</span><br><span class="line">            <span class="keyword">case</span> CommonEnum.ACTION_STATUS.NOTFOUND:</span><br><span class="line">                <span class="keyword">return</span> NotFound(<span class="keyword">new</span> ApiResult &#123; RESULT_CODE = SysMessage.S0000001, RESULT_MESSAGE = result.message &#125;);</span><br><span class="line">            <span class="literal">default</span>:</span><br><span class="line">                <span class="keyword">return</span> StatusCode(<span class="number">500</span>, <span class="keyword">new</span> ApiResult &#123; RESULT_CODE = SysMessage.S0010001, RESULT_MESSAGE = result.message &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-Service（廚房）"><a href="#2-Service（廚房）" class="headerlink" title="2. Service（廚房）"></a>2. <strong>Service（廚房）</strong></h4><p>廚房（Service 層）負責處理來自服務員的點餐要求，並與資料庫進行交互。這就像 <code>SYSM001Service</code> 和 <code>CommonService</code> 類別，處理實際的業務邏輯和資料庫操作。</p>
+<p><strong>程式碼示例</strong>：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SYSM001Service</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> IDbConnection _dbConnection;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SYSM001Service</span>(<span class="params">IDbConnection dbConnection</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        _dbConnection = dbConnection;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> ServiceResult&lt;List&lt;SYSM001Q_OutputVo&gt;&gt; QueryDetailResult(SYSM001Q_InputVo inputVo)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> sql = <span class="string">&quot;SELECT * FROM SystemParameters WHERE ...&quot;</span>; <span class="comment">// SQL 查詢語句</span></span><br><span class="line">        <span class="keyword">var</span> result = _dbConnection.Query&lt;SYSM001Q_OutputVo&gt;(sql, inputVo);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ServiceResult&lt;List&lt;SYSM001Q_OutputVo&gt;&gt; &#123; result = result.ToList(), status = CommonEnum.ACTION_STATUS.SUCCESS &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ServiceResult&lt;<span class="built_in">int</span>&gt; <span class="title">EditResult</span>(<span class="params">List&lt;SYSM001E_TotVo&gt; inputVo</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> sql = <span class="string">&quot;UPDATE SystemParameters SET ... WHERE ...&quot;</span>; <span class="comment">// SQL 更新語句</span></span><br><span class="line">        <span class="keyword">var</span> rowsAffected = _dbConnection.Execute(sql, inputVo);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ServiceResult&lt;<span class="built_in">int</span>&gt; &#123; result = rowsAffected, status = CommonEnum.ACTION_STATUS.SUCCESS &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CommonService</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> IDbConnection _dbConnection;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">CommonService</span>(<span class="params">IDbConnection dbConnection</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        _dbConnection = dbConnection;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> ServiceResult&lt;List&lt;SubSyst_OutputVo&gt;&gt; QuerySubSystemResult(SubSyst_InputVo inputVo)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> sql = <span class="string">&quot;SELECT * FROM SubSystem WHERE ...&quot;</span>; <span class="comment">// SQL 查詢語句</span></span><br><span class="line">        <span class="keyword">var</span> result = _dbConnection.Query&lt;SubSyst_OutputVo&gt;(sql, inputVo);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ServiceResult&lt;List&lt;SubSyst_OutputVo&gt;&gt; &#123; result = result.ToList(), status = CommonEnum.ACTION_STATUS.SUCCESS &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-Dapper（廚房的設備和食材）"><a href="#3-Dapper（廚房的設備和食材）" class="headerlink" title="3. Dapper（廚房的設備和食材）"></a>3. <strong>Dapper（廚房的設備和食材）</strong></h4><p>Dapper 負責與資料庫進行交互，像是廚房中的設備和食材，幫助廚房完成菜品的準備。</p>
+<p><strong>Dapper 操作示例</strong>：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在 SYSM001Service 中的查詢和更新操作</span></span><br><span class="line"><span class="keyword">public</span> ServiceResult&lt;List&lt;SYSM001Q_OutputVo&gt;&gt; QueryDetailResult(SYSM001Q_InputVo inputVo)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">var</span> sql = <span class="string">&quot;SELECT * FROM SystemParameters WHERE ...&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> result = _dbConnection.Query&lt;SYSM001Q_OutputVo&gt;(sql, inputVo);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ServiceResult&lt;List&lt;SYSM001Q_OutputVo&gt;&gt; &#123; result = result.ToList(), status = CommonEnum.ACTION_STATUS.SUCCESS &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> ServiceResult&lt;<span class="built_in">int</span>&gt; <span class="title">EditResult</span>(<span class="params">List&lt;SYSM001E_TotVo&gt; inputVo</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">var</span> sql = <span class="string">&quot;UPDATE SystemParameters SET ... WHERE ...&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> rowsAffected = _dbConnection.Execute(sql, inputVo);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ServiceResult&lt;<span class="built_in">int</span>&gt; &#123; result = rowsAffected, status = CommonEnum.ACTION_STATUS.SUCCESS &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="總結-1"><a href="#總結-1" class="headerlink" title="總結"></a>總結</h3><ul>
+<li><strong>Controller</strong>（服務員）：接收顧客的點餐請求，將其傳遞給廚房，並將結果帶回給顧客。</li>
+<li><strong>Service 層</strong>（廚房）：處理實際的業務邏輯和資料庫操作。</li>
+<li><strong>Dapper</strong>（設備和食材）：提供高效的資料庫存取和操作功能。</li>
+</ul>
+<p>這樣的比喻有助於理解 ASP.NET Core 中 Controller、Service 層和 Dapper 如何協作，像餐廳中的服務員、廚房和廚房設備如何協作來滿足顧客的需求。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/OneNote/" rel="tag"># OneNote</a>
+              <a href="/apple.lily/tags/ASP-NET/" rel="tag"># ASP.NET</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/09/12/WDS_SA/01-SYSM001Controller/" rel="prev" title="SYSM001Controller 系統參數資料查詢編輯">
+                  <i class="fa fa-angle-left"></i> SYSM001Controller 系統參數資料查詢編輯
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,225 @@
+<hr>
+<h2 id="title-2024-09-13-用-ASP-NET-DAPPER-來舉例餐廳date-2024-09-12-20-19-51categories-OneDayOneNotetags-OneNote-ASP-NET-description-2024-09-13-用-ASP-NET-DAPPER-來舉例餐廳"><a href="#title-2024-09-13-用-ASP-NET-DAPPER-來舉例餐廳date-2024-09-12-20-19-51categories-OneDayOneNotetags-OneNote-ASP-NET-description-2024-09-13-用-ASP-NET-DAPPER-來舉例餐廳" class="headerlink" title="title: 2024-09-13 用  ASP .NET + DAPPER 來舉例餐廳date: 2024-09-12 20:19:51categories: OneDayOneNotetags:  [OneNote, ASP.NET]description: 2024-09-13 用  ASP .NET + DAPPER 來舉例餐廳"></a>title: 2024-09-13 用  ASP .NET + DAPPER 來舉例餐廳<br>date: 2024-09-12 20:19:51<br>categories: OneDayOneNote<br>tags:  [OneNote, ASP.NET]<br>description: 2024-09-13 用  ASP .NET + DAPPER 來舉例餐廳</h2><p>當用 ASP.NET 和 Dapper 來類比餐廳時，我們可以用這些技術來模擬餐廳的運作，以下是一個如何把 ASP.NET 和 Dapper 應用於餐廳管理的比喻：</p>
+<h3 id="1-ASP-NET：建立餐廳管理系統"><a href="#1-ASP-NET：建立餐廳管理系統" class="headerlink" title="1. ASP.NET：建立餐廳管理系統"></a>1. <strong>ASP.NET：建立餐廳管理系統</strong></h3><p>ASP.NET 是用來建立餐廳管理系統的框架。這個系統能夠處理顧客點餐、菜品管理、訂單處理等操作。它就像餐廳的前台系統，負責接收顧客的點餐要求，處理訂單，並展示菜品的資訊。</p>
+<h3 id="2-Dapper：與資料庫交互"><a href="#2-Dapper：與資料庫交互" class="headerlink" title="2. Dapper：與資料庫交互"></a>2. <strong>Dapper：與資料庫交互</strong></h3><p>Dapper 是一個輕量級的 ORM（對象關聯映射）庫，用來快速簡便地與資料庫交互。它就像是餐廳中的點菜系統，快速將顧客的訂單資料傳送到廚房，並從廚房那裡取得製作完成的菜品資料。</p>
+<h3 id="餐廳管理系統的比喻："><a href="#餐廳管理系統的比喻：" class="headerlink" title="餐廳管理系統的比喻："></a>餐廳管理系統的比喻：</h3><h4 id="1-顧客點餐（ASP-NET-控制器）"><a href="#1-顧客點餐（ASP-NET-控制器）" class="headerlink" title="1. 顧客點餐（ASP.NET 控制器）"></a><strong>1. 顧客點餐（ASP.NET 控制器）</strong></h4><p><strong>比喻</strong>：顧客在餐廳點餐，前台服務員（ASP.NET 控制器）接收顧客的點餐要求（HTTP 請求），並將其轉交給廚房（資料庫）處理。</p>
+<ul>
+<li><strong>ASP.NET 控制器</strong>：接收點餐請求（例如，菜品查詢、訂單創建）。</li>
+<li><strong>HTTP 請求</strong>：顧客的點餐要求，例如「我要一個披薩」。</li>
+</ul>
+<pre><code class="csharp">[Route(&quot;api/[controller]&quot;)]
+[ApiController]
+public class MenuController : ControllerBase
+{
+    private readonly IMenuService _menuService;
+
+    public MenuController(IMenuService menuService)
+    {
+        _menuService = menuService;
+    }
+
+    [HttpGet(&quot;items&quot;)]
+    public IActionResult GetMenuItems()
+    {
+        var items = _menuService.GetMenuItems();
+        return Ok(items);
+    }
+
+    [HttpPost(&quot;order&quot;)]
+    public IActionResult PlaceOrder([FromBody] OrderRequest orderRequest)
+    {
+        var result = _menuService.PlaceOrder(orderRequest);
+        return Ok(result);
+    }
+}
+</code></pre>
+<h4 id="2-廚房處理訂單（Dapper）"><a href="#2-廚房處理訂單（Dapper）" class="headerlink" title="2. 廚房處理訂單（Dapper）"></a><strong>2. 廚房處理訂單（Dapper）</strong></h4><p><strong>比喻</strong>：廚房（資料庫）接收到訂單後，根據菜單準備菜品。Dapper 就像是廚房的工作流程，用來快速從食材庫存中提取所需的資料並準備菜品。</p>
+<ul>
+<li><strong>Dapper</strong>：執行 SQL 查詢，從資料庫中檢索菜品資訊或儲存訂單。</li>
+</ul>
+<pre><code class="csharp">public class MenuService : IMenuService
+{
+    private readonly IDbConnection _dbConnection;
+
+    public MenuService(IDbConnection dbConnection)
+    {
+        _dbConnection = dbConnection;
+    }
+
+    public IEnumerable&lt;MenuItem&gt; GetMenuItems()
+    {
+        var sql = &quot;SELECT * FROM MenuItems&quot;;
+        return _dbConnection.Query&lt;MenuItem&gt;(sql);
+    }
+
+    public bool PlaceOrder(OrderRequest orderRequest)
+    {
+        var sql = &quot;INSERT INTO Orders (CustomerId, ItemId, Quantity) VALUES (@CustomerId, @ItemId, @Quantity)&quot;;
+        var rowsAffected = _dbConnection.Execute(sql, orderRequest);
+        return rowsAffected &gt; 0;
+    }
+}
+</code></pre>
+<h4 id="3-顧客接收菜品（ASP-NET-控制器回應）"><a href="#3-顧客接收菜品（ASP-NET-控制器回應）" class="headerlink" title="3. 顧客接收菜品（ASP.NET 控制器回應）"></a><strong>3. 顧客接收菜品（ASP.NET 控制器回應）</strong></h4><p><strong>比喻</strong>：當廚房完成菜品後，服務員（ASP.NET 控制器）將菜品送到顧客的桌上。這相當於將資料庫的查詢結果回傳給顧客的點餐應用。</p>
+<ul>
+<li><strong>ASP.NET 控制器回應</strong>：將廚房（資料庫）處理完成的菜品資訊或訂單狀態返回給顧客。</li>
+</ul>
+<pre><code class="csharp">public class MenuController : ControllerBase
+{
+    private readonly IMenuService _menuService;
+
+    public MenuController(IMenuService menuService)
+    {
+        _menuService = menuService;
+    }
+
+    [HttpGet(&quot;items&quot;)]
+    public IActionResult GetMenuItems()
+    {
+        var items = _menuService.GetMenuItems();
+        return Ok(items); // 返回菜單項目
+    }
+
+    [HttpPost(&quot;order&quot;)]
+    public IActionResult PlaceOrder([FromBody] OrderRequest orderRequest)
+    {
+        var result = _menuService.PlaceOrder(orderRequest);
+        return result ? Ok(&quot;Order placed successfully&quot;) : BadRequest(&quot;Failed to place order&quot;);
+    }
+}
+</code></pre>
+<h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h3><ul>
+<li><strong>ASP.NET</strong>：就像是餐廳的點餐系統，負責接收顧客的點餐請求和展示菜單。</li>
+<li><strong>Dapper</strong>：就像是廚房的工作流程，快速處理資料庫的查詢和更新。</li>
+<li><strong>顧客、點餐</strong>：顧客向前台服務員（ASP.NET 控制器）點餐。</li>
+<li><strong>廚房、製作菜品</strong>：廚房（資料庫）使用 Dapper 準備菜品並回應前台服務員。</li>
+</ul>
+<p>這個比喻幫助理解 ASP.NET 和 Dapper 如何協同工作，處理點餐請求和數據交互。</p>
+<h2>那如果再細分到自己寫的  CONTROLLER呢</h2>
+當然可以！我們可以使用您提供的程式結構，將餐廳的比喻應用到 ASP.NET Core + Dapper 的實際程式碼中。這裡是如何用您給的程式結構來比喻這些概念：
+
+<h3 id="餐廳系統的-Controller-與-Dapper-例子"><a href="#餐廳系統的-Controller-與-Dapper-例子" class="headerlink" title="餐廳系統的 Controller 與 Dapper 例子"></a>餐廳系統的 Controller 與 Dapper 例子</h3><h4 id="1-Controller（服務員）"><a href="#1-Controller（服務員）" class="headerlink" title="1. Controller（服務員）"></a>1. <strong>Controller（服務員）</strong></h4><p>在餐廳中，服務員（Controller）接收顧客的點餐要求，並將其轉交給廚房（Service）。這就像我們的 <code>SYSM001Controller</code> 類別，處理顧客的請求，並將結果返回給顧客。</p>
+<p><strong>程式碼示例</strong>：</p>
+<pre><code class="csharp">[Route(&quot;api/[controller]&quot;)]
+[ApiController]
+public class SYSM001Controller : ControllerBase
+{
+    private readonly SYSM001Service _service;
+    private readonly CommonService _commonService;
+
+    public SYSM001Controller(SYSM001Service service, CommonService commonService, ILogger&lt;SYSM001Controller&gt; logger)
+    {
+        _service = service;
+        _commonService = commonService;
+    }
+
+    /// &lt;summary&gt;
+    /// 系統參數資料明細查詢作業
+    /// &lt;/summary&gt;
+    [HttpPost(&quot;Query&quot;)]
+    public IActionResult Get([FromBody] SYSM001Q_InputVo inputVo)
+    {
+        var result = _service.QueryDetailResult(inputVo);
+        return ProcessResult(result);
+    }
+
+    /// &lt;summary&gt;
+    /// 系統別資料查詢作業
+    /// &lt;/summary&gt;
+    [HttpPost(&quot;QuerySyst&quot;)]
+    public IActionResult QuerySyst([FromBody] SubSyst_InputVo inputVo)
+    {
+        var result = _commonService.QuerySubSystemResult(inputVo);
+        return ProcessResult(result);
+    }
+
+    /// &lt;summary&gt;
+    /// 系統參數資料編輯作業
+    /// &lt;/summary&gt;
+    [HttpPut(&quot;Edit&quot;)]
+    public IActionResult Edit([FromBody] List&lt;SYSM001E_TotVo&gt; inputVo)
+    {
+        var result = _service.EditResult(inputVo);
+        return ProcessResult(result);
+    }
+
+    private IActionResult ProcessResult(ServiceResult result)
+    {
+        switch (result.status)
+        {
+            case CommonEnum.ACTION_STATUS.SUCCESS:
+                return Ok(new ApiResult { RESULT_CODE = SysMessage.S0000001, RESULT = result.result, RESULT_MESSAGE = result.message });
+            case CommonEnum.ACTION_STATUS.NOTFOUND:
+                return NotFound(new ApiResult { RESULT_CODE = SysMessage.S0000001, RESULT_MESSAGE = result.message });
+            default:
+                return StatusCode(500, new ApiResult { RESULT_CODE = SysMessage.S0010001, RESULT_MESSAGE = result.message });
+        }
+    }
+}
+</code></pre>
+<h4 id="2-Service（廚房）"><a href="#2-Service（廚房）" class="headerlink" title="2. Service（廚房）"></a>2. <strong>Service（廚房）</strong></h4><p>廚房（Service 層）負責處理來自服務員的點餐要求，並與資料庫進行交互。這就像 <code>SYSM001Service</code> 和 <code>CommonService</code> 類別，處理實際的業務邏輯和資料庫操作。</p>
+<p><strong>程式碼示例</strong>：</p>
+<pre><code class="csharp">public class SYSM001Service
+{
+    private readonly IDbConnection _dbConnection;
+
+    public SYSM001Service(IDbConnection dbConnection)
+    {
+        _dbConnection = dbConnection;
+    }
+
+    public ServiceResult&lt;List&lt;SYSM001Q_OutputVo&gt;&gt; QueryDetailResult(SYSM001Q_InputVo inputVo)
+    {
+        var sql = &quot;SELECT * FROM SystemParameters WHERE ...&quot;; // SQL 查詢語句
+        var result = _dbConnection.Query&lt;SYSM001Q_OutputVo&gt;(sql, inputVo);
+        return new ServiceResult&lt;List&lt;SYSM001Q_OutputVo&gt;&gt; { result = result.ToList(), status = CommonEnum.ACTION_STATUS.SUCCESS };
+    }
+
+    public ServiceResult&lt;int&gt; EditResult(List&lt;SYSM001E_TotVo&gt; inputVo)
+    {
+        var sql = &quot;UPDATE SystemParameters SET ... WHERE ...&quot;; // SQL 更新語句
+        var rowsAffected = _dbConnection.Execute(sql, inputVo);
+        return new ServiceResult&lt;int&gt; { result = rowsAffected, status = CommonEnum.ACTION_STATUS.SUCCESS };
+    }
+}
+
+public class CommonService
+{
+    private readonly IDbConnection _dbConnection;
+
+    public CommonService(IDbConnection dbConnection)
+    {
+        _dbConnection = dbConnection;
+    }
+
+    public ServiceResult&lt;List&lt;SubSyst_OutputVo&gt;&gt; QuerySubSystemResult(SubSyst_InputVo inputVo)
+    {
+        var sql = &quot;SELECT * FROM SubSystem WHERE ...&quot;; // SQL 查詢語句
+        var result = _dbConnection.Query&lt;SubSyst_OutputVo&gt;(sql, inputVo);
+        return new ServiceResult&lt;List&lt;SubSyst_OutputVo&gt;&gt; { result = result.ToList(), status = CommonEnum.ACTION_STATUS.SUCCESS };
+    }
+}
+</code></pre>
+<h4 id="3-Dapper（廚房的設備和食材）"><a href="#3-Dapper（廚房的設備和食材）" class="headerlink" title="3. Dapper（廚房的設備和食材）"></a>3. <strong>Dapper（廚房的設備和食材）</strong></h4><p>Dapper 負責與資料庫進行交互，像是廚房中的設備和食材，幫助廚房完成菜品的準備。</p>
+<p><strong>Dapper 操作示例</strong>：</p>
+<pre><code class="csharp">// 在 SYSM001Service 中的查詢和更新操作
+public ServiceResult&lt;List&lt;SYSM001Q_OutputVo&gt;&gt; QueryDetailResult(SYSM001Q_InputVo inputVo)
+{
+    var sql = &quot;SELECT * FROM SystemParameters WHERE ...&quot;;
+    var result = _dbConnection.Query&lt;SYSM001Q_OutputVo&gt;(sql, inputVo);
+    return new ServiceResult&lt;List&lt;SYSM001Q_OutputVo&gt;&gt; { result = result.ToList(), status = CommonEnum.ACTION_STATUS.SUCCESS };
+}
+
+public ServiceResult&lt;int&gt; EditResult(List&lt;SYSM001E_TotVo&gt; inputVo)
+{
+    var sql = &quot;UPDATE SystemParameters SET ... WHERE ...&quot;;
+    var rowsAffected = _dbConnection.Execute(sql, inputVo);
+    return new ServiceResult&lt;int&gt; { result = rowsAffected, status = CommonEnum.ACTION_STATUS.SUCCESS };
+}
+</code></pre>
+<h3 id="總結-1"><a href="#總結-1" class="headerlink" title="總結"></a>總結</h3><ul>
+<li><strong>Controller</strong>（服務員）：接收顧客的點餐請求，將其傳遞給廚房，並將結果帶回給顧客。</li>
+<li><strong>Service 層</strong>（廚房）：處理實際的業務邏輯和資料庫操作。</li>
+<li><strong>Dapper</strong>（設備和食材）：提供高效的資料庫存取和操作功能。</li>
+</ul>
+<p>這樣的比喻有助於理解 ASP.NET Core 中 Controller、Service 層和 Dapper 如何協作，像餐廳中的服務員、廚房和廚房設備如何協作來滿足顧客的需求。</p>
