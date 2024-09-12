@@ -1,0 +1,102 @@
+<hr>
+<h2 id="title-2024-09-12-JavaScript-系列七：第1課-──-認識-Vue-基本環境與-render-statedate-2024-09-12-19-55-19categories-OneDayOneNotetags-OneNote-Javascript-description-2024-09-12-JavaScript-系列七：第1課-──-認識-Vue-基本環境與-render-state"><a href="#title-2024-09-12-JavaScript-系列七：第1課-──-認識-Vue-基本環境與-render-statedate-2024-09-12-19-55-19categories-OneDayOneNotetags-OneNote-Javascript-description-2024-09-12-JavaScript-系列七：第1課-──-認識-Vue-基本環境與-render-state" class="headerlink" title="title: 2024-09-12 JavaScript 系列七：第1課 ── 認識 Vue 基本環境與 render statedate: 2024-09-12 19:55:19categories: OneDayOneNotetags:  [OneNote, Javascript]description: 2024-09-12 JavaScript 系列七：第1課 ── 認識 Vue 基本環境與 render state"></a>title: 2024-09-12 JavaScript 系列七：第1課 ── 認識 Vue 基本環境與 render state<br>date: 2024-09-12 19:55:19<br>categories: OneDayOneNote<br>tags:  [OneNote, Javascript]<br>description: 2024-09-12 JavaScript 系列七：第1課 ── 認識 Vue 基本環境與 render state</h2><p>JavaScript 系列七：第1課 ── 認識 Vue 基本環境與 render state<br>課程目標<br>能夠運行 Vue 基本環境<br>能夠 render state<br>課程內容<br>身為工程師，要習慣到處翻閱各種技術文件</p>
+<p>這次的課程，我不會手把手帶領，細談所有觀念</p>
+<p>我會一次提供一個官網連結。請你一邊閱讀，一邊把其中的範例貼到 jsfiddle 跑跑看</p>
+<p>我會額外提供簡單介紹＆關鍵字，然後補充一些注意事項</p>
+<p>官網文件內容是英文，如果對英文沒把握，就去翻中文官網</p>
+<p><a href="https://cn.vuejs.org/guide/introduction.html">https://cn.vuejs.org/guide/introduction.html</a></p>
+<p>但是，長遠來說，還是要逐漸提升自己的英語閱讀能力才行</p>
+<p>先學基本的安裝＆運行</p>
+<p><a href="https://vuejs.org/guide/quick-start.html">https://vuejs.org/guide/quick-start.html</a><br>這系列課程，我們用最簡單的 CDN 環境來跑就好了，先只學 CDN 那一段就好</p>
+<p>接著來學 Vue 最基本觀念</p>
+<p><a href="https://vuejs.org/guide/essentials/application.html">https://vuejs.org/guide/essentials/application.html</a><br><a href="https://vuejs.org/guide/essentials/template-syntax.html">https://vuejs.org/guide/essentials/template-syntax.html</a><br>內容很多，大部份看不懂沒關係，稍微有個印象就好</p>
+<p>如同我在前言所說，同一件事有很多種花俏寫法，你根本不用全部學會</p>
+<p>這一課我們只要學會如何 render state 就好了</p>
+<pre><code class="html">&lt;script src=&quot;https://unpkg.com/vue@3/dist/vue.global.js&quot;&gt;&lt;/script&gt;
+
+&lt;div id=&quot;app&quot;&gt;
+  {{ user.name }} 喜歡吃 {{ fruits[0].name }} 以及 {{ fruits[1].name }}
+&lt;/div&gt;
+
+&lt;script&gt;
+  const { createApp } = Vue
+
+  createApp({
+    data() {
+      return {
+        user: {
+          name: &quot;John Doe&quot;
+        },
+        fruits: [
+          {
+            name: &quot;Apple&quot;,
+          },
+          {
+            name: &quot;Banana&quot;,
+          },
+        ]
+      }
+    }
+  }).mount(&#39;#app&#39;)
+&lt;/script&gt;
+</code></pre>
+<p>上面這段範例，在 data() 函式將 application state 準備好</p>
+<p>然後只要將一段作為 UI 的 html 寫好，我們稱之為模板（template）</p>
+<p>接著 Vue 就會把 state 放進 template 裡面，把結果給 render 出來</p>
+<p>貼到 jsfiddle 跑跑看吧，你會發現非常簡單、好理解</p>
+<p>課後作業<br>這系列課程，我們要模仿 Google Keep 製作一個應用程式</p>
+<p>請先把玩一下 Google Keep <a href="https://keep.google.com/">https://keep.google.com/</a></p>
+<p>作業使用 jsfiddle 來寫</p>
+<p>這一課先簡單呈現 UI 就好</p>
+<p>請使用以下這段 code 作為 application state</p>
+<pre><code class="js">data() {
+  return {
+    notes: [
+      {
+        title: &quot;春節行程安排&quot;,
+        content: &quot;吃飽睡，睡飽吃&quot;,
+        color: &quot;red&quot;,
+      },
+      {
+        title: &quot;工作待辦事項&quot;,
+        content: &quot;詢問各家廠商報價&quot;,
+        color: &quot;green&quot;,
+      },
+      {
+        title: &quot;運動健身計畫&quot;,
+        content: &quot;每天早上六點去健身&quot;,
+        color: &quot;blue&quot;,
+      },
+    ]
+  }
+}
+</code></pre>
+<p>使用以下這段 code 作為 template</p>
+<pre><code class="html">&lt;div id=&quot;app&quot;&gt;
+  &lt;div class=&quot;note&quot;&gt;
+    &lt;h3 class=&quot;title&quot;&gt;
+      &lt;!-- 請顯示第一個項目的標題 --&gt;
+    &lt;/h3&gt;
+    &lt;p class=&quot;content&quot;&gt;
+      &lt;!-- 請顯示第一個項目的內容 --&gt;
+    &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;note&quot;&gt;
+    &lt;h3 class=&quot;title&quot;&gt;
+      &lt;!-- 請顯示第二個項目的標題 --&gt;
+    &lt;/h3&gt;
+    &lt;p class=&quot;content&quot;&gt;
+      &lt;!-- 請顯示第二個項目的內容 --&gt;
+    &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;note&quot;&gt;
+    &lt;h3 class=&quot;title&quot;&gt;
+      &lt;!-- 請顯示第三個項目的標題 --&gt;
+    &lt;/h3&gt;
+    &lt;p class=&quot;content&quot;&gt;
+      &lt;!-- 請顯示第三個項目的內容 --&gt;
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p>陣列內容就只有三筆資料，就只要顯示這三筆資料就好<br>在 application state 裡面的陣列，直接用 索引 來取出值就好，這一課先不用寫 for 迴圈<br>color 這一課還不會用到，可以先忽略沒關係<br>請在 <code>&lt;style&gt; </code>加上一些樣式，讓整個頁面漂亮一點<br>每則記事可以單純的放進網頁就好，不用像 Google Keep 那樣花式的排版（那種叫瀑布流排版，很難寫）<br>做出以上功能，你就完成這次的課程目標了！</p>
