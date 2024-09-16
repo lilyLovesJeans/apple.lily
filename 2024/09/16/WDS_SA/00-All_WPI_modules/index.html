@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="財會系統模組總覽">
+<meta property="og:type" content="article">
+<meta property="og:title" content="財會系統模組總覽">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2024/09/16/WDS_SA/00-All_WPI_modules/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="財會系統模組總覽">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2024-09-16T04:25:10.000Z">
+<meta property="article:modified_time" content="2024-09-16T04:31:13.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="C#">
+<meta property="article:tag" content="SA">
+<meta property="article:tag" content="UML">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2024/09/16/WDS_SA/00-All_WPI_modules/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2024/09/16/WDS_SA/00-All_WPI_modules/","path":"2024/09/16/WDS_SA/00-All_WPI_modules/","title":"財會系統模組總覽"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>財會系統模組總覽 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#AP-%E6%87%89%E4%BB%98%E6%AC%BE%E9%A0%85%E6%A8%A1%E7%B5%84"><span class="nav-number">1.</span> <span class="nav-text">AP(應付款項模組):</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AR-%E6%87%89%E6%94%B6%E6%AC%BE%E9%A0%85%E6%A8%A1%E7%B5%84"><span class="nav-number">2.</span> <span class="nav-text">AR(應收款項模組):</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DCF-%E5%A4%A7%E6%99%BA%E9%80%9A%E7%89%A9%E6%B5%81-%E8%B3%87%E6%96%99%E4%BA%A4%E6%8F%9B%E4%BB%8B%E9%9D%A2"><span class="nav-number">3.</span> <span class="nav-text">DCF (大智通物流-資料交換介面):</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FA-%E5%9B%BA%E5%AE%9A%E8%B3%87%E7%94%A2"><span class="nav-number">4.</span> <span class="nav-text">FA (固定資產):</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FSA-%E5%85%B6%E4%BB%96%E5%8A%9F%E8%83%BD-%E8%B2%A1%E5%8B%99%E5%A0%B1%E8%A1%A8"><span class="nav-number">5.</span> <span class="nav-text">FSA (其他功能-財務報表):</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GL-%E7%B8%BD%E5%B8%B3%E6%A8%A1%E7%B5%84"><span class="nav-number">6.</span> <span class="nav-text">GL (總帳模組):</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IMP-%E9%80%B2%E5%8F%A3%E6%86%91%E8%AD%89%E8%99%95%E7%90%86%E6%A8%A1%E7%B5%84"><span class="nav-number">7.</span> <span class="nav-text">IMP (進口憑證處理模組):</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MIS-MIS-%E7%B3%BB%E7%B5%B1%E7%AE%A1%E7%90%86%E6%A8%A1%E7%B5%84"><span class="nav-number">8.</span> <span class="nav-text">MIS (MIS 系統管理模組):</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NP-%E6%87%89%E4%BB%98%E7%A5%A8%E6%93%9A%E6%A8%A1%E7%B5%84"><span class="nav-number">9.</span> <span class="nav-text">NP (應付票據模組):</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NR-%E6%87%89%E6%94%B6%E7%A5%A8%E6%93%9A%E6%A8%A1%E7%B5%84"><span class="nav-number">10.</span> <span class="nav-text">NR (應收票據模組):</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OTH-%E5%85%B6%E4%BB%96%E5%8A%9F%E8%83%BD%E6%A8%A1%E7%B5%84"><span class="nav-number">11.</span> <span class="nav-text">OTH (其他功能模組):</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PIV-%E9%80%B2%E9%A0%85%E6%86%91%E8%AD%89%E8%99%95%E7%90%86"><span class="nav-number">12.</span> <span class="nav-text">PIV (進項憑證處理):</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PPY-%E5%85%B6%E4%BB%96%E5%8A%9F%E8%83%BD-%E6%9A%AB%E4%BB%98%E6%AC%BE%E6%A8%A1%E7%B5%84"><span class="nav-number">13.</span> <span class="nav-text">PPY (其他功能-暫付款模組):</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SET-%E6%A8%A1%E7%B5%84-%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E7%B6%AD%E8%AD%B7%E7%9B%B8%E9%97%9C"><span class="nav-number">14.</span> <span class="nav-text">SET(模組): 基本資料維護相關</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SHA-%E5%85%B6%E4%BB%96%E5%8A%9F%E8%83%BD-%E7%B6%93%E7%87%9F%E6%95%B8%E6%93%9A%E5%A0%B1%E8%A1%A8"><span class="nav-number">15.</span> <span class="nav-text">SHA (其他功能-經營數據報表):</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SI2-%E7%99%BC%E7%A5%A8%E8%99%95%E7%90%86%E4%BD%9C%E6%A5%AD%E6%A8%A1%E7%B5%84"><span class="nav-number">16.</span> <span class="nav-text">SI2 (發票處理作業模組):</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TAX-%E6%89%80%E5%BE%97%E4%BB%A3%E6%89%A3%E4%BD%9C%E6%A5%AD%E6%A8%A1%E7%B5%84"><span class="nav-number">17.</span> <span class="nav-text">TAX (所得代扣作業模組):</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">163</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2024/09/16/WDS_SA/00-All_WPI_modules/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="財會系統模組總覽 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="財會系統模組總覽">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          財會系統模組總覽
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2024-09-16 12:25:10 / 修改時間：12:31:13" itemprop="dateCreated datePublished" datetime="2024-09-16T12:25:10+08:00">2024-09-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/WDS/" itemprop="url" rel="index"><span itemprop="name">WDS</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">財會系統模組總覽</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="AP-應付款項模組"><a href="#AP-應付款項模組" class="headerlink" title="AP(應付款項模組):"></a><strong>AP(應付款項模組):</strong></h3><ol>
+<li><strong>APM001</strong>: 應付款項切入(立帳)維護(傳票子畫面)</li>
+<li><strong>APM002</strong>: 應付款項切出資料維護(傳票子畫面)</li>
+<li><strong>APM003 &#x2F; APM004</strong>: 預計票據到期日修正</li>
+<li><strong>APM004 &#x2F; APM016</strong>: 應付押款作業(批次)</li>
+<li><strong>APM005 &#x2F; APM017</strong>: 應付款項債權移轉作業</li>
+<li><strong>APP001 &#x2F; APP011 (廠編8碼)</strong>: 應付款項沖銷月處理(廠編10碼)</li>
+<li><strong>APP001 &#x2F; APP001A</strong>: 應付款項扣款沖銷明細表</li>
+<li><strong>APP002</strong>: 票據開立申請批號產生</li>
+<li><strong>APP003</strong>: 票據開立申請批號作廢</li>
+<li><strong>APP011 &#x2F; APP005 &#x2F; APP105 (廠編8碼)</strong>: VDS應付款項沖銷月處理(廠編10碼)</li>
+<li><strong>APP011 &#x2F; APP005A</strong>: VDS應付款項扣款沖銷明細表</li>
+<li><strong>APP016 &#x2F; APP006</strong>: VDS實銷廠商暫不付款整批作業處理</li>
+<li><strong>APP004 &#x2F; APP009</strong>: 單一票據批號作廢</li>
+<li><strong>APP004 &#x2F; APP009A</strong>: 單一票據批號作廢（已不使用）</li>
+<li><strong>APP005 &#x2F; APP010</strong>: 貨款止付作業</li>
+<li><strong>APP005 &#x2F; APP010A</strong>: 貨款止付明細表</li>
+<li><strong>APP006 &#x2F; APP016</strong>: 實銷廠商暫不付款整批作業處理</li>
+<li><strong>APP099 &#x2F; APP017A</strong>: 資料處理異常報表</li>
+<li><strong>APP007 &#x2F; APP018</strong>: 付款資料處理作業(加密)</li>
+<li><strong>APP017 &#x2F; APP018F</strong>: 付款資料處理作業(FTP)(加密)</li>
+<li><strong>APP009 &#x2F; APP019</strong>: 付款憑單上傳EI作業</li>
+<li><strong>APP009 &#x2F; APP019A</strong>: 付款憑單上傳EI異常表</li>
+<li><strong>APQ001 &#x2F; APQ001A</strong>: 應付款項餘額明細查詢&#x2F;明細表</li>
+<li><strong>APQ002 &#x2F; APQ005</strong>: 應付款項切出明細查詢</li>
+<li><strong>APQ002 &#x2F; APQ005A</strong>: 應付款項切出明細表</li>
+<li><strong>APR001 &#x2F; APR001A &#x2F; APR001B &#x2F; APR001E</strong>: 應付款項餘額明細表（含小計）</li>
+<li><strong>APR002 &#x2F; APR003</strong>: 應付款項立沖明細表</li>
+<li><strong>APR002 &#x2F; APR003A</strong>: 應付款項立沖明細表</li>
+<li><strong>APR003 &#x2F; APR007</strong>: 票據開立申請表</li>
+<li><strong>APR003 &#x2F; APR007A</strong>: 票據開立申請表─支票</li>
+<li><strong>APR003 &#x2F; APR007B</strong>: 票據開立申請表─電匯</li>
+<li><strong>APP008 &#x2F; APR012</strong>: 進貨廠商付款憑單</li>
+<li><strong>APR004 &#x2F; APR017</strong>: 債權移轉報表列印</li>
+<li><strong>APR004 &#x2F; APR017A</strong>: 債權移轉表</li>
+<li><strong>APR005 &#x2F; APR018</strong>: 應付到期日列印</li>
+<li><strong>APR005 &#x2F; APR018A</strong>: 應付到期日彙總表</li>
+<li><strong>APR005 &#x2F; APR018B</strong>: 應付到期日明細表</li>
+<li><strong>APR006 &#x2F; APR019</strong>: 供應商對帳單明細表</li>
+</ol>
+<h3 id="AR-應收款項模組"><a href="#AR-應收款項模組" class="headerlink" title="AR(應收款項模組):"></a><strong>AR(應收款項模組):</strong></h3><ol>
+<li><strong>ARM001</strong>: 應收款項切入維護(傳票子畫面)</li>
+<li><strong>ARM002</strong>: 應收款項切出維護(傳票子畫面)</li>
+<li><strong>ARQ001 &#x2F; ARQ001A</strong>: 應收款項切入明細查詢 &#x2F; 明細表</li>
+<li><strong>ARQ002 &#x2F; ARQ002A</strong>: 應收帳款切出明細查詢 &#x2F; 明細表</li>
+<li><strong>ARR001 &#x2F; ARR002</strong>: 應收款項餘額明細列印 &#x2F; 明細表</li>
+<li><strong>ARR002 &#x2F; ARR003A</strong>: 應收款項立沖帳明細表</li>
+<li><strong>ARR003 &#x2F; ARR004A</strong>: 應收款扣款明細表</li>
+<li><strong>ARR004 &#x2F; ARR007A</strong>: 廠商欠款餘額明細表</li>
+<li><strong>ARR005 &#x2F; ARR009A</strong>: 逾期帳款催收單 &#x2F; 催收聯絡單</li>
+<li><strong>ARR005 &#x2F; ARR009E</strong>: 逾期帳款催收聯絡單（額外版本）</li>
+<li><strong>ARR006 &#x2F; ARR010A &#x2F; ARR010C</strong>: 廠商應收帳款帳齡分析表 &#x2F; 帳齡管理分析表-彙總 &#x2F; 帳齡管理分析表-明細</li>
+<li><strong>ARR007 &#x2F; ARR011A &#x2F; ARR011B</strong>: 應付&#x2F;暫估貨款與應收款對照表 &#x2F; 對照彙總表 &#x2F; 對照明細表</li>
+</ol>
+<p>日### <strong>BUG (預算模組):</strong></p>
+<ol>
+<li><strong>BUGM001</strong>: 預算利潤中心主檔建立</li>
+<li><strong>BUGM002</strong>: 預算計劃維護</li>
+<li><strong>BUGM003 &#x2F; BUGM004</strong>: 會計科目預算明細維護</li>
+<li><strong>BUGM004 &#x2F; BUGM101</strong>: 會計科目預算維護</li>
+<li><strong>BUGP001 &#x2F; BUGP003</strong>: 會計科目預算計劃確認</li>
+<li><strong>BUGP002 &#x2F; BUGP004</strong>: 預算資料上傳作業</li>
+<li><strong>BUGR001 &#x2F; BUGR002</strong>: 費用預算表</li>
+<li><strong>BUGR002 &#x2F; BUGR002A</strong>: 費用預算表</li>
+<li><strong>BUGR001 &#x2F; BUGR002A</strong>: 費用預算合計表</li>
+<li><strong>BUGR003 &#x2F; BUGR013</strong>: 會科實績表</li>
+<li><strong>BUGR003 &#x2F; BUGR003A</strong>: 會科實績表</li>
+<li><strong>BUGR003 &#x2F; BUGR003B</strong>: 會科彙總表</li>
+<li><strong>BUGR004 &#x2F; BUGR014</strong>: 目標控制表-單位別</li>
+<li><strong>BUGR004 &#x2F; BUGR004A</strong>: 目標控制表-單位別</li>
+<li><strong>合併BUGR004A &#x2F; BUGR014B</strong>: 目標控制表-單位別</li>
+<li><strong>BUGR005 &#x2F; BUGR015</strong>: 目標控制表-科目別</li>
+<li><strong>BUGR005 &#x2F; BUGR005A</strong>: 目標控制表-科目別</li>
+<li><strong>BUGR005 &#x2F; BUGR005B</strong>: 目標控制表-科目別</li>
+<li><strong>BUGR005 &#x2F; BUGR005C</strong>: 目標控制表-科目別</li>
+<li><strong>BUGR006 &#x2F; BUGR016</strong>: 目標控制表-部門別</li>
+<li><strong>BUGR006 &#x2F; BUGR006A</strong>: 目標控制表-部門別</li>
+<li><strong>BUGR007 &#x2F; BUGR017</strong>: 目標表</li>
+<li><strong>BUGR007 &#x2F; BUGR007A</strong>: 目標表</li>
+<li><strong>BUGR008 &#x2F; BUGR018</strong>: 損益表-目標與實績</li>
+<li><strong>BUGR008 &#x2F; BUGR008A</strong>: 公司損益表</li>
+<li><strong>BUGR009 &#x2F; BUGR019</strong>: 會科實績表(分攤部門)(CSV)</li>
+</ol>
+<h3 id="DCF-大智通物流-資料交換介面"><a href="#DCF-大智通物流-資料交換介面" class="headerlink" title="DCF (大智通物流-資料交換介面):"></a><strong>DCF (大智通物流-資料交換介面):</strong></h3><ol>
+<li><strong>DCFM002 &#x2F; DCFM102</strong>: 物流中心主檔維護</li>
+<li><strong>DCFM001 &#x2F; DCFM105</strong>: 異動類別主檔維護</li>
+<li><strong>DCFM003 &#x2F; DCFM103</strong>: 物流介面參數檔維護</li>
+<li><strong>DCFP103 &#x2F; DCFP013</strong>: 庫存成本計算傳票處理</li>
+<li><strong>DCFP503</strong>: VDS庫存成本計算傳票處理</li>
+<li><strong>DCFP703 &#x2F; DCFP723</strong>: 統一超購物 庫存傳票處理</li>
+<li><strong>DCFP101 &#x2F; DCFP012</strong>: 進貨應付帳款傳票處理</li>
+<li><strong>DCFP101A &#x2F; DCFR012A</strong>: 進貨應付明細表</li>
+<li><strong>DCFR001A &#x2F; DCFR999A</strong>: 異常表</li>
+<li><strong>DCFP701 &#x2F; DCFP721</strong>: 統一超購物 進貨應付款傳票處理日</li>
+<li><strong>DCFP701A &#x2F; DCFR721A</strong>: 統一超購物 進貨應付帳款明細表</li>
+<li><strong>DCFP501 &#x2F; DCFP501</strong>: VDS進貨應付帳款傳票處理</li>
+<li><strong>DCFP501A &#x2F; DCFR501A</strong>: VDS進貨應付帳款明細表</li>
+<li><strong>DCFP102 &#x2F; DCFP015</strong>: 進貨折讓應付帳款沖帳傳票處理</li>
+<li><strong>DCFP102A &#x2F; DCFR015A</strong>: 進貨折讓應付明細表</li>
+<li><strong>DCFP702 &#x2F; DCFP722</strong>: 統一超購物 進貨折讓應付沖帳傳票處</li>
+<li><strong>DCFP702A &#x2F; DCFR722A</strong>: 統一超購物 進貨折讓應付沖帳明細表</li>
+<li><strong>DCFP502 &#x2F; DCFP502</strong>: VDS進項折讓沖帳傳票處理</li>
+<li><strong>DCFP502A &#x2F; DCFR502A</strong>: VDS進項折讓明細表</li>
+<li><strong>DCFP121 &#x2F; DCFP211</strong>: 超商代扣款傳票處理</li>
+<li><strong>DCFP121A &#x2F; DCFR211A</strong>: 超商代扣款明細表</li>
+<li><strong>DCFP521 &#x2F; DCFP521</strong>: VDS REBATE 代扣傳票處理</li>
+<li><strong>DCFP521A &#x2F; DCFR521A</strong>: VDS REBATE代扣款明細表</li>
+<li><strong>DCFP721 &#x2F; DCFP714</strong>: 統一超購物 代扣款傳票處理</li>
+<li><strong>DCFP721A &#x2F; DCFR714A</strong>: 統一超購物 代扣款明細表</li>
+<li><strong>DCFP122 &#x2F; DCFP212</strong>: 大智通物流收入傳票處理</li>
+<li><strong>DCFP122A &#x2F; DCFR212A</strong>: 大智通物流收入明細表</li>
+<li><strong>DCFP722 &#x2F; DCFP715</strong>: 統一超購物 代流通加工傳票處理</li>
+<li><strong>DCFP722A &#x2F; DCFR715A</strong>: 統一超購物 流通加工明細表</li>
+<li><strong>DCFP104 &#x2F; DCFP016</strong>: 實銷廠商應付傳票處理</li>
+<li><strong>DCFP104A &#x2F; DCFR016A</strong>: 實銷廠商應付明細表</li>
+<li><strong>DCFP504 &#x2F; DCFP506</strong>: VDS實銷廠商應付傳票處理</li>
+<li><strong>DCFP504A &#x2F; DCFP506A</strong>: VDS實銷廠商應付明細表</li>
+<li><strong>DCFP001 &#x2F; DCFP301</strong>: 超商進項憑證轉入作業</li>
+<li><strong>DCFP001A &#x2F; DCFR301A</strong>: 超商進項憑證明細表</li>
+<li><strong>DCFP111 &#x2F; DCFP011</strong>: 銷貨應收帳款傳票處理</li>
+<li><strong>DCFP111A &#x2F; DCFR011A</strong>: 銷貨應收明細表</li>
+<li><strong>DCFP112 &#x2F; DCFP014</strong>: 銷貨退回應收帳款沖帳傳票處理</li>
+<li><strong>DCFP112A &#x2F; DCFR014A</strong>: 銷貨退回應收明細表</li>
+<li><strong>DCFP711 &#x2F; DCFP720</strong>: 統一超購物 銷貨應收款傳票處理</li>
+<li><strong>DCFP711A &#x2F; DCFR720A</strong>: 統一超購物 銷貨應收款明細表</li>
+<li><strong>DCFP712 &#x2F; DCFP729</strong>: 統一超購物 銷退應收款沖帳傳票處理</li>
+<li><strong>DCFP712A &#x2F; DCFR729A</strong>: 統一超購物 銷退應收款沖帳明細表</li>
+<li><strong>DCFP511 &#x2F; DCFP523</strong>: VDS銷貨發票</li>
+<li><strong>DCFP511A &#x2F; DCFR523A</strong>: VDS銷貨發票明細表</li>
+<li><strong>DCFP512 &#x2F; DCFP524</strong>: VDS銷貨折讓</li>
+<li><strong>DCFP512A &#x2F; DCFR524A</strong>: VDS銷貨折讓明細表</li>
+<li><strong>DCFP123 &#x2F; DCFP017</strong>: 銷項折讓作業</li>
+<li><strong>DCFP123A &#x2F; DCFR017A</strong>: 銷項折讓明細表</li>
+<li><strong>DCFP124 &#x2F; DCFP018</strong>: 銷項作廢作業</li>
+<li><strong>DCFP124A &#x2F; DCFR018A</strong>: 銷項作廢明細表</li>
+<li><strong>DCFP723 &#x2F; DCFP716</strong>: 統一超購物 銷項折讓作業</li>
+<li><strong>DCFP723A &#x2F; DCFR716A</strong>: 統一超購物 銷項折讓明細表</li>
+<li><strong>DCFP724 &#x2F; DCFP717</strong>: 統一超購物 銷項作廢作業</li>
+<li><strong>DCFP724A &#x2F; DCFR717A</strong>: 統一超購物 銷項作廢明細表</li>
+</ol>
+<h3 id="FA-固定資產"><a href="#FA-固定資產" class="headerlink" title="FA (固定資產):"></a><strong>FA (固定資產):</strong></h3><ol>
+<li><strong>FAM001</strong>: 固定資產建檔作業</li>
+<li><strong>FAM002</strong>: 固定資產異動作業</li>
+<li><strong>FAM003</strong>: 折舊費用分攤參數設定</li>
+<li><strong>FAM004</strong>: 資本支出維護</li>
+<li><strong>FAP001</strong>: 固定資產月結折舊作業</li>
+<li><strong>FAP001A</strong>: 固定資產月結明細表</li>
+<li><strong>FAP002</strong>: 固定資產出售作業</li>
+<li><strong>FAP002A</strong>: 處份固定資產明細表</li>
+<li><strong>FAP003</strong>: 固定資產調帳作業</li>
+<li><strong>FAP004</strong>: 固定資產刪除作業</li>
+<li><strong>FAP004A</strong>: 固定資產刪除明細表</li>
+<li><strong>FAP005</strong>: 折舊費用分攤作業</li>
+<li><strong>FAP005A</strong>: 折舊費用分攤異常表</li>
+<li><strong>FAQ001</strong>: 固定資產查詢作業</li>
+<li><strong>FAQ002</strong>: 固定資產刪除查詢作業</li>
+<li><strong>FAR001</strong>: 財產目錄列印</li>
+<li><strong>FAR001A</strong>: 財產目錄</li>
+<li><strong>FAR002</strong>: 固定資產變動表列印</li>
+<li><strong>FAR002A</strong>: 固定資產變動表</li>
+<li><strong>FAR003</strong>: 固定資產處分報表列印</li>
+<li><strong>FAR003A</strong>: 固定資產處分報表</li>
+<li><strong>FAR004</strong>: 固定資產折舊分攤報表 (Excel)</li>
+</ol>
+<h3 id="FSA-其他功能-財務報表"><a href="#FSA-其他功能-財務報表" class="headerlink" title="FSA (其他功能-財務報表):"></a><strong>FSA (其他功能-財務報表):</strong></h3><ol>
+<li><strong>FSAM001</strong>: 財務報表格式建立</li>
+<li><strong>FSAM002</strong>: 財務報表格式內容建立</li>
+<li><strong>FSAM003</strong>: 財務報表表頭內容建立</li>
+<li><strong>FSAM004</strong>: 財務報表欄位內容建立</li>
+<li><strong>FSAM005</strong>: 財務報表群組建立</li>
+<li><strong>FSAP001</strong>: 財務報表前置處理作業 (期間範圍)</li>
+<li><strong>FSAR301</strong>: IFRS費用明細表</li>
+<li><strong>FSAR301A</strong>: IFRS費用明細表</li>
+<li><strong>FSAR201</strong>: IFRS綜合損益表</li>
+<li><strong>FSAR201A</strong>: IFRS綜合損益表</li>
+<li><strong>FSAR101</strong>: IFRS資產負債表</li>
+<li><strong>FSAR101A</strong>: IFRS資產負債表</li>
+</ol>
+<h3 id="GL-總帳模組"><a href="#GL-總帳模組" class="headerlink" title="GL (總帳模組):"></a><strong>GL (總帳模組):</strong></h3><ol>
+<li><strong>GLQ001</strong>: 傳票資料查詢作業</li>
+<li><strong>GLR101</strong>: 批次傳票未過帳檢核表</li>
+<li><strong>GLR101A</strong>: 批次傳票未過帳檢核表</li>
+<li><strong>GLR102</strong>: 批次傳票未取消過帳檢核表</li>
+<li><strong>GLR102A</strong>: 批次傳票未取消過帳檢核表</li>
+<li><strong>GLR002</strong>: 會計科目明細表</li>
+<li><strong>GLR002A</strong>: 會計科目明細表</li>
+<li><strong>GLP009</strong>: 傳票列印前審核授權作業</li>
+<li><strong>GLR003</strong>: 會計科目餘額明細表</li>
+<li><strong>GLR003A</strong>: 會計科目餘額明細表</li>
+<li><strong>GLP005</strong>: 傳票空號作廢資料產生</li>
+<li><strong>GLR005</strong>: 明細表</li>
+<li><strong>GLR005A</strong>: 明細表</li>
+<li><strong>GLR005B</strong>: 明細表</li>
+<li><strong>GLP002</strong>: 月結作業</li>
+<li><strong>GLP004</strong>: 年終結轉作業</li>
+<li><strong>GLP003</strong>: 年度結帳分錄產生</li>
+<li><strong>GLR004</strong>: 沖銷明細表</li>
+<li><strong>GLR004A</strong>: 沖銷明細表</li>
+<li><strong>GLR006</strong>: 總帳</li>
+<li><strong>GLR006A</strong>: 總帳</li>
+<li><strong>GLR007</strong>: 會計科目立沖明細帳</li>
+<li><strong>GLR007A</strong>: 會計科目立沖明細表</li>
+<li><strong>GLR103</strong>: 傳票異常表列印</li>
+<li><strong>GLR103A</strong>: 傳票異常表 (BY對象代號)</li>
+<li><strong>GLR103B</strong>: 傳票異常表 (BY會科)</li>
+<li><strong>GLR103C</strong>: 傳票異常表 (BY關係人)</li>
+<li><strong>GLP010</strong>: 傳票上傳作業</li>
+<li><strong>GLR105</strong>: 應收應付檢核表 (Excel)</li>
+<li><strong>GLR011</strong>: 請款明細表 (Excel)</li>
+<li><strong>GLP016</strong>: 重分類傳票批次作業 (明細)</li>
+<li><strong>GLP001</strong>: 批次傳票過帳</li>
+<li><strong>GLP001A</strong>: 異常表</li>
+<li><strong>GLP011</strong>: 批次傳票取消過帳</li>
+<li><strong>GLR009</strong>: 總帳 (Excel)</li>
+<li><strong>GLQ002</strong>: 應收&#x2F;應付立沖記錄查詢</li>
+<li><strong>GLR104</strong>: 科目餘額差異表 (Excel)</li>
+<li><strong>GLR104A</strong>: 科目餘額差異彙總表</li>
+<li><strong>GLR104B</strong>: 科目餘額差異明細表</li>
+<li><strong>GLM003</strong>: 傳票刪除作業</li>
+<li><strong>GLP008</strong>: 總帳應收應付立沖作業</li>
+<li><strong>GLP007</strong>: 沖銷到期日延長作業</li>
+<li><strong>GLP006</strong>: 傳票資料轉檔</li>
+<li><strong>GLR008</strong>: IFRS試算表</li>
+<li><strong>GLR008A</strong>: IFRS試算表</li>
+<li><strong>GLR010</strong>: 實帳戶餘額表 (Excel)</li>
+<li><strong>GLR001</strong>: 轉帳傳票</li>
+<li><strong>GLR001A</strong>: 套表傳票列印</li>
+<li><strong>GLR001B</strong>: 大量傳票列印 (1) (按序號排序)</li>
+<li><strong>GLR001C</strong>: 大量傳票列印 (2) (按統編及發票號排序)</li>
+<li><strong>GLR001D</strong>: 傳票列印 (A4橫印)</li>
+<li><strong>GLR001E</strong>: 套表傳票列印 (審核)</li>
+<li><strong>GLR001F</strong>: 大量傳票列印 (審核)</li>
+<li><strong>GLR001G</strong>: 傳票列印 (A4橫印) (審核)</li>
+<li><strong>GLP012</strong>: C2C費用傳票維護</li>
+<li><strong>GLP014</strong>: 實帳戶沖銷作業</li>
+<li><strong>GLM001</strong>: 傳票維護</li>
+<li><strong>GLM002</strong>: 過帳傳票維護 (call Form)</li>
+<li><strong>GLP013</strong>: 回轉傳票維護作業</li>
+<li><strong>GLP015</strong>: 人事薪資傳票轉傳票作業</li>
+</ol>
+<h3 id="IMP-進口憑證處理模組"><a href="#IMP-進口憑證處理模組" class="headerlink" title="IMP (進口憑證處理模組):"></a><strong>IMP (進口憑證處理模組):</strong></h3><ol>
+<li><strong>IMPM01</strong>: 進口關稅維護作業</li>
+<li><strong>IMPM02</strong>: 進口商港服務費維護作業</li>
+<li><strong>IMPM03</strong>: 進口費用維護作業</li>
+<li><strong>IMPM04</strong>: 進口貨款 (付款) 維護作業</li>
+<li><strong>IMPM05</strong>: 進口關稅 (整批) 維護作業</li>
+<li><strong>IMPM06</strong>: 進口關稅單號關聯維護</li>
+<li><strong>IMPM07</strong>: 進口貨款 - 驗收資料載入作業</li>
+<li><strong>IMPM08</strong>: 進口外幣 (買入) 維護作業</li>
+<li><strong>IMPM09</strong>: 進口外幣 (付款) 維護作業</li>
+<li><strong>IMPM10</strong>: 進口貨款 (買入) 維護作業</li>
+<li><strong>IMPP01</strong>: 報關成本調整作業</li>
+<li><strong>IMPR01</strong>: 進口外幣收支報表列印 (全店)</li>
+<li><strong>IMPR01A</strong>: 進口外幣收支表 (全店)</li>
+<li><strong>IMPR01B</strong>: 進口外幣收支表 (全店)</li>
+<li><strong>IMPR02</strong>: 進口外幣收支報表列印 (統一超購物)</li>
+<li><strong>IMPR02A</strong>: 進口外幣收支表 (統一超購物)</li>
+<li><strong>IMPR02B</strong>: 進口外幣收支表 (統一超購物)</li>
+<li><strong>IMPR03</strong>: 進口外幣收支報表列印</li>
+<li><strong>IMPR03A</strong>: 進口外幣收支表</li>
+<li><strong>IMPR03B</strong>: 進口外幣收支表</li>
+<li><strong>IMPR04</strong>: 統一超購物 進口業務 PMA 成本表</li>
+<li><strong>IMPR99E</strong>: 異常表</li>
+</ol>
+<h3 id="MIS-MIS-系統管理模組"><a href="#MIS-MIS-系統管理模組" class="headerlink" title="MIS (MIS 系統管理模組):"></a><strong>MIS (MIS 系統管理模組):</strong></h3><ol>
+<li><strong>MISM01</strong>: 公司別基本資料維護</li>
+<li><strong>MISM02</strong>: 系統代碼維護</li>
+<li><strong>MISM03</strong>: 功能代碼維護</li>
+<li><strong>MISM04</strong>: 使用者權限管理</li>
+<li><strong>MISM05</strong>: 使用者管理</li>
+<li><strong>MISM06</strong>: 使用者密碼更改</li>
+<li><strong>MISM07</strong>: 畫面管理</li>
+<li><strong>MISM08</strong>: 群組管理</li>
+</ol>
+<h3 id="NP-應付票據模組"><a href="#NP-應付票據模組" class="headerlink" title="NP (應付票據模組):"></a><strong>NP (應付票據模組):</strong></h3><ol>
+<li><strong>NPM001</strong>: 人工應付票據切入維護 (傳票子畫面)</li>
+<li><strong>NPM002</strong>: 人工應付票據切出維護 (傳票子畫面)</li>
+<li><strong>NPM004</strong>: 過帳後應付票據作廢處理</li>
+<li><strong>NPM005</strong>: 應付票據&#x2F;電匯指定付款銀行</li>
+<li><strong>NPM005A</strong>: 應付票據&#x2F;電匯指定付款銀行列印</li>
+<li><strong>NPM006</strong>: 異動票據異動資料輸入</li>
+<li><strong>NPM007</strong>: 應付票據到期日修改</li>
+<li><strong>NPP001</strong>: 應付票據批次兌現</li>
+<li><strong>NPP004</strong>: 電匯資料處理</li>
+<li><strong>NPP005</strong>: 過帳前應付票據作廢處理</li>
+<li><strong>NPP006</strong>: 應付票據換號作業</li>
+<li><strong>NPP007</strong>: 支票開立處理</li>
+<li><strong>NPP008</strong>: 電匯媒體資料下傳作業</li>
+<li><strong>NPR003</strong>: 應付票據期間明細表列印</li>
+<li><strong>NPR004</strong>: 應付票據餘額明細表</li>
+<li><strong>NPR006</strong>: 應付票據作廢明細表</li>
+<li><strong>NPR013</strong>: 應付票據付款明細表</li>
+<li><strong>NPR014</strong>: 支票列印 (套表)</li>
+<li><strong>NPR018</strong>: 應付票據資金調度表</li>
+<li><strong>NPR019</strong>: 應付票據付款彙總表</li>
+</ol>
+<h3 id="NR-應收票據模組"><a href="#NR-應收票據模組" class="headerlink" title="NR (應收票據模組):"></a><strong>NR (應收票據模組):</strong></h3><ol>
+<li><strong>NRM001</strong>: 應收票據切入維護 (傳票子畫面)</li>
+<li><strong>NRM002</strong>: 應收票據切出維護 (傳票子畫面)</li>
+<li><strong>NRM003</strong>: 應收票據資料修改</li>
+<li><strong>NRM004</strong>: 應收票據退票輸入</li>
+<li><strong>NRP001</strong>: 應收票據批次兌現作業</li>
+<li><strong>NRQ001</strong>: 應收票據退票查詢</li>
+<li><strong>NRR003</strong>: 應收票據期間明細表</li>
+<li><strong>NRR004</strong>: 應收票據餘額明細表</li>
+<li><strong>NRR005</strong>: 應收票據明細表</li>
+<li><strong>NRR001</strong>: 應收票據託收&#x2F;交換明細表</li>
+<li><strong>NRR002</strong>: 應收票據到期明細表</li>
+<li><strong>NRR002A</strong>: 應收票據到期明細表-已兌現</li>
+<li><strong>NRR002B</strong>: 應收票據到期明細表-未兌現</li>
+<li><strong>NRR002C</strong>: 應收票據到期明細表-兩者</li>
+</ol>
+<h3 id="OTH-其他功能模組"><a href="#OTH-其他功能模組" class="headerlink" title="OTH (其他功能模組):"></a><strong>OTH (其他功能模組):</strong></h3><ol>
+<li><strong>OTHM001</strong>: 使用者密碼修改</li>
+<li><strong>OTHM101</strong>: 發票申請參數維護</li>
+<li><strong>OTHM102</strong>: 發票申請表開立審核</li>
+<li><strong>OTHQ101</strong>: 發票申請表查詢 (會計)</li>
+<li><strong>OTHM201</strong>: 銀行存款匯入作業</li>
+<li><strong>OTHP201</strong>: 銀行存款自動立沖作業</li>
+</ol>
+<h3 id="PIV-進項憑證處理"><a href="#PIV-進項憑證處理" class="headerlink" title="PIV (進項憑證處理):"></a><strong>PIV (進項憑證處理):</strong></h3><ol>
+<li><strong>PIVM001</strong>: 進項憑證資料維護 (傳票子畫面)</li>
+<li><strong>PIVM003</strong>: 進項憑證字軌維護</li>
+<li><strong>PIVM002</strong>: 進貨折讓資料維護 (傳票子畫面)</li>
+<li><strong>PIVM004</strong>: 媒體申報資料維護</li>
+<li><strong>PIVM005</strong>: 進項憑證資料維護 (應免稅皆可維護) 預設免稅</li>
+<li><strong>PIVM006</strong>: 進項折讓資料維護 (應免稅皆可維護) 預設免稅</li>
+<li><strong>PIVP001</strong>: 進項媒體申請資料處理</li>
+<li><strong>PIVP001&#x2F;PIVP001A</strong>: 進項媒體申報總數查檢表</li>
+<li><strong>PIVP002</strong>: 進項發票換號處理</li>
+<li><strong>PIVQ001</strong>: 進項憑證資料查詢</li>
+<li><strong>PIVQ002</strong>: 進項折讓資料查詢</li>
+<li><strong>PIVQ003</strong>: 折讓明細查詢</li>
+<li><strong>PIVR001</strong>: 進項媒體資料明細表</li>
+<li><strong>PIVR001&#x2F;PIVR001A</strong>: 進項媒體資料明細表</li>
+<li><strong>PIVR001&#x2F;PIVR001B</strong>: 進項媒體資料明細表</li>
+<li><strong>PIVR002</strong>: 進項媒體資料彙總表－系統來源別</li>
+<li><strong>PIVR002&#x2F;PIVR002A</strong>: 進項媒體資料彙總表－系統來源別</li>
+<li><strong>PIVR003</strong>: 進項媒體資料彙總表－申報年月</li>
+<li><strong>PIVR003&#x2F;PIVR003A</strong>: 進項媒體資料彙總表－申報年月</li>
+<li><strong>PIVR004</strong>: 進項發票作廢明細表</li>
+<li><strong>PIVR004&#x2F;PIVR004A</strong>: 進項發票作廢明細表</li>
+<li><strong>PIVR005</strong>: 進項折讓單列印 (套表)</li>
+<li><strong>PIVR005&#x2F;PIVR005A</strong>: 進項折讓單</li>
+<li><strong>PIVR005&#x2F;PIVR005B</strong>: 信封</li>
+</ol>
+<h3 id="PPY-其他功能-暫付款模組"><a href="#PPY-其他功能-暫付款模組" class="headerlink" title="PPY (其他功能-暫付款模組):"></a><strong>PPY (其他功能-暫付款模組):</strong></h3><ol>
+<li><strong>PPYM001</strong>: 暫付款申請單維護 (傳票子畫面)</li>
+<li><strong>PPYM002</strong>: 暫付款沖銷維護 (傳票子畫面)</li>
+<li><strong>PPYM003</strong>: 暫付款沖帳日修正</li>
+<li><strong>PPYR001</strong>: 暫付款餘額明細</li>
+<li><strong>PPYR001&#x2F;PPYR001C</strong>: 暫付款餘額明細表－BY傳票號</li>
+<li><strong>PPYR001&#x2F;PPYR001D</strong>: 暫付款逾期通知書</li>
+</ol>
+<h3 id="SET-模組-基本資料維護相關"><a href="#SET-模組-基本資料維護相關" class="headerlink" title="SET(模組): 基本資料維護相關"></a><strong>SET(模組): 基本資料維護相關</strong></h3><ol>
+<li><strong>SYSM002</strong>: 代碼資料維護</li>
+<li><strong>SYSM002A</strong>: 代碼資料明細表</li>
+<li><strong>SYSM002B</strong>: 異常表</li>
+<li><strong>BNKM001</strong>: 銀行主檔建立</li>
+<li><strong>BNKM001A</strong>: 銀行主檔明細表</li>
+<li><strong>BNKM002</strong>: 銀行休假日建立</li>
+<li><strong>SETM103</strong>: 會計科目(應收&#x2F;應付)對應程式維護</li>
+<li><strong>SETM104</strong>: 新財會單位與人資單位對應維護</li>
+<li><strong>SETM104A</strong>: 新財會單位與人資單位對應主檔對照表</li>
+<li><strong>SETQ001</strong>: 傳票自動編號使用狀況查詢</li>
+<li><strong>VNDM001A&#x2F;VNDM001B</strong>: 付款憑單</li>
+<li><strong>BNKM003</strong>: 往來銀行基本資料維護</li>
+<li><strong>BNKM003A</strong>: 往來銀行基本資料明細表</li>
+<li><strong>SYSM003</strong>: 系統環境參數建立</li>
+<li><strong>SETM002</strong>: 區域會計主檔維護</li>
+<li><strong>EMPM001</strong>: 員工基本資料轉入</li>
+<li><strong>SYSM001</strong>: 系統參數資料維護</li>
+<li><strong>VNDM001</strong>: 會計廠商主檔維護</li>
+<li><strong>VNDM001A&#x2F;VNDM001C</strong>: 債權廠商明細表</li>
+<li><strong>VNDM002</strong> (併入 <strong>VNDM001</strong>): 關係人主檔維護</li>
+<li><strong>VNDM003</strong>: 廠商質押設定明細</li>
+</ol>
+<h3 id="SHA-其他功能-經營數據報表"><a href="#SHA-其他功能-經營數據報表" class="headerlink" title="SHA (其他功能-經營數據報表):"></a><strong>SHA (其他功能-經營數據報表):</strong></h3><ol>
+<li><strong>SHAM001</strong>: 利潤中心主檔建立</li>
+<li><strong>SHAM002</strong>: 租金設定</li>
+<li><strong>SHAM003</strong>: 設算分擔參數設定</li>
+<li><strong>SHAM004</strong>: 速報分析說明維護</li>
+<li><strong>SHAM101</strong>: 租金直線法維護</li>
+<li><strong>SHAM102</strong>: 員工未休假資料轉入</li>
+<li><strong>SHAM102&#x2F;SHAM102A</strong>: 員工未休假明細表</li>
+<li><strong>SHAP001</strong>: 經營數據分析作業</li>
+<li><strong>SHAP001&#x2F;SHAP001A</strong>: 經營數據分析表</li>
+<li><strong>SHAP101</strong>: 租金直線法月結</li>
+<li><strong>SHAP102</strong>: 員工未休假月結</li>
+<li><strong>SHAR001</strong>: 經營數據分析報表</li>
+<li><strong>SHAR001&#x2F;SHAR001A</strong>: 年度營運數據分析&#x2F;比較</li>
+<li><strong>SHAR001&#x2F;SHAR001B</strong>: 營運數據分析-依利潤中心</li>
+<li><strong>SHAR001&#x2F;SHAR001C</strong>: 營運數據分析&#x2F;比較</li>
+<li><strong>SHAR002</strong>: 損益速報列印</li>
+<li><strong>SHAR002&#x2F;SHAR002A</strong>: 損益速報</li>
+<li><strong>SHAR003</strong>: 依利潤中心比較-全公司</li>
+<li><strong>SHAR003&#x2F;SHAR003A</strong>: 依利潤中心比較-全公司</li>
+<li><strong>SHAR004</strong>: 與去年同期比較分析表</li>
+<li><strong>SHAR004&#x2F;SHAR004A</strong>: 年度利潤中心同期比較</li>
+<li><strong>SHAR004&#x2F;SHAR004B</strong>: 與去年同期比較分析表</li>
+<li><strong>SHAR004&#x2F;SHAR004C</strong>: 與去年同期比較分析表</li>
+<li><strong>SHAR004&#x2F;SHAR004D</strong>: 與去年同期比較分析表</li>
+<li><strong>SHAR004&#x2F;SHAR004E</strong>: 與去年同期比較分析表</li>
+<li><strong>SHAR004&#x2F;SHAR004F</strong>: 與去年同期比較分析表</li>
+<li><strong>SHAR005</strong>: 年度利潤中心損益表列印 (call Form)</li>
+<li><strong>SHAR005&#x2F;SHAR005A</strong>: 彙總表</li>
+<li><strong>SHAR005&#x2F;SHAR005B</strong>: 還原後營運數據分析</li>
+<li><strong>SHAR005&#x2F;SHAR005C</strong>: 依利潤中心比較</li>
+</ol>
+<h3 id="SI2-發票處理作業模組"><a href="#SI2-發票處理作業模組" class="headerlink" title="SI2 (發票處理作業模組):"></a><strong>SI2 (發票處理作業模組):</strong></h3><ol>
+<li><strong>SI2M001</strong>: 發票號碼範圍設定</li>
+<li><strong>SI2M003</strong>: 銷貨折讓資料維護 (傳票子畫面)</li>
+<li><strong>SI2M006</strong>: 過帳前發票作廢處理</li>
+<li><strong>SI2M007</strong>: 銷項發票列印碼回復處理</li>
+<li><strong>SI2M008</strong>: 過帳後發票作廢處理</li>
+<li><strong>SI2M002</strong>: 銷項發票資料維護 (傳票子畫面)</li>
+<li><strong>SI2M009</strong>: 人工發票資料維護 (傳票子畫面) <em>合併至 SI2M002</em></li>
+<li><strong>SI2M010</strong>: 電子計算機發票資料維護</li>
+<li><strong>SI2M013</strong>: 銷貨折讓資料維護 <em>同 SI2M004</em></li>
+<li><strong>SI2P001</strong>: 銷項發票跳號作廢處理</li>
+<li><strong>SI2P002</strong>: 發票換號處理</li>
+<li><strong>SI2P003</strong>: 人工發票作廢</li>
+<li><strong>SI2P004</strong>: 銷項媒體資料處理</li>
+<li><strong>SI2P006</strong>: 發票取消作廢處理</li>
+<li><strong>SI2P007</strong>: 電子發票上傳 EI 作業</li>
+<li><strong>SI2P008</strong>: 銷項發票專案退稅處理</li>
+<li><strong>SI2P009</strong>: 發票取消專案退稅處理</li>
+<li><strong>SI2Q001</strong>: 發票資料查詢</li>
+<li><strong>SI2Q002</strong>: 折讓資料查詢</li>
+<li><strong>SI2Q003</strong>: 發票資料查詢 (傳票子畫面) <em>同 SI2M008</em></li>
+<li><strong>SI2Q004</strong>: 折讓資料查詢 (傳票子畫面) <em>同 SI2M004</em></li>
+<li><strong>SI2R001</strong>: 銷項統一發票列印</li>
+<li><strong>SI2R001C</strong>: 電子發票證明聯</li>
+<li><strong>SI2R002</strong>: 批次銷項發票開立明細表</li>
+<li><strong>SI2R003</strong>: 人工開立發票明細表</li>
+<li><strong>SI2R004</strong>: 銷貨折讓明細表</li>
+<li><strong>SI2R005</strong>: 銷項統一發票明細表</li>
+<li><strong>SI2R005A</strong>: 電子計算機統一發票明細表</li>
+<li><strong>SI2R005B</strong>: 二聯式統一發票明細表</li>
+<li><strong>SI2R005C</strong>: 三聯式統一發票明細表</li>
+<li><strong>SI2R005D</strong>: 電子發票明細表</li>
+<li><strong>SI2R006</strong>: 作廢發票明細表</li>
+<li><strong>SI2R006A</strong>: 作廢發票明細表</li>
+<li><strong>SI2R006B</strong>: 專案退稅發票明細表</li>
+<li><strong>SI2R006C</strong>: 發票號碼始用號異常明細表</li>
+</ol>
+<h3 id="TAX-所得代扣作業模組"><a href="#TAX-所得代扣作業模組" class="headerlink" title="TAX (所得代扣作業模組):"></a><strong>TAX (所得代扣作業模組):</strong></h3><ol>
+<li><strong>TAXM001</strong>: 繳款書類別維護</li>
+<li><strong>TAXM002</strong>: 扣款稅別維護</li>
+<li><strong>TAXM003</strong>: 其他所得代扣補登作業 (傳票子畫面)</li>
+<li><strong>TAXM004</strong>: 扣繳單位資料維護</li>
+<li><strong>TAXM005</strong>: 執行業務類別維護</li>
+<li><strong>TAXR001</strong>: 年度所得申報列印</li>
+<li><strong>TAXR001A</strong>: 年度所得申報明細表</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/C/" rel="tag"># C#</a>
+              <a href="/apple.lily/tags/SA/" rel="tag"># SA</a>
+              <a href="/apple.lily/tags/UML/" rel="tag"># UML</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/09/12/OneDayOneNote/2024-09-13/" rel="prev" title="2024-09-13 用  ASP .NET + DAPPER 來舉例餐廳">
+                  <i class="fa fa-angle-left"></i> 2024-09-13 用  ASP .NET + DAPPER 來舉例餐廳
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
