@@ -1,0 +1,65 @@
+<hr>
+<h2 id="title-2024-09-14-JavaScript-系列七：第2課-──-體驗一下-Reactivity-的效果與便利date-2024-09-18-23-34-42categories-OneDayOneNotetags-OneNote-Javascript-description-2024-09-14-JavaScript-系列七：第2課-──-體驗一下-Reactivity-的效果與便利"><a href="#title-2024-09-14-JavaScript-系列七：第2課-──-體驗一下-Reactivity-的效果與便利date-2024-09-18-23-34-42categories-OneDayOneNotetags-OneNote-Javascript-description-2024-09-14-JavaScript-系列七：第2課-──-體驗一下-Reactivity-的效果與便利" class="headerlink" title="title: 2024-09-14 JavaScript 系列七：第2課 ── 體驗一下 Reactivity 的效果與便利date: 2024-09-18 23:34:42categories: OneDayOneNotetags:  [OneNote, Javascript]description: 2024-09-14 JavaScript 系列七：第2課 ── 體驗一下 Reactivity 的效果與便利"></a>title: 2024-09-14 JavaScript 系列七：第2課 ── 體驗一下 Reactivity 的效果與便利<br>date: 2024-09-18 23:34:42<br>categories: OneDayOneNote<br>tags:  [OneNote, Javascript]<br>description: 2024-09-14 JavaScript 系列七：第2課 ── 體驗一下 Reactivity 的效果與便利</h2><p>JavaScript 系列七：第2課 ── 體驗一下 Reactivity 的效果與便利<br>課程目標<br>體驗一下 Reactivity 的效果與便利<br>課程內容<br>來學 Vue 之中 Reactivity 的基本觀念</p>
+<p><a href="https://vuejs.org/guide/essentials/reactivity-fundamentals.html">https://vuejs.org/guide/essentials/reactivity-fundamentals.html</a><br>老樣子，大部份看不懂沒關係，稍微有個印象就好</p>
+<p>記得之前的課程，每次更新完 state，你都要接著去執行 render() 函式嗎？</p>
+<p>所謂 Reactivity 就只是說：當你更新完 application state 之後，Vue 會自動幫你更新 UI 上的內容</p>
+<p>就只是這樣，不要把它想得太複雜</p>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<div id="app">
+  嗨，我是 {{ user.name }}
+  <button @click="changeNewName">
+    改名字
+  </button>
+</div>
+
+<script>
+  const { createApp } = Vue
+
+  createApp({
+    data() {
+      return {
+        user: {
+          name: "John Doe"
+        }
+      }
+    },
+    mounted() {
+      this.user.name = "Frank"
+    },
+    methods: {
+      changeNewName() {
+        this.user.name = "Kevin"
+      }
+    }
+  }).mount('#app')
+</script>
+<p>到 jsfiddle 跑跑看，看看畫面上出現什麼</p>
+<p>mounted 是 vue 將畫面第一次載入之後，可以安排任務的地方，通常會放一些「系統初始化任務」</p>
+<p>@click 跟 methods 那些，就只是操作事件的寫法而已，先照做就好</p>
+<p>以上兩點，後面課程會詳談</p>
+<p>在 Vue 文件中，你會到處看到 this 這個關鍵字</p>
+<p>要存取 application state，有時前面要加 this. 有時又不用</p>
+<p>關於 this 關鍵字，它是一個 JavaScript 程式語言裡面過時又晦澀難懂的觀念</p>
+<p>我不想細談，你也先不用研究。就先照做、程式能跑就好了</p>
+<p>反正改天你真的遇到問題，大概知道要往這方向研究就是了</p>
+<p>接著來學 Vue 之中 Computed 屬性的觀念</p>
+<p><a href="https://vuejs.org/guide/essentials/computed.html">https://vuejs.org/guide/essentials/computed.html</a><br>老話一句，看不懂沒關係</p>
+<p>雖然大家都說用這寫法，效能會比較好、程式碼會比較優雅</p>
+<p>但實際上，我自己在好幾個專案，就完全不使用任何 computed 功能</p>
+<p>一律通通只用 methods 來寫程式，根本也不會怎麼樣</p>
+<p>在整門系列課程，會常常像這樣，我叫你讀官網文件的很多內容</p>
+<p>但我接著又會說，看不懂沒差，其中 XXX 根本沒用，其中 YYY 也沒必要用，只學 ZZZ 就好</p>
+<p>這些都是我個人的主觀意見。如果你在網路上找資料，會看到許多工程師，有跟我完全相反的建議</p>
+<p>這是軟體工程師圈子的常態，充滿各種主觀喜好、偏見，你要習慣一下</p>
+<p>（如果你很好奇我是怎麼做出這些判斷的，請重新閱讀此系列課程，第一篇文章：前言，裡面的最後一段）</p>
+<p>你不需要完全同意我的觀點，在研究過程中，如果你有發現比較喜歡的寫法，就直接用沒關係</p>
+<p>如同我多次提醒過：只要能解決問題就好，你就隨便寫沒關係</p>
+<p>各種做法細微的差異，將來有一天你會慢慢理解</p>
+<p>課後作業<br>承接上一課的作業</p>
+<p>這一課來簡單體驗一下 reactivity 的效果就好</p>
+<p>也就是簡單更新一下 application state 就好</p>
+<p>請加入 mounted 函式，在裡面把「第一個記事」的內容更新為「多出門、到處走走、也要多運動」</p>
+<p>完成之後，你會發現，你的春節行程安排，看起來積極多了～</p>
+<p>做出以上功能，你就完成這次的課程目標了！</p>
+<p>文章取自: <a href="https://codelove.tw/@howtomakeaturn/post/d3ojVx">https://codelove.tw/@howtomakeaturn/post/d3ojVx</a><br>by 站長阿川  </p>

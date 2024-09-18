@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2024-09-14 JavaScript 系列七：第2課 ── 體驗一下 Reactivity 的效果與便利">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024-09-14 JavaScript 系列七：第2課 ── 體驗一下 Reactivity 的效果與便利">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2024/09/18/OneDayOneNote/2024-09-14/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2024-09-14 JavaScript 系列七：第2課 ── 體驗一下 Reactivity 的效果與便利">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2024-09-18T15:34:42.000Z">
+<meta property="article:modified_time" content="2024-09-18T15:38:16.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content="OneNote">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2024/09/18/OneDayOneNote/2024-09-14/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2024/09/18/OneDayOneNote/2024-09-14/","path":"2024/09/18/OneDayOneNote/2024-09-14/","title":"2024-09-14 JavaScript 系列七：第2課 ── 體驗一下 Reactivity 的效果與便利"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2024-09-14 JavaScript 系列七：第2課 ── 體驗一下 Reactivity 的效果與便利 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">164</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2024/09/18/OneDayOneNote/2024-09-14/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2024-09-14 JavaScript 系列七：第2課 ── 體驗一下 Reactivity 的效果與便利 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2024-09-14 JavaScript 系列七：第2課 ── 體驗一下 Reactivity 的效果與便利">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2024-09-14 JavaScript 系列七：第2課 ── 體驗一下 Reactivity 的效果與便利
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2024-09-18 23:34:42 / 修改時間：23:38:16" itemprop="dateCreated datePublished" datetime="2024-09-18T23:34:42+08:00">2024-09-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2024-09-14 JavaScript 系列七：第2課 ── 體驗一下 Reactivity 的效果與便利</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>JavaScript 系列七：第2課 ── 體驗一下 Reactivity 的效果與便利<br>課程目標<br>體驗一下 Reactivity 的效果與便利<br>課程內容<br>來學 Vue 之中 Reactivity 的基本觀念</p>
+<p><a target="_blank" rel="noopener" href="https://vuejs.org/guide/essentials/reactivity-fundamentals.html">https://vuejs.org/guide/essentials/reactivity-fundamentals.html</a><br>老樣子，大部份看不懂沒關係，稍微有個印象就好</p>
+<p>記得之前的課程，每次更新完 state，你都要接著去執行 render() 函式嗎？</p>
+<p>所謂 Reactivity 就只是說：當你更新完 application state 之後，Vue 會自動幫你更新 UI 上的內容</p>
+<p>就只是這樣，不要把它想得太複雜</p>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<div id="app">
+  嗨，我是 
+  <button @click="changeNewName">
+    改名字
+  </button>
+</div>
+
+<script>
+  const { createApp } = Vue
+
+  createApp({
+    data() {
+      return {
+        user: {
+          name: "John Doe"
+        }
+      }
+    },
+    mounted() {
+      this.user.name = "Frank"
+    },
+    methods: {
+      changeNewName() {
+        this.user.name = "Kevin"
+      }
+    }
+  }).mount('#app')
+</script>
+<p>到 jsfiddle 跑跑看，看看畫面上出現什麼</p>
+<p>mounted 是 vue 將畫面第一次載入之後，可以安排任務的地方，通常會放一些「系統初始化任務」</p>
+<p>@click 跟 methods 那些，就只是操作事件的寫法而已，先照做就好</p>
+<p>以上兩點，後面課程會詳談</p>
+<p>在 Vue 文件中，你會到處看到 this 這個關鍵字</p>
+<p>要存取 application state，有時前面要加 this. 有時又不用</p>
+<p>關於 this 關鍵字，它是一個 JavaScript 程式語言裡面過時又晦澀難懂的觀念</p>
+<p>我不想細談，你也先不用研究。就先照做、程式能跑就好了</p>
+<p>反正改天你真的遇到問題，大概知道要往這方向研究就是了</p>
+<p>接著來學 Vue 之中 Computed 屬性的觀念</p>
+<p><a target="_blank" rel="noopener" href="https://vuejs.org/guide/essentials/computed.html">https://vuejs.org/guide/essentials/computed.html</a><br>老話一句，看不懂沒關係</p>
+<p>雖然大家都說用這寫法，效能會比較好、程式碼會比較優雅</p>
+<p>但實際上，我自己在好幾個專案，就完全不使用任何 computed 功能</p>
+<p>一律通通只用 methods 來寫程式，根本也不會怎麼樣</p>
+<p>在整門系列課程，會常常像這樣，我叫你讀官網文件的很多內容</p>
+<p>但我接著又會說，看不懂沒差，其中 XXX 根本沒用，其中 YYY 也沒必要用，只學 ZZZ 就好</p>
+<p>這些都是我個人的主觀意見。如果你在網路上找資料，會看到許多工程師，有跟我完全相反的建議</p>
+<p>這是軟體工程師圈子的常態，充滿各種主觀喜好、偏見，你要習慣一下</p>
+<p>（如果你很好奇我是怎麼做出這些判斷的，請重新閱讀此系列課程，第一篇文章：前言，裡面的最後一段）</p>
+<p>你不需要完全同意我的觀點，在研究過程中，如果你有發現比較喜歡的寫法，就直接用沒關係</p>
+<p>如同我多次提醒過：只要能解決問題就好，你就隨便寫沒關係</p>
+<p>各種做法細微的差異，將來有一天你會慢慢理解</p>
+<p>課後作業<br>承接上一課的作業</p>
+<p>這一課來簡單體驗一下 reactivity 的效果就好</p>
+<p>也就是簡單更新一下 application state 就好</p>
+<p>請加入 mounted 函式，在裡面把「第一個記事」的內容更新為「多出門、到處走走、也要多運動」</p>
+<p>完成之後，你會發現，你的春節行程安排，看起來積極多了～</p>
+<p>做出以上功能，你就完成這次的課程目標了！</p>
+<p>文章取自: <a target="_blank" rel="noopener" href="https://codelove.tw/@howtomakeaturn/post/d3ojVx">https://codelove.tw/@howtomakeaturn/post/d3ojVx</a><br>by 站長阿川  </p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/Javascript/" rel="tag"># Javascript</a>
+              <a href="/apple.lily/tags/OneNote/" rel="tag"># OneNote</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/09/16/WDS_SA/00-All_WPI_modules/" rel="prev" title="財會系統模組總覽">
+                  <i class="fa fa-angle-left"></i> 財會系統模組總覽
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
