@@ -1574,6 +1574,41 @@
   </url>
   
   <url>
+    <loc>https://lilylovesjeans.github.io/apple.lily/tags/C/</loc>
+    <lastmod>2024-09-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://lilylovesjeans.github.io/apple.lily/tags/SA/</loc>
+    <lastmod>2024-09-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://lilylovesjeans.github.io/apple.lily/tags/UML/</loc>
+    <lastmod>2024-09-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://lilylovesjeans.github.io/apple.lily/tags/Oracle/</loc>
+    <lastmod>2024-09-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://lilylovesjeans.github.io/apple.lily/tags/DataBase/</loc>
+    <lastmod>2024-09-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://lilylovesjeans.github.io/apple.lily/tags/Hexo%E8%A8%AD%E5%AE%9A/</loc>
     <lastmod>2024-09-19</lastmod>
     <changefreq>weekly</changefreq>
@@ -1615,41 +1650,6 @@
     <priority>0.2</priority>
   </url>
   
-  <url>
-    <loc>https://lilylovesjeans.github.io/apple.lily/tags/Oracle/</loc>
-    <lastmod>2024-09-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://lilylovesjeans.github.io/apple.lily/tags/DataBase/</loc>
-    <lastmod>2024-09-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://lilylovesjeans.github.io/apple.lily/tags/C/</loc>
-    <lastmod>2024-09-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://lilylovesjeans.github.io/apple.lily/tags/SA/</loc>
-    <lastmod>2024-09-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://lilylovesjeans.github.io/apple.lily/tags/UML/</loc>
-    <lastmod>2024-09-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
 
   
   <url>
@@ -1681,14 +1681,14 @@
   </url>
   
   <url>
-    <loc>https://lilylovesjeans.github.io/apple.lily/categories/Oracle/</loc>
+    <loc>https://lilylovesjeans.github.io/apple.lily/categories/WDS/</loc>
     <lastmod>2024-09-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://lilylovesjeans.github.io/apple.lily/categories/WDS/</loc>
+    <loc>https://lilylovesjeans.github.io/apple.lily/categories/Oracle/</loc>
     <lastmod>2024-09-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
