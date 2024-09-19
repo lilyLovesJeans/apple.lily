@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="App007 加密解釋">
+<meta property="og:type" content="article">
+<meta property="og:title" content="App007 加密解釋">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2024/09/19/WDS_SA/03-APP007/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="App007 加密解釋">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2024-09-19T15:16:24.000Z">
+<meta property="article:modified_time" content="2024-09-19T15:17:21.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="C#">
+<meta property="article:tag" content="SA">
+<meta property="article:tag" content="UML">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2024/09/19/WDS_SA/03-APP007/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2024/09/19/WDS_SA/03-APP007/","path":"2024/09/19/WDS_SA/03-APP007/","title":"App007 加密解釋"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>App007 加密解釋 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#App007-%E5%8A%A0%E5%AF%86%E8%A7%A3%E9%87%8B"><span class="nav-number">1.</span> <span class="nav-text">App007 加密解釋</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B2%92%E6%9C%89%E7%9C%8B%E5%88%B0%E5%9F%B7%E8%A1%8C-encrypt-exe-%E7%9A%84%E7%A8%8B%E5%BC%8F%E7%A2%BC"><span class="nav-number">1.0.1.</span> <span class="nav-text">沒有看到執行 encrypt.exe 的程式碼</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B4%E9%AB%94%E6%B5%81%E7%A8%8B"><span class="nav-number">1.1.</span> <span class="nav-text">整體流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%82%A3%E8%A6%81%E5%8A%A0%E5%AF%86%E7%9A%84%E6%AA%94%E6%A1%88%E5%90%8D%E7%A8%B1%E6%98%AF%E6%94%BE%E5%9C%A8startInfo-Arguments-%E9%80%99%E8%A3%A1%E5%97%8E"><span class="nav-number">1.2.</span> <span class="nav-text">那要加密的檔案名稱是放在startInfo.Arguments 這裡嗎?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#startInfo-Arguments-%E7%9A%84%E8%A8%AD%E7%BD%AE"><span class="nav-number">1.3.</span> <span class="nav-text">startInfo.Arguments 的設置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%83%E6%95%B8%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.4.</span> <span class="nav-text">完整的命令行參數示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B8%BD%E7%B5%90"><span class="nav-number">1.5.</span> <span class="nav-text">總結</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">166</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2024/09/19/WDS_SA/03-APP007/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="App007 加密解釋 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="App007 加密解釋">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          App007 加密解釋
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2024-09-19 23:16:24 / 修改時間：23:17:21" itemprop="dateCreated datePublished" datetime="2024-09-19T23:16:24+08:00">2024-09-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/WDS/" itemprop="url" rel="index"><span itemprop="name">WDS</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">App007 加密解釋</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="App007-加密解釋"><a href="#App007-加密解釋" class="headerlink" title="App007 加密解釋"></a>App007 加密解釋</h2><p>新功能！鍵盤快速鍵 … Google 雲端硬碟鍵盤快速鍵已更新，可讓你透過首字母導覽功能找到所需項目<br>public bool DoEncryption(string inputFilename, string outputFileName, ref StringBuilder errorMessage)<br>{   &#x2F;&#x2F;取得來源檔案路徑<br>    WebAPI_Example_Common.Model.Sys.FileUpload.Settings uploadFileSetting &#x3D; ConfigurationHelper.GetConfiguration&lt;WebAPI_Example_Common.Model.Sys.FileUpload.Settings&gt;(CommonEnum.CONFIGURATION_TYPE.FILE_UPLOAD_SETTING);<br>    string uploadLocalPath &#x3D; uploadFileSetting.FileUploadPaths.First(x &#x3D;&gt; x.FileUploadId &#x3D;&#x3D; uploadFileSetting.FilePath).FileUploadPath;</p>
+<pre><code>//取得加密檔案路徑
+Settings fileSetting = ConfigurationHelper.GetConfiguration&lt;Settings&gt;(CommonEnum.CONFIGURATION_TYPE.ENCRYPT_SETTING);
+string localPath = fileSetting.EncryptPaths.First(x =&gt; x.EncryptId == fileSetting.FilePath).EncryptPath;
+
+bool status = true;
+
+try
+&#123;
+    // 建立一個 ProcessStartInfo 物件，用於指定要執行的外部程式和參數
+    ProcessStartInfo startInfo = new ProcessStartInfo();
+    startInfo.FileName = $&quot;&#123;localPath&#125;encrypt.exe&quot;;  // 指定外部程式的路徑
+    startInfo.Arguments = $&quot;&#123;uploadLocalPath&#125;&#123;inputFilename&#125; &#123;uploadLocalPath&#125;&#123;outputFileName&#125; &#123;&quot;00963112&quot;&#125;&quot;; // 傳遞給外部程式的參數
+    startInfo.WorkingDirectory = localPath;
+    startInfo.UseShellExecute = false; // 不使用操作系統外殼啟動外部程式
+    startInfo.RedirectStandardOutput = true; // 重定向標準輸出
+
+    if (!File.Exists(startInfo.FileName))
+    &#123;
+        errorMessage.AppendLine(&quot;加密檔案不存在&quot;+ startInfo.FileName + &quot;，加密失敗&quot;);
+        status = false;
+    &#125;
+    if (!File.Exists($&quot;&#123;uploadLocalPath&#125;&#123;inputFilename&#125;&quot;))
+    &#123;
+        errorMessage.AppendLine(&quot;來源檔案不存在&quot; + $&quot;&#123;uploadLocalPath&#125;&#123;inputFilename&#125;&quot; + &quot;，加密失敗&quot; );
+        status = false;
+    &#125;
+    //檔案路徑正確再加密
+    if (status)
+    &#123;
+        // 建立 Process 物件並設定啟動資訊
+        Process process = new Process();
+        process.StartInfo = startInfo;
+
+        // 啟動外部程式
+        process.Start();
+
+        // 等待外部程式執行完畢
+        process.WaitForExit();
+
+        // 讀取外部程式的輸出
+        string output = process.StandardOutput.ReadToEnd();
+        //string[] sArray = output.Split(&quot; 回應 &quot;);
+
+        // 關閉 Process 物件
+        process.Close();
+
+        if (!File.Exists($&quot;&#123;uploadLocalPath&#125;&#123;outputFileName&#125;&quot;))
+        &#123;
+            errorMessage.AppendLine(&quot;目的檔案不存在&quot; + $&quot;&#123;uploadLocalPath&#125;&#123;outputFileName&#125;&quot; + &quot;，加密失敗&quot;);
+        &#125;
+    &#125;
+&#125;
+catch (Exception ex)
+&#123;
+    // 處理例外狀況
+    errorMessage.AppendLine(&quot;執行外部程式時發生錯誤：&quot; + ex.Message);
+&#125;
+if (errorMessage.Length &gt; 0)
+&#123;
+    return false;
+&#125;
+
+return true;
+</code></pre>
+<p>}<br>這段是如何作 encrypt 加密的?</p>
+<p>這段程式碼的目的是通過呼叫外部的加密程式來對檔案進行加密。以下是這段程式碼的工作原理：</p>
+<ol>
+<li><p><strong>取得設定檔案路徑</strong>：</p>
+<ul>
+<li>程式碼使用 <code>ConfigurationHelper.GetConfiguration</code> 方法從設定檔案中取得上傳檔案和加密檔案的路徑設定。</li>
+<li><code>uploadLocalPath</code> 和 <code>localPath</code> 分別是上傳檔案的路徑和加密檔案的路徑。</li>
+</ul>
+</li>
+<li><p><strong>初始化 ProcessStartInfo</strong>：</p>
+<ul>
+<li><code>ProcessStartInfo</code> 用來指定要執行的外部程式及其參數。</li>
+<li><code>startInfo.FileName</code> 設定為加密程式 <code>encrypt.exe</code> 的路徑。</li>
+<li><code>startInfo.Arguments</code> 設定為加密程式的參數，包括來源檔案路徑 (<code>inputFilename</code>)、目的檔案路徑 (<code>outputFileName</code>)、以及一個硬編碼的密鑰或其他必要參數（這裡是 <code>&quot;00963112&quot;</code>）。</li>
+</ul>
+</li>
+<li><p><strong>檢查檔案是否存在</strong>：</p>
+<ul>
+<li>檢查加密程式 (<code>encrypt.exe</code>) 是否存在。</li>
+<li>檢查來源檔案 (<code>inputFilename</code>) 是否存在。</li>
+<li>如果其中任何檔案不存在，將錯誤信息添加到 <code>errorMessage</code> 並設置 <code>status</code> 為 <code>false</code>。</li>
+</ul>
+</li>
+<li><p><strong>執行加密程式</strong>：</p>
+<ul>
+<li>如果檔案檢查通過，建立 <code>Process</code> 物件並設定啟動資訊 (<code>startInfo</code>)。</li>
+<li>啟動外部程式 (<code>process.Start()</code>)，並等待外部程式完成執行 (<code>process.WaitForExit()</code>)，確保加密處理已經完成。</li>
+<li>讀取外部程式的標準輸出（如果有的話）。</li>
+</ul>
+</li>
+<li><p><strong>檢查加密結果</strong>：</p>
+<ul>
+<li>檢查加密後的目的檔案 (<code>outputFileName</code>) 是否存在。</li>
+<li>如果目的檔案不存在，將錯誤信息添加到 <code>errorMessage</code>。</li>
+</ul>
+</li>
+<li><p><strong>例外處理</strong>：</p>
+<ul>
+<li>捕獲並處理任何在執行外部程式時發生的異常，將錯誤信息添加到 <code>errorMessage</code>。</li>
+</ul>
+</li>
+<li><p><strong>返回結果</strong>：</p>
+<ul>
+<li>如果 <code>errorMessage</code> 中有錯誤信息，返回 <code>false</code>，否則返回 <code>true</code>，表示加密成功。</li>
+</ul>
+</li>
+</ol>
+<p>總結來說，這段程式碼的加密過程依賴於外部的加密程式 <code>encrypt.exe</code>，並通過檢查檔案存在與否和捕獲錯誤來確保加密操作的成功。如果所有檔案和操作都正確，程式碼會執行加密並檢查結果，最終返回操作結果。</p>
+<h4 id="沒有看到執行-encrypt-exe-的程式碼"><a href="#沒有看到執行-encrypt-exe-的程式碼" class="headerlink" title="沒有看到執行 encrypt.exe 的程式碼"></a>沒有看到執行 encrypt.exe 的程式碼</h4><p>在您提供的程式碼中，<code>encrypt.exe</code> 的執行是通過 <code>Process</code> 類來完成的，下面是具體的步驟和程式碼片段來說明如何執行 <code>encrypt.exe</code>：</p>
+<ol>
+<li><p>**設定 <code>ProcessStartInfo</code>**：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ProcessStartInfo startInfo = <span class="keyword">new</span> ProcessStartInfo();</span><br><span class="line">startInfo.FileName = <span class="string">$&quot;<span class="subst">&#123;localPath&#125;</span>encrypt.exe&quot;</span>;  <span class="comment">// 指定外部程式的路徑</span></span><br><span class="line">startInfo.Arguments = <span class="string">$&quot;<span class="subst">&#123;uploadLocalPath&#125;</span><span class="subst">&#123;inputFilename&#125;</span> <span class="subst">&#123;uploadLocalPath&#125;</span><span class="subst">&#123;outputFileName&#125;</span> <span class="subst">&#123;<span class="string">&quot;00963112&quot;</span>&#125;</span>&quot;</span>; <span class="comment">// 傳遞給外部程式的參數</span></span><br><span class="line">startInfo.WorkingDirectory = localPath;</span><br><span class="line">startInfo.UseShellExecute = <span class="literal">false</span>; <span class="comment">// 不使用操作系統外殼啟動外部程式</span></span><br><span class="line">startInfo.RedirectStandardOutput = <span class="literal">true</span>; <span class="comment">// 重定向標準輸出</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>startInfo.FileName</code>：設置為加密程式 <code>encrypt.exe</code> 的路徑，這個程式是用來進行加密操作的。</li>
+<li><code>startInfo.Arguments</code>：設置為傳遞給 <code>encrypt.exe</code> 的參數，包括來源檔案、目的檔案以及密鑰或其他參數。</li>
+<li><code>startInfo.WorkingDirectory</code>：設置為 <code>encrypt.exe</code> 的工作目錄。</li>
+<li><code>startInfo.UseShellExecute</code>：設置為 <code>false</code>，表示不使用操作系統外殼來啟動外部程式。</li>
+<li><code>startInfo.RedirectStandardOutput</code>：設置為 <code>true</code>，表示要重定向外部程式的標準輸出，以便可以讀取其輸出內容。</li>
+</ul>
+</li>
+<li><p>**建立並啟動 <code>Process</code>**：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Process process = <span class="keyword">new</span> Process();</span><br><span class="line">process.StartInfo = startInfo;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 啟動外部程式</span></span><br><span class="line">process.Start();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 等待外部程式執行完畢</span></span><br><span class="line">process.WaitForExit();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>process.Start()</code>：啟動 <code>encrypt.exe</code> 程式。</li>
+<li><code>process.WaitForExit()</code>：等待 <code>encrypt.exe</code> 執行完成，直到外部程式結束執行。</li>
+</ul>
+</li>
+<li><p><strong>讀取外部程式的輸出</strong>：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> output = process.StandardOutput.ReadToEnd();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>process.StandardOutput.ReadToEnd()</code>：讀取 <code>encrypt.exe</code> 執行過程中的標準輸出，以便獲取任何錯誤信息或其他輸出內容。</li>
+</ul>
+</li>
+<li><p>**關閉 <code>Process</code>**：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">process.Close();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>關閉 <code>Process</code> 物件以釋放資源。</li>
+</ul>
+</li>
+</ol>
+<h3 id="整體流程"><a href="#整體流程" class="headerlink" title="整體流程"></a>整體流程</h3><ol>
+<li><strong>建立 <code>ProcessStartInfo</code></strong> 物件來配置外部程式的路徑和參數。</li>
+<li><strong>檢查檔案存在性</strong>，確保 <code>encrypt.exe</code> 和來源檔案都存在。</li>
+<li><strong>建立 <code>Process</code> 物件</strong>，並設置啟動資訊。</li>
+<li>**啟動 <code>encrypt.exe</code>**，並等待其執行完成。</li>
+<li><strong>讀取標準輸出</strong>，以檢查任何錯誤或結果。</li>
+<li><strong>關閉 <code>Process</code> 物件</strong>，完成操作。</li>
+</ol>
+<p>這段程式碼的主要作用是通過呼叫外部的加密程式 <code>encrypt.exe</code>，進行檔案的加密處理，並檢查加密是否成功。</p>
+<h3 id="那要加密的檔案名稱是放在startInfo-Arguments-這裡嗎"><a href="#那要加密的檔案名稱是放在startInfo-Arguments-這裡嗎" class="headerlink" title="那要加密的檔案名稱是放在startInfo.Arguments 這裡嗎?"></a>那要加密的檔案名稱是放在startInfo.Arguments 這裡嗎?</h3><p>是的，您完全正確。要加密的檔案名稱和其他相關參數都是通過 <code>startInfo.Arguments</code> 這個屬性來傳遞給 <code>encrypt.exe</code> 程式的。下面是如何在 <code>startInfo.Arguments</code> 中設置這些參數的詳細說明：</p>
+<h3 id="startInfo-Arguments-的設置"><a href="#startInfo-Arguments-的設置" class="headerlink" title="startInfo.Arguments 的設置"></a><code>startInfo.Arguments</code> 的設置</h3><p>在您的程式碼中，這一行負責設置要傳遞給外部程式的參數：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">startInfo.Arguments = <span class="string">$&quot;<span class="subst">&#123;uploadLocalPath&#125;</span><span class="subst">&#123;inputFilename&#125;</span> <span class="subst">&#123;uploadLocalPath&#125;</span><span class="subst">&#123;outputFileName&#125;</span> <span class="subst">&#123;<span class="string">&quot;00963112&quot;</span>&#125;</span>&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>這一行的作用是組合外部程式 <code>encrypt.exe</code> 的命令行參數，這些參數將被傳遞給 <code>encrypt.exe</code> 執行。具體的參數包括：</p>
+<ol>
+<li><p><strong>來源檔案</strong> (<code>&#123;uploadLocalPath&#125;&#123;inputFilename&#125;</code>)：這是要被加密的原始檔案的路徑。<code>uploadLocalPath</code> 是來源檔案的路徑前綴，<code>inputFilename</code> 是來源檔案的檔名，兩者組合起來形成完整的檔案路徑。</p>
+</li>
+<li><p><strong>目的檔案</strong> (<code>&#123;uploadLocalPath&#125;&#123;outputFileName&#125;</code>)：這是加密後產生的檔案的路徑。<code>uploadLocalPath</code> 是目的檔案的路徑前綴，<code>outputFileName</code> 是目的檔案的檔名，兩者組合起來形成完整的檔案路徑。</p>
+</li>
+<li><p><strong>密鑰或其他參數</strong> (<code>&quot;00963112&quot;</code>)：這是傳遞給 <code>encrypt.exe</code> 的其他參數，例如密鑰或識別碼。這個參數的具體含義取決於 <code>encrypt.exe</code> 程式的實現。</p>
+</li>
+</ol>
+<h3 id="完整的命令行參數示例"><a href="#完整的命令行參數示例" class="headerlink" title="完整的命令行參數示例"></a>完整的命令行參數示例</h3><p>假設：</p>
+<ul>
+<li><code>uploadLocalPath</code> &#x3D; <code>&quot;C:\\Uploads\\&quot;</code></li>
+<li><code>inputFilename</code> &#x3D; <code>&quot;data.txt&quot;</code></li>
+<li><code>outputFileName</code> &#x3D; <code>&quot;data_encrypted.txt&quot;</code></li>
+<li>密鑰為 <code>&quot;00963112&quot;</code></li>
+</ul>
+<p>那麼 <code>startInfo.Arguments</code> 的值將會是：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;C:\\Uploads\\data.txt C:\\Uploads\\data_encrypted.txt 00963112&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>這樣，當 <code>encrypt.exe</code> 被執行時，它將會接收這些參數並進行相應的加密操作。</p>
+<h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h3><p><code>startInfo.Arguments</code> 是用來指定要傳遞給 <code>encrypt.exe</code> 程式的參數。這些參數包括來源檔案、目的檔案和其他必要的加密參數。程式將這些參數組合成一個字串，並在啟動 <code>encrypt.exe</code> 時傳遞給它，以便進行加密處理。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/C/" rel="tag"># C#</a>
+              <a href="/apple.lily/tags/SA/" rel="tag"># SA</a>
+              <a href="/apple.lily/tags/UML/" rel="tag"># UML</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/09/19/WDS_SA/02-EMPM001/" rel="prev" title="EMP001 (員工基本資料轉入)Router說明">
+                  <i class="fa fa-angle-left"></i> EMP001 (員工基本資料轉入)Router說明
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
