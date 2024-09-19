@@ -27,7 +27,7 @@
 <meta property="og:description" content="App007 加密解釋">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2024-09-19T15:16:24.000Z">
-<meta property="article:modified_time" content="2024-09-19T15:17:21.000Z">
+<meta property="article:modified_time" content="2024-09-19T15:20:39.000Z">
 <meta property="article:author" content="Apple.Lily">
 <meta property="article:tag" content="C#">
 <meta property="article:tag" content="SA">
@@ -198,7 +198,7 @@
       <span class="post-meta-item-text">發表於</span>
       
 
-      <time title="創建時間：2024-09-19 23:16:24 / 修改時間：23:17:21" itemprop="dateCreated datePublished" datetime="2024-09-19T23:16:24+08:00">2024-09-19</time>
+      <time title="創建時間：2024-09-19 23:16:24 / 修改時間：23:20:39" itemprop="dateCreated datePublished" datetime="2024-09-19T23:16:24+08:00">2024-09-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -227,72 +227,8 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="App007-加密解釋"><a href="#App007-加密解釋" class="headerlink" title="App007 加密解釋"></a>App007 加密解釋</h2><p>新功能！鍵盤快速鍵 … Google 雲端硬碟鍵盤快速鍵已更新，可讓你透過首字母導覽功能找到所需項目<br>public bool DoEncryption(string inputFilename, string outputFileName, ref StringBuilder errorMessage)<br>{   &#x2F;&#x2F;取得來源檔案路徑<br>    WebAPI_Example_Common.Model.Sys.FileUpload.Settings uploadFileSetting &#x3D; ConfigurationHelper.GetConfiguration&lt;WebAPI_Example_Common.Model.Sys.FileUpload.Settings&gt;(CommonEnum.CONFIGURATION_TYPE.FILE_UPLOAD_SETTING);<br>    string uploadLocalPath &#x3D; uploadFileSetting.FileUploadPaths.First(x &#x3D;&gt; x.FileUploadId &#x3D;&#x3D; uploadFileSetting.FilePath).FileUploadPath;</p>
-<pre><code>//取得加密檔案路徑
-Settings fileSetting = ConfigurationHelper.GetConfiguration&lt;Settings&gt;(CommonEnum.CONFIGURATION_TYPE.ENCRYPT_SETTING);
-string localPath = fileSetting.EncryptPaths.First(x =&gt; x.EncryptId == fileSetting.FilePath).EncryptPath;
-
-bool status = true;
-
-try
-&#123;
-    // 建立一個 ProcessStartInfo 物件，用於指定要執行的外部程式和參數
-    ProcessStartInfo startInfo = new ProcessStartInfo();
-    startInfo.FileName = $&quot;&#123;localPath&#125;encrypt.exe&quot;;  // 指定外部程式的路徑
-    startInfo.Arguments = $&quot;&#123;uploadLocalPath&#125;&#123;inputFilename&#125; &#123;uploadLocalPath&#125;&#123;outputFileName&#125; &#123;&quot;00963112&quot;&#125;&quot;; // 傳遞給外部程式的參數
-    startInfo.WorkingDirectory = localPath;
-    startInfo.UseShellExecute = false; // 不使用操作系統外殼啟動外部程式
-    startInfo.RedirectStandardOutput = true; // 重定向標準輸出
-
-    if (!File.Exists(startInfo.FileName))
-    &#123;
-        errorMessage.AppendLine(&quot;加密檔案不存在&quot;+ startInfo.FileName + &quot;，加密失敗&quot;);
-        status = false;
-    &#125;
-    if (!File.Exists($&quot;&#123;uploadLocalPath&#125;&#123;inputFilename&#125;&quot;))
-    &#123;
-        errorMessage.AppendLine(&quot;來源檔案不存在&quot; + $&quot;&#123;uploadLocalPath&#125;&#123;inputFilename&#125;&quot; + &quot;，加密失敗&quot; );
-        status = false;
-    &#125;
-    //檔案路徑正確再加密
-    if (status)
-    &#123;
-        // 建立 Process 物件並設定啟動資訊
-        Process process = new Process();
-        process.StartInfo = startInfo;
-
-        // 啟動外部程式
-        process.Start();
-
-        // 等待外部程式執行完畢
-        process.WaitForExit();
-
-        // 讀取外部程式的輸出
-        string output = process.StandardOutput.ReadToEnd();
-        //string[] sArray = output.Split(&quot; 回應 &quot;);
-
-        // 關閉 Process 物件
-        process.Close();
-
-        if (!File.Exists($&quot;&#123;uploadLocalPath&#125;&#123;outputFileName&#125;&quot;))
-        &#123;
-            errorMessage.AppendLine(&quot;目的檔案不存在&quot; + $&quot;&#123;uploadLocalPath&#125;&#123;outputFileName&#125;&quot; + &quot;，加密失敗&quot;);
-        &#125;
-    &#125;
-&#125;
-catch (Exception ex)
-&#123;
-    // 處理例外狀況
-    errorMessage.AppendLine(&quot;執行外部程式時發生錯誤：&quot; + ex.Message);
-&#125;
-if (errorMessage.Length &gt; 0)
-&#123;
-    return false;
-&#125;
-
-return true;
-</code></pre>
-<p>}<br>這段是如何作 encrypt 加密的?</p>
+    <div class="post-body" itemprop="articleBody"><h2 id="App007-加密解釋"><a href="#App007-加密解釋" class="headerlink" title="App007 加密解釋"></a>App007 加密解釋</h2><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="built_in">bool</span> <span class="title">DoEncryption</span>(<span class="params"><span class="built_in">string</span> inputFilename, <span class="built_in">string</span> outputFileName, <span class="keyword">ref</span> StringBuilder errorMessage</span>)</span></span><br><span class="line">&#123;   <span class="comment">//取得來源檔案路徑</span></span><br><span class="line">    WebAPI_Example_Common.Model.Sys.FileUpload.Settings uploadFileSetting = ConfigurationHelper.GetConfiguration&lt;WebAPI_Example_Common.Model.Sys.FileUpload.Settings&gt;(CommonEnum.CONFIGURATION_TYPE.FILE_UPLOAD_SETTING);</span><br><span class="line">    <span class="built_in">string</span> uploadLocalPath = uploadFileSetting.FileUploadPaths.First(x =&gt; x.FileUploadId == uploadFileSetting.FilePath).FileUploadPath;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//取得加密檔案路徑</span></span><br><span class="line">    Settings fileSetting = ConfigurationHelper.GetConfiguration&lt;Settings&gt;(CommonEnum.CONFIGURATION_TYPE.ENCRYPT_SETTING);</span><br><span class="line">    <span class="built_in">string</span> localPath = fileSetting.EncryptPaths.First(x =&gt; x.EncryptId == fileSetting.FilePath).EncryptPath;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">bool</span> status = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 建立一個 ProcessStartInfo 物件，用於指定要執行的外部程式和參數</span></span><br><span class="line">        ProcessStartInfo startInfo = <span class="keyword">new</span> ProcessStartInfo();</span><br><span class="line">        startInfo.FileName = <span class="string">$&quot;<span class="subst">&#123;localPath&#125;</span>encrypt.exe&quot;</span>;  <span class="comment">// 指定外部程式的路徑</span></span><br><span class="line">        startInfo.Arguments = <span class="string">$&quot;<span class="subst">&#123;uploadLocalPath&#125;</span><span class="subst">&#123;inputFilename&#125;</span> <span class="subst">&#123;uploadLocalPath&#125;</span><span class="subst">&#123;outputFileName&#125;</span> <span class="subst">&#123;<span class="string">&quot;00963112&quot;</span>&#125;</span>&quot;</span>; <span class="comment">// 傳遞給外部程式的參數</span></span><br><span class="line">        startInfo.WorkingDirectory = localPath;</span><br><span class="line">        startInfo.UseShellExecute = <span class="literal">false</span>; <span class="comment">// 不使用操作系統外殼啟動外部程式</span></span><br><span class="line">        startInfo.RedirectStandardOutput = <span class="literal">true</span>; <span class="comment">// 重定向標準輸出</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (!File.Exists(startInfo.FileName))</span><br><span class="line">        &#123;</span><br><span class="line">            errorMessage.AppendLine(<span class="string">&quot;加密檔案不存在&quot;</span>+ startInfo.FileName + <span class="string">&quot;，加密失敗&quot;</span>);</span><br><span class="line">            status = <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (!File.Exists(<span class="string">$&quot;<span class="subst">&#123;uploadLocalPath&#125;</span><span class="subst">&#123;inputFilename&#125;</span>&quot;</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            errorMessage.AppendLine(<span class="string">&quot;來源檔案不存在&quot;</span> + <span class="string">$&quot;<span class="subst">&#123;uploadLocalPath&#125;</span><span class="subst">&#123;inputFilename&#125;</span>&quot;</span> + <span class="string">&quot;，加密失敗&quot;</span> );</span><br><span class="line">            status = <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//檔案路徑正確再加密</span></span><br><span class="line">        <span class="keyword">if</span> (status)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 建立 Process 物件並設定啟動資訊</span></span><br><span class="line">            Process process = <span class="keyword">new</span> Process();</span><br><span class="line">            process.StartInfo = startInfo;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 啟動外部程式</span></span><br><span class="line">            process.Start();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 等待外部程式執行完畢</span></span><br><span class="line">            process.WaitForExit();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 讀取外部程式的輸出</span></span><br><span class="line">            <span class="built_in">string</span> output = process.StandardOutput.ReadToEnd();</span><br><span class="line">            <span class="comment">//string[] sArray = output.Split(&quot; 回應 &quot;);</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">// 關閉 Process 物件</span></span><br><span class="line">            process.Close();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (!File.Exists(<span class="string">$&quot;<span class="subst">&#123;uploadLocalPath&#125;</span><span class="subst">&#123;outputFileName&#125;</span>&quot;</span>))</span><br><span class="line">            &#123;</span><br><span class="line">                errorMessage.AppendLine(<span class="string">&quot;目的檔案不存在&quot;</span> + <span class="string">$&quot;<span class="subst">&#123;uploadLocalPath&#125;</span><span class="subst">&#123;outputFileName&#125;</span>&quot;</span> + <span class="string">&quot;，加密失敗&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span> (Exception ex)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 處理例外狀況</span></span><br><span class="line">        errorMessage.AppendLine(<span class="string">&quot;執行外部程式時發生錯誤：&quot;</span> + ex.Message);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (errorMessage.Length &gt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>這段是如何作 encrypt 加密的?</p>
 <p>這段程式碼的目的是通過呼叫外部的加密程式來對檔案進行加密。以下是這段程式碼的工作原理：</p>
 <ol>
 <li><p><strong>取得設定檔案路徑</strong>：</p>
