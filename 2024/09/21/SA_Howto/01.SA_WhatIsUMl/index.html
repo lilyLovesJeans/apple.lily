@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="01.「模組化」、「抽象化」、「繼承與多態」、「組合概念">
+<meta property="og:type" content="article">
+<meta property="og:title" content="01.「模組化」、「抽象化」、「繼承與多態」、「組合概念">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2024/09/21/SA_Howto/01.SA_WhatIsUMl/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="01.「模組化」、「抽象化」、「繼承與多態」、「組合概念">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2024-09-21T14:20:10.000Z">
+<meta property="article:modified_time" content="2024-09-21T14:23:31.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="C#">
+<meta property="article:tag" content="SA">
+<meta property="article:tag" content="UML">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2024/09/21/SA_Howto/01.SA_WhatIsUMl/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2024/09/21/SA_Howto/01.SA_WhatIsUMl/","path":"2024/09/21/SA_Howto/01.SA_WhatIsUMl/","title":"01.「模組化」、「抽象化」、「繼承與多態」、「組合概念"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>01.「模組化」、「抽象化」、「繼承與多態」、「組合概念 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%A8%A1%E7%B5%84%E5%8C%96%EF%BC%88Modularization%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">1. 模組化（Modularization）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%8A%BD%E8%B1%A1%E5%8C%96%EF%BC%88Abstraction%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">2. 抽象化（Abstraction）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E7%B9%BC%E6%89%BF%E8%88%87%E5%A4%9A%E6%85%8B%EF%BC%88Inheritance-and-Polymorphism%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">3. 繼承與多態（Inheritance and Polymorphism）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E7%B5%84%E5%90%88%EF%BC%88Composition%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">4. 組合（Composition）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E5%B0%88%E6%A1%88%E4%B8%AD%E7%9A%84%E6%87%89%E7%94%A8"><span class="nav-number">5.</span> <span class="nav-text">在專案中的應用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B8%BD%E7%B5%90"><span class="nav-number">6.</span> <span class="nav-text">總結</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">168</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2024/09/21/SA_Howto/01.SA_WhatIsUMl/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="01.「模組化」、「抽象化」、「繼承與多態」、「組合概念 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="01.「模組化」、「抽象化」、「繼承與多態」、「組合概念">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          01.「模組化」、「抽象化」、「繼承與多態」、「組合概念
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2024-09-21 22:20:10 / 修改時間：22:23:31" itemprop="dateCreated datePublished" datetime="2024-09-21T22:20:10+08:00">2024-09-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/SA/" itemprop="url" rel="index"><span itemprop="name">SA</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">01.「模組化」、「抽象化」、「繼承與多態」、「組合概念</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>理解「模組化」、「抽象化」、「繼承與多態」、「組合」這些概念對於軟體設計非常重要，<br>但的確一開始接觸時會讓人感到模糊。我會用簡單的例子和生活化的類比來幫助你更清楚地理解這些概念，<br>以及如何在專案中應用它們。</p>
+<h3 id="1-模組化（Modularization）"><a href="#1-模組化（Modularization）" class="headerlink" title="1. 模組化（Modularization）"></a>1. 模組化（Modularization）</h3><p><strong>簡單來說：把大事情拆成小事情，每個小事情專注做一件事。</strong></p>
+<p><strong>例子：</strong><br>想像你要做一份大餐。整個過程會包括「煮飯」、「炒菜」、「做甜點」等。如果你把所有步驟放在一起，你會很難管理。但如果你把每個步驟分開成模組，像是「煮飯模組」、「炒菜模組」、「甜點模組」，每個模組只專注做一件事，那麼大餐就變得更容易準備。這樣一來，未來想煮別的菜時，你可以重複使用「炒菜模組」而不需要重頭開始。</p>
+<p>在程式中，模組化的做法就是將功能分解成小的、獨立的模組或函數。每個模組解決一個具體的問題，這樣的代碼更容易維護和重複使用。</p>
+<h3 id="2-抽象化（Abstraction）"><a href="#2-抽象化（Abstraction）" class="headerlink" title="2. 抽象化（Abstraction）"></a>2. 抽象化（Abstraction）</h3><p><strong>簡單來說：只告訴我怎麼用，不告訴我細節。</strong></p>
+<p><strong>例子：</strong><br>當你開車時，你只需要知道怎麼操作方向盤、油門和剎車，卻不需要知道引擎內部是如何運作的。這就是抽象化。你使用一個簡單的接口（方向盤、油門、剎車），而不用理解內部的複雜細節。</p>
+<p>在程式設計中，抽象化就是把複雜的細節隱藏起來，只暴露出簡單的使用方法。比如，你可以定義一個函數 <code>calculateTotal()</code>，裡面可能包含複雜的運算邏輯，但使用這個函數的人不需要知道具體怎麼算，只需要知道這個函數會回傳總和。</p>
+<h3 id="3-繼承與多態（Inheritance-and-Polymorphism）"><a href="#3-繼承與多態（Inheritance-and-Polymorphism）" class="headerlink" title="3. 繼承與多態（Inheritance and Polymorphism）"></a>3. 繼承與多態（Inheritance and Polymorphism）</h3><p><strong>簡單來說：兒子繼承爸爸的財產（屬性和行為），但兒子可以有自己的特點。</strong></p>
+<p><strong>例子：</strong><br>想像你有一個「動物」類別，動物可以「走路」和「發出聲音」。如果你有具體的動物，比如「狗」和「貓」，牠們可以繼承動物的基本行為（比如走路），但它們可以有不同的聲音。狗會「汪汪叫」，貓會「喵喵叫」。</p>
+<p>在程式中，繼承允許你將相同的邏輯放在父類別中，子類別可以繼承並覆寫部分行為。多態則允許你用相同的方式對待不同的類別，比如你可以寫一個函數接受「動物」，而不管它是狗還是貓，你都可以讓它發出聲音。</p>
+<h3 id="4-組合（Composition）"><a href="#4-組合（Composition）" class="headerlink" title="4. 組合（Composition）"></a>4. 組合（Composition）</h3><p><strong>簡單來說：用現有的部件，組裝出新的東西。</strong></p>
+<p><strong>例子：</strong><br>如果你想組裝一個新電腦，你不會自己製造每個零件，而是使用現有的部件（比如 CPU、主板、顯示器等），然後組合它們，形成一個完整的電腦。這就是組合的概念。</p>
+<p>在程式設計中，組合就是將現有的類別或對象組合起來，形成更複雜的功能，避免過度依賴繼承。比如，你有一個「通知」模組，它可以發送 Email 或 SMS。你可以將「通知」和「用戶資料」組合在一起，實現用戶通知系統，而不用讓「用戶」類別去繼承「通知」類別。</p>
+<hr>
+<h3 id="在專案中的應用"><a href="#在專案中的應用" class="headerlink" title="在專案中的應用"></a>在專案中的應用</h3><p>假設你在開發一個「異動類別主檔維護」的模組，這個模組需要操作資料庫，進行資料的查詢、更新、刪除等操作。你可以用這些概念來設計你的系統：</p>
+<ol>
+<li><p><strong>模組化</strong>：將不同的功能分割成模組。比如，將「資料庫操作」與「UI顯示」分開。這樣一來，如果將來換了資料庫，只需要修改資料庫模組，而不用改變整個系統。</p>
+</li>
+<li><p><strong>抽象化</strong>：定義一些接口（interface）或抽象類別（abstract class），讓其他模組使用。例如，你可以抽象出一個 <code>Repository</code> 類別，提供 <code>GetData()</code>、<code>UpdateData()</code> 等方法。具體怎麼查資料庫，讓具體的實現類別去處理，這樣系統的其他部分只需關心怎麼調用這些方法。</p>
+</li>
+<li><p><strong>繼承與多態</strong>：如果你有不同類型的「異動類別」，可以定義一個「異動類別」的父類，讓不同的子類去實現具體的邏輯。比如，有些異動需要審核，有些不需要，你可以讓具體的類別去覆寫這個邏輯。</p>
+</li>
+<li><p><strong>組合</strong>：如果異動類別需要跟其他模組（例如通知系統）協作，你可以透過組合將這些模組整合在一起，而不是讓異動類別去繼承通知功能。這樣可以保持模組的獨立性和靈活性。</p>
+</li>
+</ol>
+<hr>
+<h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h3><ul>
+<li><strong>模組化</strong>：將大問題拆成小問題，讓每個模組專注解決一個功能。</li>
+<li><strong>抽象化</strong>：把細節藏起來，暴露簡單的接口讓使用者調用。</li>
+<li><strong>繼承與多態</strong>：用繼承重用代碼，用多態實現靈活的行為變化。</li>
+<li><strong>組合</strong>：將不同功能的模組組裝起來，而不是用繼承來擴展功能。</li>
+</ul>
+<p>實際上，這些設計模式常常會一起使用，隨著經驗增加，你會慢慢找到適合的方式在不同情況下應用它們。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/C/" rel="tag"># C#</a>
+              <a href="/apple.lily/tags/SA/" rel="tag"># SA</a>
+              <a href="/apple.lily/tags/UML/" rel="tag"># UML</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/09/20/WDS_SA/04-APP007_router/" rel="prev" title="App007 router說明">
+                  <i class="fa fa-angle-left"></i> App007 router說明
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
