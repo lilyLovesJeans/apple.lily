@@ -4,36 +4,37 @@
 <p>記得之前的課程，每次更新完 state，你都要接著去執行 render() 函式嗎？</p>
 <p>所謂 Reactivity 就只是說：當你更新完 application state 之後，Vue 會自動幫你更新 UI 上的內容</p>
 <p>就只是這樣，不要把它想得太複雜</p>
-<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<pre><code class="html">&lt;script src=&quot;https://unpkg.com/vue@3/dist/vue.global.js&quot;&gt;&lt;/script&gt;
 
-<div id="app">
+&lt;div id=&quot;app&quot;&gt;
   嗨，我是 {{ user.name }}
-  <button @click="changeNewName">
+  &lt;button @click=&quot;changeNewName&quot;&gt;
     改名字
-  </button>
-</div>
+  &lt;/button&gt;
+&lt;/div&gt;
 
-<script>
+&lt;script&gt;
   const { createApp } = Vue
 
   createApp({
     data() {
       return {
         user: {
-          name: "John Doe"
+          name: &quot;John Doe&quot;
         }
       }
     },
     mounted() {
-      this.user.name = "Frank"
+      this.user.name = &quot;Frank&quot;
     },
     methods: {
       changeNewName() {
-        this.user.name = "Kevin"
+        this.user.name = &quot;Kevin&quot;
       }
     }
-  }).mount('#app')
-</script>
+  }).mount(&#39;#app&#39;)
+&lt;/script&gt;
+</code></pre>
 <p>到 jsfiddle 跑跑看，看看畫面上出現什麼</p>
 <p>mounted 是 vue 將畫面第一次載入之後，可以安排任務的地方，通常會放一些「系統初始化任務」</p>
 <p>@click 跟 methods 那些，就只是操作事件的寫法而已，先照做就好</p>
