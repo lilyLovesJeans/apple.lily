@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="DCFP002EIP驗收單轉入作業">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DCFP002EIP驗收單轉入作業">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/DCF/DCFP002EIP/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="DCFP002EIP驗收單轉入作業">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2024-09-26T16:27:39.000Z">
+<meta property="article:modified_time" content="2024-09-26T16:30:53.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="C#">
+<meta property="article:tag" content="SA">
+<meta property="article:tag" content="UML">
+<meta property="article:tag" content="DCF">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/DCF/DCFP002EIP/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/DCF/DCFP002EIP/","path":"/DCF/DCFP002EIP/","title":"DCFP002EIP驗收單轉入作業"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>DCFP002EIP驗收單轉入作業 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AF%84%E4%BE%8B%EF%BC%9A%E9%A9%97%E6%94%B6%E5%96%AE%E8%BD%89%E5%85%A5%E4%B8%A6%E7%94%A2%E7%94%9F%E5%82%B3%E7%A5%A8"><span class="nav-number">1.</span> <span class="nav-text">範例：驗收單轉入並產生傳票</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E8%BC%B8%E5%85%A5%E6%9F%A5%E8%A9%A2%E6%A2%9D%E4%BB%B6"><span class="nav-number">1.1.</span> <span class="nav-text">1. 輸入查詢條件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E8%B3%87%E6%96%99%E8%BD%89%E5%85%A5"><span class="nav-number">1.2.</span> <span class="nav-text">2. 資料轉入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E7%94%A2%E7%94%9F%E5%82%B3%E7%A5%A8"><span class="nav-number">1.3.</span> <span class="nav-text">3. 產生傳票</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%A0%B1%E8%A1%A8%E8%BC%B8%E5%87%BA"><span class="nav-number">1.4.</span> <span class="nav-text">4. 報表輸出</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%B5%90"><span class="nav-number">2.</span> <span class="nav-text">小結</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%8F%83%E6%95%B8%E6%AA%94-dcf-dc-parm-d-%E7%9A%84%E8%B3%87%E6%96%99"><span class="nav-number">3.</span> <span class="nav-text">1. 參數檔 dcf_dc_parm_d 的資料</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%99%BC%E7%A5%A8%E8%B3%87%E6%96%99%E8%A1%A8-DCF-PIV-INVOICE-EIP-%E7%9A%84%E8%B3%87%E6%96%99"><span class="nav-number">4.</span> <span class="nav-text">2. 發票資料表 DCF_PIV_INVOICE_EIP 的資料</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E7%AF%84%E4%BE%8B%E6%B5%81%E7%A8%8B%EF%BC%9A%E8%BD%89%E5%85%A5%E9%A9%97%E6%94%B6%E5%96%AE%E8%B3%87%E6%96%99"><span class="nav-number">5.</span> <span class="nav-text">3. 範例流程：轉入驗收單資料</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E7%94%A2%E7%94%9F%E5%82%B3%E7%A5%A8%E6%99%82%E6%87%89%E7%94%A8%E5%8F%83%E6%95%B8%E6%AA%94"><span class="nav-number">6.</span> <span class="nav-text">4. 產生傳票時應用參數檔</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%B5%90-1"><span class="nav-number">7.</span> <span class="nav-text">小結</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">171</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/DCF/DCFP002EIP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="DCFP002EIP驗收單轉入作業 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="DCFP002EIP驗收單轉入作業">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          DCFP002EIP驗收單轉入作業
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2024-09-27 00:27:39 / 修改時間：00:30:53" itemprop="dateCreated datePublished" datetime="2024-09-27T00:27:39+08:00">2024-09-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/WDS/" itemprop="url" rel="index"><span itemprop="name">WDS</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">DCFP002EIP驗收單轉入作業</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>文件 <strong>DCFP002 EIP驗收單轉入作業</strong> 如何運作的範例，幫助理解參數檔和系統功能的使用：</p>
+<h3 id="範例：驗收單轉入並產生傳票"><a href="#範例：驗收單轉入並產生傳票" class="headerlink" title="範例：驗收單轉入並產生傳票"></a>範例：驗收單轉入並產生傳票</h3><h4 id="1-輸入查詢條件"><a href="#1-輸入查詢條件" class="headerlink" title="1. 輸入查詢條件"></a>1. <strong>輸入查詢條件</strong></h4><ul>
+<li>在執行驗收單轉入作業前，使用者首先需要輸入查詢條件。文件中提到的查詢條件包括結帳年月 (<code>P_YYMM</code>)、入帳日期 (<code>P_ACCT_DATE</code>)、分類 (<code>P_D3_TYPE</code>) 等等。這些查詢條件是畫面上必填的欄位，並從參數檔中取得可用的選項。例如，分類 (<code>P_D3_TYPE</code>) 是一個下拉式選單，從參數檔 (<code>NP_CODE_REFERENCE</code>) 中選取合適的值。</li>
+</ul>
+<h4 id="2-資料轉入"><a href="#2-資料轉入" class="headerlink" title="2. 資料轉入"></a>2. <strong>資料轉入</strong></h4><ul>
+<li>使用者輸入查詢條件後，點擊資料轉入按鈕，系統會執行以下操作：<ol>
+<li><strong>刪除暫存檔</strong>：刪除舊有的暫存資料（<code>CSV_TEMP</code>）。</li>
+<li><strong>讀取檔案並轉入</strong>：系統會將指定的 <code>.xlsx</code> 文件轉入到暫存檔 (<code>CSV_TEMP</code>)。</li>
+<li><strong>執行資料轉入程序</strong>：<ul>
+<li>系統執行 <code>INS_DATA</code> 程序，將暫存檔的資料轉入 <code>DCF_PIV_INVOICE_EIP</code>（EIP進項發票暫存檔）。在這個過程中，系統會依據不同的參數設定來檢查資料。例如，透過查詢參數檔 (<code>dcf_dc_parm_d</code>) 中對應的設定，檢查借方會科（<code>DR_ACCT</code>）是否正確。</li>
+</ul>
+</li>
+<li><strong>資料轉入成功或失敗</strong>：如果有任何異常，系統會記錄到異常報表中，並顯示錯誤訊息。若資料轉入成功，系統會顯示成功筆數和失敗筆數。</li>
+</ol>
+</li>
+</ul>
+<h4 id="3-產生傳票"><a href="#3-產生傳票" class="headerlink" title="3. 產生傳票"></a>3. <strong>產生傳票</strong></h4><ul>
+<li>資料轉入完成後，使用者可以點擊「產生傳票」按鈕。這時，系統會執行以下操作：<ol>
+<li><strong>檢查結帳年月</strong>：呼叫 <code>CHECK_CLOSE_MONTH</code> 程序，確認結帳年月不得小於指定的年月，否則會顯示錯誤訊息。</li>
+<li><strong>檢查資料完整性</strong>：系統會檢查是否有資料可以產生傳票，若沒有會顯示無法產生的訊息。</li>
+<li><strong>執行傳票生成</strong>：<ul>
+<li>系統執行 <code>dcfp002v</code> 函數來產生傳票。在這個過程中，系統會參考參數檔中的設定來填寫相關欄位。例如，通過查詢 <code>dcf_dc_parm_d</code>，取得借方會科 (<code>v_cr_acct</code>) 和稅額 (<code>v_tx_acct</code>) 的設定。</li>
+</ul>
+</li>
+<li><strong>紀錄傳票</strong>：在傳票生成過程中，系統會插入傳票主檔和明細檔，並在 <code>DCF_PIV_INVOICE_EIP</code> 中更新對應的發票資料（<code>VOUCHER_NO</code>）。</li>
+</ol>
+</li>
+</ul>
+<h4 id="4-報表輸出"><a href="#4-報表輸出" class="headerlink" title="4. 報表輸出"></a>4. <strong>報表輸出</strong></h4><ul>
+<li>資料處理完成後，使用者可以點擊「列印報表」按鈕。此時，系統會產生一個 Excel 報表，包含驗收單的詳細資料，例如發票號碼、金額、稅額等。報表中的資料會按照參數設定進行過濾和格式化，並且會根據轉入資料的結果顯示錯誤資訊。</li>
+</ul>
+<h3 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h3><ol>
+<li><p><strong>參數檔的運用</strong>：</p>
+<ul>
+<li>在整個作業流程中，參數檔的值被用於控制查詢、資料轉入、資料檢核、傳票生成等各個步驟。例如，系統通過參數檔中的設定來決定哪些分類、會科可以使用，並檢查輸入的資料是否符合業務規範。</li>
+</ul>
+</li>
+<li><p><strong>操作流程</strong>：</p>
+<ul>
+<li>使用者先輸入查詢條件，然後進行資料轉入，接著產生傳票，最後輸出報表。每一步驟都涉及參數檔的使用，確保流程按照預設的規則執行。</li>
+</ul>
+</li>
+</ol>
+<p>這個範例說明了整個驗收單轉入作業如何運作，並展示了參數檔的值在過程中的重要性。參數檔提供了彈性，使得系統可以根據不同的情況和需求調整操作邏輯。</p>
+<p>要提供具體的資料來說明參數檔如何在運作中應用，假設我們的系統包含一個參數檔 <code>dcf_dc_parm_d</code> 和一個發票資料表 <code>DCF_PIV_INVOICE_EIP</code>。下面用一些假想的資料來說明整個操作流程，並展示參數檔的值如何影響資料處理。</p>
+<h3 id="1-參數檔-dcf-dc-parm-d-的資料"><a href="#1-參數檔-dcf-dc-parm-d-的資料" class="headerlink" title="1. 參數檔 dcf_dc_parm_d 的資料"></a>1. <strong>參數檔 <code>dcf_dc_parm_d</code> 的資料</strong></h3><p>   這個參數檔包含多種設定，其中分類 (<code>P_D3_TYPE</code>) 是一個重要的參數：</p>
+<table>
+<thead>
+<tr>
+<th>SYS_ID</th>
+<th>PARM_ID</th>
+<th>PARM_ID_CODE</th>
+<th>PARM_VALUE1</th>
+<th>PARM_VALUE2</th>
+<th>PARM_VALUE3</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DCF</td>
+<td>DCFP002</td>
+<td>EXP</td>
+<td>驗收單</td>
+<td>1001</td>
+<td>2001</td>
+<td>分類參數（EXP）</td>
+</tr>
+<tr>
+<td>DCF</td>
+<td>DCFP002</td>
+<td>SOC</td>
+<td>交際費</td>
+<td>1002</td>
+<td>2002</td>
+<td>分類參數（SOC）</td>
+</tr>
+<tr>
+<td>DCF</td>
+<td>DCFP002</td>
+<td>A</td>
+<td>全部</td>
+<td>1003</td>
+<td>2003</td>
+<td>分類參數（全部）</td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong><code>PARM_ID</code></strong>: 用於區分不同的設定項，例如這裡的 “DCFP002” 代表這組設定是為驗收單轉入作業而設。</li>
+<li><strong><code>PARM_ID_CODE</code></strong>: 表示分類代號（<code>EXP</code>、<code>SOC</code>、<code>A</code>）。</li>
+<li><strong><code>PARM_VALUE1</code></strong>: 用於描述該分類的名稱，例如 “驗收單”。</li>
+<li><strong><code>PARM_VALUE2</code> 和 <code>PARM_VALUE3</code></strong>: 是系統內部處理該分類所需的會科資訊。</li>
+</ul>
+<h3 id="2-發票資料表-DCF-PIV-INVOICE-EIP-的資料"><a href="#2-發票資料表-DCF-PIV-INVOICE-EIP-的資料" class="headerlink" title="2. 發票資料表 DCF_PIV_INVOICE_EIP 的資料"></a>2. <strong>發票資料表 <code>DCF_PIV_INVOICE_EIP</code> 的資料</strong></h3><ul>
+<li>這個表用於儲存驗收單和交際費相關的發票資料。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>DOC_NO</th>
+<th>D3_TYPE</th>
+<th>DR_ACCT</th>
+<th>INVOICE_NO</th>
+<th>AMT</th>
+<th>ACCT_DATE</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>001</td>
+<td>EXP</td>
+<td>1001</td>
+<td>INV001</td>
+<td>5000</td>
+<td>2024-09-01</td>
+</tr>
+<tr>
+<td>002</td>
+<td>EXP</td>
+<td>1001</td>
+<td>INV002</td>
+<td>3000</td>
+<td>2024-09-02</td>
+</tr>
+<tr>
+<td>003</td>
+<td>SOC</td>
+<td>1002</td>
+<td>INV003</td>
+<td>1500</td>
+<td>2024-09-03</td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong><code>D3_TYPE</code></strong>: 這裡的分類與參數檔中的設定對應，可以是 “EXP” 或 “SOC”。</li>
+<li><strong><code>DR_ACCT</code></strong>: 借方會科，系統會根據參數檔中的設定來確定，例如分類為 “EXP” 時，會使用 <code>1001</code> 作為借方會科。</li>
+</ul>
+<h3 id="3-範例流程：轉入驗收單資料"><a href="#3-範例流程：轉入驗收單資料" class="headerlink" title="3. 範例流程：轉入驗收單資料"></a>3. <strong>範例流程：轉入驗收單資料</strong></h3><p>   當使用者在驗收單轉入作業的界面上，選擇分類為 “EXP” 並點擊資料轉入按鈕時，系統會根據這個分類來處理資料。</p>
+<ul>
+<li><strong>查詢條件</strong>：使用者選擇分類 (<code>P_D3_TYPE</code>) 為 “EXP”。</li>
+<li><strong>程序運作</strong>：系統會讀取參數檔 <code>dcf_dc_parm_d</code>，查找 <code>PARM_ID_CODE</code> 為 “EXP” 的設定，並取得相應的 <code>PARM_VALUE2</code> 和 <code>PARM_VALUE3</code> 作為處理該分類資料時的會科資訊。</li>
+<li><strong>執行 SQL 查詢</strong>：系統根據選擇的分類 “EXP”，在發票資料表中篩選對應的資料：<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> DCF_PIV_INVOICE_EIP</span><br><span class="line"><span class="keyword">WHERE</span> D3_TYPE <span class="operator">=</span> <span class="string">&#x27;EXP&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查詢結果為：<table>
+<thead>
+<tr>
+<th>DOC_NO</th>
+<th>D3_TYPE</th>
+<th>DR_ACCT</th>
+<th>INVOICE_NO</th>
+<th>AMT</th>
+<th>ACCT_DATE</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>001</td>
+<td>EXP</td>
+<td>1001</td>
+<td>INV001</td>
+<td>5000</td>
+<td>2024-09-01</td>
+</tr>
+<tr>
+<td>002</td>
+<td>EXP</td>
+<td>1001</td>
+<td>INV002</td>
+<td>3000</td>
+<td>2024-09-02</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-產生傳票時應用參數檔"><a href="#4-產生傳票時應用參數檔" class="headerlink" title="4. 產生傳票時應用參數檔"></a>4. <strong>產生傳票時應用參數檔</strong></h3><ul>
+<li>系統開始處理查詢結果，並將這些資料轉換成會計傳票。在這個過程中，系統需要借方會科（<code>DR_ACCT</code>）的資訊來填寫傳票的明細。</li>
+<li>系統會透過查詢參數檔 <code>dcf_dc_parm_d</code>，找出分類為 “EXP” 的 <code>PARM_VALUE2</code>，其值為 <code>1001</code>。這代表分類 “EXP” 的借方會科為 <code>1001</code>，然後用於傳票生成。</li>
+<li>最後，產生的傳票明細可能如下所示：<table>
+<thead>
+<tr>
+<th>Voucher_No</th>
+<th>DR_ACCT</th>
+<th>INVOICE_NO</th>
+<th>AMT</th>
+<th>ACCT_DATE</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>V001</td>
+<td>1001</td>
+<td>INV001</td>
+<td>5000</td>
+<td>2024-09-01</td>
+</tr>
+<tr>
+<td>V002</td>
+<td>1001</td>
+<td>INV002</td>
+<td>3000</td>
+<td>2024-09-02</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h3 id="小結-1"><a href="#小結-1" class="headerlink" title="小結"></a>小結</h3><ul>
+<li><strong>參數檔的作用</strong>：在這個範例中，參數檔 <code>dcf_dc_parm_d</code> 提供了分類的設定，讓系統可以根據使用者選擇的分類來查詢和處理資料。例如，選擇 “EXP” 分類時，系統會參考參數檔中 <code>PARM_VALUE2</code> 的值（借方會科為 <code>1001</code>），用於產生對應的傳票明細。</li>
+<li><strong>動態處理</strong>：通過參數檔的設置，系統可以靈活處理不同類型的資料，並根據設定進行各種操作（如查詢、轉入、傳票生成等）。</li>
+</ul>
+<p>這樣，參數檔中的設定就影響了整個驗收單轉入作業的流程，確保資料處理符合業務規則。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/C/" rel="tag"># C#</a>
+              <a href="/apple.lily/tags/SA/" rel="tag"># SA</a>
+              <a href="/apple.lily/tags/UML/" rel="tag"># UML</a>
+              <a href="/apple.lily/tags/DCF/" rel="tag"># DCF</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/09/24/OneDayOneNote/2024-09-15/" rel="prev" title="2024-09-15 JavaScript 系列七：第3課 ── 學習 Vue 條件判斷式的寫法">
+                  <i class="fa fa-angle-left"></i> 2024-09-15 JavaScript 系列七：第3課 ── 學習 Vue 條件判斷式的寫法
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
