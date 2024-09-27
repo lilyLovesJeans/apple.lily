@@ -1,0 +1,241 @@
+<hr>
+<h2 id="title-DCFP102進貨折讓應付沖帳傳票作業-畫面操作說明date-2024-09-27-21-58-35permalink-DCF-DCFP102-DCFP102-ProcessHOWto-categories-WDStags-C-SA-UML-DCF-description-DCFP102進貨折讓應付沖帳傳票作業-畫面操作說明"><a href="#title-DCFP102進貨折讓應付沖帳傳票作業-畫面操作說明date-2024-09-27-21-58-35permalink-DCF-DCFP102-DCFP102-ProcessHOWto-categories-WDStags-C-SA-UML-DCF-description-DCFP102進貨折讓應付沖帳傳票作業-畫面操作說明" class="headerlink" title="title: DCFP102進貨折讓應付沖帳傳票作業_畫面操作說明date: 2024-09-27 21:58:35permalink: &#x2F;DCF&#x2F;DCFP102&#x2F;DCFP102_ProcessHOWto&#x2F;categories: WDStags: [C# , SA , UML ,DCF]description: DCFP102進貨折讓應付沖帳傳票作業 畫面操作說明"></a>title: DCFP102進貨折讓應付沖帳傳票作業_畫面操作說明<br>date: 2024-09-27 21:58:35<br>permalink: &#x2F;DCF&#x2F;DCFP102&#x2F;DCFP102_ProcessHOWto&#x2F;<br>categories: WDS<br>tags: [C# , SA , UML ,DCF]<br>description: DCFP102進貨折讓應付沖帳傳票作業 畫面操作說明</h2><hr>
+<h2 id="系統說明文件：DCFP102Controller-API"><a href="#系統說明文件：DCFP102Controller-API" class="headerlink" title="系統說明文件：DCFP102Controller API"></a>系統說明文件：DCFP102Controller API</h2><hr>
+<h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p><code>DCFP102Controller</code> 是一組 Web API，用於進貨折讓應付沖帳傳票作業。該 API 包含多項功能，包括交易區分查詢、進貨折讓應付沖帳傳票暫存檔查詢、資料轉入、傳票生成，以及檢核 DC 代號等操作。本文將詳細描述每個 API 方法的運作流程、使用情境、輸入與輸出格式，以及檢核邏輯。</p>
+<hr>
+<h3 id="1-交易區分查詢（GetBusTypeList）"><a href="#1-交易區分查詢（GetBusTypeList）" class="headerlink" title="1. 交易區分查詢（GetBusTypeList）"></a>1. <strong>交易區分查詢（GetBusTypeList）</strong></h3><ul>
+<li><strong>授權</strong>：不需要 <code>[Authorize]</code> 屬性，任何用戶都可以調用。</li>
+</ul>
+<h4 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h4><ul>
+<li>提供交易區分的選項列表供前端下拉選單使用，以協助使用者進行進貨折讓管理。</li>
+</ul>
+<h4 id="假設情境"><a href="#假設情境" class="headerlink" title="假設情境"></a>假設情境</h4><p>使用者在進行進貨折讓資料管理時，需要選擇交易類型（例如：進貨折讓、代購折讓）。當使用者點擊前端的下拉選單時，前端會調用 <code>GetBusTypeList</code> API 來獲取交易類型選項。</p>
+<h4 id="運作流程"><a href="#運作流程" class="headerlink" title="運作流程"></a>運作流程</h4><ol>
+<li>前端發送 <code>GET</code> 請求到 <code>GetBusTypeList</code> API。</li>
+<li>API 調用 <code>_commonService.QueryBusTypeForBPTypeResult()</code>，從資料庫中取得交易類型列表。</li>
+<li>API 返回交易類型的詳細資訊，包括代碼編號和代碼說明。</li>
+<li>前端下拉選單顯示這些選項。</li>
+</ol>
+<h4 id="輸出結果（OutputList-CodeReference-OutputVo）"><a href="#輸出結果（OutputList-CodeReference-OutputVo）" class="headerlink" title="輸出結果（OutputList: CodeReference_OutputVo）"></a>輸出結果（OutputList: <code>CodeReference_OutputVo</code>）</h4><ul>
+<li><strong>CODE_NO</strong>：代碼編號，例如 <code>&quot;A&quot;</code>（表示進貨折讓）。</li>
+<li><strong>CODE_DESC</strong>：代碼說明，例如 <code>&quot;進貨折讓&quot;</code>。</li>
+</ul>
+<h4 id="範例結果"><a href="#範例結果" class="headerlink" title="範例結果"></a>範例結果</h4><pre><code class="json">{
+    &quot;RESULT_CODE&quot;: &quot;S0000001&quot;,
+    &quot;RESULT_MESSAGE&quot;: &quot;查詢成功&quot;,
+    &quot;RESULT&quot;: [
+        {
+            &quot;CODE_NO&quot;: &quot;A&quot;,
+            &quot;CODE_DESC&quot;: &quot;進貨折讓&quot;
+        },
+        {
+            &quot;CODE_NO&quot;: &quot;F&quot;,
+            &quot;CODE_DESC&quot;: &quot;代購折讓&quot;
+        },
+        {
+            &quot;CODE_NO&quot;: &quot;99&quot;,
+            &quot;CODE_DESC&quot;: &quot;全部&quot;
+        }
+    ]
+}
+</code></pre>
+<hr>
+<h3 id="2-進貨折讓應付沖帳傳票暫存檔查詢（Query）"><a href="#2-進貨折讓應付沖帳傳票暫存檔查詢（Query）" class="headerlink" title="2. 進貨折讓應付沖帳傳票暫存檔查詢（Query）"></a>2. <strong>進貨折讓應付沖帳傳票暫存檔查詢（Query）</strong></h3><ul>
+<li><strong>授權</strong>：不需要 <code>[Authorize]</code> 屬性，任何用戶都可以調用。</li>
+</ul>
+<h4 id="目的-1"><a href="#目的-1" class="headerlink" title="目的"></a>目的</h4><ul>
+<li>查詢進貨折讓應付沖帳的暫存資料，根據使用者指定的條件篩選。</li>
+</ul>
+<h4 id="假設情境-1"><a href="#假設情境-1" class="headerlink" title="假設情境"></a>假設情境</h4><p>使用者想要查詢某月份的進貨折讓資料，輸入查詢條件（結帳年月、結帳期間、DC 代號、交易區分），然後點擊查詢按鈕。</p>
+<h4 id="運作流程-1"><a href="#運作流程-1" class="headerlink" title="運作流程"></a>運作流程</h4><ol>
+<li><p>使用者在查詢條件輸入框中填寫以下資訊：</p>
+<ul>
+<li><code>結帳年月</code>: <code>&quot;202408&quot;</code></li>
+<li><code>結帳期間 起</code>: <code>&quot;2024-08-01&quot;</code></li>
+<li><code>結帳期間 迄</code>: <code>&quot;2024-08-31&quot;</code></li>
+<li><code>DC 代號</code>: <code>&quot;DC001&quot;</code></li>
+<li><code>交易區分</code>: <code>&quot;A&quot;</code></li>
+</ul>
+</li>
+<li><p>前端將這些資訊打包成 JSON 格式，並發送 <code>POST</code> 請求到 <code>Query</code> API：</p>
+<pre><code class="json">{
+    &quot;P_YYMM&quot;: &quot;202408&quot;,
+    &quot;P_SDATE&quot;: &quot;2024-08-01&quot;,
+    &quot;P_EDATE&quot;: &quot;2024-08-31&quot;,
+    &quot;P_DC_CODE&quot;: &quot;DC001&quot;,
+    &quot;P_BUS_TYPE&quot;: &quot;A&quot;
+}
+</code></pre>
+</li>
+<li><p>API 調用 <code>_service.QueryResult(inputVo)</code>，根據 <code>DCFP102_InputVo</code> 中的查詢條件到資料庫中檢索符合的進貨折讓資料。</p>
+</li>
+<li><p>API 將查詢結果組合成 <code>DCFP102Q_OutputVo</code> 物件，並打包成 JSON 格式返回給前端。</p>
+</li>
+</ol>
+<h4 id="輸入參數（InputList-DCFP102-InputVo）"><a href="#輸入參數（InputList-DCFP102-InputVo）" class="headerlink" title="輸入參數（InputList: DCFP102_InputVo）"></a>輸入參數（InputList: <code>DCFP102_InputVo</code>）</h4><ul>
+<li><strong>P_YYMM</strong>：結帳年月（如 <code>&quot;202408&quot;</code>）。</li>
+<li><strong>P_SDATE</strong>：結帳期間起（如 <code>&quot;2024-08-01&quot;</code>）。</li>
+<li><strong>P_EDATE</strong>：結帳期間迄（如 <code>&quot;2024-08-31&quot;</code>）。</li>
+<li><strong>P_DC_CODE</strong>：DC 代號（如 <code>&quot;DC001&quot;</code>）。</li>
+<li><strong>P_BUS_TYPE</strong>：交易區分（如 <code>&quot;A&quot;</code>）。</li>
+</ul>
+<h4 id="輸出結果（OutputList-DCFP102Q-OutputVo）"><a href="#輸出結果（OutputList-DCFP102Q-OutputVo）" class="headerlink" title="輸出結果（OutputList: DCFP102Q_OutputVo）"></a>輸出結果（OutputList: <code>DCFP102Q_OutputVo</code>）</h4><ul>
+<li><strong>O_BUS_TYPE</strong>：交易區分。</li>
+<li><strong>O_ACCT_DATE</strong>：入帳日期。</li>
+<li><strong>O_CNT</strong>：發票筆數。</li>
+<li><strong>O_AMT</strong>：應付帳款金額。</li>
+<li><strong>O_TAX</strong>：稅額。</li>
+<li><strong>O_EXPECT</strong>：暫估金額。</li>
+<li><strong>O_DIF</strong>：料差。</li>
+</ul>
+<h4 id="範例結果-1"><a href="#範例結果-1" class="headerlink" title="範例結果"></a>範例結果</h4><pre><code class="json">{
+    &quot;RESULT_CODE&quot;: &quot;S0000001&quot;,
+    &quot;RESULT_MESSAGE&quot;: &quot;查詢成功&quot;,
+    &quot;RESULT&quot;: [
+        {
+            &quot;O_BUS_TYPE&quot;: &quot;A&quot;,
+            &quot;O_ACCT_DATE&quot;: &quot;2024-08-15T00:00:00&quot;,
+            &quot;O_CNT&quot;: 5,
+            &quot;O_AMT&quot;: 5000,
+            &quot;O_TAX&quot;: 250,
+            &quot;O_EXPECT&quot;: 200,
+            &quot;O_DIF&quot;: 50
+        }
+    ]
+}
+</code></pre>
+<hr>
+<h3 id="3-資料轉入（Procedure-Ins-WDS-Data）"><a href="#3-資料轉入（Procedure-Ins-WDS-Data）" class="headerlink" title="3. 資料轉入（Procedure_Ins_WDS_Data）"></a>3. <strong>資料轉入（Procedure_Ins_WDS_Data）</strong></h3><ul>
+<li><strong>授權</strong>：需要 <code>[Authorize]</code> 屬性，必須經過身份驗證的用戶才能調用。</li>
+</ul>
+<h4 id="目的-2"><a href="#目的-2" class="headerlink" title="目的"></a>目的</h4><ul>
+<li>將外部資料匯入到進貨折讓的暫存表中，以供後續的處理。</li>
+</ul>
+<h4 id="假設情境-2"><a href="#假設情境-2" class="headerlink" title="假設情境"></a>假設情境</h4><p>使用者從供應商那裡獲取了一份進貨折讓資料，並希望將這些資料匯入系統中。該 API 包含前端資料檢核，以確保資料的正確性。</p>
+<h4 id="運作流程-2"><a href="#運作流程-2" class="headerlink" title="運作流程"></a>運作流程</h4><ol>
+<li><p>使用者點擊「資料轉入」按鈕，前端將相關資訊（如匯入月份、DC 代號、交易區分）打包成 JSON，並發送 <code>POST</code> 請求到 <code>Procedure_Ins_WDS_Data</code> API：</p>
+<pre><code class="json">{
+    &quot;P_YYMM&quot;: &quot;202408&quot;,
+    &quot;P_SDATE&quot;: &quot;2024-08-01&quot;,
+    &quot;P_EDATE&quot;: &quot;2024-08-31&quot;,
+    &quot;P_DC_CODE&quot;: &quot;DC001&quot;,
+    &quot;P_BUS_TYPE&quot;: &quot;A&quot;
+}
+</code></pre>
+</li>
+<li><p><strong>資料檢核</strong>：</p>
+<ul>
+<li>API 檢核該範圍內的資料是否已產生傳票；若已產生，返回錯誤訊息。</li>
+</ul>
+</li>
+<li><p><strong>執行儲存程序</strong>：</p>
+<ul>
+<li>根據 <code>P_BUS_TYPE</code> 的值來決定執行哪個儲存程序（<code>INS_WDS_DATA_A</code> 或 <code>INS_WDS_DATA_F</code>）。</li>
+</ul>
+</li>
+<li><p><strong>結果處理</strong>：</p>
+<ul>
+<li>成功時，API 返回 <code>&quot;RESULT_CODE&quot;: &quot;S0000001&quot;</code> 並記錄成功訊息：「預存程序 INS_WDS_DATA_A 執行完成」。</li>
+<li>若發生錯誤，返回錯誤訊息。</li>
+</ul>
+</li>
+</ol>
+<h4 id="輸入參數（InputList-DCFP102-InputVo）-1"><a href="#輸入參數（InputList-DCFP102-InputVo）-1" class="headerlink" title="輸入參數（InputList: DCFP102_InputVo）"></a>輸入參數（InputList: <code>DCFP102_InputVo</code>）</h4><ul>
+<li><strong>P_YYMM</strong>：結帳年月。</li>
+<li><strong>P_SDATE</strong>：結帳期間起。</li>
+<li><strong>P_EDATE</strong>：結帳期間迄。</li>
+<li><strong>P_DC_CODE</strong>：DC 代號。</li>
+<li><strong>P_BUS_TYPE</strong>：交易區分。</li>
+</ul>
+<h4 id="輸出結果（OutputList-DCFP102-OutputVo）"><a href="#輸出結果（OutputList-DCFP102-OutputVo）" class="headerlink" title="輸出結果（OutputList: DCFP102_OutputVo）"></a>輸出結果（OutputList: <code>DCFP102_OutputVo</code>）</h4><ul>
+<li><strong>P_ERRMSG</strong>：異常訊息。若執行成功則為空字串，若發生錯誤則包含錯誤訊息。</li>
+</ul>
+<h4 id="範例結果-2"><a href="#範例結果-2" class="headerlink" title="範例結果"></a>範例結果</h4><pre><code class="json">{
+    &quot;RESULT_CODE&quot;: &quot;S0000001&quot;,
+    &quot;RESULT_MESSAGE&quot;: &quot;預存程序 INS_WDS_DATA_A 執行完成&quot;,
+    &quot;RESULT&quot;: {
+        &quot;P_ERRMSG&quot;: &quot;&quot;
+    }
+}
+</code></pre>
+<hr>
+<h3 id="4-傳票生成（Function-DCFP102v）"><a href="#4-傳票生成（Function-DCFP102v）" class="headerlink" title="4. 傳票生成（Function_DCFP102v）"></a>4. <strong>傳票生成（Function_DCFP102v）</strong></h3><ul>
+<li><strong>授權</strong>：需要 <code>[Authorize]</code> 屬性，必須經過身份驗證的用戶才能調用。</li>
+</ul>
+<h4 id="目的-3"><a href="#目的-3" class="headerlink" title="目的"></a>目的</h4><ul>
+<li>生成進貨折讓的傳票，並寫入相關的資料表。</li>
+</ul>
+<h4 id="假設情境-3"><a href="#假設情境-3" class="headerlink" title="假設情境"></a>假設情境</h4><p>使用者已經匯入了某月份的進貨折讓資料，並核對無</p>
+<p>誤，然後希望生成對應的會計傳票。</p>
+<h4 id="運作流程-3"><a href="#運作流程-3" class="headerlink" title="運作流程"></a>運作流程</h4><ol>
+<li><p>使用者點擊「生成傳票」按鈕，前端將條件打包成 JSON，發送 <code>POST</code> 請求到 <code>Function_DCFP102v</code> API：</p>
+<pre><code class="json">{
+    &quot;P_YYMM&quot;: &quot;202408&quot;,
+    &quot;P_SDATE&quot;: &quot;2024-08-01&quot;,
+    &quot;P_EDATE&quot;: &quot;2024-08-31&quot;,
+    &quot;P_DC_CODE&quot;: &quot;DC001&quot;,
+    &quot;P_BUS_TYPE&quot;: &quot;A&quot;
+}
+</code></pre>
+</li>
+<li><p><strong>資料檢核</strong>：API 對輸入資料進行檢核，確保內容正確。若檢核通過，執行 <code>Function_DCFP102v</code> 生成傳票。</p>
+</li>
+<li><p><strong>結果處理</strong>：成功時，返回 <code>&quot;傳票產生完成&quot;</code> 訊息；若發生錯誤，返回錯誤訊息。</p>
+</li>
+</ol>
+<h4 id="輸入參數"><a href="#輸入參數" class="headerlink" title="輸入參數"></a>輸入參數</h4><ul>
+<li><strong>P_YYMM</strong>：結帳年月。</li>
+<li><strong>P_SDATE</strong>：結帳期間起。</li>
+<li><strong>P_EDATE</strong>：結帳期間迄。</li>
+<li><strong>P_DC_CODE</strong>：DC 代號。</li>
+<li><strong>P_BUS_TYPE</strong>：交易區分。</li>
+</ul>
+<h4 id="輸出結果（OutputList-DCFP102-OutputVo）-1"><a href="#輸出結果（OutputList-DCFP102-OutputVo）-1" class="headerlink" title="輸出結果（OutputList: DCFP102_OutputVo）"></a>輸出結果（OutputList: <code>DCFP102_OutputVo</code>）</h4><ul>
+<li><strong>P_ERRMSG</strong>：異常訊息。若傳票生成成功，該欄位為空字串；若發生錯誤，則包含錯誤訊息。</li>
+</ul>
+<h4 id="範例結果-3"><a href="#範例結果-3" class="headerlink" title="範例結果"></a>範例結果</h4><pre><code class="json">{
+    &quot;RESULT_CODE&quot;: &quot;S0000001&quot;,
+    &quot;RESULT_MESSAGE&quot;: &quot;傳票產生完成&quot;,
+    &quot;RESULT&quot;: {
+        &quot;P_ERRMSG&quot;: &quot;&quot;
+    }
+}
+</code></pre>
+<hr>
+<h3 id="5-檢核-DC-代號（CheckDCCode）"><a href="#5-檢核-DC-代號（CheckDCCode）" class="headerlink" title="5. 檢核 DC 代號（CheckDCCode）"></a>5. <strong>檢核 DC 代號（CheckDCCode）</strong></h3><ul>
+<li><strong>授權</strong>：不需要 <code>[Authorize]</code> 屬性，任何用戶都可以調用。</li>
+</ul>
+<h4 id="目的-4"><a href="#目的-4" class="headerlink" title="目的"></a>目的</h4><ul>
+<li>確認使用者輸入的 DC 代號是否存在於系統中，以確保其為有效的 DC 代號。</li>
+</ul>
+<h4 id="假設情境-4"><a href="#假設情境-4" class="headerlink" title="假設情境"></a>假設情境</h4><p>使用者在輸入 DC 代號時，想要確認該代號是否正確並存在於系統內。</p>
+<h4 id="運作流程-4"><a href="#運作流程-4" class="headerlink" title="運作流程"></a>運作流程</h4><ol>
+<li>使用者在前端頁面輸入 DC 代號，並點擊「檢核」按鈕，觸發 API 調用。</li>
+<li>前端將 DC 代號打包成 JSON 格式，發送 <code>POST</code> 請求到 <code>CheckDCCode</code> API：<pre><code class="json">{
+    &quot;DC_CODE&quot;: &quot;DC001&quot;
+}
+</code></pre>
+</li>
+<li><strong>資料檢核流程</strong>：API 調用 <code>_service.CheckDCCodeResult</code> 對 DC 代號進行檢核，確認該代號是否存在於資料庫中。</li>
+</ol>
+<h4 id="輸出結果"><a href="#輸出結果" class="headerlink" title="輸出結果"></a>輸出結果</h4><ul>
+<li><strong>RESULT_CODE</strong>：操作狀態碼，例如 <code>&quot;S0000001&quot;</code> 代表成功。</li>
+<li><strong>RESULT_MESSAGE</strong>：操作結果的描述，例如 <code>&quot;檢核成功&quot;</code> 或 <code>&quot;在參數檔中無 DC 代號&quot;</code>。</li>
+<li><strong>RESULT</strong>：布林值，表示檢核結果，<code>true</code> 代表 DC 代號有效，<code>false</code> 代表無效。</li>
+</ul>
+<h4 id="範例結果-4"><a href="#範例結果-4" class="headerlink" title="範例結果"></a>範例結果</h4><p>成功情況：</p>
+<pre><code class="json">{
+    &quot;RESULT_CODE&quot;: &quot;S0000001&quot;,
+    &quot;RESULT_MESSAGE&quot;: &quot;檢核成功&quot;,
+    &quot;RESULT&quot;: true
+}
+</code></pre>
+<p>無效情況：</p>
+<pre><code class="json">{
+    &quot;RESULT_CODE&quot;: &quot;S0010001&quot;,
+    &quot;RESULT_MESSAGE&quot;: &quot;在參數檔中無 DC 代號&quot;,
+    &quot;RESULT&quot;: false
+}
+</code></pre>
+<hr>
+<p>這就是 <code>DCFP102Controller</code> API 的文件，包括每個 API 方法的使用情境、運作流程、輸入與輸出格式，以及範例結果。</p>
