@@ -1,38 +1,238 @@
 <hr>
-<h2 id="title-DCFP101-Stored-Procedure流程圖date-2024-09-27-14-02-52permalink-DCF-DCFP101-DCFP101-ProcessHOWto-StoredProcedure-flowchart-categories-WDStags-C-SA-UML-DCF-description-DCFP101-Stored-Procedure流程圖"><a href="#title-DCFP101-Stored-Procedure流程圖date-2024-09-27-14-02-52permalink-DCF-DCFP101-DCFP101-ProcessHOWto-StoredProcedure-flowchart-categories-WDStags-C-SA-UML-DCF-description-DCFP101-Stored-Procedure流程圖" class="headerlink" title="title: DCFP101 Stored Procedure流程圖date: 2024-09-27 14:02:52permalink: &#x2F;DCF&#x2F;DCFP101&#x2F;DCFP101_ProcessHOWto&#x2F;StoredProcedure_flowchart&#x2F;categories: WDStags: [C# , SA , UML ,DCF]description: DCFP101 Stored Procedure流程圖"></a>title: DCFP101 Stored Procedure流程圖<br>date: 2024-09-27 14:02:52<br>permalink: &#x2F;DCF&#x2F;DCFP101&#x2F;DCFP101_ProcessHOWto&#x2F;StoredProcedure_flowchart&#x2F;<br>categories: WDS<br>tags: [C# , SA , UML ,DCF]<br>description: DCFP101 Stored Procedure流程圖</h2><h3 id="02-00-DCFP101-進貨應付帳款傳票處理的主要Stored-Procedure流程圖"><a href="#02-00-DCFP101-進貨應付帳款傳票處理的主要Stored-Procedure流程圖" class="headerlink" title="02_00_DCFP101-進貨應付帳款傳票處理的主要Stored_Procedure流程圖"></a>02_00_DCFP101-進貨應付帳款傳票處理的主要Stored_Procedure流程圖</h3><p>@startuml<br>title DCF.dcfp101 儲存程序主要流程圖</p>
-<p>start<br>:初始化變數 pg_comp_id, pg_user, pg_sysdate, pg_effect_DATE, pg_yymm;</p>
-<p>:迭代 c1a 游標 (遍歷所有符合條件的發票資料);<br>while (有下一筆資料?) is (是)<br>  if (f1a.acct_date &gt; wk_month_lastday) then (是)<br>    :將 pg_voucher_date 設為 wk_month_lastday;<br>  else (否)<br>    :將 pg_voucher_date 設為 f1a.acct_Date;<br>  endif</p>
-<p>  :設置 pg_yyyy, pg_mm, pg_cvoucher_date, pg_inv_date, pg_inv_yymm;</p>
-<p>  :查詢 dc_name 並存入 ds_dc_name;<br>  if (查詢失敗?) then (是)<br>    :將 ds_dc_name 設為 null;<br>  endif</p>
-<p>  :取得傳票號碼 (get_voucher);<br>  if (pg_rtn_code !&#x3D; ‘0’) then (是)<br>    :返回 pg_rtn_code;<br>    stop<br>  endif</p>
-<p>  :新增傳票主檔 (insert_voucher_master);<br>  if (pg_rtn_code !&#x3D; ‘0’) then (是)<br>    :返回 pg_rtn_code;<br>    stop<br>  endif</p>
-<p>  :設置 pg_seq_no 為 1;<br>  :設置 wk_desc 為 ‘商品進貨’;</p>
-<p>  :迭代 c1b 游標 (處理明細資料);<br>  while (有下一筆資料?) is (是)<br>    :新增借方科目明細 (insert_voucher_detail);<br>    if (pg_rtn_code !&#x3D; ‘0’) then (是)<br>      :返回 pg_rtn_code;<br>      stop<br>    endif</p>
-<pre><code>if (f1b.invoice_tax &gt; 0) then (是)
-  :新增稅額科目明細 (insert_voucher_detail);
+<h2 id="title-DCFP101-Stored-Procedure流程圖date-2024-09-27-14-02-52permalink-DCF-DCFP101-DCFP101-ProcessHOWto-StoredProcedure-flowchart-categories-WDStags-C-SA-UML-DCF-description-DCFP101-Stored-Procedure流程圖"><a href="#title-DCFP101-Stored-Procedure流程圖date-2024-09-27-14-02-52permalink-DCF-DCFP101-DCFP101-ProcessHOWto-StoredProcedure-flowchart-categories-WDStags-C-SA-UML-DCF-description-DCFP101-Stored-Procedure流程圖" class="headerlink" title="title: DCFP101 Stored Procedure流程圖date: 2024-09-27 14:02:52permalink: &#x2F;DCF&#x2F;DCFP101&#x2F;DCFP101_ProcessHOWto&#x2F;StoredProcedure_flowchart&#x2F;categories: WDStags: [C# , SA , UML ,DCF]description: DCFP101 Stored Procedure流程圖"></a>title: DCFP101 Stored Procedure流程圖<br>date: 2024-09-27 14:02:52<br>permalink: &#x2F;DCF&#x2F;DCFP101&#x2F;DCFP101_ProcessHOWto&#x2F;StoredProcedure_flowchart&#x2F;<br>categories: WDS<br>tags: [C# , SA , UML ,DCF]<br>description: DCFP101 Stored Procedure流程圖</h2><h3 id="02-00-DCFP101-進貨應付帳款傳票處理的主要Stored-Procedure流程圖"><a href="#02-00-DCFP101-進貨應付帳款傳票處理的主要Stored-Procedure流程圖" class="headerlink" title="02_00_DCFP101-進貨應付帳款傳票處理的主要Stored_Procedure流程圖"></a>02_00_DCFP101-進貨應付帳款傳票處理的主要Stored_Procedure流程圖</h3><pre><code class="plantuml">@startuml
+title DCF.dcfp101 儲存程序主要流程圖
+
+start
+:初始化變數 pg_comp_id, pg_user, pg_sysdate, pg_effect_DATE, pg_yymm;
+
+:迭代 c1a 游標 (遍歷所有符合條件的發票資料);
+while (有下一筆資料?) is (是)
+  if (f1a.acct_date &gt; wk_month_lastday) then (是)
+    :將 pg_voucher_date 設為 wk_month_lastday;
+  else (否)
+    :將 pg_voucher_date 設為 f1a.acct_Date;
+  endif
+
+  :設置 pg_yyyy, pg_mm, pg_cvoucher_date, pg_inv_date, pg_inv_yymm;
+
+  :查詢 dc_name 並存入 ds_dc_name;
+  if (查詢失敗?) then (是)
+    :將 ds_dc_name 設為 null;
+  endif
+
+  :取得傳票號碼 (get_voucher);
   if (pg_rtn_code != &#39;0&#39;) then (是)
     :返回 pg_rtn_code;
     stop
   endif
 
-  :新增進項憑證資料至 piv_income_evidence;
-else (否)
-  :新增免稅進項憑證資料至 piv_income_evidence;
-endif
+  :新增傳票主檔 (insert_voucher_master);
+  if (pg_rtn_code != &#39;0&#39;) then (是)
+    :返回 pg_rtn_code;
+    stop
+  endif
 
-:新增貸方科目明細 (insert_voucher_detail);
-if (pg_rtn_code != &#39;0&#39;) then (是)
-  :返回 pg_rtn_code;
-  stop
-endif
+  :設置 pg_seq_no 為 1;
+  :設置 wk_desc 為 &#39;商品進貨&#39;;
 
-:新增應付款項主檔 (insert_ap_master);
-if (pg_rtn_code != &#39;0&#39;) then (是)
-  :返回 pg_rtn_code;
-  stop
-endif
+  :迭代 c1b 游標 (處理明細資料);
+  while (有下一筆資料?) is (是)
+    :新增借方科目明細 (insert_voucher_detail);
+    if (pg_rtn_code != &#39;0&#39;) then (是)
+      :返回 pg_rtn_code;
+      stop
+    endif
+
+    if (f1b.invoice_tax &gt; 0) then (是)
+      :新增稅額科目明細 (insert_voucher_detail);
+      if (pg_rtn_code != &#39;0&#39;) then (是)
+        :返回 pg_rtn_code;
+        stop
+      endif
+
+      :新增進項憑證資料至 piv_income_evidence;
+    else (否)
+      :新增免稅進項憑證資料至 piv_income_evidence;
+    endif
+
+    :新增貸方科目明細 (insert_voucher_detail);
+    if (pg_rtn_code != &#39;0&#39;) then (是)
+      :返回 pg_rtn_code;
+      stop
+    endif
+
+    :新增應付款項主檔 (insert_ap_master);
+    if (pg_rtn_code != &#39;0&#39;) then (是)
+      :返回 pg_rtn_code;
+      stop
+    endif
+  endwhile
+
+  :更新 dcf_piv_invoice_trf 中的傳票號碼;
+endwhile
+
+:return &#39;0&#39;;
+stop
+@enduml
 </code></pre>
-<p>  endwhile</p>
-<p>  :更新 dcf_piv_invoice_trf 中的傳票號碼;<br>endwhile</p>
-<p>:return ‘0’;<br>stop<br>@enduml</p>
 <p><img src="/apple.lily/DCF/DCFP101/DCFP101_ProcessHOWto/StoredProcedure_flowchart/02_00_DCFP101-%E9%80%B2%E8%B2%A8%E6%87%89%E4%BB%98%E5%B8%B3%E6%AC%BE%E5%82%B3%E7%A5%A8%E8%99%95%E7%90%86%E7%9A%84%E4%B8%BB%E8%A6%81Stored_Procedure%E6%B5%81%E7%A8%8B%E5%9C%96.png"></p>
+<h3 id="02-01-get-voucher流程圖"><a href="#02-01-get-voucher流程圖" class="headerlink" title="02_01_get_voucher流程圖"></a>02_01_get_voucher流程圖</h3><pre><code class="plantuml">@startuml
+title get_voucher 函數流程圖
+start
+:設定 wk_sys 為 &#39;P&#39; 加上 pg_cvoucher_date 的後 6 位;
+:呼叫 DCF_get_number(傳入 pg_comp_id, wk_sys, &#39;####&#39;);
+if (pg_voucher_no 為 null) then (是)
+    :回傳 &#39;M1&#39;;
+    stop
+else (否)
+    :設定 pg_voucher_no 為取得的號碼;
+    :回傳 &#39;0&#39;;
+endif
+
+-&gt; [`catch`] 發生錯誤
+:回傳 &#39;X1&#39; 加上錯誤訊息 (sqlerrm);
+stop
+@enduml
+
+
+![](02_01_get_voucher流程圖.png)
+
+
+### 02_02_DCF_get_number流程圖
+@startuml
+title DCF_get_number 函數流程圖
+start
+:接收傳入參數 pg_comp_id, wk_sys, &#39;####&#39;;
+:查詢或生成唯一號碼;
+if (號碼生成成功?) then (是)
+    :回傳生成的號碼;
+    stop
+else (否)
+    :返回 null 或錯誤代碼;
+endif
+
+-&gt; [`catch`] 發生錯誤
+:回傳錯誤訊息 (sqlerrm);
+stop
+@enduml
+</code></pre>
+<p><img src="/apple.lily/DCF/DCFP101/DCFP101_ProcessHOWto/StoredProcedure_flowchart/02_02_DCF_get_number%E6%B5%81%E7%A8%8B%E5%9C%96.png"></p>
+<h3 id="02-03-insert-voucher-master流程圖"><a href="#02-03-insert-voucher-master流程圖" class="headerlink" title="02_03_insert_voucher_master流程圖"></a>02_03_insert_voucher_master流程圖</h3><pre><code class="plantuml">@startuml
+title insert_voucher_master 函數流程圖
+start
+
+:嘗試插入 gl_voucher_master 資料表;
+:使用以下參數:
+- &#39;Y&#39; // 固定值: 啟用
+- pg_comp_id // 公司代碼
+- pg_voucher_no // 傳票號碼
+- pg_yyyy // 會計年度
+- pg_mm // 會計月份
+- pg_voucher_date // 傳票日期
+- pg_sysdate // 系統日期
+- pg_user // 使用者
+- &#39;00&#39; // 固定值: 狀態碼
+- null // 保留欄位
+- &#39;DCF&#39; // 系統來源;
+
+if (插入成功?) then (是)
+    :回傳 &#39;0&#39;;
+    stop
+else (否)
+    :回傳錯誤代碼 &#39;M2&#39;;
+endif
+
+stop
+@enduml
+</code></pre>
+<p><img src="/apple.lily/DCF/DCFP101/DCFP101_ProcessHOWto/StoredProcedure_flowchart/02_03_insert_voucher_master%E6%B5%81%E7%A8%8B%E5%9C%96.png"></p>
+<h3 id="02-04-insert-voucher-detail流程圖"><a href="#02-04-insert-voucher-detail流程圖" class="headerlink" title="02_04_insert_voucher_detail流程圖"></a>02_04_insert_voucher_detail流程圖</h3><pre><code class="plantuml">@startuml
+title insert_voucher_detail 函數流程圖
+start
+
+:嘗試插入 gl_voucher_detail 資料表;
+:使用以下參數:
+- &#39;Y&#39; : 固定值
+- pg_comp_id : 公司代號
+- pg_voucher_no : 傳票號碼
+- pg_yyyy : 傳票會計年度
+- pg_mm : 傳票會計月份
+- pg_voucher_date : 傳票日期
+- &#39;0000&#39; : 單位代號
+- pg_seq_no : 序號
+- para_accnt : 科目代號
+- para_object : 對象代號
+- para_relation : 關聯號碼
+- para_relation_date : 關聯日期
+- para_amt : 金額
+- para_desc : 描述
+- null : 備註
+- &#39;00&#39; : 狀態
+- null : 其他
+- pg_seq_no : 傳票序號
+- pg_sysdate : 系統日期;
+
+if (金額不等於0?) then (是)
+    :插入成功，傳回 &#39;0&#39;;
+    stop
+else (否)
+    :傳回錯誤代碼 &#39;M4&#39;;
+endif
+
+stop
+@enduml
+</code></pre>
+<p><img src="/apple.lily/DCF/DCFP101/DCFP101_ProcessHOWto/StoredProcedure_flowchart/02_04_insert_voucher_detail%E6%B5%81%E7%A8%8B%E5%9C%96.png"></p>
+<h3 id="02-05-insert-ap-master流程圖"><a href="#02-05-insert-ap-master流程圖" class="headerlink" title="02_05_insert_ap_master流程圖"></a>02_05_insert_ap_master流程圖</h3><pre><code class="plantuml">@startuml
+title insert_ap_master 函數流程圖
+start
+
+:取得廠商付款方式及付款地;
+if (取得成功?) then (是)
+    :設定 wk_pay_type, wk_pay_place, wk_check_period;
+    if (wk_pay_type = &#39;3&#39;?) then (是)
+        :將 wk_pay_type 設定為 &#39;5&#39;;
+    endif
+else (否)
+    :設定 WK_PAY_TYPE = &#39;3&#39;;
+    :設定 WK_PAY_PLACE = &#39;0&#39;;
+    :設定 WK_CHECK_PERIOD = 0;
+endif
+
+:計算 wk_due_date = 生效日期月底 + 付款週期;
+:插入資料到 ap_master (應付帳款) 資料表;
+:使用以下參數:
+- pg_comp_id (公司代號)
+- pg_voucher_no (傳票號碼)
+- &#39;0000&#39; (單位代號)
+- wk_acct_no (科目代號)
+- WK_invoice_no (發票號碼)
+- &#39;DCF&#39; (來源)
+- wk_ap_vender (供應商)
+- pg_effect_date (生效日期)
+- wk_due_date (付款到期日)
+- wk_tot_amt (應付金額)
+- null (備註)
+- WK_invoice_no (文件號碼)
+- wk_pay_type (付款方式)
+- wk_pay_place (付款地點)
+- 0 (付款狀態)
+- pg_seq_no-1 (序號)
+- 1 (狀態)
+- 0 (預留欄位)
+- null (備註)
+- pg_sysdate (系統日期)
+- null (保留)
+- null (保留)
+- null (保留);
+
+if (插入成功?) then (是)
+    :回傳 &#39;0&#39;;
+else (否)
+    :回傳錯誤代碼 &#39;M9&#39;;
+endif
+
+stop
+@enduml
+</code></pre>
+<p><img src="/apple.lily/02_05_insert_ap_master%E6%B5%81%E7%A8%8B%E5%9C%96png"></p>
