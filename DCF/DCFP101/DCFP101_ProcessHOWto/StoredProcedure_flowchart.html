@@ -76,8 +76,8 @@ stop
 @enduml
 </code></pre>
 <p><img src="/apple.lily/DCF/DCFP101/DCFP101_ProcessHOWto/StoredProcedure_flowchart/02_00_DCFP101-%E9%80%B2%E8%B2%A8%E6%87%89%E4%BB%98%E5%B8%B3%E6%AC%BE%E5%82%B3%E7%A5%A8%E8%99%95%E7%90%86%E7%9A%84%E4%B8%BB%E8%A6%81Stored_Procedure%E6%B5%81%E7%A8%8B%E5%9C%96.png"></p>
-<h3 id="02-01-get-voucher流程圖"><a href="#02-01-get-voucher流程圖" class="headerlink" title="02_01_get_voucher流程圖"></a>02_01_get_voucher流程圖</h3><pre><code class="plantuml">@startuml
-title get_voucher 函數流程圖
+<h3 id="取得傳票號碼-02-01-get-voucher流程圖"><a href="#取得傳票號碼-02-01-get-voucher流程圖" class="headerlink" title="取得傳票號碼(02_01_get_voucher流程圖)"></a>取得傳票號碼(02_01_get_voucher流程圖)</h3><pre><code class="plantuml">@startuml
+title get_voucher 取得傳票號碼 函數流程圖
 start
 :設定 wk_sys 為 &#39;P&#39; 加上 pg_cvoucher_date 的後 6 位;
 :呼叫 DCF_get_number(傳入 pg_comp_id, wk_sys, &#39;####&#39;);
@@ -117,8 +117,8 @@ stop
 @enduml
 </code></pre>
 <p><img src="/apple.lily/DCF/DCFP101/DCFP101_ProcessHOWto/StoredProcedure_flowchart/02_02_DCF_get_number%E6%B5%81%E7%A8%8B%E5%9C%96.png"></p>
-<h3 id="02-03-insert-voucher-master流程圖"><a href="#02-03-insert-voucher-master流程圖" class="headerlink" title="02_03_insert_voucher_master流程圖"></a>02_03_insert_voucher_master流程圖</h3><pre><code class="plantuml">@startuml
-title insert_voucher_master 函數流程圖
+<h3 id="新增傳票主檔-02-03-insert-voucher-master流程圖"><a href="#新增傳票主檔-02-03-insert-voucher-master流程圖" class="headerlink" title="新增傳票主檔(02_03_insert_voucher_master流程圖)"></a>新增傳票主檔(02_03_insert_voucher_master流程圖)</h3><pre><code class="plantuml">@startuml
+title 新增傳票主檔 insert_voucher_master 函數流程圖
 start
 
 :嘗試插入 gl_voucher_master 資料表;
@@ -146,8 +146,8 @@ stop
 @enduml
 </code></pre>
 <p><img src="/apple.lily/DCF/DCFP101/DCFP101_ProcessHOWto/StoredProcedure_flowchart/02_03_insert_voucher_master%E6%B5%81%E7%A8%8B%E5%9C%96.png"></p>
-<h3 id="02-04-insert-voucher-detail流程圖"><a href="#02-04-insert-voucher-detail流程圖" class="headerlink" title="02_04_insert_voucher_detail流程圖"></a>02_04_insert_voucher_detail流程圖</h3><pre><code class="plantuml">@startuml
-title insert_voucher_detail 函數流程圖
+<h3 id="新增XX明細-02-04-insert-voucher-detail流程圖"><a href="#新增XX明細-02-04-insert-voucher-detail流程圖" class="headerlink" title="新增XX明細(02_04_insert_voucher_detail流程圖)"></a>新增XX明細(02_04_insert_voucher_detail流程圖)</h3><pre><code class="plantuml">@startuml
+title 新增XX明細insert_voucher_detail 函數流程圖
 start
 
 :嘗試插入 gl_voucher_detail 資料表;
@@ -183,8 +183,8 @@ stop
 @enduml
 </code></pre>
 <p><img src="/apple.lily/DCF/DCFP101/DCFP101_ProcessHOWto/StoredProcedure_flowchart/02_04_insert_voucher_detail%E6%B5%81%E7%A8%8B%E5%9C%96.png"></p>
-<h3 id="02-05-insert-ap-master流程圖"><a href="#02-05-insert-ap-master流程圖" class="headerlink" title="02_05_insert_ap_master流程圖"></a>02_05_insert_ap_master流程圖</h3><pre><code class="plantuml">@startuml
-title insert_ap_master 函數流程圖
+<h3 id="新增應付款項主檔-02-05-insert-ap-master流程圖"><a href="#新增應付款項主檔-02-05-insert-ap-master流程圖" class="headerlink" title="新增應付款項主檔(02_05_insert_ap_master流程圖)"></a>新增應付款項主檔(02_05_insert_ap_master流程圖)</h3><pre><code class="plantuml">@startuml
+title 新增應付款項主檔 insert_ap_master 函數流程圖
 start
 
 :取得廠商付款方式及付款地;
