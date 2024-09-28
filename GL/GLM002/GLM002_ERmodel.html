@@ -1,0 +1,624 @@
+<hr>
+<h2 id="title-01-GLM002-GLM001-過帳傳票維護-ER-Modeldate-2024-09-29-05-14-32permalink-GL-GLM002-GLM002-ERmodel-categories-WDStags-C-SA-UML-GL-description-01-GLM002-GLM001-過帳傳票維護-ER-Model"><a href="#title-01-GLM002-GLM001-過帳傳票維護-ER-Modeldate-2024-09-29-05-14-32permalink-GL-GLM002-GLM002-ERmodel-categories-WDStags-C-SA-UML-GL-description-01-GLM002-GLM001-過帳傳票維護-ER-Model" class="headerlink" title="title: 01_GLM002(GLM001)過帳傳票維護_ER-Modeldate: 2024-09-29 05:14:32permalink: &#x2F;GL&#x2F;GLM002&#x2F;GLM002_ERmodel&#x2F;categories: WDStags: [C# , SA , UML ,GL]description: 01_GLM002(GLM001)過帳傳票維護_ER-Model"></a>title: 01_GLM002(GLM001)過帳傳票維護_ER-Model<br>date: 2024-09-29 05:14:32<br>permalink: &#x2F;GL&#x2F;GLM002&#x2F;GLM002_ERmodel&#x2F;<br>categories: WDS<br>tags: [C# , SA , UML ,GL]<br>description: 01_GLM002(GLM001)過帳傳票維護_ER-Model</h2><h2 id="01-GLM002-GLM001-過帳傳票維護-ER-Model"><a href="#01-GLM002-GLM001-過帳傳票維護-ER-Model" class="headerlink" title="01_GLM002(GLM001)過帳傳票維護_ER-Model"></a>01_GLM002(GLM001)過帳傳票維護_ER-Model</h2><p><img src="/apple.lily/GL/GLM002/GLM002_ERmodel/01_GLM002(GLM001)%E9%81%8E%E5%B8%B3%E5%82%B3%E7%A5%A8%E7%B6%AD%E8%AD%B7_ER-Model.png"></p>
+<p>根據 <code>GLM001</code> stored procedure 和 <code>&quot;GLM002(GLM001)過帳傳票維護.doc&quot;</code> 文件的內容，以下是相關的 Table 及欄位名稱，加上中文欄位備註：</p>
+<h3 id="1-GL-VOUCHER-MASTER（傳票主檔）"><a href="#1-GL-VOUCHER-MASTER（傳票主檔）" class="headerlink" title="1. GL_VOUCHER_MASTER（傳票主檔）"></a><strong>1. GL_VOUCHER_MASTER（傳票主檔）</strong></h3><table>
+<thead>
+<tr>
+<th>欄位名稱</th>
+<th>資料型態</th>
+<th>中文備註</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>VOUCHER_NO</td>
+<td>VARCHAR2(12)</td>
+<td>傳票編號</td>
+</tr>
+<tr>
+<td>ACCNT_YEAR</td>
+<td>VARCHAR2(4)</td>
+<td>年度</td>
+</tr>
+<tr>
+<td>ACCNT_PERIOD</td>
+<td>VARCHAR2(2)</td>
+<td>會計期間</td>
+</tr>
+<tr>
+<td>VOUCHER_DATE</td>
+<td>DATE</td>
+<td>傳票日期</td>
+</tr>
+<tr>
+<td>COMPANY_ID</td>
+<td>VARCHAR2(4)</td>
+<td>公司別</td>
+</tr>
+<tr>
+<td>ACCNT_CREATOR</td>
+<td>VARCHAR2(10)</td>
+<td>製票員</td>
+</tr>
+<tr>
+<td>LAST_UPDATE_DATE</td>
+<td>DATE</td>
+<td>最近維護日</td>
+</tr>
+<tr>
+<td>PRINT_CODE</td>
+<td>VARCHAR2(1)</td>
+<td>列印碼</td>
+</tr>
+<tr>
+<td>DELETE_CODE</td>
+<td>VARCHAR2(1)</td>
+<td>刪除碼</td>
+</tr>
+</tbody></table>
+<h3 id="2-GL-VOUCHER-DETAIL（傳票明細檔）"><a href="#2-GL-VOUCHER-DETAIL（傳票明細檔）" class="headerlink" title="2. GL_VOUCHER_DETAIL（傳票明細檔）"></a><strong>2. GL_VOUCHER_DETAIL（傳票明細檔）</strong></h3><table>
+<thead>
+<tr>
+<th>欄位名稱</th>
+<th>資料型態</th>
+<th>中文備註</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ACCNT_NO</td>
+<td>VARCHAR2(10)</td>
+<td>科目代號</td>
+</tr>
+<tr>
+<td>SEQ_NO</td>
+<td>NUMBER(4)</td>
+<td>序號</td>
+</tr>
+<tr>
+<td>UNIT_ID</td>
+<td>VARCHAR2(7)</td>
+<td>單位別</td>
+</tr>
+<tr>
+<td>OBJECT_NO</td>
+<td>VARCHAR2(10)</td>
+<td>對象代號</td>
+</tr>
+<tr>
+<td>RELATION_NO</td>
+<td>VARCHAR2(15)</td>
+<td>相關號碼</td>
+</tr>
+<tr>
+<td>RELATION_DATE</td>
+<td>DATE</td>
+<td>相關日期</td>
+</tr>
+<tr>
+<td>DEBIT_AMT</td>
+<td>NUMBER</td>
+<td>借方金額</td>
+</tr>
+<tr>
+<td>CREDIT_AMT</td>
+<td>NUMBER</td>
+<td>貸方金額</td>
+</tr>
+<tr>
+<td>ACCNT_NAME</td>
+<td>VARCHAR2(100)</td>
+<td>科目名稱</td>
+</tr>
+<tr>
+<td>UNIT_NAME</td>
+<td>VARCHAR2(100)</td>
+<td>單位名稱</td>
+</tr>
+<tr>
+<td>OBJECT_NAME</td>
+<td>VARCHAR2(300)</td>
+<td>對象名稱</td>
+</tr>
+<tr>
+<td>VOUCHER_DESC</td>
+<td>VARCHAR2(1000)</td>
+<td>摘要</td>
+</tr>
+<tr>
+<td>OFFSET_NO</td>
+<td>VARCHAR2(10)</td>
+<td>沖銷代號</td>
+</tr>
+<tr>
+<td>OFFSET_VOUCHER_NO</td>
+<td>VARCHAR2(12)</td>
+<td>沖銷傳票號</td>
+</tr>
+<tr>
+<td>OFFSET_DUE_DATE</td>
+<td>DATE</td>
+<td>沖銷到期日</td>
+</tr>
+<tr>
+<td>CREATE_OFFSET_SEQ</td>
+<td>NUMBER(2)</td>
+<td>立沖序號</td>
+</tr>
+<tr>
+<td>COMPANY_ID</td>
+<td>VARCHAR2(4)</td>
+<td>公司別</td>
+</tr>
+<tr>
+<td>ORDER_SEQ</td>
+<td>NUMBER</td>
+<td>排列序號</td>
+</tr>
+<tr>
+<td>LAST_UPDATE_DATE</td>
+<td>DATE</td>
+<td>最近維護日</td>
+</tr>
+</tbody></table>
+<h3 id="3-GL-CREATE-OFFSET-BALANCE（立沖餘額檔）"><a href="#3-GL-CREATE-OFFSET-BALANCE（立沖餘額檔）" class="headerlink" title="3. GL_CREATE_OFFSET_BALANCE（立沖餘額檔）"></a><strong>3. GL_CREATE_OFFSET_BALANCE（立沖餘額檔）</strong></h3><table>
+<thead>
+<tr>
+<th>欄位名稱</th>
+<th>資料型態</th>
+<th>中文備註</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>OFFSET_NO</td>
+<td>VARCHAR2(10)</td>
+<td>沖銷代號</td>
+</tr>
+<tr>
+<td>UNIT_ID</td>
+<td>VARCHAR2(7)</td>
+<td>單位別</td>
+</tr>
+<tr>
+<td>ACCNT_NO</td>
+<td>VARCHAR2(10)</td>
+<td>科目代號</td>
+</tr>
+<tr>
+<td>OFFSET_DUE_DATE</td>
+<td>DATE</td>
+<td>沖銷到期日</td>
+</tr>
+<tr>
+<td>VOUCHER_NO</td>
+<td>VARCHAR2(12)</td>
+<td>傳票編號</td>
+</tr>
+<tr>
+<td>CREATE_OFFSET_SEQ</td>
+<td>NUMBER(2)</td>
+<td>立沖序號</td>
+</tr>
+<tr>
+<td>ACCNT_DESC</td>
+<td>VARCHAR2(1000)</td>
+<td>摘要</td>
+</tr>
+<tr>
+<td>D_AMT</td>
+<td>NUMBER</td>
+<td>待沖銷餘額</td>
+</tr>
+<tr>
+<td>OFFSET_STATUS</td>
+<td>VARCHAR2(1)</td>
+<td>部分沖銷狀態</td>
+</tr>
+<tr>
+<td>COMPANY_ID</td>
+<td>VARCHAR2(4)</td>
+<td>公司別</td>
+</tr>
+</tbody></table>
+<h3 id="4-AP-DETAIL（應付帳款明細檔）"><a href="#4-AP-DETAIL（應付帳款明細檔）" class="headerlink" title="4. AP_DETAIL（應付帳款明細檔）"></a><strong>4. AP_DETAIL（應付帳款明細檔）</strong></h3><table>
+<thead>
+<tr>
+<th>欄位名稱</th>
+<th>資料型態</th>
+<th>中文備註</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>COMPANY_ID</td>
+<td>VARCHAR2(4)</td>
+<td>公司別</td>
+</tr>
+<tr>
+<td>CREATE_VOUCHER_NO</td>
+<td>VARCHAR2(12)</td>
+<td>傳票編號</td>
+</tr>
+<tr>
+<td>VOUCHER_SEQ</td>
+<td>NUMBER(4)</td>
+<td>傳票序號</td>
+</tr>
+<tr>
+<td>OFFSET_VOUCHER_NO</td>
+<td>VARCHAR2(12)</td>
+<td>沖銷傳票號碼</td>
+</tr>
+</tbody></table>
+<h3 id="5-AR-DETAIL（應收帳款明細檔）"><a href="#5-AR-DETAIL（應收帳款明細檔）" class="headerlink" title="5. AR_DETAIL（應收帳款明細檔）"></a><strong>5. AR_DETAIL（應收帳款明細檔）</strong></h3><table>
+<thead>
+<tr>
+<th>欄位名稱</th>
+<th>資料型態</th>
+<th>中文備註</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>COMPANY_ID</td>
+<td>VARCHAR2(4)</td>
+<td>公司別</td>
+</tr>
+<tr>
+<td>CREATE_VOUCHER_NO</td>
+<td>VARCHAR2(12)</td>
+<td>傳票編號</td>
+</tr>
+<tr>
+<td>VOUCHER_SEQ</td>
+<td>NUMBER(4)</td>
+<td>傳票序號</td>
+</tr>
+<tr>
+<td>OFFSET_VOUCHER_NO</td>
+<td>VARCHAR2(12)</td>
+<td>沖銷傳票號碼</td>
+</tr>
+</tbody></table>
+<h3 id="6-NP-DETAIL（核銷應付款項明細檔）"><a href="#6-NP-DETAIL（核銷應付款項明細檔）" class="headerlink" title="6. NP_DETAIL（核銷應付款項明細檔）"></a><strong>6. NP_DETAIL（核銷應付款項明細檔）</strong></h3><table>
+<thead>
+<tr>
+<th>欄位名稱</th>
+<th>資料型態</th>
+<th>中文備註</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>COMPANY_ID</td>
+<td>VARCHAR2(4)</td>
+<td>公司別</td>
+</tr>
+<tr>
+<td>CREATE_VOUCHER_NO</td>
+<td>VARCHAR2(12)</td>
+<td>傳票編號</td>
+</tr>
+<tr>
+<td>CREATE_VOUCHER_SEQ</td>
+<td>NUMBER(4)</td>
+<td>建立傳票序號</td>
+</tr>
+<tr>
+<td>OFFSET_VOUCHER_NO</td>
+<td>VARCHAR2(12)</td>
+<td>沖銷傳票號碼</td>
+</tr>
+</tbody></table>
+<h3 id="7-NR-DETAIL（核銷應收款項明細檔）"><a href="#7-NR-DETAIL（核銷應收款項明細檔）" class="headerlink" title="7. NR_DETAIL（核銷應收款項明細檔）"></a><strong>7. NR_DETAIL（核銷應收款項明細檔）</strong></h3><table>
+<thead>
+<tr>
+<th>欄位名稱</th>
+<th>資料型態</th>
+<th>中文備註</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>COMPANY_ID</td>
+<td>VARCHAR2(4)</td>
+<td>公司別</td>
+</tr>
+<tr>
+<td>CREATE_VOUCHER_NO</td>
+<td>VARCHAR2(12)</td>
+<td>傳票編號</td>
+</tr>
+<tr>
+<td>CREATE_VOUCHER_SEQ</td>
+<td>NUMBER(4)</td>
+<td>建立傳票序號</td>
+</tr>
+<tr>
+<td>OFFSET_VOUCHER_NO</td>
+<td>VARCHAR2(12)</td>
+<td>沖銷傳票號碼</td>
+</tr>
+</tbody></table>
+<h3 id="8-PIV-INCOME-EVIDENCE（進項憑證檔）"><a href="#8-PIV-INCOME-EVIDENCE（進項憑證檔）" class="headerlink" title="8. PIV_INCOME_EVIDENCE（進項憑證檔）"></a><strong>8. PIV_INCOME_EVIDENCE（進項憑證檔）</strong></h3><table>
+<thead>
+<tr>
+<th>欄位名稱</th>
+<th>資料型態</th>
+<th>中文備註</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>COMPANY_ID</td>
+<td>VARCHAR2(4)</td>
+<td>公司別</td>
+</tr>
+<tr>
+<td>VOUCHER_NO</td>
+<td>VARCHAR2(12)</td>
+<td>傳票編號</td>
+</tr>
+<tr>
+<td>VOUCHER_SEQ</td>
+<td>NUMBER(4)</td>
+<td>傳票序號</td>
+</tr>
+</tbody></table>
+<h3 id="9-PPY-MASTER（應付款項主檔）"><a href="#9-PPY-MASTER（應付款項主檔）" class="headerlink" title="9. PPY_MASTER（應付款項主檔）"></a><strong>9. PPY_MASTER（應付款項主檔）</strong></h3><table>
+<thead>
+<tr>
+<th>欄位名稱</th>
+<th>資料型態</th>
+<th>中文備註</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>COMPANY_ID</td>
+<td>VARCHAR2(4)</td>
+<td>公司別</td>
+</tr>
+<tr>
+<td>CREATE_VOUCHER_NO</td>
+<td>VARCHAR2(12)</td>
+<td>傳票編號</td>
+</tr>
+<tr>
+<td>VOUCHER_SEQ</td>
+<td>NUMBER(4)</td>
+<td>傳票序號</td>
+</tr>
+<tr>
+<td>DOCUMENT_NO</td>
+<td>VARCHAR2(20)</td>
+<td>文件號碼</td>
+</tr>
+</tbody></table>
+<h3 id="10-PPY-DETAIL（應付款項明細檔）"><a href="#10-PPY-DETAIL（應付款項明細檔）" class="headerlink" title="10. PPY_DETAIL（應付款項明細檔）"></a><strong>10. PPY_DETAIL（應付款項明細檔）</strong></h3><table>
+<thead>
+<tr>
+<th>欄位名稱</th>
+<th>資料型態</th>
+<th>中文備註</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DOCUMENT_NO</td>
+<td>VARCHAR2(20)</td>
+<td>文件號碼</td>
+</tr>
+<tr>
+<td>OFFSET_VOUCHER_NO</td>
+<td>VARCHAR2(12)</td>
+<td>沖銷傳票號碼</td>
+</tr>
+</tbody></table>
+<h3 id="11-SI2-INVOICE-MASTER（發票主檔）"><a href="#11-SI2-INVOICE-MASTER（發票主檔）" class="headerlink" title="11. SI2_INVOICE_MASTER（發票主檔）"></a><strong>11. SI2_INVOICE_MASTER（發票主檔）</strong></h3><table>
+<thead>
+<tr>
+<th>欄位名稱</th>
+<th>資料型態</th>
+<th>中文備註</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>COMPANY_ID</td>
+<td>VARCHAR2(4)</td>
+<td>公司別</td>
+</tr>
+<tr>
+<td>VOUCHER_NO</td>
+<td>VARCHAR2(12)</td>
+<td>傳票編號</td>
+</tr>
+<tr>
+<td>VOUCHER_SEQ</td>
+<td>NUMBER(4)</td>
+<td>傳票序號</td>
+</tr>
+</tbody></table>
+<h3 id="12-SYS-PARM-D（系統參數檔）"><a href="#12-SYS-PARM-D（系統參數檔）" class="headerlink" title="12. SYS_PARM_D（系統參數檔）"></a><strong>12. SYS_PARM_D（系統參數檔）</strong></h3><table>
+<thead>
+<tr>
+<th>欄位名稱</th>
+<th>資料型態</th>
+<th>中文備註</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PARM_ID</td>
+<td>VARCHAR2(20)</td>
+<td>參數 ID</td>
+</tr>
+<tr>
+<td>PARM_REMARK</td>
+<td>VARCHAR2(100)</td>
+<td>參數備註</td>
+</tr>
+<tr>
+<td>PARM_VALUE1</td>
+<td>VARCHAR2(100)</td>
+<td>參數值1</td>
+</tr>
+<tr>
+<td>PARM_VALUE2</td>
+<td>VARCHAR2(100)</td>
+<td>參數值2</td>
+</tr>
+<tr>
+<td>PARM_ID_CODE</td>
+<td>VARCHAR2(20)</td>
+<td>參數代碼</td>
+</tr>
+</tbody></table>
+<h3 id="13-NP-CODE-REFERENCE（單位代號參考檔）"><a href="#13-NP-CODE-REFERENCE（單位代號參考檔）" class="headerlink" title="13. NP_CODE_REFERENCE（單位代號參考檔）"></a><strong>13. NP_CODE_REFERENCE（單位代號參考檔）</strong></h3><table>
+<thead>
+<tr>
+<th>欄位名稱</th>
+<th>資料型態</th>
+<th>中文備註</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CODE_KIND</td>
+<td>VARCHAR2(10)</td>
+<td></td>
+</tr>
+</tbody></table>
+<p> | 代碼類型                 |<br>| CODE_NO              | VARCHAR2(10)      | 代號                     |</p>
+<pre><code class="plantuml">
+Table ap_detail {
+  company_id varchar(8) [note: &#39;公司別&#39;]
+  create_voucher_no varchar(12) [note: &#39;傳票號碼&#39;]
+  voucher_seq number [note: &#39;傳票序號&#39;]
+  master_seq number [note: &#39;主檔序號&#39;]
+  second_seq number [note: &#39;二級序號&#39;]
+  offset_amt number [note: &#39;抵消金額&#39;]
+  last_update_date date [note: &#39;最後更新日期&#39;]
+}
+
+Table ap_master {
+  company_id varchar(8) [note: &#39;公司別&#39;]
+  create_voucher_no varchar(12) [note: &#39;傳票號碼&#39;]
+  voucher_seq number [note: &#39;傳票序號&#39;]
+  master_seq number [note: &#39;主檔序號&#39;]
+  object_no varchar(10) [note: &#39;交易方代號&#39;]
+  accnt_no varchar(10) [note: &#39;帳號&#39;]
+  effect_date date [note: &#39;生效日期&#39;]
+  ap_amt number [note: &#39;應付款項金額&#39;]
+  mortgage_amt number [note: &#39;抵押金額&#39;]
+  ap_offset_amt number [note: &#39;應付沖帳金額&#39;]
+}
+
+Table ar_master {
+  company_id varchar2 [note: &#39;公司代號&#39;]
+  create_voucher_no varchar2 [note: &#39;傳票號碼&#39;]
+  unit_id varchar2 [note: &#39;單位代號&#39;]
+  accnt_no varchar2 [note: &#39;科目代號&#39;]
+  document_no varchar2 [note: &#39;文件號碼&#39;]
+  source_type varchar2 [note: &#39;來源類型&#39;]
+  customer_no varchar2 [note: &#39;客戶編號&#39;]
+  effect_date date [note: &#39;生效日期&#39;]
+  ar_amt number [note: &#39;應收金額&#39;]
+  ar_remark varchar2 [note: &#39;應收備註&#39;]
+  invoice_no varchar2 [note: &#39;發票號碼&#39;]
+  ar_responser varchar2 [note: &#39;負責人&#39;]
+  pay_type varchar2 [note: &#39;付款方式&#39;]
+  ar_offset_amt number [note: &#39;應收沖帳金額&#39;]
+  voucher_seq number [note: &#39;傳票序號&#39;]
+  master_seq number [note: &#39;主檔序號&#39;]
+  last_update_date date [note: &#39;最後更新日期&#39;]
+}
+
+Table gl_voucher_detail {
+  maintain_code varchar2 [note: &#39;維護代碼&#39;]
+  company_id varchar2 [note: &#39;公司代號&#39;]
+  voucher_no varchar2 [note: &#39;傳票號碼&#39;]
+  accnt_year varchar2 [note: &#39;會計年度&#39;]
+  accnt_period varchar2 [note: &#39;會計期間&#39;]
+  voucher_date date [note: &#39;傳票日期&#39;]
+  unit_id varchar2 [note: &#39;單位代號&#39;]
+  seq_no number [note: &#39;序號&#39;]
+  accnt_no varchar2 [note: &#39;科目代號&#39;]
+  object_no varchar2 [note: &#39;對象代號&#39;]
+  relation varchar2 [note: &#39;關聯號碼&#39;]
+  relation_date date [note: &#39;關聯日期&#39;]
+  amount number [note: &#39;金額&#39;]
+  description varchar2 [note: &#39;描述&#39;]
+  print_code varchar2 [note: &#39;列印代碼&#39;]
+  delete_code varchar2 [note: &#39;刪除代碼&#39;]
+  voucher_seq number [note: &#39;傳票序號&#39;]
+  last_update_date date [note: &#39;最後更新日期&#39;]
+}
+
+Table gl_voucher_master {
+  maintain_code varchar2 [note: &#39;維護代碼&#39;]
+  company_id varchar2 [note: &#39;公司代號&#39;]
+  voucher_no varchar2 [note: &#39;傳票號碼&#39;]
+  accnt_year varchar2 [note: &#39;會計年度&#39;]
+  accnt_period varchar2 [note: &#39;會計期間&#39;]
+  voucher_date date [note: &#39;傳票日期&#39;]
+  last_update_date date [note: &#39;最後更新日期&#39;]
+  accnt_creator varchar2 [note: &#39;傳票創建者&#39;]
+  accnt_version varchar2 [note: &#39;傳票版本&#39;]
+  print_code varchar2 [note: &#39;列印代碼&#39;]
+  delete_code varchar2 [note: &#39;刪除代碼&#39;]
+  source_type varchar2 [note: &#39;資料來源&#39;]
+}
+
+Table np_code_reference {
+  code_kind varchar(2) [note: &#39;代碼種類&#39;]
+  code_no varchar(10) [note: &#39;代碼&#39;]
+}
+
+Table np_detail {
+  company_id varchar(8) [note: &#39;公司別&#39;]
+  create_voucher_no varchar(12) [note: &#39;傳票號碼&#39;]
+  create_voucher_seq number [note: &#39;傳票序號&#39;]
+  offset_voucher_no varchar(12) [note: &#39;沖銷傳票號&#39;]
+}
+
+Table nr_detail {
+  company_id varchar(8) [note: &#39;公司別&#39;]
+  create_voucher_no varchar(12) [note: &#39;傳票號碼&#39;]
+  create_voucher_seq number [note: &#39;傳票序號&#39;]
+  offset_voucher_no varchar(12) [note: &#39;沖銷傳票號&#39;]
+}
+
+Table piv_income_evidence {
+  invoice_no varchar(10) [note: &#39;進項發票號&#39;]
+  sale_amt number [note: &#39;銷售金額（未稅）&#39;]
+  invoice_date date [note: &#39;發票日期&#39;]
+  tax_amt number [note: &#39;稅額&#39;]
+}
+
+Table ppy_detail {
+  document_no varchar(10) [note: &#39;文件號碼&#39;]
+  offset_voucher_no varchar(12) [note: &#39;沖銷傳票號&#39;]
+}
+
+Table ppy_master {
+  company_id varchar(8) [note: &#39;公司別&#39;]
+  create_voucher_no varchar(12) [note: &#39;傳票號碼&#39;]
+  voucher_seq number [note: &#39;傳票序號&#39;]
+  document_no varchar(10) [note: &#39;文件號碼&#39;]
+}
+
+Table sys_parm_d {
+  parm_id varchar(10) [note: &#39;參數 ID&#39;]
+  parm_id_code varchar(10) [note: &#39;參數代號&#39;]
+  parm_remark varchar(100) [note: &#39;參數描述&#39;]
+  parm_value1 varchar(10) [note: &#39;參數值 1&#39;]
+  parm_value2 varchar(10) [note: &#39;參數值 2&#39;]
+}
+
+Ref: ap_detail.company_id &gt; ap_master.company_id
+Ref: ap_detail.create_voucher_no &gt; ap_master.create_voucher_no
+Ref: ap_detail.voucher_seq &gt; ap_master.voucher_seq
+Ref: ap_detail.master_seq &gt; ap_master.master_seq
+
+Ref: ar_master.create_voucher_no &gt; gl_voucher_master.voucher_no
+Ref: gl_voucher_master.voucher_no &gt; gl_voucher_detail.voucher_no
+Ref: np_detail.create_voucher_no &gt; gl_voucher_master.voucher_no
+Ref: nr_detail.create_voucher_no &gt; gl_voucher_master.voucher_no
+Ref: piv_income_evidence.invoice_no &gt; gl_voucher_detail.object_no
+
+Ref: ppy_master.create_voucher_no &gt; gl_voucher_master.voucher_no
+Ref: ppy_master.document_no &gt; ppy_detail.document_no
+
+Ref: sys_parm_d.parm_id_code &gt; np_code_reference.code_no
+
+</code></pre>

@@ -2,7 +2,43 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://lilylovesjeans.github.io/apple.lily/GL/GLM001/</loc>
+    <loc>https://lilylovesjeans.github.io/apple.lily/GL/GLM002/GLM002_ProcessHOWto/StoredProcedure_flowchart/</loc>
+    
+    <lastmod>2024-09-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://lilylovesjeans.github.io/apple.lily/GL/GLM002/GLM002_ProcessHOWto/</loc>
+    
+    <lastmod>2024-09-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://lilylovesjeans.github.io/apple.lily/2024/09/16/WDS_SA/00-All_WPI_modules/</loc>
+    
+    <lastmod>2024-09-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://lilylovesjeans.github.io/apple.lily/GL/GLM002/GLM002_ERmodel/</loc>
+    
+    <lastmod>2024-09-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://lilylovesjeans.github.io/apple.lily/GL/GLM001/GLM001_ProcessHOWto/StoredProcedure_flowchart/</loc>
     
     <lastmod>2024-09-28</lastmod>
     
@@ -29,7 +65,7 @@
   </url>
   
   <url>
-    <loc>https://lilylovesjeans.github.io/apple.lily/GL/GLM001/GLM001_ProcessHOWto/StoredProcedure_flowchart/</loc>
+    <loc>https://lilylovesjeans.github.io/apple.lily/GL/GLM001/</loc>
     
     <lastmod>2024-09-28</lastmod>
     
@@ -38,7 +74,7 @@
   </url>
   
   <url>
-    <loc>https://lilylovesjeans.github.io/apple.lily/2024/09/16/WDS_SA/00-All_WPI_modules/</loc>
+    <loc>https://lilylovesjeans.github.io/apple.lily/GL/GLM002/</loc>
     
     <lastmod>2024-09-28</lastmod>
     
@@ -1718,62 +1754,6 @@
   </url>
   
   <url>
-    <loc>https://lilylovesjeans.github.io/apple.lily/tags/Hexo%E8%A8%AD%E5%AE%9A/</loc>
-    <lastmod>2024-09-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://lilylovesjeans.github.io/apple.lily/tags/PHP/</loc>
-    <lastmod>2024-09-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://lilylovesjeans.github.io/apple.lily/tags/XSS/</loc>
-    <lastmod>2024-09-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://lilylovesjeans.github.io/apple.lily/tags/Security/</loc>
-    <lastmod>2024-09-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://lilylovesjeans.github.io/apple.lily/tags/Http/</loc>
-    <lastmod>2024-09-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://lilylovesjeans.github.io/apple.lily/tags/ASP-NET/</loc>
-    <lastmod>2024-09-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://lilylovesjeans.github.io/apple.lily/tags/Oracle/</loc>
-    <lastmod>2024-09-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://lilylovesjeans.github.io/apple.lily/tags/DataBase/</loc>
-    <lastmod>2024-09-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://lilylovesjeans.github.io/apple.lily/tags/C/</loc>
     <lastmod>2024-09-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -1815,6 +1795,62 @@
     <priority>0.2</priority>
   </url>
   
+  <url>
+    <loc>https://lilylovesjeans.github.io/apple.lily/tags/Oracle/</loc>
+    <lastmod>2024-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://lilylovesjeans.github.io/apple.lily/tags/DataBase/</loc>
+    <lastmod>2024-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://lilylovesjeans.github.io/apple.lily/tags/Hexo%E8%A8%AD%E5%AE%9A/</loc>
+    <lastmod>2024-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://lilylovesjeans.github.io/apple.lily/tags/PHP/</loc>
+    <lastmod>2024-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://lilylovesjeans.github.io/apple.lily/tags/Http/</loc>
+    <lastmod>2024-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://lilylovesjeans.github.io/apple.lily/tags/XSS/</loc>
+    <lastmod>2024-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://lilylovesjeans.github.io/apple.lily/tags/Security/</loc>
+    <lastmod>2024-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://lilylovesjeans.github.io/apple.lily/tags/ASP-NET/</loc>
+    <lastmod>2024-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 
   
   <url>
@@ -1846,6 +1882,13 @@
   </url>
   
   <url>
+    <loc>https://lilylovesjeans.github.io/apple.lily/categories/WDS/</loc>
+    <lastmod>2024-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://lilylovesjeans.github.io/apple.lily/categories/Oracle/</loc>
     <lastmod>2024-09-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -1854,13 +1897,6 @@
   
   <url>
     <loc>https://lilylovesjeans.github.io/apple.lily/categories/SA/</loc>
-    <lastmod>2024-09-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://lilylovesjeans.github.io/apple.lily/categories/WDS/</loc>
     <lastmod>2024-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

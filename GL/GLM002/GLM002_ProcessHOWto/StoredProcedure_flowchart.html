@@ -1,0 +1,69 @@
+<hr>
+<h2 id="title-02-GLM002-GLM001-過帳傳票維護-流程圖date-2024-09-29-05-19-48permalink-GL-GLM002-GLM002-ProcessHOWto-StoredProcedure-flowchart-categories-WDStags-C-SA-UML-GL-description-02-GLM002-GLM001-過帳傳票維護-流程圖"><a href="#title-02-GLM002-GLM001-過帳傳票維護-流程圖date-2024-09-29-05-19-48permalink-GL-GLM002-GLM002-ProcessHOWto-StoredProcedure-flowchart-categories-WDStags-C-SA-UML-GL-description-02-GLM002-GLM001-過帳傳票維護-流程圖" class="headerlink" title="title: 02_GLM002(GLM001)過帳傳票維護_流程圖date: 2024-09-29 05:19:48permalink: &#x2F;GL&#x2F;GLM002&#x2F;GLM002_ProcessHOWto&#x2F;StoredProcedure_flowchart&#x2F;categories: WDStags: [C# , SA , UML ,GL]description: 02_GLM002(GLM001)過帳傳票維護_流程圖"></a>title: 02_GLM002(GLM001)過帳傳票維護_流程圖<br>date: 2024-09-29 05:19:48<br>permalink: &#x2F;GL&#x2F;GLM002&#x2F;GLM002_ProcessHOWto&#x2F;StoredProcedure_flowchart&#x2F;<br>categories: WDS<br>tags: [C# , SA , UML ,GL]<br>description: 02_GLM002(GLM001)過帳傳票維護_流程圖</h2><h2 id="02-GLM002-GLM001-過帳傳票維護-流程圖"><a href="#02-GLM002-GLM001-過帳傳票維護-流程圖" class="headerlink" title="02_GLM002(GLM001)過帳傳票維護_流程圖"></a>02_GLM002(GLM001)過帳傳票維護_流程圖</h2><p><img src="/apple.lily/GL/GLM002/GLM002_ProcessHOWto/StoredProcedure_flowchart/02_GLM002(GLM001)%E9%81%8E%E5%B8%B3%E5%82%B3%E7%A5%A8%E7%B6%AD%E8%AD%B7_%E6%B5%81%E7%A8%8B%E5%9C%96.png"></p>
+<pre><code class="plantuml">@startuml
+title GLM001 刪除傳票前檢查流程
+
+start
+:初始化變數 P_COMPANY_ID, P_VOUCHER_NO, P_SEQ_NO;
+:檢查 AP_DETAIL 表;
+
+if (AP_DETAIL 檢查失敗?) then (是)
+    :返回 FALSE;
+    stop
+else (否)
+    :繼續;
+endif
+
+:檢查 AR_DETAIL 表;
+if (AR_DETAIL 檢查失敗?) then (是)
+    :返回 FALSE;
+    stop
+else (否)
+    :繼續;
+endif
+
+:檢查 NP_DETAIL 表;
+if (NP_DETAIL 檢查失敗?) then (是)
+    :返回 FALSE;
+    stop
+else (否)
+    :繼續;
+endif
+
+:檢查 NR_DETAIL 表;
+if (NR_DETAIL 檢查失敗?) then (是)
+    :返回 FALSE;
+    stop
+else (否)
+    :繼續;
+endif
+
+:檢查 PIV_INCOME_EVIDENCE 表;
+if (PIV_INCOME_EVIDENCE 檢查失敗?) then (是)
+    :返回 FALSE;
+    stop
+else (否)
+    :繼續;
+endif
+
+:檢查 PPY_MASTER 和 PPY_DETAIL 表;
+if (PPY_MASTER &amp; PPY_DETAIL 檢查失敗?) then (是)
+    :返回 FALSE;
+    stop
+else (否)
+    :繼續;
+endif
+
+:檢查 SI2_INVOICE_MASTER 表;
+if (SI2_INVOICE_MASTER 檢查失敗?) then (是)
+    :返回 FALSE;
+    stop
+else (否)
+    :繼續;
+endif
+
+:所有檢查通過;
+:return TRUE;
+stop
+@enduml
+</code></pre>
