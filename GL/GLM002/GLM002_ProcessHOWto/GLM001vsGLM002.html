@@ -1,0 +1,35 @@
+<hr>
+<h2 id="title-04-GLM002與GLM001有什麼不同date-2024-09-29-07-06-49permalink-GL-GLM001-GLM001-ProcessHOWto-GLM001vsGLM002-categories-WDStags-C-SA-UML-GL-description-04-GLM002與GLM001有什麼不同"><a href="#title-04-GLM002與GLM001有什麼不同date-2024-09-29-07-06-49permalink-GL-GLM001-GLM001-ProcessHOWto-GLM001vsGLM002-categories-WDStags-C-SA-UML-GL-description-04-GLM002與GLM001有什麼不同" class="headerlink" title="title: 04_GLM002與GLM001有什麼不同date: 2024-09-29 07:06:49permalink: &#x2F;GL&#x2F;GLM001&#x2F;GLM001_ProcessHOWto&#x2F;GLM001vsGLM002&#x2F;categories: WDStags: [C# , SA , UML ,GL]description: 04_GLM002與GLM001有什麼不同"></a>title: 04_GLM002與GLM001有什麼不同<br>date: 2024-09-29 07:06:49<br>permalink: &#x2F;GL&#x2F;GLM001&#x2F;GLM001_ProcessHOWto&#x2F;GLM001vsGLM002&#x2F;<br>categories: WDS<br>tags: [C# , SA , UML ,GL]<br>description: 04_GLM002與GLM001有什麼不同</h2><h2 id="04-GLM002與GLM001有什麼不同"><a href="#04-GLM002與GLM001有什麼不同" class="headerlink" title="04_GLM002與GLM001有什麼不同"></a>04_GLM002與GLM001有什麼不同</h2><p>抱歉，剛才的確是用英文解釋。現在我將使用中文來比較這兩份文件，<code>GLM001</code> 和 <code>GLM002</code>，並詳細說明它們的不同之處。</p>
+<h3 id="GLM001-和-GLM002-的比較"><a href="#GLM001-和-GLM002-的比較" class="headerlink" title="GLM001 和 GLM002 的比較"></a><code>GLM001</code> 和 <code>GLM002</code> 的比較</h3><ol>
+<li><p><strong>文件目的：</strong></p>
+<ul>
+<li><code>GLM001</code> 文件的主要目的是「傳票維護」。這意味著它的重點在於記錄和管理傳票相關的數據，並包含對傳票進行刪除、修改等操作的流程。</li>
+<li><code>GLM002</code> 則專注於「過帳傳票維護」，特別是過帳的流程控制和相關的檢核規則。其主要功能是檢查並確保過帳傳票的正確性。</li>
+</ul>
+</li>
+<li><p><strong>操作流程：</strong></p>
+<ul>
+<li><code>GLM001</code> 更注重傳票的新增、修改、刪除和查詢。在刪除過程中，需要檢查多個子畫面資料，如應付帳款、應收帳款等，確保這些子畫面沒有與傳票相關的未結資料。</li>
+<li><code>GLM002</code> 則側重於過帳操作，包括核對傳票明細、確保傳票符合一定規則，以及控制過帳流程。</li>
+</ul>
+</li>
+<li><p><strong>檢核規則：</strong></p>
+<ul>
+<li><code>GLM001</code> 的檢核規則較為複雜，涉及多個表格（如 <code>GL_VOUCHER_MASTER</code>、<code>GL_VOUCHER_DETAIL</code> 等）及多個檢核函數（如 <code>DEL_CHECK_APM</code>、<code>DEL_CHECK_ARM</code> 等）。這些規則主要是為了確保傳票刪除前的正確性。</li>
+<li><code>GLM002</code> 的檢核則偏向於確認過帳的正確性，包括檢查資料的完整性、傳票借貸方的平衡、沖銷狀態的核對等。</li>
+</ul>
+</li>
+<li><p><strong>涉及的資料表：</strong></p>
+<ul>
+<li><code>GLM001</code> 涉及傳票主檔和明細檔，特別強調對 <code>GL_VOUCHER_MASTER</code> 和 <code>GL_VOUCHER_DETAIL</code> 的維護和操作。</li>
+<li><code>GLM002</code> 同樣涉及 <code>GL_VOUCHER_MASTER</code> 和 <code>GL_VOUCHER_DETAIL</code>，但其操作範圍更廣，包含過帳過程中涉及的其他相關表格。</li>
+</ul>
+</li>
+<li><p><strong>情境範例：</strong></p>
+<ul>
+<li>在 <code>GLM001</code> 中，當使用者想要刪除一筆傳票時，系統會先檢查相關的應付、應收等資料，確保沒有未處理的項目。若有未處理的項目，則會返回錯誤訊息，阻止刪除操作。</li>
+<li>在 <code>GLM002</code> 中，當進行過帳操作時，系統會檢查傳票借貸方的金額平衡、沖銷狀態等，若發現問題，會提示使用者修正，確保過帳的資料正確。</li>
+</ul>
+</li>
+</ol>
+<h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h3><p><code>GLM001</code> 著重於傳票的維護，特別是新增、修改、刪除等基本操作，並包含對相關子畫面的檢核。<code>GLM002</code> 則更側重於過帳操作的管理，主要負責確認過帳過程的正確性。兩者在操作流程和檢核規則上有不同的重點，但都涉及到傳票主檔和明細檔的操作。</p>
