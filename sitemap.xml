@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://lilylovesjeans.github.io/apple.lily/GL/GLM001/</loc>
+    
+    <lastmod>2024-09-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://lilylovesjeans.github.io/apple.lily/GL/GLM001/GLM001_ERmodel/</loc>
     
     <lastmod>2024-09-28</lastmod>
@@ -12,15 +21,6 @@
   
   <url>
     <loc>https://lilylovesjeans.github.io/apple.lily/GL/GLM001/GLM001_ProcessHOWto/</loc>
-    
-    <lastmod>2024-09-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://lilylovesjeans.github.io/apple.lily/GL/GLM001/</loc>
     
     <lastmod>2024-09-28</lastmod>
     
@@ -1711,13 +1711,6 @@
   </url>
   
   <url>
-    <loc>https://lilylovesjeans.github.io/apple.lily/tags/OneNote/</loc>
-    <lastmod>2024-09-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://lilylovesjeans.github.io/apple.lily/tags/Oracle/</loc>
     <lastmod>2024-09-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -1726,6 +1719,13 @@
   
   <url>
     <loc>https://lilylovesjeans.github.io/apple.lily/tags/DataBase/</loc>
+    <lastmod>2024-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://lilylovesjeans.github.io/apple.lily/tags/OneNote/</loc>
     <lastmod>2024-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1754,6 +1754,13 @@
   
   <url>
     <loc>https://lilylovesjeans.github.io/apple.lily/tags/DCF/</loc>
+    <lastmod>2024-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://lilylovesjeans.github.io/apple.lily/tags/APP007/</loc>
     <lastmod>2024-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1808,13 +1815,6 @@
     <priority>0.2</priority>
   </url>
   
-  <url>
-    <loc>https://lilylovesjeans.github.io/apple.lily/tags/APP007/</loc>
-    <lastmod>2024-09-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
 
   
   <url>
@@ -1839,14 +1839,14 @@
   </url>
   
   <url>
-    <loc>https://lilylovesjeans.github.io/apple.lily/categories/OneDayOneNote/</loc>
+    <loc>https://lilylovesjeans.github.io/apple.lily/categories/Oracle/</loc>
     <lastmod>2024-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://lilylovesjeans.github.io/apple.lily/categories/Oracle/</loc>
+    <loc>https://lilylovesjeans.github.io/apple.lily/categories/OneDayOneNote/</loc>
     <lastmod>2024-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
