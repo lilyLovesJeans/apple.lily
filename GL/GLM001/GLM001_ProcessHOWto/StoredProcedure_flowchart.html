@@ -1,0 +1,74 @@
+<hr>
+<h2 id="title-02-GLM001-GLM001A-過帳傳票維護-流程圖date-2024-09-28-21-30-31permalink-GL-GLM001-GLM001-ProcessHOWto-StoredProcedure-flowchart-categories-WDStags-C-SA-UML-GL-description-02-GLM001-GLM001A-過帳傳票維護-流程圖"><a href="#title-02-GLM001-GLM001A-過帳傳票維護-流程圖date-2024-09-28-21-30-31permalink-GL-GLM001-GLM001-ProcessHOWto-StoredProcedure-flowchart-categories-WDStags-C-SA-UML-GL-description-02-GLM001-GLM001A-過帳傳票維護-流程圖" class="headerlink" title="title: 02_GLM001(GLM001A)過帳傳票維護_流程圖date: 2024-09-28 21:30:31permalink: &#x2F;GL&#x2F;GLM001&#x2F;GLM001_ProcessHOWto&#x2F;StoredProcedure_flowchart&#x2F;categories: WDStags: [C# , SA , UML ,GL]description: 02_GLM001(GLM001A)過帳傳票維護_流程圖"></a>title: 02_GLM001(GLM001A)過帳傳票維護_流程圖<br>date: 2024-09-28 21:30:31<br>permalink: &#x2F;GL&#x2F;GLM001&#x2F;GLM001_ProcessHOWto&#x2F;StoredProcedure_flowchart&#x2F;<br>categories: WDS<br>tags: [C# , SA , UML ,GL]<br>description: 02_GLM001(GLM001A)過帳傳票維護_流程圖</h2><h2 id="02-GLM001-GLM001A-過帳傳票維護-流程圖"><a href="#02-GLM001-GLM001A-過帳傳票維護-流程圖" class="headerlink" title="02_GLM001(GLM001A)過帳傳票維護_流程圖"></a>02_GLM001(GLM001A)過帳傳票維護_流程圖</h2><p><img src="/apple.lily/GL/GLM001/GLM001_ProcessHOWto/StoredProcedure_flowchart/02_GLM001(GLM001A)%E9%81%8E%E5%B8%B3%E5%82%B3%E7%A5%A8%E7%B6%AD%E8%AD%B7_%E6%B5%81%E7%A8%8B%E5%9C%96.png"></p>
+<pre><code class="plantuml">@startuml
+title GLM001 - 刪除傳票前檢查流程
+
+start
+:初始化變數 P_COMPANY_ID, P_VOUCHER_NO, P_SEQ_NO;
+:執行 DEL_CHECK_APM();
+if (AP_DETAIL 檢查成功?) then (是)
+    :返回 TRUE;
+else (否)
+    :返回 FALSE;
+    stop
+endif
+
+:執行 DEL_CHECK_ARM();
+if (AR_DETAIL 檢查成功?) then (是)
+    :返回 TRUE;
+else (否)
+    :返回 FALSE;
+    stop
+endif
+
+:執行 DEL_CHECK_NPM();
+if (NP_DETAIL 檢查成功?) then (是)
+    :返回 TRUE;
+else (否)
+    :返回 FALSE;
+    stop
+endif
+
+:執行 DEL_CHECK_NRM();
+if (NR_DETAIL 檢查成功?) then (是)
+    :返回 TRUE;
+else (否)
+    :返回 FALSE;
+    stop
+endif
+
+:執行 DEL_CHECK_PIV();
+if (PIV_INCOME_EVIDENCE 檢查成功?) then (是)
+    :返回 TRUE;
+else (否)
+    :返回 FALSE;
+    stop
+endif
+
+:執行 DEL_CHECK_PPY();
+if (PPY_MASTER 和 PPY_DETAIL 檢查成功?) then (是)
+    :返回 TRUE;
+else (否)
+    :返回 FALSE;
+    stop
+endif
+
+:執行 DEL_CHECK_SI2();
+if (SI2_INVOICE_MASTER 檢查成功?) then (是)
+    :返回 TRUE;
+else (否)
+    :返回 FALSE;
+    stop
+endif
+
+:執行 CHECK_UNIT();
+if (單位檢查成功?) then (是)
+    :返回 單位正確訊息;
+else (否)
+    :返回 單位錯誤訊息;
+    stop
+endif
+
+stop
+@enduml
+</code></pre>
