@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="00_00_SETM003(ACMM003)會計科目維護_概略說明">
+<meta property="og:type" content="article">
+<meta property="og:title" content="00_00_SETM003(ACMM003)會計科目維護_概略說明">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/SET/SETM003/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="00_00_SETM003(ACMM003)會計科目維護_概略說明">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://lilylovesjeans.github.io/apple.lily/SET/SETM003/03_SETM003_%E6%9C%83%E8%A8%88%E7%A7%91%E7%9B%AE%E7%B6%AD%E8%AD%B7-%E5%BA%8F%E5%88%97%E5%9C%96.png">
+<meta property="article:published_time" content="2024-09-29T11:13:00.000Z">
+<meta property="article:modified_time" content="2024-09-29T11:53:53.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="C#">
+<meta property="article:tag" content="SA">
+<meta property="article:tag" content="UML">
+<meta property="article:tag" content="SET">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lilylovesjeans.github.io/apple.lily/SET/SETM003/03_SETM003_%E6%9C%83%E8%A8%88%E7%A7%91%E7%9B%AE%E7%B6%AD%E8%AD%B7-%E5%BA%8F%E5%88%97%E5%9C%96.png">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/SET/SETM003/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/SET/SETM003/","path":"/SET/SETM003/","title":"00_00_SETM003(ACMM003)會計科目維護_概略說明"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>00_00_SETM003(ACMM003)會計科目維護_概略說明 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#00-00-SETM003-ACMM003-%E6%9C%83%E8%A8%88%E7%A7%91%E7%9B%AE%E7%B6%AD%E8%AD%B7-%E6%A6%82%E7%95%A5%E8%AA%AA%E6%98%8E"><span class="nav-number">1.</span> <span class="nav-text">00_00_SETM003(ACMM003)會計科目維護_概略說明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%87%E8%A8%AD%E6%83%85%E5%A2%83%EF%BC%9A%E6%96%B0%E5%A2%9E%E4%B8%80%E5%80%8B%E6%9C%83%E8%A8%88%E7%A7%91%E7%9B%AE"><span class="nav-number">1.1.</span> <span class="nav-text">假設情境：新增一個會計科目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%87%E8%A8%AD%E6%83%85%E5%A2%83%EF%BC%9A%E6%9F%A5%E8%A9%A2%E4%B8%80%E5%80%8B%E6%9C%83%E8%A8%88%E7%A7%91%E7%9B%AE"><span class="nav-number">1.2.</span> <span class="nav-text">假設情境：查詢一個會計科目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%87%E8%A8%AD%E6%83%85%E5%A2%83%EF%BC%9A%E4%BF%AE%E6%94%B9%E6%9C%83%E8%A8%88%E7%A7%91%E7%9B%AE"><span class="nav-number">1.3.</span> <span class="nav-text">假設情境：修改會計科目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B8%BD%E7%B5%90"><span class="nav-number">1.4.</span> <span class="nav-text">總結</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ER-Model"><span class="nav-number">2.</span> <span class="nav-text">ER-Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%95%AB%E9%9D%A2%E6%93%8D%E4%BD%9C%E8%AA%AA%E6%98%8E"><span class="nav-number">3.</span> <span class="nav-text">畫面操作說明:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SETM003-%E6%9C%83%E8%A8%88%E7%A7%91%E7%9B%AE%E7%B6%AD%E8%AD%B7-%E5%BA%8F%E5%88%97%E5%9C%96"><span class="nav-number">4.</span> <span class="nav-text">SETM003_會計科目維護-序列圖:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#04-SETM003Controller%E5%A4%A7%E6%9E%B6%E6%A7%8B%E5%9C%96"><span class="nav-number">5.</span> <span class="nav-text">04_SETM003Controller大架構圖:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#05-SETM003-%E5%BB%BA%E6%A7%8B%E5%AD%90%E9%97%9C%E4%BF%82%E5%9C%96"><span class="nav-number">6.</span> <span class="nav-text">05_SETM003_建構子關係圖:</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">193</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/SET/SETM003/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="00_00_SETM003(ACMM003)會計科目維護_概略說明 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="00_00_SETM003(ACMM003)會計科目維護_概略說明">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          00_00_SETM003(ACMM003)會計科目維護_概略說明
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2024-09-29 19:13:00 / 修改時間：19:53:53" itemprop="dateCreated datePublished" datetime="2024-09-29T19:13:00+08:00">2024-09-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/WDS/" itemprop="url" rel="index"><span itemprop="name">WDS</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">00_00_SETM003(ACMM003)會計科目維護_概略說明</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="00-00-SETM003-ACMM003-會計科目維護-概略說明"><a href="#00-00-SETM003-ACMM003-會計科目維護-概略說明" class="headerlink" title="00_00_SETM003(ACMM003)會計科目維護_概略說明"></a>00_00_SETM003(ACMM003)會計科目維護_概略說明</h2><p>這份 SA 文件主要是描述 <code>SETM003</code> 程式（即會計科目維護）的功能、欄位對應、操作流程和規則。以下是對該文件的簡單解釋：</p>
+<ol>
+<li><p><strong>程式代號和名稱</strong>：文件描述了 <code>SETM003</code> 的使用目的，即維護會計科目。程式名稱為「會計科目維護」。</p>
+</li>
+<li><p><strong>程式功能</strong>：文件指出此程式的功能類別為維護類，主要提供用戶新增、查詢、修改、刪除會計科目的功能。</p>
+</li>
+<li><p><strong>資料表</strong>：文件中列出了關聯的資料表 <code>GL_ACCNT_MASTER</code>，這是儲存會計科目資訊的主檔。</p>
+</li>
+<li><p><strong>欄位說明</strong>：詳細列出了 <code>GL_ACCNT_MASTER</code> 資料表中的欄位，包括欄位名稱、資料型態、中文註解，以及畫面中的顯示順序。例如：</p>
+<ul>
+<li><code>ACCNT_NO</code>（科目代號）：用於查詢和輸入科目代號，資料型態為 <code>VARCHAR2(10)</code>。</li>
+<li><code>ACCNT_KIND</code>（科目類別）：用於分類會計科目，包含資產、負債等類型，資料型態為 <code>VARCHAR2(1)</code>。</li>
+<li><code>BUDGET_CODE</code>（預算科目）：表示該科目是否為預算科目，僅允許輸入 “Y” 或 “N”。</li>
+</ul>
+</li>
+<li><p><strong>規則</strong>：文件中列出了與程式相關的一些規則。例如：</p>
+<ul>
+<li><code>GL_ACCNT_MASTER.END_DATE</code>：結束日期輸入的格式為 <code>YYYY/MM/DD</code>，不能超過特定的年份範圍。</li>
+<li><code>LAST_UPDATE_DATE</code>：該欄位會在新增或修改記錄時自動寫入系統日期。</li>
+</ul>
+</li>
+<li><p><strong>操作說明</strong>：文件描述了畫面上各項操作的功能，包括新增、查詢、刪除、存檔等操作按鈕，以及它們對應的 SQL 查詢或資料來源。</p>
+</li>
+<li><p><strong>工具列</strong>：文件列出了與此程式相關的工具列操作，例如顯示系統日期、登入帳號等資訊。</p>
+</li>
+</ol>
+<p>整體來說，這份文件的主要目的是描述會計科目維護程式的功能、欄位結構和操作規則，為程式開發和使用提供指引。</p>
+<p>讓我們以具體操作為例，來說明文件中提到的功能：</p>
+<h3 id="假設情境：新增一個會計科目"><a href="#假設情境：新增一個會計科目" class="headerlink" title="假設情境：新增一個會計科目"></a>假設情境：新增一個會計科目</h3><ol>
+<li><p><strong>新增操作</strong>：  </p>
+<ul>
+<li>使用者打開會計科目維護 (<code>SETM003</code>) 系統後，點擊「新增」按鈕。</li>
+<li>系統會顯示一個空白的輸入表單，讓使用者填寫會計科目的相關資訊，如科目代號、科目名稱、科目類別等。</li>
+</ul>
+</li>
+<li><p><strong>資料輸入</strong>：</p>
+<ul>
+<li>使用者在 <code>ACCNT_NO</code> 欄位中輸入科目代號，例如 <code>&quot;1001&quot;</code>。</li>
+<li>在 <code>ACCNT_NAME</code> 欄位中輸入科目名稱，例如 <code>&quot;現金&quot;</code>。</li>
+<li>選擇 <code>ACCNT_KIND</code>（科目類別），可以選擇 “資產” 類別。</li>
+<li>在其他欄位中填寫必要資訊，如 <code>BUDGET_CODE</code> 設為 “Y”（代表預算科目）。</li>
+</ul>
+</li>
+<li><p><strong>資料檢核</strong>：</p>
+<ul>
+<li>系統在使用者填寫完資訊後，會檢核輸入資料的格式和內容，例如：<ul>
+<li>檢查 <code>ACCNT_NO</code> 是否已存在於 <code>GL_ACCNT_MASTER</code> 資料表中，以避免重複新增。</li>
+<li>檢查 <code>END_DATE</code> 是否符合格式，並且在規定的日期範圍內。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>儲存資料</strong>：</p>
+<ul>
+<li>當使用者點擊「存檔」按鈕時，系統會將輸入的資料儲存至 <code>GL_ACCNT_MASTER</code> 資料表中，並自動填寫 <code>LAST_UPDATE_DATE</code> 欄位為當前的系統日期。</li>
+</ul>
+</li>
+<li><p><strong>操作結果</strong>：</p>
+<ul>
+<li>如果資料儲存成功，系統會顯示「新增成功」的訊息，並將新增的科目顯示在畫面上。</li>
+<li>如果發生錯誤，例如科目代號已存在或資料格式不正確，系統會顯示相應的錯誤訊息，提示使用者進行更正。</li>
+</ul>
+</li>
+</ol>
+<h3 id="假設情境：查詢一個會計科目"><a href="#假設情境：查詢一個會計科目" class="headerlink" title="假設情境：查詢一個會計科目"></a>假設情境：查詢一個會計科目</h3><ol>
+<li><p><strong>查詢操作</strong>：</p>
+<ul>
+<li>使用者在 <code>ACCNT_NO</code> 欄位中輸入科目代號，例如 <code>&quot;1001&quot;</code>，然後點擊「查詢」按鈕。</li>
+</ul>
+</li>
+<li><p><strong>資料查詢</strong>：</p>
+<ul>
+<li>系統會執行 SQL 查詢，在 <code>GL_ACCNT_MASTER</code> 資料表中查找對應的科目代號，並顯示該科目的詳細資訊。</li>
+</ul>
+</li>
+<li><p><strong>顯示結果</strong>：</p>
+<ul>
+<li>如果找到匹配的科目，系統會在畫面上顯示該科目的相關資訊，包括科目名稱、科目類別、預算科目標誌等。</li>
+<li>如果未找到匹配的科目，系統會顯示「無此科目」的訊息。</li>
+</ul>
+</li>
+</ol>
+<h3 id="假設情境：修改會計科目"><a href="#假設情境：修改會計科目" class="headerlink" title="假設情境：修改會計科目"></a>假設情境：修改會計科目</h3><ol>
+<li><p><strong>修改操作</strong>：</p>
+<ul>
+<li>使用者在查詢到特定科目後，可以修改該科目的相關資訊，例如變更科目名稱。</li>
+</ul>
+</li>
+<li><p><strong>資料檢核</strong>：</p>
+<ul>
+<li>系統會檢查修改後的資料是否符合規定，例如 <code>ACCNT_NO</code> 是否符合格式，<code>END_DATE</code> 是否在有效範圍內等。</li>
+</ul>
+</li>
+<li><p><strong>儲存變更</strong>：</p>
+<ul>
+<li>使用者點擊「存檔」按鈕，系統會更新 <code>GL_ACCNT_MASTER</code> 資料表中的對應記錄，並更新 <code>LAST_UPDATE_DATE</code> 欄位。</li>
+</ul>
+</li>
+<li><p><strong>操作結果</strong>：</p>
+<ul>
+<li>系統會顯示修改成功的訊息，並更新畫面上的資料。</li>
+</ul>
+</li>
+</ol>
+<h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h3><p>文件描述的 <code>SETM003</code> 會計科目維護系統，主要功能包括新增、查詢、修改和刪除會計科目。每個操作都有特定的流程和資料檢核規則，以確保資料的完整性和正確性。操作成功後，相關資訊會被儲存到 <code>GL_ACCNT_MASTER</code> 資料表中，並記錄最後的更新日期。</p>
+<h2 id="ER-Model"><a href="#ER-Model" class="headerlink" title="ER-Model"></a><strong>ER-Model</strong></h2><p>: <a href="https://lilylovesjeans.github.io/apple.lily/SET/SETM003/SETM003_ERmodel/" target="_blank">ER-Model</a> </p>
+<h2 id="畫面操作說明"><a href="#畫面操作說明" class="headerlink" title="畫面操作說明:"></a><strong>畫面操作說明</strong>:</h2><p>: <a href="https://lilylovesjeans.github.io/apple.lily/SET/SETM003/SETM003_ProcessHOWto/" target="_blank">畫面操作說明</a> </p>
+<h2 id="SETM003-會計科目維護-序列圖"><a href="#SETM003-會計科目維護-序列圖" class="headerlink" title="SETM003_會計科目維護-序列圖:"></a><strong>SETM003_會計科目維護-序列圖</strong>:</h2><p><img src="/apple.lily/SET/SETM003/03_SETM003_%E6%9C%83%E8%A8%88%E7%A7%91%E7%9B%AE%E7%B6%AD%E8%AD%B7-%E5%BA%8F%E5%88%97%E5%9C%96.png"></p>
+<h2 id="04-SETM003Controller大架構圖"><a href="#04-SETM003Controller大架構圖" class="headerlink" title="04_SETM003Controller大架構圖:"></a><strong>04_SETM003Controller大架構圖</strong>:</h2><p>: <a href="https://lilylovesjeans.github.io/apple.lily/SET/SETM003/SETM003_ProcessHOWto/API_STRUCTURE/" target="_blank">大架構圖</a> </p>
+<h2 id="05-SETM003-建構子關係圖"><a href="#05-SETM003-建構子關係圖" class="headerlink" title="05_SETM003_建構子關係圖:"></a><strong>05_SETM003_建構子關係圖</strong>:</h2><p>: <a href="https://lilylovesjeans.github.io/apple.lily/SET/SETM003/SETM003_ProcessHOWto/DI_classUML/" target="_blank">建構子關係圖</a> </p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/C/" rel="tag"># C#</a>
+              <a href="/apple.lily/tags/SA/" rel="tag"># SA</a>
+              <a href="/apple.lily/tags/UML/" rel="tag"># UML</a>
+              <a href="/apple.lily/tags/SET/" rel="tag"># SET</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/GL/GLM001/GLM001_ProcessHOWto/GLM001vsGLM002/" rel="prev" title="04_GLM002與GLM001有什麼不同">
+                  <i class="fa fa-angle-left"></i> 04_GLM002與GLM001有什麼不同
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/SET/SETM003/SETM003_ProcessHOWto/" rel="next" title="00_01_SETM003(ACMM003)會計科目維護_畫面操作說明">
+                  00_01_SETM003(ACMM003)會計科目維護_畫面操作說明 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

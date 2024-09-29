@@ -1,0 +1,31 @@
+<hr>
+<h2 id="title-04-SETM003Controller大架構圖date-2024-09-29-19-43-09permalink-SET-SETM003-SETM003-ProcessHOWto-API-STRUCTURE-categories-WDStags-C-SA-UML-SET-description-04-SETM003Controller大架構圖"><a href="#title-04-SETM003Controller大架構圖date-2024-09-29-19-43-09permalink-SET-SETM003-SETM003-ProcessHOWto-API-STRUCTURE-categories-WDStags-C-SA-UML-SET-description-04-SETM003Controller大架構圖" class="headerlink" title="title: 04_SETM003Controller大架構圖date: 2024-09-29 19:43:09permalink: &#x2F;SET&#x2F;SETM003&#x2F;SETM003_ProcessHOWto&#x2F;API_STRUCTURE&#x2F;categories: WDStags: [C# , SA , UML ,SET]description: 04_SETM003Controller大架構圖"></a>title: 04_SETM003Controller大架構圖<br>date: 2024-09-29 19:43:09<br>permalink: &#x2F;SET&#x2F;SETM003&#x2F;SETM003_ProcessHOWto&#x2F;API_STRUCTURE&#x2F;<br>categories: WDS<br>tags: [C# , SA , UML ,SET]<br>description: 04_SETM003Controller大架構圖</h2><h2 id="04-SETM003Controller大架構圖"><a href="#04-SETM003Controller大架構圖" class="headerlink" title="04_SETM003Controller大架構圖"></a>04_SETM003Controller大架構圖</h2><p><img src="/apple.lily/SET/SETM003/SETM003_ProcessHOWto/API_STRUCTURE/04_SETM003Controller%E5%A4%A7%E6%9E%B6%E6%A7%8B%E5%9C%96.png"></p>
+<pre><code class="plantuml">@startuml
+title SETM003Controller大架構圖
+
+package &quot;前端&quot; {
+    [User Interface] &lt;&lt;UI&gt;&gt; 
+    [API Client] &lt;&lt;Client&gt;&gt;
+    [User Interface] --&gt; [API Client] : 發送請求
+}
+
+package &quot;後端&quot; {
+    [SETM003Controller] &lt;&lt;Controller&gt;&gt; 
+    [SETM003Service] &lt;&lt;Service&gt;&gt; 
+    [SETM003Dao] &lt;&lt;DAO&gt;&gt;
+    [CommonService] &lt;&lt;Service&gt;&gt;
+
+    [API Client] --&gt; [SETM003Controller] : 發送 API 請求
+    [SETM003Controller] --&gt; [SETM003Service] : 調用
+    [SETM003Service] --&gt; [SETM003Dao] : 調用
+    [SETM003Controller] --&gt; [CommonService] : 調用
+}
+
+package &quot;數據庫&quot; {
+    [Database] &lt;&lt;Database&gt;&gt;
+    
+    [SETM003Dao] --&gt; [Database] : 查詢
+}
+
+@enduml
+</code></pre>

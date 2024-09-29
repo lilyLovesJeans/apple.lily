@@ -1,0 +1,113 @@
+<hr>
+<h2 id="title-05-SETM003-建構子關係圖date-2024-09-29-19-51-29permalink-SET-SETM003-SETM003-ProcessHOWto-DI-classUML-categories-WDStags-C-SA-UML-SET-description-05-SETM003-建構子關係圖"><a href="#title-05-SETM003-建構子關係圖date-2024-09-29-19-51-29permalink-SET-SETM003-SETM003-ProcessHOWto-DI-classUML-categories-WDStags-C-SA-UML-SET-description-05-SETM003-建構子關係圖" class="headerlink" title="title: 05_SETM003_建構子關係圖date: 2024-09-29 19:51:29permalink: &#x2F;SET&#x2F;SETM003&#x2F;SETM003_ProcessHOWto&#x2F;DI_classUML&#x2F;categories: WDStags: [C# , SA , UML ,SET]description: 05_SETM003_建構子關係圖"></a>title: 05_SETM003_建構子關係圖<br>date: 2024-09-29 19:51:29<br>permalink: &#x2F;SET&#x2F;SETM003&#x2F;SETM003_ProcessHOWto&#x2F;DI_classUML&#x2F;<br>categories: WDS<br>tags: [C# , SA , UML ,SET]<br>description: 05_SETM003_建構子關係圖</h2><h2 id="05-SETM003-建構子關係圖"><a href="#05-SETM003-建構子關係圖" class="headerlink" title="05_SETM003_建構子關係圖"></a>05_SETM003_建構子關係圖</h2><p><img src="/apple.lily/SET/SETM003/SETM003_ProcessHOWto/DI_classUML/05_SETM003_%E5%BB%BA%E6%A7%8B%E5%AD%90%E9%97%9C%E4%BF%82%E5%9C%96.png"></p>
+<pre><code class="plantuml">@startuml
+
+package &quot;控制器层&quot; {
+    class SETM003Controller {
+        +ActionMethod1()
+        +ActionMethod2()
+    }
+}
+
+package &quot;服务层&quot; {
+    class SETM003Service {
+        +GetAccnoKindList()
+        +QuerySubSystemResult()
+    }
+    class CommonService {
+        +QuerySubSystemResult()
+        +GetAccnoKindList()
+    }
+}
+
+package &quot;DAO层&quot; {
+    class SETM003Dao {
+        +Insert(inputVo)
+        +Update(inputVo)
+        +Delete(inputVo)
+        +Query(inputVo)
+    }
+
+    class GL_ACCNT_KINDDao {
+        +Query(inputVo)
+    }
+
+    class MIS_SYSTDao {
+        +Query(inputVo)
+    }
+
+    class GL_ACCNT_MASTERDao {
+        +Insert(inputVo)
+        +Update(inputVo)
+        +Delete(inputVo)
+    }
+
+    class GL_ACCNT_BALANCEDao {
+        +Query(inputVo)
+    }
+
+    class GL_SPREAD_ACCNT_SCOPEDao {
+        +Any(predicate)
+    }
+}
+
+package &quot;数据库层&quot; {
+    class GL_ACCNT_MASTER {
+        +ACCNT_NO
+        +ACCNT_KIND
+        +ACCNT_NAME
+        +BUDGET_CODE
+        +ACCNT_DESC
+        +CREATE_OFFSET_CODE
+        +SUBSYSTEM_NO
+        +ACCNT_D_C
+        +ASSEST_ACCNT_NO
+        +CRE_DATE
+        +END_DATE
+        +SPREAD_ACCNT_NO
+        +LAST_UPDATE_DATE
+    }
+
+    class GL_ACCNT_BALANCE {
+        +ACCNT_NO
+        +BALANCE_DATE
+        +BEGINNING_BALANCE
+        +DEBITS
+        +CREDITS
+        +ENDING_BALANCE
+    }
+
+    class GL_SPREAD_ACCNT_SCOPE {
+        +ACCNT_NO
+        +SCOPE_CODE
+        +SCOPE_NAME
+    }
+
+    class MIS_SYST {
+        +SYST_IDEN
+        +SYST_NAME
+    }
+
+    class GL_ACCNT_KIND {
+        +ACCNT_KIND
+        +ACCNT_KIND_DESC
+    }
+}
+
+SETM003Controller --&gt; SETM003Service : 使用
+SETM003Service --&gt; SETM003Dao : 调用
+SETM003Service --&gt; GL_ACCNT_KINDDao : 调用
+SETM003Service --&gt; MIS_SYSTDao : 调用
+SETM003Service --&gt; GL_ACCNT_MASTERDao : 调用
+SETM003Service --&gt; GL_ACCNT_BALANCEDao : 调用
+SETM003Service --&gt; GL_SPREAD_ACCNT_SCOPEDao : 调用
+
+SETM003Dao --&gt; GL_ACCNT_MASTER : 操作
+GL_ACCNT_MASTERDao --&gt; GL_ACCNT_MASTER : 操作
+GL_ACCNT_BALANCEDao --&gt; GL_ACCNT_BALANCE : 操作
+GL_SPREAD_ACCNT_SCOPEDao --&gt; GL_SPREAD_ACCNT_SCOPE : 操作
+MIS_SYSTDao --&gt; MIS_SYST : 操作
+GL_ACCNT_KINDDao --&gt; GL_ACCNT_KIND : 操作
+
+@enduml
+</code></pre>

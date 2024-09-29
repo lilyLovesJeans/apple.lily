@@ -1,0 +1,114 @@
+<hr>
+<h2 id="title-01-SETM003-ACMM003-會計科目維護-ER-Modeldate-2024-09-29-19-23-18permalink-SET-SETM003-SETM003-ERmodel-categories-WDStags-C-SA-UML-SET-description-01-SETM003-ACMM003-會計科目維護-ER-Model"><a href="#title-01-SETM003-ACMM003-會計科目維護-ER-Modeldate-2024-09-29-19-23-18permalink-SET-SETM003-SETM003-ERmodel-categories-WDStags-C-SA-UML-SET-description-01-SETM003-ACMM003-會計科目維護-ER-Model" class="headerlink" title="title: 01_SETM003(ACMM003)會計科目維護_ER-Modeldate: 2024-09-29 19:23:18permalink: &#x2F;SET&#x2F;SETM003&#x2F;SETM003_ERmodel&#x2F;categories: WDStags: [C# , SA , UML ,SET]description: 01_SETM003(ACMM003)會計科目維護_ER-Model"></a>title: 01_SETM003(ACMM003)會計科目維護_ER-Model<br>date: 2024-09-29 19:23:18<br>permalink: &#x2F;SET&#x2F;SETM003&#x2F;SETM003_ERmodel&#x2F;<br>categories: WDS<br>tags: [C# , SA , UML ,SET]<br>description: 01_SETM003(ACMM003)會計科目維護_ER-Model</h2><h2 id="01-SETM003-ACMM003-會計科目維護-ER-Model"><a href="#01-SETM003-ACMM003-會計科目維護-ER-Model" class="headerlink" title="01_SETM003(ACMM003)會計科目維護_ER-Model"></a>01_SETM003(ACMM003)會計科目維護_ER-Model</h2><p><img src="/apple.lily/SET/SETM003/SETM003_ERmodel/01_SETM003(ACMM003)%E6%9C%83%E8%A8%88%E7%A7%91%E7%9B%AE%E7%B6%AD%E8%AD%B7_ER-Model.png"></p>
+<p>在 “SETM003(ACMM003)會計科目維護.doc” 文件中，涉及的主要資料表為 <code>GL_ACCNT_MASTER</code>，並且它也涉及到表 <code>MIS_SYST</code>，用於獲取子系統的名稱。以下是這些資料表的欄位和對應的中文備註。</p>
+<h3 id="1-GL-ACCNT-MASTER（會計科目檔）"><a href="#1-GL-ACCNT-MASTER（會計科目檔）" class="headerlink" title="1. GL_ACCNT_MASTER（會計科目檔）"></a><strong>1. GL_ACCNT_MASTER（會計科目檔）</strong></h3><table>
+<thead>
+<tr>
+<th>欄位名稱</th>
+<th>資料型態</th>
+<th>中文備註</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ACCNT_NO</td>
+<td>VARCHAR2(10)</td>
+<td>科目代號</td>
+</tr>
+<tr>
+<td>ACCNT_KIND</td>
+<td>VARCHAR2(1)</td>
+<td>科目類別</td>
+</tr>
+<tr>
+<td>ACCNT_NAME</td>
+<td>VARCHAR2(30)</td>
+<td>科目名稱</td>
+</tr>
+<tr>
+<td>BUDGET_CODE</td>
+<td>VARCHAR2(1)</td>
+<td>預算科目</td>
+</tr>
+<tr>
+<td>ACCNT_DESC</td>
+<td>VARCHAR2(60)</td>
+<td>主要說明</td>
+</tr>
+<tr>
+<td>CREATE_OFFSET_CODE</td>
+<td>VARCHAR2(1)</td>
+<td>立沖科目</td>
+</tr>
+<tr>
+<td>SUBSYSTEM_NO</td>
+<td>VARCHAR2(3)</td>
+<td>子系統代號</td>
+</tr>
+<tr>
+<td>ACCNT_D_C</td>
+<td>VARCHAR2(1)</td>
+<td>借&#x2F;貸</td>
+</tr>
+<tr>
+<td>ASSEST_ACCNT_NO</td>
+<td>VARCHAR2(1)</td>
+<td>資產科目</td>
+</tr>
+<tr>
+<td>CRE_DATE</td>
+<td>DATE</td>
+<td>開始日</td>
+</tr>
+<tr>
+<td>END_DATE</td>
+<td>DATE</td>
+<td>結束日</td>
+</tr>
+<tr>
+<td>SPREAD_ACCNT_NO</td>
+<td>VARCHAR2(1)</td>
+<td>衍生科目</td>
+</tr>
+<tr>
+<td>LAST_UPDATE_DATE</td>
+<td>DATE</td>
+<td>最近維護日</td>
+</tr>
+</tbody></table>
+<h3 id="2-MIS-SYST（子系統檔）"><a href="#2-MIS-SYST（子系統檔）" class="headerlink" title="2. MIS_SYST（子系統檔）"></a><strong>2. MIS_SYST（子系統檔）</strong></h3><table>
+<thead>
+<tr>
+<th>欄位名稱</th>
+<th>資料型態</th>
+<th>中文備註</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SYST_IDEN</td>
+<td>VARCHAR2</td>
+<td>子系統代號</td>
+</tr>
+<tr>
+<td>SYST_NAME</td>
+<td>VARCHAR2</td>
+<td>子系統名稱</td>
+</tr>
+</tbody></table>
+<p>這些欄位都是文件中提到的 <code>SETM003Controller API</code> 相關的部分。在文件中描述了各種作業流程，例如查詢、編輯和檢核科目代號等操作【277:1†source】.</p>
+<pre><code class="plantuml">Table GL_ACCNT_MASTER {
+  ACCNT_NO varchar(20) [pk, note: &#39;科目代號&#39;]
+  ACCNT_NAME varchar(50) [note: &#39;科目名稱&#39;]
+  SUBSYSTEM_NO varchar(10) [note: &#39;子系統代號&#39;]
+  LEVEL_NO int [note: &#39;科目層級&#39;]
+  STATUS varchar(1) [note: &#39;狀態&#39;]
+  CREATE_DATE datetime [note: &#39;建立日期&#39;]
+  UPDATE_DATE datetime [note: &#39;更新日期&#39;]
+}
+
+Table MIS_SYST {
+  SYST_IDEN varchar(10) [pk, note: &#39;系統識別碼&#39;]
+  SYST_NAME varchar(50) [note: &#39;系統名稱&#39;]
+}
+
+Ref: GL_ACCNT_MASTER.SUBSYSTEM_NO &gt; MIS_SYST.SYST_IDEN
+</code></pre>

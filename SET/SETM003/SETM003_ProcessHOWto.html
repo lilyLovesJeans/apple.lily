@@ -1,0 +1,137 @@
+<hr>
+<h2 id="title-00-01-SETM003-ACMM003-會計科目維護-畫面操作說明date-2024-09-29-19-18-25permalink-SET-SETM003-SETM003-ProcessHOWto-categories-WDStags-C-SA-UML-SET-description-00-01-SETM003-ACMM003-會計科目維護-畫面操作說明"><a href="#title-00-01-SETM003-ACMM003-會計科目維護-畫面操作說明date-2024-09-29-19-18-25permalink-SET-SETM003-SETM003-ProcessHOWto-categories-WDStags-C-SA-UML-SET-description-00-01-SETM003-ACMM003-會計科目維護-畫面操作說明" class="headerlink" title="title: 00_01_SETM003(ACMM003)會計科目維護_畫面操作說明date: 2024-09-29 19:18:25permalink: &#x2F;SET&#x2F;SETM003&#x2F;SETM003_ProcessHOWto&#x2F;categories: WDStags: [C# , SA , UML ,SET]description: 00_01_SETM003(ACMM003)會計科目維護_畫面操作說明"></a>title: 00_01_SETM003(ACMM003)會計科目維護_畫面操作說明<br>date: 2024-09-29 19:18:25<br>permalink: &#x2F;SET&#x2F;SETM003&#x2F;SETM003_ProcessHOWto&#x2F;<br>categories: WDS<br>tags: [C# , SA , UML ,SET]<br>description: 00_01_SETM003(ACMM003)會計科目維護_畫面操作說明</h2><h2 id="00-01-SETM003-ACMM003-會計科目維護-畫面操作說明"><a href="#00-01-SETM003-ACMM003-會計科目維護-畫面操作說明" class="headerlink" title="00_01_SETM003(ACMM003)會計科目維護_畫面操作說明"></a>00_01_SETM003(ACMM003)會計科目維護_畫面操作說明</h2><hr>
+<h3 id="系統說明文件：SETM003Controller-API"><a href="#系統說明文件：SETM003Controller-API" class="headerlink" title="系統說明文件：SETM003Controller API"></a>系統說明文件：SETM003Controller API</h3><hr>
+<h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p><code>SETM003Controller</code> 是一組 Web API，用於會計科目維護作業。該 API 包含多項功能，包括科目查詢、科目新增、修改、刪除等操作。本文將詳細描述每個 API 方法的運作流程、使用情境、輸入與輸出格式，以及檢核邏輯。</p>
+<hr>
+<h3 id="1-科目查詢（GetAccountList）"><a href="#1-科目查詢（GetAccountList）" class="headerlink" title="1. 科目查詢（GetAccountList）"></a>1. <strong>科目查詢（GetAccountList）</strong></h3><ul>
+<li><strong>授權</strong>：不需要 <code>[Authorize]</code> 屬性，任何用戶都可以調用。</li>
+</ul>
+<h4 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h4><ul>
+<li>提供會計科目的列表供前端顯示，並包含額外的科目信息。</li>
+</ul>
+<h4 id="假設情境"><a href="#假設情境" class="headerlink" title="假設情境"></a>假設情境</h4><p>使用者在進行會計科目管理時，需要查詢現有的科目。當使用者點擊查詢按鈕時，前端會調用 <code>GetAccountList</code> API 來獲取會計科目列表。</p>
+<h4 id="運作流程"><a href="#運作流程" class="headerlink" title="運作流程"></a>運作流程</h4><ol>
+<li>前端發送 <code>GET</code> 請求到 <code>GetAccountList</code> API。</li>
+<li>API 調用相關的服務方法從資料庫中取得會計科目列表。</li>
+<li>API 返回科目的詳細資訊，包括科目編號、科目名稱、科目類型等。</li>
+<li>前端顯示這些科目資訊。</li>
+</ol>
+<h4 id="輸出結果（OutputList-AccountList-OutputVo）"><a href="#輸出結果（OutputList-AccountList-OutputVo）" class="headerlink" title="輸出結果（OutputList: AccountList_OutputVo）"></a>輸出結果（OutputList: <code>AccountList_OutputVo</code>）</h4><ul>
+<li><strong>ACCOUNT_NO</strong>：科目編號，例如 <code>&quot;1001&quot;</code>。</li>
+<li><strong>ACCOUNT_NAME</strong>：科目名稱，例如 <code>&quot;現金&quot;</code>。</li>
+<li><strong>ACCOUNT_TYPE</strong>：科目類型，例如 <code>&quot;資產&quot;</code>。</li>
+</ul>
+<h4 id="範例結果"><a href="#範例結果" class="headerlink" title="範例結果"></a>範例結果</h4><pre><code class="json">{
+    &quot;RESULT_CODE&quot;: &quot;S0000001&quot;,
+    &quot;RESULT_MESSAGE&quot;: &quot;查詢成功&quot;,
+    &quot;RESULT&quot;: [
+        {
+            &quot;ACCOUNT_NO&quot;: &quot;1001&quot;,
+            &quot;ACCOUNT_NAME&quot;: &quot;現金&quot;,
+            &quot;ACCOUNT_TYPE&quot;: &quot;資產&quot;
+        },
+        {
+            &quot;ACCOUNT_NO&quot;: &quot;2001&quot;,
+            &quot;ACCOUNT_NAME&quot;: &quot;應付帳款&quot;,
+            &quot;ACCOUNT_TYPE&quot;: &quot;負債&quot;
+        }
+    ]
+}
+</code></pre>
+<hr>
+<h3 id="2-新增科目（CreateAccount）"><a href="#2-新增科目（CreateAccount）" class="headerlink" title="2. 新增科目（CreateAccount）"></a>2. <strong>新增科目（CreateAccount）</strong></h3><ul>
+<li><strong>授權</strong>：需要 <code>[Authorize]</code> 屬性，必須經過身份驗證的用戶才能調用。</li>
+</ul>
+<h4 id="目的-1"><a href="#目的-1" class="headerlink" title="目的"></a>目的</h4><ul>
+<li>新增會計科目，將科目資訊寫入資料庫。</li>
+</ul>
+<h4 id="假設情境-1"><a href="#假設情境-1" class="headerlink" title="假設情境"></a>假設情境</h4><p>會計人員需要新增一個新的會計科目。輸入科目資料後，點擊「新增」按鈕，前端會調用 <code>CreateAccount</code> API。</p>
+<h4 id="運作流程-1"><a href="#運作流程-1" class="headerlink" title="運作流程"></a>運作流程</h4><ol>
+<li>前端將科目資料打包成 JSON 格式，並發送 <code>POST</code> 請求到 <code>CreateAccount</code> API：<pre><code class="json">{
+    &quot;ACCOUNT_NO&quot;: &quot;3001&quot;,
+    &quot;ACCOUNT_NAME&quot;: &quot;投資收益&quot;,
+    &quot;ACCOUNT_TYPE&quot;: &quot;收益&quot;
+}
+</code></pre>
+</li>
+<li>API 調用服務層方法進行科目資料的檢核，例如檢查科目編號是否已存在。</li>
+<li>若檢核成功，API 將資料寫入資料庫，並返回操作結果。</li>
+</ol>
+<h4 id="輸入參數（InputList-Account-InputVo）"><a href="#輸入參數（InputList-Account-InputVo）" class="headerlink" title="輸入參數（InputList: Account_InputVo）"></a>輸入參數（InputList: <code>Account_InputVo</code>）</h4><ul>
+<li><strong>ACCOUNT_NO</strong>：科目編號（如 <code>&quot;3001&quot;</code>）。</li>
+<li><strong>ACCOUNT_NAME</strong>：科目名稱（如 <code>&quot;投資收益&quot;</code>）。</li>
+<li><strong>ACCOUNT_TYPE</strong>：科目類型（如 <code>&quot;收益&quot;</code>）。</li>
+</ul>
+<h4 id="輸出結果"><a href="#輸出結果" class="headerlink" title="輸出結果"></a>輸出結果</h4><ul>
+<li><strong>RESULT_CODE</strong>：操作狀態碼，例如 <code>&quot;S0000001&quot;</code> 代表成功。</li>
+<li><strong>RESULT_MESSAGE</strong>：操作結果的描述，例如 <code>&quot;新增成功&quot;</code>。</li>
+</ul>
+<h4 id="範例結果-1"><a href="#範例結果-1" class="headerlink" title="範例結果"></a>範例結果</h4><pre><code class="json">{
+    &quot;RESULT_CODE&quot;: &quot;S0000001&quot;,
+    &quot;RESULT_MESSAGE&quot;: &quot;新增成功&quot;
+}
+</code></pre>
+<hr>
+<h3 id="3-修改科目（UpdateAccount）"><a href="#3-修改科目（UpdateAccount）" class="headerlink" title="3. 修改科目（UpdateAccount）"></a>3. <strong>修改科目（UpdateAccount）</strong></h3><ul>
+<li><strong>授權</strong>：需要 <code>[Authorize]</code> 屬性，必須經過身份驗證的用戶才能調用。</li>
+</ul>
+<h4 id="目的-2"><a href="#目的-2" class="headerlink" title="目的"></a>目的</h4><ul>
+<li>修改現有的會計科目信息。</li>
+</ul>
+<h4 id="假設情境-2"><a href="#假設情境-2" class="headerlink" title="假設情境"></a>假設情境</h4><p>會計人員需要修改現有科目的名稱或類型。輸入新的科目信息後，點擊「修改」按鈕，前端會調用 <code>UpdateAccount</code> API。</p>
+<h4 id="運作流程-2"><a href="#運作流程-2" class="headerlink" title="運作流程"></a>運作流程</h4><ol>
+<li>前端將更新後的科目資料打包成 JSON 格式，並發送 <code>PUT</code> 請求到 <code>UpdateAccount</code> API：<pre><code class="json">{
+    &quot;ACCOUNT_NO&quot;: &quot;3001&quot;,
+    &quot;ACCOUNT_NAME&quot;: &quot;投資收益調整&quot;,
+    &quot;ACCOUNT_TYPE&quot;: &quot;收益&quot;
+}
+</code></pre>
+</li>
+<li>API 調用服務層方法，根據科目編號查詢資料庫並進行更新操作。</li>
+<li>返回操作結果。</li>
+</ol>
+<h4 id="輸入參數（InputList-Account-InputVo）-1"><a href="#輸入參數（InputList-Account-InputVo）-1" class="headerlink" title="輸入參數（InputList: Account_InputVo）"></a>輸入參數（InputList: <code>Account_InputVo</code>）</h4><ul>
+<li><strong>ACCOUNT_NO</strong>：科目編號（如 <code>&quot;3001&quot;</code>）。</li>
+<li><strong>ACCOUNT_NAME</strong>：科目名稱（如 <code>&quot;投資收益調整&quot;</code>）。</li>
+<li><strong>ACCOUNT_TYPE</strong>：科目類型（如 <code>&quot;收益&quot;</code>）。</li>
+</ul>
+<h4 id="輸出結果-1"><a href="#輸出結果-1" class="headerlink" title="輸出結果"></a>輸出結果</h4><ul>
+<li><strong>RESULT_CODE</strong>：操作狀態碼，例如 <code>&quot;S0000001&quot;</code> 代表成功。</li>
+<li><strong>RESULT_MESSAGE</strong>：操作結果的描述，例如 <code>&quot;修改成功&quot;</code>。</li>
+</ul>
+<h4 id="範例結果-2"><a href="#範例結果-2" class="headerlink" title="範例結果"></a>範例結果</h4><pre><code class="json">{
+    &quot;RESULT_CODE&quot;: &quot;S0000001&quot;,
+    &quot;RESULT_MESSAGE&quot;: &quot;修改成功&quot;
+}
+</code></pre>
+<hr>
+<h3 id="4-刪除科目（DeleteAccount）"><a href="#4-刪除科目（DeleteAccount）" class="headerlink" title="4. 刪除科目（DeleteAccount）"></a>4. <strong>刪除科目（DeleteAccount）</strong></h3><ul>
+<li><strong>授權</strong>：需要 <code>[Authorize]</code> 屬性，必須經過身份驗證的用戶才能調用。</li>
+</ul>
+<h4 id="目的-3"><a href="#目的-3" class="headerlink" title="目的"></a>目的</h4><ul>
+<li>刪除指定的會計科目。</li>
+</ul>
+<h4 id="假設情境-3"><a href="#假設情境-3" class="headerlink" title="假設情境"></a>假設情境</h4><p>會計人員需要刪除一個不再使用的科目。點擊「刪除」按鈕，前端會調用 <code>DeleteAccount</code> API。</p>
+<h4 id="運作流程-3"><a href="#運作流程-3" class="headerlink" title="運作流程"></a>運作流程</h4><ol>
+<li>前端發送 <code>DELETE</code> 請求到 <code>DeleteAccount</code> API，包含要刪除的科目編號：<pre><code class="json">{
+    &quot;ACCOUNT_NO&quot;: &quot;3001&quot;
+}
+</code></pre>
+</li>
+<li>API 調用服務層方法，根據科目編號進行刪除操作。</li>
+<li>返回操作結果。</li>
+</ol>
+<h4 id="輸入參數（InputList-Account-InputVo）-2"><a href="#輸入參數（InputList-Account-InputVo）-2" class="headerlink" title="輸入參數（InputList: Account_InputVo）"></a>輸入參數（InputList: <code>Account_InputVo</code>）</h4><ul>
+<li><strong>ACCOUNT_NO</strong>：科目編號（如 <code>&quot;3001&quot;</code>）。</li>
+</ul>
+<h4 id="輸出結果-2"><a href="#輸出結果-2" class="headerlink" title="輸出結果"></a>輸出結果</h4><ul>
+<li><strong>RESULT_CODE</strong>：操作狀態碼，例如 <code>&quot;S0000001&quot;</code> 代表成功。</li>
+<li><strong>RESULT_MESSAGE</strong>：操作結果的描述，例如 <code>&quot;刪除成功&quot;</code>。</li>
+</ul>
+<h4 id="範例結果-3"><a href="#範例結果-3" class="headerlink" title="範例結果"></a>範例結果</h4><pre><code class="json">{
+    &quot;RESULT_CODE&quot;: &quot;S0000001&quot;,
+    &quot;RESULT_MESSAGE&quot;: &quot;刪除成功&quot;
+}
+</code></pre>
+<hr>
+<p>這是 <code>SETM003Controller API</code> 文件的系統說明，包含了查詢、新增、修改和刪除會計科目的功能，並詳細描述了每個 API 方法的運作流程、假設情境、輸入參數與輸出結果。</p>
