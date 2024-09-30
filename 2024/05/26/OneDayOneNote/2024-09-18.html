@@ -1,0 +1,65 @@
+<hr>
+<h2 id="title-Vue-v-if-和-v-fordate-2024-10-01-01-35-20categories-OneDayOneNotetags-Javascript-Vue-description-Vue-v-if-和-v-for"><a href="#title-Vue-v-if-和-v-fordate-2024-10-01-01-35-20categories-OneDayOneNotetags-Javascript-Vue-description-Vue-v-if-和-v-for" class="headerlink" title="title: Vue v-if 和 v-fordate: 2024-10-01 01:35:20categories: OneDayOneNotetags:  [Javascript,Vue]description: Vue v-if 和 v-for"></a>title: Vue v-if 和 v-for<br>date: 2024-10-01 01:35:20<br>categories: OneDayOneNote<br>tags:  [Javascript,Vue]<br>description: Vue v-if 和 v-for</h2><h2 id="Vue-v-if-和-v-for"><a href="#Vue-v-if-和-v-for" class="headerlink" title="Vue v-if 和 v-for"></a>Vue v-if 和 v-for</h2><h1 id="条件渲染"><a href="#条件渲染" class="headerlink" title="条件渲染"></a>条件渲染</h1><script setup>
+import { ref } from 'vue'
+const awesome = ref(true)
+</script>
+
+<h2 id="v-if"><a href="#v-if" class="headerlink" title="v-if"></a><code>v-if</code></h2><p><code>v-if</code> 指令用于条件性地渲染一块内容。这块内容只会在指令的表达式返回真值时才被渲染。</p>
+<pre><code class="vue-html">&lt;h1 v-if=&quot;awesome&quot;&gt;Vue is awesome!&lt;/h1&gt;
+</code></pre>
+<h2 id="v-else"><a href="#v-else" class="headerlink" title="v-else"></a><code>v-else</code></h2><p>你也可以使用 <code>v-else</code> 为 <code>v-if</code> 添加一个“else 区块”。</p>
+<pre><code class="vue-html">&lt;button @click=&quot;awesome = !awesome&quot;&gt;Toggle&lt;/button&gt;
+
+&lt;h1 v-if=&quot;awesome&quot;&gt;Vue is awesome!&lt;/h1&gt;
+&lt;h1 v-else&gt;Oh no 😢&lt;/h1&gt;
+</code></pre>
+<div class="demo">
+  <button @click="awesome = !awesome">Toggle</button>
+  <h1 v-if="awesome">Vue is awesome!</h1>
+  <h1 v-else>Oh no 😢</h1>
+</div>
+
+<div class="composition-api">
+
+<p><a href="https://play.vuejs.org/#eNpFjkEOgjAQRa8ydIMulLA1hegJ3LnqBskAjdA27RQXhHu4M/GEHsEiKLv5mfdf/sBOxux7j+zAuCutNAQOyZtcKNkZbQkGsFjBCJXVHcQBjYUSqtTKERR3dLpDyCZmQ9bjViiezKKgCIGwM21BGBIAv3oireBYtrK8ZYKtgmg5BctJ13WLPJnhr0YQb1Lod7JaS4G8eATpfjMinjTphC8wtg7zcwNKw/v5eC1fnvwnsfEDwaha7w==">在演练场中尝试一下</a></p>
+</div>
+<div class="options-api">
+
+<p><a href="https://play.vuejs.org/#eNpFjj0OwjAMha9iMsEAFWuVVnACNqYsoXV/RJpEqVOQqt6DDYkTcgRSWoplWX7y56fXs6O1u84jixlvM1dbSoXGuzWOIMdCekXQCw2QS5LrzbQLckje6VEJglDyhq1pMAZyHidkGG9hhObRYh0EYWOVJAwKgF88kdFwyFSdXRPBZidIYDWvgqVkylIhjyb4ayOIV3votnXxfwrk2SPU7S/PikfVfsRnGFWL6akCbeD9fLzmK4+WSGz4AA5dYQY=">在演练场中尝试一下</a></p>
+</div>
+
+<p>一个 <code>v-else</code> 元素必须跟在一个 <code>v-if</code> 或者 <code>v-else-if</code> 元素后面，否则它将不会被识别。</p>
+<h2 id="v-else-if"><a href="#v-else-if" class="headerlink" title="v-else-if"></a><code>v-else-if</code></h2><p>顾名思义，<code>v-else-if</code> 提供的是相应于 <code>v-if</code> 的“else if 区块”。它可以连续多次重复使用：</p>
+<pre><code class="vue-html">&lt;div v-if=&quot;type === &#39;A&#39;&quot;&gt;
+  A
+&lt;/div&gt;
+&lt;div v-else-if=&quot;type === &#39;B&#39;&quot;&gt;
+  B
+&lt;/div&gt;
+&lt;div v-else-if=&quot;type === &#39;C&#39;&quot;&gt;
+  C
+&lt;/div&gt;
+&lt;div v-else&gt;
+  Not A/B/C
+&lt;/div&gt;
+</code></pre>
+<p>和 <code>v-else</code> 类似，一个使用 <code>v-else-if</code> 的元素必须紧跟在一个 <code>v-if</code> 或一个 <code>v-else-if</code> 元素后面。</p>
+<h2 id="上的-v-if"><a href="#上的-v-if" class="headerlink" title="&lt;template&gt; 上的 v-if"></a><code>&lt;template&gt;</code> 上的 <code>v-if</code></h2><p>因为 <code>v-if</code> 是一个指令，他必须依附于某个元素。但如果我们想要切换不止一个元素呢？在这种情况下我们可以在一个 <code>&lt;template&gt;</code> 元素上使用 <code>v-if</code>，这只是一个不可见的包装器元素，最后渲染的结果并不会包含这个 <code>&lt;template&gt;</code> 元素。</p>
+<pre><code class="vue-html">&lt;template v-if=&quot;ok&quot;&gt;
+  &lt;h1&gt;Title&lt;/h1&gt;
+  &lt;p&gt;Paragraph 1&lt;/p&gt;
+  &lt;p&gt;Paragraph 2&lt;/p&gt;
+&lt;/template&gt;
+</code></pre>
+<p><code>v-else</code> 和 <code>v-else-if</code> 也可以在 <code>&lt;template&gt;</code> 上使用。</p>
+<h2 id="v-show"><a href="#v-show" class="headerlink" title="v-show"></a><code>v-show</code></h2><p>另一个可以用来按条件显示一个元素的指令是 <code>v-show</code>。其用法基本一样：</p>
+<pre><code class="vue-html">&lt;h1 v-show=&quot;ok&quot;&gt;Hello!&lt;/h1&gt;
+</code></pre>
+<p>不同之处在于 <code>v-show</code> 会在 DOM 渲染中保留该元素；<code>v-show</code> 仅切换了该元素上名为 <code>display</code> 的 CSS 属性。</p>
+<p><code>v-show</code> 不支持在 <code>&lt;template&gt;</code> 元素上使用，也不能和 <code>v-else</code> 搭配使用。</p>
+<h2 id="v-if-vs-v-show"><a href="#v-if-vs-v-show" class="headerlink" title="v-if vs. v-show"></a><code>v-if</code> vs. <code>v-show</code></h2><p><code>v-if</code> 是“真实的”按条件渲染，因为它确保了在切换时，条件区块内的事件监听器和子组件都会被销毁与重建。</p>
+<p><code>v-if</code> 也是<strong>惰性</strong>的：如果在初次渲染时条件值为 false，则不会做任何事。条件区块只有当条件首次变为 true 时才被渲染。</p>
+<p>相比之下，<code>v-show</code> 简单许多，元素无论初始条件如何，始终会被渲染，只有 CSS <code>display</code> 属性会被切换。</p>
+<p>总的来说，<code>v-if</code> 有更高的切换开销，而 <code>v-show</code> 有更高的初始渲染开销。因此，如果需要频繁切换，则使用 <code>v-show</code> 较好；如果在运行时绑定条件很少改变，则 <code>v-if</code> 会更合适。</p>
+<h2 id="v-if-和-v-for"><a href="#v-if-和-v-for" class="headerlink" title="v-if 和 v-for"></a><code>v-if</code> 和 <code>v-for</code></h2><p>::: warning 警告<br>同时使用 <code>v-if</code> 和 <code>v-for</code> 是<strong>不推荐的</strong>，因为这样二者的优先级不明显。请查看<a href="/style-guide/rules-essential#avoid-v-if-with-v-for">风格指南</a>获得更多信息。<br>:::</p>
+<p>当 <code>v-if</code> 和 <code>v-for</code> 同时存在于一个元素上的时候，<code>v-if</code> 会首先被执行。请查看<a href="list#v-for-with-v-if">列表渲染指南</a>获取更多细节。</p>
