@@ -1,0 +1,98 @@
+<hr>
+<h2 id="title-課後作業-JavaScript-系列七：第1課-──-認識-Vue-基本環境與-render-statedate-2024-10-02-07-06-23ategories-OneDayOneNotetags-Javascript-Vue-description-課後作業-JavaScript-系列七：第1課-──-認識-Vue-基本環境與-render-state"><a href="#title-課後作業-JavaScript-系列七：第1課-──-認識-Vue-基本環境與-render-statedate-2024-10-02-07-06-23ategories-OneDayOneNotetags-Javascript-Vue-description-課後作業-JavaScript-系列七：第1課-──-認識-Vue-基本環境與-render-state" class="headerlink" title="title: 課後作業-JavaScript 系列七：第1課 ── 認識 Vue 基本環境與 render statedate: 2024-10-02 07:06:23ategories: OneDayOneNotetags:  [Javascript,Vue]description: 課後作業-JavaScript 系列七：第1課 ── 認識 Vue 基本環境與 render state"></a>title: 課後作業-JavaScript 系列七：第1課 ── 認識 Vue 基本環境與 render state<br>date: 2024-10-02 07:06:23<br>ategories: OneDayOneNote<br>tags:  [Javascript,Vue]<br>description: 課後作業-JavaScript 系列七：第1課 ── 認識 Vue 基本環境與 render state</h2><h2 id="課後作業-JavaScript-系列七：第1課-──-認識-Vue-基本環境與-render-state"><a href="#課後作業-JavaScript-系列七：第1課-──-認識-Vue-基本環境與-render-state" class="headerlink" title="課後作業-JavaScript 系列七：第1課 ── 認識 Vue 基本環境與 render state"></a>課後作業-JavaScript 系列七：第1課 ── 認識 Vue 基本環境與 render state</h2><p><img src="/apple.lily/2024/10/02/OneDayOneNote/2024-09-22/01_js_vue_render.png"></p>
+<h3 id="01-js-vue-render-html"><a href="#01-js-vue-render-html" class="headerlink" title="01_js_vue_render.html"></a>01_js_vue_render.html</h3><pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;JavaScript 系列七：第1課 ── 認識 Vue 基本環境與 render state&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;./01_js_vue_render.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;script src=&quot;https://unpkg.com/vue@3/dist/vue.global.js&quot;&gt;&lt;/script&gt;
+    &lt;div id=&quot;app&quot;&gt;
+        &lt;div class=&quot;wrap&quot;&gt;
+            &lt;div class=&quot;note&quot;&gt;
+                &lt;h3 class=&quot;title&quot;&gt;
+                  &lt;!-- 請顯示第一個項目的標題 --&gt;
+                  {{notes[0].title}}
+                &lt;/h3&gt;
+                &lt;p class=&quot;content&quot;&gt;
+                  &lt;!-- 請顯示第一個項目的內容 --&gt;
+                  {{notes[0].content}}
+                &lt;/p&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;note&quot;&gt;
+                &lt;h3 class=&quot;title&quot;&gt;
+                  &lt;!-- 請顯示第二個項目的標題 --&gt;
+                  {{notes[1].title}}
+                &lt;/h3&gt;
+                &lt;p class=&quot;content&quot;&gt;
+                  &lt;!-- 請顯示第二個項目的內容 --&gt;
+                  {{notes[1].content}}
+                &lt;/p&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;note&quot;&gt;
+                &lt;h3 class=&quot;title&quot;&gt;
+                  &lt;!-- 請顯示第三個項目的標題 --&gt;
+                  {{notes[2].title}}
+                &lt;/h3&gt;
+                &lt;p class=&quot;content&quot;&gt;
+                  &lt;!-- 請顯示第三個項目的內容 --&gt;
+                  {{notes[2].content}}
+                &lt;/p&gt;
+              &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;script src=&quot;./01_js_vue_render.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="01-js-vue-render-js"><a href="#01-js-vue-render-js" class="headerlink" title="01_js_vue_render.js"></a>01_js_vue_render.js</h3><pre><code class="js">const { createApp } = Vue
+
+  createApp({
+    data() {
+        return {
+          notes: [
+            {
+              title: &quot;春節行程安排&quot;,
+              content: &quot;吃飽睡，睡飽吃&quot;,
+              color: &quot;red&quot;,
+            },
+            {
+              title: &quot;工作待辦事項&quot;,
+              content: &quot;詢問各家廠商報價&quot;,
+              color: &quot;green&quot;,
+            },
+            {
+              title: &quot;運動健身計畫&quot;,
+              content: &quot;每天早上六點去健身&quot;,
+              color: &quot;blue&quot;,
+            },
+          ]
+        }
+      }
+  }).mount(&#39;#app&#39;)
+</code></pre>
+<h3 id="01-js-vue-render-css"><a href="#01-js-vue-render-css" class="headerlink" title="01_js_vue_render.css"></a>01_js_vue_render.css</h3><pre><code class="css">*{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+.wrap{
+    display: flex;
+    align-content: center;
+
+}
+.note{
+    width: 240px;
+    height: 100px;
+    border: 1px  solid #ccc;
+    border-radius: 5px;
+    margin:10px ;
+    padding: 15px
+}
+</code></pre>
