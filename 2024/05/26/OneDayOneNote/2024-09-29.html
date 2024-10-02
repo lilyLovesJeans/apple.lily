@@ -1,0 +1,419 @@
+<hr>
+<h2 id="title-課後作業-JavaScript-系列六：第7課-──-資料序列化date-2024-10-02-10-02-36categories-OneDayOneNotetags-Javascript-Vue-description-課後作業-JavaScript-系列六：第7課-──-資料序列化"><a href="#title-課後作業-JavaScript-系列六：第7課-──-資料序列化date-2024-10-02-10-02-36categories-OneDayOneNotetags-Javascript-Vue-description-課後作業-JavaScript-系列六：第7課-──-資料序列化" class="headerlink" title="title: 課後作業-JavaScript 系列六：第7課 ── 資料序列化date: 2024-10-02 10:02:36categories: OneDayOneNotetags:  [Javascript,Vue]description: 課後作業-JavaScript 系列六：第7課 ── 資料序列化"></a>title: 課後作業-JavaScript 系列六：第7課 ── 資料序列化<br>date: 2024-10-02 10:02:36<br>categories: OneDayOneNote<br>tags:  [Javascript,Vue]<br>description: 課後作業-JavaScript 系列六：第7課 ── 資料序列化</h2><h2 id="課後作業-JavaScript-系列六：第7課-──-資料序列化"><a href="#課後作業-JavaScript-系列六：第7課-──-資料序列化" class="headerlink" title="課後作業-JavaScript 系列六：第7課 ── 資料序列化"></a>課後作業-JavaScript 系列六：第7課 ── 資料序列化</h2><p><img src="/apple.lily/2024/10/02/OneDayOneNote/2024-09-29/07_js_localstorage.png"></p>
+<h3 id="07-js-localstorage-html"><a href="#07-js-localstorage-html" class="headerlink" title="07_js_localstorage.html"></a>07_js_localstorage.html</h3><pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;JavaScript 系列六：第6課 ── 認識 data model 的優點&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;./07_js_localstorage.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;input type=&quot;text&quot;&gt;
+    &lt;button id=&quot;add_btn&quot; onclick=&quot;add()&quot;&gt;新增事項&lt;/button&gt;
+    &lt;button id=&quot;export_btn&quot; onclick=&quot;export_todos()&quot;&gt;匯出&lt;/button&gt;
+    &lt;button id=&quot;save_btn&quot; onclick=&quot;save_todos()&quot;&gt;儲存&lt;/button&gt;
+    &lt;div id=&quot;root&quot;&gt;
+    &lt;/div&gt;
+    &lt;!--***** 切版start *****--&gt;
+    &lt;!-- &lt;div class=&quot;wrap&quot;&gt;
+        &lt;h2&gt;To Do List&lt;/h2&gt;
+        &lt;hr&gt;
+        &lt;div class=&quot;todo_input&quot;&gt;
+            &lt;input type=&quot;text&quot; placeholder=&quot;新增待辦事項&quot;&gt;
+            &lt;button id=&quot;add_btn&quot; onclick=&quot;add()&quot;&gt;新增事項&lt;/button&gt;
+            &lt;button id=&quot;export_btn&quot; onclick=&quot;export()&quot;&gt;匯出&lt;/button&gt;
+            &lt;button id=&quot;save_btn&quot; onclick=&quot;save_todos()&quot;&gt;儲存&lt;/button&gt;
+            &lt;select&gt;
+                &lt;option value=&quot;normal&quot;&gt;一般&lt;/option&gt;
+                &lt;option value=&quot;important&quot;&gt;重要&lt;/option&gt;
+                &lt;option value=&quot;urgent&quot;&gt;緊急&lt;/option&gt;
+            &lt;/select&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;todos_container&quot;&gt;
+            &lt;ul class=&quot;todoList&quot;&gt;
+                &lt;li&gt;
+                     &lt;span&gt;&lt;/span&gt;   &lt;span&gt;&lt;/span&gt;
+                    &lt;button class=&quot;btn_li btn_on||btn_off&quot;&gt;標示為已完成&lt;/button&gt;
+                    &lt;button class=&quot;btn_li delBtn&quot;&gt;刪除&lt;/button&gt;
+                &lt;/li&gt;
+                
+            &lt;/ul&gt;
+        &lt;/div&gt;
+
+    &lt;/div&gt; --&gt;
+    &lt;!--***** 切版end *****--&gt;
+   
+    &lt;script src=&quot;./07_js_localstorage.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="07-js-localstorage-js"><a href="#07-js-localstorage-js" class="headerlink" title="07_js_localstorage.js"></a>07_js_localstorage.js</h3><pre><code class="js">// todo 長這樣
+// var todos = [
+//     {
+//       title: &quot;倒垃圾&quot;,
+//       category: &quot;normal&quot;,
+//       isCompleted: false
+//     },
+//     {
+//       title: &quot;繳電話費&quot;,
+//       category: &quot;important&quot;,
+//       isCompleted: false
+//     },
+//     {
+//       title: &quot;採買本週食材&quot;,
+//       category: &quot;urgent&quot;,
+//       isCompleted: false
+//     },
+//   ];
+
+
+var todos = [];
+
+function render_wrap(){
+    const body = document.querySelector(&#39;body&#39;);
+    const wrap = document.createElement(&#39;div&#39;);
+    wrap.className=&#39;wrap&#39;;
+    const h2 = document.createElement(&#39;h2&#39;);
+    h2.textContent=&quot;To Do List&quot;;
+    const hr = document.createElement(&#39;hr&#39;);
+
+
+    // 取得現有的 input 和 button 元素
+    const input_todo = document.querySelector(&#39;input&#39;);
+    const add_btn = document.querySelector(&#39;#add_btn&#39;);
+    const export_btn = document.querySelector(&#39;#export_btn&#39;);
+    const save_btn = document.querySelector(&#39;#save_btn&#39;);
+    // 新增事件急迫性
+    const select = document.createElement(&#39;select&#39;);
+    const option_normal = document.createElement(&#39;option&#39;);
+    option_normal.value = &#39;normal&#39;;
+    option_normal.textContent = &#39;一般&#39;;
+    option_normal.selected = true;
+    
+    const option_important = document.
+    createElement(&#39;option&#39;);
+    option_important.value = &#39;important&#39;;
+    option_important.textContent = &#39;重要&#39;;
+
+    const option_urgent = document.createElement(&#39;option&#39;);
+    option_urgent.value = &#39;urgent&#39;;
+    option_urgent.textContent = &#39;緊急&#39;;
+
+
+    // 取得現有的 root 容器
+    const root = document.querySelector(&#39;#root&#39;);
+
+    select.append(option_normal);
+    select.append(option_important);
+    select.append(option_urgent);
+    wrap.append(h2);
+    wrap.append(hr);
+    wrap.append(input_todo);
+    wrap.append(select);
+    wrap.append(add_btn);
+    wrap.append(export_btn);
+    wrap.append(save_btn);
+    wrap.append(root);
+
+    // 把 wrap 放到 body 裡面
+    body.append(wrap);
+
+
+    // 監聽 select 的變化
+    select.addEventListener(&#39;change&#39;, function () {
+        const selectedValue = select.value;
+        select.className = &#39;&#39;; // 先重置 class
+        if (selectedValue === &#39;important&#39;) {
+            select.className += &#39; important&#39;;
+        } else if (selectedValue === &#39;urgent&#39;) {
+            select.className += &#39; urgent&#39;;
+        }
+    });
+
+
+    // 監聽 input 元素的鍵盤事件
+    input_todo.addEventListener(&#39;keydown&#39;, function(event) {
+        // 檢查是否按下 Enter 鍵 (keyCode 13)
+        if (event.key === &#39;Enter&#39;) {
+            add(); // 執行 add 函式
+        }
+    });
+}
+
+
+function add()
+{
+  // 請寫出此函式內容（更新 todos 陣列）
+    const input_todo = document.querySelector(&#39;input&#39;);
+    const select_category = document.querySelector(&#39;select&#39;);
+
+    let todo = input_todo.value.trim();  // 取得待辦事項的名稱
+    let category = select_category.value;  // 取得選擇的分類
+    let isCompleted = false;     //default值 未完成
+
+    if(todo !== &#39;&#39;){
+        // 將待辦事項以物件的形式加入 todos 陣列
+        todos.push({
+            title: todo,
+            category: category,
+            isCompleted: isCompleted
+        });
+        console.log(todos);
+        render();
+    }else {
+        input_todo.focus();
+        input_todo.placeholder = &quot;新增待辦事項&quot;;
+    }
+    input_todo.value = &#39;&#39;;
+}
+
+function render(){
+    console.log(&#39;render....&#39;);
+    const root = document.querySelector(&#39;#root&#39;);
+    root.textContent=&#39;&#39;;
+    const div_container = document.createElement(&#39;div&#39;);
+    div_container.className = &#39;todos_container&#39;;
+    const ul = document.createElement(&#39;ul&#39;);
+    ul.className = &#39;todoList&#39;;
+
+    todos.forEach(function(item, index){
+        const li = document.createElement(&#39;li&#39;);
+        const span = document.createElement(&#39;span&#39;);
+        const toggleBtn = document.createElement(&#39;button&#39;);
+        toggleBtn.className =  item.isCompleted ? &#39;btn_li btn_on&#39; : &#39;btn_li btn_off&#39;;
+        toggleBtn.textContent =  item.isCompleted ? &#39;改為待完成&#39; : &#39;標示已完成&#39;;
+        const delBtn = document.createElement(&#39;button&#39;);
+        delBtn.className = &quot;btn_li delBtn&quot;;
+        delBtn.textContent = &#39;刪除&#39;;
+
+        // 切換完成狀態
+        toggleBtn.onclick = () =&gt; {
+            item.isCompleted = !item.isCompleted;  // 切換完成狀態
+            render(); // 重新渲染
+        }
+
+
+        // 設定刪除按鈕的點擊事件，刪除對應的項目
+        delBtn.onclick = () =&gt; {
+            todos = todos.filter((_, i) =&gt; i !== index); // 移除該項
+            render(); // 重新渲染
+        };
+
+        // 設定待辦事項的標題和分類
+        span.textContent = item.title;
+
+        // 如果已完成，標註「(已完成)」
+        if (item.isCompleted) {
+            const completedText = document.createElement(&#39;span&#39;);
+            completedText.textContent = &#39; (已完成)&#39;;
+            span.appendChild(completedText);
+        }
+
+        // 根據 category 設定 class 以改變樣式
+        li.className = item.category;
+
+        li.append(span);
+        li.append(toggleBtn);
+        li.append(delBtn);
+        ul.append(li);
+    });
+
+    div_container.append(ul);
+    root.append(div_container);
+};
+
+function export_todos() {
+    let export_msg = &#39;&#39;;
+    
+    todos.forEach(function(item, index) {
+        // 計算序號，從 1 開始
+        const number = index + 1;
+        
+        // 根據 category 添加不同的格式
+        let formattedTitle = item.title;
+        if (item.category === &#39;important&#39;) {
+            formattedTitle = `*${item.title}*`; // 用 * 包裹
+        } else if (item.category === &#39;urgent&#39;) {
+            formattedTitle = `**${item.title}**`; // 用 ** 包裹
+        }
+        
+        
+        // 根據 isCompleted 添加狀態描述
+        const status = item.isCompleted ? &#39;(已完成)&#39; : &#39;&#39;;
+        
+        // 添加序號、格式化後的待辦事項、狀態描述，每行之間加上換行符
+        export_msg += `${number}. ${formattedTitle} ${status}\n`;
+    });
+    
+    // 使用 alert 顯示匯出內容
+    alert(export_msg.trim()); // 使用 trim() 去除結尾的多餘空格
+}
+
+// 儲存 todos 到 localStorage
+function save_todos() {
+    console.log(&#39;Saving todos...&#39;);
+    // 將 todos 陣列轉換成 JSON 字串
+    localStorage.setItem(&#39;todos&#39;, JSON.stringify(todos));
+    alert(&#39;儲存成功!&#39;);
+}
+
+// 從 localStorage 載入 todos
+function load_todos() {
+    const savedTodos = localStorage.getItem(&#39;todos&#39;);
+    if (savedTodos) {
+        // 解析 JSON 字串並更新 todos 陣列
+        todos = JSON.parse(savedTodos);
+        render(); // 重新渲染待辦事項
+    }
+}
+window.onload=()=&gt;{
+    render_wrap();
+    load_todos(); 
+};
+</code></pre>
+<h3 id="07-js-localstorage-css"><a href="#07-js-localstorage-css" class="headerlink" title="07_js_localstorage.css"></a>07_js_localstorage.css</h3><pre><code class="css">@import url(&#39;https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&amp;family=Playwrite+CU:wght@100..400&amp;display=swap&#39;);
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.wrap{
+    margin: 30px auto;
+    width: 800px;
+    min-height: 600px;
+    background-color: #a9c5d5;
+    border-radius: 10px;
+}
+h2{
+    padding-top: 20px;
+    padding-left: 30px;
+    font-family: &quot;Kalam&quot;, cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 35px;
+    color:#e8626b;
+}
+
+
+input{
+    width: 400px;
+    margin: 20px 0 20px 30px;
+    padding-left: 5px;
+    font-size: 20px;
+    line-height: 2;
+    border: 1px solid #889fad;
+    color:#000;
+    background-color: #fff;
+
+}
+input:hover, input:focus {
+    outline: none;
+    background-color: #eaeaa9;
+}
+select{
+    width: 100px;
+    height: 40px;
+    font-size: 20px;
+    line-height: 2;
+    margin-right: 20px;
+    text-align: center;
+}
+.important{
+    color: #ed7023;
+}
+.urgent{
+    color: #cf372c;
+}
+
+#add_btn , #export_btn ,#save_btn{
+    margin-left: 5px;
+    border: none;
+    font-size: 18px;
+    border-radius: 5px;
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+}
+#add_btn:hover, #save_btn:hover{
+    cursor: pointer;
+    background-color: #17507b;
+}
+#export_btn:hover{
+    cursor: pointer;
+    background-color: #b91919;
+}
+ul{
+    list-style-type: square;
+    min-height: 400px;
+    margin:  0 30px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #8ca8ba;
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3);
+
+}
+li {
+    display: flex;
+    justify-content: space-between; /* 元素之間平均分布 */
+    align-items: center; /* 垂直置中對齊 */
+    margin: 10px 20px;
+    border-bottom: 1px dotted #28292b;
+    font-size: 18px;
+    color: #000;
+}
+
+span {
+    display: block;
+    word-wrap: break-word; 
+    width: 70%; 
+    margin-right: 10px; 
+
+}
+
+.btn_li {
+    flex-shrink: 0;
+    width: 30%;
+    margin-left: 10px; /* 按鈕之間的間距 */
+}
+
+
+.btn_on{
+    color:#f00;
+    background-color: inherit;
+}
+.btn_off{
+    color: #fff;
+    background-color: #17507b;
+    
+}
+.btn_on , .btn_off{
+    width:80px;
+    height: 50px;
+    border: none;
+
+    /* font-size: 15px; */
+    border-radius: 3px;
+    padding: 5px;
+}
+.btn_on:hover , .btn_off:hover{
+    cursor: pointer;
+}
+
+.delBtn{
+    width:80px;
+    height: 50px;
+    border: none;
+    font-size: 15px;
+    border-radius: 3px;
+    background-color: #040404;
+    color: #fff;
+    padding: 10px;
+}
+
+.delBtn:hover{
+    cursor: pointer;
+    background-color: #b91919;
+}
+</code></pre>
+<p>作業取自： <a href="https://codelove.tw/@howtomakeaturn/post/NxN6yx">https://codelove.tw/@howtomakeaturn/post/NxN6yx</a><br>by 站長阿川 </p>

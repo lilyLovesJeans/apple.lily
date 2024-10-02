@@ -1,0 +1,178 @@
+<hr>
+<h2 id="title-課後作業-JavaScript-系列五：第1課-──-學會-Cookie-相關功能date-2024-10-02-10-09-38categories-OneDayOneNotetags-Javascript-Vue-description-課後作業-JavaScript-系列五：第1課-──-學會-Cookie-相關功能"><a href="#title-課後作業-JavaScript-系列五：第1課-──-學會-Cookie-相關功能date-2024-10-02-10-09-38categories-OneDayOneNotetags-Javascript-Vue-description-課後作業-JavaScript-系列五：第1課-──-學會-Cookie-相關功能" class="headerlink" title="title: 課後作業-JavaScript 系列五：第1課 ── 學會 Cookie 相關功能date: 2024-10-02 10:09:38categories: OneDayOneNotetags:  [Javascript,Vue]description: 課後作業-JavaScript 系列五：第1課 ── 學會 Cookie 相關功能"></a>title: 課後作業-JavaScript 系列五：第1課 ── 學會 Cookie 相關功能<br>date: 2024-10-02 10:09:38<br>categories: OneDayOneNote<br>tags:  [Javascript,Vue]<br>description: 課後作業-JavaScript 系列五：第1課 ── 學會 Cookie 相關功能</h2><h2 id="課後作業-JavaScript-系列五：第1課-──-學會-Cookie-相關功能"><a href="#課後作業-JavaScript-系列五：第1課-──-學會-Cookie-相關功能" class="headerlink" title="課後作業-JavaScript 系列五：第1課 ── 學會 Cookie 相關功能"></a>課後作業-JavaScript 系列五：第1課 ── 學會 Cookie 相關功能</h2><p><img src="/apple.lily/2024/10/02/OneDayOneNote/2024-09-30/01_js_cookie.png"></p>
+<h3 id="01-js-cookie-html"><a href="#01-js-cookie-html" class="headerlink" title="01_js_cookie.html"></a>01_js_cookie.html</h3><pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;JavaScript 系列五：第1課 ── 學會 Cookie 相關功能&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;./01_js_cookie.css&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;div class=&quot;container&quot;&gt;
+        &lt;div class=&quot;img_bkg&quot;&gt;
+            &lt;img src=&quot;https://images.unsplash.com/photo-1541260894924-7ff059b93d54?w=500&amp;auto=format&amp;fit=crop&amp;q=60&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTAwfHxoYXNvbWUlMjBtYW58ZW58MHx8MHx8fDA%3D&quot;
+                alt=&quot;帥哥圖&quot;&gt;
+
+        &lt;/div&gt;
+        &lt;div class=&quot;alert_wrap&quot;&gt;
+            &lt;div class=&quot;alert&quot;&gt;
+                &lt;p class=&quot;alert_txt&quot; tabindex=&quot;0&quot;&gt;
+                    警告︰您即將進入之網頁內容需滿十八歲方可瀏覽。
+
+                    根據「兒童及少年福利與權益保障法」規定，
+                    本網站已於非闔家皆宜之網頁加以標示。
+                    若您尚未年滿十八歲，請點選離開。
+                    若您已滿十八歲，亦不可將本站之內容派發、傳閱、出售、出租、
+                    交給或借予年齡未滿18歲的人士瀏覽，
+                    或將本網站內容向該人士出示、播放或放映。
+
+                    您年滿十八歲嗎？
+
+                &lt;/p&gt;
+                &lt;div class=&quot;btn_group&quot;&gt;
+                    &lt;button class=&quot;exit_btn&quot; onclick=&quot;goto_url()&quot;&gt;[離開]&lt;/button&gt;
+                    &lt;button class=&quot;yes_btn&quot; onclick=&quot;set_cookie()&quot;&gt;[是，我已年滿十八歲]&lt;/button&gt;
+                &lt;/div&gt;
+
+            &lt;/div&gt;
+
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://code.jquery.com/jquery-3.7.1.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;./01_js_cookie.js&quot;&gt; &lt;/script&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+</code></pre>
+<h3 id="01-js-cookie-js"><a href="#01-js-cookie-js" class="headerlink" title="01_js_cookie.js"></a>01_js_cookie.js</h3><pre><code class="js">function set_cookie() {
+  Cookies.set(&#39;yes_18&#39;, &#39;yes&#39;);
+  $(&#39;.alert&#39;).css(&#39;display&#39;, &#39;none&#39;);
+  $(&#39;.img_bkg img&#39;).css(&#39;display&#39;, &#39;block&#39;);
+}
+
+function goto_url() {
+  window.location.href = &#39;https://www.google.com&#39;;
+}
+
+
+if (Cookies.get(&#39;yes_18&#39;) === &#39;yes&#39;) {
+  $(&#39;.alert&#39;).css(&#39;display&#39;, &#39;none&#39;);
+  $(&#39;.img_bkg img&#39;).css(&#39;display&#39;, &#39;block&#39;);
+} else {
+  $(&#39;.alert&#39;).css(&#39;display&#39;, &#39;block&#39;);
+}
+</code></pre>
+<h3 id="01-js-cookie-css"><a href="#01-js-cookie-css" class="headerlink" title="01_js_cookie.css"></a>01_js_cookie.css</h3><pre><code class="css">*{
+  margin:0;
+  border:0;
+  list-style: none;
+}
+body {
+  background-image: url(&#39;https://i.imgur.com/B7wsgw4.jpeg&#39;);
+  background-size: cover; 
+  background-position: center; /* 圖片居中顯示 */
+  background-repeat: no-repeat; /* 不重複圖片 */
+}
+.container{
+
+  position: relative;
+  height: 100vh;
+  background-color: rgba(157, 17, 17, 0.09);
+}
+.img_bkg{
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.img_bkg img{
+  display: none;
+  max-width: 100%;
+  max-height: 100%;
+}
+.alert_wrap{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display:flex;
+  height: 100vh; 
+  justify-content: center;
+  align-items: center;
+
+}
+
+
+.alert {
+  display: none;
+  width: 600px;
+  height: 500px;
+  background-color: #202124; 
+  color: #cb3744;
+  padding: 30px;
+  border-radius: 8px;
+  border: 1px solid #2c2f33; 
+
+  /* 多層陰影增加立體感 */
+  box-shadow: 
+      0 2px 4px rgba(0, 0, 0, 0.1),  /* 輕微陰影，模糊較小 */
+      0 6px 12px rgba(0, 0, 0, 0.2), /* 中等陰影 */
+      0 12px 24px rgba(0, 0, 0, 0.3); /* 深層陰影，模糊較大 */
+
+  z-index: 3;
+}
+
+
+
+.alert_txt {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1.8rem; 
+
+  white-space: pre-wrap; /* 保留空白和換行符 */
+}
+.btn_group{
+  display:flex;
+  justify-content: center;
+  gap: 30px;
+}
+.btn_group button{
+  font-size: 20px ;
+  padding: 5px 10px;
+  cursor:pointer;
+  border-radius: 5px;
+  transition: transform 0.1s ease; 
+}
+.btn_group :active {
+  transform: scale(0.95); /* 當按鈕被按下時縮小 5% */
+
+}
+.exit_btn:hover{
+  color:#daeaf9;
+  background-color: #11579d;
+  border:1px solid #11579d;
+
+}
+
+.yes_btn:hover{
+  color: #d9f7d9ed;
+  background-color: #079a07;    
+  border:1px solid #079a07;
+
+}
+@media (min-width: 1200px) {
+  .alert_txt {
+      line-height: 2.2rem;
+  }
+}
+</code></pre>
+<p>作業取自： <a href="https://codelove.tw/@howtomakeaturn/post/pxdbma">https://codelove.tw/@howtomakeaturn/post/pxdbma</a><br>by 站長阿川 </p>

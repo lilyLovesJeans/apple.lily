@@ -1,0 +1,222 @@
+<hr>
+<h2 id="title-課後作業-JavaScript-系列五：第3課-──-變數作用域、箭頭函式、ES6-語法date-2024-10-02-10-19-29categories-OneDayOneNotetags-Javascript-Vue-description-課後作業-JavaScript-系列五：第3課-──-變數作用域、箭頭函式、ES6-語法"><a href="#title-課後作業-JavaScript-系列五：第3課-──-變數作用域、箭頭函式、ES6-語法date-2024-10-02-10-19-29categories-OneDayOneNotetags-Javascript-Vue-description-課後作業-JavaScript-系列五：第3課-──-變數作用域、箭頭函式、ES6-語法" class="headerlink" title="title: 課後作業-JavaScript 系列五：第3課 ── 變數作用域、箭頭函式、ES6 語法date: 2024-10-02 10:19:29categories: OneDayOneNotetags:  [Javascript,Vue]description: 課後作業-JavaScript 系列五：第3課 ── 變數作用域、箭頭函式、ES6 語法"></a>title: 課後作業-JavaScript 系列五：第3課 ── 變數作用域、箭頭函式、ES6 語法<br>date: 2024-10-02 10:19:29<br>categories: OneDayOneNote<br>tags:  [Javascript,Vue]<br>description: 課後作業-JavaScript 系列五：第3課 ── 變數作用域、箭頭函式、ES6 語法</h2><h2 id="課後作業-JavaScript-系列五：第3課-──-變數作用域、箭頭函式、ES6-語法"><a href="#課後作業-JavaScript-系列五：第3課-──-變數作用域、箭頭函式、ES6-語法" class="headerlink" title="課後作業-JavaScript 系列五：第3課 ── 變數作用域、箭頭函式、ES6 語法"></a>課後作業-JavaScript 系列五：第3課 ── 變數作用域、箭頭函式、ES6 語法</h2><p><img src="/apple.lily/2024/10/02/OneDayOneNote/2024-10-02/03-js_arrow-function.png"></p>
+<h3 id="03-js-arrow-function-html"><a href="#03-js-arrow-function-html" class="headerlink" title="03-js_arrow-function.html"></a>03-js_arrow-function.html</h3><pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;JavaScript 系列五：第3課 ── 變數作用域、箭頭函式、ES6 語法&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;./03-js_arrow-function.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&quot;header header_counter&quot;&gt;
+        simple counter:
+    &lt;/div&gt;
+    &lt;div class=&quot;counter-container&quot;&gt;
+
+        &lt;div class=&quot;flip-container&quot;&gt;
+            &lt;div class=&quot;flipper&quot;&gt;
+                &lt;div id=&quot;topDigit&quot; class=&quot;digit top&quot;&gt;0&lt;/div&gt;
+                &lt;div id=&quot;bottomDigit&quot; class=&quot;digit bottom&quot;&gt;1&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;button id=&quot;plus_btn&quot;&gt;+&lt;/button&gt;
+        &lt;button id=&quot;minus_btn&quot;&gt;-&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;hr&gt;
+    &lt;div class=&quot;header header_calculato&quot;&gt;
+        simple calculator:
+    &lt;/div&gt;
+    &lt;div class=&quot;calculator_container&quot;&gt;
+
+            &lt;input id=&quot;num_1&quot; type=&quot;text&quot; placeholder=&quot;輸入數字...&quot; /&gt;
+            &lt;input id=&quot;num_2&quot; type=&quot;text&quot; placeholder=&quot;輸入數字...&quot;/&gt;
+            &lt;button id = &quot;calculator_btn&quot; class=&quot;calculator_btn&quot;&gt;加/減/乘/除&lt;/button&gt;
+
+    &lt;/div&gt;
+    
+
+    &lt;script src=&quot;./03-js_arrow-function.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="03-js-arrow-function-js"><a href="#03-js-arrow-function-js" class="headerlink" title="03-js_arrow-function.js"></a>03-js_arrow-function.js</h3><pre><code class="js">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;JavaScript 系列五：第3課 ── 變數作用域、箭頭函式、ES6 語法&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;./03-js_arrow-function.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&quot;header header_counter&quot;&gt;
+        simple counter:
+    &lt;/div&gt;
+    &lt;div class=&quot;counter-container&quot;&gt;
+
+        &lt;div class=&quot;flip-container&quot;&gt;
+            &lt;div class=&quot;flipper&quot;&gt;
+                &lt;div id=&quot;topDigit&quot; class=&quot;digit top&quot;&gt;0&lt;/div&gt;
+                &lt;div id=&quot;bottomDigit&quot; class=&quot;digit bottom&quot;&gt;1&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;button id=&quot;plus_btn&quot;&gt;+&lt;/button&gt;
+        &lt;button id=&quot;minus_btn&quot;&gt;-&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;hr&gt;
+    &lt;div class=&quot;header header_calculato&quot;&gt;
+        simple calculator:
+    &lt;/div&gt;
+    &lt;div class=&quot;calculator_container&quot;&gt;
+
+            &lt;input id=&quot;num_1&quot; type=&quot;text&quot; placeholder=&quot;輸入數字...&quot; /&gt;
+            &lt;input id=&quot;num_2&quot; type=&quot;text&quot; placeholder=&quot;輸入數字...&quot;/&gt;
+            &lt;button id = &quot;calculator_btn&quot; class=&quot;calculator_btn&quot;&gt;加/減/乘/除&lt;/button&gt;
+
+    &lt;/div&gt;
+    
+
+    &lt;script src=&quot;./03-js_arrow-function.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="03-js-arrow-function-css"><a href="#03-js-arrow-function-css" class="headerlink" title="03-js_arrow-function.css"></a>03-js_arrow-function.css</h3><pre><code class="css">body {
+
+    background-color: #333;
+
+}
+.header{
+    font-size: 40px;
+}
+.counter-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40vh;
+    text-align: center;
+
+}
+
+.flip-container {
+    perspective: 1000px;
+    display: inline-block;
+    margin: 20px;
+    font-family: &#39;Courier New&#39;, Courier, monospace;
+}
+
+.flipper {
+    position: relative;
+    width: 180px;
+    height: 100px;
+    overflow: hidden;
+}
+
+.digit {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    font-size: 80px;
+    line-height: 100px;
+    text-align: center;
+    background-color: #222;
+    border-radius: 10px;
+    transition: transform 1s, opacity 1s;
+}
+
+.flipper.up .digit.top {
+    animation: flip-up 1s forwards;
+}
+
+.flipper.up .digit.bottom {
+    animation: fade-in-up 1s forwards;
+}
+
+.flipper.down .digit.top {
+    animation: flip-down 1s forwards;
+}
+
+.flipper.down .digit.bottom {
+    animation: fade-in-down 1s forwards;
+}
+
+@keyframes flip-up {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+}
+
+@keyframes fade-in-up {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes flip-down {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+}
+
+@keyframes fade-in-down {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+button {
+    font-size: 24px;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+
+.calculator_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40vh;
+    text-align: center;
+    font-size: 2rem;
+}
+
+
+input{
+    
+    max-width: 200px;
+    height: 50px;
+    font-size: inherit;
+    margin-right: 5px;
+    text-align: end;
+}
+
+.calculator_btn{
+    border-radius: 5px; 
+}
+
+.calculator_btn:hover{
+    background-color: antiquewhite;
+}
+</code></pre>
+<p>作業取自： <a href="https://codelove.tw/@howtomakeaturn/post/rqEkA3">https://codelove.tw/@howtomakeaturn/post/rqEkA3</a><br>by 站長阿川 </p>

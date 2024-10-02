@@ -1,0 +1,315 @@
+<hr>
+<h2 id="title-課後作業-JavaScript-系列五：第7課-──-學會-AJAX-與-data-attribute-的結合date-2024-10-02-11-00-01categories-OneDayOneNotetags-Javascript-Vue-description-課後作業-JavaScript-系列五：第7課-──-學會-AJAX-與-data-attribute-的結合"><a href="#title-課後作業-JavaScript-系列五：第7課-──-學會-AJAX-與-data-attribute-的結合date-2024-10-02-11-00-01categories-OneDayOneNotetags-Javascript-Vue-description-課後作業-JavaScript-系列五：第7課-──-學會-AJAX-與-data-attribute-的結合" class="headerlink" title="title: 課後作業-JavaScript 系列五：第7課 ── 學會 AJAX 與 data attribute 的結合date: 2024-10-02 11:00:01categories: OneDayOneNotetags:  [Javascript,Vue]description: 課後作業-JavaScript 系列五：第7課 ── 學會 AJAX 與 data attribute 的結合"></a>title: 課後作業-JavaScript 系列五：第7課 ── 學會 AJAX 與 data attribute 的結合<br>date: 2024-10-02 11:00:01<br>categories: OneDayOneNote<br>tags:  [Javascript,Vue]<br>description: 課後作業-JavaScript 系列五：第7課 ── 學會 AJAX 與 data attribute 的結合</h2><h2 id="課後作業-JavaScript-系列五：第7課-──-學會-AJAX-與-data-attribute-的結合"><a href="#課後作業-JavaScript-系列五：第7課-──-學會-AJAX-與-data-attribute-的結合" class="headerlink" title="課後作業-JavaScript 系列五：第7課 ── 學會 AJAX 與 data attribute 的結合"></a>課後作業-JavaScript 系列五：第7課 ── 學會 AJAX 與 data attribute 的結合</h2><p><img src="/apple.lily/2024/10/02/OneDayOneNote/2024-10-06/05_js_data-attribute.png"></p>
+<h3 id="05-js-data-attribute-html"><a href="#05-js-data-attribute-html" class="headerlink" title="05_js_data-attribute.html"></a>05_js_data-attribute.html</h3><pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;JavaScript 系列五：第6課 ── 學會 AJAX 與各種 HTTP 請求方法&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;./05_js_data-attribute.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&quot;container&quot;&gt;
+        &lt;button id=&quot;load_products_btn&quot; class=&quot;btn&quot;&gt;Load Products&lt;/button&gt;
+        &lt;div class=&quot;msg&quot;&gt;抱歉，請稍後重新嘗試&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;hr&gt;
+
+    &lt;div class=&quot;container&quot;&gt;
+        &lt;ul id=&quot;products_lists&quot; class=&quot;products_lists&quot;&gt;&lt;/ul&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;modal_wrap&quot;&gt;
+        &lt;div class=&quot;detail-modal&quot; id=&quot;detail-modal&quot;&gt;
+            &lt;div class=&quot;image_div&quot;&gt;
+                &lt;img src=&quot;&quot; alt=&quot;&quot; class=&quot;image&quot;&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;product_content&quot;&gt;
+                &lt;h2 class=&quot;title&quot;&gt;&lt;/h2&gt;
+                &lt;span class=&quot;category&quot;&gt;&lt;/span&gt;
+                &lt;p class=&quot;description&quot;&gt;&lt;/p&gt;
+                &lt;span class=&quot;price&quot;&gt;&lt;/span&gt;
+            &lt;/div&gt;
+
+            &lt;button id=&quot;btn-close&quot; class=&quot;btn-close&quot;&gt;✕&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;script src=&quot;./05_js_data-attribute.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="05-js-data-attribute-js"><a href="#05-js-data-attribute-js" class="headerlink" title="05_js_data-attribute.js"></a>05_js_data-attribute.js</h3><pre><code class="js">const load_products_btn = document.querySelector(&#39;#load_products_btn&#39;);
+
+// 延遲5秒鐘
+const set_display_timeout = (in_elem) =&gt; {
+    in_elem.style.display = &quot;block&quot;;
+    setTimeout(() =&gt; {
+        in_elem.style.display = &quot;none&quot;;
+    }, 5000);
+};
+
+const do_delete = (product_id, in_elem, msg) =&gt; {
+    fetch(&#39;https://fakestoreapi.com/products/&#39; + product_id, {
+        method: &quot;DELETE&quot;
+    })
+    .then(res =&gt; res.json())
+    .then(json =&gt; {
+        if (json === null) {
+            msg.style.display = &#39;block&#39;;
+            set_display_timeout(msg);
+        } else {
+            in_elem.remove();
+        }
+    })
+    .catch(error =&gt; {
+        msg.style.display = &#39;block&#39;;
+        set_display_timeout(msg);
+        console.error(&#39;Error delete products:&#39;, error);
+    });
+};
+
+const loadproducts = () =&gt; {
+    const products_lists = document.querySelector(&#39;#products_lists&#39;);
+    products_lists.innerHTML = &#39;&#39;; // 清除列表之前的產品
+    const msg = document.querySelector(&#39;.msg&#39;);
+    msg.style.display = &#39;none&#39;;
+
+    fetch(&#39;https://fakestoreapi.com/products&#39;)
+        .then(res =&gt; res.json())
+        .then(json =&gt; {
+            json.forEach(product =&gt; {
+                const li = document.createElement(&#39;li&#39;);
+                const img = document.createElement(&#39;img&#39;);
+                const span = document.createElement(&#39;span&#39;);
+                const detail_btn = document.createElement(&#39;button&#39;);
+                const del_btn = document.createElement(&#39;button&#39;);
+                const title = document.querySelector(&#39;.title&#39;);
+                const category = document.querySelector(&#39;.category&#39;);
+                const description = document.querySelector(&#39;.description&#39;);
+                const price = document.querySelector(&#39;.price&#39;);
+                const image =  document.querySelector(&#39;.image&#39;);
+                const modal_wrap = document.querySelector(&#39;.modal_wrap&#39;);
+
+                img.src = product.image;
+                img.alt = product.title;
+                li.appendChild(img);
+
+                span.textContent = product.title;
+                li.appendChild(span);
+
+                detail_btn.textContent = &#39;Details&#39;;
+                li.dataset.title = product.title;
+                li.dataset.category = product.category;
+                li.dataset.description = product.description;
+                li.dataset.price = product.price;
+                li.dataset.image = product.image; // 保存圖片URL
+
+                detail_btn.onclick = () =&gt; {
+                    title.textContent = product.title;
+                    category.textContent = product.category;
+                    description.textContent = product.description;
+                    price.textContent = `$${product.price}`;
+                    image.src = product.image; // 設定圖片來源
+                    image.alt = product.title; // 設定圖片的替代文字
+                    modal_wrap.style.display = &#39;block&#39;;
+                };
+                li.appendChild(detail_btn);
+
+                del_btn.textContent = &#39;Delete&#39;;
+                del_btn.onclick = () =&gt; {
+                    do_delete(product.id, li, msg);
+                };
+                li.appendChild(del_btn);
+
+                products_lists.appendChild(li);
+            });
+        })
+        .catch(error =&gt; {
+            msg.style.display = &#39;block&#39;;
+            set_display_timeout(msg);
+            console.error(&#39;Error fetching products:&#39;, error);
+        });
+};
+
+load_products_btn.onclick = loadproducts;
+
+// 添加關閉按鈕的事件監聽
+document.querySelector(&#39;#btn-close&#39;).onclick = () =&gt; {
+    document.querySelector(&#39;.modal_wrap&#39;).style.display = &#39;none&#39;;
+};
+</code></pre>
+<h3 id="05-js-data-attribute-css"><a href="#05-js-data-attribute-css" class="headerlink" title="05_js_data-attribute.css"></a>05_js_data-attribute.css</h3><pre><code class="css">* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+body {
+    box-sizing: border-box;
+}
+
+#load_products_btn {
+    width: 120px;
+    height: 80px;
+    color: #ccc;
+    background-color: rgb(8, 81, 81);
+    font-size: 20px;
+    padding: 10px;
+    margin: 20px 30px;
+}
+
+#load_products_btn:hover
+{
+    color: rgb(8, 81, 81);
+    background-color: rgb(156, 176, 20);
+    cursor: pointer;
+}
+
+#products_lists li button:nth-child(3):hover {
+    color: rgb(8, 81, 81);
+    background-color: rgb(156, 176, 20);
+    cursor: pointer;
+}
+
+#products_lists button:last-child:hover {
+    color: #fff;
+    background-color: #f00;
+    cursor: pointer;
+}
+
+.msg {
+    position: absolute;
+    top: 20px;
+    width: 200px;
+    height: 30px;
+    display: none;
+    background-color: #EDCAC7;
+    color: #902105;
+    padding: 10px;
+    margin: 20px 0;
+    border-radius: 5px;
+    animation: my_message 5s;
+    opacity: 0;
+}
+
+@keyframes my_message {
+    from {
+        left: 200px;
+        opacity: 100;
+    }
+    to {
+        left: 300px;
+        opacity: 0;
+    }
+}
+
+#products_lists {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+#products_lists li {
+    width: 200px;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#products_lists span {
+    text-align: center;
+    color: rgb(100, 100, 100);
+    margin-bottom: 10px;
+}
+
+#products_lists button {
+    width: 100px;
+    padding: 5px;
+    margin-top: 10px;
+    color: rgb(238, 245, 245);
+    background-color: rgb(69, 69, 68);
+    border-radius: 5px;
+}
+
+#products_lists img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+.modal_wrap {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+
+}
+
+#detail-modal {
+    position: relative;
+    max-width: 800px;
+    min-height: 350px;
+    /* background-color: #242424;
+    color: #F2F2F2; */
+    background-color: #fff;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    display:flex;
+    flex : wrap;
+}
+.image_div{
+    width: 45%;
+}
+.image_div img{
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+}
+.product_content{
+    margin-left: 20px;
+}
+.category{
+    text-transform: uppercase;
+    color: #777;
+}
+.description{
+    font-size: 17px;
+    color: #777;
+    margin: 18px 0;
+}
+.price{
+    font-weight: 700;
+    color: #f00;
+    font-size: 20px;
+}
+#btn-close {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #f6a3a3;
+    color: #242424;
+    font-size: 16px;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+}
+</code></pre>
+<p>作業取自： <a href="https://codelove.tw/@howtomakeaturn/post/X3KXRa">https://codelove.tw/@howtomakeaturn/post/X3KXRa</a><br>by 站長阿川 </p>

@@ -1,0 +1,449 @@
+<hr>
+<h2 id="title-課後作業-JavaScript-系列五：第2課-──-學會-Local-Storage-相關功能date-2024-10-02-10-15-07categories-OneDayOneNotetags-Javascript-Vue-description-課後作業-JavaScript-系列五：第2課-──-學會-Local-Storage-相關功能"><a href="#title-課後作業-JavaScript-系列五：第2課-──-學會-Local-Storage-相關功能date-2024-10-02-10-15-07categories-OneDayOneNotetags-Javascript-Vue-description-課後作業-JavaScript-系列五：第2課-──-學會-Local-Storage-相關功能" class="headerlink" title="title: 課後作業-JavaScript 系列五：第2課 ── 學會 Local Storage 相關功能date: 2024-10-02 10:15:07categories: OneDayOneNotetags:  [Javascript,Vue]description: 課後作業-JavaScript 系列五：第2課 ── 學會 Local Storage 相關功能"></a>title: 課後作業-JavaScript 系列五：第2課 ── 學會 Local Storage 相關功能<br>date: 2024-10-02 10:15:07<br>categories: OneDayOneNote<br>tags:  [Javascript,Vue]<br>description: 課後作業-JavaScript 系列五：第2課 ── 學會 Local Storage 相關功能</h2><h2 id="課後作業-JavaScript-系列五：第2課-──-學會-Local-Storage-相關功能"><a href="#課後作業-JavaScript-系列五：第2課-──-學會-Local-Storage-相關功能" class="headerlink" title="課後作業-JavaScript 系列五：第2課 ── 學會 Local Storage 相關功能"></a>課後作業-JavaScript 系列五：第2課 ── 學會 Local Storage 相關功能</h2><p><img src="/apple.lily/2024/10/02/OneDayOneNote/2024-10-01/02_js_local-storage.png"></p>
+<h3 id="02-js-local-storage-html"><a href="#02-js-local-storage-html" class="headerlink" title="02_js_local-storage.html"></a>02_js_local-storage.html</h3><pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;JavaScript 系列五：第2課 ── 學會 Local Storage 相關功能&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;./02_js_local-storage.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&quot;bg-container&quot;&gt;
+       
+        &lt;div class=&quot;input_text&quot;&gt;
+            &lt;h1&gt;
+                To Do List
+            &lt;/h1&gt;
+            &lt;div class=&quot;input_container&quot;&gt;
+                &lt;input type=&quot;text&quot; id=&quot;to_do&quot; class=&quot;to_do&quot; placeholder=&quot;新增待辦事項...&quot;&gt;
+                &lt;select id=&quot;list_level&quot;  class=&quot;list_level&quot; &gt;
+                    &lt;option value=&quot;normal&quot; selected&gt;一般&lt;/option&gt;
+                    &lt;option value=&quot;important&quot; &gt;重要&lt;/option&gt;
+                    &lt;option value=&quot;urgent&quot; &gt;緊急&lt;/option&gt;
+                &lt;/select&gt;
+                &lt;button  id =&quot;add_list&quot; class=&quot;add_list&quot; onclick=&quot;addList()&quot;&gt;+&lt;/button&gt;
+                &lt;button class=&quot;todo_btn export_btn&quot; onclick=&quot;exportList(&#39;export&#39;)&quot;&gt;匯出清單&lt;/button&gt;
+                &lt;button class=&quot;todo_btn save_btn&quot; onclick=&quot;exportList(&#39;save&#39;)&quot;&gt;儲存&lt;/button&gt;
+
+            &lt;/div&gt;
+
+
+        &lt;/div&gt;
+        &lt;div class=&quot;to_do_list&quot;&gt;
+            &lt;h3&gt;待辦事項的清單&lt;/h3&gt;
+            &lt;div class=&quot;to_do_list_container&quot;&gt;
+                &lt;ul id=&quot;to_do_list_ul&quot; class=&quot;to_do_list_ul&quot;&gt;
+
+                &lt;/ul&gt;
+            &lt;/div&gt;
+        &lt;/div&gt; 
+    &lt;/div&gt;
+    &lt;script src=&quot;./02_js_local-storage.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="02-js-local-storage-js"><a href="#02-js-local-storage-js" class="headerlink" title="02_js_local-storage.js"></a>02_js_local-storage.js</h3><pre><code class="js">
+let elem_toDo =  document.querySelector(&#39;#to_do&#39;)  ; 
+let elem_toDo_class= elem_toDo.className ;
+elem_toDo.addEventListener(&quot;keypress&quot;,
+    function(event)
+    {
+        if(event.key === &quot;Enter&quot;) {
+            document.querySelector(&#39;#add_list&#39;).click();
+        }
+    }
+)
+
+
+
+let elem_select = document.querySelector(&quot;#list_level&quot;);
+let elem_select_class= elem_select.className ;
+// 監聽選擇框的變化
+elem_select.addEventListener(&quot;change&quot;, 
+    function() {
+        // 取得當前選擇的選項值
+        let selectedValue = elem_select.value;
+        // 根據選擇的值來決定文字顏色
+        if (selectedValue === &quot;important&quot;) {
+            elem_select.className = elem_select_class + 
+            &quot; important_li&quot;;
+            elem_toDo.className = 
+            elem_toDo_class +
+            &quot; important_li&quot;;
+        } else if (selectedValue === &quot;urgent&quot;) {
+            elem_select.className = 
+            elem_select_class + 
+            &quot; urgent_li&quot;;
+            elem_toDo.className = 
+            elem_select_class +
+            &quot; urgent_li&quot;;
+        } else if (selectedValue === &quot;normal&quot;) {
+            elem_select.className = 
+            elem_select_class + 
+            &quot; normal_li&quot;;
+            elem_toDo.className = 
+            elem_select_class +
+            &quot; normal_li&quot;;
+        } 
+        // else {
+        //     elem_select.className = elem_select_class;
+        //     elem_toDo.className = elem_toDo_class
+        // } 
+    }
+);
+
+
+
+function addList(){
+    let toDoValue = document.querySelector(&#39;#to_do&#39;).value;
+    let elem_value_select = 
+    document.querySelector(&#39;#list_level&#39;).value;
+
+
+    if (toDoValue!=&quot;&quot;) {
+
+        let elem_li = document.createElement(&#39;li&#39;);
+
+        if (elem_value_select == &#39;important&#39;){
+            elem_li.className = &quot;important_li&quot;;
+        }
+        if (elem_value_select == &#39;urgent&#39;){
+
+            elem_li.className = &quot;urgent_li&quot;;
+        }
+        if (elem_value_select == &#39;normal&#39;){
+
+            elem_li.className = &quot;normal_li&quot;;
+        }
+
+
+        let elem_ul = document.querySelector(&#39;#to_do_list_ul&#39;);
+        let elem_div =  document.createElement(&#39;div&#39;);
+        let elem_span_txt = document.createElement(&#39;span&#39;);
+
+        elem_ul.append(elem_li);
+        elem_li.append(elem_div);
+        elem_div.setAttribute(&#39;class&#39; , &quot;todo_group&quot;)
+        elem_div.append(elem_span_txt);
+        elem_span_txt.textContent= toDoValue;
+        elem_span_txt.value=toDoValue;
+        elem_span_txt.setAttribute(&#39;class&#39; , &quot;todo_txt&quot;);
+
+        let elem_span_done =  document.createElement(&#39;span&#39;);
+
+        elem_div.append(elem_span_done );
+        elem_span_done.textContent=&quot;(已完成)&quot;;
+        elem_span_done.setAttribute(&#39;class&#39; , &quot;done&quot;);
+
+        let elem_del_btn =  document.createElement(&#39;button&#39;);
+        elem_del_btn.textContent=&quot;✖︎&quot;;
+        elem_del_btn.setAttribute(&#39;class&#39;, &quot;del_btn&quot;);
+        elem_del_btn.onclick= delItem;
+        elem_div.append(elem_del_btn);
+
+        let elem_toggle_btn =  document.createElement(&#39;button&#39;);
+        elem_toggle_btn.textContent=&quot;&quot;;
+        elem_toggle_btn.value=&quot;未完成&quot;;
+        elem_toggle_btn.setAttribute(&quot;class&quot;, &quot;on_off_btn&quot;);
+        elem_toggle_btn.onclick = function() {
+            toggleButtonText(elem_toggle_btn);
+        };
+        elem_div.append(elem_toggle_btn);
+
+    }
+    elem_toDo.value=&quot;&quot;;
+    elem_toDo.focus();
+
+}
+
+
+function delItem() {
+    let grandParent = event.target.closest(&#39;li&#39;);
+    // alert(grandParent);
+    grandParent.remove();
+}
+
+function toggleButtonText(button) {
+    var elem_done = button.parentElement.querySelector(&#39;.done&#39;)
+    if (button.value === &quot;未完成&quot;) {
+        button.value =&quot;已完成&quot;
+        button.textContent = &quot;✔&quot;;
+        elem_done.style.display = &#39;inline-block&#39;; 
+        elem_done.value=&quot; (已完成)&quot;;
+
+    } else {
+        button.value =&quot;未完成&quot;
+        button.textContent = &quot;&quot;;
+        elem_done.style.display = &#39;none&#39;; 
+        elem_done.value=&quot;&quot;;
+    }
+}
+
+
+function exportList(action) {
+    let lists = document.querySelectorAll(&#39;li&#39;);
+
+    if (lists.length !== 0) {
+        let list = [];
+        let num = 1;
+        let text = &quot;&quot;;
+        let stars = &quot;&quot;;
+        let list_level = &quot;&quot;;
+        
+        for (let i = 0; i &lt; lists.length; i++) {
+            let listItems = lists[i].querySelectorAll(&#39;span&#39;);
+            let span_text = &quot;&quot;;
+            let listItem_txt = &quot;&quot;;
+            let done = &quot;no&quot;;
+
+            for (let j = 0; j &lt; listItems.length; j++) {
+                let para_classname = lists[i].className;
+                if (para_classname === &#39;important_li&#39;) {
+                    list_level = &quot;important_li&quot;;
+                    stars = &quot;*&quot;;
+                } else if (para_classname === &#39;urgent_li&#39;) {
+                    list_level = &quot;urgent_li&quot;;
+                    stars = &quot;**&quot;;
+                } else if (para_classname === &#39;normal_li&#39;) {
+                    list_level = &quot;normal_li&quot;;
+                }
+
+                if (listItems[j].className === &#39;todo_txt&#39;) {
+                    listItem_txt = listItems[j].value;
+                }
+                if (listItems[j].className === &#39;done&#39;) 
+                {
+                    if (listItems[j].style.display === &#39;inline-block&#39;)
+                    {
+                        done = &quot;yes&quot;;
+                        listItems[j].value =&quot;(已完成)&quot;;
+                    } else {
+                        listItems[j].value =&quot;&quot;;
+                    }
+                }
+
+                span_text += listItems[j].value + &#39; &#39;;
+            }
+
+            if (span_text.trim() !== &quot;&quot;) { // Check if the text content is not empty
+                let listItemData = {
+                    num: num.toString(),
+                    list_level: list_level,
+                    todo_txt: listItem_txt,
+                    done: done
+                };
+                list.push(listItemData);
+                text += num.toString() + &#39;. &#39; + stars + &#39; &#39; + span_text.trim() + &#39; &#39; + stars + &quot;\n&quot;;
+                num += 1;
+            }
+        }
+        
+        // If the action is &#39;save&#39;, store the list in localStorage
+        if (action === &#39;save&#39;) {
+            localStorage.setItem(&#39;todoList&#39;, JSON.stringify(list));
+            alert(&#39;待辦事項已儲存&#39;);
+        } else if (action === &#39;export&#39;) {
+            alert(&#39;今日待辦:\n&#39; + text);
+        }
+    }
+}
+
+
+
+function loadList() {
+    let storedList = JSON.parse(localStorage.getItem(&#39;todoList&#39;));
+    
+    if (storedList &amp;&amp; storedList.length &gt; 0) {
+        storedList.forEach(function(item) {
+            let elem_li = document.createElement(&#39;li&#39;);
+            elem_li.className = item.list_level;
+
+            let elem_div = document.createElement(&#39;div&#39;);
+            elem_div.setAttribute(&#39;class&#39;, &#39;todo_group&#39;);
+
+            let elem_span_txt = document.createElement(&#39;span&#39;);
+            elem_span_txt.textContent = item.todo_txt;
+            elem_span_txt.setAttribute(&#39;class&#39;, &#39;todo_txt&#39;);
+            elem_span_txt.value = item.todo_txt;  // 確保 `value` 屬性被設置
+
+            elem_div.appendChild(elem_span_txt);
+
+            let elem_span_done = document.createElement(&#39;span&#39;);
+            elem_span_done.textContent = &#39;(已完成)&#39;;
+            elem_span_done.setAttribute(&#39;class&#39;, &#39;done&#39;);
+            elem_span_done.style.display = item.done === &#39;yes&#39; ? &#39;inline-block&#39; : &#39;none&#39;;
+
+            elem_div.appendChild(elem_span_done);
+
+            let elem_del_btn = document.createElement(&#39;button&#39;);
+            elem_del_btn.textContent = &#39;✖︎&#39;;
+            elem_del_btn.setAttribute(&#39;class&#39;, &#39;del_btn&#39;);
+            elem_del_btn.onclick = delItem;
+
+            elem_div.appendChild(elem_del_btn);
+
+            let elem_toggle_btn = document.createElement(&#39;button&#39;);
+            elem_toggle_btn.textContent = item.done === &#39;yes&#39; ? &#39;✔&#39; : &#39;&#39;;
+            elem_toggle_btn.value = item.done === &#39;yes&#39; ? &#39;已完成&#39; : &#39;未完成&#39;;
+            elem_toggle_btn.setAttribute(&#39;class&#39;, &#39;on_off_btn&#39;);
+            elem_toggle_btn.onclick = function() {
+                toggleButtonText(elem_toggle_btn);
+            };
+
+            elem_div.appendChild(elem_toggle_btn);
+
+            elem_li.appendChild(elem_div);
+
+            document.querySelector(&#39;#to_do_list_ul&#39;).appendChild(elem_li);
+        });
+    }
+}
+
+
+// 頁面載入時調用 loadList 函數
+window.onload = loadList;
+</code></pre>
+<h3 id="02-js-local-storage-css"><a href="#02-js-local-storage-css" class="headerlink" title="02_js_local-storage.css"></a>02_js_local-storage.css</h3><pre><code class="css">* {
+    margin: 0;
+    padding: 0;
+}
+body{
+    color: #82715f;
+}
+ .bg-container{
+    background-image: url(&#39;https://imgur.com/0GIPhB0.jpg&#39;);
+    width: 640px;
+    min-height: 100px;
+    border-radius: 8px;
+    margin:auto;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    
+} 
+
+select{
+    padding: 5px 10px;
+    /* height: 2.2em; */
+    font-size: 18px;
+}
+.input_text h1{
+    margin-left: 40px;
+}
+.input_container{
+    margin-left: 40px;
+    width: 560px;
+    display: flex;
+    
+}
+
+.input_text input{
+    min-width: 300px;
+    /* height: 2em; */
+    font-size: 18px;
+    padding-left: 10px;
+    
+}
+
+.add_list{
+    border: none;
+    color: #fff;
+    background-color: #82715f;
+    width: 50px; 
+    font-size: 30px; 
+
+    
+}
+
+.todo_btn{
+    border: none;  
+    color: #fff;
+    background-color: #82715f;
+    width: 100px; 
+    border-radius: 8px; 
+    margin-left: 10px;
+    padding: 5px 10px;
+    font-size: 18px;
+    cursor: pointer;
+
+}
+
+.to_do_list{
+    background-color: #f2eee2;
+    border-radius: 10px;
+    width: 530px;
+    min-height: 500px;
+    margin: auto;
+    margin-top: 20px;
+    padding: 10px 10px;
+
+}
+.to_do_list h3{
+    text-align: center;
+    line-height: 2;
+    letter-spacing: 0.3em;
+    border-bottom: 1px dashed #C8C8C8 ;
+}
+
+
+.to_do_list_ul{
+    padding-left: 20px;
+}
+
+.to_do_list_ul li{
+    padding: 10px 10px;
+    border-bottom: 1px dashed #C8C8C8 ;
+}
+.todo_group{
+    position:relative;
+    width: 480px;
+}
+.todo_txt{
+    width: 380px;
+    word-wrap: break-word;
+    word-break: break-all;
+    display: inline-block; /* 確保 span 元素遵守寬度規則 */
+}
+
+.important_li{
+    color:#ff8c00;
+}
+
+.urgent_li{
+    color:#ff0000;
+}
+
+.del_btn{
+    position: absolute;
+    right: 5px;
+    /* float: right; */
+    width: 25px;
+    height: 25px;
+    color: #fff;
+    background-color:#82715f;
+    font-size: 20px;
+
+}
+.del_btn:hover{
+    background-color: #ff0000;
+    cursor: pointer;
+}
+
+.on_off_btn {
+    position: absolute;
+    right:-25px;
+    /* float: right; */
+    width: 25px;
+    height: 25px;
+    border: 1px solid #82715f;
+    font-size: 20px;
+
+}
+
+.done{
+    width: 60px;
+    padding-left: 5px;
+    display:none;
+}
+</code></pre>
+<p>作業取自： <a href="https://codelove.tw/@howtomakeaturn/post/gqBkPx">https://codelove.tw/@howtomakeaturn/post/gqBkPx</a><br>by 站長阿川 </p>

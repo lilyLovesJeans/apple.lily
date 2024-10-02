@@ -1,0 +1,62 @@
+<hr>
+<h2 id="title-課後作業-JavaScript-系列六：第1課-──-認識-data-model-與-render-functiondate-2024-10-02-09-22-55categories-OneDayOneNotetags-Javascript-Vue-description-課後作業-JavaScript-系列六：第1課-──-認識-data-model-與-render-function"><a href="#title-課後作業-JavaScript-系列六：第1課-──-認識-data-model-與-render-functiondate-2024-10-02-09-22-55categories-OneDayOneNotetags-Javascript-Vue-description-課後作業-JavaScript-系列六：第1課-──-認識-data-model-與-render-function" class="headerlink" title="title: 課後作業-JavaScript 系列六：第1課 ── 認識 data model 與 render functiondate: 2024-10-02 09:22:55categories: OneDayOneNotetags:  [Javascript,Vue]description: 課後作業-JavaScript 系列六：第1課 ── 認識 data model 與 render function"></a>title: 課後作業-JavaScript 系列六：第1課 ── 認識 data model 與 render function<br>date: 2024-10-02 09:22:55<br>categories: OneDayOneNote<br>tags:  [Javascript,Vue]<br>description: 課後作業-JavaScript 系列六：第1課 ── 認識 data model 與 render function</h2><h2 id="課後作業-JavaScript-系列六：第1課-──-認識-data-model-與-render-function"><a href="#課後作業-JavaScript-系列六：第1課-──-認識-data-model-與-render-function" class="headerlink" title="課後作業-JavaScript 系列六：第1課 ── 認識 data model 與 render function"></a>課後作業-JavaScript 系列六：第1課 ── 認識 data model 與 render function</h2><p><img src="/apple.lily/2024/10/02/OneDayOneNote/2024-09-23/06_js_datamodel-render.png"></p>
+<h3 id="06-js-datamodel-render-html"><a href="#06-js-datamodel-render-html" class="headerlink" title="06_js_datamodel-render.html"></a>06_js_datamodel-render.html</h3><pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;JavaScript 系列六：第1課 ── 認識 data model 與 render function&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;./06_js_datamodel-render.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id=&quot;root&quot;&gt;
+
+    &lt;/div&gt;
+
+
+    &lt;script src=&quot;./06_js_datamodel-render.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="06-js-datamodel-render-js"><a href="#06-js-datamodel-render-js" class="headerlink" title="06_js_datamodel-render.js"></a>06_js_datamodel-render.js</h3><pre><code class="js">var todos = [
+    {
+      title: &quot;倒垃圾&quot;
+    },
+    {
+      title: &quot;繳電話費&quot;
+    },
+    {
+      title: &quot;採買本週食材&quot;
+    },
+  ];
+  
+  function render() {
+    const root = document.querySelector(&#39;#root&#39;);
+    root.textContent = &#39;&#39;;  // 清空之前的內容
+  
+    const ul = document.createElement(&#39;ul&#39;);
+    
+    // 使用 forEach 來迭代 todos 陣列中的每個物件
+    todos.forEach(function(item) {
+      const li = document.createElement(&#39;li&#39;);
+      const title = document.createElement(&#39;span&#39;);
+      title.textContent = item.title;  // 取得 item 中的 title 屬性
+      li.append(title);
+      ul.append(li);
+    });
+    
+    root.append(ul);  // 將 ul 插入到 root 元素中
+  }
+  
+  render();
+  
+</code></pre>
+<h3 id="06-js-datamodel-render-css"><a href="#06-js-datamodel-render-css" class="headerlink" title="06_js_datamodel-render.css"></a>06_js_datamodel-render.css</h3><pre><code class="css">li:hover{
+    color: #f00;
+}
+li{
+    font-size: 1.2rem;
+    line-height: 2;
+}
+</code></pre>
+<p>作業取自： <a href="https://codelove.tw/@howtomakeaturn/post/9xLo5q">https://codelove.tw/@howtomakeaturn/post/9xLo5q</a><br>by 站長阿川 </p>

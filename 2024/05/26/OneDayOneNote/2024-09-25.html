@@ -1,0 +1,210 @@
+<hr>
+<h2 id="title-課後作業-JavaScript-系列六：第3課-──-認識匿名函式date-2024-10-02-09-42-58categories-OneDayOneNotetags-Javascript-Vue-description-課後作業-JavaScript-系列六：第2課-──-認識陣列操作"><a href="#title-課後作業-JavaScript-系列六：第3課-──-認識匿名函式date-2024-10-02-09-42-58categories-OneDayOneNotetags-Javascript-Vue-description-課後作業-JavaScript-系列六：第2課-──-認識陣列操作" class="headerlink" title="title: 課後作業-JavaScript 系列六：第3課 ── 認識匿名函式date: 2024-10-02 09:42:58categories: OneDayOneNotetags:  [Javascript,Vue]description: 課後作業-JavaScript 系列六：第2課 ── 認識陣列操作"></a>title: 課後作業-JavaScript 系列六：第3課 ── 認識匿名函式<br>date: 2024-10-02 09:42:58<br>categories: OneDayOneNote<br>tags:  [Javascript,Vue]<br>description: 課後作業-JavaScript 系列六：第2課 ── 認識陣列操作</h2><h2 id="課後作業-JavaScript-系列六：第2課-──-認識陣列操作"><a href="#課後作業-JavaScript-系列六：第2課-──-認識陣列操作" class="headerlink" title="課後作業-JavaScript 系列六：第2課 ── 認識陣列操作"></a>課後作業-JavaScript 系列六：第2課 ── 認識陣列操作</h2><p><img src="/apple.lily/06_js_array-splice.png"></p>
+<h3 id="06-js-array-splice-html"><a href="#06-js-array-splice-html" class="headerlink" title="06_js_array-splice.html"></a>06_js_array-splice.html</h3><pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;JavaScript 系列六：第3課 ── 認識匿名函式&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;./06_js_array-splice.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;input type=&quot;text&quot;&gt;
+    &lt;button id=&quot;add_btn&quot; onclick=&quot;add()&quot;&gt;新增事項&lt;/button&gt;
+    &lt;div id=&quot;root&quot;&gt;
+    &lt;/div&gt;
+    &lt;!--***** 切版start *****--&gt;
+    &lt;!-- &lt;div class=&quot;wrap&quot;&gt;
+        &lt;h2&gt;To Do List&lt;/h2&gt;
+        &lt;hr&gt;
+        &lt;div class=&quot;todo_input&quot;&gt;
+            &lt;input type=&quot;text&quot; placeholder=&quot;新增待辦事項&quot;&gt;
+            &lt;button id=&quot;add_btn&quot; onclick=&quot;add()&quot;&gt;新增事項&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;todos_container&quot;&gt;
+            &lt;ul class=&quot;todoList&quot;&gt;
+                &lt;li&gt;
+                     &lt;span&gt;&lt;/span&gt;   
+                    &lt;button class=&quot;delBtn&quot;&gt;刪除&lt;/button&gt;
+                &lt;/li&gt;
+                
+            &lt;/ul&gt;
+        &lt;/div&gt;
+
+    &lt;/div&gt; --&gt;
+    &lt;!--***** 切版end *****--&gt;
+   
+    &lt;script src=&quot;./06_js_array-splice.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="06-js-array-splice-js"><a href="#06-js-array-splice-js" class="headerlink" title="### 06_js_array-splice.js"></a>### 06_js_array-splice.js</h3><pre><code class="js">var todos = [];
+
+function render_wrap(){
+    const body = document.querySelector(&#39;body&#39;);
+    const wrap = document.createElement(&#39;div&#39;);
+    wrap.className=&#39;wrap&#39;;
+    const h2 = document.createElement(&#39;h2&#39;);
+    h2.textContent=&quot;To Do List&quot;;
+    const hr = document.createElement(&#39;hr&#39;);
+
+
+    // 取得現有的 input 和 button 元素
+    const input_todo = document.querySelector(&#39;input&#39;);
+    const add_btn = document.querySelector(&#39;#add_btn&#39;);
+
+    // 取得現有的 root 容器
+    const root = document.querySelector(&#39;#root&#39;);
+ 
+    wrap.append(h2);
+    wrap.append(hr);
+    wrap.append(input_todo);
+    wrap.append(add_btn);
+    wrap.append(root);
+
+    // 把 wrap 放到 body 裡面
+    body.append(wrap);
+    // 監聽 input 元素的鍵盤事件
+    input_todo.addEventListener(&#39;keydown&#39;, function(event) {
+        // 檢查是否按下 Enter 鍵 (keyCode 13)
+        if (event.key === &#39;Enter&#39;) {
+            add(); // 執行 add 函式
+        }
+    });
+}
+
+
+function add()
+{
+  // 請寫出此函式內容（更新 todos 陣列）
+    const input_todo = document.querySelector(&#39;input&#39;);
+    console.log(input_todo.value);
+    let todo = input_todo.value.trim();
+    if(todo !== &#39;&#39;){
+        todos.push(todo);
+        console.log(todos);
+        render();
+    }else {
+        input_todo.focus();
+        input_todo.placeholder = &quot;新增待辦事項&quot;;
+    }
+    input_todo.value = &#39;&#39;;
+}
+
+function render(){
+    console.log(&#39;render....&#39;);
+    const root = document.querySelector(&#39;#root&#39;);
+    root.textContent=&#39;&#39;;
+    const div_container=document.createElement(&#39;div&#39;);
+    div_container.className=&#39;todos_container&#39;;
+    const ul=document.createElement(&#39;ul&#39;);
+    ul.className=&#39;totoList&#39;;
+    todos.forEach(function(item, index){
+        const li=document.createElement(&#39;li&#39;);
+        const span=document.createElement(&#39;span&#39;);
+        const delBtn=document.createElement(&#39;button&#39;);
+        delBtn.className=&quot;delBtn&quot;;
+        delBtn.textContent=&#39;刪除&#39;;
+         // 按下按鈕時刪除對應的 item
+        delBtn.onclick = () =&gt; {
+            todos = todos.filter((_, i) =&gt; i !== index); // 移除該項
+            render(); // 重新渲染
+        };
+        span.textContent=item;
+        li.append(span);
+        li.append(delBtn);
+        ul.append(li);
+    })
+
+
+    div_container.append(ul);
+    root.append(div_container);
+};
+
+window.onload=()=&gt;{
+    render_wrap();
+};
+</code></pre>
+<h3 id="06-js-array-splice-css"><a href="#06-js-array-splice-css" class="headerlink" title="### 06_js_array-splice.css"></a>### 06_js_array-splice.css</h3><pre><code class="css">@import url(&#39;https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&amp;family=Playwrite+CU:wght@100..400&amp;display=swap&#39;);
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.wrap{
+    margin: 30px auto;
+    width: 800px;
+    min-height: 600px;
+    background-color: #a9c5d5;
+    border-radius: 10px;
+}
+h2{
+    padding-top: 20px;
+    padding-left: 30px;
+    font-family: &quot;Kalam&quot;, cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 35px;
+    color:#e8626b;
+}
+
+
+input{
+    width: 500px;
+    margin: 20px 20px 20px 30px;
+    padding-left: 5px;
+    font-size: 20px;
+    line-height: 2;
+    border: 1px solid #889fad;
+    color:#000;
+    background-color: #fff;
+
+}
+input:hover, input:focus {
+    outline: none;
+    background-color: #eaeaa9;
+}
+#add_btn{
+    border: none;
+    font-size: 18px;
+    border-radius: 5px;
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+}
+#add_btn:hover{
+    cursor: pointer;
+    background-color: #17507b;
+}
+ul{
+    min-height: 400px;
+    margin:  0 30px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #8ca8ba;
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+li{
+    display: flex;
+    justify-content: space-between; /* 元素之間平均分布 */
+    align-items: center; /* 垂直置中對齊 */
+    margin: 10px 20px;
+    border-bottom: 1px dotted #28292b;
+    font-size: 18px;
+    color: #000;
+}
+.delBtn{
+    border: none;
+    font-size: 15px;
+    border-radius: 3px;
+    background-color: #040404;
+    color: #fff;
+    padding: 10px;
+}
+
+.delBtn:hover{
+    cursor: pointer;
+    background-color: #b91919;
+}
+</code></pre>
+<p>作業取自： <a href="https://codelove.tw/@howtomakeaturn/post/Aq5V0x">https://codelove.tw/@howtomakeaturn/post/Aq5V0x</a><br>by 站長阿川 </p>

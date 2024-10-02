@@ -1,0 +1,190 @@
+<hr>
+<h2 id="title-課後作業-JavaScript-系列五：第5課-──-學會-AJAX-錯誤處理date-2024-10-02-10-38-49categories-OneDayOneNotetags-Javascript-Vue-description-課後作業-JavaScript-系列五：第5課-──-學會-AJAX-錯誤處理"><a href="#title-課後作業-JavaScript-系列五：第5課-──-學會-AJAX-錯誤處理date-2024-10-02-10-38-49categories-OneDayOneNotetags-Javascript-Vue-description-課後作業-JavaScript-系列五：第5課-──-學會-AJAX-錯誤處理" class="headerlink" title="title: 課後作業-JavaScript 系列五：第5課 ── 學會 AJAX 錯誤處理date: 2024-10-02 10:38:49categories: OneDayOneNotetags:  [Javascript,Vue]description: 課後作業-JavaScript 系列五：第5課 ── 學會 AJAX 錯誤處理"></a>title: 課後作業-JavaScript 系列五：第5課 ── 學會 AJAX 錯誤處理<br>date: 2024-10-02 10:38:49<br>categories: OneDayOneNote<br>tags:  [Javascript,Vue]<br>description: 課後作業-JavaScript 系列五：第5課 ── 學會 AJAX 錯誤處理</h2><h2 id="課後作業-JavaScript-系列五：第5課-──-學會-AJAX-錯誤處理"><a href="#課後作業-JavaScript-系列五：第5課-──-學會-AJAX-錯誤處理" class="headerlink" title="課後作業-JavaScript 系列五：第5課 ── 學會 AJAX 錯誤處理"></a>課後作業-JavaScript 系列五：第5課 ── 學會 AJAX 錯誤處理</h2><p><img src="/apple.lily/2024/10/02/OneDayOneNote/2024-10-04/04_js_AJAX-error.png"></p>
+<h3 id="04-js-AJAX-error-html"><a href="#04-js-AJAX-error-html" class="headerlink" title="04_js_AJAX-error.html"></a>04_js_AJAX-error.html</h3><pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;JavaScript 系列五：第5課 ── 學會 AJAX 錯誤處理&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;./04_js_AJAX-error.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&quot;container&quot;&gt;
+        &lt;button id=&quot;load_products_btn&quot; class=&quot;btn&quot;&gt;Load Products&lt;/button&gt;
+         &lt;div class=&quot;msg&quot;&gt;抱歉，請稍後重新嘗試&lt;/div&gt;
+
+    &lt;/div&gt;
+
+    &lt;hr&gt;
+
+    &lt;div class=&quot;container&quot;&gt;
+        &lt;ul id=&quot;products_lists&quot; class=&quot;products_lists&quot;&gt;
+    
+
+        &lt;/ul&gt;
+    &lt;/div&gt;
+
+
+    &lt;script src=&quot;./04_js_AJAX-error.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="04-js-AJAX-error-js"><a href="#04-js-AJAX-error-js" class="headerlink" title="04_js_AJAX-error.js"></a>04_js_AJAX-error.js</h3><pre><code class="js">const load_products_btn = document.querySelector(&#39;#load_products_btn&#39;);
+
+function set_display_timeout(in_elem){
+    in_elem.style.display=&quot;block&quot;;
+    setTimeout(function(){
+        in_elem.style.display=&quot;none&quot;;
+    },5000)
+
+}
+const loadproducts = () =&gt; {
+    const products_lists = document.querySelector(&#39;#products_lists&#39;);
+    products_lists.innerHTML = &#39;&#39;; // Clear the list before loading new products
+    const msg = document.querySelector(&#39;.msg&#39;);
+    msg.style.display=&#39;none&#39;; 
+    fetch(&#39;https://fakestoreapi.com/products1&#39;)
+        .then(res =&gt; res.json())
+        .then(json =&gt; {
+            console.log(json);
+
+            json.forEach(product =&gt; {
+                const li = document.createElement(&#39;li&#39;);
+                
+    
+                const img = document.createElement(&#39;img&#39;);
+                img.src = product.image;
+                img.alt = product.title;  
+                
+                li.appendChild(img);
+                const span = document.createElement(&#39;span&#39;);
+                span.textContent = product.title;
+                li.appendChild(span);
+                
+                const btn = document.createElement(&#39;button&#39;);
+                btn.textContent = &#39;Details&#39;;
+
+                li.appendChild(btn);
+                btn.onclick = () =&gt; {
+                    alert(`ID: ${product.id}\nCategory: ${product.category}\nDescription: ${product.description}`);
+                }
+                
+                products_lists.appendChild(li);
+            });
+        })
+        .catch(error =&gt; {
+            msg.style.display=&#39;block&#39;;
+            set_display_timeout(msg);
+            console.error(&#39;Error fetching products:&#39;, error);
+        });
+}
+
+load_products_btn.onclick = loadproducts;
+</code></pre>
+<h3 id="04-js-AJAX-error-css"><a href="#04-js-AJAX-error-css" class="headerlink" title="04_js_AJAX-error.css"></a>04_js_AJAX-error.css</h3><pre><code class="css">* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+body {
+    box-sizing: border-box;
+}
+
+#load_products_btn{
+    width: 120px;
+    height: 80px;
+    color: #ccc;
+    background-color:rgb(8, 81, 81);
+    font-size: 20px; 
+    padding: 10px; 
+    margin: 20px 30px; 
+}
+
+
+#load_products_btn:hover ,#products_lists button:hover{
+    color:rgb(8, 81, 81); 
+    background-color:rgb(156, 176, 20); 
+    cursor : pointer;  
+}
+
+
+.msg {
+    position: absolute;
+    top: 20px;
+    width: 200px;
+    height: 30px;
+    display: none;
+    background-color: #EDCAC7;
+    color:  #902105;
+    padding: 10px;
+    margin: 20px 0;
+    border-radius: 5px;
+
+}
+
+.msg{
+    animation: my_message 5s;
+    opacity:0;
+}
+
+@keyframes my_message{
+    from {
+        left: 200px; opacity: 100;}
+    to{ left: 300px;
+        opacity: 0;}
+
+} 
+
+
+#load_products_btn:hover ,#products_lists button:hover{
+    color:rgb(8, 81, 81); 
+    background-color:rgb(156, 176, 20); 
+    cursor : pointer;  
+}
+
+
+#products_lists {
+    display: flex; /* Change to flex to enable horizontal layout */
+    flex-wrap: wrap; /* Allow items to wrap to the next row if needed */
+    justify-content: space-between; /* Distribute items evenly */
+    padding: 20px; 
+} 
+
+#products_lists li {
+    width: 200px; /* Adjust width to control how many items per row */
+    margin: 10px; /* Add margin to space out items */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#products_lists span {
+    text-align: center;
+    color: rgb(100, 100, 100);
+    margin-bottom: 10px; /* Add some space below the text */
+}
+
+#products_lists button {
+    width: 100px;
+    padding: 5px;
+    margin-top: 10px; 
+    color:rgb(238, 245, 245);
+    background-color:rgb(69, 69, 68); 
+    border-radius: 5px;
+}
+
+
+#products_lists img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-bottom: 10px; /* Add space below the image */
+}
+</code></pre>
+<p>作業取自： <a href="https://codelove.tw/@howtomakeaturn/post/yx0Ag3">https://codelove.tw/@howtomakeaturn/post/yx0Ag3</a><br>by 站長阿川 </p>

@@ -1,0 +1,218 @@
+<hr>
+<h2 id="title-課後作業-JavaScript-系列五：第6課-──-學會-AJAX-與各種-HTTP-請求方法date-2024-10-02-10-55-26categories-OneDayOneNotetags-Javascript-Vue-description-課後作業-JavaScript-系列五：第6課-──-學會-AJAX-與各種-HTTP-請求方法"><a href="#title-課後作業-JavaScript-系列五：第6課-──-學會-AJAX-與各種-HTTP-請求方法date-2024-10-02-10-55-26categories-OneDayOneNotetags-Javascript-Vue-description-課後作業-JavaScript-系列五：第6課-──-學會-AJAX-與各種-HTTP-請求方法" class="headerlink" title="title: 課後作業-JavaScript 系列五：第6課 ── 學會 AJAX 與各種 HTTP 請求方法date: 2024-10-02 10:55:26categories: OneDayOneNotetags:  [Javascript,Vue]description: 課後作業-JavaScript 系列五：第6課 ── 學會 AJAX 與各種 HTTP 請求方法"></a>title: 課後作業-JavaScript 系列五：第6課 ── 學會 AJAX 與各種 HTTP 請求方法<br>date: 2024-10-02 10:55:26<br>categories: OneDayOneNote<br>tags:  [Javascript,Vue]<br>description: 課後作業-JavaScript 系列五：第6課 ── 學會 AJAX 與各種 HTTP 請求方法</h2><h2 id="課後作業-JavaScript-系列五：第6課-──-學會-AJAX-與各種-HTTP-請求方法"><a href="#課後作業-JavaScript-系列五：第6課-──-學會-AJAX-與各種-HTTP-請求方法" class="headerlink" title="課後作業-JavaScript 系列五：第6課 ── 學會 AJAX 與各種 HTTP 請求方法"></a>課後作業-JavaScript 系列五：第6課 ── 學會 AJAX 與各種 HTTP 請求方法</h2><p><img src="/apple.lily/2024/10/02/OneDayOneNote/2024-10-05/05_js_AJAX-HTTP.png"></p>
+<h3 id="05-js-AJAX-HTTP-html"><a href="#05-js-AJAX-HTTP-html" class="headerlink" title="05_js_AJAX-HTTP.html"></a>05_js_AJAX-HTTP.html</h3><pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;JavaScript 系列五：第6課 ── 學會 AJAX 與各種 HTTP 請求方法&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;./05_js_AJAX-HTTP.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&quot;container&quot;&gt;
+        &lt;button id=&quot;load_products_btn&quot; class=&quot;btn&quot;&gt;Load Products&lt;/button&gt;
+         &lt;div class=&quot;msg&quot;&gt;抱歉，請稍後重新嘗試&lt;/div&gt;
+
+    &lt;/div&gt;
+
+    &lt;hr&gt;
+
+    &lt;div class=&quot;container&quot;&gt;
+        &lt;ul id=&quot;products_lists&quot; class=&quot;products_lists&quot;&gt;
+    
+
+        &lt;/ul&gt;
+    &lt;/div&gt;
+
+
+    &lt;script src=&quot;./05_js_AJAX-HTTP.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="05-js-AJAX-HTTP-js"><a href="#05-js-AJAX-HTTP-js" class="headerlink" title="05_js_AJAX-HTTP.js"></a>05_js_AJAX-HTTP.js</h3><pre><code class="js">const load_products_btn = document.querySelector(&#39;#load_products_btn&#39;);
+const set_display_timeout = (in_elem) =&gt;{
+// function set_display_timeout(in_elem){
+    in_elem.style.display=&quot;block&quot;;
+    setTimeout(function(){
+        in_elem.style.display=&quot;none&quot;;
+    },5000)
+
+}
+const do_fetch = (product_id,in_elem,msg) =&gt;{
+    fetch(&#39;https://fakestoreapi.com/products/&#39;+product_id,{
+    // fetch(&#39;https://fakestoreapi.com/products/21&#39;,{
+            method:&quot;DELETE&quot;
+        })
+            .then(res=&gt;res.json())
+            .then(json=&gt;
+                {console.log(json);
+                //  in_elem.remove();
+                    if(json === null){
+                        msg.style.display=&#39;block&#39;;
+                        set_display_timeout(msg);
+                    }
+                    else
+                    {
+                        in_elem.remove();
+                    }
+                })
+            .catch(error =&gt; {
+                msg.style.display=&#39;block&#39;;
+                set_display_timeout(msg);
+                console.error(&#39;Error delete products:&#39;, error);
+            });
+}
+const loadproducts = () =&gt; {
+    const products_lists = document.querySelector(&#39;#products_lists&#39;);
+    products_lists.innerHTML = &#39;&#39;; // Clear the list before loading new products
+    const msg = document.querySelector(&#39;.msg&#39;);
+    msg.style.display=&#39;none&#39;; 
+    fetch(&#39;https://fakestoreapi.com/products&#39;)
+        .then(res =&gt; res.json())
+        .then(json =&gt; {
+            json.forEach(product =&gt; {
+                const li = document.createElement(&#39;li&#39;);
+                const img = document.createElement(&#39;img&#39;);
+                img.src = product.image;
+                img.alt = product.title;  
+                
+                li.appendChild(img);
+                const span = document.createElement(&#39;span&#39;);
+                span.textContent = product.title;
+                li.appendChild(span);
+                
+                const detail = document.createElement(&#39;button&#39;);
+                detail.textContent = &#39;Details&#39;;
+                li.appendChild(detail);
+                detail.onclick = () =&gt; {
+                    alert(`ID: ${product.id}\nCategory: ${product.category}\nDescription: ${product.description}`);
+                }
+
+                const del = document.createElement(&#39;button&#39;);
+                del.textContent = &#39;Delete&#39;;
+                li.appendChild(del);
+                del.onclick = () =&gt; {
+                    do_fetch(product.id,li,msg);
+                    console.log(li);
+                    // li.remove();
+                }
+
+                products_lists.appendChild(li);
+            });
+        })
+        .catch(error =&gt; {
+            msg.style.display=&#39;block&#39;;
+            set_display_timeout(msg);
+            console.error(&#39;Error fetching products:&#39;, error);
+        });
+}
+
+load_products_btn.onclick = loadproducts;
+</code></pre>
+<h3 id="05-js-AJAX-HTTP"><a href="#05-js-AJAX-HTTP" class="headerlink" title="05_js_AJAX-HTTP"></a>05_js_AJAX-HTTP</h3><pre><code class="css">* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+body {
+    box-sizing: border-box;
+}
+
+#load_products_btn{
+    width: 120px;
+    height: 80px;
+    color: #ccc;
+    background-color:rgb(8, 81, 81);
+    font-size: 20px; 
+    padding: 10px; 
+    margin: 20px 30px; 
+}
+
+
+#load_products_btn:hover ,#products_lists button:hover{
+    color:rgb(8, 81, 81); 
+    background-color:rgb(156, 176, 20); 
+    cursor : pointer;  
+}
+
+
+.msg {
+    position: absolute;
+    top: 20px;
+    width: 200px;
+    height: 30px;
+    display: none;
+    background-color: #EDCAC7;
+    color:  #902105;
+    padding: 10px;
+    margin: 20px 0;
+    border-radius: 5px;
+
+}
+
+.msg{
+    animation: my_message 5s;
+    opacity:0;
+}
+
+@keyframes my_message{
+    from {
+        left: 200px; opacity: 100;}
+    to{ left: 300px;
+        opacity: 0;}
+
+} 
+
+
+#load_products_btn:hover ,#products_lists button:hover{
+    color:rgb(8, 81, 81); 
+    background-color:rgb(156, 176, 20); 
+    cursor : pointer;  
+}
+
+
+#products_lists {
+    display: flex; /* Change to flex to enable horizontal layout */
+    flex-wrap: wrap; /* Allow items to wrap to the next row if needed */
+    justify-content: space-between; /* Distribute items evenly */
+    padding: 20px; 
+} 
+
+#products_lists li {
+    width: 200px; /* Adjust width to control how many items per row */
+    margin: 10px; /* Add margin to space out items */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#products_lists span {
+    text-align: center;
+    color: rgb(100, 100, 100);
+    margin-bottom: 10px; /* Add some space below the text */
+}
+
+#products_lists button {
+    width: 100px;
+    padding: 5px;
+    margin-top: 10px; 
+    color:rgb(238, 245, 245);
+    background-color:rgb(69, 69, 68); 
+    border-radius: 5px;
+}
+
+
+#products_lists img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-bottom: 10px; /* Add space below the image */
+}
+</code></pre>
+<p>作業取自： <a href="https://codelove.tw/@howtomakeaturn/post/ga9jWq">https://codelove.tw/@howtomakeaturn/post/ga9jWq</a><br>by 站長阿川 </p>
