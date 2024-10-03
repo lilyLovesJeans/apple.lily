@@ -1,0 +1,96 @@
+<hr>
+<h2 id="title-課後作業-JavaScript-系列七：第4課-──-學習-Vue-迴圈的寫法date-2024-10-03-22-24-04categories-OneDayOneNotetags-Javascript-Vue-description-課後作業-JavaScript-系列七：第4課-──-學習-Vue-迴圈的寫法"><a href="#title-課後作業-JavaScript-系列七：第4課-──-學習-Vue-迴圈的寫法date-2024-10-03-22-24-04categories-OneDayOneNotetags-Javascript-Vue-description-課後作業-JavaScript-系列七：第4課-──-學習-Vue-迴圈的寫法" class="headerlink" title="title: 課後作業-JavaScript 系列七：第4課 ── 學習 Vue 迴圈的寫法date: 2024-10-03 22:24:04categories: OneDayOneNotetags:  [Javascript,Vue]description: 課後作業-JavaScript 系列七：第4課 ── 學習 Vue 迴圈的寫法"></a>title: 課後作業-JavaScript 系列七：第4課 ── 學習 Vue 迴圈的寫法<br>date: 2024-10-03 22:24:04<br>categories: OneDayOneNote<br>tags:  [Javascript,Vue]<br>description: 課後作業-JavaScript 系列七：第4課 ── 學習 Vue 迴圈的寫法</h2><h2 id="課後作業-JavaScript-系列七：第4課-──-學習-Vue-迴圈的寫法"><a href="#課後作業-JavaScript-系列七：第4課-──-學習-Vue-迴圈的寫法" class="headerlink" title="課後作業-JavaScript 系列七：第4課 ── 學習 Vue 迴圈的寫法"></a>課後作業-JavaScript 系列七：第4課 ── 學習 Vue 迴圈的寫法</h2><p><img src="/apple.lily/2024/10/03/OneDayOneNote/2024-10-07/04_js_vue_vFor.png"></p>
+<h3 id="04-js-vue-vFor-html"><a href="#04-js-vue-vFor-html" class="headerlink" title="04_js_vue_vFor.html"></a>04_js_vue_vFor.html</h3><pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;JavaScript 系列七：第4課 ── 學習 Vue 迴圈的寫法&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;./04_js_vue_vFor.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;script src=&quot;https://unpkg.com/vue@3/dist/vue.global.js&quot;&gt;&lt;/script&gt;
+    &lt;div id=&quot;app&quot;&gt;
+        &lt;div class=&quot;wrap&quot;&gt;
+            &lt;div v-for=&quot;note in notes&quot; class=&quot;note&quot; :class=&quot;note.color&quot;&gt;
+            
+                &lt;h3 class=&quot;title&quot;&gt;
+                
+                  {{note.title}}
+                &lt;/h3&gt;
+                &lt;p class=&quot;content&quot;&gt;
+            
+                  {{note.content}}
+                &lt;/p&gt;
+              &lt;/div&gt;
+              
+
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;script src=&quot;./04_js_vue_vFor.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="04-js-vue-vFor-js"><a href="#04-js-vue-vFor-js" class="headerlink" title="04_js_vue_vFor.js"></a>04_js_vue_vFor.js</h3><pre><code class="js">const { createApp } = Vue
+
+  createApp({
+    data() {
+        return {
+          notes: [
+            {
+              title: &quot;春節行程安排&quot;,
+              content: &quot;吃飽睡，睡飽吃&quot;,
+              color: &quot;red&quot;,
+            },
+            {
+              title: &quot;工作待辦事項&quot;,
+              content: &quot;詢問各家廠商報價&quot;,
+              color: &quot;green&quot;,
+            },
+            {
+              title: &quot;運動健身計畫&quot;,
+              content: &quot;每天早上六點去健身&quot;,
+              color: &quot;blue&quot;,
+            },
+          ]
+        }
+      },
+      mounted() {
+        this.notes[0].content= &quot;多出門、到處走走、也要多運動k&quot;
+      },
+  }).mount(&#39;#app&#39;)
+</code></pre>
+<h3 id="04-js-vue-vFor-css"><a href="#04-js-vue-vFor-css" class="headerlink" title="04_js_vue_vFor.css"></a>04_js_vue_vFor.css</h3><pre><code class="css">*{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+.wrap{
+    display: flex;
+    align-content: center;
+
+}
+.note{
+    width: 240px;
+    height: 100px;
+    border: 1px  solid #ccc;
+    border-radius: 5px;
+    margin:10px ;
+    padding: 15px;
+}
+
+.red{
+    background-color: #f7d5d9;
+}
+
+.green{
+    background-color: #D0EDDA;
+}
+
+.blue{
+    background-color: #C9E4FD;
+}
+</code></pre>
