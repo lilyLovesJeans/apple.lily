@@ -1,0 +1,123 @@
+<hr>
+<h2 id="title-2024-10-09-restAPI設計標準date-2024-10-08-22-28-33categories-OneDayOneNotetags-C-WebAPI-description-2024-10-09-restAPI設計標準"><a href="#title-2024-10-09-restAPI設計標準date-2024-10-08-22-28-33categories-OneDayOneNotetags-C-WebAPI-description-2024-10-09-restAPI設計標準" class="headerlink" title="title: 2024-10-09 restAPI設計標準date: 2024-10-08 22:28:33categories: OneDayOneNotetags:  [C#, WebAPI ]description: 2024-10-09 restAPI設計標準"></a>title: 2024-10-09 restAPI設計標準<br>date: 2024-10-08 22:28:33<br>categories: OneDayOneNote<br>tags:  [C#, WebAPI ]<br>description: 2024-10-09 restAPI設計標準</h2><p>REST（Representational State Transfer）是一種常用的軟體架構風格，專門用來設計基於網絡的應用程序（通常是 Web API）。REST API 的設計標準包括一些最佳實踐和原則，用來確保 API 的結構清晰、一致、易於使用和擴展。以下是 REST API 設計中的核心標準和最佳實踐：</p>
+<h3 id="1-使用-HTTP-方法"><a href="#1-使用-HTTP-方法" class="headerlink" title="1. 使用 HTTP 方法"></a>1. <strong>使用 HTTP 方法</strong></h3><p>REST API 基於 HTTP 協議，因此需要遵循 HTTP 方法來表達不同的操作，這有助於使 API 更符合 HTTP 協議的語義。</p>
+<ul>
+<li><strong>GET</strong>：用於查詢資源。只讀操作，應該是無副作用的。<ul>
+<li>例如：<code>GET /api/packages</code> 查詢所有包裹。</li>
+</ul>
+</li>
+<li><strong>POST</strong>：用於創建資源。一般會創建一個新的資源並返回其詳細信息。<ul>
+<li>例如：<code>POST /api/packages</code> 創建一個新的包裹。</li>
+</ul>
+</li>
+<li><strong>PUT</strong>：用於更新資源。替換或更新現有的資源。<ul>
+<li>例如：<code>PUT /api/packages/123</code> 更新包裹 <code>123</code> 的信息。</li>
+</ul>
+</li>
+<li><strong>PATCH</strong>：用於部分更新資源。只更新資源的部分屬性。<ul>
+<li>例如：<code>PATCH /api/packages/123</code> 部分更新包裹 <code>123</code>。</li>
+</ul>
+</li>
+<li><strong>DELETE</strong>：用於刪除資源。<ul>
+<li>例如：<code>DELETE /api/packages/123</code> 刪除包裹 <code>123</code>。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-資源的標識與命名（URI）"><a href="#2-資源的標識與命名（URI）" class="headerlink" title="2. 資源的標識與命名（URI）"></a>2. <strong>資源的標識與命名（URI）</strong></h3><p>在 REST API 中，資源是通過 URI（Uniform Resource Identifier）來標識的。設計好的 URI 是清晰、可理解的，並且表達了資源的含義。</p>
+<ul>
+<li><strong>URI 結構</strong>：<ul>
+<li>資源應使用名詞來表示，而不是動詞。例如，使用 <code>/packages</code> 而不是 <code>/getPackages</code>。</li>
+<li>資源標識應遵循層級結構。例如，包裹的項目可能是 <code>/packages/123/items</code>。</li>
+</ul>
+</li>
+<li><strong>良好的 URI 設計例子</strong>：<ul>
+<li><code>GET /api/users</code>：獲取所有用戶。</li>
+<li><code>GET /api/users/42</code>：獲取用戶 ID 為 <code>42</code> 的詳細信息。</li>
+<li><code>POST /api/users</code>：創建一個新用戶。</li>
+<li><code>PUT /api/users/42</code>：更新用戶 <code>42</code>。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-使用合適的-HTTP-狀態碼"><a href="#3-使用合適的-HTTP-狀態碼" class="headerlink" title="3. 使用合適的 HTTP 狀態碼"></a>3. <strong>使用合適的 HTTP 狀態碼</strong></h3><p>在 REST API 中，應用程序狀態是通過 HTTP 狀態碼來表示的。使用正確的 HTTP 狀態碼可以提高 API 的可用性和可讀性。</p>
+<ul>
+<li><strong>200 OK</strong>：請求成功，一般用於 <code>GET</code>、<code>PUT</code>、<code>DELETE</code> 等操作。</li>
+<li><strong>201 Created</strong>：資源創建成功，一般用於 <code>POST</code> 操作。</li>
+<li><strong>204 No Content</strong>：操作成功，但沒有需要返回的內容，一般用於 <code>DELETE</code> 操作。</li>
+<li><strong>400 Bad Request</strong>：請求無效，當請求參數錯誤時使用。</li>
+<li><strong>401 Unauthorized</strong>：未經授權，當請求需要身份驗證時使用。</li>
+<li><strong>403 Forbidden</strong>：已經授權，但沒有操作許可權。</li>
+<li><strong>404 Not Found</strong>：找不到資源，當請求的資源不存在時使用。</li>
+<li><strong>500 Internal Server Error</strong>：服務器錯誤，當服務器內部發生錯誤時使用。</li>
+</ul>
+<h3 id="4-返回統一的數據格式（通常是-JSON）"><a href="#4-返回統一的數據格式（通常是-JSON）" class="headerlink" title="4. 返回統一的數據格式（通常是 JSON）"></a>4. <strong>返回統一的數據格式（通常是 JSON）</strong></h3><ul>
+<li><strong>JSON 作為首選格式</strong>：大多數 REST API 使用 JSON 作為數據格式，因為它輕量且易於解析和讀取。</li>
+<li><strong>返回一致的結構</strong>：返回的數據應該保持一致的格式，這樣客戶端可以更容易地解析和使用。通常應包括狀態、消息、數據等，例如：<pre><code class="json">{
+  &quot;status&quot;: &quot;success&quot;,
+  &quot;data&quot;: {
+    &quot;id&quot;: 123,
+    &quot;name&quot;: &quot;Package 1&quot;,
+    &quot;status&quot;: &quot;In Transit&quot;
+  }
+}
+</code></pre>
+</li>
+</ul>
+<h3 id="5-版本控制"><a href="#5-版本控制" class="headerlink" title="5. 版本控制"></a>5. <strong>版本控制</strong></h3><p>版本控制可以避免接口的突然更改影響到用戶，特別是在需要進行 API 更新時。</p>
+<ul>
+<li><strong>在 URI 中添加版本號</strong>：<ul>
+<li>例如：<code>/api/v1/packages</code> 或 <code>/v2/users</code>。這樣可以確保向後兼容。</li>
+</ul>
+</li>
+<li><strong>通過標頭版本控制</strong>（較少見，但也是可選方式）：<ul>
+<li>可以通過自定義的 HTTP 標頭來傳遞版本信息，例如 <code>Accept: application/vnd.myapi.v1+json</code>。</li>
+</ul>
+</li>
+</ul>
+<h3 id="6-HATEOAS（Hypermedia-as-the-Engine-of-Application-State）"><a href="#6-HATEOAS（Hypermedia-as-the-Engine-of-Application-State）" class="headerlink" title="6. HATEOAS（Hypermedia as the Engine of Application State）"></a>6. <strong>HATEOAS（Hypermedia as the Engine of Application State）</strong></h3><ul>
+<li><strong>HATEOAS 原則</strong>：這是一種為 API 客戶端提供可導航鏈接的方式，這些鏈接幫助客戶端了解可用的下一步操作。</li>
+<li><strong>例子</strong>：<ul>
+<li>在返回包裹信息時，還可以返回可導航的鏈接：<pre><code class="json">{
+  &quot;trackingNumber&quot;: &quot;12345&quot;,
+  &quot;status&quot;: &quot;In Transit&quot;,
+  &quot;_links&quot;: {
+    &quot;self&quot;: { &quot;href&quot;: &quot;/api/packages/12345&quot; },
+    &quot;cancel&quot;: { &quot;href&quot;: &quot;/api/packages/12345/cancel&quot; }
+  }
+}
+</code></pre>
+</li>
+<li>HATEOAS 的主要優勢在於增加了 API 的自描述性，讓客戶端知道應用程序的下一步操作。</li>
+</ul>
+</li>
+</ul>
+<h3 id="7-遵循-REST-的無狀態性"><a href="#7-遵循-REST-的無狀態性" class="headerlink" title="7. 遵循 REST 的無狀態性"></a>7. <strong>遵循 REST 的無狀態性</strong></h3><ul>
+<li><strong>無狀態性</strong>：每個請求應該包含所有必要的信息，以便服務器能夠理解並處理請求。服務器不應該保存客戶端的狀態。</li>
+<li><strong>好處</strong>：這樣的設計提高了系統的可伸縮性，因為每個請求可以獨立處理，而不需要了解前一個請求的上下文。</li>
+</ul>
+<h3 id="8-使用合適的錯誤處理與錯誤消息"><a href="#8-使用合適的錯誤處理與錯誤消息" class="headerlink" title="8. 使用合適的錯誤處理與錯誤消息"></a>8. <strong>使用合適的錯誤處理與錯誤消息</strong></h3><ul>
+<li>在發生錯誤時，應返回有意義的錯誤信息，幫助用戶了解發生了什麼。</li>
+<li><strong>例子</strong>：<pre><code class="json">{
+  &quot;type&quot;: &quot;https://example.com/errors/invalid-data&quot;,
+  &quot;title&quot;: &quot;Invalid data provided&quot;,
+  &quot;status&quot;: 400,
+  &quot;detail&quot;: &quot;The provided &#39;trackingNumber&#39; is invalid.&quot;,
+  &quot;instance&quot;: &quot;/api/packages/123&quot;
+}
+</code></pre>
+</li>
+<li><strong>提供錯誤細節</strong>：應包括 <code>status</code>（狀態碼）、<code>detail</code>（具體錯誤描述）等字段。</li>
+</ul>
+<h3 id="9-安全性考慮"><a href="#9-安全性考慮" class="headerlink" title="9. 安全性考慮"></a>9. <strong>安全性考慮</strong></h3><ul>
+<li><strong>身份驗證</strong>：可以使用 <strong>OAuth2</strong> 或 <strong>JWT（JSON Web Token）</strong> 進行身份驗證。</li>
+<li><strong>授權控制</strong>：使用授權策略，確保只有合適的用戶可以訪問某些資源。</li>
+<li><strong>HTTPS</strong>：所有的 API 請求應該通過 HTTPS 發送，以防止數據在傳輸過程中被竊取。</li>
+</ul>
+<h3 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h3><ul>
+<li><strong>使用適當的 HTTP 方法和狀態碼</strong>，保持語義化。</li>
+<li><strong>URI 應該清晰且簡潔</strong>，代表資源。</li>
+<li><strong>返回統一的數據格式（通常是 JSON）</strong>，保持數據結構一致。</li>
+<li><strong>使用版本控制</strong> 來管理 API 的演化。</li>
+<li><strong>遵循 REST 的無狀態性原則</strong>，每個請求應該是獨立的。</li>
+<li><strong>實施安全措施</strong>，如身份驗證和 HTTPS。</li>
+</ul>
+<p>這些設計標準和最佳實踐可以幫助您創建一個清晰、一致、易於使用的 REST API。如果還有其他問題，隨時問我！</p>

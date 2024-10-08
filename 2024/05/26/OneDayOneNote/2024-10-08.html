@@ -1,0 +1,45 @@
+<hr>
+<h2 id="title-2024-10-08-父層virtual和子層overridedate-2024-10-08-22-25-43categories-OneDayOneNotetags-C-WebAPI-description-2024-10-08-父層virtual和子層override"><a href="#title-2024-10-08-父層virtual和子層overridedate-2024-10-08-22-25-43categories-OneDayOneNotetags-C-WebAPI-description-2024-10-08-父層virtual和子層override" class="headerlink" title="title: 2024-10-08 父層virtual和子層overridedate: 2024-10-08 22:25:43categories: OneDayOneNotetags:  [C#, WebAPI ]description: 2024-10-08 父層virtual和子層override"></a>title: 2024-10-08 父層virtual和子層override<br>date: 2024-10-08 22:25:43<br>categories: OneDayOneNote<br>tags:  [C#, WebAPI ]<br>description: 2024-10-08 父層virtual和子層override</h2><p>在其他類別程式（<code>.cs</code> 文件中），如果該類別繼承了這個 <code>TableDao&lt;T&gt;</code> 類別，那麼你可以選擇覆寫（override）這個 <code>Query</code> 方法，而不必遵循父層的原始實作方式。這是因為 <code>Query</code> 方法被標記為 <code>virtual</code>，這表示它是虛擬方法，允許子類別根據需求來覆寫它。</p>
+<h3 id="如何覆寫-Query-方法"><a href="#如何覆寫-Query-方法" class="headerlink" title="如何覆寫 Query 方法"></a>如何覆寫 <code>Query</code> 方法</h3><p>當你在子類別中繼承了 <code>TableDao&lt;T&gt;</code>，你可以使用 <code>override</code> 關鍵字來覆寫這個方法。這樣，你可以根據特定的需求定制自己的查詢邏輯。</p>
+<p>例如，假設你有一個名為 <code>CustomerDao</code> 的類別，它繼承自 <code>TableDao&lt;Customer&gt;</code>：</p>
+<pre><code class="csharp">public class CustomerDao : TableDao&lt;Customer&gt;
+{
+    public CustomerDao(IRepository repository) : base(repository) { }
+
+    // 覆寫 Query 方法
+    public override IEnumerable&lt;Customer&gt; Query(Customer inputVo)
+    {
+        // 自己的查詢邏輯，這裡你可以改寫為任何適合的查詢
+        StringBuilder customQuery = new StringBuilder(&quot;SELECT * FROM Customers WHERE 1=1 &quot;);
+        
+        if (!string.IsNullOrEmpty(inputVo.Name))
+        {
+            customQuery.AppendLine(&quot;AND Name = @Name&quot;);
+        }
+
+        // 更多的查詢條件...
+        
+        return _repository.Connection().Query&lt;Customer&gt;(customQuery.ToString(), inputVo);
+    }
+}
+</code></pre>
+<h3 id="注意事項"><a href="#注意事項" class="headerlink" title="注意事項"></a>注意事項</h3><ul>
+<li><p>**<code>virtual</code> 和 <code>override</code>**：</p>
+<ul>
+<li>在父類別中，<code>Query</code> 方法使用了 <code>virtual</code>，表示這個方法可以被覆寫。</li>
+<li>在子類別中，你需要使用 <code>override</code> 關鍵字來實作自己的版本，這樣子類別中的 <code>Query</code> 方法就會取代父類別中的實作。</li>
+</ul>
+</li>
+<li><p><strong>靈活性</strong>：</p>
+<ul>
+<li>你可以根據具體的需求來覆寫 <code>Query</code> 方法，例如添加更多的查詢條件、不同的過濾方式、特定的商業邏輯等。</li>
+<li>如果某些情況下你不需要覆寫，可以直接使用父類別的 <code>Query</code> 方法，繼承父類別的查詢邏輯。</li>
+</ul>
+</li>
+</ul>
+<h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h3><ul>
+<li>父類別中的 <code>Query</code> 方法被標記為 <code>virtual</code>，這意味著它可以被覆寫。</li>
+<li>在子類別中，你可以選擇覆寫 <code>Query</code> 方法，使用 <code>override</code> 關鍵字來實現你自己的查詢邏輯。</li>
+<li>這樣做的好處是，你可以根據具體的需求靈活改變查詢的行為，而不必受限於父類別的方法實作。</li>
+</ul>
+<p>所以，答案是<strong>對的</strong>，當你在子類別中繼承這個 <code>Query</code> 方法時，你可以不依照父層的寫法，而是根據自己的需求來撰寫覆寫的查詢方法。</p>

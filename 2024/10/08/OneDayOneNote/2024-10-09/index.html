@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2024-10-09 restAPI設計標準">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024-10-09 restAPI設計標準">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2024/10/08/OneDayOneNote/2024-10-09/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2024-10-09 restAPI設計標準">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2024-10-08T14:28:33.000Z">
+<meta property="article:modified_time" content="2024-10-08T14:29:37.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="C#">
+<meta property="article:tag" content="WebAPI">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2024/10/08/OneDayOneNote/2024-10-09/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2024/10/08/OneDayOneNote/2024-10-09/","path":"2024/10/08/OneDayOneNote/2024-10-09/","title":"2024-10-09 restAPI設計標準"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2024-10-09 restAPI設計標準 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%BD%BF%E7%94%A8-HTTP-%E6%96%B9%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">1. 使用 HTTP 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E8%B3%87%E6%BA%90%E7%9A%84%E6%A8%99%E8%AD%98%E8%88%87%E5%91%BD%E5%90%8D%EF%BC%88URI%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">2. 資源的標識與命名（URI）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E4%BD%BF%E7%94%A8%E5%90%88%E9%81%A9%E7%9A%84-HTTP-%E7%8B%80%E6%85%8B%E7%A2%BC"><span class="nav-number">3.</span> <span class="nav-text">3. 使用合適的 HTTP 狀態碼</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E8%BF%94%E5%9B%9E%E7%B5%B1%E4%B8%80%E7%9A%84%E6%95%B8%E6%93%9A%E6%A0%BC%E5%BC%8F%EF%BC%88%E9%80%9A%E5%B8%B8%E6%98%AF-JSON%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">4. 返回統一的數據格式（通常是 JSON）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6"><span class="nav-number">5.</span> <span class="nav-text">5. 版本控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-HATEOAS%EF%BC%88Hypermedia-as-the-Engine-of-Application-State%EF%BC%89"><span class="nav-number">6.</span> <span class="nav-text">6. HATEOAS（Hypermedia as the Engine of Application State）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E9%81%B5%E5%BE%AA-REST-%E7%9A%84%E7%84%A1%E7%8B%80%E6%85%8B%E6%80%A7"><span class="nav-number">7.</span> <span class="nav-text">7. 遵循 REST 的無狀態性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-%E4%BD%BF%E7%94%A8%E5%90%88%E9%81%A9%E7%9A%84%E9%8C%AF%E8%AA%A4%E8%99%95%E7%90%86%E8%88%87%E9%8C%AF%E8%AA%A4%E6%B6%88%E6%81%AF"><span class="nav-number">8.</span> <span class="nav-text">8. 使用合適的錯誤處理與錯誤消息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-%E5%AE%89%E5%85%A8%E6%80%A7%E8%80%83%E6%85%AE"><span class="nav-number">9.</span> <span class="nav-text">9. 安全性考慮</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%B5%90"><span class="nav-number">10.</span> <span class="nav-text">小結</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">219</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2024/10/08/OneDayOneNote/2024-10-09/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2024-10-09 restAPI設計標準 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2024-10-09 restAPI設計標準">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2024-10-09 restAPI設計標準
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2024-10-08 22:28:33 / 修改時間：22:29:37" itemprop="dateCreated datePublished" datetime="2024-10-08T22:28:33+08:00">2024-10-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2024-10-09 restAPI設計標準</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>REST（Representational State Transfer）是一種常用的軟體架構風格，專門用來設計基於網絡的應用程序（通常是 Web API）。REST API 的設計標準包括一些最佳實踐和原則，用來確保 API 的結構清晰、一致、易於使用和擴展。以下是 REST API 設計中的核心標準和最佳實踐：</p>
+<h3 id="1-使用-HTTP-方法"><a href="#1-使用-HTTP-方法" class="headerlink" title="1. 使用 HTTP 方法"></a>1. <strong>使用 HTTP 方法</strong></h3><p>REST API 基於 HTTP 協議，因此需要遵循 HTTP 方法來表達不同的操作，這有助於使 API 更符合 HTTP 協議的語義。</p>
+<ul>
+<li><strong>GET</strong>：用於查詢資源。只讀操作，應該是無副作用的。<ul>
+<li>例如：<code>GET /api/packages</code> 查詢所有包裹。</li>
+</ul>
+</li>
+<li><strong>POST</strong>：用於創建資源。一般會創建一個新的資源並返回其詳細信息。<ul>
+<li>例如：<code>POST /api/packages</code> 創建一個新的包裹。</li>
+</ul>
+</li>
+<li><strong>PUT</strong>：用於更新資源。替換或更新現有的資源。<ul>
+<li>例如：<code>PUT /api/packages/123</code> 更新包裹 <code>123</code> 的信息。</li>
+</ul>
+</li>
+<li><strong>PATCH</strong>：用於部分更新資源。只更新資源的部分屬性。<ul>
+<li>例如：<code>PATCH /api/packages/123</code> 部分更新包裹 <code>123</code>。</li>
+</ul>
+</li>
+<li><strong>DELETE</strong>：用於刪除資源。<ul>
+<li>例如：<code>DELETE /api/packages/123</code> 刪除包裹 <code>123</code>。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-資源的標識與命名（URI）"><a href="#2-資源的標識與命名（URI）" class="headerlink" title="2. 資源的標識與命名（URI）"></a>2. <strong>資源的標識與命名（URI）</strong></h3><p>在 REST API 中，資源是通過 URI（Uniform Resource Identifier）來標識的。設計好的 URI 是清晰、可理解的，並且表達了資源的含義。</p>
+<ul>
+<li><strong>URI 結構</strong>：<ul>
+<li>資源應使用名詞來表示，而不是動詞。例如，使用 <code>/packages</code> 而不是 <code>/getPackages</code>。</li>
+<li>資源標識應遵循層級結構。例如，包裹的項目可能是 <code>/packages/123/items</code>。</li>
+</ul>
+</li>
+<li><strong>良好的 URI 設計例子</strong>：<ul>
+<li><code>GET /api/users</code>：獲取所有用戶。</li>
+<li><code>GET /api/users/42</code>：獲取用戶 ID 為 <code>42</code> 的詳細信息。</li>
+<li><code>POST /api/users</code>：創建一個新用戶。</li>
+<li><code>PUT /api/users/42</code>：更新用戶 <code>42</code>。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-使用合適的-HTTP-狀態碼"><a href="#3-使用合適的-HTTP-狀態碼" class="headerlink" title="3. 使用合適的 HTTP 狀態碼"></a>3. <strong>使用合適的 HTTP 狀態碼</strong></h3><p>在 REST API 中，應用程序狀態是通過 HTTP 狀態碼來表示的。使用正確的 HTTP 狀態碼可以提高 API 的可用性和可讀性。</p>
+<ul>
+<li><strong>200 OK</strong>：請求成功，一般用於 <code>GET</code>、<code>PUT</code>、<code>DELETE</code> 等操作。</li>
+<li><strong>201 Created</strong>：資源創建成功，一般用於 <code>POST</code> 操作。</li>
+<li><strong>204 No Content</strong>：操作成功，但沒有需要返回的內容，一般用於 <code>DELETE</code> 操作。</li>
+<li><strong>400 Bad Request</strong>：請求無效，當請求參數錯誤時使用。</li>
+<li><strong>401 Unauthorized</strong>：未經授權，當請求需要身份驗證時使用。</li>
+<li><strong>403 Forbidden</strong>：已經授權，但沒有操作許可權。</li>
+<li><strong>404 Not Found</strong>：找不到資源，當請求的資源不存在時使用。</li>
+<li><strong>500 Internal Server Error</strong>：服務器錯誤，當服務器內部發生錯誤時使用。</li>
+</ul>
+<h3 id="4-返回統一的數據格式（通常是-JSON）"><a href="#4-返回統一的數據格式（通常是-JSON）" class="headerlink" title="4. 返回統一的數據格式（通常是 JSON）"></a>4. <strong>返回統一的數據格式（通常是 JSON）</strong></h3><ul>
+<li><strong>JSON 作為首選格式</strong>：大多數 REST API 使用 JSON 作為數據格式，因為它輕量且易於解析和讀取。</li>
+<li><strong>返回一致的結構</strong>：返回的數據應該保持一致的格式，這樣客戶端可以更容易地解析和使用。通常應包括狀態、消息、數據等，例如：<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="string">&quot;success&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="number">123</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Package 1&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="string">&quot;In Transit&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="5-版本控制"><a href="#5-版本控制" class="headerlink" title="5. 版本控制"></a>5. <strong>版本控制</strong></h3><p>版本控制可以避免接口的突然更改影響到用戶，特別是在需要進行 API 更新時。</p>
+<ul>
+<li><strong>在 URI 中添加版本號</strong>：<ul>
+<li>例如：<code>/api/v1/packages</code> 或 <code>/v2/users</code>。這樣可以確保向後兼容。</li>
+</ul>
+</li>
+<li><strong>通過標頭版本控制</strong>（較少見，但也是可選方式）：<ul>
+<li>可以通過自定義的 HTTP 標頭來傳遞版本信息，例如 <code>Accept: application/vnd.myapi.v1+json</code>。</li>
+</ul>
+</li>
+</ul>
+<h3 id="6-HATEOAS（Hypermedia-as-the-Engine-of-Application-State）"><a href="#6-HATEOAS（Hypermedia-as-the-Engine-of-Application-State）" class="headerlink" title="6. HATEOAS（Hypermedia as the Engine of Application State）"></a>6. <strong>HATEOAS（Hypermedia as the Engine of Application State）</strong></h3><ul>
+<li><strong>HATEOAS 原則</strong>：這是一種為 API 客戶端提供可導航鏈接的方式，這些鏈接幫助客戶端了解可用的下一步操作。</li>
+<li><strong>例子</strong>：<ul>
+<li>在返回包裹信息時，還可以返回可導航的鏈接：<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;trackingNumber&quot;</span><span class="punctuation">:</span> <span class="string">&quot;12345&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="string">&quot;In Transit&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;_links&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;self&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;href&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/api/packages/12345&quot;</span> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;cancel&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;href&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/api/packages/12345/cancel&quot;</span> <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li>
+<li>HATEOAS 的主要優勢在於增加了 API 的自描述性，讓客戶端知道應用程序的下一步操作。</li>
+</ul>
+</li>
+</ul>
+<h3 id="7-遵循-REST-的無狀態性"><a href="#7-遵循-REST-的無狀態性" class="headerlink" title="7. 遵循 REST 的無狀態性"></a>7. <strong>遵循 REST 的無狀態性</strong></h3><ul>
+<li><strong>無狀態性</strong>：每個請求應該包含所有必要的信息，以便服務器能夠理解並處理請求。服務器不應該保存客戶端的狀態。</li>
+<li><strong>好處</strong>：這樣的設計提高了系統的可伸縮性，因為每個請求可以獨立處理，而不需要了解前一個請求的上下文。</li>
+</ul>
+<h3 id="8-使用合適的錯誤處理與錯誤消息"><a href="#8-使用合適的錯誤處理與錯誤消息" class="headerlink" title="8. 使用合適的錯誤處理與錯誤消息"></a>8. <strong>使用合適的錯誤處理與錯誤消息</strong></h3><ul>
+<li>在發生錯誤時，應返回有意義的錯誤信息，幫助用戶了解發生了什麼。</li>
+<li><strong>例子</strong>：<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://example.com/errors/invalid-data&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;title&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Invalid data provided&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="number">400</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;detail&quot;</span><span class="punctuation">:</span> <span class="string">&quot;The provided &#x27;trackingNumber&#x27; is invalid.&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;instance&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/api/packages/123&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li>
+<li><strong>提供錯誤細節</strong>：應包括 <code>status</code>（狀態碼）、<code>detail</code>（具體錯誤描述）等字段。</li>
+</ul>
+<h3 id="9-安全性考慮"><a href="#9-安全性考慮" class="headerlink" title="9. 安全性考慮"></a>9. <strong>安全性考慮</strong></h3><ul>
+<li><strong>身份驗證</strong>：可以使用 <strong>OAuth2</strong> 或 <strong>JWT（JSON Web Token）</strong> 進行身份驗證。</li>
+<li><strong>授權控制</strong>：使用授權策略，確保只有合適的用戶可以訪問某些資源。</li>
+<li><strong>HTTPS</strong>：所有的 API 請求應該通過 HTTPS 發送，以防止數據在傳輸過程中被竊取。</li>
+</ul>
+<h3 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h3><ul>
+<li><strong>使用適當的 HTTP 方法和狀態碼</strong>，保持語義化。</li>
+<li><strong>URI 應該清晰且簡潔</strong>，代表資源。</li>
+<li><strong>返回統一的數據格式（通常是 JSON）</strong>，保持數據結構一致。</li>
+<li><strong>使用版本控制</strong> 來管理 API 的演化。</li>
+<li><strong>遵循 REST 的無狀態性原則</strong>，每個請求應該是獨立的。</li>
+<li><strong>實施安全措施</strong>，如身份驗證和 HTTPS。</li>
+</ul>
+<p>這些設計標準和最佳實踐可以幫助您創建一個清晰、一致、易於使用的 REST API。如果還有其他問題，隨時問我！</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/C/" rel="tag"># C#</a>
+              <a href="/apple.lily/tags/WebAPI/" rel="tag"># WebAPI</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/10/08/OneDayOneNote/2024-10-08/" rel="prev" title="2024-10-08 父層virtual和子層override">
+                  <i class="fa fa-angle-left"></i> 2024-10-08 父層virtual和子層override
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/10/08/OneDayOneNote/2024-10-10/" rel="next" title="2024-10-10 ActionResult是 ASP.NETCore中用來表示 HTTP請求結果的一種返回類型">
+                  2024-10-10 ActionResult是 ASP.NETCore中用來表示 HTTP請求結果的一種返回類型 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

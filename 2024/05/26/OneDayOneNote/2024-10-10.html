@@ -1,0 +1,103 @@
+<hr>
+<h2 id="title-2024-10-10-ActionResult是-ASP-NETCore中用來表示-HTTP請求結果的一種返回類型date-2024-10-08-22-30-44categories-OneDayOneNotetags-C-WebAPI-description-2024-10-10-ActionResult是-ASP-NETCore中用來表示-HTTP請求結果的一種返回類型"><a href="#title-2024-10-10-ActionResult是-ASP-NETCore中用來表示-HTTP請求結果的一種返回類型date-2024-10-08-22-30-44categories-OneDayOneNotetags-C-WebAPI-description-2024-10-10-ActionResult是-ASP-NETCore中用來表示-HTTP請求結果的一種返回類型" class="headerlink" title="title: 2024-10-10 ActionResult是 ASP.NETCore中用來表示 HTTP請求結果的一種返回類型date: 2024-10-08 22:30:44categories: OneDayOneNotetags:  [C#, WebAPI ]description: 2024-10-10 ActionResult是 ASP.NETCore中用來表示 HTTP請求結果的一種返回類型"></a>title: 2024-10-10 ActionResult是 ASP.NETCore中用來表示 HTTP請求結果的一種返回類型<br>date: 2024-10-08 22:30:44<br>categories: OneDayOneNote<br>tags:  [C#, WebAPI ]<br>description: 2024-10-10 ActionResult是 ASP.NETCore中用來表示 HTTP請求結果的一種返回類型</h2><p><code>public ActionResult</code> 不是硬性規定必須這樣寫，但它是一個常見且推薦的做法，特別是在 ASP.NET Core MVC 和 Web API 開發中。讓我們深入解釋 <code>ActionResult</code> 的用途和它的替代方案。</p>
+<h3 id="ActionResult-的用途"><a href="#ActionResult-的用途" class="headerlink" title="ActionResult 的用途"></a><code>ActionResult</code> 的用途</h3><ul>
+<li><code>ActionResult</code> 是 ASP.NET Core 中用來表示 HTTP 請求結果的一種返回類型，它表示控制器中的某個方法返回一個 HTTP 响應。</li>
+<li>它允許您<strong>靈活地返回不同類型的 HTTP 狀態代碼</strong>（例如 <code>200 OK</code>、<code>404 Not Found</code> 等）以及相應的數據。</li>
+</ul>
+<h3 id="使用-ActionResult-的好處"><a href="#使用-ActionResult-的好處" class="headerlink" title="使用 ActionResult 的好處"></a>使用 <code>ActionResult</code> 的好處</h3><ol>
+<li><p><strong>靈活性</strong>：</p>
+<ul>
+<li><code>ActionResult</code> 可以返回各種不同類型的結果，例如：<ul>
+<li>**<code>Ok()</code>**：表示請求成功，返回狀態碼 <code>200 OK</code>。</li>
+<li>**<code>NotFound()</code>**：表示資源未找到，返回狀態碼 <code>404 Not Found</code>。</li>
+<li>**<code>BadRequest()</code>**：表示客戶端錯誤，返回狀態碼 <code>400 Bad Request</code>。</li>
+<li>**<code>Created()</code> 或 <code>CreatedAtAction()</code>**：表示資源創建成功，返回狀態碼 <code>201 Created</code>。</li>
+</ul>
+</li>
+<li>這些方法都有助於<strong>提高代碼的可讀性</strong>，使得它們更加符合 REST API 的設計標準。</li>
+</ul>
+</li>
+<li><p><strong>便於返回錯誤或成功狀態</strong>：</p>
+<ul>
+<li>使用 <code>ActionResult</code> 可以使得控制器方法返回不同的結果類型，不僅僅是數據，還包括成功或錯誤的 HTTP 狀態。</li>
+<li>例如：<pre><code class="csharp">public ActionResult&lt;Package&gt; GetPackageByTrackingNumber(string trackingNumber)
+{
+    var package = packages.FirstOrDefault(p =&gt; p.TrackingNumber == trackingNumber);
+    if (package == null)
+    {
+        return NotFound(&quot;找不到此包裹&quot;);
+    }
+    return Ok(package);
+}
+</code></pre>
+</li>
+<li>在上面的代碼中，<code>ActionResult&lt;Package&gt;</code> 可以返回 <code>NotFound()</code>，也可以返回 <code>Ok(package)</code>，這樣可以根據業務邏輯來靈活選擇返回合適的結果。</li>
+</ul>
+</li>
+</ol>
+<h3 id="ActionResult-的不同類型"><a href="#ActionResult-的不同類型" class="headerlink" title="ActionResult 的不同類型"></a><code>ActionResult</code> 的不同類型</h3><p>在 ASP.NET Core 中，有兩種常見的返回類型選擇：</p>
+<ol>
+<li><p>**<code>ActionResult</code>**：</p>
+<ul>
+<li>如果您的控制器方法<strong>不需要返回具體的數據</strong>，只需指示操作的結果，例如成功或失敗，那麼可以只使用 <code>ActionResult</code>。</li>
+<li>例如：<pre><code class="csharp">public ActionResult DeletePackage(string trackingNumber)
+{
+    var package = packages.FirstOrDefault(p =&gt; p.TrackingNumber == trackingNumber);
+    if (package == null)
+    {
+        return NotFound(&quot;找不到此包裹&quot;);
+    }
+    
+    packages.Remove(package);
+    return NoContent();  // 表示刪除成功，狀態碼 204
+}
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>**<code>ActionResult&lt;T&gt;</code>**（例如 <code>ActionResult&lt;Package&gt;</code>）：</p>
+<ul>
+<li>如果方法需要返回某種類型的數據（例如包裹的詳細信息），則可以使用泛型形式 <code>ActionResult&lt;T&gt;</code>。</li>
+<li>例如：<pre><code class="csharp">public ActionResult&lt;Package&gt; GetPackageByTrackingNumber(string trackingNumber)
+{
+    var package = packages.FirstOrDefault(p =&gt; p.TrackingNumber == trackingNumber);
+    if (package == null)
+    {
+        return NotFound(&quot;找不到此包裹&quot;);
+    }
+    return Ok(package);  // 返回找到的包裹對象，狀態碼 200
+}
+</code></pre>
+</li>
+<li>這樣，您既可以返回包裹對象（<code>Ok(package)</code>），也可以根據需要返回一個錯誤結果（例如 <code>NotFound()</code>）。</li>
+</ul>
+</li>
+</ol>
+<h3 id="其他可能的返回類型"><a href="#其他可能的返回類型" class="headerlink" title="其他可能的返回類型"></a>其他可能的返回類型</h3><ol>
+<li><p>**<code>IActionResult</code>**：</p>
+<ul>
+<li><code>IActionResult</code> 是 <code>ActionResult</code> 的接口，它也允許您返回不同的 HTTP 結果。它與 <code>ActionResult</code> 的主要區別是它更加靈活，能讓您實現自己的結果處理邏輯。</li>
+</ul>
+</li>
+<li><p><strong>具體類型（例如 <code>string</code>、<code>Package</code>）</strong>：</p>
+<ul>
+<li>您也可以讓控制器方法返回具體的數據類型。例如：<pre><code class="csharp">public Package GetPackage()
+{
+    return new Package { TrackingNumber = &quot;12345&quot;, Sender = &quot;Alice&quot;, Recipient = &quot;Bob&quot; };
+}
+</code></pre>
+</li>
+<li>這樣的方法只能返回一種類型的數據（例如只返回 <code>Package</code>），如果需要返回錯誤狀態碼（例如 <code>404</code>），就比較不靈活了。</li>
+</ul>
+</li>
+</ol>
+<h3 id="適用情況"><a href="#適用情況" class="headerlink" title="適用情況"></a>適用情況</h3><ul>
+<li><strong><code>ActionResult</code> 或 <code>ActionResult&lt;T&gt;</code></strong> 是 REST API 中最推薦的選擇，因為它能靈活地返回數據或錯誤消息。</li>
+<li><strong><code>IActionResult</code></strong> 提供更高的靈活性，適合需要不同返回邏輯的情況。</li>
+<li><strong>具體類型</strong> 適合只返回單一成功結果的情況，但不太符合 REST API 的最佳實踐。</li>
+</ul>
+<h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h3><ul>
+<li><code>public ActionResult</code> 或 <code>public ActionResult&lt;T&gt;</code> 並不是硬性規定，但它是<strong>最佳實踐</strong>，特別是在開發 RESTful API 時，能夠更靈活地處理不同的請求和返回狀態。</li>
+<li><code>ActionResult</code> 能夠返回不同的 HTTP 狀態代碼以及相應的數據，使您的 API 更加符合標準，也使得代碼更具可讀性和可維護性。</li>
+</ul>
+<p>所以，您在開發 API 時，最好根據需要的返回類型和情況，選擇合適的返回類型。如果您還有其他問題，或者想進一步了解如何選擇返回類型，隨時告訴我！</p>
