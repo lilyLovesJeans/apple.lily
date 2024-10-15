@@ -1,0 +1,103 @@
+<hr>
+<h2 id="title-2024-10-14-004-學寫API-解釋Program-cs文件中的代碼date-2024-10-15-09-56-27categories-OneDayOneNotetags-C-WebAPI-description-2024-10-14-004-學寫API-解釋Program-cs文件中的代碼"><a href="#title-2024-10-14-004-學寫API-解釋Program-cs文件中的代碼date-2024-10-15-09-56-27categories-OneDayOneNotetags-C-WebAPI-description-2024-10-14-004-學寫API-解釋Program-cs文件中的代碼" class="headerlink" title="title: 2024-10-14 004_學寫API_解釋Program_cs文件中的代碼date: 2024-10-15 09:56:27categories: OneDayOneNotetags:  [C#, WebAPI ]description: 2024-10-14 004_學寫API_解釋Program_cs文件中的代碼"></a>title: 2024-10-14 004_學寫API_解釋Program_cs文件中的代碼<br>date: 2024-10-15 09:56:27<br>categories: OneDayOneNote<br>tags:  [C#, WebAPI ]<br>description: 2024-10-14 004_學寫API_解釋Program_cs文件中的代碼</h2><h2 id="2024-10-14-004-學寫API-解釋Program-cs文件中的代碼"><a href="#2024-10-14-004-學寫API-解釋Program-cs文件中的代碼" class="headerlink" title="2024-10-14 004_學寫API_解釋Program_cs文件中的代碼"></a>2024-10-14 004_學寫API_解釋Program_cs文件中的代碼</h2><p>當然，讓我逐行為您解釋這個 <code>Program.cs</code> 文件中的代碼。</p>
+<h3 id="NLog-初始化與設置"><a href="#NLog-初始化與設置" class="headerlink" title="NLog 初始化與設置"></a>NLog 初始化與設置</h3><pre><code class="csharp">using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using NLog;
+using NLog.Web;
+</code></pre>
+<ul>
+<li><code>using</code> 關鍵字引用了相關的命名空間，這些命名空間中包含了程序所需的各種類型。<ul>
+<li><code>Microsoft.AspNetCore.Builder</code>：包含應用程序的管道設置，例如中間件。</li>
+<li><code>Microsoft.Extensions.DependencyInjection</code>：提供依賴注入相關的功能。</li>
+<li><code>Microsoft.Extensions.Hosting</code>：用於管理應用程序的生命周期和環境配置。</li>
+<li><code>NLog</code> 和 <code>NLog.Web</code>：用於 NLog 日誌系統的配置。</li>
+</ul>
+</li>
+</ul>
+<pre><code class="csharp">var logger = LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
+logger.Debug(&quot;init main&quot;);
+</code></pre>
+<ul>
+<li>初始化 NLog 日誌系統，並加載應用程序的設置 (<code>LoadConfigurationFromAppSettings()</code>)，這些設置可以來自 <code>NLog.config</code> 文件或 <code>appsettings.json</code> 中。</li>
+<li><code>GetCurrentClassLogger()</code> 返回一個用於記錄的 logger 實例。</li>
+<li><code>logger.Debug(&quot;init main&quot;)</code>：寫入一條日誌記錄，記錄級別是 <code>Debug</code>，表示這是一條調試信息。</li>
+</ul>
+<h3 id="嘗試構建-Web-應用程序"><a href="#嘗試構建-Web-應用程序" class="headerlink" title="嘗試構建 Web 應用程序"></a>嘗試構建 Web 應用程序</h3><pre><code class="csharp">try
+{
+    var builder = WebApplication.CreateBuilder(args);
+</code></pre>
+<ul>
+<li>使用 <code>WebApplication.CreateBuilder(args)</code> 創建 Web 應用程序的構建器，傳遞命令行參數 <code>args</code>。</li>
+</ul>
+<h3 id="添加-NLog-到服務中"><a href="#添加-NLog-到服務中" class="headerlink" title="添加 NLog 到服務中"></a>添加 NLog 到服務中</h3><pre><code class="csharp">    // 添加 NLog 到服務中
+    builder.Logging.ClearProviders();
+    builder.Host.UseNLog();
+</code></pre>
+<ul>
+<li><code>builder.Logging.ClearProviders()</code>：清除默認的日誌記錄提供程序，確保我們只使用 NLog 來處理日誌。</li>
+<li><code>builder.Host.UseNLog()</code>：告訴應用程序使用 NLog 來進行日誌記錄。</li>
+</ul>
+<h3 id="添加服務到容器中"><a href="#添加服務到容器中" class="headerlink" title="添加服務到容器中"></a>添加服務到容器中</h3><pre><code class="csharp">    // 添加服務到容器中
+    builder.Services.AddControllers();               // 添加控制器服務
+    builder.Services.AddEndpointsApiExplorer();      // 添加終端 API 瀏覽器服務
+    builder.Services.AddSwaggerGen();                // 添加 Swagger 生成器服務
+</code></pre>
+<ul>
+<li><code>builder.Services.AddControllers()</code>：將控制器添加到應用程序的服務容器中，這樣才能夠處理 HTTP 請求。</li>
+<li><code>builder.Services.AddEndpointsApiExplorer()</code>：這個方法添加了一個終端點 API 瀏覽器，通常用於查看 API 的端點。</li>
+<li><code>builder.Services.AddSwaggerGen()</code>：添加 <code>Swagger</code> 生成器服務，這將為應用程序生成 API 文檔。</li>
+</ul>
+<h3 id="構建應用程序"><a href="#構建應用程序" class="headerlink" title="構建應用程序"></a>構建應用程序</h3><pre><code class="csharp">    var app = builder.Build();
+</code></pre>
+<ul>
+<li>使用構建器構建應用程序 <code>app</code>。</li>
+</ul>
+<h3 id="配置-HTTP-請求管道"><a href="#配置-HTTP-請求管道" class="headerlink" title="配置 HTTP 請求管道"></a>配置 HTTP 請求管道</h3><pre><code class="csharp">    // 配置 HTTP 請求管道
+    if (app.Environment.IsDevelopment())             // 如果是開發環境
+    {
+        app.UseSwagger();                            // 使用 Swagger 中間件來生成文檔
+        app.UseSwaggerUI();                          // 使用 Swagger UI 中間件來提供可視化界面
+    }
+</code></pre>
+<ul>
+<li>配置應用程序的請求處理管道。</li>
+<li><code>if (app.Environment.IsDevelopment())</code>：檢查當前應用是否處於開發環境中。<ul>
+<li>如果是開發環境，則啟用 <code>Swagger</code> 和 <code>SwaggerUI</code>，用於生成並展示 API 文檔。</li>
+</ul>
+</li>
+</ul>
+<pre><code class="csharp">    app.UseHttpsRedirection();                       // 使用 HTTPS 重定向
+    app.UseAuthorization();                          // 使用授權
+</code></pre>
+<ul>
+<li><code>app.UseHttpsRedirection()</code>：自動將 HTTP 請求重定向為 HTTPS，強制使用加密通信。</li>
+<li><code>app.UseAuthorization()</code>：設置應用程序的授權中間件來處理身份驗證和授權。</li>
+</ul>
+<pre><code class="csharp">    app.MapControllers();                            // 映射控制器
+</code></pre>
+<ul>
+<li><code>app.MapControllers()</code>：將控制器映射到路由中，這樣應用程序可以找到控制器並處理對應的請求。</li>
+</ul>
+<pre><code class="csharp">    app.Run();                                       // 運行應用程序
+</code></pre>
+<ul>
+<li><code>app.Run()</code>：啟動應用程序，等待並處理進入的 HTTP 請求。</li>
+</ul>
+<h3 id="捕獲異常"><a href="#捕獲異常" class="headerlink" title="捕獲異常"></a>捕獲異常</h3><pre><code class="csharp">}
+catch (Exception ex)
+{
+    logger.Error(ex, &quot;Stopped program because of exception&quot;);
+    throw;
+}
+finally
+{
+    LogManager.Shutdown();
+}
+</code></pre>
+<ul>
+<li><code>try...catch</code> 檢測程序執行時的異常。</li>
+<li>在 <code>catch</code> 中，如果發生異常，就用 <code>logger.Error(ex, &quot;Stopped program because of exception&quot;)</code> 記錄錯誤日誌。</li>
+<li><code>finally</code> 中的 <code>LogManager.Shutdown()</code> 保證在應用程序停止時關閉所有的日誌記錄資源，進行清理。</li>
+</ul>
+<p>這樣，整個程序設置好了日誌、添加了 Web API 所需的服務，並且在運行過程中會記錄各種信息（例如在發生異常時）。這些功能有助於應用的調試和追踪。</p>

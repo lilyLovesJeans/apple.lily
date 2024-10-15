@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2024-10-25 015_學寫API_xUnit基礎核心概念">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024-10-25 015_學寫API_xUnit基礎核心概念">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2024/10/15/OneDayOneNote/2024-10-25/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2024-10-25 015_學寫API_xUnit基礎核心概念">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2024-10-15T02:51:21.000Z">
+<meta property="article:modified_time" content="2024-10-15T02:51:50.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="C#">
+<meta property="article:tag" content="WebAPI">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2024/10/15/OneDayOneNote/2024-10-25/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2024/10/15/OneDayOneNote/2024-10-25/","path":"2024/10/15/OneDayOneNote/2024-10-25/","title":"2024-10-25 015_學寫API_xUnit基礎核心概念"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2024-10-25 015_學寫API_xUnit基礎核心概念 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2024-10-25-015-%E5%AD%B8%E5%AF%ABAPI-xUnit%E5%9F%BA%E7%A4%8E%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">2024-10-25 015_學寫API_xUnit基礎核心概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#xUnit-%E5%9F%BA%E7%A4%8E%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">xUnit 基礎核心概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%B8%AC%E8%A9%A6%E9%A1%9E%E5%92%8C%E6%B8%AC%E8%A9%A6%E6%96%B9%E6%B3%95"><span class="nav-number">1.1.1.</span> <span class="nav-text">1. 測試類和測試方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Fact-%E5%92%8C-Theory"><span class="nav-number">1.1.2.</span> <span class="nav-text">2. [Fact] 和 [Theory]</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E6%B8%AC%E8%A9%A6%E7%9A%84%E4%B8%89%E5%80%8B%E9%9A%8E%E6%AE%B5"><span class="nav-number">1.1.3.</span> <span class="nav-text">3. 測試的三個階段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Assert-%E6%96%B9%E6%B3%95"><span class="nav-number">1.1.4.</span> <span class="nav-text">4. Assert 方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E6%B8%AC%E8%A9%A6%E5%91%BD%E5%90%8D%E8%A6%8F%E7%AF%84"><span class="nav-number">1.1.5.</span> <span class="nav-text">5. 測試命名規範</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-%E6%B8%AC%E8%A9%A6%E7%94%9F%E5%91%BD%E9%80%B1%E6%9C%9F%E6%96%B9%E6%B3%95"><span class="nav-number">1.1.6.</span> <span class="nav-text">6. 測試生命週期方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-%E4%BD%BF%E7%94%A8-Moq-%E7%AD%89%E5%B7%A5%E5%85%B7%E9%80%B2%E8%A1%8C-Mock"><span class="nav-number">1.1.7.</span> <span class="nav-text">7. 使用 Moq 等工具進行 Mock</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-%E9%80%B2%E8%A1%8C%E5%96%AE%E5%85%83%E6%B8%AC%E8%A9%A6%E7%9A%84%E5%B7%A5%E5%85%B7%E5%92%8C%E6%B5%81%E7%A8%8B"><span class="nav-number">1.1.8.</span> <span class="nav-text">8. 進行單元測試的工具和流程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B8%BD%E7%B5%90"><span class="nav-number">1.2.</span> <span class="nav-text">總結</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">236</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2024/10/15/OneDayOneNote/2024-10-25/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2024-10-25 015_學寫API_xUnit基礎核心概念 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2024-10-25 015_學寫API_xUnit基礎核心概念">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2024-10-25 015_學寫API_xUnit基礎核心概念
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2024-10-15 10:51:21 / 修改時間：10:51:50" itemprop="dateCreated datePublished" datetime="2024-10-15T10:51:21+08:00">2024-10-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2024-10-25 015_學寫API_xUnit基礎核心概念</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2024-10-25-015-學寫API-xUnit基礎核心概念"><a href="#2024-10-25-015-學寫API-xUnit基礎核心概念" class="headerlink" title="2024-10-25 015_學寫API_xUnit基礎核心概念"></a>2024-10-25 015_學寫API_xUnit基礎核心概念</h2><p>當然可以，讓我先跟你介紹 xUnit 的一些基礎核心概念，幫助你快速上手。</p>
+<h3 id="xUnit-基礎核心概念"><a href="#xUnit-基礎核心概念" class="headerlink" title="xUnit 基礎核心概念"></a>xUnit 基礎核心概念</h3><p>xUnit 是一個用於 .NET 的開源單元測試框架，它提供了一套簡潔且有效的方式來編寫和執行單元測試。它是目前 .NET 社區中非常流行的測試框架之一。以下是一些你需要了解的核心概念和基礎部分：</p>
+<h4 id="1-測試類和測試方法"><a href="#1-測試類和測試方法" class="headerlink" title="1. 測試類和測試方法"></a>1. 測試類和測試方法</h4><ul>
+<li><strong>測試類</strong>：測試類是包含測試方法的類。每個測試類都可以包含一組相關的測試，通常用來測試特定類或功能。</li>
+<li><strong>測試方法</strong>：測試方法是用於檢查應用程序特定部分是否按預期工作的函數。每個測試方法應該是獨立的，這意味著它不應依賴於其他測試方法。</li>
+</ul>
+<h4 id="2-Fact-和-Theory"><a href="#2-Fact-和-Theory" class="headerlink" title="2. [Fact] 和 [Theory]"></a>2. <code>[Fact]</code> 和 <code>[Theory]</code></h4><ul>
+<li><p>**<code>[Fact]</code>**：這是 xUnit 的一個標籤，表示這是一個無參數的測試方法。每個 <code>[Fact]</code> 方法都應該是獨立測試某個特定情況。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">Fact</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Test_Something_ReturnsExpectedResult</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Arrange (準備)：設置測試的初始條件</span></span><br><span class="line">    <span class="comment">// Act (執行)：調用被測試的功能</span></span><br><span class="line">    <span class="comment">// Assert (驗證)：檢查結果是否符合預期</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>**<code>[Theory]</code>**：當你想要測試相同方法的多組輸入時，可以使用 <code>[Theory]</code>。它允許你使用多個不同的數據點來測試同一個方法，這些數據可以通過 <code>[InlineData]</code> 來提供。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">Theory</span>]</span><br><span class="line">[<span class="meta">InlineData(1, 2, 3)</span>]  <span class="comment">// 第一組測試數據</span></span><br><span class="line">[<span class="meta">InlineData(-1, 2, 1)</span>]  <span class="comment">// 第二組測試數據</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Test_Add</span>(<span class="params"><span class="built_in">int</span> a, <span class="built_in">int</span> b, <span class="built_in">int</span> expected</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Act</span></span><br><span class="line">    <span class="keyword">var</span> result = a + b;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Assert</span></span><br><span class="line">    Assert.Equal(expected, result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="3-測試的三個階段"><a href="#3-測試的三個階段" class="headerlink" title="3. 測試的三個階段"></a>3. 測試的三個階段</h4><ul>
+<li>**Arrange (準備)**：在測試開始之前，設置所有需要的條件和環境。這包括初始化物件，配置參數等。</li>
+<li>**Act (執行)**：執行被測試的功能。這通常是測試目標中的方法或行為。</li>
+<li>**Assert (驗證)**：檢查輸出的結果是否符合預期。這是檢查測試是否通過的步驟，通常使用 <code>Assert</code> 類中的方法來完成。</li>
+</ul>
+<h4 id="4-Assert-方法"><a href="#4-Assert-方法" class="headerlink" title="4. Assert 方法"></a>4. <code>Assert</code> 方法</h4><ul>
+<li><p>**<code>Assert.Equal(expected, actual)</code>**：驗證兩個值是否相等。</p>
+</li>
+<li><p>**<code>Assert.True(condition)</code>**：驗證一個條件是否為 <code>true</code>。</p>
+</li>
+<li><p>**<code>Assert.Throws&lt;ExceptionType&gt;(action)</code>**：驗證是否拋出了特定類型的異常。</p>
+<p>xUnit 提供了很多 <code>Assert</code> 方法來驗證不同的情況，比如是否為 <code>null</code>，是否相同，集合的數量等。</p>
+</li>
+</ul>
+<h4 id="5-測試命名規範"><a href="#5-測試命名規範" class="headerlink" title="5. 測試命名規範"></a>5. 測試命名規範</h4><ul>
+<li>測試方法的名稱應該清晰且能描述測試的意圖。<br>通常可以使用以下格式：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">方法名稱_測試條件_預期結果</span><br></pre></td></tr></table></figure>
+例如：<code>Add_TwoPositiveNumbers_ReturnsSum</code> 表示測試一個 <code>Add</code> 方法，在輸入兩個正數時，期望返回它們的和。</li>
+</ul>
+<h4 id="6-測試生命週期方法"><a href="#6-測試生命週期方法" class="headerlink" title="6. 測試生命週期方法"></a>6. 測試生命週期方法</h4><ul>
+<li><p><strong><code>[Fact]</code> 和 <code>[Theory]</code></strong> 方法本身是測試的主體，但有時我們還需要設置一些在所有測試之前或之後執行的初始化和清理工作。</p>
+</li>
+<li><p>xUnit 中提供了 <strong><code>IClassFixture</code></strong> 和 **<code>IDisposable</code>**，來配置測試的初始化和清理。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyTests</span> : <span class="title">IDisposable</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyTests</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 每次測試前的初始化操作</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Dispose</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 每次測試後的清理操作</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="7-使用-Moq-等工具進行-Mock"><a href="#7-使用-Moq-等工具進行-Mock" class="headerlink" title="7. 使用 Moq 等工具進行 Mock"></a>7. 使用 Moq 等工具進行 Mock</h4><ul>
+<li><p>在單元測試中，我們有時需要模擬某些外部依賴，例如依賴注入的服務。</p>
+</li>
+<li><p><strong>Moq</strong> 是一個常用的 .NET 工具，用來模擬這些外部依賴。這樣可以測試某個類或方法，而不依賴於其他實際的服務。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mockService = <span class="keyword">new</span> Mock&lt;IMyService&gt;();</span><br><span class="line">mockService.Setup(service =&gt; service.GetData()).Returns(<span class="string">&quot;Mock Data&quot;</span>);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="8-進行單元測試的工具和流程"><a href="#8-進行單元測試的工具和流程" class="headerlink" title="8. 進行單元測試的工具和流程"></a>8. 進行單元測試的工具和流程</h4><ul>
+<li><strong>Visual Studio</strong>：你可以在 Visual Studio 中直接使用內置的 Test Explorer 來運行 xUnit 測試。</li>
+<li><strong>命令行工具</strong>：如果你在命令行中使用 .NET CLI，也可以運行測試：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dotnet test</span><br></pre></td></tr></table></figure>
+這個命令會在解決方案中查找所有測試項目並執行它們。</li>
+</ul>
+<h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h3><ul>
+<li><strong>xUnit 是一個單元測試框架</strong>，主要用來驗證你的程式碼是否符合預期。</li>
+<li>使用 <strong><code>[Fact]</code></strong> 來編寫簡單的單元測試，使用 <strong><code>[Theory]</code></strong> 來進行多組數據的測試。</li>
+<li><strong>測試方法</strong> 一般分為三個階段：準備（Arrange）、執行（Act）、驗證（Assert）。</li>
+<li><strong><code>Assert</code></strong> 是用來檢查結果是否正確的工具。</li>
+<li><strong>命名規範</strong> 和 <strong>測試流程的良好習慣</strong> 有助於保持測試代碼的可讀性和維護性。</li>
+<li><strong>Mock 工具（如 Moq）</strong> 可以用來模擬外部依賴，以便測試專注於單一邏輯。</li>
+</ul>
+<p>理解這些基礎概念後，你就可以開始編寫和運行自己的 xUnit 測試，確保你的應用程序運行如預期並且更加穩定。如果你在實踐中遇到具體的困難，我也很樂意提供進一步的幫助！</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/C/" rel="tag"># C#</a>
+              <a href="/apple.lily/tags/WebAPI/" rel="tag"># WebAPI</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/10/15/OneDayOneNote/2024-10-24/" rel="prev" title="2024-10-24 014_學寫API_如何撰寫 API 的單元測試">
+                  <i class="fa fa-angle-left"></i> 2024-10-24 014_學寫API_如何撰寫 API 的單元測試
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/10/15/OneDayOneNote/2024-10-26/" rel="next" title="2024-10-26 016_學寫API_建一個新的測試項目的步驟">
+                  2024-10-26 016_學寫API_建一個新的測試項目的步驟 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

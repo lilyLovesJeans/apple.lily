@@ -1,0 +1,62 @@
+<hr>
+<h2 id="title-2024-10-18-008-學寫API-http-schemas-xmlsoap-org-ws-2005-05-identity-claims-是一個標準命名空間date-2024-10-15-10-40-25categories-OneDayOneNotetags-C-WebAPI-description-2024-10-18-008-學寫API-http-schemas-xmlsoap-org-ws-2005-05-identity-claims-是一個標準命名空間"><a href="#title-2024-10-18-008-學寫API-http-schemas-xmlsoap-org-ws-2005-05-identity-claims-是一個標準命名空間date-2024-10-15-10-40-25categories-OneDayOneNotetags-C-WebAPI-description-2024-10-18-008-學寫API-http-schemas-xmlsoap-org-ws-2005-05-identity-claims-是一個標準命名空間" class="headerlink" title="title: 2024-10-18 008_學寫API_http_schemas_xmlsoap_org-ws-2005-05-identity-claims_是一個標準命名空間date: 2024-10-15 10:40:25categories: OneDayOneNotetags:  [C#, WebAPI ]description: 2024-10-18 008_學寫API_http_schemas_xmlsoap_org-ws-2005-05-identity-claims_是一個標準命名空間"></a>title: 2024-10-18 008_學寫API_http_schemas_xmlsoap_org-ws-2005-05-identity-claims_是一個標準命名空間<br>date: 2024-10-15 10:40:25<br>categories: OneDayOneNote<br>tags:  [C#, WebAPI ]<br>description: 2024-10-18 008_學寫API_http_schemas_xmlsoap_org-ws-2005-05-identity-claims_是一個標準命名空間</h2><h2 id="2024-10-18-008-學寫API-http-schemas-xmlsoap-org-ws-2005-05-identity-claims-是一個標準命名空間"><a href="#2024-10-18-008-學寫API-http-schemas-xmlsoap-org-ws-2005-05-identity-claims-是一個標準命名空間" class="headerlink" title="2024-10-18 008_學寫API_http_schemas_xmlsoap_org-ws-2005-05-identity-claims_是一個標準命名空間"></a>2024-10-18 008_學寫API_http_schemas_xmlsoap_org-ws-2005-05-identity-claims_是一個標準命名空間</h2><p><code>http://schemas.xmlsoap.org/ws/2005/05/identity/claims</code> 是一個標準命名空間，用於定義各種用於身份驗證的聲明（Claim）類型。這些聲明可以被身份驗證系統使用來描述某個用戶或實體的屬性。這些標準化的聲明讓不同系統能夠理解和使用這些身份信息。以下是一些常見的聲明（Claims）及其用途：</p>
+<ol>
+<li><p><strong><code>name</code> (ClaimTypes.Name)</strong>:</p>
+<ul>
+<li>URI: <code>http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name</code></li>
+<li>用於識別用戶的名字。</li>
+</ul>
+</li>
+<li><p><strong><code>email</code> (ClaimTypes.Email)</strong>:</p>
+<ul>
+<li>URI: <code>http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress</code></li>
+<li>用於表示用戶的電子郵件地址。</li>
+</ul>
+</li>
+<li><p><strong><code>role</code> (ClaimTypes.Role)</strong>:</p>
+<ul>
+<li>URI: <code>http://schemas.microsoft.com/ws/2008/06/identity/claims/role</code></li>
+<li>用於表示用戶的角色，比如 “Admin” 或 “User”。</li>
+</ul>
+</li>
+<li><p><strong><code>givenname</code> (ClaimTypes.GivenName)</strong>:</p>
+<ul>
+<li>URI: <code>http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname</code></li>
+<li>用於表示用戶的名字（即名部分）。</li>
+</ul>
+</li>
+<li><p><strong><code>surname</code> (ClaimTypes.Surname)</strong>:</p>
+<ul>
+<li>URI: <code>http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname</code></li>
+<li>用於表示用戶的姓。</li>
+</ul>
+</li>
+<li><p><strong><code>nameidentifier</code> (ClaimTypes.NameIdentifier)</strong>:</p>
+<ul>
+<li>URI: <code>http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier</code></li>
+<li>用於唯一標識用戶的識別符號（例如，ID 或唯一代碼）。</li>
+</ul>
+</li>
+<li><p><strong><code>mobilephone</code> (ClaimTypes.MobilePhone)</strong>:</p>
+<ul>
+<li>URI: <code>http://schemas.xmlsoap.org/ws/2005/05/identity/claims/mobilephone</code></li>
+<li>用於表示用戶的手機號碼。</li>
+</ul>
+</li>
+<li><p><strong><code>streetaddress</code> (ClaimTypes.StreetAddress)</strong>:</p>
+<ul>
+<li>URI: <code>http://schemas.xmlsoap.org/ws/2005/05/identity/claims/streetaddress</code></li>
+<li>用於表示用戶的街道地址。</li>
+</ul>
+</li>
+<li><p><strong><code>country</code> (ClaimTypes.Country)</strong>:</p>
+<ul>
+<li>URI: <code>http://schemas.xmlsoap.org/ws/2005/05/identity/claims/country</code></li>
+<li>用於表示用戶所在的國家。</li>
+</ul>
+</li>
+</ol>
+<p>這些都是由標準定義的 URI，對應的 Claim 類型在 .NET 中也有相應的屬性，如 <code>ClaimTypes.Name</code>、<code>ClaimTypes.Email</code> 等。</p>
+<p>這些聲明的類型是已經標準化的，用於身份驗證協議，比如 SAML 和 JWT。這樣的標準化意味著不同的身份驗證系統可以輕鬆交換身份信息，而不必擔心互相不兼容。</p>
+<p>如果你想使用其他不在標準中的屬性，也可以自己定義 URI 來擴展。例如，你可以自定義一個類似這樣的聲明 URI：<code>http://example.com/claims/employeeid</code>，用於表示某個員工的 ID。這樣，其他人就可以通過這個 URI 知道它代表的意思是“員工 ID”。</p>
+<p>所以，這些標準的 Claim URI 提供了一個通用的方式來表示某些常見的身份屬性，而如果需要自定義屬性，也可以自行擴展。</p>

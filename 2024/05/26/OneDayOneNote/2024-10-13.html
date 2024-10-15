@@ -1,0 +1,40 @@
+<hr>
+<h2 id="title-2024-10-13-003-學寫API-啟用控制器路由-app-MapControllers-date-2024-10-15-09-54-57categories-OneDayOneNotetags-C-WebAPI-description-2024-10-13-003-學寫API-啟用控制器路由-app-MapControllers"><a href="#title-2024-10-13-003-學寫API-啟用控制器路由-app-MapControllers-date-2024-10-15-09-54-57categories-OneDayOneNotetags-C-WebAPI-description-2024-10-13-003-學寫API-啟用控制器路由-app-MapControllers" class="headerlink" title="title: 2024-10-13 003_學寫API_啟用控制器路由_app_MapControllers()date: 2024-10-15 09:54:57categories: OneDayOneNotetags:  [C#, WebAPI ]description: 2024-10-13 003_學寫API_啟用控制器路由_app_MapControllers()"></a>title: 2024-10-13 003_學寫API_啟用控制器路由_app_MapControllers()<br>date: 2024-10-15 09:54:57<br>categories: OneDayOneNote<br>tags:  [C#, WebAPI ]<br>description: 2024-10-13 003_學寫API_啟用控制器路由_app_MapControllers()</h2><h2 id="2024-10-13-003-學寫API-啟用控制器路由-app-MapControllers"><a href="#2024-10-13-003-學寫API-啟用控制器路由-app-MapControllers" class="headerlink" title="2024-10-13 003_學寫API_啟用控制器路由_app_MapControllers()"></a>2024-10-13 003_學寫API_啟用控制器路由_app_MapControllers()</h2><p>是的，<code>app.MapControllers()</code> 這行代碼的作用是將你寫的所有控制器類與相應的 HTTP 請求路由關聯起來，也就是映射到你的控制器。</p>
+<h3 id="具體來說："><a href="#具體來說：" class="headerlink" title="具體來說："></a>具體來說：</h3><ul>
+<li><strong><code>MapControllers()</code></strong> 是一個簡便的方法，用於啟用屬於 ASP.NET Core MVC 應用中的控制器路由。</li>
+<li>它會自動掃描應用程序中的控制器（通常位於 <code>Controllers</code> 文件夾下的 <code>.cs</code> 文件）。</li>
+<li>每個控制器根據其上的路由屬性（例如 <code>[Route(&quot;api/[controller]&quot;)]</code>）來匹配到相應的 URL 路徑。</li>
+<li>當有 HTTP 請求發送到對應的 URL 時，ASP.NET Core 會將這個請求映射到對應的控制器和動作方法來處理。</li>
+</ul>
+<p>例如，在你的 <code>PackageController</code> 中，你可能有這樣的代碼：</p>
+<pre><code class="csharp">[Route(&quot;api/[controller]&quot;)]
+[ApiController]
+public class PackageController : ControllerBase
+{
+    // GET: api/Package
+    [HttpGet]
+    public ActionResult&lt;IEnumerable&lt;Package&gt;&gt; GetAllPackages()
+    {
+        // 處理 GET 請求的邏輯
+    }
+
+    // POST: api/Package
+    [HttpPost]
+    public ActionResult&lt;Package&gt; CreatePackage([FromBody] Package newPackage)
+    {
+        // 處理 POST 請求的邏輯
+    }
+}
+</code></pre>
+<h3 id="MapControllers-的作用："><a href="#MapControllers-的作用：" class="headerlink" title="MapControllers() 的作用："></a><code>MapControllers()</code> 的作用：</h3><p>當你在 <code>Program.cs</code> 中調用 <code>app.MapControllers()</code> 時：</p>
+<ol>
+<li>ASP.NET Core 會掃描應用中的所有控制器類（如 <code>PackageController</code>）。</li>
+<li>根據控制器類和其方法的路由屬性（例如 <code>[Route(&quot;api/[controller]&quot;)]</code> 和 <code>[HttpGet]</code>），將對應的 URL 路由映射到這些控制器和動作方法上。</li>
+<li>當請求到達 <code>/api/Package</code>，它會找到 <code>PackageController</code> 中的相應方法進行處理。</li>
+</ol>
+<h3 id="舉個例子："><a href="#舉個例子：" class="headerlink" title="舉個例子："></a>舉個例子：</h3><p>如果你有以下 HTTP 請求：</p>
+<ul>
+<li><strong>GET 請求</strong> 到 <code>/api/Package</code>，ASP.NET Core 會映射到 <code>PackageController</code> 中的 <code>GetAllPackages()</code> 方法。</li>
+<li><strong>POST 請求</strong> 到 <code>/api/Package</code>，它會映射到 <code>PackageController</code> 中的 <code>CreatePackage()</code> 方法。</li>
+</ul>
+<p><code>app.MapControllers()</code> 的作用就是將這些控制器方法與請求 URL 進行映射，從而讓你的應用程序知道如何處理不同的 HTTP 請求。</p>

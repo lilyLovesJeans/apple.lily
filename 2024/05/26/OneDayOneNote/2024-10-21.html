@@ -1,0 +1,105 @@
+<hr>
+<h2 id="title-2024-10-21-011-學寫API-接口（Interface）date-2024-10-15-10-45-14categories-OneDayOneNotetags-C-WebAPI-description-2024-10-21-011-學寫API-接口（Interface）"><a href="#title-2024-10-21-011-學寫API-接口（Interface）date-2024-10-15-10-45-14categories-OneDayOneNotetags-C-WebAPI-description-2024-10-21-011-學寫API-接口（Interface）" class="headerlink" title="title: 2024-10-21 011_學寫API_接口（Interface）date: 2024-10-15 10:45:14categories: OneDayOneNotetags:  [C#, WebAPI ]description: 2024-10-21 011_學寫API_接口（Interface）"></a>title: 2024-10-21 011_學寫API_接口（Interface）<br>date: 2024-10-15 10:45:14<br>categories: OneDayOneNote<br>tags:  [C#, WebAPI ]<br>description: 2024-10-21 011_學寫API_接口（Interface）</h2><h2 id="2024-10-21-011-學寫API-接口（Interface）"><a href="#2024-10-21-011-學寫API-接口（Interface）" class="headerlink" title="2024-10-21 011_學寫API_接口（Interface）"></a>2024-10-21 011_學寫API_接口（Interface）</h2><p>當然，我來用一個簡單的情境舉例，來幫助您更好地理解<strong>接口（Interface）</strong>的概念和用途。這個例子將從日常生活中的場景出發，然後逐漸轉換到程式碼的應用，讓您能夠輕鬆地理解接口的作用。</p>
+<h3 id="情境舉例：咖啡機的設計"><a href="#情境舉例：咖啡機的設計" class="headerlink" title="情境舉例：咖啡機的設計"></a>情境舉例：咖啡機的設計</h3><p>假設我們正在設計一個咖啡機系統，並且有不同品牌的咖啡機，如「小美咖啡機」和「大偉咖啡機」。不論哪個品牌的咖啡機，它們都需要提供一些基本的功能，例如「沖泡咖啡」和「清潔咖啡機」。我們希望所有咖啡機都遵循相同的規範，這樣我們才能方便地操作它們。</p>
+<h3 id="在日常生活中"><a href="#在日常生活中" class="headerlink" title="在日常生活中"></a>在日常生活中</h3><ul>
+<li>想像一下，如果我們讓「小美咖啡機」和「大偉咖啡機」各自去實現自己的功能，而沒有統一的規範，那麼當我們要控制這些咖啡機時，每個品牌的操作方式可能都不同。例如：<ul>
+<li>小美咖啡機的「沖泡咖啡」按鈕在左邊，而大偉咖啡機的「沖泡咖啡」按鈕在右邊。</li>
+<li>如果不同品牌咖啡機的設計和操作流程完全不同，那麼學會操作每一台咖啡機就變得非常困難。</li>
+</ul>
+</li>
+</ul>
+<h3 id="使用接口的概念"><a href="#使用接口的概念" class="headerlink" title="使用接口的概念"></a>使用接口的概念</h3><p>這個時候，我們可以引入「接口」的概念，來解決這個問題。</p>
+<ol>
+<li><strong>設計接口：定義統一規範</strong>：<ul>
+<li>我們先定義一個「咖啡機接口」，這個接口定義了所有咖啡機都應該具備的功能，例如「沖泡咖啡」和「清潔」。</li>
+<li>可以理解為，我們為所有的咖啡機設計了一個統一的「使用說明書」，所有品牌的咖啡機都必須依照這個說明書來提供功能。</li>
+</ul>
+</li>
+</ol>
+<pre><code class="csharp">public interface ICoffeeMachine
+{
+    void BrewCoffee();  // 沖泡咖啡
+    void CleanMachine();  // 清潔咖啡機
+}
+</code></pre>
+<ol start="2">
+<li><strong>不同的咖啡機品牌實現接口</strong>：<ul>
+<li>接下來，「小美咖啡機」和「大偉咖啡機」這兩家公司各自根據這個接口（<code>ICoffeeMachine</code>）來製作自己的咖啡機。</li>
+<li>這樣它們就需要實現接口中定義的所有方法。</li>
+</ul>
+</li>
+</ol>
+<pre><code class="csharp">// 小美咖啡機實現 ICoffeeMachine 接口
+public class XiaomeiCoffeeMachine : ICoffeeMachine
+{
+    public void BrewCoffee()
+    {
+        Console.WriteLine(&quot;小美咖啡機正在沖泡咖啡...&quot;);
+    }
+
+    public void CleanMachine()
+    {
+        Console.WriteLine(&quot;小美咖啡機正在清潔...&quot;);
+    }
+}
+
+// 大偉咖啡機實現 ICoffeeMachine 接口
+public class DaweiCoffeeMachine : ICoffeeMachine
+{
+    public void BrewCoffee()
+    {
+        Console.WriteLine(&quot;大偉咖啡機正在沖泡咖啡...&quot;);
+    }
+
+    public void CleanMachine()
+    {
+        Console.WriteLine(&quot;大偉咖啡機正在清潔...&quot;);
+    }
+}
+</code></pre>
+<h3 id="使用接口的好處"><a href="#使用接口的好處" class="headerlink" title="使用接口的好處"></a>使用接口的好處</h3><ol>
+<li><strong>統一的操作方式</strong>：<ul>
+<li>由於所有咖啡機都實現了 <code>ICoffeeMachine</code> 接口，這意味著我們可以通過接口來操作所有咖啡機，而不需要知道具體的品牌。</li>
+<li>這樣一來，我們可以寫一段統一的代碼來操作任何咖啡機，而不需要擔心操作流程的差異。</li>
+</ul>
+</li>
+</ol>
+<pre><code class="csharp">public class CoffeeShop
+{
+    private ICoffeeMachine _coffeeMachine;
+
+    public CoffeeShop(ICoffeeMachine coffeeMachine)
+    {
+        _coffeeMachine = coffeeMachine;
+    }
+
+    public void MakeCoffee()
+    {
+        _coffeeMachine.BrewCoffee();  // 統一調用沖泡咖啡方法
+        _coffeeMachine.CleanMachine();  // 統一調用清潔方法
+    }
+}
+</code></pre>
+<ul>
+<li>不管我們使用的是「小美咖啡機」還是「大偉咖啡機」，我們都可以這樣操作：<pre><code class="csharp">ICoffeeMachine xiaomei = new XiaomeiCoffeeMachine();
+ICoffeeMachine dawei = new DaweiCoffeeMachine();
+
+CoffeeShop shop1 = new CoffeeShop(xiaomei);
+CoffeeShop shop2 = new CoffeeShop(dawei);
+
+shop1.MakeCoffee();  // 小美咖啡機沖泡並清潔
+shop2.MakeCoffee();  // 大偉咖啡機沖泡並清潔
+</code></pre>
+</li>
+<li><strong>我們只需要知道它們都是 <code>ICoffeeMachine</code> 類型的對象</strong>，而不需要管具體是哪個品牌的咖啡機。</li>
+</ul>
+<h3 id="總結：接口的作用"><a href="#總結：接口的作用" class="headerlink" title="總結：接口的作用"></a>總結：接口的作用</h3><ul>
+<li><strong>定義標準</strong>：接口用來定義一組標準，所有實現該接口的類都必須提供這些方法的具體實現。</li>
+<li><strong>靈活性</strong>：使用接口可以提高代碼的靈活性和可擴展性。例如，將來如果有新的咖啡機品牌，只需要實現 <code>ICoffeeMachine</code> 接口即可，現有的系統可以無縫地進行擴展。</li>
+<li><strong>依賴抽象而非具體實現</strong>：通過使用接口，代碼依賴於抽象（<code>ICoffeeMachine</code>），而不是具體的實現（如 <code>XiaomeiCoffeeMachine</code> 或 <code>DaweiCoffeeMachine</code>），這使得代碼更容易維護和擴展。</li>
+</ul>
+<h3 id="簡單來說"><a href="#簡單來說" class="headerlink" title="簡單來說"></a>簡單來說</h3><ul>
+<li><strong>接口（Interface）就像是合同或協議</strong>，它規定了哪些功能（方法）必須被實現。</li>
+<li>實現接口的類就像是簽了合同的公司，必須提供這些規定的功能，並且在使用這些類時，無需關心具體的實現，只要知道它們按照合同的要求來提供功能就可以了。</li>
+</ul>
+<p>如果您還有其他關於接口的疑問或者想了解更多詳細的應用，隨時告訴我！</p>

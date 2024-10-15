@@ -1,0 +1,103 @@
+<hr>
+<h2 id="title-2024-10-11-001-學寫API-API後台管理功能date-2024-10-15-09-50-36categories-OneDayOneNotetags-C-WebAPI-description-2024-10-11-001-學寫API-API後台管理功能"><a href="#title-2024-10-11-001-學寫API-API後台管理功能date-2024-10-15-09-50-36categories-OneDayOneNotetags-C-WebAPI-description-2024-10-11-001-學寫API-API後台管理功能" class="headerlink" title="title: 2024-10-11 001_學寫API_API後台管理功能date: 2024-10-15 09:50:36categories: OneDayOneNotetags:  [C#, WebAPI ]description: 2024-10-11 001_學寫API_API後台管理功能"></a>title: 2024-10-11 001_學寫API_API後台管理功能<br>date: 2024-10-15 09:50:36<br>categories: OneDayOneNote<br>tags:  [C#, WebAPI ]<br>description: 2024-10-11 001_學寫API_API後台管理功能</h2><h2 id="2024-10-11-001-學寫API-API後台管理功能"><a href="#2024-10-11-001-學寫API-API後台管理功能" class="headerlink" title="2024-10-11 001_學寫API_API後台管理功能"></a>2024-10-11 001_學寫API_API後台管理功能</h2><p>是的，可以這樣理解。這三個步驟一起配置後，使應用具備了強大的 API 管理和可視化功能。具體來說：</p>
+<ol>
+<li><p><strong><code>builder.Services.AddControllers();</code></strong> </p>
+<ul>
+<li>這一步是為了讓應用程式能夠處理 HTTP 請求。它添加了控制器服務，使我們能夠在控制器中定義不同的 API 路由和行為，這些路由就像是應用的不同功能模組，用於處理客戶端發送的請求。</li>
+</ul>
+</li>
+<li><p><strong><code>builder.Services.AddEndpointsApiExplorer();</code></strong></p>
+<ul>
+<li>這個服務是為了<strong>列出應用中的 API 終端點</strong>，用於讓應用具備自動生成 API 端點資訊的能力。這些資訊會在 Swagger 這樣的工具中顯示，讓開發者能清楚地看到應用有哪些可用的 API 接口。</li>
+</ul>
+</li>
+<li><p><strong><code>builder.Services.AddSwaggerGen();</code></strong> </p>
+<ul>
+<li>這一步是<strong>集成 Swagger 生成器服務</strong>。Swagger 是一種流行的工具，用於自動生成 API 說明文檔，並提供一個可視化的界面（Swagger UI），以方便開發者測試 API 的各個功能。這不僅方便你自己開發測試，還能讓團隊或其他開發者更直觀地了解並使用你的 API。</li>
+</ul>
+</li>
+</ol>
+<h3 id="簡單理解為-API-後台管理功能"><a href="#簡單理解為-API-後台管理功能" class="headerlink" title="簡單理解為 API 後台管理功能"></a>簡單理解為 API 後台管理功能</h3><p>這三個步驟可以理解為幫助開發者<strong>更方便地管理和測試 API</strong>，使 API 的後台管理變得更加簡單和直觀：</p>
+<ul>
+<li><code>AddControllers()</code>：讓應用可以處理 HTTP 請求，相當於給 API 增加了基礎的業務功能。</li>
+<li><code>AddEndpointsApiExplorer()</code>：列出所有 API 的路徑和操作，使得所有接口都有清晰的描述。</li>
+<li><code>AddSwaggerGen()</code>：生成可視化的說明文檔和測試界面，方便開發和測試，並提供後台的 API 管理功能。</li>
+</ul>
+<p>通過這三個步驟，應用程式的 API 就具備了<strong>自動生成文檔、可視化管理、可視化測試</strong>等功能，從而提供了完整的 API 後台管理解決方案。這不僅有助於自己管理和測試，也讓其他開發者（或使用 API 的人）能夠更容易地理解和使用你的 API。</p>
+<p>在 ASP.NET Core 的應用程式中，服務的配置和管道的設置通常有一個特定的順序，這樣才能確保應用正常運行。讓我來解釋一下它們的執行順序和原因。</p>
+<h3 id="配置服務的順序"><a href="#配置服務的順序" class="headerlink" title="配置服務的順序"></a>配置服務的順序</h3><p>在 ASP.NET Core 中，我們首先要<strong>配置應用所需的服務</strong>，這些服務會添加到一個容器中，應用程式啟動後可以從這個容器中請求和使用它們。這些步驟包括：</p>
+<ol>
+<li><p><strong><code>AddControllers()</code></strong> </p>
+<ul>
+<li>這是添加控制器的服務，為應用程式提供處理 HTTP 請求的功能。</li>
+</ul>
+</li>
+<li><p><strong><code>AddEndpointsApiExplorer()</code></strong></p>
+<ul>
+<li>這一步會添加一個 API 瀏覽器服務，用來幫助列出所有的 API 終端點（即管理和測試 API 功能）。這一步的目的通常是為了<strong>自動生成文檔和 API 的列表</strong>，讓你更方便地知道有哪些 API 可用。</li>
+</ul>
+</li>
+<li><p><strong><code>AddSwaggerGen()</code></strong></p>
+<ul>
+<li>這一步為 Swagger 準備生成器服務。Swagger 是一個工具，用來自動生成 API 的說明文檔以及可視化界面（即我們常見的 Swagger UI）。這個功能讓我們能夠更方便地測試和了解 API。</li>
+</ul>
+</li>
+</ol>
+<p>這些服務的順序很重要，因為後面某些功能可能依賴於前面配置好的服務。例如，Swagger 需要在控制器註冊後才能正常生成相應的 API 文檔和界面。</p>
+<h3 id="配置-HTTP-請求管道的順序"><a href="#配置-HTTP-請求管道的順序" class="headerlink" title="配置 HTTP 請求管道的順序"></a>配置 HTTP 請求管道的順序</h3><p>服務添加好後，我們需要配置<strong>應用的 HTTP 請求管道</strong>，這一步決定了當客戶端的請求到達伺服器時，請求將如何被處理。</p>
+<pre><code class="csharp">if (app.Environment.IsDevelopment()) // 如果是開發環境
+{
+    app.UseSwagger();                // 使用 Swagger 中間件來生成文檔
+    app.UseSwaggerUI();              // 使用 Swagger UI 中間件來提供可視化界面
+}
+
+app.UseHttpsRedirection();           // 使用 HTTPS 重定向
+app.UseAuthorization();              // 使用授權
+
+app.MapControllers();                // 映射控制器
+</code></pre>
+<ul>
+<li><strong>順序是重要的，因為中間件按配置的先後順序被依次執行</strong>。比如：<ol>
+<li><strong><code>UseSwagger()</code> 和 <code>UseSwaggerUI()</code></strong> 應該放在開發環境的第一部分，這樣可以確保在開發過程中我們能通過 Swagger 可視化界面來測試 API。</li>
+<li><strong><code>UseHttpsRedirection()</code></strong> 會確保所有進來的 HTTP 請求被重定向到 HTTPS，增加安全性。這一步通常需要放在管道的早期部分。</li>
+<li><strong><code>UseAuthorization()</code></strong> 用於處理授權邏輯，它應該在控制器路由映射之前執行，這樣系統才能確保請求在被送入控制器之前有適當的授權。</li>
+<li><strong><code>MapControllers()</code></strong> 最後映射控制器，把對應的路由請求交給相應的控制器來處理。這樣做是因為所有的安全性和其他設置應該在請求到達控制器之前已經完成。</li>
+</ol>
+</li>
+</ul>
+<h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h3><ul>
+<li><strong>配置服務</strong>：先添加控制器，再添加 API 瀏覽器和 Swagger 生成服務。這樣的順序確保後面的功能可以利用前面已經註冊好的服務。</li>
+<li><strong>配置管道</strong>：按照先後順序添加中間件來處理 HTTP 請求，確保請求能依序進行，例如重定向、授權等，最後交給控制器來處理具體業務邏輯。</li>
+</ul>
+<p>這樣設計的順序可以使應用程序既靈活又安全，所有中間件按計劃處理請求並交給控制器，這樣的順序對應用的正確運行至關重要。希望這樣的解釋對你有幫助！</p>
+<p>用一個情境來幫你理解這段程式碼。</p>
+<h3 id="情境：餐廳的後台系統設置"><a href="#情境：餐廳的後台系統設置" class="headerlink" title="情境：餐廳的後台系統設置"></a>情境：餐廳的後台系統設置</h3><p>假設你擁有一間餐廳，並正在設置後台系統來管理整個餐廳的運作，例如菜單管理、訂單管理、廚房管理等。</p>
+<ul>
+<li><strong>後台系統需要一些模塊（控制器），來處理各種不同的任務</strong>：例如處理客戶訂單、更新菜單、管理廚房資源等。</li>
+<li><strong>為了方便查看和測試，你需要為這些模塊設置一個管理平台</strong>，使得管理員可以直觀地查看、使用和管理所有這些功能。</li>
+</ul>
+<p>這段程式碼中的三個部分可以理解為設置這些後台管理功能的過程：</p>
+<h4 id="1-builder-Services-AddControllers-添加控制器服務"><a href="#1-builder-Services-AddControllers-添加控制器服務" class="headerlink" title="1. builder.Services.AddControllers(); // 添加控制器服務"></a>1. <code>builder.Services.AddControllers(); // 添加控制器服務</code></h4><p>這相當於在你的餐廳後台系統中添加「不同的管理模塊」。</p>
+<ul>
+<li><strong>情境</strong>：餐廳的管理員需要一個後台系統來管理訂單、菜單和員工。</li>
+<li><strong>控制器服務</strong>就是為每一個管理任務提供獨立的模塊，例如「訂單管理控制器」、「菜單管理控制器」、「員工管理控制器」等。每一個控制器負責不同的管理工作。</li>
+<li><strong>實際效果</strong>：當你在後台系統中點擊「菜單管理」或「訂單管理」的時候，系統就會使用對應的控制器，來處理這些管理功能。</li>
+</ul>
+<h4 id="2-builder-Services-AddEndpointsApiExplorer-添加終端-API-瀏覽器服務"><a href="#2-builder-Services-AddEndpointsApiExplorer-添加終端-API-瀏覽器服務" class="headerlink" title="2. builder.Services.AddEndpointsApiExplorer(); // 添加終端 API 瀏覽器服務"></a>2. <code>builder.Services.AddEndpointsApiExplorer(); // 添加終端 API 瀏覽器服務</code></h4><p>這相當於給管理員提供一個「菜單目錄」，以方便他們找到需要的功能。</p>
+<ul>
+<li><strong>情境</strong>：假設你在後台系統中擁有很多不同的功能，例如「查看訂單列表」、「修改菜單」、「添加新菜品」等等。你需要一個地方可以看到所有可用的功能，這樣管理員才知道有哪些選項可以選擇。</li>
+<li><strong>API 瀏覽器服務</strong>就像是一個目錄，列出所有可用的功能，方便管理員知道自己可以使用哪些 API 來管理餐廳的不同部分。</li>
+<li><strong>實際效果</strong>：這個功能會自動生成一個所有 API 路徑的列表，讓開發者或管理員更直觀地看到後台提供了哪些可用的 API。</li>
+</ul>
+<h4 id="3-builder-Services-AddSwaggerGen-添加-Swagger-生成器服務"><a href="#3-builder-Services-AddSwaggerGen-添加-Swagger-生成器服務" class="headerlink" title="3. builder.Services.AddSwaggerGen(); // 添加 Swagger 生成器服務"></a>3. <code>builder.Services.AddSwaggerGen(); // 添加 Swagger 生成器服務</code></h4><p>這相當於給餐廳的後台系統提供一個「可視化界面」，讓管理員能夠方便地測試和使用所有的管理功能。</p>
+<ul>
+<li><strong>情境</strong>：管理員不想通過繁瑣的命令來執行後台功能，他們更希望有一個界面，可以點擊按鈕來查看訂單或修改菜單。</li>
+<li><strong>Swagger</strong>就是這樣的工具，它會自動為你生成一個可視化界面，管理員只需通過點擊界面中的按鈕，便可以測試和使用這些功能，而不需要直接操作後台代碼或寫一些複雜的命令。</li>
+<li><strong>實際效果</strong>：<code>Swagger</code> 提供了一個網頁界面，列出所有的 API，管理員可以通過這個界面來測試不同的 API，比如「創建新訂單」、「刪除某個菜品」等等。這就像是一個可視化的「操作面板」，方便管理員管理餐廳的各項功能。</li>
+</ul>
+<h3 id="總結："><a href="#總結：" class="headerlink" title="總結："></a>總結：</h3><ul>
+<li><strong><code>AddControllers()</code></strong> 就像是設置了不同的管理模塊，讓你的系統可以處理不同的管理任務。</li>
+<li><strong><code>AddEndpointsApiExplorer()</code></strong> 就像是提供了一個目錄，幫助管理員快速了解有哪些功能可以使用。</li>
+<li><strong><code>AddSwaggerGen()</code></strong> 則是給管理員提供了一個直觀的可視化操作界面，方便管理員測試和操作這些管理功能。</li>
+</ul>
+<p>這樣，你的後台系統不僅可以處理不同的管理任務，還可以方便地列出所有功能，並通過可視化界面讓管理員輕鬆地操作每個管理功能。希望這樣的情境解釋能幫助你更好地理解這些代碼的用途！</p>

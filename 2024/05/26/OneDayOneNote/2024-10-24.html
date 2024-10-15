@@ -1,0 +1,127 @@
+<hr>
+<h2 id="title-2024-10-24-014-學寫API-如何撰寫-API-的單元測試date-2024-10-15-10-50-11categories-OneDayOneNotetags-C-WebAPI-description-2024-10-24-014-學寫API-如何撰寫-API-的單元測試"><a href="#title-2024-10-24-014-學寫API-如何撰寫-API-的單元測試date-2024-10-15-10-50-11categories-OneDayOneNotetags-C-WebAPI-description-2024-10-24-014-學寫API-如何撰寫-API-的單元測試" class="headerlink" title="title: 2024-10-24 014_學寫API_如何撰寫 API 的單元測試date: 2024-10-15 10:50:11categories: OneDayOneNotetags:  [C#, WebAPI ]description: 2024-10-24 014_學寫API_如何撰寫 API 的單元測試"></a>title: 2024-10-24 014_學寫API_如何撰寫 API 的單元測試<br>date: 2024-10-15 10:50:11<br>categories: OneDayOneNote<br>tags:  [C#, WebAPI ]<br>description: 2024-10-24 014_學寫API_如何撰寫 API 的單元測試</h2><h2 id="2024-10-24-014-學寫API-如何撰寫-API-的單元測試"><a href="#2024-10-24-014-學寫API-如何撰寫-API-的單元測試" class="headerlink" title="2024-10-24 014_學寫API_如何撰寫 API 的單元測試"></a>2024-10-24 014_學寫API_如何撰寫 API 的單元測試</h2><p>理解如何撰寫 API 的單元測試確實是一個需要逐步掌握的過程。下面我將詳細說明如何從基礎開始構思與撰寫單元測試，即使在不太理解的情況下，也可以一步步掌握整個過程。</p>
+<h3 id="1-了解測試目的"><a href="#1-了解測試目的" class="headerlink" title="1. 了解測試目的"></a>1. 了解測試目的</h3><p>首先，在撰寫單元測試之前，您必須理解為什麼要測試這個 API，這樣才能針對特定的目標撰寫測試。單元測試的目的是驗證您的代碼在不同的情況下是否都能正常運作，例如：</p>
+<ul>
+<li>確保 API 方法可以被成功呼叫。</li>
+<li>確保 API 返回的數據正確。</li>
+<li>處理各種可能的輸入或狀況，確保代碼的穩定性。</li>
+</ul>
+<h3 id="2-宣告與測試設計的基礎"><a href="#2-宣告與測試設計的基礎" class="headerlink" title="2. 宣告與測試設計的基礎"></a>2. 宣告與測試設計的基礎</h3><p>在進行測試之前，您需要對系統的結構有一定的了解：</p>
+<ul>
+<li><strong>控制器</strong>：<code>PackageController</code> 是我們要測試的控制器，它負責管理包裹的增刪改查操作。</li>
+<li><strong>模型</strong>：<code>Package</code> 模型表示每個包裹的基本信息，例如追蹤號、寄件人、收件人等。</li>
+</ul>
+<h3 id="3-宣告測試環境"><a href="#3-宣告測試環境" class="headerlink" title="3. 宣告測試環境"></a>3. 宣告測試環境</h3><p>在單元測試中，我們需要設置好測試的環境，以便模擬應用程序中的控制器。這包括創建控制器實例並模擬其所依賴的所有服務或物件。以下是如何一步步構思和宣告測試環境：</p>
+<ol>
+<li><p><strong>理解控制器的依賴項</strong></p>
+<ul>
+<li>在 <code>PackageController</code> 的建構函數中，您可能會發現它依賴於某些外部服務，例如日誌記錄器 (<code>ILogger</code>)。</li>
+<li>所以，在單元測試中，我們需要創建這些依賴項的實例，這樣才能創建 <code>PackageController</code> 的實例。</li>
+</ul>
+</li>
+<li><p><strong>宣告成員變數</strong></p>
+<ul>
+<li>**<code>_controller</code>**：這是我們要測試的控制器。</li>
+<li>**<code>_logger</code>**：這是控制器依賴的日誌記錄器。</li>
+</ul>
+<pre><code class="csharp">private readonly PackageController _controller;
+private readonly ILogger&lt;PackageController&gt; _logger;
+</code></pre>
+</li>
+<li><p><strong>設置測試環境（建構函數）</strong></p>
+<ul>
+<li>測試類的建構函數 <code>PackageControllerTests()</code>，用來初始化測試環境。通常，您需要通過依賴注入來創建控制器所需的外部資源。</li>
+<li>例如使用 <code>LoggerFactory</code> 創建日誌記錄器，然後用這個日誌記錄器來創建控制器的實例：</li>
+</ul>
+<pre><code class="csharp">public PackageControllerTests()
+{
+    _logger = new LoggerFactory().CreateLogger&lt;PackageController&gt;();
+    _controller = new PackageController(_logger);
+}
+</code></pre>
+<ul>
+<li><strong>為何這麼做</strong>：<ul>
+<li>測試過程中，我們需要一個 <code>PackageController</code> 實例來調用其中的方法，這是測試的核心。</li>
+<li>控制器的建構函數可能需要某些服務（例如日誌記錄器），我們需要模擬這些服務來創建一個可測試的控制器實例。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="4-如何構思測試用例"><a href="#4-如何構思測試用例" class="headerlink" title="4. 如何構思測試用例"></a>4. 如何構思測試用例</h3><p>構思測試用例的目標是確保各個 API 的功能運作正常。我們以 <code>GetAllPackages()</code> 方法為例，來說明如何構思測試。</p>
+<ol>
+<li><p><strong>理解方法的預期行為</strong>：</p>
+<ul>
+<li><code>GetAllPackages()</code>：這個方法應該返回一個包含所有包裹的列表，並且返回的 HTTP 狀態碼應該是 200 OK。</li>
+<li>如果數據是空的，應返回空列表，而不是錯誤或其他不合適的狀態碼。</li>
+</ul>
+</li>
+<li><p><strong>撰寫測試的步驟</strong>：</p>
+<ul>
+<li><p>在測試中通常包含三個部分：<strong>準備 (Arrange)<strong>、</strong>執行 (Act)</strong> 和 **驗證 (Assert)**。</p>
+</li>
+<li><p>**準備 (Arrange)**：在這個階段，我們通常不需要額外的準備工作，因為我們的控制器已經在建構函數中初始化好了。</p>
+</li>
+<li><p>**執行 (Act)**：呼叫控制器的 <code>GetAllPackages()</code> 方法來取得結果。</p>
+<pre><code class="csharp">var okResult = _controller.GetAllPackages();
+</code></pre>
+</li>
+<li><p>**驗證 (Assert)**：檢查返回的結果是否符合預期。這裡有兩個測試：</p>
+<ul>
+<li><p><strong>測試返回的結果是否為 200 OK</strong>：</p>
+<pre><code class="csharp">Assert.IsType&lt;OkObjectResult&gt;(okResult.Result);
+</code></pre>
+<p>這一步是為了確保返回的 HTTP 狀態碼正確，這對於 API 的用戶來說非常重要。</p>
+</li>
+<li><p><strong>測試返回的數據是否正確</strong>：</p>
+<pre><code class="csharp">var okResult = _controller.GetAllPackages().Result as OkObjectResult;
+var items = Assert.IsType&lt;List&lt;Package&gt;&gt;(okResult.Value);
+Assert.Empty(items); // 預期初始時包裹列表為空
+</code></pre>
+<p>這裡的測試是確保返回的數據類型是 <code>List&lt;Package&gt;</code>，並且在測試開始時這個列表應該是空的。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="5-如何構思單元測試即使不完全理解"><a href="#5-如何構思單元測試即使不完全理解" class="headerlink" title="5. 如何構思單元測試即使不完全理解"></a>5. 如何構思單元測試即使不完全理解</h3><p>如果您對測試不太理解，可以遵循以下步驟逐步進行：</p>
+<ol>
+<li><p><strong>參考現有的測試案例</strong>：</p>
+<ul>
+<li>從其他已經存在的測試案例中學習如何構建測試，理解每個步驟的用途。</li>
+</ul>
+</li>
+<li><p><strong>理解控制器的功能</strong>：</p>
+<ul>
+<li>從控制器的代碼中了解每個方法的用途和行為，這樣您能更好地理解應該測試哪些場景。</li>
+</ul>
+</li>
+<li><p><strong>測試基本場景</strong>：</p>
+<ul>
+<li>最先測試的是基本場景，如：<ul>
+<li>方法是否能正常返回？</li>
+<li>當列表是空的時候返回的數據是否符合預期？</li>
+<li>當有數據時，是否能正確返回？</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>逐步測試不同的情況</strong>：</p>
+<ul>
+<li>例如，您可以考慮：<ul>
+<li>如果用戶發送了無效的請求會怎麼樣？</li>
+<li>如果資料庫中已經有數據，返回的列表是否正確？</li>
+<li>如果新增重複的數據，系統應如何處理？</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h3><p>撰寫單元測試需要理解系統的結構和每個 API 的用途。在不完全理解的情況下，您可以：</p>
+<ul>
+<li><strong>參考已有代碼</strong>：觀察如何宣告和撰寫測試，理解每個步驟的目的。</li>
+<li><strong>從最簡單的場景開始測試</strong>：例如，檢查返回的狀態碼和基本的數據型別。</li>
+<li><strong>逐步學習代碼與框架</strong>：透過一次次的測試編寫，不斷熟悉框架及 API 的行為。</li>
+</ul>
+<p>撰寫單元測試的過程是提高代碼質量、學習系統設計的一部分，即使一開始不完全理解，隨著您多次重複這個過程，理解會變得更加深入。希望這些建議能幫助您更好地構思和撰寫 API 的測試！</p>

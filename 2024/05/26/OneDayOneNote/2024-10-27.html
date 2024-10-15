@@ -1,0 +1,101 @@
+<hr>
+<h2 id="title-2024-10-27-017-學寫API-單元測試的Assertdate-2024-10-15-10-53-42categories-OneDayOneNotetags-C-WebAPI-description-2024-10-27-017-學寫API-單元測試的Assert"><a href="#title-2024-10-27-017-學寫API-單元測試的Assertdate-2024-10-15-10-53-42categories-OneDayOneNotetags-C-WebAPI-description-2024-10-27-017-學寫API-單元測試的Assert" class="headerlink" title="title: 2024-10-27 017_學寫API_單元測試的Assertdate: 2024-10-15 10:53:42categories: OneDayOneNotetags:  [C#, WebAPI ]description:  2024-10-27 017_學寫API_單元測試的Assert"></a>title: 2024-10-27 017_學寫API_單元測試的Assert<br>date: 2024-10-15 10:53:42<br>categories: OneDayOneNote<br>tags:  [C#, WebAPI ]<br>description:  2024-10-27 017_學寫API_單元測試的Assert</h2><h2 id="2024-10-27-017-學寫API-單元測試的Assert"><a href="#2024-10-27-017-學寫API-單元測試的Assert" class="headerlink" title="2024-10-27 017_學寫API_單元測試的Assert"></a>2024-10-27 017_學寫API_單元測試的Assert</h2><p><code>Assert</code> 在單元測試中並不是一個普通的方法，而是一個靜態類 (<code>static class</code>) 中提供的一組方法。這些方法用於驗證測試結果是否符合預期。在單元測試中，<code>Assert</code> 類的主要作用就是<strong>斷言</strong>，即用來檢查我們寫的程式碼在某些條件下是否能夠得到預期的結果。</p>
+<h3 id="Assert-是什麼？"><a href="#Assert-是什麼？" class="headerlink" title="Assert 是什麼？"></a>Assert 是什麼？</h3><ul>
+<li><code>Assert</code> 是來自測試框架（如 xUnit、NUnit、MSTest）中的一個類。</li>
+<li>它包含了許多靜態方法，用於在測試過程中進行<strong>斷言（assertions）</strong>。</li>
+<li>斷言方法的作用是對被測系統的輸出進行驗證，確保它的輸出是我們期望的。如果不符合預期，測試就會<strong>失敗</strong>。</li>
+</ul>
+<h3 id="Assert-常用的幾個方法"><a href="#Assert-常用的幾個方法" class="headerlink" title="Assert 常用的幾個方法"></a>Assert 常用的幾個方法</h3><p>以下是一些常見的 <code>Assert</code> 方法及它們的用途：</p>
+<ol>
+<li><p><strong><code>Assert.Equal(expected, actual)</code></strong></p>
+<ul>
+<li><strong>用途</strong>：檢查兩個值是否相等。</li>
+<li><strong>參數</strong>：<code>expected</code> 是你預期的結果，<code>actual</code> 是程式實際的輸出。</li>
+<li><strong>範例</strong>：<pre><code class="csharp">int expected = 5;
+int actual = 2 + 3;
+Assert.Equal(expected, actual); // 如果兩者不相等，測試會失敗
+</code></pre>
+</li>
+<li><strong>說明</strong>：這個方法檢查兩個數字、字符串或其他值是否相等，對比的是兩者的值。</li>
+</ul>
+</li>
+<li><p><strong><code>Assert.NotNull(object)</code></strong></p>
+<ul>
+<li><strong>用途</strong>：檢查某個物件不為 <code>null</code>。</li>
+<li><strong>範例</strong>：<pre><code class="csharp">var person = new Person();
+Assert.NotNull(person); // 確保 person 被成功初始化，不是 null
+</code></pre>
+</li>
+<li><strong>說明</strong>：當你希望某個物件已經被初始化時，你可以使用 <code>Assert.NotNull</code> 來檢查。</li>
+</ul>
+</li>
+<li><p><strong><code>Assert.True(condition)</code></strong></p>
+<ul>
+<li><strong>用途</strong>：檢查條件是否為 <code>true</code>。</li>
+<li><strong>範例</strong>：<pre><code class="csharp">bool isAdult = age &gt;= 18;
+Assert.True(isAdult); // 確保 age 的值大於或等於 18
+</code></pre>
+</li>
+<li><strong>說明</strong>：當你需要確認某個條件的結果是 <code>true</code> 時，可以使用 <code>Assert.True</code>。</li>
+</ul>
+</li>
+<li><p><strong><code>Assert.Throws&lt;T&gt;(Action action)</code></strong></p>
+<ul>
+<li><strong>用途</strong>：檢查一個操作是否拋出了預期類型的異常。</li>
+<li><strong>範例</strong>：<pre><code class="csharp">Assert.Throws&lt;ArgumentNullException&gt;(() =&gt; someMethod(null));
+</code></pre>
+</li>
+<li><strong>說明</strong>：<code>Assert.Throws</code> 方法通常用於測試異常情況，以確保當條件不符合預期時，程式會拋出正確的錯誤。</li>
+</ul>
+</li>
+<li><p><strong><code>Assert.IsType&lt;T&gt;(object)</code></strong></p>
+<ul>
+<li><strong>用途</strong>：檢查物件是否為指定的類型。</li>
+<li><strong>範例</strong>：<pre><code class="csharp">var result = someMethod();
+Assert.IsType&lt;string&gt;(result); // 檢查 result 是否是字符串類型
+</code></pre>
+</li>
+<li><strong>說明</strong>：這個方法確保一個物件的類型與預期類型相同。</li>
+</ul>
+</li>
+</ol>
+<h3 id="範例：使用-Assert-進行單元測試"><a href="#範例：使用-Assert-進行單元測試" class="headerlink" title="範例：使用 Assert 進行單元測試"></a>範例：使用 Assert 進行單元測試</h3><p>假設我們要測試一個計算器類別 <code>Calculator</code> 中的 <code>Add</code> 方法。</p>
+<pre><code class="csharp">public class Calculator
+{
+    public int Add(int a, int b)
+    {
+        return a + b;
+    }
+}
+</code></pre>
+<p>我們可以寫一個單元測試來測試這個 <code>Add</code> 方法：</p>
+<pre><code class="csharp">using Xunit;
+
+public class CalculatorTests
+{
+    [Fact]
+    public void Add_ReturnsCorrectSum()
+    {
+        // Arrange
+        var calculator = new Calculator();
+
+        // Act
+        int result = calculator.Add(2, 3);
+
+        // Assert
+        Assert.Equal(5, result); // 驗證結果是否等於 5
+    }
+}
+</code></pre>
+<p>在這個測試中，我們使用了 <code>Assert.Equal(expected, actual)</code> 來檢查 <code>Add(2, 3)</code> 的結果是否等於 <code>5</code>。</p>
+<h3 id="如何使用-Assert-構思測試"><a href="#如何使用-Assert-構思測試" class="headerlink" title="如何使用 Assert 構思測試"></a>如何使用 Assert 構思測試</h3><ol>
+<li><strong>Arrange</strong>：準備測試數據和被測方法。例如創建一個被測對象。</li>
+<li><strong>Act</strong>：執行被測方法，得到實際的結果。</li>
+<li><strong>Assert</strong>：使用 <code>Assert</code> 方法來檢查實際結果是否符合預期。</li>
+</ol>
+<h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h3><ul>
+<li><strong><code>Assert</code> 是一組用於驗證測試結果的靜態方法</strong>，可以確保程式的輸出符合預期。</li>
+<li>使用 <code>Assert</code> 可以幫助開發者自動化檢查結果，減少手動測試的負擔，確保程式碼的正確性和穩定性。</li>
+<li>核心概念是<strong>斷言輸出與預期結果是否相符</strong>，一旦不符合，測試就會失敗並給出具體信息，幫助我們查找和修復錯誤。</li>
+</ul>
+<p>如果你在使用 <code>Assert</code> 的過程中遇到具體問題，我可以一步步地幫助你理解如何使用！</p>

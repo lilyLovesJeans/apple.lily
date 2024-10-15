@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2024-10-11 001_學寫API_API後台管理功能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024-10-11 001_學寫API_API後台管理功能">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2024/10/15/OneDayOneNote/2024-10-11/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2024-10-11 001_學寫API_API後台管理功能">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2024-10-15T01:50:36.000Z">
+<meta property="article:modified_time" content="2024-10-15T01:53:56.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="C#">
+<meta property="article:tag" content="WebAPI">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2024/10/15/OneDayOneNote/2024-10-11/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2024/10/15/OneDayOneNote/2024-10-11/","path":"2024/10/15/OneDayOneNote/2024-10-11/","title":"2024-10-11 001_學寫API_API後台管理功能"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2024-10-11 001_學寫API_API後台管理功能 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2024-10-11-001-%E5%AD%B8%E5%AF%ABAPI-API%E5%BE%8C%E5%8F%B0%E7%AE%A1%E7%90%86%E5%8A%9F%E8%83%BD"><span class="nav-number">1.</span> <span class="nav-text">2024-10-11 001_學寫API_API後台管理功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B0%A1%E5%96%AE%E7%90%86%E8%A7%A3%E7%82%BA-API-%E5%BE%8C%E5%8F%B0%E7%AE%A1%E7%90%86%E5%8A%9F%E8%83%BD"><span class="nav-number">1.1.</span> <span class="nav-text">簡單理解為 API 後台管理功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%9C%8D%E5%8B%99%E7%9A%84%E9%A0%86%E5%BA%8F"><span class="nav-number">1.2.</span> <span class="nav-text">配置服務的順序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE-HTTP-%E8%AB%8B%E6%B1%82%E7%AE%A1%E9%81%93%E7%9A%84%E9%A0%86%E5%BA%8F"><span class="nav-number">1.3.</span> <span class="nav-text">配置 HTTP 請求管道的順序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B8%BD%E7%B5%90"><span class="nav-number">1.4.</span> <span class="nav-text">總結</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%83%85%E5%A2%83%EF%BC%9A%E9%A4%90%E5%BB%B3%E7%9A%84%E5%BE%8C%E5%8F%B0%E7%B3%BB%E7%B5%B1%E8%A8%AD%E7%BD%AE"><span class="nav-number">1.5.</span> <span class="nav-text">情境：餐廳的後台系統設置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-builder-Services-AddControllers-%E6%B7%BB%E5%8A%A0%E6%8E%A7%E5%88%B6%E5%99%A8%E6%9C%8D%E5%8B%99"><span class="nav-number">1.5.1.</span> <span class="nav-text">1. builder.Services.AddControllers(); &#x2F;&#x2F; 添加控制器服務</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-builder-Services-AddEndpointsApiExplorer-%E6%B7%BB%E5%8A%A0%E7%B5%82%E7%AB%AF-API-%E7%80%8F%E8%A6%BD%E5%99%A8%E6%9C%8D%E5%8B%99"><span class="nav-number">1.5.2.</span> <span class="nav-text">2. builder.Services.AddEndpointsApiExplorer(); &#x2F;&#x2F; 添加終端 API 瀏覽器服務</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-builder-Services-AddSwaggerGen-%E6%B7%BB%E5%8A%A0-Swagger-%E7%94%9F%E6%88%90%E5%99%A8%E6%9C%8D%E5%8B%99"><span class="nav-number">1.5.3.</span> <span class="nav-text">3. builder.Services.AddSwaggerGen(); &#x2F;&#x2F; 添加 Swagger 生成器服務</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B8%BD%E7%B5%90%EF%BC%9A"><span class="nav-number">1.6.</span> <span class="nav-text">總結：</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">236</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2024/10/15/OneDayOneNote/2024-10-11/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2024-10-11 001_學寫API_API後台管理功能 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2024-10-11 001_學寫API_API後台管理功能">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2024-10-11 001_學寫API_API後台管理功能
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2024-10-15 09:50:36 / 修改時間：09:53:56" itemprop="dateCreated datePublished" datetime="2024-10-15T09:50:36+08:00">2024-10-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2024-10-11 001_學寫API_API後台管理功能</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2024-10-11-001-學寫API-API後台管理功能"><a href="#2024-10-11-001-學寫API-API後台管理功能" class="headerlink" title="2024-10-11 001_學寫API_API後台管理功能"></a>2024-10-11 001_學寫API_API後台管理功能</h2><p>是的，可以這樣理解。這三個步驟一起配置後，使應用具備了強大的 API 管理和可視化功能。具體來說：</p>
+<ol>
+<li><p><strong><code>builder.Services.AddControllers();</code></strong> </p>
+<ul>
+<li>這一步是為了讓應用程式能夠處理 HTTP 請求。它添加了控制器服務，使我們能夠在控制器中定義不同的 API 路由和行為，這些路由就像是應用的不同功能模組，用於處理客戶端發送的請求。</li>
+</ul>
+</li>
+<li><p><strong><code>builder.Services.AddEndpointsApiExplorer();</code></strong></p>
+<ul>
+<li>這個服務是為了<strong>列出應用中的 API 終端點</strong>，用於讓應用具備自動生成 API 端點資訊的能力。這些資訊會在 Swagger 這樣的工具中顯示，讓開發者能清楚地看到應用有哪些可用的 API 接口。</li>
+</ul>
+</li>
+<li><p><strong><code>builder.Services.AddSwaggerGen();</code></strong> </p>
+<ul>
+<li>這一步是<strong>集成 Swagger 生成器服務</strong>。Swagger 是一種流行的工具，用於自動生成 API 說明文檔，並提供一個可視化的界面（Swagger UI），以方便開發者測試 API 的各個功能。這不僅方便你自己開發測試，還能讓團隊或其他開發者更直觀地了解並使用你的 API。</li>
+</ul>
+</li>
+</ol>
+<h3 id="簡單理解為-API-後台管理功能"><a href="#簡單理解為-API-後台管理功能" class="headerlink" title="簡單理解為 API 後台管理功能"></a>簡單理解為 API 後台管理功能</h3><p>這三個步驟可以理解為幫助開發者<strong>更方便地管理和測試 API</strong>，使 API 的後台管理變得更加簡單和直觀：</p>
+<ul>
+<li><code>AddControllers()</code>：讓應用可以處理 HTTP 請求，相當於給 API 增加了基礎的業務功能。</li>
+<li><code>AddEndpointsApiExplorer()</code>：列出所有 API 的路徑和操作，使得所有接口都有清晰的描述。</li>
+<li><code>AddSwaggerGen()</code>：生成可視化的說明文檔和測試界面，方便開發和測試，並提供後台的 API 管理功能。</li>
+</ul>
+<p>通過這三個步驟，應用程式的 API 就具備了<strong>自動生成文檔、可視化管理、可視化測試</strong>等功能，從而提供了完整的 API 後台管理解決方案。這不僅有助於自己管理和測試，也讓其他開發者（或使用 API 的人）能夠更容易地理解和使用你的 API。</p>
+<p>在 ASP.NET Core 的應用程式中，服務的配置和管道的設置通常有一個特定的順序，這樣才能確保應用正常運行。讓我來解釋一下它們的執行順序和原因。</p>
+<h3 id="配置服務的順序"><a href="#配置服務的順序" class="headerlink" title="配置服務的順序"></a>配置服務的順序</h3><p>在 ASP.NET Core 中，我們首先要<strong>配置應用所需的服務</strong>，這些服務會添加到一個容器中，應用程式啟動後可以從這個容器中請求和使用它們。這些步驟包括：</p>
+<ol>
+<li><p><strong><code>AddControllers()</code></strong> </p>
+<ul>
+<li>這是添加控制器的服務，為應用程式提供處理 HTTP 請求的功能。</li>
+</ul>
+</li>
+<li><p><strong><code>AddEndpointsApiExplorer()</code></strong></p>
+<ul>
+<li>這一步會添加一個 API 瀏覽器服務，用來幫助列出所有的 API 終端點（即管理和測試 API 功能）。這一步的目的通常是為了<strong>自動生成文檔和 API 的列表</strong>，讓你更方便地知道有哪些 API 可用。</li>
+</ul>
+</li>
+<li><p><strong><code>AddSwaggerGen()</code></strong></p>
+<ul>
+<li>這一步為 Swagger 準備生成器服務。Swagger 是一個工具，用來自動生成 API 的說明文檔以及可視化界面（即我們常見的 Swagger UI）。這個功能讓我們能夠更方便地測試和了解 API。</li>
+</ul>
+</li>
+</ol>
+<p>這些服務的順序很重要，因為後面某些功能可能依賴於前面配置好的服務。例如，Swagger 需要在控制器註冊後才能正常生成相應的 API 文檔和界面。</p>
+<h3 id="配置-HTTP-請求管道的順序"><a href="#配置-HTTP-請求管道的順序" class="headerlink" title="配置 HTTP 請求管道的順序"></a>配置 HTTP 請求管道的順序</h3><p>服務添加好後，我們需要配置<strong>應用的 HTTP 請求管道</strong>，這一步決定了當客戶端的請求到達伺服器時，請求將如何被處理。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (app.Environment.IsDevelopment()) <span class="comment">// 如果是開發環境</span></span><br><span class="line">&#123;</span><br><span class="line">    app.UseSwagger();                <span class="comment">// 使用 Swagger 中間件來生成文檔</span></span><br><span class="line">    app.UseSwaggerUI();              <span class="comment">// 使用 Swagger UI 中間件來提供可視化界面</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">app.UseHttpsRedirection();           <span class="comment">// 使用 HTTPS 重定向</span></span><br><span class="line">app.UseAuthorization();              <span class="comment">// 使用授權</span></span><br><span class="line"></span><br><span class="line">app.MapControllers();                <span class="comment">// 映射控制器</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>順序是重要的，因為中間件按配置的先後順序被依次執行</strong>。比如：<ol>
+<li><strong><code>UseSwagger()</code> 和 <code>UseSwaggerUI()</code></strong> 應該放在開發環境的第一部分，這樣可以確保在開發過程中我們能通過 Swagger 可視化界面來測試 API。</li>
+<li><strong><code>UseHttpsRedirection()</code></strong> 會確保所有進來的 HTTP 請求被重定向到 HTTPS，增加安全性。這一步通常需要放在管道的早期部分。</li>
+<li><strong><code>UseAuthorization()</code></strong> 用於處理授權邏輯，它應該在控制器路由映射之前執行，這樣系統才能確保請求在被送入控制器之前有適當的授權。</li>
+<li><strong><code>MapControllers()</code></strong> 最後映射控制器，把對應的路由請求交給相應的控制器來處理。這樣做是因為所有的安全性和其他設置應該在請求到達控制器之前已經完成。</li>
+</ol>
+</li>
+</ul>
+<h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h3><ul>
+<li><strong>配置服務</strong>：先添加控制器，再添加 API 瀏覽器和 Swagger 生成服務。這樣的順序確保後面的功能可以利用前面已經註冊好的服務。</li>
+<li><strong>配置管道</strong>：按照先後順序添加中間件來處理 HTTP 請求，確保請求能依序進行，例如重定向、授權等，最後交給控制器來處理具體業務邏輯。</li>
+</ul>
+<p>這樣設計的順序可以使應用程序既靈活又安全，所有中間件按計劃處理請求並交給控制器，這樣的順序對應用的正確運行至關重要。希望這樣的解釋對你有幫助！</p>
+<p>用一個情境來幫你理解這段程式碼。</p>
+<h3 id="情境：餐廳的後台系統設置"><a href="#情境：餐廳的後台系統設置" class="headerlink" title="情境：餐廳的後台系統設置"></a>情境：餐廳的後台系統設置</h3><p>假設你擁有一間餐廳，並正在設置後台系統來管理整個餐廳的運作，例如菜單管理、訂單管理、廚房管理等。</p>
+<ul>
+<li><strong>後台系統需要一些模塊（控制器），來處理各種不同的任務</strong>：例如處理客戶訂單、更新菜單、管理廚房資源等。</li>
+<li><strong>為了方便查看和測試，你需要為這些模塊設置一個管理平台</strong>，使得管理員可以直觀地查看、使用和管理所有這些功能。</li>
+</ul>
+<p>這段程式碼中的三個部分可以理解為設置這些後台管理功能的過程：</p>
+<h4 id="1-builder-Services-AddControllers-添加控制器服務"><a href="#1-builder-Services-AddControllers-添加控制器服務" class="headerlink" title="1. builder.Services.AddControllers(); // 添加控制器服務"></a>1. <code>builder.Services.AddControllers(); // 添加控制器服務</code></h4><p>這相當於在你的餐廳後台系統中添加「不同的管理模塊」。</p>
+<ul>
+<li><strong>情境</strong>：餐廳的管理員需要一個後台系統來管理訂單、菜單和員工。</li>
+<li><strong>控制器服務</strong>就是為每一個管理任務提供獨立的模塊，例如「訂單管理控制器」、「菜單管理控制器」、「員工管理控制器」等。每一個控制器負責不同的管理工作。</li>
+<li><strong>實際效果</strong>：當你在後台系統中點擊「菜單管理」或「訂單管理」的時候，系統就會使用對應的控制器，來處理這些管理功能。</li>
+</ul>
+<h4 id="2-builder-Services-AddEndpointsApiExplorer-添加終端-API-瀏覽器服務"><a href="#2-builder-Services-AddEndpointsApiExplorer-添加終端-API-瀏覽器服務" class="headerlink" title="2. builder.Services.AddEndpointsApiExplorer(); // 添加終端 API 瀏覽器服務"></a>2. <code>builder.Services.AddEndpointsApiExplorer(); // 添加終端 API 瀏覽器服務</code></h4><p>這相當於給管理員提供一個「菜單目錄」，以方便他們找到需要的功能。</p>
+<ul>
+<li><strong>情境</strong>：假設你在後台系統中擁有很多不同的功能，例如「查看訂單列表」、「修改菜單」、「添加新菜品」等等。你需要一個地方可以看到所有可用的功能，這樣管理員才知道有哪些選項可以選擇。</li>
+<li><strong>API 瀏覽器服務</strong>就像是一個目錄，列出所有可用的功能，方便管理員知道自己可以使用哪些 API 來管理餐廳的不同部分。</li>
+<li><strong>實際效果</strong>：這個功能會自動生成一個所有 API 路徑的列表，讓開發者或管理員更直觀地看到後台提供了哪些可用的 API。</li>
+</ul>
+<h4 id="3-builder-Services-AddSwaggerGen-添加-Swagger-生成器服務"><a href="#3-builder-Services-AddSwaggerGen-添加-Swagger-生成器服務" class="headerlink" title="3. builder.Services.AddSwaggerGen(); // 添加 Swagger 生成器服務"></a>3. <code>builder.Services.AddSwaggerGen(); // 添加 Swagger 生成器服務</code></h4><p>這相當於給餐廳的後台系統提供一個「可視化界面」，讓管理員能夠方便地測試和使用所有的管理功能。</p>
+<ul>
+<li><strong>情境</strong>：管理員不想通過繁瑣的命令來執行後台功能，他們更希望有一個界面，可以點擊按鈕來查看訂單或修改菜單。</li>
+<li><strong>Swagger</strong>就是這樣的工具，它會自動為你生成一個可視化界面，管理員只需通過點擊界面中的按鈕，便可以測試和使用這些功能，而不需要直接操作後台代碼或寫一些複雜的命令。</li>
+<li><strong>實際效果</strong>：<code>Swagger</code> 提供了一個網頁界面，列出所有的 API，管理員可以通過這個界面來測試不同的 API，比如「創建新訂單」、「刪除某個菜品」等等。這就像是一個可視化的「操作面板」，方便管理員管理餐廳的各項功能。</li>
+</ul>
+<h3 id="總結："><a href="#總結：" class="headerlink" title="總結："></a>總結：</h3><ul>
+<li><strong><code>AddControllers()</code></strong> 就像是設置了不同的管理模塊，讓你的系統可以處理不同的管理任務。</li>
+<li><strong><code>AddEndpointsApiExplorer()</code></strong> 就像是提供了一個目錄，幫助管理員快速了解有哪些功能可以使用。</li>
+<li><strong><code>AddSwaggerGen()</code></strong> 則是給管理員提供了一個直觀的可視化操作界面，方便管理員測試和操作這些管理功能。</li>
+</ul>
+<p>這樣，你的後台系統不僅可以處理不同的管理任務，還可以方便地列出所有功能，並通過可視化界面讓管理員輕鬆地操作每個管理功能。希望這樣的情境解釋能幫助你更好地理解這些代碼的用途！</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/C/" rel="tag"># C#</a>
+              <a href="/apple.lily/tags/WebAPI/" rel="tag"># WebAPI</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/10/08/OneDayOneNote/2024-10-10/" rel="prev" title="2024-10-10 ActionResult是 ASP.NETCore中用來表示 HTTP請求結果的一種返回類型">
+                  <i class="fa fa-angle-left"></i> 2024-10-10 ActionResult是 ASP.NETCore中用來表示 HTTP請求結果的一種返回類型
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/10/15/OneDayOneNote/2024-10-12/" rel="next" title="2024-10-12 002_學寫API_finally解釋">
+                  2024-10-12 002_學寫API_finally解釋 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

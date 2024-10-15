@@ -1,0 +1,43 @@
+<hr>
+<h2 id="title-2024-10-16-006-學寫API-關於應用程式怎麼知道是開發環境-launchSettings-jsondate-2024-10-15-09-59-30categories-OneDayOneNotetags-C-WebAPI-description-2024-10-16-006-學寫API-關於應用程式怎麼知道是開發環境-launchSettings-json"><a href="#title-2024-10-16-006-學寫API-關於應用程式怎麼知道是開發環境-launchSettings-jsondate-2024-10-15-09-59-30categories-OneDayOneNotetags-C-WebAPI-description-2024-10-16-006-學寫API-關於應用程式怎麼知道是開發環境-launchSettings-json" class="headerlink" title="title: 2024-10-16 006_學寫API_關於應用程式怎麼知道是開發環境_launchSettings-jsondate: 2024-10-15 09:59:30categories: OneDayOneNotetags:  [C#, WebAPI ]description: 2024-10-16 006_學寫API_關於應用程式怎麼知道是開發環境_launchSettings-json"></a>title: 2024-10-16 006_學寫API_關於應用程式怎麼知道是開發環境_launchSettings-json<br>date: 2024-10-15 09:59:30<br>categories: OneDayOneNote<br>tags:  [C#, WebAPI ]<br>description: 2024-10-16 006_學寫API_關於應用程式怎麼知道是開發環境_launchSettings-json</h2><h2 id="2024-10-16-006-學寫API-關於應用程式怎麼知道是開發環境-launchSettings-json"><a href="#2024-10-16-006-學寫API-關於應用程式怎麼知道是開發環境-launchSettings-json" class="headerlink" title="2024-10-16 006_學寫API_關於應用程式怎麼知道是開發環境_launchSettings-json"></a>2024-10-16 006_學寫API_關於應用程式怎麼知道是開發環境_launchSettings-json</h2><p>應用程序知道是開發環境是因為 ASP.NET Core 的**環境變數 <code>ASPNETCORE_ENVIRONMENT</code>**設定為了特定的值，例如 <code>&quot;Development&quot;</code>、<code>&quot;Production&quot;</code> 或 <code>&quot;Staging&quot;</code>。這個變數用於告訴應用程序目前所處的運行環境，以便針對不同環境配置不同的行為。</p>
+<p>在程序中，<code>app.Environment</code> 屬性包含了當前環境的資訊。當你啟動應用程式時，ASP.NET Core 通常會自動檢查環境變數 <code>ASPNETCORE_ENVIRONMENT</code>，並據此設置 <code>app.Environment</code>。</p>
+<p>在程式碼中這樣寫：</p>
+<pre><code class="csharp">if (app.Environment.IsDevelopment()) // 如果是開發環境
+{
+    app.UseSwagger();                // 使用 Swagger 中間件來生成文檔
+    app.UseSwaggerUI();              // 使用 Swagger UI 中間件來提供可視化界面
+}
+</code></pre>
+<p>這段程式碼會檢查當前環境是不是 <code>&quot;Development&quot;</code>，如果是的話，就會使用 <code>Swagger</code> 來生成文檔和提供可視化界面。</p>
+<h3 id="怎麼知道當前環境是開發環境？"><a href="#怎麼知道當前環境是開發環境？" class="headerlink" title="怎麼知道當前環境是開發環境？"></a>怎麼知道當前環境是開發環境？</h3><ul>
+<li>在 Visual Studio 或 Visual Studio Code 等開發工具中運行應用時，默認會設置 <code>ASPNETCORE_ENVIRONMENT</code> 為 <code>&quot;Development&quot;</code>。</li>
+<li>在 <code>launchSettings.json</code> 文件中，你可以看到這樣的設置，來告訴應用是開發環境：</li>
+</ul>
+<pre><code class="json">&quot;profiles&quot;: {
+    &quot;http&quot;: {
+        &quot;commandName&quot;: &quot;Project&quot;,
+        &quot;dotnetRunMessages&quot;: true,
+        &quot;launchBrowser&quot;: true,
+        &quot;launchUrl&quot;: &quot;weatherforecast&quot;,
+        &quot;applicationUrl&quot;: &quot;http://localhost:5036&quot;,
+        &quot;environmentVariables&quot;: {
+            &quot;ASPNETCORE_ENVIRONMENT&quot;: &quot;Development&quot;
+        }
+    }
+}
+</code></pre>
+<p>這裡的 <code>&quot;ASPNETCORE_ENVIRONMENT&quot;: &quot;Development&quot;</code> 就是告訴應用程序在運行時是處於<strong>開發環境</strong>。這個環境變數可以根據不同的部署需求來變更，例如設置為 <code>&quot;Production&quot;</code> 來表示生產環境。</p>
+<h3 id="使用環境變數的好處"><a href="#使用環境變數的好處" class="headerlink" title="使用環境變數的好處"></a>使用環境變數的好處</h3><ol>
+<li><p><strong>配置不同的行為</strong>：</p>
+<ul>
+<li>在<strong>開發環境</strong>中，你可以啟用更多的調試工具（例如 <code>Swagger</code>），或者顯示更加詳細的錯誤信息。</li>
+<li>在<strong>生產環境</strong>中，你可以關閉這些開發工具，從而提高安全性和性能。</li>
+</ul>
+</li>
+<li><p><strong>靈活性</strong>：</p>
+<ul>
+<li>你可以根據不同的環境來配置不同的連接字串（例如開發環境連接本地數據庫，而生產環境連接正式的雲端數據庫）。</li>
+</ul>
+</li>
+</ol>
+<p>通過設置 <code>ASPNETCORE_ENVIRONMENT</code>，你的應用可以根據不同的運行環境提供適合的行為和配置。</p>

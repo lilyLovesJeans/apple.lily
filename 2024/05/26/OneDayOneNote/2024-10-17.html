@@ -1,0 +1,81 @@
+<hr>
+<h2 id="title-2024-10-17-007-學寫API-關於startup-cs的管轄date-2024-10-15-10-00-50categories-OneDayOneNotetags-C-WebAPI-description-2024-10-17-007-學寫API-關於startup-cs的管轄"><a href="#title-2024-10-17-007-學寫API-關於startup-cs的管轄date-2024-10-15-10-00-50categories-OneDayOneNotetags-C-WebAPI-description-2024-10-17-007-學寫API-關於startup-cs的管轄" class="headerlink" title="title: 2024-10-17 007_學寫API_關於startup-cs的管轄date: 2024-10-15 10:00:50categories: OneDayOneNotetags:  [C#, WebAPI ]description: 2024-10-17 007_學寫API_關於startup-cs的管轄"></a>title: 2024-10-17 007_學寫API_關於startup-cs的管轄<br>date: 2024-10-15 10:00:50<br>categories: OneDayOneNote<br>tags:  [C#, WebAPI ]<br>description: 2024-10-17 007_學寫API_關於startup-cs的管轄</h2><h2 id="2024-10-17-007-學寫API-關於startup-cs的管轄"><a href="#2024-10-17-007-學寫API-關於startup-cs的管轄" class="headerlink" title="2024-10-17 007_學寫API_關於startup-cs的管轄"></a>2024-10-17 007_學寫API_關於startup-cs的管轄</h2><p>根據錯誤信息，<code>IApplicationBuilder</code> 沒有定義 <code>MapControllers</code> 方法。這是因為 <code>MapControllers</code> 是擴展方法，必須在 <code>UseRouting()</code> 之後調用才能生效。</p>
+<p>我來幫你修正這段代碼。在 <strong><code>Startup.cs</code></strong> 的 <code>Configure</code> 方法中，我們需要使用 <code>app.UseRouting()</code> 來設置路由中間件，然後再調用 <code>app.UseEndpoints()</code> 來映射控制器。</p>
+<p>請按照以下修改：</p>
+<h3 id="Startup-cs-修改後的代碼"><a href="#Startup-cs-修改後的代碼" class="headerlink" title="Startup.cs 修改後的代碼"></a>Startup.cs 修改後的代碼</h3><pre><code class="csharp">using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
+namespace LogisticsAPI
+{
+    public class Startup
+    {
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
+        public IConfiguration Configuration { get; }
+
+        // 配置應用程序服務
+        public void ConfigureServices(IServiceCollection services)
+        {
+            // 添加服務到容器中
+            services.AddControllers();               // 添加控制器服務
+            services.AddEndpointsApiExplorer();      // 添加終端 API 瀏覽器服務
+            services.AddSwaggerGen();                // 添加 Swagger 生成器服務
+        }
+
+        // 配置 HTTP 請求管道
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            if (env.IsDevelopment())                 // 如果是開發環境
+            {
+                app.UseSwagger();                    // 使用 Swagger 中間件來生成文檔
+                app.UseSwaggerUI();                  // 使用 Swagger UI 中間件來提供可視化界面
+            }
+
+            app.UseHttpsRedirection();               // 使用 HTTPS 重定向
+
+            app.UseRouting();                        // 使用路由中間件，必須在 MapControllers 之前
+
+            app.UseAuthorization();                  // 使用授權
+
+            app.UseEndpoints(endpoints =&gt;            // 使用 Endpoints 中間件來映射控制器
+            {
+                endpoints.MapControllers();          // 映射控制器
+            });
+        }
+    }
+}
+</code></pre>
+<h3 id="修改的部分："><a href="#修改的部分：" class="headerlink" title="修改的部分："></a>修改的部分：</h3><ol>
+<li><p>**<code>app.UseRouting()</code>**：</p>
+<ul>
+<li>在請求管道中添加路由中間件，使應用程序能夠處理路由信息。</li>
+<li>這一步必須在 <code>app.UseEndpoints()</code> 之前進行。</li>
+</ul>
+</li>
+<li><p>**<code>app.UseEndpoints()</code>**：</p>
+<ul>
+<li>使用終端點中間件來映射控制器。</li>
+<li><code>endpoints.MapControllers()</code> 用於設置應用程序中控制器的路由。</li>
+</ul>
+</li>
+</ol>
+<h3 id="最終的順序："><a href="#最終的順序：" class="headerlink" title="最終的順序："></a>最終的順序：</h3><ul>
+<li><code>app.UseRouting()</code>：確定如何將請求與終端點匹配。</li>
+<li><code>app.UseAuthorization()</code>：添加授權中間件以處理身份驗證和授權。</li>
+<li><code>app.UseEndpoints()</code>：使用終端點中間件來映射控制器。</li>
+</ul>
+<p>按照這樣的修改，你的問題應該能解決。如果你在運行過程中遇到其他問題，可以隨時再告訴我。</p>
+<p>沒錯，我之前的代碼中確實漏掉了 <code>app.UseRouting()</code>。在 ASP.NET Core 中，<code>UseRouting()</code> 是用來設置請求的路由中間件，這一步非常重要，特別是在使用 <code>MapControllers()</code> 映射控制器時。 </p>
+<p><strong>正確的順序</strong>應該是：</p>
+<ol>
+<li><code>app.UseRouting()</code>：設置路由中間件，這樣才能確定請求如何與應用中的路徑匹配。</li>
+<li><code>app.UseAuthorization()</code>：這一步確保應用程序的授權邏輯被正確處理。</li>
+<li><code>app.UseEndpoints()</code>：用來映射終端點，例如控制器。</li>
+</ol>
+<p>謝謝你的提醒，我現在提供完整正確的代碼版本，包含 <code>app.UseRouting()</code>。這個步驟對於請求處理和正確的控制器映射非常關鍵。</p>

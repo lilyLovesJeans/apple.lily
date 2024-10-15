@@ -1,0 +1,73 @@
+<hr>
+<h2 id="title-2024-10-19-009-學寫API-JWT的組成date-2024-10-15-10-42-35categories-OneDayOneNotetags-C-WebAPI-description-2024-10-19-009-學寫API-JWT的組成"><a href="#title-2024-10-19-009-學寫API-JWT的組成date-2024-10-15-10-42-35categories-OneDayOneNotetags-C-WebAPI-description-2024-10-19-009-學寫API-JWT的組成" class="headerlink" title="title: 2024-10-19 009_學寫API_JWT的組成date: 2024-10-15 10:42:35categories: OneDayOneNotetags:  [C#, WebAPI ]description: 2024-10-19 009_學寫API_JWT的組成"></a>title: 2024-10-19 009_學寫API_JWT的組成<br>date: 2024-10-15 10:42:35<br>categories: OneDayOneNote<br>tags:  [C#, WebAPI ]<br>description: 2024-10-19 009_學寫API_JWT的組成</h2><h2 id="2024-10-19-009-學寫API-JWT的組成"><a href="#2024-10-19-009-學寫API-JWT的組成" class="headerlink" title="2024-10-19 009_學寫API_JWT的組成"></a>2024-10-19 009_學寫API_JWT的組成</h2><p>這個字符串是一個典型的 JSON Web Token (JWT)，它由三部分組成，用 <code>.</code> 分隔，分別代表 <strong>Header</strong>、<strong>Payload</strong>（即 Claims），和 <strong>Signature</strong>。</p>
+<h3 id="JWT-組成"><a href="#JWT-組成" class="headerlink" title="JWT 組成"></a>JWT 組成</h3><p>這個 Token 的組成部分如下：</p>
+<ol>
+<li><p><strong>Header 部分（頭部）</strong>：</p>
+<pre><code>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+</code></pre>
+<ul>
+<li><strong>解碼後的內容</strong>：<pre><code class="json">{
+  &quot;alg&quot;: &quot;HS256&quot;,  // 算法：HMAC-SHA256
+  &quot;typ&quot;: &quot;JWT&quot;     // 類型：JWT
+}
+</code></pre>
+</li>
+<li><strong>作用</strong>：<ul>
+<li>Header 指定了 Token 的類型（typ）和簽名算法（alg）。在這裡，算法是 <code>HS256</code>，即使用 HMAC-SHA256 算法來進行簽名。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Payload 部分（負載）</strong>：</p>
+<pre><code>eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ
+</code></pre>
+<ul>
+<li><strong>解碼後的內容</strong>：<pre><code class="json">{
+  &quot;sub&quot;: &quot;1234567890&quot;,      // 主題（Subject），通常是用戶 ID
+  &quot;name&quot;: &quot;John Doe&quot;,       // 用戶的姓名
+  &quot;iat&quot;: 1516239022         // Token 的發行時間（Issued At），通常是 UNIX 時間戳
+}
+</code></pre>
+</li>
+<li><strong>作用</strong>：<ul>
+<li>Payload 包含了一些用戶信息，這些信息稱為 <strong>Claims</strong>，用來描述 Token 所代表的實體，通常包括身份信息（如用戶名、用戶 ID 等）。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Signature 部分（簽名）</strong>：</p>
+<pre><code>SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+</code></pre>
+<ul>
+<li><p><strong>如何生成</strong>：</p>
+<ul>
+<li>簽名是對前兩部分 (<code>Header</code> 和 <code>Payload</code>) 的 Base64URL 編碼的內容進行加密生成的。</li>
+<li>使用的方法是 <code>HMAC-SHA256</code>，加密的密鑰是服務器上預先設置的。</li>
+<li>算法：<code>HMACSHA256(base64UrlEncode(header) + &quot;.&quot; + base64UrlEncode(payload), secret)</code></li>
+</ul>
+</li>
+<li><p><strong>作用</strong>：</p>
+<ul>
+<li>簽名的作用是保證 Token 的完整性。當接收到這個 Token 時，服務器可以使用相同的密鑰重新計算簽名，並與 Token 中的簽名部分進行比對，來驗證數據是否被篡改。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="解釋-Token-中的-Claims"><a href="#解釋-Token-中的-Claims" class="headerlink" title="解釋 Token 中的 Claims"></a>解釋 Token 中的 Claims</h3><ul>
+<li><strong>Header</strong> 主要用來描述 Token 的元數據，像加密算法等。</li>
+<li><strong>Payload</strong> 包含一些 Claims，例如：<ul>
+<li><strong>sub</strong>（Subject）：這裡的值是 <code>&quot;1234567890&quot;</code>，通常表示用戶 ID 或唯一標識符。</li>
+<li><strong>name</strong>：用戶的姓名，這裡是 <code>&quot;John Doe&quot;</code>。</li>
+<li><strong>iat</strong>（Issued At）：Token 的簽發時間，這裡是 UNIX 時間戳 <code>&quot;1516239022&quot;</code>，表示 Token 是在某個具體的時間點生成的。</li>
+</ul>
+</li>
+</ul>
+<h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><ul>
+<li>這個 Token 用來對用戶的身份進行驗證和授權。</li>
+<li>Token 一旦生成，可以作為後續 HTTP 請求的憑據，通過 <code>Authorization</code> Header 傳遞給服務器：<pre><code>Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+</code></pre>
+</li>
+<li>服務器會解碼這個 Token，並檢查簽名是否正確，以及 Token 是否在有效期內。</li>
+</ul>
+<p>這樣的機制讓用戶可以不需要每次請求都輸入帳號密碼，只需要在首次登入時提供正確的憑證，之後可以使用 Token 來認證和授權。</p>

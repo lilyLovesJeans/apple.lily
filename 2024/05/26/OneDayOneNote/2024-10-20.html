@@ -1,0 +1,49 @@
+<hr>
+<h2 id="title-2024-10-20-010-學寫API-UNIX-時間戳date-2024-10-15-10-44-03categories-OneDayOneNotetags-C-WebAPI-description-2024-10-20-010-學寫API-UNIX-時間戳"><a href="#title-2024-10-20-010-學寫API-UNIX-時間戳date-2024-10-15-10-44-03categories-OneDayOneNotetags-C-WebAPI-description-2024-10-20-010-學寫API-UNIX-時間戳" class="headerlink" title="title: 2024-10-20 010_學寫API_UNIX 時間戳date: 2024-10-15 10:44:03categories: OneDayOneNotetags:  [C#, WebAPI ]description: 2024-10-20 010_學寫API_UNIX 時間戳"></a>title: 2024-10-20 010_學寫API_UNIX 時間戳<br>date: 2024-10-15 10:44:03<br>categories: OneDayOneNote<br>tags:  [C#, WebAPI ]<br>description: 2024-10-20 010_學寫API_UNIX 時間戳</h2><h2 id="2024-10-20-010-學寫API-UNIX-時間戳"><a href="#2024-10-20-010-學寫API-UNIX-時間戳" class="headerlink" title="2024-10-20 010_學寫API_UNIX 時間戳"></a>2024-10-20 010_學寫API_UNIX 時間戳</h2><p>UNIX 時間戳</p>
+<pre><code class="json">{&quot;alg&quot;:&quot;HS256&quot;,&quot;typ&quot;:&quot;JWT&quot;}.
+{&quot;unique_name&quot;:&quot;testuser&quot;,
+&quot;nbf&quot;:1728723643,
+&quot;exp&quot;:1728727198,
+&quot;iat&quot;:1728723643,
+&quot;iss&quot;:&quot;logisticsAPI&quot;,
+&quot;aud&quot;:&quot;logisticsAPI&quot;}}
+</code></pre>
+<p>這個 token , 裡面有一些數字是怎麼生成的?</p>
+<p>你提供的 Token 的前半部分是一個典型的 JSON Web Token (JWT) 的 payload。JWT 的數據部分包含了一些重要的信息，例如用戶名、發行者、受眾等。你提到的數字是一些時間戳，它們是以 UNIX 時間格式表示的。下面我來逐個解釋：</p>
+<ol>
+<li><p><strong><code>nbf</code>（Not Before）:</strong></p>
+<ul>
+<li>數字：<code>1728723643</code></li>
+<li>含義：這個字段表示 Token 在這個時間之前不能被接受，意思是 Token 只有在這個時間之後才是有效的。</li>
+<li>它的值是 UNIX 時間戳，表示自 1970 年 1 月 1 日以來的秒數，代表了 Token 開始有效的時間。這個數字由 Token 生成時根據當前的時間加上適當的值生成。</li>
+</ul>
+</li>
+<li><p><strong><code>exp</code>（Expiration）:</strong></p>
+<ul>
+<li>數字：<code>1728727198</code></li>
+<li>含義：這個字段表示 Token 的過期時間，也就是 Token 超過這個時間後就不能被使用。</li>
+<li>這個時間戳也是 UNIX 時間戳，它由 Token 生成時決定。通常，會在生成時間基礎上加上一個指定的有效期（例如 1 小時）來計算 <code>exp</code>。</li>
+</ul>
+</li>
+<li><p><strong><code>iat</code>（Issued At）:</strong></p>
+<ul>
+<li>數字：<code>1728723643</code></li>
+<li>含義：這個字段表示 Token 的簽發時間，表示 Token 是在這個時間生成的。</li>
+<li>它的值同樣是 UNIX 時間戳，代表 Token 被創建的時刻。</li>
+</ul>
+</li>
+</ol>
+<p>這些時間戳數字是根據生成 Token 時的當前時間加上特定的偏移值自動生成的，通常是從系統的時間中獲取的。它們的用途如下：</p>
+<ul>
+<li><code>nbf</code> 和 <code>exp</code> 用來確保 Token 只在特定的時間範圍內有效。</li>
+<li><code>iat</code> 是簽發 Token 的時間，可以用於追溯 Token 的生成時間。</li>
+</ul>
+<p>例如，假設你在 2024 年 10 月 7 日 12:00 創建了這個 Token，那麼 <code>iat</code> 的值會是當前的 UNIX 時間戳，比如 <code>1728723643</code>，而 <code>exp</code> 則會是 <code>iat</code> 加上一個小時（或其他指定的有效期），表示 Token 的到期時間。</p>
+<p>要更直觀地查看這些數字的意思，你可以把它們放到一個 <a href="https://www.unixtimestamp.com/">UNIX 時間戳轉換工具</a> 來查看具體時間。例如，<code>1728723643</code> 轉換後表示的是某個具體的時間（以 GMT 為基準）。</p>
+<p>這些字段在 JWT 的驗證過程中起到重要作用，特別是：</p>
+<ul>
+<li>**<code>nbf</code>**：確保 Token 在指定的開始時間之後才可用。</li>
+<li>**<code>exp</code>**：確保 Token 在到期後無法使用。</li>
+<li>**<code>iat</code>**：用於檢查 Token 是否是在有效的時間範圍內生成的，防止 Token 被過早或過晚使用。</li>
+</ul>
+<p>這些信息是使用編碼過的字符串，並被加密（或簽名）以防止被篡改的。</p>

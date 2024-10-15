@@ -1,0 +1,99 @@
+<hr>
+<h2 id="title-2024-10-26-016-學寫API-建一個新的測試項目的步驟date-2024-10-15-10-52-31categories-OneDayOneNotetags-C-WebAPI-description-2024-10-26-016-學寫API-建一個新的測試項目的步驟"><a href="#title-2024-10-26-016-學寫API-建一個新的測試項目的步驟date-2024-10-15-10-52-31categories-OneDayOneNotetags-C-WebAPI-description-2024-10-26-016-學寫API-建一個新的測試項目的步驟" class="headerlink" title="title: 2024-10-26 016_學寫API_建一個新的測試項目的步驟date: 2024-10-15 10:52:31categories: OneDayOneNotetags:  [C#, WebAPI ]description: 2024-10-26 016_學寫API_建一個新的測試項目的步驟"></a>title: 2024-10-26 016_學寫API_建一個新的測試項目的步驟<br>date: 2024-10-15 10:52:31<br>categories: OneDayOneNote<br>tags:  [C#, WebAPI ]<br>description: 2024-10-26 016_學寫API_建一個新的測試項目的步驟</h2><h2 id="2024-10-26-016-學寫API-建一個新的測試項目的步驟"><a href="#2024-10-26-016-學寫API-建一個新的測試項目的步驟" class="headerlink" title="2024-10-26 016_學寫API_建一個新的測試項目的步驟"></a>2024-10-26 016_學寫API_建一個新的測試項目的步驟</h2><p>當你剛創建一個新的測試項目時，你的測試類 <code>PackageControllerTests.cs</code> 可能只是一個「空殼」模板，因為這是 Visual Studio 或其他 IDE 給你的基本樣式，它們並不知道具體你要測試什麼內容。而我給你的例子則是我一步步寫出來的具體測試代碼，目的是讓你理解整個測試流程。</p>
+<p>下面我會一步步帶你從這個「空殼」開始，把它變成一個完整的測試類：</p>
+<h3 id="1-修改測試類的訪問修飾符"><a href="#1-修改測試類的訪問修飾符" class="headerlink" title="1. 修改測試類的訪問修飾符"></a>1. 修改測試類的訪問修飾符</h3><p>你的測試類目前是 <code>internal</code>，這意味著這個類只能在相同的程式集中被訪問。為了讓它能夠被測試框架（如 xUnit）正常調用，你需要把它改為 <code>public</code>：</p>
+<pre><code class="csharp">namespace LogisticsAPI.Tests
+{
+    public class PackageControllerTests
+    {
+    }
+}
+</code></pre>
+<h3 id="2-引入必要的命名空間"><a href="#2-引入必要的命名空間" class="headerlink" title="2. 引入必要的命名空間"></a>2. 引入必要的命名空間</h3><p>要測試你的控制器，必須引用和測試內容相關的命名空間，這些包括：</p>
+<ul>
+<li><code>LogisticsAPI.Controllers</code>：用來訪問你要測試的 <code>PackageController</code>。</li>
+<li><code>LogisticsAPI.Models</code>：用來訪問你的模型，例如 <code>Package</code>。</li>
+<li><code>Microsoft.Extensions.Logging</code>：用來創建 Logger。</li>
+<li><code>Microsoft.AspNetCore.Mvc</code>：用來處理控制器返回的 Action 結果。</li>
+<li><code>System.Collections.Generic</code>：用來操作泛型集合，例如 <code>List&lt;Package&gt;</code>。</li>
+<li><code>xUnit</code>：xUnit 是一個單元測試框架，它提供了測試方法的屬性標記（如 <code>[Fact]</code>）和斷言（如 <code>Assert</code>）。</li>
+</ul>
+<p>所以在 <code>PackageControllerTests.cs</code> 文件的頂部，加入以下引用：</p>
+<pre><code class="csharp">using Xunit;
+using LogisticsAPI.Controllers;
+using LogisticsAPI.Models;
+using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+</code></pre>
+<h3 id="3-添加測試類的成員變數和構造函數"><a href="#3-添加測試類的成員變數和構造函數" class="headerlink" title="3. 添加測試類的成員變數和構造函數"></a>3. 添加測試類的成員變數和構造函數</h3><p>你需要有一個控制器實例 <code>_controller</code> 和一個 Logger 實例 <code>_logger</code> 來支持測試。所以在測試類中，先定義這些變數並用構造函數來初始化它們。</p>
+<p>添加變數和構造函數：</p>
+<pre><code class="csharp">namespace LogisticsAPI.Tests
+{
+    public class PackageControllerTests
+    {
+        private readonly PackageController _controller;
+        private readonly ILogger&lt;PackageController&gt; _logger;
+
+        public PackageControllerTests()
+        {
+            // 創建一個 Logger 的實例
+            _logger = new LoggerFactory().CreateLogger&lt;PackageController&gt;();
+            
+            // 初始化 PackageController，並把 Logger 傳給它
+            _controller = new PackageController(_logger);
+        }
+    }
+}
+</code></pre>
+<h3 id="4-添加測試方法"><a href="#4-添加測試方法" class="headerlink" title="4. 添加測試方法"></a>4. 添加測試方法</h3><p>測試方法一般遵循以下結構：</p>
+<ol>
+<li><strong><code>[Fact]</code></strong> 屬性：這是 xUnit 用來標記測試方法的屬性，代表這是一個測試用例。</li>
+<li>測試方法的名稱最好具有描述性，例如 <code>GetAllPackages_WhenCalled_ReturnsOkResult</code>，這樣能清楚地表達測試的目標。</li>
+</ol>
+<p>你可以參考以下測試方法來測試 <code>GetAllPackages()</code>：</p>
+<pre><code class="csharp">namespace LogisticsAPI.Tests
+{
+    public class PackageControllerTests
+    {
+        private readonly PackageController _controller;
+        private readonly ILogger&lt;PackageController&gt; _logger;
+
+        public PackageControllerTests()
+        {
+            _logger = new LoggerFactory().CreateLogger&lt;PackageController&gt;();
+            _controller = new PackageController(_logger);
+        }
+
+        [Fact]
+        public void GetAllPackages_WhenCalled_ReturnsOkResult()
+        {
+            // Act: 調用 GetAllPackages 方法
+            var okResult = _controller.GetAllPackages();
+
+            // Assert: 確認返回的結果是 OkObjectResult
+            Assert.IsType&lt;OkObjectResult&gt;(okResult.Result);
+        }
+    }
+}
+</code></pre>
+<h3 id="5-一步步解釋如何知道要寫什麼"><a href="#5-一步步解釋如何知道要寫什麼" class="headerlink" title="5. 一步步解釋如何知道要寫什麼"></a>5. 一步步解釋如何知道要寫什麼</h3><p>你可能會有疑問：<strong>如何知道要寫什麼？</strong></p>
+<ol>
+<li><p><strong>理解你要測試的目標</strong>：你首先需要知道你的 <code>PackageController</code> 裡有什麼方法，例如 <code>GetAllPackages()</code>，它的目標是返回所有包裹。你測試的目標就是確保這個方法在被調用時返回正確的結果。</p>
+</li>
+<li><p><strong>考慮測試場景</strong>：不同的方法有不同的行為，例如對於 <code>GetAllPackages()</code>，你需要測試它返回的包裹列表是否正確。對於 <code>CreatePackage()</code>，你需要測試新包裹是否正確地被添加到列表中。</p>
+</li>
+<li><p><strong>使用 <code>Arrange-Act-Assert</code> 模式</strong>：</p>
+<ul>
+<li><strong>Arrange（準備）</strong>：創建控制器並準備好需要的輸入數據。</li>
+<li><strong>Act（執行）</strong>：調用你要測試的方法。</li>
+<li><strong>Assert（斷言）</strong>：檢查結果是否符合你的預期。</li>
+</ul>
+</li>
+</ol>
+<h3 id="6-總結"><a href="#6-總結" class="headerlink" title="6. 總結"></a>6. 總結</h3><ul>
+<li><strong>從「空殼」開始</strong>：當你看到一個空的測試類，不用緊張，逐步添加你需要的部分即可。</li>
+<li><strong>逐步添加需要的代碼</strong>：先引入命名空間，添加成員變數和構造函數，再開始編寫具體的測試方法。</li>
+<li><strong>遵循 <code>Arrange-Act-Assert</code> 模式</strong>：每個測試都應該明確地包含準備、執行和斷言三個步驟。</li>
+</ul>
+<p>希望這些步驟能幫助你更好地理解如何從頭開始編寫測試代碼。如果你有具體問題或不確定某些部分應該怎麼做，隨時告訴我，我會一步步引導你完成測試的撰寫。</p>

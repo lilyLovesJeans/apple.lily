@@ -1,0 +1,67 @@
+<hr>
+<h2 id="title-2024-10-15-005-學寫API-關於Microsoft-Extensions-Hosting如何運作date-2024-10-15-09-57-59categories-OneDayOneNotetags-C-WebAPI-description-2024-10-15-005-學寫API-關於Microsoft-Extensions-Hosting如何運作"><a href="#title-2024-10-15-005-學寫API-關於Microsoft-Extensions-Hosting如何運作date-2024-10-15-09-57-59categories-OneDayOneNotetags-C-WebAPI-description-2024-10-15-005-學寫API-關於Microsoft-Extensions-Hosting如何運作" class="headerlink" title="title: 2024-10-15 005_學寫API_關於Microsoft_Extensions_Hosting如何運作date: 2024-10-15 09:57:59categories: OneDayOneNotetags:  [C#, WebAPI ]description: 2024-10-15 005_學寫API_關於Microsoft_Extensions_Hosting如何運作"></a>title: 2024-10-15 005_學寫API_關於Microsoft_Extensions_Hosting如何運作<br>date: 2024-10-15 09:57:59<br>categories: OneDayOneNote<br>tags:  [C#, WebAPI ]<br>description: 2024-10-15 005_學寫API_關於Microsoft_Extensions_Hosting如何運作</h2><h2 id="2024-10-15-005-學寫API-關於Microsoft-Extensions-Hosting如何運作"><a href="#2024-10-15-005-學寫API-關於Microsoft-Extensions-Hosting如何運作" class="headerlink" title="2024-10-15 005_學寫API_關於Microsoft_Extensions_Hosting如何運作"></a>2024-10-15 005_學寫API_關於Microsoft_Extensions_Hosting如何運作</h2><p>用一個情境來解釋 <code>Microsoft.Extensions.Hosting</code> 在 ASP.NET Core 應用程序中的使用。</p>
+<h3 id="情境：餐廳點餐系統的運營"><a href="#情境：餐廳點餐系統的運營" class="headerlink" title="情境：餐廳點餐系統的運營"></a>情境：餐廳點餐系統的運營</h3><p>假設你有一家餐廳，它有兩個運營模式：</p>
+<ol>
+<li><strong>在店內直接點餐</strong>，由店員幫忙處理訂單。</li>
+<li><strong>線上外送點餐</strong>，通過網頁或應用程序來提交訂單。</li>
+</ol>
+<p>在這個情境中，餐廳相當於你的 ASP.NET Core 應用程序，而餐廳的不同運營模式相當於你的應用程序在不同宿主環境中的運行方式（如在 IIS、Kestrel 或 Docker 中運行）。<code>Microsoft.Extensions.Hosting</code> 則相當於一個「運營管理員」，它負責管理你的餐廳如何在不同的運營模式下高效地運作。</p>
+<h3 id="具體功能對應"><a href="#具體功能對應" class="headerlink" title="具體功能對應"></a>具體功能對應</h3><ol>
+<li><p><strong>應用程序啟動與停止</strong>：管理餐廳的開門和打烊。</p>
+<ul>
+<li>當餐廳開門時，需要確保所有的員工（服務）已經就位、設備（應用配置）已經檢查完畢、準備好運營。</li>
+<li><code>Microsoft.Extensions.Hosting</code> 在應用程序啟動時，會創建並初始化所有的必要資源，在應用結束時正確地關閉這些資源。</li>
+</ul>
+</li>
+<li><p>**依賴注入 (Dependency Injection)**：管理餐廳不同崗位的員工。</p>
+<ul>
+<li>餐廳有很多崗位，比如廚師、服務員、清潔員等等。</li>
+<li><code>Microsoft.Extensions.Hosting</code> 允許你定義不同的「員工」類型（例如日誌服務、數據庫連接等），並讓他們隨時待命，提供所需的服務。這就好像餐廳有員工管理系統，根據需要調度員工一樣。</li>
+</ul>
+</li>
+<li><p><strong>配置管理</strong>：設置餐廳的營業時間和菜單。</p>
+<ul>
+<li>不同的時間，餐廳的營業時間可能會不同，比如午餐時間與晚餐時間。</li>
+<li>在 ASP.NET Core 中，<code>Microsoft.Extensions.Hosting</code> 可以讀取不同的配置文件（如 <code>appsettings.json</code>），用來控制應用程序的行為。例如，開發環境和生產環境可能會有不同的數據庫連接配置。</li>
+</ul>
+</li>
+<li><p>**日誌記錄 (Logging)**：記錄餐廳的日常運營情況。</p>
+<ul>
+<li>餐廳可能需要記錄一些關鍵的運營情況，如銷售額、客人反饋等，以便隨時監控和改進服務。</li>
+<li>在 ASP.NET Core 中，<code>Microsoft.Extensions.Hosting</code> 支持各種日誌提供者，幫助應用程序記錄並跟蹤應用程序的運行情況，以便調試和改進。</li>
+</ul>
+</li>
+</ol>
+<h3 id="具體場景代碼"><a href="#具體場景代碼" class="headerlink" title="具體場景代碼"></a>具體場景代碼</h3><p>在 ASP.NET Core 中，你的 <code>Program.cs</code> 文件通過 <code>Microsoft.Extensions.Hosting</code> 來設置應用程序的主機，像這樣：</p>
+<pre><code class="csharp">var builder = WebApplication.CreateBuilder(args);
+
+// 添加服務
+builder.Services.AddControllers();
+builder.Services.AddLogging(); // 添加日誌服務
+
+var app = builder.Build();
+
+// 配置 HTTP 請求管道
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
+
+app.UseRouting();
+app.UseAuthorization();
+app.MapControllers();
+
+app.Run();
+</code></pre>
+<p>這段代碼就像是餐廳在開門時進行的準備工作：</p>
+<ol>
+<li>**<code>CreateBuilder(args)</code>**：就像餐廳開門前的準備，檢查餐廳的環境（生產還是測試），並初始化基本設置。</li>
+<li>**添加服務 (<code>AddControllers</code>, <code>AddLogging</code>)**：這些服務就像員工，確保服務員和廚師都準備就緒。</li>
+<li>**<code>Build()</code>**：建立應用程序，讓它準備好接收請求（客人來點餐）。</li>
+<li>**<code>app.Run()</code>**：開始應用程序的運行，就像餐廳開門營業，開始提供服務。</li>
+</ol>
+<h3 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h3><ul>
+<li><code>Microsoft.Extensions.Hosting</code> 就像是一個負責管理餐廳運營的角色，幫助應用程序在不同環境中以適當的方式運行。</li>
+<li>它負責管理應用程序啟動與關閉、員工服務的調度、配置管理以及日誌記錄等方面。</li>
+</ul>
+<p>這樣你可以把 ASP.NET Core 應用的運行看成是餐廳的一個運營，而 <code>Microsoft.Extensions.Hosting</code> 就是那個管理餐廳如何在不同模式下高效運作的管理者。希望這個比喻能讓你更容易理解 <code>Microsoft.Extensions.Hosting</code> 的作用！</p>

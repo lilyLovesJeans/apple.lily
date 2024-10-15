@@ -1,0 +1,189 @@
+<hr>
+<h2 id="title-2024-10-22-012-學寫API-HTTP-響應date-2024-10-15-10-46-50categories-OneDayOneNotetags-C-WebAPI-description-2024-10-22-012-學寫API-HTTP-響應"><a href="#title-2024-10-22-012-學寫API-HTTP-響應date-2024-10-15-10-46-50categories-OneDayOneNotetags-C-WebAPI-description-2024-10-22-012-學寫API-HTTP-響應" class="headerlink" title="title: 2024-10-22 012_學寫API_HTTP 響應date: 2024-10-15 10:46:50categories: OneDayOneNotetags:  [C#, WebAPI ]description: 2024-10-22 012_學寫API_HTTP 響應"></a>title: 2024-10-22 012_學寫API_HTTP 響應<br>date: 2024-10-15 10:46:50<br>categories: OneDayOneNote<br>tags:  [C#, WebAPI ]<br>description: 2024-10-22 012_學寫API_HTTP 響應</h2><h2 id="2024-10-22-012-學寫API-HTTP-響應"><a href="#2024-10-22-012-學寫API-HTTP-響應" class="headerlink" title="2024-10-22 012_學寫API_HTTP 響應"></a>2024-10-22 012_學寫API_HTTP 響應</h2><p>在 ASP.NET Core 中，控制器類（通常繼承自 <code>ControllerBase</code> 或 <code>Controller</code>）提供了許多輔助方法來生成各種 HTTP 響應。這些響應方法幫助開發者更方便地處理客戶端請求並返回合適的 HTTP 狀態碼和數據。以下是 ASP.NET Core 中常用的響應方法：</p>
+<h3 id="1-成功響應方法"><a href="#1-成功響應方法" class="headerlink" title="1. 成功響應方法"></a>1. 成功響應方法</h3><p>這些方法用於表示請求成功，返回相應的數據或狀態。</p>
+<ul>
+<li><p>**<code>Ok()</code>**：</p>
+<ul>
+<li>返回狀態碼 <strong>200 OK</strong>，表示請求成功。</li>
+<li><strong>用法</strong>：<pre><code class="csharp">return Ok(); // 返回 200 OK
+return Ok(data); // 返回 200 OK 並附帶 data 作為響應體
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>**<code>Created()</code>**：</p>
+<ul>
+<li>返回狀態碼 <strong>201 Created</strong>，表示創建資源成功。</li>
+<li>需要提供資源的 URI 和新創建的對象。</li>
+<li><strong>用法</strong>：<pre><code class="csharp">return Created(&quot;/api/packages/123&quot;, newPackage);
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>**<code>CreatedAtAction()</code>**：</p>
+<ul>
+<li>返回狀態碼 <strong>201 Created</strong>，並指定創建的資源的 URI，這個 URI 由控制器中的某個操作生成。</li>
+<li><strong>用法</strong>：<pre><code class="csharp">return CreatedAtAction(nameof(GetPackageById), new { id = newPackage.Id }, newPackage);
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>**<code>CreatedAtRoute()</code>**：</p>
+<ul>
+<li>返回狀態碼 <strong>201 Created</strong>，並基於指定的路由創建資源的 URI。</li>
+<li><strong>用法</strong>：<pre><code class="csharp">return CreatedAtRoute(&quot;GetPackageRoute&quot;, new { id = newPackage.Id }, newPackage);
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>**<code>NoContent()</code>**：</p>
+<ul>
+<li>返回狀態碼 <strong>204 No Content</strong>，表示請求成功，但沒有內容需要返回，通常用於 <code>PUT</code> 或 <code>DELETE</code> 請求。</li>
+<li><strong>用法</strong>：<pre><code class="csharp">return NoContent();
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-重定向響應方法"><a href="#2-重定向響應方法" class="headerlink" title="2. 重定向響應方法"></a>2. 重定向響應方法</h3><p>這些方法用於將請求重定向到其他 URL。</p>
+<ul>
+<li><p>**<code>Redirect()</code>**：</p>
+<ul>
+<li>返回狀態碼 <strong>302 Found</strong>，並重定向到指定的 URL。</li>
+<li><strong>用法</strong>：<pre><code class="csharp">return Redirect(&quot;https://example.com&quot;);
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>**<code>RedirectPermanent()</code>**：</p>
+<ul>
+<li>返回狀態碼 <strong>301 Moved Permanently</strong>，並永久重定向到指定的 URL。</li>
+<li><strong>用法</strong>：<pre><code class="csharp">return RedirectPermanent(&quot;https://example.com&quot;);
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>**<code>RedirectToAction()</code>**：</p>
+<ul>
+<li>重定向到控制器中的指定操作。</li>
+<li><strong>用法</strong>：<pre><code class="csharp">return RedirectToAction(&quot;ActionName&quot;, &quot;ControllerName&quot;);
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>**<code>RedirectToRoute()</code>**：</p>
+<ul>
+<li>重定向到指定的路由。</li>
+<li><strong>用法</strong>：<pre><code class="csharp">return RedirectToRoute(&quot;RouteName&quot;);
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-客戶端錯誤響應方法"><a href="#3-客戶端錯誤響應方法" class="headerlink" title="3. 客戶端錯誤響應方法"></a>3. 客戶端錯誤響應方法</h3><p>這些方法用於表示客戶端的請求不正確。</p>
+<ul>
+<li><p>**<code>BadRequest()</code>**：</p>
+<ul>
+<li>返回狀態碼 <strong>400 Bad Request</strong>，表示客戶端的請求有誤。</li>
+<li><strong>用法</strong>：<pre><code class="csharp">return BadRequest(); // 返回 400
+return BadRequest(&quot;請求格式錯誤&quot;); // 返回 400 並附帶錯誤消息
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>**<code>Unauthorized()</code>**：</p>
+<ul>
+<li>返回狀態碼 <strong>401 Unauthorized</strong>，表示請求需要授權，但客戶端未提供有效憑證。</li>
+<li><strong>用法</strong>：<pre><code class="csharp">return Unauthorized();
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>**<code>Forbidden()</code>**：</p>
+<ul>
+<li>返回狀態碼 <strong>403 Forbidden</strong>，表示客戶端已經認證，但沒有訪問資源的權限。</li>
+<li><strong>用法</strong>：<pre><code class="csharp">return Forbid();
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>**<code>NotFound()</code>**：</p>
+<ul>
+<li>返回狀態碼 <strong>404 Not Found</strong>，表示找不到請求的資源。</li>
+<li><strong>用法</strong>：<pre><code class="csharp">return NotFound();
+return NotFound(&quot;找不到這個包裹&quot;);
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-服務端錯誤響應方法"><a href="#4-服務端錯誤響應方法" class="headerlink" title="4. 服務端錯誤響應方法"></a>4. 服務端錯誤響應方法</h3><p>這些方法用於表示服務端發生錯誤。</p>
+<ul>
+<li><p>**<code>StatusCode()</code>**：</p>
+<ul>
+<li>返回指定的 HTTP 狀態碼，這可以用來返回一些自定義的狀態碼。</li>
+<li><strong>用法</strong>：<pre><code class="csharp">return StatusCode(500, &quot;服務器內部錯誤&quot;);
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>**<code>Problem()</code>**：</p>
+<ul>
+<li>返回一個標準化的錯誤響應，通常用於表示服務器錯誤，並可選擇提供詳細錯誤信息。</li>
+<li><strong>用法</strong>：<pre><code class="csharp">return Problem(&quot;服務器遇到問題，請稍後重試&quot;);
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-JSON-和文件響應方法"><a href="#5-JSON-和文件響應方法" class="headerlink" title="5. JSON 和文件響應方法"></a>5. JSON 和文件響應方法</h3><ul>
+<li><p>**<code>Json()</code>**：</p>
+<ul>
+<li>返回 JSON 格式的數據。</li>
+<li><strong>用法</strong>：<pre><code class="csharp">return Json(new { name = &quot;Alice&quot;, age = 25 });
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>**<code>File()</code>**：</p>
+<ul>
+<li>返回文件作為響應。</li>
+<li><strong>用法</strong>：<pre><code class="csharp">return File(fileBytes, &quot;application/pdf&quot;, &quot;document.pdf&quot;);
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="6-其他響應方法"><a href="#6-其他響應方法" class="headerlink" title="6. 其他響應方法"></a>6. 其他響應方法</h3><ul>
+<li><p>**<code>Content()</code>**：</p>
+<ul>
+<li>返回一個包含文本的 HTTP 響應，通常用於返回簡單的文本或 HTML。</li>
+<li><strong>用法</strong>：<pre><code class="csharp">return Content(&quot;這是一個簡單的響應內容&quot;);
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>**<code>PhysicalFile()</code>**：</p>
+<ul>
+<li>返回一個物理文件作為響應。</li>
+<li><strong>用法</strong>：<pre><code class="csharp">return PhysicalFile(@&quot;C:\files\document.pdf&quot;, &quot;application/pdf&quot;);
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>**<code>LocalRedirect()</code>**：</p>
+<ul>
+<li>返回一個本地重定向。</li>
+<li><strong>用法</strong>：<pre><code class="csharp">return LocalRedirect(&quot;/home/index&quot;);
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h3><p>ASP.NET Core 提供了豐富的響應方法來生成各種 HTTP 響應，這些方法可以使開發者更加方便地構建 API，處理不同的客戶端請求情況，並返回合適的狀態碼和數據。</p>
+<ul>
+<li><strong>成功響應</strong>（如 <code>Ok()</code>、<code>Created()</code>、<code>NoContent()</code>）通常用於表示操作成功。</li>
+<li><strong>錯誤響應</strong>（如 <code>BadRequest()</code>、<code>NotFound()</code>、<code>Unauthorized()</code>）用於告知客戶端請求有問題。</li>
+<li><strong>重定向響應</strong>（如 <code>Redirect()</code>、<code>RedirectToAction()</code>）用於將請求重定向到其他資源。</li>
+</ul>
+<p>如果您有其他想了解的響應方法或對某些方法有疑問，隨時告訴我！</p>

@@ -1,0 +1,51 @@
+<hr>
+<h2 id="title-2024-10-12-002-學寫API-finally解釋date-2024-10-15-09-53-00categories-OneDayOneNotetags-C-WebAPI-description-2024-10-12-002-學寫API-finally解釋"><a href="#title-2024-10-12-002-學寫API-finally解釋date-2024-10-15-09-53-00categories-OneDayOneNotetags-C-WebAPI-description-2024-10-12-002-學寫API-finally解釋" class="headerlink" title="title: 2024-10-12 002_學寫API_finally解釋date: 2024-10-15 09:53:00categories: OneDayOneNotetags:  [C#, WebAPI ]description: 2024-10-12 002_學寫API_finally解釋"></a>title: 2024-10-12 002_學寫API_finally解釋<br>date: 2024-10-15 09:53:00<br>categories: OneDayOneNote<br>tags:  [C#, WebAPI ]<br>description: 2024-10-12 002_學寫API_finally解釋</h2><h2 id="2024-10-12-002-學寫API-finally解釋"><a href="#2024-10-12-002-學寫API-finally解釋" class="headerlink" title="2024-10-12 002_學寫API_finally解釋"></a>2024-10-12 002_學寫API_finally解釋</h2><p> <code>finally</code> 代碼塊中的內容會在程序結束時執行，包括當你按下 <code>Ctrl+C</code> 終止應用程序的時候。</p>
+<h3 id="具體說明："><a href="#具體說明：" class="headerlink" title="具體說明："></a>具體說明：</h3><ol>
+<li><p><strong><code>try-catch-finally</code> 結構</strong>：這種結構主要用來處理異常，並確保一些清理操作不論程序如何結束都能執行。它包含三個部分：</p>
+<ul>
+<li>**<code>try</code>**：嘗試執行某些代碼。</li>
+<li>**<code>catch</code>**：捕獲可能發生的異常並處理。</li>
+<li>**<code>finally</code>**：無論 <code>try</code> 中是否發生異常，<code>finally</code> 中的代碼都會被執行。</li>
+</ul>
+</li>
+<li><p>在你的 <code>Program.cs</code> 中的代碼：</p>
+<pre><code class="csharp">try
+{
+    // 應用程序的主邏輯，包括啟動服務
+    var builder = WebApplication.CreateBuilder(args);
+    // ...其他代碼
+    app.Run();
+}
+catch (Exception ex)
+{
+    logger.Error(ex, &quot;Stopped program because of exception&quot;);
+    throw;
+}
+finally
+{
+    LogManager.Shutdown();
+}
+</code></pre>
+<ul>
+<li>當你運行程序並按下 <code>Ctrl+C</code> 或是應用程序正常關閉時：<ul>
+<li><strong><code>try</code> 部分</strong>的代碼負責啟動應用程序及其所有服務。</li>
+<li>如果在 <code>try</code> 中發生了未處理的異常，會進入到 <strong><code>catch</code></strong> 區塊，記錄錯誤訊息。</li>
+<li>無論程序是否正常運行到結束，或者遇到異常退出，**<code>finally</code>** 區塊的代碼都會被執行。</li>
+<li>在這裡，<code>LogManager.Shutdown()</code> 確保在應用程序結束時，所有日志資源被妥善釋放並寫入到日志文件中。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>按下 <code>Ctrl+C</code> 或其他退出程序的情況</strong>：</p>
+<ul>
+<li>當你按下 <code>Ctrl+C</code> 在終端中手動停止應用程序，或者遇到一些致命錯誤導致程序崩潰，<code>finally</code> 區塊仍然會被執行，這是確保應用程序退出之前能夠進行一些必要的清理操作。</li>
+</ul>
+</li>
+<li><p><strong><code>finally</code> 的重要性</strong>：</p>
+<ul>
+<li>確保即使程序被異常終止，仍然能執行一些必須的操作，例如釋放文件資源、關閉數據庫連接、清理緩存等。</li>
+<li>在你的例子中，<code>LogManager.Shutdown()</code> 的目的是確保所有日志寫入文件並且清理相關資源，這樣就不會導致日志文件被損壞或未完全寫入。</li>
+</ul>
+</li>
+</ol>
+<p>所以當你按下 <code>Ctrl+C</code>，程序會進入 <code>catch</code> 區塊記錄錯誤，然後執行 <code>finally</code> 區塊進行清理，這是一個可靠的方式來確保程序中的重要資源得到釋放。</p>
