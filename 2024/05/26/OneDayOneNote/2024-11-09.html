@@ -1,0 +1,97 @@
+<hr>
+<h2 id="title-2024-11-09-028-抽象類-與-接口類具體解釋date-2024-10-29-00-47-32categories-OneDayOneNotetags-C-WebAPI-description-2024-11-09-028-抽象類-與-接口類具體解釋"><a href="#title-2024-11-09-028-抽象類-與-接口類具體解釋date-2024-10-29-00-47-32categories-OneDayOneNotetags-C-WebAPI-description-2024-11-09-028-抽象類-與-接口類具體解釋" class="headerlink" title="title: 2024-11-09 028_抽象類 與 接口類具體解釋date: 2024-10-29 00:47:32categories: OneDayOneNotetags:  [C#, WebAPI ]description:  2024-11-09 028_抽象類 與 接口類具體解釋"></a>title: 2024-11-09 028_抽象類 與 接口類具體解釋<br>date: 2024-10-29 00:47:32<br>categories: OneDayOneNote<br>tags:  [C#, WebAPI ]<br>description:  2024-11-09 028_抽象類 與 接口類具體解釋</h2><h2 id="2024-11-09-028-抽象類-與-接口類具體解釋"><a href="#2024-11-09-028-抽象類-與-接口類具體解釋" class="headerlink" title="2024-11-09 028_抽象類 與 接口類具體解釋"></a>2024-11-09 028_抽象類 與 接口類具體解釋</h2><p>在 C# 中，抽象類和接口都是用來定義類的行為約束的，但它們的用法和設計目的是不同的。下面我們具體介紹它們各自的特點和使用場景。</p>
+<h3 id="抽象類（Abstract-Class）"><a href="#抽象類（Abstract-Class）" class="headerlink" title="抽象類（Abstract Class）"></a>抽象類（Abstract Class）</h3><h4 id="特點"><a href="#特點" class="headerlink" title="特點"></a>特點</h4><ol>
+<li><strong>不完全的類</strong>：抽象類是一種「不完整」的類，因為它可能包含抽象方法，這些方法沒有具體的實現。只有繼承該抽象類的子類才能提供具體的實現。</li>
+<li><strong>可以包含成員變量和方法</strong>：抽象類可以包含字段（成員變量）、完全實現的方法（有具體實現的普通方法）和抽象方法（沒有實現的，要求子類實現）。</li>
+<li><strong>繼承限制</strong>：子類只能繼承自一個抽象類（因為 C# 不支持多重繼承），因此抽象類更適合用來描述一個類的「基礎行為」或「核心功能」。</li>
+</ol>
+<h4 id="使用場景"><a href="#使用場景" class="headerlink" title="使用場景"></a>使用場景</h4><ul>
+<li>當不同的類具有<strong>相似的核心功能</strong>且共享一些行為或字段時，應考慮使用抽象類。例如，動物（<code>Animal</code>）可能作為抽象類，因為所有動物可能有一些共同的行為（如 <code>Eat</code>、<code>Sleep</code>）和屬性（如 <code>Age</code>）。</li>
+<li>當你需要為一組相關的類提供基本的實現、並確保子類繼承一些具體行為時，可以選擇抽象類。</li>
+</ul>
+<h4 id="範例"><a href="#範例" class="headerlink" title="範例"></a>範例</h4><pre><code class="csharp">public abstract class Employee
+{
+    public string Name { get; set; }
+    
+    // 抽象方法，沒有具體實現
+    public abstract double CalculateSalary();
+
+    // 具體方法，有具體實現
+    public void PrintEmployeeInfo()
+    {
+        Console.WriteLine($&quot;Employee Name: {Name}&quot;);
+    }
+}
+</code></pre>
+<p>在這個例子中，<code>Employee</code> 類作為抽象類，因為每個員工都有名字和計算薪水的需求，但不同員工的薪水計算方式可能不同。子類需要實現 <code>CalculateSalary()</code> 方法，但可以直接使用 <code>PrintEmployeeInfo()</code> 方法。</p>
+<h3 id="接口（Interface）"><a href="#接口（Interface）" class="headerlink" title="接口（Interface）"></a>接口（Interface）</h3><h4 id="特點-1"><a href="#特點-1" class="headerlink" title="特點"></a>特點</h4><ol>
+<li><strong>僅定義行為約束</strong>：接口只包含方法、屬性、事件和索引器的聲明（即簽名），而不包含具體的實現。</li>
+<li><strong>多重實現</strong>：一個類可以實現多個接口，因此接口適合用來定義一組不相關但可能互補的功能（如「可存儲的」、「可打印的」等）。</li>
+<li><strong>無字段</strong>：接口不能包含成員變量，所有的成員都是純虛擬的。</li>
+</ol>
+<h4 id="使用場景-1"><a href="#使用場景-1" class="headerlink" title="使用場景"></a>使用場景</h4><ul>
+<li>當需要為不同的類定義<strong>無關聯的行為</strong>，且這些類可能來自不同的繼承鏈時，使用接口。例如，<code>IPrintable</code> 可以是一個接口，用來表示某物是可打印的，不論是文件、照片或電子郵件等。</li>
+<li>當你希望可以在不同的類中共享一組行為，但這些類無法共享一個共同的基礎類時，可以使用接口。</li>
+</ul>
+<h4 id="範例-1"><a href="#範例-1" class="headerlink" title="範例"></a>範例</h4><pre><code class="csharp">public interface ICalculable
+{
+    double Calculate();
+}
+
+public class Invoice : ICalculable
+{
+    public double Amount { get; set; }
+    
+    public double Calculate()
+    {
+        return Amount * 0.9; // 假設計算折扣後的金額
+    }
+}
+</code></pre>
+<p>在這個例子中，<code>ICalculable</code> 接口定義了一個通用的 <code>Calculate</code> 方法，而 <code>Invoice</code> 類實現了它。不同的類（如<code>Product</code> 或 <code>Service</code>）也可以實現 <code>ICalculable</code>，以各自的方式計算數據。</p>
+<h3 id="抽象類-vs-接口：什麼時候用？"><a href="#抽象類-vs-接口：什麼時候用？" class="headerlink" title="抽象類 vs 接口：什麼時候用？"></a>抽象類 vs 接口：什麼時候用？</h3><ul>
+<li><p><strong>使用抽象類</strong>：</p>
+<ul>
+<li>當類之間具有<strong>繼承關係</strong>，並且有相似的屬性和方法時。</li>
+<li>當需要提供一部分行為的基礎實現而非完全依賴子類時。</li>
+</ul>
+</li>
+<li><p><strong>使用接口</strong>：</p>
+<ul>
+<li>當不同的類之間不具有明確的繼承關係，但共享某些行為（如「可比較」、「可存儲」）時。</li>
+<li>當需要實現多個行為而不能依賴單一的繼承時。</li>
+</ul>
+</li>
+</ul>
+<h3 id="範例：抽象類與接口的配合"><a href="#範例：抽象類與接口的配合" class="headerlink" title="範例：抽象類與接口的配合"></a>範例：抽象類與接口的配合</h3><pre><code class="csharp">// 抽象類
+public abstract class Employee
+{
+    public string Name { get; set; }
+    public abstract double CalculateSalary();
+}
+
+// 接口
+public interface IBonusCalculable
+{
+    double CalculateBonus();
+}
+
+// 子類
+public class FullTimeEmployee : Employee, IBonusCalculable
+{
+    public override double CalculateSalary()
+    {
+        return 5000; // 假設固定薪水
+    }
+
+    public double CalculateBonus()
+    {
+        return CalculateSalary() * 0.1; // 假設 10% 獎金
+    }
+}
+</code></pre>
+<p>在這個例子中，<code>Employee</code> 是抽象類，因為不同類型的員工薪水計算方式不同。而 <code>IBonusCalculable</code> 是接口，提供了額外的 <code>CalculateBonus</code> 方法，用於計算獎金，這讓需要的子類能自行實現額外的獎金計算方式。</p>
+<h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h3><ul>
+<li>抽象類適合用於「具有共同基礎行為」的一組類。</li>
+<li>接口適合用於「具有不同屬性但共享行為」的一組類。</li>
+</ul>

@@ -1,0 +1,72 @@
+<hr>
+<h2 id="title-2024-11-08-027-設計一個習題讓我思考-接口與抽象類date-2024-10-29-00-46-23categories-OneDayOneNotetags-C-WebAPI-description-2024-11-08-027-設計一個習題讓我思考-接口與抽象類"><a href="#title-2024-11-08-027-設計一個習題讓我思考-接口與抽象類date-2024-10-29-00-46-23categories-OneDayOneNotetags-C-WebAPI-description-2024-11-08-027-設計一個習題讓我思考-接口與抽象類" class="headerlink" title="title: 2024-11-08 027_設計一個習題讓我思考 接口與抽象類date: 2024-10-29 00:46:23categories: OneDayOneNotetags:  [C#, WebAPI ]description:  2024-11-08 027_設計一個習題讓我思考 接口與抽象類"></a>title: 2024-11-08 027_設計一個習題讓我思考 接口與抽象類<br>date: 2024-10-29 00:46:23<br>categories: OneDayOneNote<br>tags:  [C#, WebAPI ]<br>description:  2024-11-08 027_設計一個習題讓我思考 接口與抽象類</h2><h2 id="2024-11-08-027-設計一個習題讓我思考-接口與抽象類"><a href="#2024-11-08-027-設計一個習題讓我思考-接口與抽象類" class="headerlink" title="2024-11-08 027_設計一個習題讓我思考 接口與抽象類"></a>2024-11-08 027_設計一個習題讓我思考 接口與抽象類</h2><p>設計一個習題讓我思考 接口與抽象類</p>
+<p>好的，我來設計一個習題，讓你練習如何在接口和抽象類之間進行選擇和使用。這個例子將涵蓋一個「員工管理系統」，包括不同類型的員工（例如，正式員工和約聘員工），並涉及薪資計算的細節。</p>
+<h3 id="題目：員工管理系統"><a href="#題目：員工管理系統" class="headerlink" title="題目：員工管理系統"></a>題目：員工管理系統</h3><p>假設我們有一個公司，這裡的員工分為兩類：</p>
+<ol>
+<li><strong>正式員工</strong>：具有基礎工資、津貼等薪資結構。</li>
+<li><strong>約聘員工</strong>：根據工作時數來計算薪資，且沒有津貼。</li>
+</ol>
+<p>每種員工類型都有一些共通的操作（如計算薪資、顯示基本資訊），但具體薪資計算方式各不相同。</p>
+<h4 id="步驟-1：設計接口-IEmployee"><a href="#步驟-1：設計接口-IEmployee" class="headerlink" title="步驟 1：設計接口 IEmployee"></a>步驟 1：設計接口 <code>IEmployee</code></h4><ol>
+<li>定義一個 <code>IEmployee</code> 接口，包含一個 <code>GetSalary()</code> 方法，用來取得薪水。</li>
+<li>添加一個 <code>DisplayEmployeeInfo()</code> 方法，用於顯示員工基本資訊。</li>
+</ol>
+<h4 id="步驟-2：設計抽象類-EmployeeBase"><a href="#步驟-2：設計抽象類-EmployeeBase" class="headerlink" title="步驟 2：設計抽象類 EmployeeBase"></a>步驟 2：設計抽象類 <code>EmployeeBase</code></h4><ol>
+<li>設計一個抽象類 <code>EmployeeBase</code>，實現 <code>IEmployee</code> 接口。</li>
+<li>這個抽象類包含一個基本員工屬性 <code>Name</code> 和員工 ID。</li>
+<li>讓 <code>EmployeeBase</code> 定義 <code>DisplayEmployeeInfo()</code> 的共通邏輯（例如顯示姓名和 ID），但將 <code>GetSalary()</code> 定義為抽象方法，由不同員工類型去實現。</li>
+</ol>
+<h4 id="步驟-3：創建具體員工類"><a href="#步驟-3：創建具體員工類" class="headerlink" title="步驟 3：創建具體員工類"></a>步驟 3：創建具體員工類</h4><ol>
+<li>為<strong>正式員工</strong>建立一個 <code>PermanentEmployee</code> 類別，繼承自 <code>EmployeeBase</code>，並實現 <code>GetSalary()</code> 方法，包含基礎工資加上津貼的計算。</li>
+<li>為<strong>約聘員工</strong>建立一個 <code>ContractEmployee</code> 類別，繼承自 <code>EmployeeBase</code>，並實現 <code>GetSalary()</code> 方法，根據時薪和工作時數計算薪水。</li>
+</ol>
+<h4 id="練習目標"><a href="#練習目標" class="headerlink" title="練習目標"></a>練習目標</h4><ul>
+<li>思考何時應該使用抽象類（<code>EmployeeBase</code>），何時應該使用接口（<code>IEmployee</code>）。</li>
+<li>理解如何分配共通功能與特定實現，並讓各類員工的薪資計算方式可以隨時調整而不影響其他部分。</li>
+</ul>
+<h3 id="提示程式碼"><a href="#提示程式碼" class="headerlink" title="提示程式碼"></a>提示程式碼</h3><pre><code class="csharp">public interface IEmployee
+{
+    decimal GetSalary();
+    void DisplayEmployeeInfo();
+}
+
+public abstract class EmployeeBase : IEmployee
+{
+    public string Name { get; set; }
+    public int EmployeeID { get; set; }
+
+    public void DisplayEmployeeInfo()
+    {
+        Console.WriteLine($&quot;Name: {Name}, ID: {EmployeeID}&quot;);
+    }
+
+    public abstract decimal GetSalary();
+}
+
+public class PermanentEmployee : EmployeeBase
+{
+    public decimal BaseSalary { get; set; }
+    public decimal Allowance { get; set; }
+
+    public override decimal GetSalary()
+    {
+        return BaseSalary + Allowance;
+    }
+}
+
+public class ContractEmployee : EmployeeBase
+{
+    public decimal HourlyRate { get; set; }
+    public int HoursWorked { get; set; }
+
+    public override decimal GetSalary()
+    {
+        return HourlyRate * HoursWorked;
+    }
+}
+</code></pre>
+<h3 id="練習思考"><a href="#練習思考" class="headerlink" title="練習思考"></a>練習思考</h3><ol>
+<li>為什麼選擇將 <code>EmployeeBase</code> 設計為抽象類而非接口？在實務上，何時會用到這樣的抽象基類？</li>
+<li>假如以後需要添加新類型的員工（例如<strong>實習生</strong>），你會如何調整這個架構？</li>
+<li>如果一個員工類型的薪資計算邏輯改變了（例如，約聘員工的時薪變動），這樣的設計是否能快速適應？</li>
+</ol>

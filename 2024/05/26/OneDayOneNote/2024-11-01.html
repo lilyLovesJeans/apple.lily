@@ -1,0 +1,413 @@
+<hr>
+<h2 id="title-2024-11-01-022-各種泛型集合類別date-2024-10-29-00-30-41categories-OneDayOneNotetags-C-WebAPI-description-2024-11-01-022-各種泛型集合類別"><a href="#title-2024-11-01-022-各種泛型集合類別date-2024-10-29-00-30-41categories-OneDayOneNotetags-C-WebAPI-description-2024-11-01-022-各種泛型集合類別" class="headerlink" title="title: 2024-11-01 022_各種泛型集合類別date: 2024-10-29 00:30:41categories: OneDayOneNotetags:  [C#, WebAPI ]description:  2024-11-01 022_各種泛型集合類別"></a>title: 2024-11-01 022_各種泛型集合類別<br>date: 2024-10-29 00:30:41<br>categories: OneDayOneNote<br>tags:  [C#, WebAPI ]<br>description:  2024-11-01 022_各種泛型集合類別</h2><h2 id="2024-11-01-022-各種泛型集合類別"><a href="#2024-11-01-022-各種泛型集合類別" class="headerlink" title="2024-11-01 022_各種泛型集合類別"></a>2024-11-01 022_各種泛型集合類別</h2><p>當然，C# 中的泛型集合類別（Generic Collection Classes）非常豐富，不僅僅只有 <code>List&lt;T&gt;</code>。這些泛型集合提供了不同的資料結構和功能，適用於各種不同的編程需求。以下是一些常用的泛型集合類別，除了 <code>List&lt;T&gt;</code> 之外，還包括 <code>Dictionary&lt;TKey, TValue&gt;</code>、<code>HashSet&lt;T&gt;</code>、<code>Queue&lt;T&gt;</code>、<code>Stack&lt;T&gt;</code>、<code>LinkedList&lt;T&gt;</code> 等等。我們將一步步介紹這些集合的特性及其適用情境。</p>
+<hr>
+<h2 id="目錄"><a href="#目錄" class="headerlink" title="目錄"></a>目錄</h2><ol>
+<li><code>Dictionary&lt;TKey, TValue&gt;</code></li>
+<li><code>HashSet&lt;T&gt;</code></li>
+<li><code>Queue&lt;T&gt;</code></li>
+<li><code>Stack&lt;T&gt;</code></li>
+<li><code>LinkedList&lt;T&gt;</code></li>
+<li><code>SortedList&lt;TKey, TValue&gt;</code> 和 <code>SortedDictionary&lt;TKey, TValue&gt;</code></li>
+<li><code>SortedSet&lt;T&gt;</code></li>
+<li><code>ObservableCollection&lt;T&gt;</code></li>
+<li><code>Concurrent Collections</code>（如 <code>ConcurrentDictionary&lt;TKey, TValue&gt;</code>）</li>
+<li>小結</li>
+</ol>
+<hr>
+<h3 id="1-Dictionary"><a href="#1-Dictionary" class="headerlink" title="1. Dictionary&lt;TKey, TValue&gt;"></a>1. <code>Dictionary&lt;TKey, TValue&gt;</code></h3><p><strong>概述：</strong><br><code>Dictionary&lt;TKey, TValue&gt;</code> 是一種鍵值對（Key-Value Pair）的集合，允許根據鍵快速查找值。每個鍵在字典中是唯一的。</p>
+<p><strong>用途：</strong><br>適用於需要快速查找、添加和移除元素的情境，特別是當你需要根據特定鍵來存取資料時。</p>
+<p><strong>範例：</strong></p>
+<pre><code class="csharp">using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // 創建一個 Dictionary&lt;string, int&gt;
+        Dictionary&lt;string, int&gt; ages = new Dictionary&lt;string, int&gt;();
+
+        // 添加元素
+        ages.Add(&quot;Alice&quot;, 30);
+        ages.Add(&quot;Bob&quot;, 25);
+        ages.Add(&quot;Charlie&quot;, 35);
+
+        // 訪問元素
+        int aliceAge = ages[&quot;Alice&quot;];
+        Console.WriteLine($&quot;Alice 的年齡是 {aliceAge}&quot;); // 輸出: Alice 的年齡是 30
+
+        // 遍歷字典
+        foreach (var kvp in ages)
+        {
+            Console.WriteLine($&quot;{kvp.Key} 的年齡是 {kvp.Value}&quot;);
+        }
+    }
+}
+</code></pre>
+<p><strong>輸出：</strong></p>
+<pre><code>Alice 的年齡是 30
+Alice 的年齡是 30
+Bob 的年齡是 25
+Charlie 的年齡是 35
+</code></pre>
+<hr>
+<h3 id="2-HashSet"><a href="#2-HashSet" class="headerlink" title="2. HashSet&lt;T&gt;"></a>2. <code>HashSet&lt;T&gt;</code></h3><p><strong>概述：</strong><br><code>HashSet&lt;T&gt;</code> 是一種不允許重複元素的集合，主要用於儲存唯一的元素，並提供高效的查找、添加和移除操作。</p>
+<p><strong>用途：</strong><br>適用於需要確保元素唯一性或執行集合運算（如聯集、交集、差集）的情境。</p>
+<p><strong>範例：</strong></p>
+<pre><code class="csharp">using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // 創建一個 HashSet&lt;int&gt;
+        HashSet&lt;int&gt; numbers = new HashSet&lt;int&gt;();
+
+        // 添加元素
+        numbers.Add(1);
+        numbers.Add(2);
+        numbers.Add(3);
+        bool added = numbers.Add(2); // 嘗試添加重複元素
+
+        Console.WriteLine($&quot;是否成功添加 2: {added}&quot;); // 輸出: 是否成功添加 2: False
+
+        // 遍歷 HashSet
+        foreach (int number in numbers)
+        {
+            Console.WriteLine(number);
+        }
+    }
+}
+</code></pre>
+<p><strong>輸出：</strong></p>
+<pre><code>是否成功添加 2: False
+1
+2
+3
+</code></pre>
+<hr>
+<h3 id="3-Queue"><a href="#3-Queue" class="headerlink" title="3. Queue&lt;T&gt;"></a>3. <code>Queue&lt;T&gt;</code></h3><p><strong>概述：</strong><br><code>Queue&lt;T&gt;</code> 是一種先進先出（FIFO, First-In-First-Out）的集合，適用於需要按照元素加入順序處理的情境。</p>
+<p><strong>用途：</strong><br>常用於任務排程、廣度優先搜尋（BFS）等需要按順序處理元素的情境。</p>
+<p><strong>範例：</strong></p>
+<pre><code class="csharp">using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // 創建一個 Queue&lt;string&gt;
+        Queue&lt;string&gt; tasks = new Queue&lt;string&gt;();
+
+        // 添加元素
+        tasks.Enqueue(&quot;任務1&quot;);
+        tasks.Enqueue(&quot;任務2&quot;);
+        tasks.Enqueue(&quot;任務3&quot;);
+
+        // 處理元素
+        while (tasks.Count &gt; 0)
+        {
+            string currentTask = tasks.Dequeue();
+            Console.WriteLine($&quot;處理 {currentTask}&quot;);
+        }
+    }
+}
+</code></pre>
+<p><strong>輸出：</strong></p>
+<pre><code>處理 任務1
+處理 任務2
+處理 任務3
+</code></pre>
+<hr>
+<h3 id="4-Stack"><a href="#4-Stack" class="headerlink" title="4. Stack&lt;T&gt;"></a>4. <code>Stack&lt;T&gt;</code></h3><p><strong>概述：</strong><br><code>Stack&lt;T&gt;</code> 是一種後進先出（LIFO, Last-In-First-Out）的集合，適用於需要反向處理元素的情境。</p>
+<p><strong>用途：</strong><br>常用於實現遞迴、處理撤銷操作（Undo）、解析表達式等需要反向處理的情境。</p>
+<p><strong>範例：</strong></p>
+<pre><code class="csharp">using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // 創建一個 Stack&lt;int&gt;
+        Stack&lt;int&gt; numbers = new Stack&lt;int&gt;();
+
+        // 添加元素
+        numbers.Push(1);
+        numbers.Push(2);
+        numbers.Push(3);
+
+        // 處理元素
+        while (numbers.Count &gt; 0)
+        {
+            int currentNumber = numbers.Pop();
+            Console.WriteLine($&quot;彈出 {currentNumber}&quot;);
+        }
+    }
+}
+</code></pre>
+<p><strong>輸出：</strong></p>
+<pre><code>彈出 3
+彈出 2
+彈出 1
+</code></pre>
+<hr>
+<h3 id="5-LinkedList"><a href="#5-LinkedList" class="headerlink" title="5. LinkedList&lt;T&gt;"></a>5. <code>LinkedList&lt;T&gt;</code></h3><p><strong>概述：</strong><br><code>LinkedList&lt;T&gt;</code> 是一種雙向鏈結串列，允許在任意位置高效地添加和移除元素。</p>
+<p><strong>用途：</strong><br>適用於需要頻繁在中間插入或刪除元素的情境，尤其是在不需要隨機存取的情況下。</p>
+<p><strong>範例：</strong></p>
+<pre><code class="csharp">using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // 創建一個 LinkedList&lt;string&gt;
+        LinkedList&lt;string&gt; cities = new LinkedList&lt;string&gt;();
+
+        // 添加元素
+        cities.AddLast(&quot;New York&quot;);
+        cities.AddLast(&quot;Los Angeles&quot;);
+        cities.AddFirst(&quot;Chicago&quot;);
+
+        // 插入元素
+        LinkedListNode&lt;string&gt; node = cities.Find(&quot;New York&quot;);
+        if (node != null)
+        {
+            cities.AddBefore(node, &quot;Houston&quot;);
+        }
+
+        // 遍歷 LinkedList
+        foreach (string city in cities)
+        {
+            Console.WriteLine(city);
+        }
+    }
+}
+</code></pre>
+<p><strong>輸出：</strong></p>
+<pre><code>Chicago
+Houston
+New York
+Los Angeles
+</code></pre>
+<hr>
+<h3 id="6-SortedList-和-SortedDictionary"><a href="#6-SortedList-和-SortedDictionary" class="headerlink" title="6. SortedList&lt;TKey, TValue&gt; 和 SortedDictionary&lt;TKey, TValue&gt;"></a>6. <code>SortedList&lt;TKey, TValue&gt;</code> 和 <code>SortedDictionary&lt;TKey, TValue&gt;</code></h3><p><strong>概述：</strong></p>
+<ul>
+<li>**<code>SortedList&lt;TKey, TValue&gt;</code>**：基於鍵的排序，並且使用陣列實現，適合讀取操作多於寫入操作的情境。</li>
+<li>**<code>SortedDictionary&lt;TKey, TValue&gt;</code>**：基於樹結構實現，適合頻繁添加和刪除元素的情境。</li>
+</ul>
+<p><strong>用途：</strong><br>當需要根據鍵自動排序並快速查找元素時使用。</p>
+<p><strong>範例：<code>SortedDictionary&lt;TKey, TValue&gt;</code></strong></p>
+<pre><code class="csharp">using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // 創建一個 SortedDictionary&lt;int, string&gt;
+        SortedDictionary&lt;int, string&gt; sortedDict = new SortedDictionary&lt;int, string&gt;();
+
+        // 添加元素
+        sortedDict.Add(3, &quot;三&quot;);
+        sortedDict.Add(1, &quot;一&quot;);
+        sortedDict.Add(2, &quot;二&quot;);
+
+        // 遍歷 SortedDictionary（按鍵排序）
+        foreach (var kvp in sortedDict)
+        {
+            Console.WriteLine($&quot;鍵: {kvp.Key}, 值: {kvp.Value}&quot;);
+        }
+    }
+}
+</code></pre>
+<p><strong>輸出：</strong></p>
+<pre><code>鍵: 1, 值: 一
+鍵: 2, 值: 二
+鍵: 3, 值: 三
+</code></pre>
+<hr>
+<h3 id="7-SortedSet"><a href="#7-SortedSet" class="headerlink" title="7. SortedSet&lt;T&gt;"></a>7. <code>SortedSet&lt;T&gt;</code></h3><p><strong>概述：</strong><br><code>SortedSet&lt;T&gt;</code> 是一種自動排序且不允許重複元素的集合，基於紅黑樹實現。</p>
+<p><strong>用途：</strong><br>適用於需要儲存唯一元素並保持排序的情境，並且支持高效的集合運算（如聯集、交集）。</p>
+<p><strong>範例：</strong></p>
+<pre><code class="csharp">using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // 創建一個 SortedSet&lt;int&gt;
+        SortedSet&lt;int&gt; numbers = new SortedSet&lt;int&gt; { 5, 3, 8, 1, 2 };
+
+        // 添加元素
+        numbers.Add(4);
+
+        // 嘗試添加重複元素
+        bool added = numbers.Add(3); // 不會添加成功
+
+        Console.WriteLine($&quot;是否成功添加 3: {added}&quot;); // 輸出: 是否成功添加 3: False
+
+        // 遍歷 SortedSet（自動排序）
+        foreach (int number in numbers)
+        {
+            Console.WriteLine(number);
+        }
+    }
+}
+</code></pre>
+<p><strong>輸出：</strong></p>
+<pre><code>是否成功添加 3: False
+1
+2
+3
+4
+5
+8
+</code></pre>
+<hr>
+<h3 id="8-ObservableCollection"><a href="#8-ObservableCollection" class="headerlink" title="8. ObservableCollection&lt;T&gt;"></a>8. <code>ObservableCollection&lt;T&gt;</code></h3><p><strong>概述：</strong><br><code>ObservableCollection&lt;T&gt;</code> 是一種特殊的集合，當集合中的元素發生變化（添加、移除）時，會發出通知。常用於資料綁定（Data Binding）場景，如 WPF 或 Xamarin 應用程式。</p>
+<p><strong>用途：</strong><br>適用於需要監聽集合變化並自動更新 UI 的情境。</p>
+<p><strong>範例：</strong></p>
+<pre><code class="csharp">using System;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // 創建一個 ObservableCollection&lt;string&gt;
+        ObservableCollection&lt;string&gt; fruits = new ObservableCollection&lt;string&gt;();
+
+        // 訂閱 CollectionChanged 事件
+        fruits.CollectionChanged += Fruits_CollectionChanged;
+
+        // 添加元素
+        fruits.Add(&quot;Apple&quot;);
+        fruits.Add(&quot;Banana&quot;);
+        fruits.Remove(&quot;Apple&quot;);
+    }
+
+    private static void Fruits_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+    {
+        if (e.Action == NotifyCollectionChangedAction.Add)
+        {
+            foreach (string newItem in e.NewItems)
+            {
+                Console.WriteLine($&quot;添加: {newItem}&quot;);
+            }
+        }
+        else if (e.Action == NotifyCollectionChangedAction.Remove)
+        {
+            foreach (string oldItem in e.OldItems)
+            {
+                Console.WriteLine($&quot;移除: {oldItem}&quot;);
+            }
+        }
+    }
+}
+</code></pre>
+<p><strong>輸出：</strong></p>
+<pre><code>添加: Apple
+添加: Banana
+移除: Apple
+</code></pre>
+<hr>
+<h3 id="9-Concurrent-Collections（如-ConcurrentDictionary）"><a href="#9-Concurrent-Collections（如-ConcurrentDictionary）" class="headerlink" title="9. Concurrent Collections（如 ConcurrentDictionary&lt;TKey, TValue&gt;）"></a>9. <code>Concurrent Collections</code>（如 <code>ConcurrentDictionary&lt;TKey, TValue&gt;</code>）</h3><p><strong>概述：</strong><br><code>Concurrent Collections</code> 是一組為多線程環境設計的集合類別，提供線程安全的操作。常見的有 <code>ConcurrentDictionary&lt;TKey, TValue&gt;</code>、<code>ConcurrentBag&lt;T&gt;</code>、<code>ConcurrentQueue&lt;T&gt;</code> 等。</p>
+<p><strong>用途：</strong><br>適用於需要在多線程環境下安全地存取和修改集合的情境，避免競爭條件（Race Conditions）。</p>
+<p><strong>範例：<code>ConcurrentDictionary&lt;TKey, TValue&gt;</code></strong></p>
+<pre><code class="csharp">using System;
+using System.Collections.Concurrent;
+using System.Threading.Tasks;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // 創建一個 ConcurrentDictionary&lt;string, int&gt;
+        ConcurrentDictionary&lt;string, int&gt; concurrentDict = new ConcurrentDictionary&lt;string, int&gt;();
+
+        // 使用多線程添加元素
+        Parallel.For(0, 1000, i =&gt;
+        {
+            concurrentDict.TryAdd($&quot;Key{i}&quot;, i);
+        });
+
+        Console.WriteLine($&quot;字典中有 {concurrentDict.Count} 個元素&quot;);
+    }
+}
+</code></pre>
+<p><strong>輸出：</strong></p>
+<pre><code>字典中有 1000 個元素
+</code></pre>
+<hr>
+<h3 id="10-小結"><a href="#10-小結" class="headerlink" title="10. 小結"></a>10. 小結</h3><p>C# 提供了豐富的泛型集合類別，每種類型都有其特定的用途和優勢。以下是各主要泛型集合類別的快速比較：</p>
+<table>
+<thead>
+<tr>
+<th>集合類別</th>
+<th>特性</th>
+<th>適用情境</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>List&lt;T&gt;</code></td>
+<td>動態大小、快速隨機存取</td>
+<td>一般用途，需要頻繁添加和訪問元素</td>
+</tr>
+<tr>
+<td><code>Dictionary&lt;TKey, TValue&gt;</code></td>
+<td>鍵值對、快速查找</td>
+<td>根據鍵存取值，需要唯一鍵</td>
+</tr>
+<tr>
+<td><code>HashSet&lt;T&gt;</code></td>
+<td>唯一元素、快速查找、集合運算</td>
+<td>需要確保元素唯一性，執行聯集、交集等集合運算</td>
+</tr>
+<tr>
+<td><code>Queue&lt;T&gt;</code></td>
+<td>FIFO（先進先出）</td>
+<td>任務排程、廣度優先搜尋等按順序處理元素的情境</td>
+</tr>
+<tr>
+<td><code>Stack&lt;T&gt;</code></td>
+<td>LIFO（後進先出）</td>
+<td>實現遞迴、處理撤銷操作等需要反向處理的情境</td>
+</tr>
+<tr>
+<td><code>LinkedList&lt;T&gt;</code></td>
+<td>雙向鏈結、快速插入和移除元素</td>
+<td>頻繁在中間插入或刪除元素，不需要隨機存取</td>
+</tr>
+<tr>
+<td><code>SortedList&lt;TKey, TValue&gt;</code></td>
+<td>鍵排序、基於陣列實現</td>
+<td>需要根據鍵排序且讀取操作多於寫入操作的情境</td>
+</tr>
+<tr>
+<td><code>SortedDictionary&lt;TKey, TValue&gt;</code></td>
+<td>鍵排序、基於樹結構實現</td>
+<td>需要根據鍵排序且頻繁添加和刪除元素的情境</td>
+</tr>
+<tr>
+<td><code>SortedSet&lt;T&gt;</code></td>
+<td>自動排序、唯一元素、集合運算</td>
+<td>需要儲存唯一且自動排序的元素，支持集合運算</td>
+</tr>
+<tr>
+<td><code>ObservableCollection&lt;T&gt;</code></td>
+<td>集合變化通知</td>
+<td>資料綁定場景，如 WPF、Xamarin，需監聽集合變化</td>
+</tr>
+<tr>
+<td><code>ConcurrentDictionary&lt;TKey, TValue&gt;</code></td>
+<td>線程安全、適用於多線程環境</td>
+<td>多線程環境下需要安全存取和修改字典的情境</td>
+</tr>
+</tbody></table>
+<p>選擇適合的泛型集合類別能夠顯著提高程式的效率和可讀性。根據你的具體需求選擇合適的集合類型，能讓你的程式碼更加優雅和高效。</p>
+<p>如果你對某個特定的泛型集合類別有更多的疑問或需要更詳細的範例，請隨時告訴我！</p>

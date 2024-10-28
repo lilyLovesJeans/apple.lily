@@ -1,0 +1,60 @@
+<hr>
+<h2 id="title-2024-11-07-026-具體地說明「擴展困難」的情況date-2024-10-29-00-45-15categories-OneDayOneNotetags-C-WebAPI-description-2024-11-06-025-在-ASP-NET-Core-中實現-DDD（領域驅動設計）"><a href="#title-2024-11-07-026-具體地說明「擴展困難」的情況date-2024-10-29-00-45-15categories-OneDayOneNotetags-C-WebAPI-description-2024-11-06-025-在-ASP-NET-Core-中實現-DDD（領域驅動設計）" class="headerlink" title="title: 2024-11-07 026_具體地說明「擴展困難」的情況date: 2024-10-29 00:45:15categories: OneDayOneNotetags:  [C#, WebAPI ]description:  2024-11-06 025_在 ASP.NET Core 中實現 DDD（領域驅動設計）"></a>title: 2024-11-07 026_具體地說明「擴展困難」的情況<br>date: 2024-10-29 00:45:15<br>categories: OneDayOneNote<br>tags:  [C#, WebAPI ]<br>description:  2024-11-06 025_在 ASP.NET Core 中實現 DDD（領域驅動設計）</h2><h2 id="2024-11-06-025-在-ASP-NET-Core-中實現-DDD（領域驅動設計）"><a href="#2024-11-06-025-在-ASP-NET-Core-中實現-DDD（領域驅動設計）" class="headerlink" title="2024-11-06 025_在 ASP.NET Core 中實現 DDD（領域驅動設計）"></a>2024-11-06 025_在 ASP.NET Core 中實現 DDD（領域驅動設計）</h2><p>當然，讓我更具體地說明「擴展困難」的情況，並解釋接口與抽象類在此方面的差異。</p>
+<h3 id="情境假設"><a href="#情境假設" class="headerlink" title="情境假設"></a>情境假設</h3><p>假設我們的系統中已經有不同的員工類別（例如 <code>PermanentEmployee</code> 和 <code>ContractEmployee</code>），每個類別都繼承自抽象類 <code>EmployeeBase</code>，並已經實現了基礎方法 <code>GetSalary()</code>。接著，公司希望在年末發放<strong>年終獎金</strong>，並需要計算每個員工的獎金。</p>
+<h3 id="情境一：如果只使用抽象類"><a href="#情境一：如果只使用抽象類" class="headerlink" title="情境一：如果只使用抽象類"></a>情境一：如果只使用抽象類</h3><p>假設你在 <code>EmployeeBase</code> 中添加了 <code>CalculateBonus()</code> 這個方法：</p>
+<pre><code class="csharp">public abstract class EmployeeBase
+{
+    public string Name { get; set; }
+    public int EmployeeID { get; set; }
+
+    public abstract decimal GetSalary();
+
+    // 新增方法：計算年終獎金
+    public abstract decimal CalculateBonus();
+}
+</code></pre>
+<p>這樣一來，每個繼承 <code>EmployeeBase</code> 的子類別都<strong>必須實現</strong> <code>CalculateBonus()</code> 方法，不然無法編譯。然而，可能有些員工類別不需要年終獎金，或獎金計算方式非常簡單，這樣一來，對於無需此功能的子類別也得實作，可能會造成額外的代碼負擔。</p>
+<h3 id="可能的兼容性問題"><a href="#可能的兼容性問題" class="headerlink" title="可能的兼容性問題"></a>可能的兼容性問題</h3><p>由於所有繼承 <code>EmployeeBase</code> 的類別都必須重新實現這個新方法（即使他們可能不需要），所以這樣的設計會帶來以下幾個問題：</p>
+<ol>
+<li><p><strong>無法靈活應用</strong>：假設有些類型的員工根本不應該參與年終獎金計算（如臨時員工），但它們依然必須提供這個方法，甚至只能返回 <code>0</code> 或擺放空的實現。這樣的設計不夠靈活。</p>
+</li>
+<li><p><strong>影響現有系統運行</strong>：如果你的應用程序中已經包含許多繼承 <code>EmployeeBase</code> 的現有類別，那麼現在修改基類會<strong>破壞所有子類的兼容性</strong>，使得它們必須都去實現 <code>CalculateBonus()</code> 方法，即使對部分類別而言它是無效的操作。這樣會增加系統維護成本。</p>
+</li>
+</ol>
+<h3 id="情境二：使用接口來增加年終獎金方法"><a href="#情境二：使用接口來增加年終獎金方法" class="headerlink" title="情境二：使用接口來增加年終獎金方法"></a>情境二：使用接口來增加年終獎金方法</h3><p>如果你使用的是接口，你可以創建一個新接口 <code>IBonusCalculable</code>，其中包含 <code>CalculateBonus()</code> 方法，然後<strong>只讓需要計算年終獎金的類別去實現它</strong>。例如：</p>
+<pre><code class="csharp">public interface IBonusCalculable
+{
+    decimal CalculateBonus();
+}
+
+public class PermanentEmployee : EmployeeBase, IBonusCalculable
+{
+    public override decimal GetSalary()
+    {
+        // 實作薪資計算
+    }
+
+    public decimal CalculateBonus()
+    {
+        // 實作年終獎金計算
+    }
+}
+
+// 臨時員工類別無需實現 IBonusCalculable
+public class ContractEmployee : EmployeeBase
+{
+    public override decimal GetSalary()
+    {
+        // 實作薪資計算
+    }
+}
+</code></pre>
+<h3 id="這樣設計的優勢"><a href="#這樣設計的優勢" class="headerlink" title="這樣設計的優勢"></a>這樣設計的優勢</h3><ol>
+<li><p><strong>更具靈活性</strong>：只需要年終獎金計算功能的類別才會去實現 <code>IBonusCalculable</code>，這樣臨時員工（或任何不需要年終獎金的類型）就不會被強迫去實現這個方法。</p>
+</li>
+<li><p><strong>保持現有代碼的兼容性</strong>：現有的 <code>EmployeeBase</code> 及其子類別不需要被更改。如果你需要在其他類型的員工中加入年終獎金計算，只需讓它們實現 <code>IBonusCalculable</code> 接口，而不需要修改基類或其他類別的代碼。</p>
+</li>
+<li><p><strong>接口的可組合性</strong>：在不同需求下，可以新增多個接口，比如 <code>IBonusCalculable</code> 和 <code>IOvertimeCalculable</code>，讓類別<strong>按需實現</strong>所需的接口，而不必被迫承擔所有功能。</p>
+</li>
+</ol>
+<h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h3><p>使用接口來增加新功能（如 <code>CalculateBonus()</code>）讓你可以選擇哪些類別需要實現，而不強制所有子類別進行修改，這樣的設計更有彈性，也不會影響系統中不需要此功能的類別。而僅使用抽象類的設計，會迫使所有繼承的類別都去實現這些功能，增加了不必要的代碼負擔和維護成本。</p>

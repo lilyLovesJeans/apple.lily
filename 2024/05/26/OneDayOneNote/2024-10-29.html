@@ -1,0 +1,97 @@
+<hr>
+<h2 id="title-2024-10-29-019-讓summary註解顯示在-Swagger-中date-2024-10-29-00-25-54categories-OneDayOneNotetags-C-WebAPI-description-2024-10-29-019-讓summary註解顯示在-Swagger-中"><a href="#title-2024-10-29-019-讓summary註解顯示在-Swagger-中date-2024-10-29-00-25-54categories-OneDayOneNotetags-C-WebAPI-description-2024-10-29-019-讓summary註解顯示在-Swagger-中" class="headerlink" title="title: 2024-10-29 019_讓summary註解顯示在 Swagger 中date: 2024-10-29 00:25:54categories: OneDayOneNotetags:  [C#, WebAPI ]description:  2024-10-29 019_讓summary註解顯示在 Swagger 中"></a>title: 2024-10-29 019_讓summary註解顯示在 Swagger 中<br>date: 2024-10-29 00:25:54<br>categories: OneDayOneNote<br>tags:  [C#, WebAPI ]<br>description:  2024-10-29 019_讓summary註解顯示在 Swagger 中</h2><h2 id="2024-10-29-019-讓summary註解顯示在-Swagger-中"><a href="#2024-10-29-019-讓summary註解顯示在-Swagger-中" class="headerlink" title="2024-10-29 019_讓summary註解顯示在 Swagger 中"></a>2024-10-29 019_讓summary註解顯示在 Swagger 中</h2><p>要讓 <code>summary</code> 註解顯示在 Swagger 中，請確保以下步驟已正確設定：</p>
+<ol>
+<li><strong>確保在專案中安裝並設定了 Swagger</strong>：<br>首先，確認你已經在 <code>Startup.cs</code> 或 <code>Program.cs</code> 中正確地設置了 Swagger，如下所示：</li>
+</ol>
+<pre><code class="csharp">public void ConfigureServices(IServiceCollection services)
+{
+    services.AddSwaggerGen(c =&gt;
+    {
+        c.SwaggerDoc(&quot;v1&quot;, new OpenApiInfo { Title = &quot;LogisticsAPI&quot;, Version = &quot;v1&quot; });
+        c.IncludeXmlComments(GetXmlCommentsPath()); // 確保 XML 註解被包含
+    });
+
+    services.AddControllers();
+}
+</code></pre>
+<ol start="2">
+<li><p><strong>生成 XML 註解文件</strong>：<br>你需要讓項目生成 XML 註解文件，這樣 Swagger 才能讀取 <code>summary</code> 註解。</p>
+<ul>
+<li>右鍵點擊專案名稱 -&gt; 選擇 “屬性” -&gt; 點擊 “生成”。</li>
+<li>找到 “輸出” 區域，勾選 “XML 文件檔案” 並設置文件名稱和位置，例如：<code>bin\Debug\net5.0\LogisticsAPI.xml</code>。</li>
+</ul>
+<p>在 <code>Program.cs</code> 或 <code>Startup.cs</code> 中，添加對該 XML 文件的引用：</p>
+</li>
+</ol>
+<pre><code class="csharp">public void ConfigureServices(IServiceCollection services)
+{
+    services.AddSwaggerGen(c =&gt;
+    {
+        c.SwaggerDoc(&quot;v1&quot;, new OpenApiInfo { Title = &quot;LogisticsAPI&quot;, Version = &quot;v1&quot; });
+        var xmlFile = $&quot;{Assembly.GetExecutingAssembly().GetName().Name}.xml&quot;;
+        var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+        c.IncludeXmlComments(xmlPath);  // 這會引入XML註解
+    });
+
+    services.AddControllers();
+}
+</code></pre>
+<ol start="3">
+<li><p><strong>確認生成 XML 文件</strong>：<br>確保專案在編譯時生成了 <code>XML</code> 文件，並且該文件路徑正確設置在 Swagger 的設定中。</p>
+</li>
+<li><p><strong>檢查 Swagger UI</strong>：<br>啟動應用程式，然後打開 <code>Swagger</code> 頁面，通常是：</p>
+<pre><code>https://localhost:{port}/swagger/index.html
+</code></pre>
+<p>如果設定正確，你應該能看到 <code>summary</code> 註解，像是 “獲取所有包裹” 這段描述。</p>
+</li>
+</ol>
+<p>透過上述步驟，應該可以解決你的問題，讓 Swagger 顯示出 API 的 <code>summary</code> 註解。如果還是無法顯示，可以嘗試重新編譯專案，並確認 Swagger 正常讀取 XML<br> 註解。</p>
+<p>你的 Swagger 設置已經包含了 <code>SwaggerDoc</code> 和 <code>IncludeXmlComments</code>，同時也正確地添加了 JWT 身份驗證設置。這部分設置讓 Swagger 能夠顯示 API 文檔並支持 JWT 身份驗證。</p>
+<p>為了讓 <code>summary</code> 和 <code>XML</code> 註解顯示正常，你可以確認以下幾件事：</p>
+<ol>
+<li><p><strong>確保 XML 文件路徑正確</strong>：<br><code>IncludeXmlComments(GetXmlCommentsPath())</code> 中的 <code>GetXmlCommentsPath()</code> 方法應返回你所生成的 XML 文件路徑。你可以手動檢查此路徑：</p>
+<pre><code class="csharp">private string GetXmlCommentsPath()
+{
+    var xmlFile = $&quot;{Assembly.GetExecutingAssembly().GetName().Name}.xml&quot;;
+    return Path.Combine(AppContext.BaseDirectory, xmlFile);
+}
+</code></pre>
+<p>此方法應返回生成的 XML 文件路徑，確保該路徑對應的是你專案中生成的 XML 文件。</p>
+</li>
+<li><p><strong>檢查生成 XML 文件</strong>：<br>在專案的 <code>Properties</code> -&gt; <code>Build</code> 中，檢查 “XML 文件” 的輸出選項是否正確設置，並確認它指向了正確的路徑（通常在 <code>bin\Debug\net5.0</code> 或對應版本的路徑中）。</p>
+</li>
+<li><p><strong>JWT 身份驗證設置確認</strong>：<br>你的 JWT 驗證設置已經配置完畢。當你調用 API 時，請在 Swagger 中提供正確的 Bearer Token，這樣 Swagger 會自動將 JWT token 放入 <code>Authorization</code> header 中。這段設置正確地為 Swagger 文檔增加了身份驗證功能。</p>
+</li>
+<li><p><strong>重新編譯並運行應用程序</strong>：<br>完成這些設置後，重新編譯應用程式並啟動。訪問 Swagger UI，查看 API 的文檔是否正確顯示注解。URL 應類似於：</p>
+<pre><code>https://localhost:{port}/swagger/index.html
+</code></pre>
+</li>
+</ol>
+<p>確認這些步驟後，<code>summary</code> 註解應該會正確顯示在 Swagger 中，並且 API 會支持 JWT 授權驗證。</p>
+<p>看起來你的 Visual Studio 設定面板與傳統版本稍有不同。你可以在 **”建置”**（Build）選項中進行 XML 註解文件的設置。請按照以下步驟來啟用 XML 註解生成：</p>
+<h3 id="1-在-“建置”-設置-XML-文件生成"><a href="#1-在-“建置”-設置-XML-文件生成" class="headerlink" title="1. 在 “建置” 設置 XML 文件生成"></a>1. <strong>在 “建置” 設置 XML 文件生成</strong></h3><ol>
+<li><p>在專案屬性頁面中，點擊 **”建置”**。</p>
+</li>
+<li><p>在建置頁面中，往下滾動查看是否有一個 “輸出”（Output）選項。</p>
+</li>
+<li><p>如果有，勾選 **”XML documentation file”**，並指定路徑，例如：</p>
+<pre><code>bin\Debug\net8.0\LogisticsAPI.xml
+</code></pre>
+</li>
+</ol>
+<h3 id="2-如果在建置選項中找不到-XML-文件生成的選項"><a href="#2-如果在建置選項中找不到-XML-文件生成的選項" class="headerlink" title="2. 如果在建置選項中找不到 XML 文件生成的選項"></a>2. <strong>如果在建置選項中找不到 XML 文件生成的選項</strong></h3><p>如果你在 Visual Studio 的建置選項中找不到設置 XML 文件生成的選項，建議你手動編輯專案的 <code>.csproj</code> 文件，進行如下操作：</p>
+<ol>
+<li><p>找到專案的 <code>.csproj</code> 文件，通常位於專案的根目錄下（例如 <code>LogisticsAPI.csproj</code>）。</p>
+</li>
+<li><p>編輯 <code>.csproj</code> 文件，加入以下內容來啟用 XML 文件生成：</p>
+<pre><code class="xml">&lt;PropertyGroup&gt;
+  &lt;GenerateDocumentationFile&gt;true&lt;/GenerateDocumentationFile&gt;
+  &lt;DocumentationFile&gt;bin\Debug\net8.0\LogisticsAPI.xml&lt;/DocumentationFile&gt;
+&lt;/PropertyGroup&gt;
+</code></pre>
+</li>
+<li><p>儲存 <code>.csproj</code> 文件，並重新編譯專案。</p>
+</li>
+</ol>
+<h3 id="3-檢查-XML-文件是否生成"><a href="#3-檢查-XML-文件是否生成" class="headerlink" title="3. 檢查 XML 文件是否生成"></a>3. <strong>檢查 XML 文件是否生成</strong></h3><p>重新編譯專案後，檢查 <code>bin\Debug\net8.0\</code> 目錄下是否生成了 <code>LogisticsAPI.xml</code> 文件。這樣你的 Swagger 應該可以正常載入 XML 註解。</p>
+<p>這些步驟應該能夠幫助你解決 XML 文件生成的問題，讓 Swagger 顯示正確的 API 註解。</p>

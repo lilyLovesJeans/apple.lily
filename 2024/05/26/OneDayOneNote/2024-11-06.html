@@ -1,0 +1,180 @@
+<hr>
+<h2 id="title-2024-11-06-025-在-ASP-NET-Core-中實現-DDD（領域驅動設計）date-2024-10-29-00-44-04categories-OneDayOneNotetags-C-WebAPI-description-2024-11-06-025-在-ASP-NET-Core-中實現-DDD（領域驅動設計）"><a href="#title-2024-11-06-025-在-ASP-NET-Core-中實現-DDD（領域驅動設計）date-2024-10-29-00-44-04categories-OneDayOneNotetags-C-WebAPI-description-2024-11-06-025-在-ASP-NET-Core-中實現-DDD（領域驅動設計）" class="headerlink" title="title: 2024-11-06 025_在 ASP.NET Core 中實現 DDD（領域驅動設計）date: 2024-10-29 00:44:04categories: OneDayOneNotetags:  [C#, WebAPI ]description:  2024-11-06 025_在 ASP.NET Core 中實現 DDD（領域驅動設計）"></a>title: 2024-11-06 025_在 ASP.NET Core 中實現 DDD（領域驅動設計）<br>date: 2024-10-29 00:44:04<br>categories: OneDayOneNote<br>tags:  [C#, WebAPI ]<br>description:  2024-11-06 025_在 ASP.NET Core 中實現 DDD（領域驅動設計）</h2><h2 id="2024-11-06-025-在-ASP-NET-Core-中實現-DDD（領域驅動設計）"><a href="#2024-11-06-025-在-ASP-NET-Core-中實現-DDD（領域驅動設計）" class="headerlink" title="2024-11-06 025_在 ASP.NET Core 中實現 DDD（領域驅動設計）"></a>2024-11-06 025_在 ASP.NET Core 中實現 DDD（領域驅動設計）</h2><p>在 ASP.NET Core 中實現 DDD（領域驅動設計），我們可以通過分層架構來將系統中的各個領域邏輯與基礎設施分離。下面，我會用一個具體的情境來展示如何實現 DDD 原則。</p>
+<h3 id="情境範例：訂單管理系統"><a href="#情境範例：訂單管理系統" class="headerlink" title="情境範例：訂單管理系統"></a>情境範例：訂單管理系統</h3><p>假設我們正在開發一個簡單的訂單管理系統，主要負責處理訂單的創建、取消、更新等操作。</p>
+<h3 id="1-分層架構概述"><a href="#1-分層架構概述" class="headerlink" title="1. 分層架構概述"></a>1. <strong>分層架構概述</strong></h3><p>   DDD 的分層架構可以包括以下幾層：</p>
+<ul>
+<li><strong>領域層（Domain Layer）</strong>：這是業務邏輯所在的地方，處理與訂單有關的所有核心邏輯。</li>
+<li><strong>應用層（Application Layer）</strong>：負責協調應用程式的執行流程，不包含業務邏輯，只是調用領域層來執行具體邏輯。</li>
+<li><strong>基礎設施層（Infrastructure Layer）</strong>：負責資料庫訪問、第三方服務交互等技術細節。</li>
+<li><strong>使用者介面層（UI Layer）</strong>：包含控制器和 API 入口，處理請求和回應。</li>
+</ul>
+<h3 id="2-實體（Entity）與值物件（Value-Object）"><a href="#2-實體（Entity）與值物件（Value-Object）" class="headerlink" title="2. 實體（Entity）與值物件（Value Object）"></a>2. <strong>實體（Entity）與值物件（Value Object）</strong></h3><p>   在領域層中，我們定義了訂單（Order）這個實體。訂單包含唯一的訂單 ID，並且具有訂單狀態等屬性。另一個值物件可能是 <code>Money</code>，表示訂單的金額。</p>
+<h4 id="Order-實體範例："><a href="#Order-實體範例：" class="headerlink" title="Order 實體範例："></a><code>Order</code> 實體範例：</h4><pre><code class="csharp">public class Order
+{
+    public Guid OrderId { get; private set; }
+    public DateTime CreatedAt { get; private set; }
+    public OrderStatus Status { get; private set; }
+    public Money TotalAmount { get; private set; }
+
+    // 訂單的行為邏輯
+    public void Cancel()
+    {
+        if (Status == OrderStatus.Completed)
+            throw new InvalidOperationException(&quot;Completed orders cannot be cancelled.&quot;);
+        
+        Status = OrderStatus.Cancelled;
+    }
+
+    public void Complete()
+    {
+        if (Status == OrderStatus.Cancelled)
+            throw new InvalidOperationException(&quot;Cancelled orders cannot be completed.&quot;);
+        
+        Status = OrderStatus.Completed;
+    }
+
+    // 工廠方法來創建訂單
+    public static Order Create(Guid orderId, Money totalAmount)
+    {
+        return new Order
+        {
+            OrderId = orderId,
+            CreatedAt = DateTime.UtcNow,
+            Status = OrderStatus.Pending,
+            TotalAmount = totalAmount
+        };
+    }
+}
+
+public enum OrderStatus
+{
+    Pending,
+    Completed,
+    Cancelled
+}
+
+public class Money
+{
+    public decimal Amount { get; }
+    public string Currency { get; }
+
+    public Money(decimal amount, string currency)
+    {
+        Amount = amount;
+        Currency = currency;
+    }
+}
+</code></pre>
+<p>在這裡，我們定義了 <code>Order</code> 實體，其中包含訂單的核心屬性和行為，例如取消訂單、完成訂單等。<code>Money</code> 是一個值物件，用來表示訂單的金額，具有金額和貨幣屬性。</p>
+<h3 id="3-應用層（Application-Layer）"><a href="#3-應用層（Application-Layer）" class="headerlink" title="3. 應用層（Application Layer）"></a>3. <strong>應用層（Application Layer）</strong></h3><p>   應用層負責協調流程，它不包含業務邏輯，而是通過調用領域層的實體和服務來處理具體的業務操作。</p>
+<h4 id="應用服務範例："><a href="#應用服務範例：" class="headerlink" title="應用服務範例："></a>應用服務範例：</h4><pre><code class="csharp">public class OrderService
+{
+    private readonly IOrderRepository _orderRepository;
+
+    public OrderService(IOrderRepository orderRepository)
+    {
+        _orderRepository = orderRepository;
+    }
+
+    public async Task&lt;Guid&gt; CreateOrder(decimal amount, string currency)
+    {
+        var order = Order.Create(Guid.NewGuid(), new Money(amount, currency));
+        await _orderRepository.AddAsync(order);
+        return order.OrderId;
+    }
+
+    public async Task CancelOrder(Guid orderId)
+    {
+        var order = await _orderRepository.GetByIdAsync(orderId);
+        order.Cancel();
+        await _orderRepository.UpdateAsync(order);
+    }
+
+    public async Task CompleteOrder(Guid orderId)
+    {
+        var order = await _orderRepository.GetByIdAsync(orderId);
+        order.Complete();
+        await _orderRepository.UpdateAsync(order);
+    }
+}
+</code></pre>
+<p>這個 <code>OrderService</code> 類別作為應用層的一部分，負責處理訂單的業務流程，但具體的業務邏輯由領域層的 <code>Order</code> 實體來執行。<code>IOrderRepository</code> 是一個存儲庫介面，處理數據存取的具體實現。</p>
+<h3 id="4-基礎設施層（Infrastructure-Layer）"><a href="#4-基礎設施層（Infrastructure-Layer）" class="headerlink" title="4. 基礎設施層（Infrastructure Layer）"></a>4. <strong>基礎設施層（Infrastructure Layer）</strong></h3><p>   基礎設施層負責實現資料庫訪問和其他技術細節，具體實現 <code>IOrderRepository</code>。</p>
+<h4 id="存儲庫實現範例："><a href="#存儲庫實現範例：" class="headerlink" title="存儲庫實現範例："></a>存儲庫實現範例：</h4><pre><code class="csharp">public interface IOrderRepository
+{
+    Task&lt;Order&gt; GetByIdAsync(Guid orderId);
+    Task AddAsync(Order order);
+    Task UpdateAsync(Order order);
+}
+
+public class OrderRepository : IOrderRepository
+{
+    private readonly ApplicationDbContext _dbContext;
+
+    public OrderRepository(ApplicationDbContext dbContext)
+    {
+        _dbContext = dbContext;
+    }
+
+    public async Task&lt;Order&gt; GetByIdAsync(Guid orderId)
+    {
+        return await _dbContext.Orders.FindAsync(orderId);
+    }
+
+    public async Task AddAsync(Order order)
+    {
+        await _dbContext.Orders.AddAsync(order);
+        await _dbContext.SaveChangesAsync();
+    }
+
+    public async Task UpdateAsync(Order order)
+    {
+        _dbContext.Orders.Update(order);
+        await _dbContext.SaveChangesAsync();
+    }
+}
+</code></pre>
+<p>這裡的 <code>OrderRepository</code> 使用 <code>Entity Framework Core</code> 作為數據訪問層，實現了 <code>IOrderRepository</code> 來處理訂單的存取和更新。</p>
+<h3 id="5-使用者介面層（UI-Layer）"><a href="#5-使用者介面層（UI-Layer）" class="headerlink" title="5. 使用者介面層（UI Layer）"></a>5. <strong>使用者介面層（UI Layer）</strong></h3><p>   在這一層，API 控制器負責處理 HTTP 請求，並調用應用層服務來執行操作。</p>
+<h4 id="控制器範例："><a href="#控制器範例：" class="headerlink" title="控制器範例："></a>控制器範例：</h4><pre><code class="csharp">[ApiController]
+[Route(&quot;api/orders&quot;)]
+public class OrdersController : ControllerBase
+{
+    private readonly OrderService _orderService;
+
+    public OrdersController(OrderService orderService)
+    {
+        _orderService = orderService;
+    }
+
+    [HttpPost]
+    public async Task&lt;IActionResult&gt; CreateOrder(decimal amount, string currency)
+    {
+        var orderId = await _orderService.CreateOrder(amount, currency);
+        return Ok(orderId);
+    }
+
+    [HttpPost(&quot;{orderId}/cancel&quot;)]
+    public async Task&lt;IActionResult&gt; CancelOrder(Guid orderId)
+    {
+        await _orderService.CancelOrder(orderId);
+        return NoContent();
+    }
+
+    [HttpPost(&quot;{orderId}/complete&quot;)]
+    public async Task&lt;IActionResult&gt; CompleteOrder(Guid orderId)
+    {
+        await _orderService.CompleteOrder(orderId);
+        return NoContent();
+    }
+}
+</code></pre>
+<p>這個 <code>OrdersController</code> 負責接收來自用戶的 HTTP 請求，並且通過 <code>OrderService</code> 來調用領域層中的業務邏輯。</p>
+<h3 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h3><ul>
+<li><strong>領域層</strong>：處理核心業務邏輯，確保所有業務規則在這裡實現。</li>
+<li><strong>應用層</strong>：協調業務流程，調用領域層來執行操作，不直接實現業務邏輯。</li>
+<li><strong>基礎設施層</strong>：處理資料庫交互，與外部服務的集成等技術細節。</li>
+<li><strong>使用者介面層</strong>：通過 API 控制器處理用戶請求，調用應用層進行業務操作。</li>
+</ul>
+<p>在這個例子中，通過使用 DDD 原則，我們將業務邏輯、數據訪問和應用程式邏輯明確地分離，實現了清晰的責任分層，使得系統更具可維護性和擴展性。</p>
+<p>這樣的架構模式有助於處理更複雜的業務需求，你可以依據具體的場景進一步擴展領域模型和服務。</p>

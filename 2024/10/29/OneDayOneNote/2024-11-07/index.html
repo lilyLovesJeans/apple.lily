@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2024-11-06 025_在 ASP.NET Core 中實現 DDD（領域驅動設計）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024-11-07 026_具體地說明「擴展困難」的情況">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2024/10/29/OneDayOneNote/2024-11-07/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2024-11-06 025_在 ASP.NET Core 中實現 DDD（領域驅動設計）">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2024-10-28T16:45:15.000Z">
+<meta property="article:modified_time" content="2024-10-28T16:45:45.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="C#">
+<meta property="article:tag" content="WebAPI">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2024/10/29/OneDayOneNote/2024-11-07/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2024/10/29/OneDayOneNote/2024-11-07/","path":"2024/10/29/OneDayOneNote/2024-11-07/","title":"2024-11-07 026_具體地說明「擴展困難」的情況"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2024-11-07 026_具體地說明「擴展困難」的情況 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2024-11-06-025-%E5%9C%A8-ASP-NET-Core-%E4%B8%AD%E5%AF%A6%E7%8F%BE-DDD%EF%BC%88%E9%A0%98%E5%9F%9F%E9%A9%85%E5%8B%95%E8%A8%AD%E8%A8%88%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">2024-11-06 025_在 ASP.NET Core 中實現 DDD（領域驅動設計）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%83%85%E5%A2%83%E5%81%87%E8%A8%AD"><span class="nav-number">1.1.</span> <span class="nav-text">情境假設</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%83%85%E5%A2%83%E4%B8%80%EF%BC%9A%E5%A6%82%E6%9E%9C%E5%8F%AA%E4%BD%BF%E7%94%A8%E6%8A%BD%E8%B1%A1%E9%A1%9E"><span class="nav-number">1.2.</span> <span class="nav-text">情境一：如果只使用抽象類</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E8%83%BD%E7%9A%84%E5%85%BC%E5%AE%B9%E6%80%A7%E5%95%8F%E9%A1%8C"><span class="nav-number">1.3.</span> <span class="nav-text">可能的兼容性問題</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%83%85%E5%A2%83%E4%BA%8C%EF%BC%9A%E4%BD%BF%E7%94%A8%E6%8E%A5%E5%8F%A3%E4%BE%86%E5%A2%9E%E5%8A%A0%E5%B9%B4%E7%B5%82%E7%8D%8E%E9%87%91%E6%96%B9%E6%B3%95"><span class="nav-number">1.4.</span> <span class="nav-text">情境二：使用接口來增加年終獎金方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%99%E6%A8%A3%E8%A8%AD%E8%A8%88%E7%9A%84%E5%84%AA%E5%8B%A2"><span class="nav-number">1.5.</span> <span class="nav-text">這樣設計的優勢</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B8%BD%E7%B5%90"><span class="nav-number">1.6.</span> <span class="nav-text">總結</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">250</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2024/10/29/OneDayOneNote/2024-11-07/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2024-11-07 026_具體地說明「擴展困難」的情況 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2024-11-06 025_在 ASP.NET Core 中實現 DDD（領域驅動設計）">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2024-11-07 026_具體地說明「擴展困難」的情況
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2024-10-29 00:45:15 / 修改時間：00:45:45" itemprop="dateCreated datePublished" datetime="2024-10-29T00:45:15+08:00">2024-10-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2024-11-06 025_在 ASP.NET Core 中實現 DDD（領域驅動設計）</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2024-11-06-025-在-ASP-NET-Core-中實現-DDD（領域驅動設計）"><a href="#2024-11-06-025-在-ASP-NET-Core-中實現-DDD（領域驅動設計）" class="headerlink" title="2024-11-06 025_在 ASP.NET Core 中實現 DDD（領域驅動設計）"></a>2024-11-06 025_在 ASP.NET Core 中實現 DDD（領域驅動設計）</h2><p>當然，讓我更具體地說明「擴展困難」的情況，並解釋接口與抽象類在此方面的差異。</p>
+<h3 id="情境假設"><a href="#情境假設" class="headerlink" title="情境假設"></a>情境假設</h3><p>假設我們的系統中已經有不同的員工類別（例如 <code>PermanentEmployee</code> 和 <code>ContractEmployee</code>），每個類別都繼承自抽象類 <code>EmployeeBase</code>，並已經實現了基礎方法 <code>GetSalary()</code>。接著，公司希望在年末發放<strong>年終獎金</strong>，並需要計算每個員工的獎金。</p>
+<h3 id="情境一：如果只使用抽象類"><a href="#情境一：如果只使用抽象類" class="headerlink" title="情境一：如果只使用抽象類"></a>情境一：如果只使用抽象類</h3><p>假設你在 <code>EmployeeBase</code> 中添加了 <code>CalculateBonus()</code> 這個方法：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title">EmployeeBase</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> Name &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> EmployeeID &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="built_in">decimal</span> <span class="title">GetSalary</span>()</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 新增方法：計算年終獎金</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="built_in">decimal</span> <span class="title">CalculateBonus</span>()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這樣一來，每個繼承 <code>EmployeeBase</code> 的子類別都<strong>必須實現</strong> <code>CalculateBonus()</code> 方法，不然無法編譯。然而，可能有些員工類別不需要年終獎金，或獎金計算方式非常簡單，這樣一來，對於無需此功能的子類別也得實作，可能會造成額外的代碼負擔。</p>
+<h3 id="可能的兼容性問題"><a href="#可能的兼容性問題" class="headerlink" title="可能的兼容性問題"></a>可能的兼容性問題</h3><p>由於所有繼承 <code>EmployeeBase</code> 的類別都必須重新實現這個新方法（即使他們可能不需要），所以這樣的設計會帶來以下幾個問題：</p>
+<ol>
+<li><p><strong>無法靈活應用</strong>：假設有些類型的員工根本不應該參與年終獎金計算（如臨時員工），但它們依然必須提供這個方法，甚至只能返回 <code>0</code> 或擺放空的實現。這樣的設計不夠靈活。</p>
+</li>
+<li><p><strong>影響現有系統運行</strong>：如果你的應用程序中已經包含許多繼承 <code>EmployeeBase</code> 的現有類別，那麼現在修改基類會<strong>破壞所有子類的兼容性</strong>，使得它們必須都去實現 <code>CalculateBonus()</code> 方法，即使對部分類別而言它是無效的操作。這樣會增加系統維護成本。</p>
+</li>
+</ol>
+<h3 id="情境二：使用接口來增加年終獎金方法"><a href="#情境二：使用接口來增加年終獎金方法" class="headerlink" title="情境二：使用接口來增加年終獎金方法"></a>情境二：使用接口來增加年終獎金方法</h3><p>如果你使用的是接口，你可以創建一個新接口 <code>IBonusCalculable</code>，其中包含 <code>CalculateBonus()</code> 方法，然後<strong>只讓需要計算年終獎金的類別去實現它</strong>。例如：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IBonusCalculable</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="built_in">decimal</span> <span class="title">CalculateBonus</span>()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">PermanentEmployee</span> : <span class="title">EmployeeBase</span>, <span class="title">IBonusCalculable</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="built_in">decimal</span> <span class="title">GetSalary</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 實作薪資計算</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="built_in">decimal</span> <span class="title">CalculateBonus</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 實作年終獎金計算</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 臨時員工類別無需實現 IBonusCalculable</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ContractEmployee</span> : <span class="title">EmployeeBase</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="built_in">decimal</span> <span class="title">GetSalary</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 實作薪資計算</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="這樣設計的優勢"><a href="#這樣設計的優勢" class="headerlink" title="這樣設計的優勢"></a>這樣設計的優勢</h3><ol>
+<li><p><strong>更具靈活性</strong>：只需要年終獎金計算功能的類別才會去實現 <code>IBonusCalculable</code>，這樣臨時員工（或任何不需要年終獎金的類型）就不會被強迫去實現這個方法。</p>
+</li>
+<li><p><strong>保持現有代碼的兼容性</strong>：現有的 <code>EmployeeBase</code> 及其子類別不需要被更改。如果你需要在其他類型的員工中加入年終獎金計算，只需讓它們實現 <code>IBonusCalculable</code> 接口，而不需要修改基類或其他類別的代碼。</p>
+</li>
+<li><p><strong>接口的可組合性</strong>：在不同需求下，可以新增多個接口，比如 <code>IBonusCalculable</code> 和 <code>IOvertimeCalculable</code>，讓類別<strong>按需實現</strong>所需的接口，而不必被迫承擔所有功能。</p>
+</li>
+</ol>
+<h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h3><p>使用接口來增加新功能（如 <code>CalculateBonus()</code>）讓你可以選擇哪些類別需要實現，而不強制所有子類別進行修改，這樣的設計更有彈性，也不會影響系統中不需要此功能的類別。而僅使用抽象類的設計，會迫使所有繼承的類別都去實現這些功能，增加了不必要的代碼負擔和維護成本。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/C/" rel="tag"># C#</a>
+              <a href="/apple.lily/tags/WebAPI/" rel="tag"># WebAPI</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/10/29/OneDayOneNote/2024-11-06/" rel="prev" title="2024-11-06 025_在 ASP.NET Core 中實現 DDD（領域驅動設計）">
+                  <i class="fa fa-angle-left"></i> 2024-11-06 025_在 ASP.NET Core 中實現 DDD（領域驅動設計）
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/10/29/OneDayOneNote/2024-11-08/" rel="next" title="2024-11-08 027_設計一個習題讓我思考 接口與抽象類">
+                  2024-11-08 027_設計一個習題讓我思考 接口與抽象類 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

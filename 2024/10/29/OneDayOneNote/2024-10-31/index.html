@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2024-10-30 020_SOLID 原則">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024-10-31 021_Ccharp變數的型別">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2024/10/29/OneDayOneNote/2024-10-31/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2024-10-30 020_SOLID 原則">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2024-10-28T16:29:11.000Z">
+<meta property="article:modified_time" content="2024-10-28T16:29:59.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="C#">
+<meta property="article:tag" content="WebAPI">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2024/10/29/OneDayOneNote/2024-10-31/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2024/10/29/OneDayOneNote/2024-10-31/","path":"2024/10/29/OneDayOneNote/2024-10-31/","title":"2024-10-31 021_Ccharp變數的型別"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2024-10-31 021_Ccharp變數的型別 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2024-10-30-020-SOLID-%E5%8E%9F%E5%89%87"><span class="nav-number">1.</span> <span class="nav-text">2024-10-30 020_SOLID 原則</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E9%8C%84"><span class="nav-number">2.</span> <span class="nav-text">目錄</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%80%BC%E5%9E%8B%E5%88%A5%EF%BC%88Value-Types%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">1. 值型別（Value Types）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B4%E6%95%B8%E5%9E%8B%E5%88%A5%EF%BC%88Integer-Types%EF%BC%89"><span class="nav-number">3.1.</span> <span class="nav-text">整數型別（Integer Types）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%AE%E9%BB%9E%E6%95%B8%E5%9E%8B%E5%88%A5%EF%BC%88Floating-Point-Types%EF%BC%89"><span class="nav-number">3.2.</span> <span class="nav-text">浮點數型別（Floating-Point Types）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E5%85%83%E5%9E%8B%E5%88%A5%EF%BC%88Character-Type%EF%BC%89"><span class="nav-number">3.3.</span> <span class="nav-text">字元型別（Character Type）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%83%E6%9E%97%E5%9E%8B%E5%88%A5%EF%BC%88Boolean-Type%EF%BC%89"><span class="nav-number">3.4.</span> <span class="nav-text">布林型別（Boolean Type）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B5%90%E6%A7%8B%E5%9E%8B%E5%88%A5%EF%BC%88Structs%EF%BC%89"><span class="nav-number">3.5.</span> <span class="nav-text">結構型別（Structs）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%97%E8%88%89%E5%9E%8B%E5%88%A5%EF%BC%88Enums%EF%BC%89"><span class="nav-number">3.6.</span> <span class="nav-text">列舉型別（Enums）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%8F%83%E8%80%83%E5%9E%8B%E5%88%A5%EF%BC%88Reference-Types%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">2. 參考型別（Reference Types）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E4%B8%B2%E5%9E%8B%E5%88%A5%EF%BC%88String%EF%BC%89"><span class="nav-number">4.1.</span> <span class="nav-text">字串型別（String）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%99%A3%E5%88%97%E5%9E%8B%E5%88%A5%EF%BC%88Arrays%EF%BC%89"><span class="nav-number">4.2.</span> <span class="nav-text">陣列型別（Arrays）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%9E%E5%88%A5%E5%9E%8B%E5%88%A5%EF%BC%88Classes%EF%BC%89"><span class="nav-number">4.3.</span> <span class="nav-text">類別型別（Classes）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A7%94%E6%B4%BE%E5%9E%8B%E5%88%A5%EF%BC%88Delegates%EF%BC%89"><span class="nav-number">4.4.</span> <span class="nav-text">委派型別（Delegates）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8B%E9%9D%A2%E5%9E%8B%E5%88%A5%EF%BC%88Interfaces%EF%BC%89"><span class="nav-number">4.5.</span> <span class="nav-text">介面型別（Interfaces）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%85%B6%E4%BB%96%E5%9E%8B%E5%88%A5"><span class="nav-number">5.</span> <span class="nav-text">3. 其他型別</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Nullable-%E5%9E%8B%E5%88%A5"><span class="nav-number">5.1.</span> <span class="nav-text">Nullable 型別</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8B%95%E6%85%8B%E5%9E%8B%E5%88%A5%EF%BC%88Dynamic%EF%BC%89"><span class="nav-number">5.2.</span> <span class="nav-text">動態型別（Dynamic）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E8%87%AA%E8%A8%82%E5%9E%8B%E5%88%A5"><span class="nav-number">6.</span> <span class="nav-text">4. 自訂型別</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%9E%E5%88%A5%EF%BC%88Classes%EF%BC%89"><span class="nav-number">6.1.</span> <span class="nav-text">類別（Classes）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B5%90%E6%A7%8B%EF%BC%88Structs%EF%BC%89"><span class="nav-number">6.2.</span> <span class="nav-text">結構（Structs）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%97%E8%88%89%EF%BC%88Enums%EF%BC%89"><span class="nav-number">6.3.</span> <span class="nav-text">列舉（Enums）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%9E%8B%E5%88%A5%E6%8E%A8%E6%96%B7%EF%BC%88Type-Inference%EF%BC%89"><span class="nav-number">7.</span> <span class="nav-text">5. 型別推斷（Type Inference）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E5%B0%8F%E7%B5%90"><span class="nav-number">8.</span> <span class="nav-text">6. 小結</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">250</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2024/10/29/OneDayOneNote/2024-10-31/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2024-10-31 021_Ccharp變數的型別 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2024-10-30 020_SOLID 原則">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2024-10-31 021_Ccharp變數的型別
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2024-10-29 00:29:11 / 修改時間：00:29:59" itemprop="dateCreated datePublished" datetime="2024-10-29T00:29:11+08:00">2024-10-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2024-10-30 020_SOLID 原則</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2024-10-30-020-SOLID-原則"><a href="#2024-10-30-020-SOLID-原則" class="headerlink" title="2024-10-30 020_SOLID 原則"></a>2024-10-30 020_SOLID 原則</h2><p>當你在 C# 中創建變數時，可以使用多種不同的資料型別（Types）。這些型別大致可以分為<strong>值型別（Value Types）</strong>和<strong>參考型別（Reference Types）</strong>。了解這些型別有助於你更有效地管理記憶體和優化程式效能。讓我們一步步來探索 C# 中可用的各種變數型別。</p>
+<hr>
+<h2 id="目錄"><a href="#目錄" class="headerlink" title="目錄"></a>目錄</h2><ol>
+<li>值型別（Value Types）<ul>
+<li>整數型別</li>
+<li>浮點數型別</li>
+<li>字元型別</li>
+<li>布林型別</li>
+<li>結構型別（Structs）</li>
+<li>列舉型別（Enums）</li>
+</ul>
+</li>
+<li>參考型別（Reference Types）<ul>
+<li>字串型別（String）</li>
+<li>陣列型別（Arrays）</li>
+<li>類別型別（Classes）</li>
+<li>委派型別（Delegates）</li>
+<li>介面型別（Interfaces）</li>
+</ul>
+</li>
+<li>其他型別<ul>
+<li>Nullable 型別</li>
+<li>動態型別（Dynamic）</li>
+</ul>
+</li>
+<li>自訂型別<ul>
+<li>類別（Classes）</li>
+<li>結構（Structs）</li>
+<li>列舉（Enums）</li>
+</ul>
+</li>
+<li>型別推斷（Type Inference）</li>
+<li>小結</li>
+</ol>
+<hr>
+<h2 id="1-值型別（Value-Types）"><a href="#1-值型別（Value-Types）" class="headerlink" title="1. 值型別（Value Types）"></a>1. 值型別（Value Types）</h2><p>值型別直接包含其數據，而不是指向數據的參考。它們通常儲存在堆疊（Stack）中，存取速度快。</p>
+<h3 id="整數型別（Integer-Types）"><a href="#整數型別（Integer-Types）" class="headerlink" title="整數型別（Integer Types）"></a>整數型別（Integer Types）</h3><table>
+<thead>
+<tr>
+<th>型別</th>
+<th>範圍</th>
+<th>大小（位元組）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>int</code></td>
+<td>-2,147,483,648 到 2,147,483,647</td>
+<td>4</td>
+</tr>
+<tr>
+<td><code>long</code></td>
+<td>-9,223,372,036,854,775,808 到 9,223,372,036,854,775,807</td>
+<td>8</td>
+</tr>
+<tr>
+<td><code>short</code></td>
+<td>-32,768 到 32,767</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>byte</code></td>
+<td>0 到 255</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>uint</code></td>
+<td>0 到 4,294,967,295</td>
+<td>4</td>
+</tr>
+<tr>
+<td><code>ulong</code></td>
+<td>0 到 18,446,744,073,709,551,615</td>
+<td>8</td>
+</tr>
+<tr>
+<td><code>ushort</code></td>
+<td>0 到 65,535</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>sbyte</code></td>
+<td>-128 到 127</td>
+<td>1</td>
+</tr>
+</tbody></table>
+<p><strong>範例：</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span> age = <span class="number">25</span>;</span><br><span class="line"><span class="built_in">long</span> distance = <span class="number">9876543210L</span>;</span><br><span class="line"><span class="built_in">byte</span> level = <span class="number">255</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="浮點數型別（Floating-Point-Types）"><a href="#浮點數型別（Floating-Point-Types）" class="headerlink" title="浮點數型別（Floating-Point Types）"></a>浮點數型別（Floating-Point Types）</h3><table>
+<thead>
+<tr>
+<th>型別</th>
+<th>範圍</th>
+<th>大小（位元組）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>float</code></td>
+<td>約 ±1.5 × 10^−45 到 ±3.4 × 10^38</td>
+<td>4</td>
+</tr>
+<tr>
+<td><code>double</code></td>
+<td>約 ±5.0 × 10^−324 到 ±1.7 × 10^308</td>
+<td>8</td>
+</tr>
+<tr>
+<td><code>decimal</code></td>
+<td>約 ±1.0 × 10^−28 到 ±7.9 × 10^28</td>
+<td>16</td>
+</tr>
+</tbody></table>
+<p><strong>範例：</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">float</span> temperature = <span class="number">36.6F</span>;</span><br><span class="line"><span class="built_in">double</span> pi = <span class="number">3.141592653589793</span>;</span><br><span class="line"><span class="built_in">decimal</span> price = <span class="number">19.99</span>M;</span><br></pre></td></tr></table></figure>
+
+<h3 id="字元型別（Character-Type）"><a href="#字元型別（Character-Type）" class="headerlink" title="字元型別（Character Type）"></a>字元型別（Character Type）</h3><table>
+<thead>
+<tr>
+<th>型別</th>
+<th>描述</th>
+<th>大小（位元組）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>char</code></td>
+<td>單一 Unicode 字元</td>
+<td>2</td>
+</tr>
+</tbody></table>
+<p><strong>範例：</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">char</span> grade = <span class="string">&#x27;A&#x27;</span>;</span><br><span class="line"><span class="built_in">char</span> symbol = <span class="string">&#x27;#&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="布林型別（Boolean-Type）"><a href="#布林型別（Boolean-Type）" class="headerlink" title="布林型別（Boolean Type）"></a>布林型別（Boolean Type）</h3><table>
+<thead>
+<tr>
+<th>型別</th>
+<th>描述</th>
+<th>大小（位元組）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>bool</code></td>
+<td><code>true</code> 或 <code>false</code></td>
+<td>1</td>
+</tr>
+</tbody></table>
+<p><strong>範例：</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">bool</span> isCompleted = <span class="literal">true</span>;</span><br><span class="line"><span class="built_in">bool</span> hasAccess = <span class="literal">false</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="結構型別（Structs）"><a href="#結構型別（Structs）" class="headerlink" title="結構型別（Structs）"></a>結構型別（Structs）</h3><p>結構是值型別的自訂型別，可以包含多個不同的成員（屬性、方法等）。</p>
+<p><strong>範例：</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> Point</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> X;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> Y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Point p1 = <span class="keyword">new</span> Point();</span><br><span class="line">p1.X = <span class="number">10</span>;</span><br><span class="line">p1.Y = <span class="number">20</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="列舉型別（Enums）"><a href="#列舉型別（Enums）" class="headerlink" title="列舉型別（Enums）"></a>列舉型別（Enums）</h3><p>列舉是一種值型別，用於定義一組命名的整數常數。</p>
+<p><strong>範例：</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">enum</span> Days &#123; Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday &#125;;</span><br><span class="line"></span><br><span class="line">Days today = Days.Monday;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="2-參考型別（Reference-Types）"><a href="#2-參考型別（Reference-Types）" class="headerlink" title="2. 參考型別（Reference Types）"></a>2. 參考型別（Reference Types）</h2><p>參考型別儲存的是對實際數據的參考（地址），而不是數據本身。它們通常儲存在堆（Heap）中，存取速度較慢。</p>
+<h3 id="字串型別（String）"><a href="#字串型別（String）" class="headerlink" title="字串型別（String）"></a>字串型別（String）</h3><p><code>string</code> 是一種特殊的參考型別，用於表示文本。</p>
+<p><strong>範例：</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> greeting = <span class="string">&quot;Hello, World!&quot;</span>;</span><br><span class="line"><span class="built_in">string</span> name = <span class="string">&quot;Alice&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="陣列型別（Arrays）"><a href="#陣列型別（Arrays）" class="headerlink" title="陣列型別（Arrays）"></a>陣列型別（Arrays）</h3><p>陣列是用來存儲相同型別元素的集合。</p>
+<p><strong>範例：</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span>[] numbers = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span> &#125;;</span><br><span class="line"><span class="built_in">string</span>[] fruits = <span class="keyword">new</span> <span class="built_in">string</span>[<span class="number">3</span>] &#123; <span class="string">&quot;Apple&quot;</span>, <span class="string">&quot;Banana&quot;</span>, <span class="string">&quot;Cherry&quot;</span> &#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="類別型別（Classes）"><a href="#類別型別（Classes）" class="headerlink" title="類別型別（Classes）"></a>類別型別（Classes）</h3><p>類別是 C# 中最常用的參考型別，用於創建物件。</p>
+<p><strong>範例：</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">Person</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> Name;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> Age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person person1 = <span class="keyword">new</span> Person();</span><br><span class="line">person1.Name = <span class="string">&quot;Bob&quot;</span>;</span><br><span class="line">person1.Age = <span class="number">30</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="委派型別（Delegates）"><a href="#委派型別（Delegates）" class="headerlink" title="委派型別（Delegates）"></a>委派型別（Delegates）</h3><p>委派是一種引用方法的類型。</p>
+<p><strong>範例：</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">delegate</span> <span class="keyword">void</span> <span class="title">GreetingDelegate</span>(<span class="params"><span class="built_in">string</span> message</span>)</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Greet</span>(<span class="params"><span class="built_in">string</span> message</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    Console.WriteLine(message);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">GreetingDelegate del = Greet;</span><br><span class="line">del(<span class="string">&quot;Hello via delegate!&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="介面型別（Interfaces）"><a href="#介面型別（Interfaces）" class="headerlink" title="介面型別（Interfaces）"></a>介面型別（Interfaces）</h3><p>介面定義了一組方法和屬性的合約，類別可以實作這些介面。</p>
+<p><strong>範例：</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title">IAnimal</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Speak</span>()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">Dog</span> : <span class="title">IAnimal</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Speak</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;Dog barks&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">IAnimal myDog = <span class="keyword">new</span> Dog();</span><br><span class="line">myDog.Speak(); <span class="comment">// 輸出 &quot;Dog barks&quot;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="3-其他型別"><a href="#3-其他型別" class="headerlink" title="3. 其他型別"></a>3. 其他型別</h2><h3 id="Nullable-型別"><a href="#Nullable-型別" class="headerlink" title="Nullable 型別"></a>Nullable 型別</h3><p>有些值型別（如 <code>int</code>、<code>double</code>）不能為 <code>null</code>。使用 Nullable 型別可以讓這些型別接受 <code>null</code> 值。</p>
+<p><strong>語法：</strong> 在型別後加上 <code>?</code></p>
+<p><strong>範例：</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span>? nullableInt = <span class="literal">null</span>;</span><br><span class="line"><span class="built_in">double</span>? nullableDouble = <span class="number">3.14</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="動態型別（Dynamic）"><a href="#動態型別（Dynamic）" class="headerlink" title="動態型別（Dynamic）"></a>動態型別（Dynamic）</h3><p><code>dynamic</code> 型別在編譯時不會進行型別檢查，會在運行時決定其型別。</p>
+<p><strong>範例：</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dynamic</span> dyn = <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">Console.WriteLine(dyn.Length); <span class="comment">// 輸出 5</span></span><br><span class="line"></span><br><span class="line">dyn = <span class="number">100</span>;</span><br><span class="line">Console.WriteLine(dyn + <span class="number">200</span>); <span class="comment">// 輸出 300</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong> 使用 <code>dynamic</code> 會失去編譯時型別檢查，需謹慎使用。</p>
+<hr>
+<h2 id="4-自訂型別"><a href="#4-自訂型別" class="headerlink" title="4. 自訂型別"></a>4. 自訂型別</h2><p>除了內建的型別外，你還可以創建自訂型別來滿足特定需求。</p>
+<h3 id="類別（Classes）"><a href="#類別（Classes）" class="headerlink" title="類別（Classes）"></a>類別（Classes）</h3><p>類別是創建物件的藍圖，可以包含屬性、方法、事件等。</p>
+<p><strong>範例：</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">Car</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> Make;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> Model;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> Year;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Start</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;Car started.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Car myCar = <span class="keyword">new</span> Car();</span><br><span class="line">myCar.Make = <span class="string">&quot;Toyota&quot;</span>;</span><br><span class="line">myCar.Model = <span class="string">&quot;Corolla&quot;</span>;</span><br><span class="line">myCar.Year = <span class="number">2020</span>;</span><br><span class="line">myCar.Start(); <span class="comment">// 輸出 &quot;Car started.&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="結構（Structs）"><a href="#結構（Structs）" class="headerlink" title="結構（Structs）"></a>結構（Structs）</h3><p>結構是值型別的自訂型別，通常用於輕量級的資料結構。</p>
+<p><strong>範例：</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> Rectangle</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> Width;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> Height;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="built_in">int</span> <span class="title">Area</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> Width * Height;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Rectangle rect = <span class="keyword">new</span> Rectangle();</span><br><span class="line">rect.Width = <span class="number">5</span>;</span><br><span class="line">rect.Height = <span class="number">10</span>;</span><br><span class="line">Console.WriteLine(rect.Area()); <span class="comment">// 輸出 50</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="列舉（Enums）"><a href="#列舉（Enums）" class="headerlink" title="列舉（Enums）"></a>列舉（Enums）</h3><p>如前所述，列舉用於定義一組命名的常數。</p>
+<p><strong>範例：</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">enum</span> Season &#123; Spring, Summer, Autumn, Winter &#125;;</span><br><span class="line"></span><br><span class="line">Season currentSeason = Season.Spring;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="5-型別推斷（Type-Inference）"><a href="#5-型別推斷（Type-Inference）" class="headerlink" title="5. 型別推斷（Type Inference）"></a>5. 型別推斷（Type Inference）</h2><p>C# 提供了 <code>var</code> 關鍵字，可以在宣告變數時讓編譯器自動推斷變數的型別。這只適用於在宣告時初始化變數的情況。</p>
+<p><strong>範例：</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> number = <span class="number">10</span>; <span class="comment">// 編譯器推斷為 int</span></span><br><span class="line"><span class="keyword">var</span> name = <span class="string">&quot;Charlie&quot;</span>; <span class="comment">// 編譯器推斷為 string</span></span><br><span class="line"><span class="keyword">var</span> list = <span class="keyword">new</span> List&lt;<span class="built_in">string</span>&gt;(); <span class="comment">// 編譯器推斷為 List&lt;string&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong> 即使使用 <code>var</code>，變數仍然具有靜態型別，無法在後續賦值中改變型別。</p>
+<hr>
+<h2 id="6-小結"><a href="#6-小結" class="headerlink" title="6. 小結"></a>6. 小結</h2><p>在 C# 中創建變數時，可以使用多種資料型別，這些型別大致可分為：</p>
+<ul>
+<li><strong>值型別（Value Types）</strong>：如 <code>int</code>、<code>double</code>、<code>bool</code>、<code>char</code>、<code>struct</code>、<code>enum</code> 等，直接包含數據，儲存在堆疊中。</li>
+<li><strong>參考型別（Reference Types）</strong>：如 <code>string</code>、<code>arrays</code>、<code>classes</code>、<code>delegates</code>、<code>interfaces</code> 等，儲存對數據的引用，存儲在堆中。</li>
+<li><strong>其他型別</strong>：如 Nullable 型別、動態型別等，提供更靈活的型別管理。</li>
+<li><strong>自訂型別</strong>：如 <code>classes</code>、<code>structs</code>、<code>enums</code>，根據需求創建的自定義型別。</li>
+<li><strong>型別推斷（Type Inference）</strong>：使用 <code>var</code> 讓編譯器自動推斷變數型別。</li>
+</ul>
+<p>了解並善用這些不同的型別，能幫助你編寫更高效、可維護的 C# 程式。如果你有任何進一步的問題或需要更詳細的範例，請隨時告訴我！</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/C/" rel="tag"># C#</a>
+              <a href="/apple.lily/tags/WebAPI/" rel="tag"># WebAPI</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/10/29/OneDayOneNote/2024-10-30/" rel="prev" title="2024-10-30 020_SOLID 原則">
+                  <i class="fa fa-angle-left"></i> 2024-10-30 020_SOLID 原則
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/10/29/OneDayOneNote/2024-11-01/" rel="next" title="2024-11-01 022_各種泛型集合類別">
+                  2024-11-01 022_各種泛型集合類別 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

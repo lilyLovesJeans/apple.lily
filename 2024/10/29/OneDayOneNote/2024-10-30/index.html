@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2024-10-30 020_SOLID 原則">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024-10-30 020_SOLID 原則">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2024/10/29/OneDayOneNote/2024-10-30/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2024-10-30 020_SOLID 原則">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2024-10-28T16:27:35.000Z">
+<meta property="article:modified_time" content="2024-10-28T16:28:22.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="C#">
+<meta property="article:tag" content="WebAPI">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2024/10/29/OneDayOneNote/2024-10-30/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2024/10/29/OneDayOneNote/2024-10-30/","path":"2024/10/29/OneDayOneNote/2024-10-30/","title":"2024-10-30 020_SOLID 原則"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2024-10-30 020_SOLID 原則 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2024-10-30-020-SOLID-%E5%8E%9F%E5%89%87"><span class="nav-number">1.</span> <span class="nav-text">2024-10-30 020_SOLID 原則</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%96%AE%E4%B8%80%E8%81%B7%E8%B2%AC%E5%8E%9F%E5%89%87-Single-Responsibility-Principle-SRP"><span class="nav-number">2.</span> <span class="nav-text">1. 單一職責原則 (Single Responsibility Principle, SRP)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E9%96%8B%E6%94%BE%E5%B0%81%E9%96%89%E5%8E%9F%E5%89%87-Open-Closed-Principle-OCP"><span class="nav-number">3.</span> <span class="nav-text">2. 開放封閉原則 (Open&#x2F;Closed Principle, OCP)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E9%87%8C%E6%B0%8F%E6%9B%BF%E6%8F%9B%E5%8E%9F%E5%89%87-Liskov-Substitution-Principle-LSP"><span class="nav-number">4.</span> <span class="nav-text">3. 里氏替換原則 (Liskov Substitution Principle, LSP)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E6%8E%A5%E5%8F%A3%E9%9A%94%E9%9B%A2%E5%8E%9F%E5%89%87-Interface-Segregation-Principle-ISP"><span class="nav-number">5.</span> <span class="nav-text">4. 接口隔離原則 (Interface Segregation Principle, ISP)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E4%BE%9D%E8%B3%B4%E5%80%92%E7%BD%AE%E5%8E%9F%E5%89%87-Dependency-Inversion-Principle-DIP"><span class="nav-number">6.</span> <span class="nav-text">5. 依賴倒置原則 (Dependency Inversion Principle, DIP)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B8%BD%E7%B5%90"><span class="nav-number">7.</span> <span class="nav-text">總結</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">250</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2024/10/29/OneDayOneNote/2024-10-30/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2024-10-30 020_SOLID 原則 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2024-10-30 020_SOLID 原則">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2024-10-30 020_SOLID 原則
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2024-10-29 00:27:35 / 修改時間：00:28:22" itemprop="dateCreated datePublished" datetime="2024-10-29T00:27:35+08:00">2024-10-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2024-10-30 020_SOLID 原則</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2024-10-30-020-SOLID-原則"><a href="#2024-10-30-020-SOLID-原則" class="headerlink" title="2024-10-30 020_SOLID 原則"></a>2024-10-30 020_SOLID 原則</h2><p>當然可以！SOLID 原則是面向對象設計中非常重要的一組設計原則，旨在提高軟體系統的可維護性、可擴展性和靈活性。這些原則由 Robert C. Martin 提出，並被廣泛應用於軟體開發中。SOLID 是這五個原則的首字母縮略詞，分別代表：</p>
+<ol>
+<li><strong>單一職責原則 (Single Responsibility Principle, SRP)</strong></li>
+<li><strong>開放封閉原則 (Open&#x2F;Closed Principle, OCP)</strong></li>
+<li><strong>里氏替換原則 (Liskov Substitution Principle, LSP)</strong></li>
+<li><strong>接口隔離原則 (Interface Segregation Principle, ISP)</strong></li>
+<li><strong>依賴倒置原則 (Dependency Inversion Principle, DIP)</strong></li>
+</ol>
+<p>以下是每個原則的詳細說明：</p>
+<hr>
+<h2 id="1-單一職責原則-Single-Responsibility-Principle-SRP"><a href="#1-單一職責原則-Single-Responsibility-Principle-SRP" class="headerlink" title="1. 單一職責原則 (Single Responsibility Principle, SRP)"></a>1. 單一職責原則 (Single Responsibility Principle, SRP)</h2><p><strong>定義：</strong><br>一個類應該只有一個改變的原因，即該類只應該有一個職責（Responsibility）。</p>
+<p><strong>解釋：</strong><br>這意味著每個類應該專注於完成一項具體的功能，避免一個類承擔過多的職責，從而導致代碼難以維護和測試。</p>
+<p><strong>示例：</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 不符合 SRP 的類</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Report</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">GenerateReport</span>()</span> &#123; <span class="comment">/* 生成報告的邏輯 */</span> &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">SaveReportToFile</span>(<span class="params"><span class="built_in">string</span> path</span>)</span> &#123; <span class="comment">/* 保存報告到文件的邏輯 */</span> &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">SendReportByEmail</span>(<span class="params"><span class="built_in">string</span> email</span>)</span> &#123; <span class="comment">/* 發送報告的邏輯 */</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 符合 SRP 的類</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ReportGenerator</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">GenerateReport</span>()</span> &#123; <span class="comment">/* 生成報告的邏輯 */</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ReportSaver</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">SaveReportToFile</span>(<span class="params"><span class="built_in">string</span> path</span>)</span> &#123; <span class="comment">/* 保存報告到文件的邏輯 */</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ReportSender</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">SendReportByEmail</span>(<span class="params"><span class="built_in">string</span> email</span>)</span> &#123; <span class="comment">/* 發送報告的邏輯 */</span> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="2-開放封閉原則-Open-Closed-Principle-OCP"><a href="#2-開放封閉原則-Open-Closed-Principle-OCP" class="headerlink" title="2. 開放封閉原則 (Open&#x2F;Closed Principle, OCP)"></a>2. 開放封閉原則 (Open&#x2F;Closed Principle, OCP)</h2><p><strong>定義：</strong><br>軟體實體（類、模組、函數等）應該對擴展開放，對修改封閉。</p>
+<p><strong>解釋：</strong><br>當需求變更時，我們應該能夠通過添加新代碼來擴展功能，而不需要修改現有的代碼。這可以通過繼承和接口來實現，從而減少因修改現有代碼而引入的錯誤風險。</p>
+<p><strong>示例：</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 不符合 OCP 的類</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">AreaCalculator</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="built_in">double</span> <span class="title">CalculateArea</span>(<span class="params"><span class="built_in">object</span> shape</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (shape <span class="keyword">is</span> Circle)</span><br><span class="line">        &#123;</span><br><span class="line">            Circle circle = (Circle)shape;</span><br><span class="line">            <span class="keyword">return</span> Math.PI * circle.Radius * circle.Radius;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (shape <span class="keyword">is</span> Rectangle)</span><br><span class="line">        &#123;</span><br><span class="line">            Rectangle rectangle = (Rectangle)shape;</span><br><span class="line">            <span class="keyword">return</span> rectangle.Length * rectangle.Width;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 每新增一種形狀都需要修改這裡</span></span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> NotSupportedException(<span class="string">&quot;Shape not supported&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 符合 OCP 的類</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IShape</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="built_in">double</span> <span class="title">CalculateArea</span>()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Circle</span> : <span class="title">IShape</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">double</span> Radius &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="built_in">double</span> <span class="title">CalculateArea</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> Math.PI * Radius * Radius;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Rectangle</span> : <span class="title">IShape</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">double</span> Length &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">double</span> Width &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="built_in">double</span> <span class="title">CalculateArea</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> Length * Width;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">AreaCalculator</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="built_in">double</span> <span class="title">CalculateArea</span>(<span class="params">IShape shape</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> shape.CalculateArea();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="3-里氏替換原則-Liskov-Substitution-Principle-LSP"><a href="#3-里氏替換原則-Liskov-Substitution-Principle-LSP" class="headerlink" title="3. 里氏替換原則 (Liskov Substitution Principle, LSP)"></a>3. 里氏替換原則 (Liskov Substitution Principle, LSP)</h2><p><strong>定義：</strong><br>子類別的實例應該能夠替換掉其基類別的實例，且不會改變程式的正確性。</p>
+<p><strong>解釋：</strong><br>這意味著子類別應該完全兼容其基類別，並且不應該破壞基類別的行為或預期。子類別應該能夠執行基類別所能執行的所有操作，並保持一致的行為。</p>
+<p><strong>示例：</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 不符合 LSP 的類</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Rectangle</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="built_in">double</span> Width &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="built_in">double</span> Height &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="built_in">double</span> <span class="title">GetArea</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> Width * Height;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Square</span> : <span class="title">Rectangle</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">override</span> <span class="built_in">double</span> Width</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">set</span> &#123; <span class="keyword">base</span>.Width = <span class="keyword">base</span>.Height = <span class="keyword">value</span>; &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">override</span> <span class="built_in">double</span> Height</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">set</span> &#123; <span class="keyword">base</span>.Width = <span class="keyword">base</span>.Height = <span class="keyword">value</span>; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 符合 LSP 的類</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title">Shape</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="built_in">double</span> <span class="title">GetArea</span>()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Rectangle</span> : <span class="title">Shape</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">double</span> Width &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">double</span> Height &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="built_in">double</span> <span class="title">GetArea</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> Width * Height;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Square</span> : <span class="title">Shape</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">double</span> Side &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="built_in">double</span> <span class="title">GetArea</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> Side * Side;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="4-接口隔離原則-Interface-Segregation-Principle-ISP"><a href="#4-接口隔離原則-Interface-Segregation-Principle-ISP" class="headerlink" title="4. 接口隔離原則 (Interface Segregation Principle, ISP)"></a>4. 接口隔離原則 (Interface Segregation Principle, ISP)</h2><p><strong>定義：</strong><br>客戶端不應該被迫依賴它們不使用的方法。即，接口應該專一且精簡，每個接口應該只包含客戶端所需的方法。</p>
+<p><strong>解釋：</strong><br>避免創建過於龐大和笨重的接口，而應該將其拆分為多個專一的接口。這樣可以提高代碼的靈活性和可維護性，並減少類別之間的耦合。</p>
+<p><strong>示例：</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 不符合 ISP 的接口</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IMultiFunctionDevice</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Print</span>(<span class="params">Document document</span>)</span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Fax</span>(<span class="params">Document document</span>)</span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Scan</span>(<span class="params">Document document</span>)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 符合 ISP 的接口</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IPrinter</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Print</span>(<span class="params">Document document</span>)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IFax</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Fax</span>(<span class="params">Document document</span>)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IScanner</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Scan</span>(<span class="params">Document document</span>)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 實現類只依賴它需要的接口</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MultiFunctionPrinter</span> : <span class="title">IPrinter</span>, <span class="title">IFax</span>, <span class="title">IScanner</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Print</span>(<span class="params">Document document</span>)</span> &#123; <span class="comment">/* 打印邏輯 */</span> &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Fax</span>(<span class="params">Document document</span>)</span> &#123; <span class="comment">/* 傳真邏輯 */</span> &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Scan</span>(<span class="params">Document document</span>)</span> &#123; <span class="comment">/* 掃描邏輯 */</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SimplePrinter</span> : <span class="title">IPrinter</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Print</span>(<span class="params">Document document</span>)</span> &#123; <span class="comment">/* 打印邏輯 */</span> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="5-依賴倒置原則-Dependency-Inversion-Principle-DIP"><a href="#5-依賴倒置原則-Dependency-Inversion-Principle-DIP" class="headerlink" title="5. 依賴倒置原則 (Dependency Inversion Principle, DIP)"></a>5. 依賴倒置原則 (Dependency Inversion Principle, DIP)</h2><p><strong>定義：</strong><br>高層模組不應該依賴於低層模組，兩者都應該依賴於抽象（接口或抽象類別）。抽象不應該依賴於細節，細節應該依賴於抽象。</p>
+<p><strong>解釋：</strong><br>這個原則強調的是依賴關係的反轉，通過引入抽象層來減少模組之間的耦合，從而提高系統的靈活性和可維護性。</p>
+<p><strong>示例：</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 不符合 DIP 的類</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">LightBulb</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">TurnOn</span>()</span> &#123; <span class="comment">/* 打開燈泡 */</span> &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">TurnOff</span>()</span> &#123; <span class="comment">/* 關閉燈泡 */</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Switch</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> LightBulb _lightBulb;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Switch</span>(<span class="params">LightBulb lightBulb</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        _lightBulb = lightBulb;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Operate</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        _lightBulb.TurnOn();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 符合 DIP 的類</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">ISwitchable</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">TurnOn</span>()</span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">TurnOff</span>()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">LightBulb</span> : <span class="title">ISwitchable</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">TurnOn</span>()</span> &#123; <span class="comment">/* 打開燈泡 */</span> &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">TurnOff</span>()</span> &#123; <span class="comment">/* 關閉燈泡 */</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Switch</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> ISwitchable _device;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Switch</span>(<span class="params">ISwitchable device</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        _device = device;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Operate</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        _device.TurnOn();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h2><p>SOLID 原則為面向對象設計提供了一套指導方針，有助於開發出高質量、可維護和可擴展的軟體系統。以下是每個原則的核心價值：</p>
+<ol>
+<li>**單一職責原則 (SRP)**：確保類別有且只有一個職責，提高代碼的可維護性。</li>
+<li>**開放封閉原則 (OCP)**：允許系統在不修改現有代碼的情況下擴展新功能，提高靈活性。</li>
+<li>**里氏替換原則 (LSP)**：確保子類別可以替代基類別而不改變程序的正確性，增強系統的穩定性。</li>
+<li>**接口隔離原則 (ISP)**：避免創建龐大的接口，確保類別只依賴於它們需要的功能，提高代碼的靈活性。</li>
+<li>**依賴倒置原則 (DIP)**：通過依賴抽象來減少模組之間的耦合，提高系統的可維護性和可測試性。</li>
+</ol>
+<p>掌握並應用 SOLID 原則，能夠幫助開發者設計出更加健壯和靈活的軟體系統。如果您有更多關於 SOLID 原則的問題或需要進一步的示例，請隨時告訴我！</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/C/" rel="tag"># C#</a>
+              <a href="/apple.lily/tags/WebAPI/" rel="tag"># WebAPI</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/10/29/OneDayOneNote/2024-10-29/" rel="prev" title="2024-10-29 019_讓summary註解顯示在 Swagger 中">
+                  <i class="fa fa-angle-left"></i> 2024-10-29 019_讓summary註解顯示在 Swagger 中
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/10/29/OneDayOneNote/2024-10-31/" rel="next" title="2024-10-31 021_Ccharp變數的型別">
+                  2024-10-31 021_Ccharp變數的型別 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

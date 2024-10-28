@@ -1,0 +1,11 @@
+<hr>
+<h2 id="title-2024-10-28-018-學寫API-如何宣告建構子的變數date-2024-10-29-00-17-37categories-OneDayOneNotetags-C-WebAPI-description-2024-10-28-018-學寫API-如何宣告建構子的變數"><a href="#title-2024-10-28-018-學寫API-如何宣告建構子的變數date-2024-10-29-00-17-37categories-OneDayOneNotetags-C-WebAPI-description-2024-10-28-018-學寫API-如何宣告建構子的變數" class="headerlink" title="title: 2024-10-28 018_學寫API_如何宣告建構子的變數date: 2024-10-29 00:17:37categories: OneDayOneNotetags:  [C#, WebAPI ]description:  2024-10-28 018_學寫API_如何宣告建構子的變數"></a>title: 2024-10-28 018_學寫API_如何宣告建構子的變數<br>date: 2024-10-29 00:17:37<br>categories: OneDayOneNote<br>tags:  [C#, WebAPI ]<br>description:  2024-10-28 018_學寫API_如何宣告建構子的變數</h2><h2 id="2024-10-28-018-學寫API-如何宣告建構子的變數"><a href="#2024-10-28-018-學寫API-如何宣告建構子的變數" class="headerlink" title="2024-10-28 018_學寫API_如何宣告建構子的變數"></a>2024-10-28 018_學寫API_如何宣告建構子的變數</h2><p>&#x2F;&#x2F;宣告了一個名為 _controller 的變數，類型是 PackageController。這表示計劃要測試 PackageController 中的方法和功能。<br>&#x2F;&#x2F;在測試中，這個控制器的實例將用來執行實際的控制器方法，並檢驗它們是否按預期工作。</p>
+<pre><code class="ccharp">private readonly PackageController _controller;
+</code></pre>
+<p>&#x2F;&#x2F;你宣告了一個名為 _logger 的變數，類型是 </p>
+<pre><code class="ccharp">ILogger&lt;PackageController&gt;。
+</code></pre>
+<p>&#x2F;&#x2F;這是為了在 PackageController 中依賴注入（Dependency Injection）記錄器時需要的。<br>&#x2F;&#x2F;當 PackageController 的建構子需要記錄器時，在測試類中提供這個 _logger，<br>&#x2F;&#x2F;這樣測試中建立控制器實例時就不會缺少記錄器。</p>
+<pre><code class="ccharp">private readonly ILogger&lt;PackageController&gt; _logger;
+</code></pre>
+<p>&#x2F;&#x2F;初始化 _logger 和 _controller<br>&#x2F;&#x2F;在測試類別中，需要寫一個建構子來初始化這些變數。<br>&#x2F;&#x2F;我寫了一個建構子來初始化我的變數,<br>&#x2F;&#x2F;_logger 是因為 我要 測試的控制器 需要依賴注入_logger,<br>&#x2F;&#x2F;另一個變數 _controller, 是因為 我要測試 PackageController這個控制器,<br>&#x2F;&#x2F;而且這個控制器要依賴注入 _logger, 所以我就將_logger 傳給它:<br>&#x2F;&#x2F;像這樣 _controller &#x3D; new PackagerController(_logger);</p>

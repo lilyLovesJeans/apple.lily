@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2024-11-10 029_建構子的演進">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024-11-10 029_建構子的演進">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2024/10/29/OneDayOneNote/2024-11-10/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2024-11-10 029_建構子的演進">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2024-10-28T16:48:36.000Z">
+<meta property="article:modified_time" content="2024-10-28T16:49:04.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="C#">
+<meta property="article:tag" content="WebAPI">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2024/10/29/OneDayOneNote/2024-11-10/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2024/10/29/OneDayOneNote/2024-11-10/","path":"2024/10/29/OneDayOneNote/2024-11-10/","title":"2024-11-10 029_建構子的演進"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2024-11-10 029_建構子的演進 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2024-11-10-029-%E5%BB%BA%E6%A7%8B%E5%AD%90%E7%9A%84%E6%BC%94%E9%80%B2"><span class="nav-number">1.</span> <span class="nav-text">2024-11-10 029_建構子的演進</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%82%BA%E4%BB%80%E9%BA%BC%E9%9C%80%E8%A6%81-%E6%8B%AC%E8%99%9F"><span class="nav-number">1.1.</span> <span class="nav-text">為什麼需要 () 括號</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E9%BA%BC%E6%98%AF%E5%BB%BA%E6%A7%8B%E5%AD%90%EF%BC%9F"><span class="nav-number">1.2.</span> <span class="nav-text">什麼是建構子？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BB%BA%E6%A7%8B%E5%AD%90%E7%9A%84%E7%94%A8%E9%80%94"><span class="nav-number">1.3.</span> <span class="nav-text">建構子的用途</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E5%AD%90%EF%BC%9A%E5%BB%BA%E6%A7%8B%E5%AD%90%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-number">1.4.</span> <span class="nav-text">例子：建構子的基本使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%91%BC%E5%8F%AB%E5%BB%BA%E6%A7%8B%E5%AD%90%E7%9A%84%E9%81%8E%E7%A8%8B"><span class="nav-number">1.5.</span> <span class="nav-text">呼叫建構子的過程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B2%92%E6%9C%89%E5%8F%83%E6%95%B8%E7%9A%84%E5%BB%BA%E6%A7%8B%E5%AD%90"><span class="nav-number">1.6.</span> <span class="nav-text">沒有參數的建構子</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">250</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2024/10/29/OneDayOneNote/2024-11-10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2024-11-10 029_建構子的演進 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2024-11-10 029_建構子的演進">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2024-11-10 029_建構子的演進
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2024-10-29 00:48:36 / 修改時間：00:49:04" itemprop="dateCreated datePublished" datetime="2024-10-29T00:48:36+08:00">2024-10-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2024-11-10 029_建構子的演進</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2024-11-10-029-建構子的演進"><a href="#2024-11-10-029-建構子的演進" class="headerlink" title="2024-11-10 029_建構子的演進"></a>2024-11-10 029_建構子的演進</h2><p>在這裡 <code>new CreditCardPayment()</code> 後的括號 <code>()</code> 是用來呼叫 <code>CreditCardPayment</code> 類別的**建構子 (constructor)**。</p>
+<h3 id="為什麼需要-括號"><a href="#為什麼需要-括號" class="headerlink" title="為什麼需要 () 括號"></a>為什麼需要 <code>()</code> 括號</h3><ul>
+<li><p><strong>呼叫建構子</strong>：當你寫 <code>new CreditCardPayment()</code>，<code>()</code> 表示呼叫這個類別的建構子。建構子是一個特殊的方法，會在物件被創建時自動執行，用於初始化物件的狀態。</p>
+</li>
+<li><p><strong>初始化過程</strong>：若 <code>CreditCardPayment</code> 類別中有自訂的建構子，或即使沒有自訂建構子，C# 也會有一個<strong>隱含的無參數建構子</strong>，即空參數的 <code>CreditCardPayment()</code>。這樣的呼叫表示創建類別的實例並且執行基礎的初始化。</p>
+</li>
+</ul>
+<p>在 <code>new CreditCardPayment()</code> 中，<code>()</code> 不僅是語法上的要求，也表達了對物件初始化的需求。如果類別中有其他參數化的建構子，例如 <code>CreditCardPayment(int accountId)</code>，則必須提供相應的參數才能創建該類型的實例。</p>
+<p>呼叫建構子 (Calling a Constructor) 是指在創建物件時，自動執行該類別的<strong>建構子方法</strong>以初始化物件的狀態。建構子是一種特殊的方法，用來設定物件初始值或進行必要的初始化工作，以便物件能夠正常運行。</p>
+<h3 id="什麼是建構子？"><a href="#什麼是建構子？" class="headerlink" title="什麼是建構子？"></a>什麼是建構子？</h3><p>建構子 (Constructor) 是一個和類別同名的方法，且<strong>沒有回傳值</strong>。在 C# 中，當你使用 <code>new</code> 關鍵字創建一個物件時，這個建構子就會被呼叫。</p>
+<h3 id="建構子的用途"><a href="#建構子的用途" class="headerlink" title="建構子的用途"></a>建構子的用途</h3><ul>
+<li><strong>初始化物件屬性</strong>：可以用來設定物件的初始屬性值。</li>
+<li><strong>依賴注入</strong>：可以用來接收參數，將外部依賴注入到物件中。</li>
+<li><strong>設定預設值或執行初始邏輯</strong>：例如開啟檔案、建立資料庫連線等等。</li>
+</ul>
+<h3 id="例子：建構子的基本使用"><a href="#例子：建構子的基本使用" class="headerlink" title="例子：建構子的基本使用"></a>例子：建構子的基本使用</h3><p>以下是帶有建構子的簡單範例：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Person</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> Name;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> Age;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 這是一個建構子</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span>(<span class="params"><span class="built_in">string</span> name, <span class="built_in">int</span> age</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        Name = name; <span class="comment">// 將參數 name 設定給屬性 Name</span></span><br><span class="line">        Age = age;   <span class="comment">// 將參數 age 設定給屬性 Age</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 呼叫建構子來創建 Person 物件</span></span><br><span class="line">Person person = <span class="keyword">new</span> Person(<span class="string">&quot;Alice&quot;</span>, <span class="number">30</span>); <span class="comment">// 呼叫建構子並傳入 &quot;Alice&quot; 和 30</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="呼叫建構子的過程"><a href="#呼叫建構子的過程" class="headerlink" title="呼叫建構子的過程"></a>呼叫建構子的過程</h3><ol>
+<li><strong>使用 <code>new</code> 關鍵字</strong>：<code>new</code> 關鍵字會創建 <code>Person</code> 類別的新物件，並在該物件上呼叫 <code>Person</code> 類別的建構子。</li>
+<li><strong>傳遞參數</strong>：<code>new Person(&quot;Alice&quot;, 30)</code> 會將 <code>&quot;Alice&quot;</code> 和 <code>30</code> 傳入建構子，並將這些值分別賦予 <code>Name</code> 和 <code>Age</code> 屬性。</li>
+<li><strong>返回物件</strong>：建構子執行完後，<code>person</code> 變數會指向新創建並初始化的 <code>Person</code> 物件。</li>
+</ol>
+<h3 id="沒有參數的建構子"><a href="#沒有參數的建構子" class="headerlink" title="沒有參數的建構子"></a>沒有參數的建構子</h3><p>如果類別內沒有自訂建構子，C# 會自動提供一個<strong>無參數建構子</strong>：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Person</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> Name = <span class="string">&quot;Unknown&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 無參數建構子會自動被呼叫</span></span><br><span class="line">Person person = <span class="keyword">new</span> Person(); <span class="comment">// 使用內建的無參數建構子</span></span><br><span class="line">Console.WriteLine(person.Name); <span class="comment">// Output: Unknown</span></span><br></pre></td></tr></table></figure>
+
+<p>在這個例子中，<code>Person</code> 類別沒有建構子，所以當呼叫 <code>new Person()</code> 時，C# 提供了一個隱含的無參數建構子，並將 <code>Name</code> 的初始值設為 <code>&quot;Unknown&quot;</code>。</p>
+<p>接近了！在這段範例中，隱含建構子的寫法其實是這樣的：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Person</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 隱含建構子（無參數）</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 不需要特別的初始化邏輯</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 屬性 Name 的初始值設為 &quot;Unknown&quot;</span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> Name = <span class="string">&quot;Unknown&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這個隱含建構子在實際情況中不需要我們手動寫出。只要類別內部沒有定義任何建構子，C# 編譯器就會自動生成這個無參數建構子。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/C/" rel="tag"># C#</a>
+              <a href="/apple.lily/tags/WebAPI/" rel="tag"># WebAPI</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/10/29/OneDayOneNote/2024-11-09/" rel="prev" title="2024-11-09 028_抽象類 與 接口類具體解釋">
+                  <i class="fa fa-angle-left"></i> 2024-11-09 028_抽象類 與 接口類具體解釋
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

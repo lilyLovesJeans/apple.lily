@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2024-11-06 025_在 ASP.NET Core 中實現 DDD（領域驅動設計）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024-11-06 025_在 ASP.NET Core 中實現 DDD（領域驅動設計）">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2024/10/29/OneDayOneNote/2024-11-06/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2024-11-06 025_在 ASP.NET Core 中實現 DDD（領域驅動設計）">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2024-10-28T16:44:04.000Z">
+<meta property="article:modified_time" content="2024-10-28T16:44:34.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="C#">
+<meta property="article:tag" content="WebAPI">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2024/10/29/OneDayOneNote/2024-11-06/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2024/10/29/OneDayOneNote/2024-11-06/","path":"2024/10/29/OneDayOneNote/2024-11-06/","title":"2024-11-06 025_在 ASP.NET Core 中實現 DDD（領域驅動設計）"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2024-11-06 025_在 ASP.NET Core 中實現 DDD（領域驅動設計） | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2024-11-06-025-%E5%9C%A8-ASP-NET-Core-%E4%B8%AD%E5%AF%A6%E7%8F%BE-DDD%EF%BC%88%E9%A0%98%E5%9F%9F%E9%A9%85%E5%8B%95%E8%A8%AD%E8%A8%88%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">2024-11-06 025_在 ASP.NET Core 中實現 DDD（領域驅動設計）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%83%85%E5%A2%83%E7%AF%84%E4%BE%8B%EF%BC%9A%E8%A8%82%E5%96%AE%E7%AE%A1%E7%90%86%E7%B3%BB%E7%B5%B1"><span class="nav-number">1.1.</span> <span class="nav-text">情境範例：訂單管理系統</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%88%86%E5%B1%A4%E6%9E%B6%E6%A7%8B%E6%A6%82%E8%BF%B0"><span class="nav-number">1.2.</span> <span class="nav-text">1. 分層架構概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%AF%A6%E9%AB%94%EF%BC%88Entity%EF%BC%89%E8%88%87%E5%80%BC%E7%89%A9%E4%BB%B6%EF%BC%88Value-Object%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">2. 實體（Entity）與值物件（Value Object）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Order-%E5%AF%A6%E9%AB%94%E7%AF%84%E4%BE%8B%EF%BC%9A"><span class="nav-number">1.3.1.</span> <span class="nav-text">Order 實體範例：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%87%89%E7%94%A8%E5%B1%A4%EF%BC%88Application-Layer%EF%BC%89"><span class="nav-number">1.4.</span> <span class="nav-text">3. 應用層（Application Layer）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%87%89%E7%94%A8%E6%9C%8D%E5%8B%99%E7%AF%84%E4%BE%8B%EF%BC%9A"><span class="nav-number">1.4.1.</span> <span class="nav-text">應用服務範例：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%9F%BA%E7%A4%8E%E8%A8%AD%E6%96%BD%E5%B1%A4%EF%BC%88Infrastructure-Layer%EF%BC%89"><span class="nav-number">1.5.</span> <span class="nav-text">4. 基礎設施層（Infrastructure Layer）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%98%E5%84%B2%E5%BA%AB%E5%AF%A6%E7%8F%BE%E7%AF%84%E4%BE%8B%EF%BC%9A"><span class="nav-number">1.5.1.</span> <span class="nav-text">存儲庫實現範例：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E4%BD%BF%E7%94%A8%E8%80%85%E4%BB%8B%E9%9D%A2%E5%B1%A4%EF%BC%88UI-Layer%EF%BC%89"><span class="nav-number">1.6.</span> <span class="nav-text">5. 使用者介面層（UI Layer）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E5%99%A8%E7%AF%84%E4%BE%8B%EF%BC%9A"><span class="nav-number">1.6.1.</span> <span class="nav-text">控制器範例：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%B5%90"><span class="nav-number">1.7.</span> <span class="nav-text">小結</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">250</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2024/10/29/OneDayOneNote/2024-11-06/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2024-11-06 025_在 ASP.NET Core 中實現 DDD（領域驅動設計） | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2024-11-06 025_在 ASP.NET Core 中實現 DDD（領域驅動設計）">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2024-11-06 025_在 ASP.NET Core 中實現 DDD（領域驅動設計）
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2024-10-29 00:44:04 / 修改時間：00:44:34" itemprop="dateCreated datePublished" datetime="2024-10-29T00:44:04+08:00">2024-10-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2024-11-06 025_在 ASP.NET Core 中實現 DDD（領域驅動設計）</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2024-11-06-025-在-ASP-NET-Core-中實現-DDD（領域驅動設計）"><a href="#2024-11-06-025-在-ASP-NET-Core-中實現-DDD（領域驅動設計）" class="headerlink" title="2024-11-06 025_在 ASP.NET Core 中實現 DDD（領域驅動設計）"></a>2024-11-06 025_在 ASP.NET Core 中實現 DDD（領域驅動設計）</h2><p>在 ASP.NET Core 中實現 DDD（領域驅動設計），我們可以通過分層架構來將系統中的各個領域邏輯與基礎設施分離。下面，我會用一個具體的情境來展示如何實現 DDD 原則。</p>
+<h3 id="情境範例：訂單管理系統"><a href="#情境範例：訂單管理系統" class="headerlink" title="情境範例：訂單管理系統"></a>情境範例：訂單管理系統</h3><p>假設我們正在開發一個簡單的訂單管理系統，主要負責處理訂單的創建、取消、更新等操作。</p>
+<h3 id="1-分層架構概述"><a href="#1-分層架構概述" class="headerlink" title="1. 分層架構概述"></a>1. <strong>分層架構概述</strong></h3><p>   DDD 的分層架構可以包括以下幾層：</p>
+<ul>
+<li><strong>領域層（Domain Layer）</strong>：這是業務邏輯所在的地方，處理與訂單有關的所有核心邏輯。</li>
+<li><strong>應用層（Application Layer）</strong>：負責協調應用程式的執行流程，不包含業務邏輯，只是調用領域層來執行具體邏輯。</li>
+<li><strong>基礎設施層（Infrastructure Layer）</strong>：負責資料庫訪問、第三方服務交互等技術細節。</li>
+<li><strong>使用者介面層（UI Layer）</strong>：包含控制器和 API 入口，處理請求和回應。</li>
+</ul>
+<h3 id="2-實體（Entity）與值物件（Value-Object）"><a href="#2-實體（Entity）與值物件（Value-Object）" class="headerlink" title="2. 實體（Entity）與值物件（Value Object）"></a>2. <strong>實體（Entity）與值物件（Value Object）</strong></h3><p>   在領域層中，我們定義了訂單（Order）這個實體。訂單包含唯一的訂單 ID，並且具有訂單狀態等屬性。另一個值物件可能是 <code>Money</code>，表示訂單的金額。</p>
+<h4 id="Order-實體範例："><a href="#Order-實體範例：" class="headerlink" title="Order 實體範例："></a><code>Order</code> 實體範例：</h4><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Order</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> Guid OrderId &#123; <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> DateTime CreatedAt &#123; <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> OrderStatus Status &#123; <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> Money TotalAmount &#123; <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 訂單的行為邏輯</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Cancel</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (Status == OrderStatus.Completed)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> InvalidOperationException(<span class="string">&quot;Completed orders cannot be cancelled.&quot;</span>);</span><br><span class="line">        </span><br><span class="line">        Status = OrderStatus.Cancelled;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Complete</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (Status == OrderStatus.Cancelled)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> InvalidOperationException(<span class="string">&quot;Cancelled orders cannot be completed.&quot;</span>);</span><br><span class="line">        </span><br><span class="line">        Status = OrderStatus.Completed;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 工廠方法來創建訂單</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Order <span class="title">Create</span>(<span class="params">Guid orderId, Money totalAmount</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Order</span><br><span class="line">        &#123;</span><br><span class="line">            OrderId = orderId,</span><br><span class="line">            CreatedAt = DateTime.UtcNow,</span><br><span class="line">            Status = OrderStatus.Pending,</span><br><span class="line">            TotalAmount = totalAmount</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="built_in">enum</span> OrderStatus</span><br><span class="line">&#123;</span><br><span class="line">    Pending,</span><br><span class="line">    Completed,</span><br><span class="line">    Cancelled</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Money</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">decimal</span> Amount &#123; <span class="keyword">get</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> Currency &#123; <span class="keyword">get</span>; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Money</span>(<span class="params"><span class="built_in">decimal</span> amount, <span class="built_in">string</span> currency</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        Amount = amount;</span><br><span class="line">        Currency = currency;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在這裡，我們定義了 <code>Order</code> 實體，其中包含訂單的核心屬性和行為，例如取消訂單、完成訂單等。<code>Money</code> 是一個值物件，用來表示訂單的金額，具有金額和貨幣屬性。</p>
+<h3 id="3-應用層（Application-Layer）"><a href="#3-應用層（Application-Layer）" class="headerlink" title="3. 應用層（Application Layer）"></a>3. <strong>應用層（Application Layer）</strong></h3><p>   應用層負責協調流程，它不包含業務邏輯，而是通過調用領域層的實體和服務來處理具體的業務操作。</p>
+<h4 id="應用服務範例："><a href="#應用服務範例：" class="headerlink" title="應用服務範例："></a>應用服務範例：</h4><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">OrderService</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> IOrderRepository _orderRepository;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">OrderService</span>(<span class="params">IOrderRepository orderRepository</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        _orderRepository = orderRepository;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">async</span> Task&lt;Guid&gt; <span class="title">CreateOrder</span>(<span class="params"><span class="built_in">decimal</span> amount, <span class="built_in">string</span> currency</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> order = Order.Create(Guid.NewGuid(), <span class="keyword">new</span> Money(amount, currency));</span><br><span class="line">        <span class="keyword">await</span> _orderRepository.AddAsync(order);</span><br><span class="line">        <span class="keyword">return</span> order.OrderId;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">async</span> Task <span class="title">CancelOrder</span>(<span class="params">Guid orderId</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> order = <span class="keyword">await</span> _orderRepository.GetByIdAsync(orderId);</span><br><span class="line">        order.Cancel();</span><br><span class="line">        <span class="keyword">await</span> _orderRepository.UpdateAsync(order);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">async</span> Task <span class="title">CompleteOrder</span>(<span class="params">Guid orderId</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> order = <span class="keyword">await</span> _orderRepository.GetByIdAsync(orderId);</span><br><span class="line">        order.Complete();</span><br><span class="line">        <span class="keyword">await</span> _orderRepository.UpdateAsync(order);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這個 <code>OrderService</code> 類別作為應用層的一部分，負責處理訂單的業務流程，但具體的業務邏輯由領域層的 <code>Order</code> 實體來執行。<code>IOrderRepository</code> 是一個存儲庫介面，處理數據存取的具體實現。</p>
+<h3 id="4-基礎設施層（Infrastructure-Layer）"><a href="#4-基礎設施層（Infrastructure-Layer）" class="headerlink" title="4. 基礎設施層（Infrastructure Layer）"></a>4. <strong>基礎設施層（Infrastructure Layer）</strong></h3><p>   基礎設施層負責實現資料庫訪問和其他技術細節，具體實現 <code>IOrderRepository</code>。</p>
+<h4 id="存儲庫實現範例："><a href="#存儲庫實現範例：" class="headerlink" title="存儲庫實現範例："></a>存儲庫實現範例：</h4><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IOrderRepository</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function">Task&lt;Order&gt; <span class="title">GetByIdAsync</span>(<span class="params">Guid orderId</span>)</span>;</span><br><span class="line">    <span class="function">Task <span class="title">AddAsync</span>(<span class="params">Order order</span>)</span>;</span><br><span class="line">    <span class="function">Task <span class="title">UpdateAsync</span>(<span class="params">Order order</span>)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">OrderRepository</span> : <span class="title">IOrderRepository</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> ApplicationDbContext _dbContext;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">OrderRepository</span>(<span class="params">ApplicationDbContext dbContext</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        _dbContext = dbContext;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">async</span> Task&lt;Order&gt; <span class="title">GetByIdAsync</span>(<span class="params">Guid orderId</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">await</span> _dbContext.Orders.FindAsync(orderId);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">async</span> Task <span class="title">AddAsync</span>(<span class="params">Order order</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">await</span> _dbContext.Orders.AddAsync(order);</span><br><span class="line">        <span class="keyword">await</span> _dbContext.SaveChangesAsync();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">async</span> Task <span class="title">UpdateAsync</span>(<span class="params">Order order</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        _dbContext.Orders.Update(order);</span><br><span class="line">        <span class="keyword">await</span> _dbContext.SaveChangesAsync();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這裡的 <code>OrderRepository</code> 使用 <code>Entity Framework Core</code> 作為數據訪問層，實現了 <code>IOrderRepository</code> 來處理訂單的存取和更新。</p>
+<h3 id="5-使用者介面層（UI-Layer）"><a href="#5-使用者介面層（UI-Layer）" class="headerlink" title="5. 使用者介面層（UI Layer）"></a>5. <strong>使用者介面層（UI Layer）</strong></h3><p>   在這一層，API 控制器負責處理 HTTP 請求，並調用應用層服務來執行操作。</p>
+<h4 id="控制器範例："><a href="#控制器範例：" class="headerlink" title="控制器範例："></a>控制器範例：</h4><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">ApiController</span>]</span><br><span class="line">[<span class="meta">Route(<span class="string">&quot;api/orders&quot;</span>)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">OrdersController</span> : <span class="title">ControllerBase</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> OrderService _orderService;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">OrdersController</span>(<span class="params">OrderService orderService</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        _orderService = orderService;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    [<span class="meta">HttpPost</span>]</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">async</span> Task&lt;IActionResult&gt; <span class="title">CreateOrder</span>(<span class="params"><span class="built_in">decimal</span> amount, <span class="built_in">string</span> currency</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> orderId = <span class="keyword">await</span> _orderService.CreateOrder(amount, currency);</span><br><span class="line">        <span class="keyword">return</span> Ok(orderId);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    [<span class="meta">HttpPost(<span class="string">&quot;&#123;orderId&#125;/cancel&quot;</span>)</span>]</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">async</span> Task&lt;IActionResult&gt; <span class="title">CancelOrder</span>(<span class="params">Guid orderId</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">await</span> _orderService.CancelOrder(orderId);</span><br><span class="line">        <span class="keyword">return</span> NoContent();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    [<span class="meta">HttpPost(<span class="string">&quot;&#123;orderId&#125;/complete&quot;</span>)</span>]</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">async</span> Task&lt;IActionResult&gt; <span class="title">CompleteOrder</span>(<span class="params">Guid orderId</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">await</span> _orderService.CompleteOrder(orderId);</span><br><span class="line">        <span class="keyword">return</span> NoContent();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這個 <code>OrdersController</code> 負責接收來自用戶的 HTTP 請求，並且通過 <code>OrderService</code> 來調用領域層中的業務邏輯。</p>
+<h3 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h3><ul>
+<li><strong>領域層</strong>：處理核心業務邏輯，確保所有業務規則在這裡實現。</li>
+<li><strong>應用層</strong>：協調業務流程，調用領域層來執行操作，不直接實現業務邏輯。</li>
+<li><strong>基礎設施層</strong>：處理資料庫交互，與外部服務的集成等技術細節。</li>
+<li><strong>使用者介面層</strong>：通過 API 控制器處理用戶請求，調用應用層進行業務操作。</li>
+</ul>
+<p>在這個例子中，通過使用 DDD 原則，我們將業務邏輯、數據訪問和應用程式邏輯明確地分離，實現了清晰的責任分層，使得系統更具可維護性和擴展性。</p>
+<p>這樣的架構模式有助於處理更複雜的業務需求，你可以依據具體的場景進一步擴展領域模型和服務。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/C/" rel="tag"># C#</a>
+              <a href="/apple.lily/tags/WebAPI/" rel="tag"># WebAPI</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/10/29/OneDayOneNote/2024-11-05/" rel="prev" title="2024-11-05 024_什麼是Docker">
+                  <i class="fa fa-angle-left"></i> 2024-11-05 024_什麼是Docker
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/10/29/OneDayOneNote/2024-11-07/" rel="next" title="2024-11-07 026_具體地說明「擴展困難」的情況">
+                  2024-11-07 026_具體地說明「擴展困難」的情況 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

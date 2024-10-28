@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2024-11-01 022_各種泛型集合類別">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024-11-01 022_各種泛型集合類別">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2024/10/29/OneDayOneNote/2024-11-01/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2024-11-01 022_各種泛型集合類別">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2024-10-28T16:30:41.000Z">
+<meta property="article:modified_time" content="2024-10-28T16:32:33.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="C#">
+<meta property="article:tag" content="WebAPI">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2024/10/29/OneDayOneNote/2024-11-01/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2024/10/29/OneDayOneNote/2024-11-01/","path":"2024/10/29/OneDayOneNote/2024-11-01/","title":"2024-11-01 022_各種泛型集合類別"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2024-11-01 022_各種泛型集合類別 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2024-11-01-022-%E5%90%84%E7%A8%AE%E6%B3%9B%E5%9E%8B%E9%9B%86%E5%90%88%E9%A1%9E%E5%88%A5"><span class="nav-number">1.</span> <span class="nav-text">2024-11-01 022_各種泛型集合類別</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E9%8C%84"><span class="nav-number">2.</span> <span class="nav-text">目錄</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Dictionary"><span class="nav-number">2.1.</span> <span class="nav-text">1. Dictionary&lt;TKey, TValue&gt;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-HashSet"><span class="nav-number">2.2.</span> <span class="nav-text">2. HashSet&lt;T&gt;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Queue"><span class="nav-number">2.3.</span> <span class="nav-text">3. Queue&lt;T&gt;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Stack"><span class="nav-number">2.4.</span> <span class="nav-text">4. Stack&lt;T&gt;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-LinkedList"><span class="nav-number">2.5.</span> <span class="nav-text">5. LinkedList&lt;T&gt;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-SortedList-%E5%92%8C-SortedDictionary"><span class="nav-number">2.6.</span> <span class="nav-text">6. SortedList&lt;TKey, TValue&gt; 和 SortedDictionary&lt;TKey, TValue&gt;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-SortedSet"><span class="nav-number">2.7.</span> <span class="nav-text">7. SortedSet&lt;T&gt;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-ObservableCollection"><span class="nav-number">2.8.</span> <span class="nav-text">8. ObservableCollection&lt;T&gt;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-Concurrent-Collections%EF%BC%88%E5%A6%82-ConcurrentDictionary%EF%BC%89"><span class="nav-number">2.9.</span> <span class="nav-text">9. Concurrent Collections（如 ConcurrentDictionary&lt;TKey, TValue&gt;）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-%E5%B0%8F%E7%B5%90"><span class="nav-number">2.10.</span> <span class="nav-text">10. 小結</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">250</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2024/10/29/OneDayOneNote/2024-11-01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2024-11-01 022_各種泛型集合類別 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2024-11-01 022_各種泛型集合類別">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2024-11-01 022_各種泛型集合類別
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2024-10-29 00:30:41 / 修改時間：00:32:33" itemprop="dateCreated datePublished" datetime="2024-10-29T00:30:41+08:00">2024-10-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2024-11-01 022_各種泛型集合類別</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2024-11-01-022-各種泛型集合類別"><a href="#2024-11-01-022-各種泛型集合類別" class="headerlink" title="2024-11-01 022_各種泛型集合類別"></a>2024-11-01 022_各種泛型集合類別</h2><p>當然，C# 中的泛型集合類別（Generic Collection Classes）非常豐富，不僅僅只有 <code>List&lt;T&gt;</code>。這些泛型集合提供了不同的資料結構和功能，適用於各種不同的編程需求。以下是一些常用的泛型集合類別，除了 <code>List&lt;T&gt;</code> 之外，還包括 <code>Dictionary&lt;TKey, TValue&gt;</code>、<code>HashSet&lt;T&gt;</code>、<code>Queue&lt;T&gt;</code>、<code>Stack&lt;T&gt;</code>、<code>LinkedList&lt;T&gt;</code> 等等。我們將一步步介紹這些集合的特性及其適用情境。</p>
+<hr>
+<h2 id="目錄"><a href="#目錄" class="headerlink" title="目錄"></a>目錄</h2><ol>
+<li><code>Dictionary&lt;TKey, TValue&gt;</code></li>
+<li><code>HashSet&lt;T&gt;</code></li>
+<li><code>Queue&lt;T&gt;</code></li>
+<li><code>Stack&lt;T&gt;</code></li>
+<li><code>LinkedList&lt;T&gt;</code></li>
+<li><code>SortedList&lt;TKey, TValue&gt;</code> 和 <code>SortedDictionary&lt;TKey, TValue&gt;</code></li>
+<li><code>SortedSet&lt;T&gt;</code></li>
+<li><code>ObservableCollection&lt;T&gt;</code></li>
+<li><code>Concurrent Collections</code>（如 <code>ConcurrentDictionary&lt;TKey, TValue&gt;</code>）</li>
+<li>小結</li>
+</ol>
+<hr>
+<h3 id="1-Dictionary"><a href="#1-Dictionary" class="headerlink" title="1. Dictionary&lt;TKey, TValue&gt;"></a>1. <code>Dictionary&lt;TKey, TValue&gt;</code></h3><p><strong>概述：</strong><br><code>Dictionary&lt;TKey, TValue&gt;</code> 是一種鍵值對（Key-Value Pair）的集合，允許根據鍵快速查找值。每個鍵在字典中是唯一的。</p>
+<p><strong>用途：</strong><br>適用於需要快速查找、添加和移除元素的情境，特別是當你需要根據特定鍵來存取資料時。</p>
+<p><strong>範例：</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 創建一個 Dictionary&lt;string, int&gt;</span></span><br><span class="line">        Dictionary&lt;<span class="built_in">string</span>, <span class="built_in">int</span>&gt; ages = <span class="keyword">new</span> Dictionary&lt;<span class="built_in">string</span>, <span class="built_in">int</span>&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 添加元素</span></span><br><span class="line">        ages.Add(<span class="string">&quot;Alice&quot;</span>, <span class="number">30</span>);</span><br><span class="line">        ages.Add(<span class="string">&quot;Bob&quot;</span>, <span class="number">25</span>);</span><br><span class="line">        ages.Add(<span class="string">&quot;Charlie&quot;</span>, <span class="number">35</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 訪問元素</span></span><br><span class="line">        <span class="built_in">int</span> aliceAge = ages[<span class="string">&quot;Alice&quot;</span>];</span><br><span class="line">        Console.WriteLine(<span class="string">$&quot;Alice 的年齡是 <span class="subst">&#123;aliceAge&#125;</span>&quot;</span>); <span class="comment">// 輸出: Alice 的年齡是 30</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 遍歷字典</span></span><br><span class="line">        <span class="keyword">foreach</span> (<span class="keyword">var</span> kvp <span class="keyword">in</span> ages)</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(<span class="string">$&quot;<span class="subst">&#123;kvp.Key&#125;</span> 的年齡是 <span class="subst">&#123;kvp.Value&#125;</span>&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>輸出：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Alice 的年齡是 30</span><br><span class="line">Alice 的年齡是 30</span><br><span class="line">Bob 的年齡是 25</span><br><span class="line">Charlie 的年齡是 35</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="2-HashSet"><a href="#2-HashSet" class="headerlink" title="2. HashSet&lt;T&gt;"></a>2. <code>HashSet&lt;T&gt;</code></h3><p><strong>概述：</strong><br><code>HashSet&lt;T&gt;</code> 是一種不允許重複元素的集合，主要用於儲存唯一的元素，並提供高效的查找、添加和移除操作。</p>
+<p><strong>用途：</strong><br>適用於需要確保元素唯一性或執行集合運算（如聯集、交集、差集）的情境。</p>
+<p><strong>範例：</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 創建一個 HashSet&lt;int&gt;</span></span><br><span class="line">        HashSet&lt;<span class="built_in">int</span>&gt; numbers = <span class="keyword">new</span> HashSet&lt;<span class="built_in">int</span>&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 添加元素</span></span><br><span class="line">        numbers.Add(<span class="number">1</span>);</span><br><span class="line">        numbers.Add(<span class="number">2</span>);</span><br><span class="line">        numbers.Add(<span class="number">3</span>);</span><br><span class="line">        <span class="built_in">bool</span> added = numbers.Add(<span class="number">2</span>); <span class="comment">// 嘗試添加重複元素</span></span><br><span class="line"></span><br><span class="line">        Console.WriteLine(<span class="string">$&quot;是否成功添加 2: <span class="subst">&#123;added&#125;</span>&quot;</span>); <span class="comment">// 輸出: 是否成功添加 2: False</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 遍歷 HashSet</span></span><br><span class="line">        <span class="keyword">foreach</span> (<span class="built_in">int</span> number <span class="keyword">in</span> numbers)</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(number);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>輸出：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">是否成功添加 2: False</span><br><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="3-Queue"><a href="#3-Queue" class="headerlink" title="3. Queue&lt;T&gt;"></a>3. <code>Queue&lt;T&gt;</code></h3><p><strong>概述：</strong><br><code>Queue&lt;T&gt;</code> 是一種先進先出（FIFO, First-In-First-Out）的集合，適用於需要按照元素加入順序處理的情境。</p>
+<p><strong>用途：</strong><br>常用於任務排程、廣度優先搜尋（BFS）等需要按順序處理元素的情境。</p>
+<p><strong>範例：</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 創建一個 Queue&lt;string&gt;</span></span><br><span class="line">        Queue&lt;<span class="built_in">string</span>&gt; tasks = <span class="keyword">new</span> Queue&lt;<span class="built_in">string</span>&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 添加元素</span></span><br><span class="line">        tasks.Enqueue(<span class="string">&quot;任務1&quot;</span>);</span><br><span class="line">        tasks.Enqueue(<span class="string">&quot;任務2&quot;</span>);</span><br><span class="line">        tasks.Enqueue(<span class="string">&quot;任務3&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 處理元素</span></span><br><span class="line">        <span class="keyword">while</span> (tasks.Count &gt; <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">string</span> currentTask = tasks.Dequeue();</span><br><span class="line">            Console.WriteLine(<span class="string">$&quot;處理 <span class="subst">&#123;currentTask&#125;</span>&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>輸出：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">處理 任務1</span><br><span class="line">處理 任務2</span><br><span class="line">處理 任務3</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="4-Stack"><a href="#4-Stack" class="headerlink" title="4. Stack&lt;T&gt;"></a>4. <code>Stack&lt;T&gt;</code></h3><p><strong>概述：</strong><br><code>Stack&lt;T&gt;</code> 是一種後進先出（LIFO, Last-In-First-Out）的集合，適用於需要反向處理元素的情境。</p>
+<p><strong>用途：</strong><br>常用於實現遞迴、處理撤銷操作（Undo）、解析表達式等需要反向處理的情境。</p>
+<p><strong>範例：</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 創建一個 Stack&lt;int&gt;</span></span><br><span class="line">        Stack&lt;<span class="built_in">int</span>&gt; numbers = <span class="keyword">new</span> Stack&lt;<span class="built_in">int</span>&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 添加元素</span></span><br><span class="line">        numbers.Push(<span class="number">1</span>);</span><br><span class="line">        numbers.Push(<span class="number">2</span>);</span><br><span class="line">        numbers.Push(<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 處理元素</span></span><br><span class="line">        <span class="keyword">while</span> (numbers.Count &gt; <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">int</span> currentNumber = numbers.Pop();</span><br><span class="line">            Console.WriteLine(<span class="string">$&quot;彈出 <span class="subst">&#123;currentNumber&#125;</span>&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>輸出：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">彈出 3</span><br><span class="line">彈出 2</span><br><span class="line">彈出 1</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="5-LinkedList"><a href="#5-LinkedList" class="headerlink" title="5. LinkedList&lt;T&gt;"></a>5. <code>LinkedList&lt;T&gt;</code></h3><p><strong>概述：</strong><br><code>LinkedList&lt;T&gt;</code> 是一種雙向鏈結串列，允許在任意位置高效地添加和移除元素。</p>
+<p><strong>用途：</strong><br>適用於需要頻繁在中間插入或刪除元素的情境，尤其是在不需要隨機存取的情況下。</p>
+<p><strong>範例：</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 創建一個 LinkedList&lt;string&gt;</span></span><br><span class="line">        LinkedList&lt;<span class="built_in">string</span>&gt; cities = <span class="keyword">new</span> LinkedList&lt;<span class="built_in">string</span>&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 添加元素</span></span><br><span class="line">        cities.AddLast(<span class="string">&quot;New York&quot;</span>);</span><br><span class="line">        cities.AddLast(<span class="string">&quot;Los Angeles&quot;</span>);</span><br><span class="line">        cities.AddFirst(<span class="string">&quot;Chicago&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 插入元素</span></span><br><span class="line">        LinkedListNode&lt;<span class="built_in">string</span>&gt; node = cities.Find(<span class="string">&quot;New York&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (node != <span class="literal">null</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            cities.AddBefore(node, <span class="string">&quot;Houston&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 遍歷 LinkedList</span></span><br><span class="line">        <span class="keyword">foreach</span> (<span class="built_in">string</span> city <span class="keyword">in</span> cities)</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(city);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>輸出：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Chicago</span><br><span class="line">Houston</span><br><span class="line">New York</span><br><span class="line">Los Angeles</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="6-SortedList-和-SortedDictionary"><a href="#6-SortedList-和-SortedDictionary" class="headerlink" title="6. SortedList&lt;TKey, TValue&gt; 和 SortedDictionary&lt;TKey, TValue&gt;"></a>6. <code>SortedList&lt;TKey, TValue&gt;</code> 和 <code>SortedDictionary&lt;TKey, TValue&gt;</code></h3><p><strong>概述：</strong></p>
+<ul>
+<li>**<code>SortedList&lt;TKey, TValue&gt;</code>**：基於鍵的排序，並且使用陣列實現，適合讀取操作多於寫入操作的情境。</li>
+<li>**<code>SortedDictionary&lt;TKey, TValue&gt;</code>**：基於樹結構實現，適合頻繁添加和刪除元素的情境。</li>
+</ul>
+<p><strong>用途：</strong><br>當需要根據鍵自動排序並快速查找元素時使用。</p>
+<p><strong>範例：<code>SortedDictionary&lt;TKey, TValue&gt;</code></strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 創建一個 SortedDictionary&lt;int, string&gt;</span></span><br><span class="line">        SortedDictionary&lt;<span class="built_in">int</span>, <span class="built_in">string</span>&gt; sortedDict = <span class="keyword">new</span> SortedDictionary&lt;<span class="built_in">int</span>, <span class="built_in">string</span>&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 添加元素</span></span><br><span class="line">        sortedDict.Add(<span class="number">3</span>, <span class="string">&quot;三&quot;</span>);</span><br><span class="line">        sortedDict.Add(<span class="number">1</span>, <span class="string">&quot;一&quot;</span>);</span><br><span class="line">        sortedDict.Add(<span class="number">2</span>, <span class="string">&quot;二&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 遍歷 SortedDictionary（按鍵排序）</span></span><br><span class="line">        <span class="keyword">foreach</span> (<span class="keyword">var</span> kvp <span class="keyword">in</span> sortedDict)</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(<span class="string">$&quot;鍵: <span class="subst">&#123;kvp.Key&#125;</span>, 值: <span class="subst">&#123;kvp.Value&#125;</span>&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>輸出：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">鍵: 1, 值: 一</span><br><span class="line">鍵: 2, 值: 二</span><br><span class="line">鍵: 3, 值: 三</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="7-SortedSet"><a href="#7-SortedSet" class="headerlink" title="7. SortedSet&lt;T&gt;"></a>7. <code>SortedSet&lt;T&gt;</code></h3><p><strong>概述：</strong><br><code>SortedSet&lt;T&gt;</code> 是一種自動排序且不允許重複元素的集合，基於紅黑樹實現。</p>
+<p><strong>用途：</strong><br>適用於需要儲存唯一元素並保持排序的情境，並且支持高效的集合運算（如聯集、交集）。</p>
+<p><strong>範例：</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 創建一個 SortedSet&lt;int&gt;</span></span><br><span class="line">        SortedSet&lt;<span class="built_in">int</span>&gt; numbers = <span class="keyword">new</span> SortedSet&lt;<span class="built_in">int</span>&gt; &#123; <span class="number">5</span>, <span class="number">3</span>, <span class="number">8</span>, <span class="number">1</span>, <span class="number">2</span> &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 添加元素</span></span><br><span class="line">        numbers.Add(<span class="number">4</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 嘗試添加重複元素</span></span><br><span class="line">        <span class="built_in">bool</span> added = numbers.Add(<span class="number">3</span>); <span class="comment">// 不會添加成功</span></span><br><span class="line"></span><br><span class="line">        Console.WriteLine(<span class="string">$&quot;是否成功添加 3: <span class="subst">&#123;added&#125;</span>&quot;</span>); <span class="comment">// 輸出: 是否成功添加 3: False</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 遍歷 SortedSet（自動排序）</span></span><br><span class="line">        <span class="keyword">foreach</span> (<span class="built_in">int</span> number <span class="keyword">in</span> numbers)</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(number);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>輸出：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">是否成功添加 3: False</span><br><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">8</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="8-ObservableCollection"><a href="#8-ObservableCollection" class="headerlink" title="8. ObservableCollection&lt;T&gt;"></a>8. <code>ObservableCollection&lt;T&gt;</code></h3><p><strong>概述：</strong><br><code>ObservableCollection&lt;T&gt;</code> 是一種特殊的集合，當集合中的元素發生變化（添加、移除）時，會發出通知。常用於資料綁定（Data Binding）場景，如 WPF 或 Xamarin 應用程式。</p>
+<p><strong>用途：</strong><br>適用於需要監聽集合變化並自動更新 UI 的情境。</p>
+<p><strong>範例：</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.ObjectModel;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Specialized;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 創建一個 ObservableCollection&lt;string&gt;</span></span><br><span class="line">        ObservableCollection&lt;<span class="built_in">string</span>&gt; fruits = <span class="keyword">new</span> ObservableCollection&lt;<span class="built_in">string</span>&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 訂閱 CollectionChanged 事件</span></span><br><span class="line">        fruits.CollectionChanged += Fruits_CollectionChanged;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 添加元素</span></span><br><span class="line">        fruits.Add(<span class="string">&quot;Apple&quot;</span>);</span><br><span class="line">        fruits.Add(<span class="string">&quot;Banana&quot;</span>);</span><br><span class="line">        fruits.Remove(<span class="string">&quot;Apple&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Fruits_CollectionChanged</span>(<span class="params"><span class="built_in">object</span> sender, NotifyCollectionChangedEventArgs e</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (e.Action == NotifyCollectionChangedAction.Add)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">foreach</span> (<span class="built_in">string</span> newItem <span class="keyword">in</span> e.NewItems)</span><br><span class="line">            &#123;</span><br><span class="line">                Console.WriteLine(<span class="string">$&quot;添加: <span class="subst">&#123;newItem&#125;</span>&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (e.Action == NotifyCollectionChangedAction.Remove)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">foreach</span> (<span class="built_in">string</span> oldItem <span class="keyword">in</span> e.OldItems)</span><br><span class="line">            &#123;</span><br><span class="line">                Console.WriteLine(<span class="string">$&quot;移除: <span class="subst">&#123;oldItem&#125;</span>&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>輸出：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">添加: Apple</span><br><span class="line">添加: Banana</span><br><span class="line">移除: Apple</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="9-Concurrent-Collections（如-ConcurrentDictionary）"><a href="#9-Concurrent-Collections（如-ConcurrentDictionary）" class="headerlink" title="9. Concurrent Collections（如 ConcurrentDictionary&lt;TKey, TValue&gt;）"></a>9. <code>Concurrent Collections</code>（如 <code>ConcurrentDictionary&lt;TKey, TValue&gt;</code>）</h3><p><strong>概述：</strong><br><code>Concurrent Collections</code> 是一組為多線程環境設計的集合類別，提供線程安全的操作。常見的有 <code>ConcurrentDictionary&lt;TKey, TValue&gt;</code>、<code>ConcurrentBag&lt;T&gt;</code>、<code>ConcurrentQueue&lt;T&gt;</code> 等。</p>
+<p><strong>用途：</strong><br>適用於需要在多線程環境下安全地存取和修改集合的情境，避免競爭條件（Race Conditions）。</p>
+<p><strong>範例：<code>ConcurrentDictionary&lt;TKey, TValue&gt;</code></strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Concurrent;</span><br><span class="line"><span class="keyword">using</span> System.Threading.Tasks;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 創建一個 ConcurrentDictionary&lt;string, int&gt;</span></span><br><span class="line">        ConcurrentDictionary&lt;<span class="built_in">string</span>, <span class="built_in">int</span>&gt; concurrentDict = <span class="keyword">new</span> ConcurrentDictionary&lt;<span class="built_in">string</span>, <span class="built_in">int</span>&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 使用多線程添加元素</span></span><br><span class="line">        Parallel.For(<span class="number">0</span>, <span class="number">1000</span>, i =&gt;</span><br><span class="line">        &#123;</span><br><span class="line">            concurrentDict.TryAdd(<span class="string">$&quot;Key<span class="subst">&#123;i&#125;</span>&quot;</span>, i);</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        Console.WriteLine(<span class="string">$&quot;字典中有 <span class="subst">&#123;concurrentDict.Count&#125;</span> 個元素&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>輸出：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">字典中有 1000 個元素</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="10-小結"><a href="#10-小結" class="headerlink" title="10. 小結"></a>10. 小結</h3><p>C# 提供了豐富的泛型集合類別，每種類型都有其特定的用途和優勢。以下是各主要泛型集合類別的快速比較：</p>
+<table>
+<thead>
+<tr>
+<th>集合類別</th>
+<th>特性</th>
+<th>適用情境</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>List&lt;T&gt;</code></td>
+<td>動態大小、快速隨機存取</td>
+<td>一般用途，需要頻繁添加和訪問元素</td>
+</tr>
+<tr>
+<td><code>Dictionary&lt;TKey, TValue&gt;</code></td>
+<td>鍵值對、快速查找</td>
+<td>根據鍵存取值，需要唯一鍵</td>
+</tr>
+<tr>
+<td><code>HashSet&lt;T&gt;</code></td>
+<td>唯一元素、快速查找、集合運算</td>
+<td>需要確保元素唯一性，執行聯集、交集等集合運算</td>
+</tr>
+<tr>
+<td><code>Queue&lt;T&gt;</code></td>
+<td>FIFO（先進先出）</td>
+<td>任務排程、廣度優先搜尋等按順序處理元素的情境</td>
+</tr>
+<tr>
+<td><code>Stack&lt;T&gt;</code></td>
+<td>LIFO（後進先出）</td>
+<td>實現遞迴、處理撤銷操作等需要反向處理的情境</td>
+</tr>
+<tr>
+<td><code>LinkedList&lt;T&gt;</code></td>
+<td>雙向鏈結、快速插入和移除元素</td>
+<td>頻繁在中間插入或刪除元素，不需要隨機存取</td>
+</tr>
+<tr>
+<td><code>SortedList&lt;TKey, TValue&gt;</code></td>
+<td>鍵排序、基於陣列實現</td>
+<td>需要根據鍵排序且讀取操作多於寫入操作的情境</td>
+</tr>
+<tr>
+<td><code>SortedDictionary&lt;TKey, TValue&gt;</code></td>
+<td>鍵排序、基於樹結構實現</td>
+<td>需要根據鍵排序且頻繁添加和刪除元素的情境</td>
+</tr>
+<tr>
+<td><code>SortedSet&lt;T&gt;</code></td>
+<td>自動排序、唯一元素、集合運算</td>
+<td>需要儲存唯一且自動排序的元素，支持集合運算</td>
+</tr>
+<tr>
+<td><code>ObservableCollection&lt;T&gt;</code></td>
+<td>集合變化通知</td>
+<td>資料綁定場景，如 WPF、Xamarin，需監聽集合變化</td>
+</tr>
+<tr>
+<td><code>ConcurrentDictionary&lt;TKey, TValue&gt;</code></td>
+<td>線程安全、適用於多線程環境</td>
+<td>多線程環境下需要安全存取和修改字典的情境</td>
+</tr>
+</tbody></table>
+<p>選擇適合的泛型集合類別能夠顯著提高程式的效率和可讀性。根據你的具體需求選擇合適的集合類型，能讓你的程式碼更加優雅和高效。</p>
+<p>如果你對某個特定的泛型集合類別有更多的疑問或需要更詳細的範例，請隨時告訴我！</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/C/" rel="tag"># C#</a>
+              <a href="/apple.lily/tags/WebAPI/" rel="tag"># WebAPI</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/10/29/OneDayOneNote/2024-10-31/" rel="prev" title="2024-10-31 021_Ccharp變數的型別">
+                  <i class="fa fa-angle-left"></i> 2024-10-31 021_Ccharp變數的型別
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/10/29/OneDayOneNote/2024-11-02/" rel="next" title="2024-11-02 022-01_Ccharp從最基本的編程概念到面向物件程式設計">
+                  2024-11-02 022-01_Ccharp從最基本的編程概念到面向物件程式設計 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

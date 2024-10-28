@@ -1,0 +1,256 @@
+<hr>
+<h2 id="title-2024-10-30-020-SOLID-原則date-2024-10-29-00-27-35categories-OneDayOneNotetags-C-WebAPI-description-2024-10-30-020-SOLID-原則"><a href="#title-2024-10-30-020-SOLID-原則date-2024-10-29-00-27-35categories-OneDayOneNotetags-C-WebAPI-description-2024-10-30-020-SOLID-原則" class="headerlink" title="title: 2024-10-30 020_SOLID 原則date: 2024-10-29 00:27:35categories: OneDayOneNotetags:  [C#, WebAPI ]description:  2024-10-30 020_SOLID 原則"></a>title: 2024-10-30 020_SOLID 原則<br>date: 2024-10-29 00:27:35<br>categories: OneDayOneNote<br>tags:  [C#, WebAPI ]<br>description:  2024-10-30 020_SOLID 原則</h2><h2 id="2024-10-30-020-SOLID-原則"><a href="#2024-10-30-020-SOLID-原則" class="headerlink" title="2024-10-30 020_SOLID 原則"></a>2024-10-30 020_SOLID 原則</h2><p>當然可以！SOLID 原則是面向對象設計中非常重要的一組設計原則，旨在提高軟體系統的可維護性、可擴展性和靈活性。這些原則由 Robert C. Martin 提出，並被廣泛應用於軟體開發中。SOLID 是這五個原則的首字母縮略詞，分別代表：</p>
+<ol>
+<li><strong>單一職責原則 (Single Responsibility Principle, SRP)</strong></li>
+<li><strong>開放封閉原則 (Open&#x2F;Closed Principle, OCP)</strong></li>
+<li><strong>里氏替換原則 (Liskov Substitution Principle, LSP)</strong></li>
+<li><strong>接口隔離原則 (Interface Segregation Principle, ISP)</strong></li>
+<li><strong>依賴倒置原則 (Dependency Inversion Principle, DIP)</strong></li>
+</ol>
+<p>以下是每個原則的詳細說明：</p>
+<hr>
+<h2 id="1-單一職責原則-Single-Responsibility-Principle-SRP"><a href="#1-單一職責原則-Single-Responsibility-Principle-SRP" class="headerlink" title="1. 單一職責原則 (Single Responsibility Principle, SRP)"></a>1. 單一職責原則 (Single Responsibility Principle, SRP)</h2><p><strong>定義：</strong><br>一個類應該只有一個改變的原因，即該類只應該有一個職責（Responsibility）。</p>
+<p><strong>解釋：</strong><br>這意味著每個類應該專注於完成一項具體的功能，避免一個類承擔過多的職責，從而導致代碼難以維護和測試。</p>
+<p><strong>示例：</strong></p>
+<pre><code class="csharp">// 不符合 SRP 的類
+public class Report
+{
+    public void GenerateReport() { /* 生成報告的邏輯 */ }
+    public void SaveReportToFile(string path) { /* 保存報告到文件的邏輯 */ }
+    public void SendReportByEmail(string email) { /* 發送報告的邏輯 */ }
+}
+
+// 符合 SRP 的類
+public class ReportGenerator
+{
+    public void GenerateReport() { /* 生成報告的邏輯 */ }
+}
+
+public class ReportSaver
+{
+    public void SaveReportToFile(string path) { /* 保存報告到文件的邏輯 */ }
+}
+
+public class ReportSender
+{
+    public void SendReportByEmail(string email) { /* 發送報告的邏輯 */ }
+}
+</code></pre>
+<hr>
+<h2 id="2-開放封閉原則-Open-Closed-Principle-OCP"><a href="#2-開放封閉原則-Open-Closed-Principle-OCP" class="headerlink" title="2. 開放封閉原則 (Open&#x2F;Closed Principle, OCP)"></a>2. 開放封閉原則 (Open&#x2F;Closed Principle, OCP)</h2><p><strong>定義：</strong><br>軟體實體（類、模組、函數等）應該對擴展開放，對修改封閉。</p>
+<p><strong>解釋：</strong><br>當需求變更時，我們應該能夠通過添加新代碼來擴展功能，而不需要修改現有的代碼。這可以通過繼承和接口來實現，從而減少因修改現有代碼而引入的錯誤風險。</p>
+<p><strong>示例：</strong></p>
+<pre><code class="csharp">// 不符合 OCP 的類
+public class AreaCalculator
+{
+    public double CalculateArea(object shape)
+    {
+        if (shape is Circle)
+        {
+            Circle circle = (Circle)shape;
+            return Math.PI * circle.Radius * circle.Radius;
+        }
+        else if (shape is Rectangle)
+        {
+            Rectangle rectangle = (Rectangle)shape;
+            return rectangle.Length * rectangle.Width;
+        }
+        // 每新增一種形狀都需要修改這裡
+        throw new NotSupportedException(&quot;Shape not supported&quot;);
+    }
+}
+
+// 符合 OCP 的類
+public interface IShape
+{
+    double CalculateArea();
+}
+
+public class Circle : IShape
+{
+    public double Radius { get; set; }
+    public double CalculateArea()
+    {
+        return Math.PI * Radius * Radius;
+    }
+}
+
+public class Rectangle : IShape
+{
+    public double Length { get; set; }
+    public double Width { get; set; }
+    public double CalculateArea()
+    {
+        return Length * Width;
+    }
+}
+
+public class AreaCalculator
+{
+    public double CalculateArea(IShape shape)
+    {
+        return shape.CalculateArea();
+    }
+}
+</code></pre>
+<hr>
+<h2 id="3-里氏替換原則-Liskov-Substitution-Principle-LSP"><a href="#3-里氏替換原則-Liskov-Substitution-Principle-LSP" class="headerlink" title="3. 里氏替換原則 (Liskov Substitution Principle, LSP)"></a>3. 里氏替換原則 (Liskov Substitution Principle, LSP)</h2><p><strong>定義：</strong><br>子類別的實例應該能夠替換掉其基類別的實例，且不會改變程式的正確性。</p>
+<p><strong>解釋：</strong><br>這意味著子類別應該完全兼容其基類別，並且不應該破壞基類別的行為或預期。子類別應該能夠執行基類別所能執行的所有操作，並保持一致的行為。</p>
+<p><strong>示例：</strong></p>
+<pre><code class="csharp">// 不符合 LSP 的類
+public class Rectangle
+{
+    public virtual double Width { get; set; }
+    public virtual double Height { get; set; }
+
+    public double GetArea()
+    {
+        return Width * Height;
+    }
+}
+
+public class Square : Rectangle
+{
+    public override double Width
+    {
+        set { base.Width = base.Height = value; }
+    }
+
+    public override double Height
+    {
+        set { base.Width = base.Height = value; }
+    }
+}
+
+// 符合 LSP 的類
+public abstract class Shape
+{
+    public abstract double GetArea();
+}
+
+public class Rectangle : Shape
+{
+    public double Width { get; set; }
+    public double Height { get; set; }
+
+    public override double GetArea()
+    {
+        return Width * Height;
+    }
+}
+
+public class Square : Shape
+{
+    public double Side { get; set; }
+
+    public override double GetArea()
+    {
+        return Side * Side;
+    }
+}
+</code></pre>
+<hr>
+<h2 id="4-接口隔離原則-Interface-Segregation-Principle-ISP"><a href="#4-接口隔離原則-Interface-Segregation-Principle-ISP" class="headerlink" title="4. 接口隔離原則 (Interface Segregation Principle, ISP)"></a>4. 接口隔離原則 (Interface Segregation Principle, ISP)</h2><p><strong>定義：</strong><br>客戶端不應該被迫依賴它們不使用的方法。即，接口應該專一且精簡，每個接口應該只包含客戶端所需的方法。</p>
+<p><strong>解釋：</strong><br>避免創建過於龐大和笨重的接口，而應該將其拆分為多個專一的接口。這樣可以提高代碼的靈活性和可維護性，並減少類別之間的耦合。</p>
+<p><strong>示例：</strong></p>
+<pre><code class="csharp">// 不符合 ISP 的接口
+public interface IMultiFunctionDevice
+{
+    void Print(Document document);
+    void Fax(Document document);
+    void Scan(Document document);
+}
+
+// 符合 ISP 的接口
+public interface IPrinter
+{
+    void Print(Document document);
+}
+
+public interface IFax
+{
+    void Fax(Document document);
+}
+
+public interface IScanner
+{
+    void Scan(Document document);
+}
+
+// 實現類只依賴它需要的接口
+public class MultiFunctionPrinter : IPrinter, IFax, IScanner
+{
+    public void Print(Document document) { /* 打印邏輯 */ }
+    public void Fax(Document document) { /* 傳真邏輯 */ }
+    public void Scan(Document document) { /* 掃描邏輯 */ }
+}
+
+public class SimplePrinter : IPrinter
+{
+    public void Print(Document document) { /* 打印邏輯 */ }
+}
+</code></pre>
+<hr>
+<h2 id="5-依賴倒置原則-Dependency-Inversion-Principle-DIP"><a href="#5-依賴倒置原則-Dependency-Inversion-Principle-DIP" class="headerlink" title="5. 依賴倒置原則 (Dependency Inversion Principle, DIP)"></a>5. 依賴倒置原則 (Dependency Inversion Principle, DIP)</h2><p><strong>定義：</strong><br>高層模組不應該依賴於低層模組，兩者都應該依賴於抽象（接口或抽象類別）。抽象不應該依賴於細節，細節應該依賴於抽象。</p>
+<p><strong>解釋：</strong><br>這個原則強調的是依賴關係的反轉，通過引入抽象層來減少模組之間的耦合，從而提高系統的靈活性和可維護性。</p>
+<p><strong>示例：</strong></p>
+<pre><code class="csharp">// 不符合 DIP 的類
+public class LightBulb
+{
+    public void TurnOn() { /* 打開燈泡 */ }
+    public void TurnOff() { /* 關閉燈泡 */ }
+}
+
+public class Switch
+{
+    private LightBulb _lightBulb;
+
+    public Switch(LightBulb lightBulb)
+    {
+        _lightBulb = lightBulb;
+    }
+
+    public void Operate()
+    {
+        _lightBulb.TurnOn();
+    }
+}
+
+// 符合 DIP 的類
+public interface ISwitchable
+{
+    void TurnOn();
+    void TurnOff();
+}
+
+public class LightBulb : ISwitchable
+{
+    public void TurnOn() { /* 打開燈泡 */ }
+    public void TurnOff() { /* 關閉燈泡 */ }
+}
+
+public class Switch
+{
+    private ISwitchable _device;
+
+    public Switch(ISwitchable device)
+    {
+        _device = device;
+    }
+
+    public void Operate()
+    {
+        _device.TurnOn();
+    }
+}
+</code></pre>
+<hr>
+<h2 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h2><p>SOLID 原則為面向對象設計提供了一套指導方針，有助於開發出高質量、可維護和可擴展的軟體系統。以下是每個原則的核心價值：</p>
+<ol>
+<li>**單一職責原則 (SRP)**：確保類別有且只有一個職責，提高代碼的可維護性。</li>
+<li>**開放封閉原則 (OCP)**：允許系統在不修改現有代碼的情況下擴展新功能，提高靈活性。</li>
+<li>**里氏替換原則 (LSP)**：確保子類別可以替代基類別而不改變程序的正確性，增強系統的穩定性。</li>
+<li>**接口隔離原則 (ISP)**：避免創建龐大的接口，確保類別只依賴於它們需要的功能，提高代碼的靈活性。</li>
+<li>**依賴倒置原則 (DIP)**：通過依賴抽象來減少模組之間的耦合，提高系統的可維護性和可測試性。</li>
+</ol>
+<p>掌握並應用 SOLID 原則，能夠幫助開發者設計出更加健壯和靈活的軟體系統。如果您有更多關於 SOLID 原則的問題或需要進一步的示例，請隨時告訴我！</p>

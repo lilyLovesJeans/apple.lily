@@ -1,0 +1,63 @@
+<hr>
+<h2 id="title-2024-11-10-029-建構子的演進date-2024-10-29-00-48-36categories-OneDayOneNotetags-C-WebAPI-description-2024-11-10-029-建構子的演進"><a href="#title-2024-11-10-029-建構子的演進date-2024-10-29-00-48-36categories-OneDayOneNotetags-C-WebAPI-description-2024-11-10-029-建構子的演進" class="headerlink" title="title: 2024-11-10 029_建構子的演進date: 2024-10-29 00:48:36categories: OneDayOneNotetags:  [C#, WebAPI ]description:  2024-11-10 029_建構子的演進"></a>title: 2024-11-10 029_建構子的演進<br>date: 2024-10-29 00:48:36<br>categories: OneDayOneNote<br>tags:  [C#, WebAPI ]<br>description:  2024-11-10 029_建構子的演進</h2><h2 id="2024-11-10-029-建構子的演進"><a href="#2024-11-10-029-建構子的演進" class="headerlink" title="2024-11-10 029_建構子的演進"></a>2024-11-10 029_建構子的演進</h2><p>在這裡 <code>new CreditCardPayment()</code> 後的括號 <code>()</code> 是用來呼叫 <code>CreditCardPayment</code> 類別的**建構子 (constructor)**。</p>
+<h3 id="為什麼需要-括號"><a href="#為什麼需要-括號" class="headerlink" title="為什麼需要 () 括號"></a>為什麼需要 <code>()</code> 括號</h3><ul>
+<li><p><strong>呼叫建構子</strong>：當你寫 <code>new CreditCardPayment()</code>，<code>()</code> 表示呼叫這個類別的建構子。建構子是一個特殊的方法，會在物件被創建時自動執行，用於初始化物件的狀態。</p>
+</li>
+<li><p><strong>初始化過程</strong>：若 <code>CreditCardPayment</code> 類別中有自訂的建構子，或即使沒有自訂建構子，C# 也會有一個<strong>隱含的無參數建構子</strong>，即空參數的 <code>CreditCardPayment()</code>。這樣的呼叫表示創建類別的實例並且執行基礎的初始化。</p>
+</li>
+</ul>
+<p>在 <code>new CreditCardPayment()</code> 中，<code>()</code> 不僅是語法上的要求，也表達了對物件初始化的需求。如果類別中有其他參數化的建構子，例如 <code>CreditCardPayment(int accountId)</code>，則必須提供相應的參數才能創建該類型的實例。</p>
+<p>呼叫建構子 (Calling a Constructor) 是指在創建物件時，自動執行該類別的<strong>建構子方法</strong>以初始化物件的狀態。建構子是一種特殊的方法，用來設定物件初始值或進行必要的初始化工作，以便物件能夠正常運行。</p>
+<h3 id="什麼是建構子？"><a href="#什麼是建構子？" class="headerlink" title="什麼是建構子？"></a>什麼是建構子？</h3><p>建構子 (Constructor) 是一個和類別同名的方法，且<strong>沒有回傳值</strong>。在 C# 中，當你使用 <code>new</code> 關鍵字創建一個物件時，這個建構子就會被呼叫。</p>
+<h3 id="建構子的用途"><a href="#建構子的用途" class="headerlink" title="建構子的用途"></a>建構子的用途</h3><ul>
+<li><strong>初始化物件屬性</strong>：可以用來設定物件的初始屬性值。</li>
+<li><strong>依賴注入</strong>：可以用來接收參數，將外部依賴注入到物件中。</li>
+<li><strong>設定預設值或執行初始邏輯</strong>：例如開啟檔案、建立資料庫連線等等。</li>
+</ul>
+<h3 id="例子：建構子的基本使用"><a href="#例子：建構子的基本使用" class="headerlink" title="例子：建構子的基本使用"></a>例子：建構子的基本使用</h3><p>以下是帶有建構子的簡單範例：</p>
+<pre><code class="csharp">public class Person
+{
+    public string Name;
+    public int Age;
+
+    // 這是一個建構子
+    public Person(string name, int age)
+    {
+        Name = name; // 將參數 name 設定給屬性 Name
+        Age = age;   // 將參數 age 設定給屬性 Age
+    }
+}
+
+// 呼叫建構子來創建 Person 物件
+Person person = new Person(&quot;Alice&quot;, 30); // 呼叫建構子並傳入 &quot;Alice&quot; 和 30
+</code></pre>
+<h3 id="呼叫建構子的過程"><a href="#呼叫建構子的過程" class="headerlink" title="呼叫建構子的過程"></a>呼叫建構子的過程</h3><ol>
+<li><strong>使用 <code>new</code> 關鍵字</strong>：<code>new</code> 關鍵字會創建 <code>Person</code> 類別的新物件，並在該物件上呼叫 <code>Person</code> 類別的建構子。</li>
+<li><strong>傳遞參數</strong>：<code>new Person(&quot;Alice&quot;, 30)</code> 會將 <code>&quot;Alice&quot;</code> 和 <code>30</code> 傳入建構子，並將這些值分別賦予 <code>Name</code> 和 <code>Age</code> 屬性。</li>
+<li><strong>返回物件</strong>：建構子執行完後，<code>person</code> 變數會指向新創建並初始化的 <code>Person</code> 物件。</li>
+</ol>
+<h3 id="沒有參數的建構子"><a href="#沒有參數的建構子" class="headerlink" title="沒有參數的建構子"></a>沒有參數的建構子</h3><p>如果類別內沒有自訂建構子，C# 會自動提供一個<strong>無參數建構子</strong>：</p>
+<pre><code class="csharp">public class Person
+{
+    public string Name = &quot;Unknown&quot;;
+}
+
+// 無參數建構子會自動被呼叫
+Person person = new Person(); // 使用內建的無參數建構子
+Console.WriteLine(person.Name); // Output: Unknown
+</code></pre>
+<p>在這個例子中，<code>Person</code> 類別沒有建構子，所以當呼叫 <code>new Person()</code> 時，C# 提供了一個隱含的無參數建構子，並將 <code>Name</code> 的初始值設為 <code>&quot;Unknown&quot;</code>。</p>
+<p>接近了！在這段範例中，隱含建構子的寫法其實是這樣的：</p>
+<pre><code class="csharp">public class Person
+{
+    // 隱含建構子（無參數）
+    public Person()
+    {
+        // 不需要特別的初始化邏輯
+    }
+
+    // 屬性 Name 的初始值設為 &quot;Unknown&quot;
+    public string Name = &quot;Unknown&quot;;
+}
+</code></pre>
+<p>這個隱含建構子在實際情況中不需要我們手動寫出。只要類別內部沒有定義任何建構子，C# 編譯器就會自動生成這個無參數建構子。</p>

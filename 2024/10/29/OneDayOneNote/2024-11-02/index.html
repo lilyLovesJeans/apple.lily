@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2024-11-02 022-01_Ccharp從最基本的編程概念到面向物件程式設計">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024-11-02 022-01_Ccharp從最基本的編程概念到面向物件程式設計">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2024/10/29/OneDayOneNote/2024-11-02/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2024-11-02 022-01_Ccharp從最基本的編程概念到面向物件程式設計">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2024-10-28T16:38:42.000Z">
+<meta property="article:modified_time" content="2024-10-28T16:39:18.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="C#">
+<meta property="article:tag" content="WebAPI">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2024/10/29/OneDayOneNote/2024-11-02/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2024/10/29/OneDayOneNote/2024-11-02/","path":"2024/10/29/OneDayOneNote/2024-11-02/","title":"2024-11-02 022-01_Ccharp從最基本的編程概念到面向物件程式設計"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2024-11-02 022-01_Ccharp從最基本的編程概念到面向物件程式設計 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2024-11-02-022-01-Ccharp%E5%BE%9E%E6%9C%80%E5%9F%BA%E6%9C%AC%E7%9A%84%E7%B7%A8%E7%A8%8B%E6%A6%82%E5%BF%B5%E5%88%B0%E9%9D%A2%E5%90%91%E7%89%A9%E4%BB%B6%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88"><span class="nav-number">1.</span> <span class="nav-text">2024-11-02 022-01_Ccharp從最基本的編程概念到面向物件程式設計</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E9%8C%84"><span class="nav-number">2.</span> <span class="nav-text">目錄</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E7%A8%8B%E5%BA%8F%E5%BC%8F%E7%B7%A8%E7%A8%8B%E7%9A%84%E5%9F%BA%E7%A4%8E"><span class="nav-number">3.</span> <span class="nav-text">1. 程序式編程的基礎</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AF%84%E4%BE%8B%EF%BC%9A%E7%B0%A1%E5%96%AE%E7%9A%84%E7%A8%8B%E5%BA%8F%E5%BC%8F%E4%BB%A3%E7%A2%BC"><span class="nav-number">3.1.</span> <span class="nav-text">範例：簡單的程序式代碼</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E7%A8%8B%E5%BA%8F%E5%BC%8F%E7%B7%A8%E7%A8%8B%E7%9A%84%E9%99%90%E5%88%B6"><span class="nav-number">4.</span> <span class="nav-text">2. 程序式編程的限制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AF%84%E4%BE%8B%EF%BC%9A%E4%BB%A3%E7%A2%BC%E9%87%8D%E7%94%A8%E5%9B%B0%E9%9B%A3"><span class="nav-number">4.1.</span> <span class="nav-text">範例：代碼重用困難</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%BC%95%E5%85%A5%E9%A1%9E%E5%88%A5%E8%88%87%E7%89%A9%E4%BB%B6"><span class="nav-number">5.</span> <span class="nav-text">3. 引入類別與物件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%9E%E5%88%A5%E8%88%87%E7%89%A9%E4%BB%B6%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">5.1.</span> <span class="nav-text">類別與物件的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%82%BA%E4%BB%80%E9%BA%BC%E4%BD%BF%E7%94%A8%E9%A1%9E%E5%88%A5%EF%BC%9F"><span class="nav-number">5.2.</span> <span class="nav-text">為什麼使用類別？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AF%84%E4%BE%8B%EF%BC%9A%E8%BD%89%E6%8F%9B%E7%82%BA%E9%A1%9E%E5%88%A5"><span class="nav-number">5.3.</span> <span class="nav-text">範例：轉換為類別</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E9%A1%9E%E5%88%A5%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A7%8B%E9%80%A0"><span class="nav-number">6.</span> <span class="nav-text">4. 類別的基本構造</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%9E%E5%88%A5%E7%9A%84%E7%B5%90%E6%A7%8B"><span class="nav-number">6.1.</span> <span class="nav-text">類別的結構</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AF%84%E4%BE%8B%EF%BC%9A%E9%A1%9E%E5%88%A5%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A7%8B%E9%80%A0"><span class="nav-number">6.2.</span> <span class="nav-text">範例：類別的基本構造</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%B0%81%E8%A3%9D%E8%88%87%E5%AD%98%E5%8F%96%E4%BF%AE%E9%A3%BE%E7%AC%A6"><span class="nav-number">7.</span> <span class="nav-text">5. 封裝與存取修飾符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%98%E5%8F%96%E4%BF%AE%E9%A3%BE%E7%AC%A6%EF%BC%88Access-Modifiers%EF%BC%89"><span class="nav-number">7.1.</span> <span class="nav-text">存取修飾符（Access Modifiers）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AF%84%E4%BE%8B%EF%BC%9A%E5%B0%81%E8%A3%9D%E8%88%87%E5%AD%98%E5%8F%96%E4%BF%AE%E9%A3%BE%E7%AC%A6"><span class="nav-number">7.2.</span> <span class="nav-text">範例：封裝與存取修飾符</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E7%B9%BC%E6%89%BF%EF%BC%88Inheritance%EF%BC%89"><span class="nav-number">8.</span> <span class="nav-text">6. 繼承（Inheritance）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%82%BA%E4%BB%80%E9%BA%BC%E9%9C%80%E8%A6%81%E7%B9%BC%E6%89%BF%EF%BC%9F"><span class="nav-number">8.1.</span> <span class="nav-text">為什麼需要繼承？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B9%BC%E6%89%BF%E7%9A%84%E8%AA%9E%E6%B3%95"><span class="nav-number">8.2.</span> <span class="nav-text">繼承的語法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AF%84%E4%BE%8B%EF%BC%9A%E5%9F%BA%E9%A1%9E%E8%88%87%E6%B4%BE%E7%94%9F%E9%A1%9E"><span class="nav-number">8.3.</span> <span class="nav-text">範例：基類與派生類</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E5%A4%9A%E6%85%8B%E6%80%A7%EF%BC%88Polymorphism%EF%BC%89"><span class="nav-number">9.</span> <span class="nav-text">7. 多態性（Polymorphism）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%82%BA%E4%BB%80%E9%BA%BC%E9%9C%80%E8%A6%81%E5%A4%9A%E6%85%8B%E6%80%A7%EF%BC%9F"><span class="nav-number">9.1.</span> <span class="nav-text">為什麼需要多態性？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E6%85%8B%E6%80%A7%E7%9A%84%E5%AF%A6%E7%8F%BE"><span class="nav-number">9.2.</span> <span class="nav-text">多態性的實現</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AF%84%E4%BE%8B%EF%BC%9A%E5%A4%9A%E6%85%8B%E6%80%A7%E7%9A%84%E6%87%89%E7%94%A8"><span class="nav-number">9.3.</span> <span class="nav-text">範例：多態性的應用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E9%A1%9E%E5%88%A5%E8%A8%AD%E8%A8%88%E7%9A%84%E9%80%B2%E9%9A%8E%E6%A6%82%E5%BF%B5"><span class="nav-number">10.</span> <span class="nav-text">8. 類別設計的進階概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%81%E8%A3%9D%EF%BC%88Encapsulation%EF%BC%89"><span class="nav-number">10.1.</span> <span class="nav-text">封裝（Encapsulation）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%BD%E8%B1%A1%E5%8C%96%EF%BC%88Abstraction%EF%BC%89"><span class="nav-number">10.2.</span> <span class="nav-text">抽象化（Abstraction）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%9E%E5%88%A5%E8%A8%AD%E8%A8%88%E5%8E%9F%E5%89%87"><span class="nav-number">10.3.</span> <span class="nav-text">類別設計原則</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AF%84%E4%BE%8B%EF%BC%9A%E8%89%AF%E5%A5%BD%E8%A8%AD%E8%A8%88%E7%9A%84%E9%A1%9E%E5%88%A5"><span class="nav-number">10.4.</span> <span class="nav-text">範例：良好設計的類別</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-%E5%B0%8F%E7%B5%90"><span class="nav-number">11.</span> <span class="nav-text">9. 小結</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B8%BD%E7%B5%90"><span class="nav-number">11.1.</span> <span class="nav-text">總結</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">250</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2024/10/29/OneDayOneNote/2024-11-02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2024-11-02 022-01_Ccharp從最基本的編程概念到面向物件程式設計 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2024-11-02 022-01_Ccharp從最基本的編程概念到面向物件程式設計">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2024-11-02 022-01_Ccharp從最基本的編程概念到面向物件程式設計
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2024-10-29 00:38:42 / 修改時間：00:39:18" itemprop="dateCreated datePublished" datetime="2024-10-29T00:38:42+08:00">2024-10-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2024-11-02 022-01_Ccharp從最基本的編程概念到面向物件程式設計</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2024-11-02-022-01-Ccharp從最基本的編程概念到面向物件程式設計"><a href="#2024-11-02-022-01-Ccharp從最基本的編程概念到面向物件程式設計" class="headerlink" title="2024-11-02 022-01_Ccharp從最基本的編程概念到面向物件程式設計"></a>2024-11-02 022-01_Ccharp從最基本的編程概念到面向物件程式設計</h2><p>了解，讓我們從最基本的編程概念開始，一步步深入了解 C# 中類別（Classes）的語法構造及其背後的設計理念。我們將從傳統的<strong>程序式編程（Procedural Programming）</strong>開始，逐漸過渡到<strong>面向物件程式設計（Object-Oriented Programming, OOP）</strong>，並解釋為什麼要引入類別以及其各種特性。</p>
+<hr>
+<h2 id="目錄"><a href="#目錄" class="headerlink" title="目錄"></a>目錄</h2><ol>
+<li>程序式編程的基礎</li>
+<li>程序式編程的限制</li>
+<li>引入類別與物件</li>
+<li>類別的基本構造</li>
+<li>封裝與存取修飾符</li>
+<li>繼承（Inheritance）</li>
+<li>多態性（Polymorphism）</li>
+<li>類別設計的進階概念</li>
+<li>小結</li>
+</ol>
+<hr>
+<h2 id="1-程序式編程的基礎"><a href="#1-程序式編程的基礎" class="headerlink" title="1. 程序式編程的基礎"></a>1. 程序式編程的基礎</h2><p><strong>程序式編程（Procedural Programming）</strong> 是一種基於程序（函數或方法）來組織代碼的編程範式。在這種方式下，程序被視為一系列指令，按照順序執行。</p>
+<h3 id="範例：簡單的程序式代碼"><a href="#範例：簡單的程序式代碼" class="headerlink" title="範例：簡單的程序式代碼"></a>範例：簡單的程序式代碼</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">string</span> name = GetName();</span><br><span class="line">        <span class="built_in">int</span> age = GetAge();</span><br><span class="line">        DisplayInfo(name, age);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="built_in">string</span> <span class="title">GetName</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.Write(<span class="string">&quot;請輸入你的名字: &quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> Console.ReadLine();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="built_in">int</span> <span class="title">GetAge</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.Write(<span class="string">&quot;請輸入你的年齡: &quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">int</span>.Parse(Console.ReadLine());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">DisplayInfo</span>(<span class="params"><span class="built_in">string</span> name, <span class="built_in">int</span> age</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">$&quot;你好, <span class="subst">&#123;name&#125;</span>! 你今年 <span class="subst">&#123;age&#125;</span> 歲。&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>輸出範例：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">請輸入你的名字: Alice</span><br><span class="line">請輸入你的年齡: 30</span><br><span class="line">你好, Alice! 你今年 30 歲。</span><br></pre></td></tr></table></figure>
+
+<p><strong>解析：</strong></p>
+<ul>
+<li>程式由一個 <code>Main</code> 方法開始執行，依次呼叫 <code>GetName</code>、<code>GetAge</code> 和 <code>DisplayInfo</code> 方法。</li>
+<li>每個方法負責一個特定的功能，如獲取使用者輸入或顯示信息。</li>
+</ul>
+<hr>
+<h2 id="2-程序式編程的限制"><a href="#2-程序式編程的限制" class="headerlink" title="2. 程序式編程的限制"></a>2. 程序式編程的限制</h2><p>隨著程式的規模增大，程序式編程可能會面臨以下挑戰：</p>
+<ol>
+<li><p><strong>代碼重用困難</strong>：</p>
+<ul>
+<li>當需要多次使用相同的功能時，可能會重複編寫相似的代碼，導致代碼冗餘和難以維護。</li>
+</ul>
+</li>
+<li><p><strong>維護困難</strong>：</p>
+<ul>
+<li>大型程序中，找到特定功能的代碼位置變得困難，修改一處代碼可能影響到其他部分。</li>
+</ul>
+</li>
+<li><p><strong>數據與功能的分離</strong>：</p>
+<ul>
+<li>數據（變數）和操作數據的函數是分開的，缺乏組織，難以理解數據和功能之間的關係。</li>
+</ul>
+</li>
+<li><p><strong>缺乏模組化</strong>：</p>
+<ul>
+<li>難以將程式劃分為獨立的模組或部分，每個部分都可以獨立開發和測試。</li>
+</ul>
+</li>
+</ol>
+<h3 id="範例：代碼重用困難"><a href="#範例：代碼重用困難" class="headerlink" title="範例：代碼重用困難"></a>範例：代碼重用困難</h3><p>假設我們有多個不同的地方需要獲取使用者的名字和年齡，可能會重複呼叫 <code>GetName</code> 和 <code>GetAge</code> 方法，但這些方法並沒有組織在一起，難以管理。</p>
+<hr>
+<h2 id="3-引入類別與物件"><a href="#3-引入類別與物件" class="headerlink" title="3. 引入類別與物件"></a>3. 引入類別與物件</h2><p>為了解決上述問題，<strong>面向物件程式設計（OOP）</strong> 被引入。OOP 將數據和操作數據的功能組織在一起，形成<strong>物件（Objects）</strong>，並通過<strong>類別（Classes）</strong>來定義物件的結構和行為。</p>
+<h3 id="類別與物件的概念"><a href="#類別與物件的概念" class="headerlink" title="類別與物件的概念"></a>類別與物件的概念</h3><ul>
+<li><strong>類別（Class）</strong>：類別是物件的藍圖，定義了物件的屬性（數據）和方法（功能）。</li>
+<li><strong>物件（Object）</strong>：物件是類別的實例，擁有類別定義的屬性和方法。</li>
+</ul>
+<h3 id="為什麼使用類別？"><a href="#為什麼使用類別？" class="headerlink" title="為什麼使用類別？"></a>為什麼使用類別？</h3><ol>
+<li><p><strong>代碼重用</strong>：</p>
+<ul>
+<li>通過定義類別，可以創建多個物件，重複使用相同的代碼。</li>
+</ul>
+</li>
+<li><p><strong>封裝</strong>：</p>
+<ul>
+<li>將數據和操作數據的方法組織在一起，保護數據不被外部直接訪問或修改。</li>
+</ul>
+</li>
+<li><p><strong>模組化</strong>：</p>
+<ul>
+<li>將程式劃分為獨立的類別，每個類別負責特定的功能，提升代碼的可維護性和可讀性。</li>
+</ul>
+</li>
+<li><p><strong>繼承與多態性</strong>：</p>
+<ul>
+<li>通過繼承，可以創建更具特化性的類別，並實現多態性，增強靈活性。</li>
+</ul>
+</li>
+</ol>
+<h3 id="範例：轉換為類別"><a href="#範例：轉換為類別" class="headerlink" title="範例：轉換為類別"></a>範例：轉換為類別</h3><p>讓我們將之前的程序式代碼轉換為面向物件的方式。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">Person</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 屬性</span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> Name &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> Age &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">GetName</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.Write(<span class="string">&quot;請輸入你的名字: &quot;</span>);</span><br><span class="line">        Name = Console.ReadLine();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">GetAge</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.Write(<span class="string">&quot;請輸入你的年齡: &quot;</span>);</span><br><span class="line">        Age = <span class="built_in">int</span>.Parse(Console.ReadLine());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">DisplayInfo</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">$&quot;你好, <span class="subst">&#123;Name&#125;</span>! 你今年 <span class="subst">&#123;Age&#125;</span> 歲。&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        Person person = <span class="keyword">new</span> Person();</span><br><span class="line">        person.GetName();</span><br><span class="line">        person.GetAge();</span><br><span class="line">        person.DisplayInfo();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>輸出範例：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">請輸入你的名字: Bob</span><br><span class="line">請輸入你的年齡: 25</span><br><span class="line">你好, Bob! 你今年 25 歲。</span><br></pre></td></tr></table></figure>
+
+<p><strong>解析：</strong></p>
+<ul>
+<li>定義了一個 <code>Person</code> 類別，包含 <code>Name</code> 和 <code>Age</code> 屬性，以及 <code>GetName</code>、<code>GetAge</code> 和 <code>DisplayInfo</code> 方法。</li>
+<li>在 <code>Main</code> 方法中，創建了一個 <code>Person</code> 物件，並呼叫其方法來獲取和顯示信息。</li>
+<li>這樣的結構更具組織性，且易於擴展和維護。</li>
+</ul>
+<hr>
+<h2 id="4-類別的基本構造"><a href="#4-類別的基本構造" class="headerlink" title="4. 類別的基本構造"></a>4. 類別的基本構造</h2><h3 id="類別的結構"><a href="#類別的結構" class="headerlink" title="類別的結構"></a>類別的結構</h3><p>一個完整的 C# 類別通常包含以下部分：</p>
+<ol>
+<li><p><strong>修飾符（Modifiers）</strong>：</p>
+<ul>
+<li>定義類別的可見性和其他屬性，如 <code>public</code>、<code>private</code>、<code>abstract</code> 等。</li>
+</ul>
+</li>
+<li><p><strong>類別名稱（Class Name）</strong>：</p>
+<ul>
+<li>遵循命名規則，通常使用 Pascal 命名法。</li>
+</ul>
+</li>
+<li><p><strong>繼承（Inheritance）</strong>：</p>
+<ul>
+<li>指定類別從哪個基類繼承，使用冒號 <code>:</code>。</li>
+</ul>
+</li>
+<li><p><strong>介面實作（Interface Implementation）</strong>：</p>
+<ul>
+<li>指定類別實作哪些介面。</li>
+</ul>
+</li>
+<li><p><strong>成員（Members）</strong>：</p>
+<ul>
+<li>包含欄位（Fields）、屬性（Properties）、方法（Methods）、建構函數（Constructors）等。</li>
+</ul>
+</li>
+</ol>
+<h3 id="範例：類別的基本構造"><a href="#範例：類別的基本構造" class="headerlink" title="範例：類別的基本構造"></a>範例：類別的基本構造</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Car</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 欄位</span></span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">string</span> model;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 屬性</span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> Make &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> Model</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">get</span> &#123; <span class="keyword">return</span> model; &#125;</span><br><span class="line">        <span class="keyword">set</span> &#123; model = <span class="keyword">value</span>; &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 建構函數</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Car</span>(<span class="params"><span class="built_in">string</span> make, <span class="built_in">string</span> model</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        Make = make;</span><br><span class="line">        Model = model;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">DisplayInfo</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">$&quot;車輛: <span class="subst">&#123;Make&#125;</span> <span class="subst">&#123;Model&#125;</span>&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>解析：</strong></p>
+<ul>
+<li><code>public class Car</code>：定義了一個公開的 <code>Car</code> 類別。</li>
+<li><strong>欄位</strong>：<ul>
+<li><code>private string model;</code>：私有欄位，只能在 <code>Car</code> 類別內部訪問。</li>
+</ul>
+</li>
+<li><strong>屬性</strong>：<ul>
+<li><code>public string Make &#123; get; set; &#125;</code>：公開屬性，提供對 <code>Make</code> 的讀寫訪問。</li>
+<li><code>public string Model</code>：公開屬性，通過 <code>get</code> 和 <code>set</code> 訪問私有欄位 <code>model</code>。</li>
+</ul>
+</li>
+<li><strong>建構函數</strong>：<ul>
+<li><code>public Car(string make, string model)</code>：初始化 <code>Make</code> 和 <code>Model</code> 屬性。</li>
+</ul>
+</li>
+<li><strong>方法</strong>：<ul>
+<li><code>public void DisplayInfo()</code>：顯示車輛信息。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="5-封裝與存取修飾符"><a href="#5-封裝與存取修飾符" class="headerlink" title="5. 封裝與存取修飾符"></a>5. 封裝與存取修飾符</h2><p><strong>封裝（Encapsulation）</strong> 是 OOP 的一個核心概念，旨在將數據（屬性）和操作數據的方法封裝在一起，並控制對這些數據的訪問。</p>
+<h3 id="存取修飾符（Access-Modifiers）"><a href="#存取修飾符（Access-Modifiers）" class="headerlink" title="存取修飾符（Access Modifiers）"></a>存取修飾符（Access Modifiers）</h3><p>C# 提供了多種存取修飾符來控制類別及其成員的可見性：</p>
+<ol>
+<li><p>**<code>public</code>**：</p>
+<ul>
+<li>可被任何其他程式碼訪問。</li>
+<li>適用於希望公開的類別或成員。</li>
+</ul>
+</li>
+<li><p>**<code>private</code>**：</p>
+<ul>
+<li>僅在定義它的類別內部可訪問。</li>
+<li>適用於不希望外部直接訪問的成員。</li>
+</ul>
+</li>
+<li><p>**<code>protected</code>**：</p>
+<ul>
+<li>可在定義它的類別及其派生類別中訪問。</li>
+<li>適用於需要在子類中訪問的成員。</li>
+</ul>
+</li>
+<li><p>**<code>internal</code>**：</p>
+<ul>
+<li>僅在同一個組件（Assembly）內部可訪問。</li>
+<li>適用於類別或成員只供內部使用的情況。</li>
+</ul>
+</li>
+<li><p>**<code>protected internal</code>**：</p>
+<ul>
+<li>可在同一組件內部及任何派生類別中訪問。</li>
+</ul>
+</li>
+<li><p>**<code>private protected</code>**（C# 7.2 及以上）：</p>
+<ul>
+<li>可在同一組件內部及其派生類別中訪問。</li>
+<li>更嚴格的修飾符，限制訪問範圍。</li>
+</ul>
+</li>
+</ol>
+<h3 id="範例：封裝與存取修飾符"><a href="#範例：封裝與存取修飾符" class="headerlink" title="範例：封裝與存取修飾符"></a>範例：封裝與存取修飾符</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">BankAccount</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 私有欄位</span></span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">decimal</span> balance;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 公開屬性</span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">decimal</span> Balance</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">get</span> &#123; <span class="keyword">return</span> balance; &#125;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">set</span> &#123; balance = <span class="keyword">value</span>; &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 建構函數</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BankAccount</span>(<span class="params"><span class="built_in">decimal</span> initialBalance</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        Balance = initialBalance;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 公開方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Deposit</span>(<span class="params"><span class="built_in">decimal</span> amount</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (amount &gt; <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            Balance += amount;</span><br><span class="line">            Console.WriteLine(<span class="string">$&quot;存入: <span class="subst">&#123;amount&#125;</span>, 新餘額: <span class="subst">&#123;Balance&#125;</span>&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 公開方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Withdraw</span>(<span class="params"><span class="built_in">decimal</span> amount</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (amount &gt; <span class="number">0</span> &amp;&amp; amount &lt;= Balance)</span><br><span class="line">        &#123;</span><br><span class="line">            Balance -= amount;</span><br><span class="line">            Console.WriteLine(<span class="string">$&quot;提取: <span class="subst">&#123;amount&#125;</span>, 新餘額: <span class="subst">&#123;Balance&#125;</span>&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(<span class="string">&quot;提取金額無效。&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 私有方法</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">LogTransaction</span>(<span class="params"><span class="built_in">string</span> transaction</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">$&quot;記錄交易: <span class="subst">&#123;transaction&#125;</span>&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        BankAccount account = <span class="keyword">new</span> BankAccount(<span class="number">1000</span>m);</span><br><span class="line">        account.Deposit(<span class="number">500</span>m);   <span class="comment">// 輸出: 存入: 500, 新餘額: 1500</span></span><br><span class="line">        account.Withdraw(<span class="number">200</span>m);  <span class="comment">// 輸出: 提取: 200, 新餘額: 1300</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 無法直接訪問私有欄位或方法</span></span><br><span class="line">        <span class="comment">// Console.WriteLine(account.balance); // 錯誤</span></span><br><span class="line">        <span class="comment">// account.LogTransaction(&quot;存入&quot;); // 錯誤</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>輸出：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">存入: 500, 新餘額: 1500</span><br><span class="line">提取: 200, 新餘額: 1300</span><br></pre></td></tr></table></figure>
+
+<p><strong>解析：</strong></p>
+<ul>
+<li>**私有欄位 <code>balance</code>**：<ul>
+<li>只能在 <code>BankAccount</code> 類別內部訪問，外部無法直接修改。</li>
+</ul>
+</li>
+<li>**公開屬性 <code>Balance</code>**：<ul>
+<li>提供對 <code>balance</code> 的讀取權限（<code>get</code>），但寫入權限（<code>set</code>）是私有的，只能在類別內部修改。</li>
+</ul>
+</li>
+<li>**公開方法 <code>Deposit</code> 和 <code>Withdraw</code>**：<ul>
+<li>提供了控制 <code>balance</code> 修改的方法，確保金額的有效性。</li>
+</ul>
+</li>
+<li>**私有方法 <code>LogTransaction</code>**：<ul>
+<li>僅供 <code>BankAccount</code> 類別內部使用，用於記錄交易（此範例中未實作）。</li>
+</ul>
+</li>
+</ul>
+<p><strong>優點：</strong></p>
+<ul>
+<li><strong>資訊隱藏</strong>：<ul>
+<li>外部程式碼無法直接訪問或修改 <code>balance</code>，只能通過公開的方法進行操作，確保數據的一致性和安全性。</li>
+</ul>
+</li>
+<li><strong>控制權限</strong>：<ul>
+<li>使用公開屬性和方法來控制對數據的訪問和修改，防止不當操作。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="6-繼承（Inheritance）"><a href="#6-繼承（Inheritance）" class="headerlink" title="6. 繼承（Inheritance）"></a>6. 繼承（Inheritance）</h2><p><strong>繼承（Inheritance）</strong> 是 OOP 的一個重要特性，允許你基於現有的類別創建新的類別。新類別（派生類別）繼承自現有的類別（基類），並可以擴展或修改其行為。</p>
+<h3 id="為什麼需要繼承？"><a href="#為什麼需要繼承？" class="headerlink" title="為什麼需要繼承？"></a>為什麼需要繼承？</h3><ol>
+<li><p><strong>代碼重用</strong>：</p>
+<ul>
+<li>重用基類中的屬性和方法，避免重複編寫相同的代碼。</li>
+</ul>
+</li>
+<li><p><strong>建立類別層次結構</strong>：</p>
+<ul>
+<li>將相關的類別組織在一起，形成層次化的結構，提高代碼的可理解性。</li>
+</ul>
+</li>
+<li><p><strong>多態性</strong>：</p>
+<ul>
+<li>通過基類引用來操作派生類物件，實現靈活的代碼設計。</li>
+</ul>
+</li>
+</ol>
+<h3 id="繼承的語法"><a href="#繼承的語法" class="headerlink" title="繼承的語法"></a>繼承的語法</h3><p>使用冒號 <code>:</code> 來指定繼承的基類。</p>
+<h3 id="範例：基類與派生類"><a href="#範例：基類與派生類" class="headerlink" title="範例：基類與派生類"></a>範例：基類與派生類</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 基類</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Animal</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> Name &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Eat</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">$&quot;<span class="subst">&#123;Name&#125;</span> 正在吃食物。&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 虛擬方法，允許派生類覆蓋</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Speak</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">$&quot;<span class="subst">&#123;Name&#125;</span> 發出聲音。&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 派生類</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Dog</span> : <span class="title">Animal</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 覆蓋基類的 Speak 方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">Speak</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">$&quot;<span class="subst">&#123;Name&#125;</span> 汪汪叫。&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 派生類的特有方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Fetch</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">$&quot;<span class="subst">&#123;Name&#125;</span> 正在取回球。&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        Dog myDog = <span class="keyword">new</span> Dog &#123; Name = <span class="string">&quot;Buddy&quot;</span> &#125;;</span><br><span class="line">        myDog.Eat();      <span class="comment">// 輸出: Buddy 正在吃食物。</span></span><br><span class="line">        myDog.Speak();    <span class="comment">// 輸出: Buddy 汪汪叫。</span></span><br><span class="line">        myDog.Fetch();    <span class="comment">// 輸出: Buddy 正在取回球。</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 基類引用指向派生類物件</span></span><br><span class="line">        Animal myAnimal = myDog;</span><br><span class="line">        myAnimal.Eat();   <span class="comment">// 輸出: Buddy 正在吃食物。</span></span><br><span class="line">        myAnimal.Speak(); <span class="comment">// 輸出: Buddy 汪汪叫。</span></span><br><span class="line">        <span class="comment">// myAnimal.Fetch(); // 錯誤，基類引用無法訪問派生類特有方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>輸出：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Buddy 正在吃食物。</span><br><span class="line">Buddy 汪汪叫。</span><br><span class="line">Buddy 正在取回球。</span><br><span class="line">Buddy 正在吃食物。</span><br><span class="line">Buddy 汪汪叫。</span><br></pre></td></tr></table></figure>
+
+<p><strong>解析：</strong></p>
+<ul>
+<li>**基類 <code>Animal</code>**：<ul>
+<li>定義了 <code>Name</code> 屬性和 <code>Eat</code> 方法。</li>
+<li>定義了一個虛擬方法 <code>Speak</code>，允許派生類覆蓋。</li>
+</ul>
+</li>
+<li>**派生類 <code>Dog</code>**：<ul>
+<li>繼承自 <code>Animal</code>。</li>
+<li>覆蓋了基類的 <code>Speak</code> 方法，提供了特定的實現。</li>
+<li>定義了一個派生類特有的方法 <code>Fetch</code>。</li>
+</ul>
+</li>
+<li><strong>在 <code>Main</code> 方法中</strong>：<ul>
+<li>創建了一個 <code>Dog</code> 物件 <code>myDog</code>，並呼叫其方法。</li>
+<li>使用基類引用 <code>myAnimal</code> 指向 <code>myDog</code> 物件，展示了多態性。</li>
+<li>注意：基類引用無法訪問派生類特有的方法，如 <code>Fetch</code>。</li>
+</ul>
+</li>
+</ul>
+<p><strong>優點：</strong></p>
+<ul>
+<li><strong>代碼重用</strong>：<code>Dog</code> 繼承了 <code>Animal</code> 的 <code>Name</code> 屬性和 <code>Eat</code> 方法，無需重新定義。</li>
+<li><strong>多態性</strong>：可以使用基類引用來操作派生類物件，實現靈活的代碼設計。</li>
+<li><strong>擴展性</strong>：可以在派生類中新增特有的屬性和方法，擴展基類的功能。</li>
+</ul>
+<hr>
+<h2 id="7-多態性（Polymorphism）"><a href="#7-多態性（Polymorphism）" class="headerlink" title="7. 多態性（Polymorphism）"></a>7. 多態性（Polymorphism）</h2><p><strong>多態性（Polymorphism）</strong> 是 OOP 的另一個核心概念，允許相同的接口在不同的類別中有不同的實現。這使得程式碼更加靈活和可擴展。</p>
+<h3 id="為什麼需要多態性？"><a href="#為什麼需要多態性？" class="headerlink" title="為什麼需要多態性？"></a>為什麼需要多態性？</h3><ol>
+<li><p><strong>靈活性</strong>：</p>
+<ul>
+<li>能夠使用基類引用來操作不同的派生類物件，減少程式碼的耦合度。</li>
+</ul>
+</li>
+<li><p><strong>可擴展性</strong>：</p>
+<ul>
+<li>新增派生類時，不需要修改使用基類引用的現有代碼。</li>
+</ul>
+</li>
+<li><p><strong>代碼簡潔</strong>：</p>
+<ul>
+<li>通過統一的接口來操作不同的類別，減少了代碼的冗餘。</li>
+</ul>
+</li>
+</ol>
+<h3 id="多態性的實現"><a href="#多態性的實現" class="headerlink" title="多態性的實現"></a>多態性的實現</h3><p>在 C# 中，多態性通常通過以下兩個步驟實現：</p>
+<ol>
+<li><p><strong>基類中的虛擬方法</strong>：</p>
+<ul>
+<li>使用 <code>virtual</code> 關鍵字標記基類中的方法，允許派生類覆蓋。</li>
+</ul>
+</li>
+<li><p><strong>派生類中的覆蓋方法</strong>：</p>
+<ul>
+<li>使用 <code>override</code> 關鍵字在派生類中覆蓋基類的方法，提供具體的實現。</li>
+</ul>
+</li>
+</ol>
+<h3 id="範例：多態性的應用"><a href="#範例：多態性的應用" class="headerlink" title="範例：多態性的應用"></a>範例：多態性的應用</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 基類</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Shape</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> Name &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 虛擬方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">virtual</span> <span class="built_in">double</span> <span class="title">Area</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Display</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">$&quot;<span class="subst">&#123;Name&#125;</span> 的面積是 <span class="subst">&#123;Area()&#125;</span>。&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 派生類：圓形</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Circle</span> : <span class="title">Shape</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">double</span> Radius &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Circle</span>(<span class="params"><span class="built_in">string</span> name, <span class="built_in">double</span> radius</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        Name = name;</span><br><span class="line">        Radius = radius;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 覆蓋 Area 方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="built_in">double</span> <span class="title">Area</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> Math.PI * Radius * Radius;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">Display</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">$&quot;<span class="subst">&#123;Name&#125;</span> 的半徑是 <span class="subst">&#123;Radius&#125;</span>，面積是 <span class="subst">&#123;Area():F2&#125;</span>。&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 派生類：矩形</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Rectangle</span> : <span class="title">Shape</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">double</span> Width &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">double</span> Height &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Rectangle</span>(<span class="params"><span class="built_in">string</span> name, <span class="built_in">double</span> width, <span class="built_in">double</span> height</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        Name = name;</span><br><span class="line">        Width = width;</span><br><span class="line">        Height = height;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 覆蓋 Area 方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="built_in">double</span> <span class="title">Area</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> Width * Height;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">Display</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">$&quot;<span class="subst">&#123;Name&#125;</span> 的寬度是 <span class="subst">&#123;Width&#125;</span>，高度是 <span class="subst">&#123;Height&#125;</span>，面積是 <span class="subst">&#123;Area():F2&#125;</span>。&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 創建 Shape 類型的列表，包含不同的派生類物件</span></span><br><span class="line">        List&lt;Shape&gt; shapes = <span class="keyword">new</span> List&lt;Shape&gt;</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">new</span> Circle(<span class="string">&quot;圓形A&quot;</span>, <span class="number">5</span>),</span><br><span class="line">            <span class="keyword">new</span> Rectangle(<span class="string">&quot;矩形A&quot;</span>, <span class="number">4</span>, <span class="number">6</span>),</span><br><span class="line">            <span class="keyword">new</span> Circle(<span class="string">&quot;圓形B&quot;</span>, <span class="number">3.5</span>)</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 遍歷並呼叫 Display 方法</span></span><br><span class="line">        <span class="keyword">foreach</span> (<span class="keyword">var</span> shape <span class="keyword">in</span> shapes)</span><br><span class="line">        &#123;</span><br><span class="line">            shape.Display();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>輸出：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">圓形A 的半徑是 5，面積是 78.54。</span><br><span class="line">矩形A 的寬度是 4，高度是 6，面積是 24.00。</span><br><span class="line">圓形B 的半徑是 3.5，面積是 38.48。</span><br></pre></td></tr></table></figure>
+
+<p><strong>解析：</strong></p>
+<ul>
+<li>**基類 <code>Shape</code>**：<ul>
+<li>定義了 <code>Name</code> 屬性和虛擬方法 <code>Area</code> 和 <code>Display</code>。</li>
+</ul>
+</li>
+<li>**派生類 <code>Circle</code> 和 <code>Rectangle</code>**：<ul>
+<li>覆蓋了基類的 <code>Area</code> 方法，提供了具體的計算邏輯。</li>
+<li>覆蓋了基類的 <code>Display</code> 方法，提供了更具體的信息顯示。</li>
+</ul>
+</li>
+<li><strong>在 <code>Main</code> 方法中</strong>：<ul>
+<li>創建了一個包含不同派生類物件的 <code>List&lt;Shape&gt;</code>。</li>
+<li>遍歷這個列表，呼叫每個物件的 <code>Display</code> 方法，根據實際物件的類型執行相應的覆蓋方法。</li>
+</ul>
+</li>
+</ul>
+<p><strong>優點：</strong></p>
+<ul>
+<li><strong>靈活性</strong>：可以使用基類引用來處理不同的派生類物件，實現統一的接口。</li>
+<li><strong>可擴展性</strong>：新增派生類時，無需修改使用基類引用的現有代碼。</li>
+<li><strong>代碼簡潔</strong>：通過基類的方法呼叫，減少了重複代碼。</li>
+</ul>
+<hr>
+<h2 id="8-類別設計的進階概念"><a href="#8-類別設計的進階概念" class="headerlink" title="8. 類別設計的進階概念"></a>8. 類別設計的進階概念</h2><h3 id="封裝（Encapsulation）"><a href="#封裝（Encapsulation）" class="headerlink" title="封裝（Encapsulation）"></a>封裝（Encapsulation）</h3><p><strong>封裝</strong> 是將數據（屬性）和操作數據的方法組織在一起，並控制對數據的訪問。這有助於保護數據不被外部不當修改，並確保物件的一致性。</p>
+<h3 id="抽象化（Abstraction）"><a href="#抽象化（Abstraction）" class="headerlink" title="抽象化（Abstraction）"></a>抽象化（Abstraction）</h3><p><strong>抽象化</strong> 是指僅展示物件的必要特性，隱藏其內部實現細節。這有助於簡化複雜性，使使用者更容易理解和使用物件。</p>
+<h3 id="類別設計原則"><a href="#類別設計原則" class="headerlink" title="類別設計原則"></a>類別設計原則</h3><ol>
+<li><p><strong>單一職責原則（Single Responsibility Principle）</strong>：</p>
+<ul>
+<li>每個類別應該只有一個單一的職責，並且該職責應該被完整地封裝在類別中。</li>
+</ul>
+</li>
+<li><p><strong>開放封閉原則（Open&#x2F;Closed Principle）</strong>：</p>
+<ul>
+<li>類別應該對擴展開放，對修改封閉。即應該能夠通過繼承或組合來擴展類別的功能，而不需要修改原有的類別。</li>
+</ul>
+</li>
+<li><p><strong>里氏替換原則（Liskov Substitution Principle）</strong>：</p>
+<ul>
+<li>派生類別的物件應該能夠替換其基類別的物件，而不影響程式的正確性。</li>
+</ul>
+</li>
+<li><p><strong>接口隔離原則（Interface Segregation Principle）</strong>：</p>
+<ul>
+<li>不應該強迫類別依賴它們不使用的接口。應該將大型接口分割成更小、更具專一性的接口。</li>
+</ul>
+</li>
+<li><p><strong>依賴反轉原則（Dependency Inversion Principle）</strong>：</p>
+<ul>
+<li>高層模組不應依賴低層模組，兩者應該依賴於抽象（介面或抽象類別）。</li>
+</ul>
+</li>
+</ol>
+<h3 id="範例：良好設計的類別"><a href="#範例：良好設計的類別" class="headerlink" title="範例：良好設計的類別"></a>範例：良好設計的類別</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 單一職責原則：每個類別只有一個職責</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 定義介面</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IPrinter</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Print</span>(<span class="params"><span class="built_in">string</span> message</span>)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 實作介面</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ConsolePrinter</span> : <span class="title">IPrinter</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Print</span>(<span class="params"><span class="built_in">string</span> message</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(message);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Logger</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> IPrinter printer;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 依賴注入：通過建構函數注入介面</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Logger</span>(<span class="params">IPrinter printer</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">this</span>.printer = printer;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Log</span>(<span class="params"><span class="built_in">string</span> message</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 使用介面方法來打印日誌</span></span><br><span class="line">        printer.Print(<span class="string">$&quot;Log: <span class="subst">&#123;message&#125;</span>&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 創建一個 ConsolePrinter 物件</span></span><br><span class="line">        IPrinter printer = <span class="keyword">new</span> ConsolePrinter();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 創建一個 Logger 物件，注入 ConsolePrinter</span></span><br><span class="line">        Logger logger = <span class="keyword">new</span> Logger(printer);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 使用 Logger 物件來記錄信息</span></span><br><span class="line">        logger.Log(<span class="string">&quot;應用程式啟動&quot;</span>);</span><br><span class="line">        logger.Log(<span class="string">&quot;發生錯誤&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>輸出：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Log: 應用程式啟動</span><br><span class="line">Log: 發生錯誤</span><br></pre></td></tr></table></figure>
+
+<p><strong>解析：</strong></p>
+<ul>
+<li>**介面 <code>IPrinter</code>**：<ul>
+<li>定義了一個 <code>Print</code> 方法，抽象化了打印的行為。</li>
+</ul>
+</li>
+<li>**類別 <code>ConsolePrinter</code>**：<ul>
+<li>實作了 <code>IPrinter</code> 介面，具體實現了將信息打印到控制台。</li>
+</ul>
+</li>
+<li>**類別 <code>Logger</code>**：<ul>
+<li>將打印的責任委託給 <code>IPrinter</code> 介面，遵循了依賴反轉原則。</li>
+<li>這樣的設計允許未來更換不同的打印方式（如文件打印）而不需要修改 <code>Logger</code> 類別。</li>
+</ul>
+</li>
+<li><strong>在 <code>Main</code> 方法中</strong>：<ul>
+<li>創建了 <code>ConsolePrinter</code> 和 <code>Logger</code> 物件，並使用 <code>Logger</code> 來記錄信息。</li>
+</ul>
+</li>
+</ul>
+<p><strong>優點：</strong></p>
+<ul>
+<li><strong>高內聚低耦合</strong>：每個類別專注於自己的職責，通過介面進行通信，減少了類別之間的耦合。</li>
+<li><strong>可擴展性</strong>：未來可以輕鬆添加新的打印方式，只需創建新的 <code>IPrinter</code> 實作，而不需修改 <code>Logger</code>。</li>
+<li><strong>可測試性</strong>：可以輕鬆地為 <code>Logger</code> 類別創建模擬的 <code>IPrinter</code> 來進行單元測試。</li>
+</ul>
+<hr>
+<h2 id="9-小結"><a href="#9-小結" class="headerlink" title="9. 小結"></a>9. 小結</h2><p>通過這一步步的演進，我們從程序式編程的基礎開始，逐漸引入了類別和物件，並深入了解了封裝、繼承和多態性等 OOP 的核心概念。以下是本章內容的快速回顧：</p>
+<ol>
+<li><p><strong>程序式編程的基礎</strong>：</p>
+<ul>
+<li>基於函數和指令的編程方式，適用於簡單的任務，但隨著程式規模增大，維護和重用變得困難。</li>
+</ul>
+</li>
+<li><p><strong>程序式編程的限制</strong>：</p>
+<ul>
+<li>代碼重用困難、維護困難、數據與功能的分離、缺乏模組化等問題。</li>
+</ul>
+</li>
+<li><p><strong>引入類別與物件</strong>：</p>
+<ul>
+<li>通過類別組織數據和功能，實現代碼重用、封裝和模組化，提升程式的可維護性和可讀性。</li>
+</ul>
+</li>
+<li><p><strong>類別的基本構造</strong>：</p>
+<ul>
+<li>學習類別的修飾符、名稱、繼承、介面實作、成員（欄位、屬性、方法、建構函數等）的結構。</li>
+</ul>
+</li>
+<li><p><strong>封裝與存取修飾符</strong>：</p>
+<ul>
+<li>使用存取修飾符控制類別及其成員的可見性，實現資訊隱藏和封裝。</li>
+</ul>
+</li>
+<li><p><strong>繼承（Inheritance）</strong>：</p>
+<ul>
+<li>基於基類創建派生類，實現代碼重用和建立類別層次結構。</li>
+</ul>
+</li>
+<li><p><strong>多態性（Polymorphism）</strong>：</p>
+<ul>
+<li>透過基類引用操作派生類物件，實現靈活的代碼設計和減少耦合。</li>
+</ul>
+</li>
+<li><p><strong>類別設計的進階概念</strong>：</p>
+<ul>
+<li>掌握封裝、抽象化、以及 SOLID 原則等，設計出高內聚低耦合的類別。</li>
+</ul>
+</li>
+</ol>
+<h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h3><p>了解 C# 中類別的語法構造及其設計理念，有助於你編寫出結構良好、易於維護和擴展的程式碼。通過封裝、繼承和多態性等 OOP 概念，你可以創建出更靈活、可重用和高效的應用程式。隨著你不斷練習和應用這些概念，你將能夠更自信地設計和實現複雜的軟體系統。</p>
+<p>如果你有任何進一步的問題，或需要更詳細的範例和解釋，請隨時告訴我！</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/C/" rel="tag"># C#</a>
+              <a href="/apple.lily/tags/WebAPI/" rel="tag"># WebAPI</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/10/29/OneDayOneNote/2024-11-01/" rel="prev" title="2024-11-01 022_各種泛型集合類別">
+                  <i class="fa fa-angle-left"></i> 2024-11-01 022_各種泛型集合類別
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/10/29/OneDayOneNote/2024-11-03/" rel="next" title="2024-11-03 022-02_List_T泛型集合類別">
+                  2024-11-03 022-02_List_T泛型集合類別 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

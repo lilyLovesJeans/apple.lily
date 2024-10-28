@@ -1,0 +1,308 @@
+<hr>
+<h2 id="title-2024-10-31-021-Ccharp變數的型別date-2024-10-29-00-29-11categories-OneDayOneNotetags-C-WebAPI-description-2024-10-30-020-SOLID-原則"><a href="#title-2024-10-31-021-Ccharp變數的型別date-2024-10-29-00-29-11categories-OneDayOneNotetags-C-WebAPI-description-2024-10-30-020-SOLID-原則" class="headerlink" title="title: 2024-10-31 021_Ccharp變數的型別date: 2024-10-29 00:29:11categories: OneDayOneNotetags:  [C#, WebAPI ]description:  2024-10-30 020_SOLID 原則"></a>title: 2024-10-31 021_Ccharp變數的型別<br>date: 2024-10-29 00:29:11<br>categories: OneDayOneNote<br>tags:  [C#, WebAPI ]<br>description:  2024-10-30 020_SOLID 原則</h2><h2 id="2024-10-30-020-SOLID-原則"><a href="#2024-10-30-020-SOLID-原則" class="headerlink" title="2024-10-30 020_SOLID 原則"></a>2024-10-30 020_SOLID 原則</h2><p>當你在 C# 中創建變數時，可以使用多種不同的資料型別（Types）。這些型別大致可以分為<strong>值型別（Value Types）</strong>和<strong>參考型別（Reference Types）</strong>。了解這些型別有助於你更有效地管理記憶體和優化程式效能。讓我們一步步來探索 C# 中可用的各種變數型別。</p>
+<hr>
+<h2 id="目錄"><a href="#目錄" class="headerlink" title="目錄"></a>目錄</h2><ol>
+<li>值型別（Value Types）<ul>
+<li>整數型別</li>
+<li>浮點數型別</li>
+<li>字元型別</li>
+<li>布林型別</li>
+<li>結構型別（Structs）</li>
+<li>列舉型別（Enums）</li>
+</ul>
+</li>
+<li>參考型別（Reference Types）<ul>
+<li>字串型別（String）</li>
+<li>陣列型別（Arrays）</li>
+<li>類別型別（Classes）</li>
+<li>委派型別（Delegates）</li>
+<li>介面型別（Interfaces）</li>
+</ul>
+</li>
+<li>其他型別<ul>
+<li>Nullable 型別</li>
+<li>動態型別（Dynamic）</li>
+</ul>
+</li>
+<li>自訂型別<ul>
+<li>類別（Classes）</li>
+<li>結構（Structs）</li>
+<li>列舉（Enums）</li>
+</ul>
+</li>
+<li>型別推斷（Type Inference）</li>
+<li>小結</li>
+</ol>
+<hr>
+<h2 id="1-值型別（Value-Types）"><a href="#1-值型別（Value-Types）" class="headerlink" title="1. 值型別（Value Types）"></a>1. 值型別（Value Types）</h2><p>值型別直接包含其數據，而不是指向數據的參考。它們通常儲存在堆疊（Stack）中，存取速度快。</p>
+<h3 id="整數型別（Integer-Types）"><a href="#整數型別（Integer-Types）" class="headerlink" title="整數型別（Integer Types）"></a>整數型別（Integer Types）</h3><table>
+<thead>
+<tr>
+<th>型別</th>
+<th>範圍</th>
+<th>大小（位元組）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>int</code></td>
+<td>-2,147,483,648 到 2,147,483,647</td>
+<td>4</td>
+</tr>
+<tr>
+<td><code>long</code></td>
+<td>-9,223,372,036,854,775,808 到 9,223,372,036,854,775,807</td>
+<td>8</td>
+</tr>
+<tr>
+<td><code>short</code></td>
+<td>-32,768 到 32,767</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>byte</code></td>
+<td>0 到 255</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>uint</code></td>
+<td>0 到 4,294,967,295</td>
+<td>4</td>
+</tr>
+<tr>
+<td><code>ulong</code></td>
+<td>0 到 18,446,744,073,709,551,615</td>
+<td>8</td>
+</tr>
+<tr>
+<td><code>ushort</code></td>
+<td>0 到 65,535</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>sbyte</code></td>
+<td>-128 到 127</td>
+<td>1</td>
+</tr>
+</tbody></table>
+<p><strong>範例：</strong></p>
+<pre><code class="csharp">int age = 25;
+long distance = 9876543210L;
+byte level = 255;
+</code></pre>
+<h3 id="浮點數型別（Floating-Point-Types）"><a href="#浮點數型別（Floating-Point-Types）" class="headerlink" title="浮點數型別（Floating-Point Types）"></a>浮點數型別（Floating-Point Types）</h3><table>
+<thead>
+<tr>
+<th>型別</th>
+<th>範圍</th>
+<th>大小（位元組）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>float</code></td>
+<td>約 ±1.5 × 10^−45 到 ±3.4 × 10^38</td>
+<td>4</td>
+</tr>
+<tr>
+<td><code>double</code></td>
+<td>約 ±5.0 × 10^−324 到 ±1.7 × 10^308</td>
+<td>8</td>
+</tr>
+<tr>
+<td><code>decimal</code></td>
+<td>約 ±1.0 × 10^−28 到 ±7.9 × 10^28</td>
+<td>16</td>
+</tr>
+</tbody></table>
+<p><strong>範例：</strong></p>
+<pre><code class="csharp">float temperature = 36.6F;
+double pi = 3.141592653589793;
+decimal price = 19.99M;
+</code></pre>
+<h3 id="字元型別（Character-Type）"><a href="#字元型別（Character-Type）" class="headerlink" title="字元型別（Character Type）"></a>字元型別（Character Type）</h3><table>
+<thead>
+<tr>
+<th>型別</th>
+<th>描述</th>
+<th>大小（位元組）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>char</code></td>
+<td>單一 Unicode 字元</td>
+<td>2</td>
+</tr>
+</tbody></table>
+<p><strong>範例：</strong></p>
+<pre><code class="csharp">char grade = &#39;A&#39;;
+char symbol = &#39;#&#39;;
+</code></pre>
+<h3 id="布林型別（Boolean-Type）"><a href="#布林型別（Boolean-Type）" class="headerlink" title="布林型別（Boolean Type）"></a>布林型別（Boolean Type）</h3><table>
+<thead>
+<tr>
+<th>型別</th>
+<th>描述</th>
+<th>大小（位元組）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>bool</code></td>
+<td><code>true</code> 或 <code>false</code></td>
+<td>1</td>
+</tr>
+</tbody></table>
+<p><strong>範例：</strong></p>
+<pre><code class="csharp">bool isCompleted = true;
+bool hasAccess = false;
+</code></pre>
+<h3 id="結構型別（Structs）"><a href="#結構型別（Structs）" class="headerlink" title="結構型別（Structs）"></a>結構型別（Structs）</h3><p>結構是值型別的自訂型別，可以包含多個不同的成員（屬性、方法等）。</p>
+<p><strong>範例：</strong></p>
+<pre><code class="csharp">struct Point
+{
+    public int X;
+    public int Y;
+}
+
+Point p1 = new Point();
+p1.X = 10;
+p1.Y = 20;
+</code></pre>
+<h3 id="列舉型別（Enums）"><a href="#列舉型別（Enums）" class="headerlink" title="列舉型別（Enums）"></a>列舉型別（Enums）</h3><p>列舉是一種值型別，用於定義一組命名的整數常數。</p>
+<p><strong>範例：</strong></p>
+<pre><code class="csharp">enum Days { Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday };
+
+Days today = Days.Monday;
+</code></pre>
+<hr>
+<h2 id="2-參考型別（Reference-Types）"><a href="#2-參考型別（Reference-Types）" class="headerlink" title="2. 參考型別（Reference Types）"></a>2. 參考型別（Reference Types）</h2><p>參考型別儲存的是對實際數據的參考（地址），而不是數據本身。它們通常儲存在堆（Heap）中，存取速度較慢。</p>
+<h3 id="字串型別（String）"><a href="#字串型別（String）" class="headerlink" title="字串型別（String）"></a>字串型別（String）</h3><p><code>string</code> 是一種特殊的參考型別，用於表示文本。</p>
+<p><strong>範例：</strong></p>
+<pre><code class="csharp">string greeting = &quot;Hello, World!&quot;;
+string name = &quot;Alice&quot;;
+</code></pre>
+<h3 id="陣列型別（Arrays）"><a href="#陣列型別（Arrays）" class="headerlink" title="陣列型別（Arrays）"></a>陣列型別（Arrays）</h3><p>陣列是用來存儲相同型別元素的集合。</p>
+<p><strong>範例：</strong></p>
+<pre><code class="csharp">int[] numbers = { 1, 2, 3, 4, 5 };
+string[] fruits = new string[3] { &quot;Apple&quot;, &quot;Banana&quot;, &quot;Cherry&quot; };
+</code></pre>
+<h3 id="類別型別（Classes）"><a href="#類別型別（Classes）" class="headerlink" title="類別型別（Classes）"></a>類別型別（Classes）</h3><p>類別是 C# 中最常用的參考型別，用於創建物件。</p>
+<p><strong>範例：</strong></p>
+<pre><code class="csharp">class Person
+{
+    public string Name;
+    public int Age;
+}
+
+Person person1 = new Person();
+person1.Name = &quot;Bob&quot;;
+person1.Age = 30;
+</code></pre>
+<h3 id="委派型別（Delegates）"><a href="#委派型別（Delegates）" class="headerlink" title="委派型別（Delegates）"></a>委派型別（Delegates）</h3><p>委派是一種引用方法的類型。</p>
+<p><strong>範例：</strong></p>
+<pre><code class="csharp">delegate void GreetingDelegate(string message);
+
+void Greet(string message)
+{
+    Console.WriteLine(message);
+}
+
+GreetingDelegate del = Greet;
+del(&quot;Hello via delegate!&quot;);
+</code></pre>
+<h3 id="介面型別（Interfaces）"><a href="#介面型別（Interfaces）" class="headerlink" title="介面型別（Interfaces）"></a>介面型別（Interfaces）</h3><p>介面定義了一組方法和屬性的合約，類別可以實作這些介面。</p>
+<p><strong>範例：</strong></p>
+<pre><code class="csharp">interface IAnimal
+{
+    void Speak();
+}
+
+class Dog : IAnimal
+{
+    public void Speak()
+    {
+        Console.WriteLine(&quot;Dog barks&quot;);
+    }
+}
+
+IAnimal myDog = new Dog();
+myDog.Speak(); // 輸出 &quot;Dog barks&quot;
+</code></pre>
+<hr>
+<h2 id="3-其他型別"><a href="#3-其他型別" class="headerlink" title="3. 其他型別"></a>3. 其他型別</h2><h3 id="Nullable-型別"><a href="#Nullable-型別" class="headerlink" title="Nullable 型別"></a>Nullable 型別</h3><p>有些值型別（如 <code>int</code>、<code>double</code>）不能為 <code>null</code>。使用 Nullable 型別可以讓這些型別接受 <code>null</code> 值。</p>
+<p><strong>語法：</strong> 在型別後加上 <code>?</code></p>
+<p><strong>範例：</strong></p>
+<pre><code class="csharp">int? nullableInt = null;
+double? nullableDouble = 3.14;
+</code></pre>
+<h3 id="動態型別（Dynamic）"><a href="#動態型別（Dynamic）" class="headerlink" title="動態型別（Dynamic）"></a>動態型別（Dynamic）</h3><p><code>dynamic</code> 型別在編譯時不會進行型別檢查，會在運行時決定其型別。</p>
+<p><strong>範例：</strong></p>
+<pre><code class="csharp">dynamic dyn = &quot;Hello&quot;;
+Console.WriteLine(dyn.Length); // 輸出 5
+
+dyn = 100;
+Console.WriteLine(dyn + 200); // 輸出 300
+</code></pre>
+<p><strong>注意：</strong> 使用 <code>dynamic</code> 會失去編譯時型別檢查，需謹慎使用。</p>
+<hr>
+<h2 id="4-自訂型別"><a href="#4-自訂型別" class="headerlink" title="4. 自訂型別"></a>4. 自訂型別</h2><p>除了內建的型別外，你還可以創建自訂型別來滿足特定需求。</p>
+<h3 id="類別（Classes）"><a href="#類別（Classes）" class="headerlink" title="類別（Classes）"></a>類別（Classes）</h3><p>類別是創建物件的藍圖，可以包含屬性、方法、事件等。</p>
+<p><strong>範例：</strong></p>
+<pre><code class="csharp">class Car
+{
+    public string Make;
+    public string Model;
+    public int Year;
+
+    public void Start()
+    {
+        Console.WriteLine(&quot;Car started.&quot;);
+    }
+}
+
+Car myCar = new Car();
+myCar.Make = &quot;Toyota&quot;;
+myCar.Model = &quot;Corolla&quot;;
+myCar.Year = 2020;
+myCar.Start(); // 輸出 &quot;Car started.&quot;
+</code></pre>
+<h3 id="結構（Structs）"><a href="#結構（Structs）" class="headerlink" title="結構（Structs）"></a>結構（Structs）</h3><p>結構是值型別的自訂型別，通常用於輕量級的資料結構。</p>
+<p><strong>範例：</strong></p>
+<pre><code class="csharp">struct Rectangle
+{
+    public int Width;
+    public int Height;
+
+    public int Area()
+    {
+        return Width * Height;
+    }
+}
+
+Rectangle rect = new Rectangle();
+rect.Width = 5;
+rect.Height = 10;
+Console.WriteLine(rect.Area()); // 輸出 50
+</code></pre>
+<h3 id="列舉（Enums）"><a href="#列舉（Enums）" class="headerlink" title="列舉（Enums）"></a>列舉（Enums）</h3><p>如前所述，列舉用於定義一組命名的常數。</p>
+<p><strong>範例：</strong></p>
+<pre><code class="csharp">enum Season { Spring, Summer, Autumn, Winter };
+
+Season currentSeason = Season.Spring;
+</code></pre>
+<hr>
+<h2 id="5-型別推斷（Type-Inference）"><a href="#5-型別推斷（Type-Inference）" class="headerlink" title="5. 型別推斷（Type Inference）"></a>5. 型別推斷（Type Inference）</h2><p>C# 提供了 <code>var</code> 關鍵字，可以在宣告變數時讓編譯器自動推斷變數的型別。這只適用於在宣告時初始化變數的情況。</p>
+<p><strong>範例：</strong></p>
+<pre><code class="csharp">var number = 10; // 編譯器推斷為 int
+var name = &quot;Charlie&quot;; // 編譯器推斷為 string
+var list = new List&lt;string&gt;(); // 編譯器推斷為 List&lt;string&gt;
+</code></pre>
+<p><strong>注意：</strong> 即使使用 <code>var</code>，變數仍然具有靜態型別，無法在後續賦值中改變型別。</p>
+<hr>
+<h2 id="6-小結"><a href="#6-小結" class="headerlink" title="6. 小結"></a>6. 小結</h2><p>在 C# 中創建變數時，可以使用多種資料型別，這些型別大致可分為：</p>
+<ul>
+<li><strong>值型別（Value Types）</strong>：如 <code>int</code>、<code>double</code>、<code>bool</code>、<code>char</code>、<code>struct</code>、<code>enum</code> 等，直接包含數據，儲存在堆疊中。</li>
+<li><strong>參考型別（Reference Types）</strong>：如 <code>string</code>、<code>arrays</code>、<code>classes</code>、<code>delegates</code>、<code>interfaces</code> 等，儲存對數據的引用，存儲在堆中。</li>
+<li><strong>其他型別</strong>：如 Nullable 型別、動態型別等，提供更靈活的型別管理。</li>
+<li><strong>自訂型別</strong>：如 <code>classes</code>、<code>structs</code>、<code>enums</code>，根據需求創建的自定義型別。</li>
+<li><strong>型別推斷（Type Inference）</strong>：使用 <code>var</code> 讓編譯器自動推斷變數型別。</li>
+</ul>
+<p>了解並善用這些不同的型別，能幫助你編寫更高效、可維護的 C# 程式。如果你有任何進一步的問題或需要更詳細的範例，請隨時告訴我！</p>

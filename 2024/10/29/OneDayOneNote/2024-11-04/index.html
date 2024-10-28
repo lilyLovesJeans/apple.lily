@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2024-11-04 023_什麼是DDD">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024-11-04 023_什麼是DDD">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2024/10/29/OneDayOneNote/2024-11-04/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2024-11-04 023_什麼是DDD">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2024-10-28T16:41:25.000Z">
+<meta property="article:modified_time" content="2024-10-28T16:42:08.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="C#">
+<meta property="article:tag" content="WebAPI">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2024/10/29/OneDayOneNote/2024-11-04/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2024/10/29/OneDayOneNote/2024-11-04/","path":"2024/10/29/OneDayOneNote/2024-11-04/","title":"2024-11-04 023_什麼是DDD"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2024-11-04 023_什麼是DDD | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2024-11-04-023-%E4%BB%80%E9%BA%BC%E6%98%AFDDD"><span class="nav-number">1.</span> <span class="nav-text">2024-11-04 023_什麼是DDD</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%A1%86%E6%9E%B6%E5%92%8C%E5%BA%AB"><span class="nav-number">1.1.</span> <span class="nav-text">1. 框架和庫</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%BA%8B%E4%BB%B6%E6%BA%9D%E9%80%9A%E8%88%87%E6%B6%88%E6%81%AF%E4%B8%AD%E4%BB%8B"><span class="nav-number">1.2.</span> <span class="nav-text">2. 事件溝通與消息中介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-CQRS%EF%BC%88%E5%91%BD%E4%BB%A4%E6%9F%A5%E8%A9%A2%E8%B2%AC%E4%BB%BB%E5%88%86%E9%9B%A2%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">3. CQRS（命令查詢責任分離）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%BB%BA%E6%A8%A1%E5%B7%A5%E5%85%B7"><span class="nav-number">1.4.</span> <span class="nav-text">4. 建模工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%BE%AE%E6%9C%8D%E5%8B%99%E5%B7%A5%E5%85%B7"><span class="nav-number">1.5.</span> <span class="nav-text">5. 微服務工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E6%B8%AC%E8%A9%A6%E5%B7%A5%E5%85%B7"><span class="nav-number">1.6.</span> <span class="nav-text">6. 測試工具</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">250</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2024/10/29/OneDayOneNote/2024-11-04/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2024-11-04 023_什麼是DDD | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2024-11-04 023_什麼是DDD">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2024-11-04 023_什麼是DDD
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2024-10-29 00:41:25 / 修改時間：00:42:08" itemprop="dateCreated datePublished" datetime="2024-10-29T00:41:25+08:00">2024-10-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2024-11-04 023_什麼是DDD</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2024-11-04-023-什麼是DDD"><a href="#2024-11-04-023-什麼是DDD" class="headerlink" title="2024-11-04 023_什麼是DDD"></a>2024-11-04 023_什麼是DDD</h2><p>DDD（Domain-Driven Design，領域驅動設計）是一種軟體設計方法，專注於如何將軟體系統的設計與業務領域的需求緊密結合。DDD的核心思想是通過理解業務領域中的概念和需求，並使用它們作為軟體設計的基礎，以構建能夠很好表達業務邏輯的系統。這種方法特別適用於複雜的業務應用程序，因為它強調了將業務邏輯和技術細節分離，確保系統能夠靈活應對業務需求的變化。</p>
+<p>DDD 的主要概念包括：</p>
+<ol>
+<li><p><strong>領域</strong>：指的是軟體要解決的業務範疇或問題空間。例如，對於銀行系統來說，”銀行業務”就是一個領域。</p>
+</li>
+<li><p><strong>限界上下文</strong>（Bounded Context）：在 DDD 中，領域會被劃分為不同的上下文，每個上下文包含了一組相關的模型和業務邏輯。每個上下文之間有明確的邊界，避免不同部分之間的干擾和混淆。</p>
+</li>
+<li><p><strong>實體</strong>（Entity）：具備唯一標識符的對象，通常會隨著時間的推移發生變化。例如，銀行客戶是一個實體，因為每個客戶都有唯一的 ID，且會隨著時間的推移更新其資料。</p>
+</li>
+<li><p><strong>值物件</strong>（Value Object）：不具備唯一標識符，且是不可變的。它通常表示某個具體的屬性或度量，比如地址或金額。</p>
+</li>
+<li><p><strong>聚合根</strong>（Aggregate Root）：聚合是一組相關的實體和值物件，聚合根是這組實體的入口點，通過聚合根來保證聚合內的資料一致性。</p>
+</li>
+<li><p><strong>領域服務</strong>（Domain Service）：當某些行為不適合放在實體或值物件中時，可以通過領域服務來實現。例如，複雜的商業規則或跨多個聚合的操作。</p>
+</li>
+<li><p><strong>工廠</strong>（Factory）：用來封裝物件的創建邏輯，尤其是在創建實體和聚合時，通過工廠來確保對象的狀態是完整且一致的。</p>
+</li>
+<li><p><strong>存儲庫</strong>（Repository）：負責提供對聚合的持久化操作（如數據庫訪問），並隱藏數據存儲的具體細節。</p>
+</li>
+</ol>
+<p>DDD 強調和業務專家（或業務領域的專家）密切合作，使用一種稱為<strong>通用語言</strong>（Ubiquitous Language）的方式，確保技術團隊與業務人員使用一致的語言來討論需求和解決方案，這樣能確保業務邏輯能夠正確實現在軟體中。</p>
+<p>你是否有具體想了解的 DDD 實踐或應用場景？</p>
+<p>實踐 DDD（領域驅動設計）時，雖然沒有特定的工具是專門為 DDD 設計的，但有許多工具和框架可以幫助你在軟體開發過程中更好地實現 DDD 原則。以下是一些常見的工具和框架，能夠幫助開發者更好地應用 DDD：</p>
+<h3 id="1-框架和庫"><a href="#1-框架和庫" class="headerlink" title="1. 框架和庫"></a>1. <strong>框架和庫</strong></h3><ul>
+<li><strong>Spring Framework（Java）</strong>：Spring 支援良好的分層架構，可以將領域邏輯和應用邏輯分離，特別是 Spring Data 可以用來簡化與領域模型交互的存儲庫層實現。</li>
+<li><strong>ASP.NET Core（C#）</strong>：在 .NET 生態系統中，ASP.NET Core 和相關的 EF Core（Entity Framework Core）庫可以用來實現 DDD 中的實體、值對象和存儲庫模式。</li>
+<li><strong>Laravel（PHP）</strong>：Laravel 支援良好的分層架構，可以用來實現 DDD 的各種模式，如實體、服務和存儲庫模式。</li>
+<li><strong>NestJS（TypeScript）</strong>：NestJS 是基於 Node.js 的 TypeScript 框架，提供了清晰的模塊化結構，適合實現 DDD 的限界上下文和服務分離。</li>
+</ul>
+<h3 id="2-事件溝通與消息中介"><a href="#2-事件溝通與消息中介" class="headerlink" title="2. 事件溝通與消息中介"></a>2. <strong>事件溝通與消息中介</strong></h3><p>   在 DDD 中，事件驅動架構（Event-Driven Architecture）是常見的模式之一，用於處理限界上下文之間的通信。以下工具能幫助實現事件驅動架構：</p>
+<ul>
+<li><strong>Kafka</strong>：Apache Kafka 是一個分散式流處理平台，可以用來實現領域事件的發布與訂閱，支持在不同上下文中進行可靠的事件驅動溝通。</li>
+<li><strong>RabbitMQ</strong>：RabbitMQ 是一個流行的消息隊列系統，適合用來實現基於事件的系統通信，尤其是當你需要在 DDD 的限界上下文之間傳遞事件時。</li>
+<li><strong>MediateR（.NET）</strong>：MediateR 是一個 .NET 庫，實現了中介者模式，可以在系統內部進行命令和事件的解耦通信，尤其適合實現 DDD 中的 CQRS 模式。</li>
+</ul>
+<h3 id="3-CQRS（命令查詢責任分離）"><a href="#3-CQRS（命令查詢責任分離）" class="headerlink" title="3. CQRS（命令查詢責任分離）"></a>3. <strong>CQRS（命令查詢責任分離）</strong></h3><p>   CQRS 是 DDD 中一個重要的設計模式，將寫操作（命令）和讀操作（查詢）分離。以下工具能幫助實現 CQRS：</p>
+<ul>
+<li><strong>Axon Framework（Java）</strong>：Axon 是一個專注於 CQRS 和事件溯源的框架，為構建基於事件驅動的應用提供了支援，特別適合 DDD 中的事件驅動和 CQRS 模式。</li>
+<li><strong>EventStore</strong>：EventStore 是一個專門的事件溯源資料庫，可以用於保存和重播事件流，實現 DDD 的事件驅動設計，並支持 CQRS 和事件溯源模式。</li>
+</ul>
+<h3 id="4-建模工具"><a href="#4-建模工具" class="headerlink" title="4. 建模工具"></a>4. <strong>建模工具</strong></h3><ul>
+<li><strong>PlantUML</strong>：可以用來畫出限界上下文圖、聚合間的關係以及領域模型。它支持生成 ER 圖、用例圖、流程圖等，適合 DDD 的建模。</li>
+<li><strong>dbdiagram.io</strong>：這是用於生成 ER 圖（實體關係圖）的工具，適合在 DDD 中可視化資料庫模型與領域模型之間的對應關係。</li>
+<li><strong>Visual Paradigm</strong>：支持多種 UML 圖和 DDD 的建模，特別適合用於畫出限界上下文圖和領域模型圖。</li>
+</ul>
+<h3 id="5-微服務工具"><a href="#5-微服務工具" class="headerlink" title="5. 微服務工具"></a>5. <strong>微服務工具</strong></h3><p>   DDD 通常與微服務架構一起使用，這使得限界上下文之間的分離變得更加自然。以下工具可以幫助你實現微服務：</p>
+<ul>
+<li><strong>Docker</strong>：Docker 是一個容器化工具，適合用來將不同的限界上下文部署為獨立的微服務，保持各上下文之間的隔離。</li>
+<li><strong>Kubernetes</strong>：Kubernetes 是一個容器編排系統，適合管理和擴展基於微服務架構的應用，特別是當你將 DDD 的各個限界上下文部署成獨立微服務時。</li>
+</ul>
+<h3 id="6-測試工具"><a href="#6-測試工具" class="headerlink" title="6. 測試工具"></a>6. <strong>測試工具</strong></h3><p>   在 DDD 中，單元測試和集成測試非常重要，以確保領域邏輯正確執行。</p>
+<ul>
+<li><strong>xUnit &#x2F; NUnit &#x2F; MSTest（.NET）</strong>：這些測試框架適合進行領域驅動設計中的單元測試，確保領域邏輯的正確性。</li>
+<li><strong>Jest（JavaScript&#x2F;TypeScript）</strong>：Jest 是一個適合 JavaScript&#x2F;TypeScript 的測試框架，能幫助你測試限界上下文中的業務邏輯。</li>
+<li><strong>JUnit（Java）</strong>：用於 Java 領域模型的單元測試，確保實體和值對象的正確性。</li>
+</ul>
+<p>這些工具和框架可以幫助你在實踐 DDD 時更好地實現領域邏輯的分離、事件驅動架構、限界上下文的劃分以及微服務架構的部署。你可以根據你的項目需求選擇合適的工具來實現 DDD。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/C/" rel="tag"># C#</a>
+              <a href="/apple.lily/tags/WebAPI/" rel="tag"># WebAPI</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/10/29/OneDayOneNote/2024-11-03/" rel="prev" title="2024-11-03 022-02_List_T泛型集合類別">
+                  <i class="fa fa-angle-left"></i> 2024-11-03 022-02_List_T泛型集合類別
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/10/29/OneDayOneNote/2024-11-05/" rel="next" title="2024-11-05 024_什麼是Docker">
+                  2024-11-05 024_什麼是Docker <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
