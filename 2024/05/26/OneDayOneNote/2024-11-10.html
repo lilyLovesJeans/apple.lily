@@ -1,5 +1,245 @@
 <hr>
-<h2 id="title-2024-11-10-029-建構子的演進date-2024-10-29-00-48-36categories-OneDayOneNotetags-C-WebAPI-description-2024-11-10-029-建構子的演進"><a href="#title-2024-11-10-029-建構子的演進date-2024-10-29-00-48-36categories-OneDayOneNotetags-C-WebAPI-description-2024-11-10-029-建構子的演進" class="headerlink" title="title: 2024-11-10 029_建構子的演進date: 2024-10-29 00:48:36categories: OneDayOneNotetags:  [C#, WebAPI ]description:  2024-11-10 029_建構子的演進"></a>title: 2024-11-10 029_建構子的演進<br>date: 2024-10-29 00:48:36<br>categories: OneDayOneNote<br>tags:  [C#, WebAPI ]<br>description:  2024-11-10 029_建構子的演進</h2><h2 id="2024-11-10-029-建構子的演進"><a href="#2024-11-10-029-建構子的演進" class="headerlink" title="2024-11-10 029_建構子的演進"></a>2024-11-10 029_建構子的演進</h2><p>在這裡 <code>new CreditCardPayment()</code> 後的括號 <code>()</code> 是用來呼叫 <code>CreditCardPayment</code> 類別的**建構子 (constructor)**。</p>
+<h2 id="title-2024-11-10-029-建構子的演進date-2024-10-29-00-48-36categories-OneDayOneNotetags-C-WebAPI-description-2024-11-10-029-建構子的演進"><a href="#title-2024-11-10-029-建構子的演進date-2024-10-29-00-48-36categories-OneDayOneNotetags-C-WebAPI-description-2024-11-10-029-建構子的演進" class="headerlink" title="title: 2024-11-10 029_建構子的演進date: 2024-10-29 00:48:36categories: OneDayOneNotetags:  [C#, WebAPI ]description:  2024-11-10 029_建構子的演進"></a>title: 2024-11-10 029_建構子的演進<br>date: 2024-10-29 00:48:36<br>categories: OneDayOneNote<br>tags:  [C#, WebAPI ]<br>description:  2024-11-10 029_建構子的演進</h2><h2 id="2024-11-10-029-建構子的演進"><a href="#2024-11-10-029-建構子的演進" class="headerlink" title="2024-11-10 029_建構子的演進"></a>2024-11-10 029_建構子的演進</h2><p>依賴注入 (Dependency Injection, DI) 是一種用來實現鬆耦合設計的設計模式，目的是改善系統的彈性、可維護性和測試性。DI 的出現源於面向對象設計中的<strong>依賴倒置原則</strong>（Dependency Inversion Principle, DIP）以及<strong>控制反轉</strong>（Inversion of Control, IoC）的理念。這個過程經歷了幾個階段的演進。</p>
+<h3 id="DI-的演進過程"><a href="#DI-的演進過程" class="headerlink" title="DI 的演進過程"></a>DI 的演進過程</h3><ol>
+<li><p><strong>硬編碼依賴 (Tightly Coupled Code)</strong><br>最早期，物件之間的依賴是直接硬編碼的。例如，一個 <code>PaymentProcessor</code> 可能直接依賴於 <code>CreditCardPayment</code> 類別：</p>
+<pre><code class="csharp">public class PaymentProcessor
+{
+    private CreditCardPayment _paymentMethod = new CreditCardPayment();
+
+    public void CompletePurchase(decimal amount)
+    {
+        _paymentMethod.ProcessPayment(amount);
+    }
+}
+</code></pre>
+<p>這種硬編碼方式帶來很大的限制。每次要更改支付方式，都需要修改 <code>PaymentProcessor</code> 類別的程式碼，導致系統的擴展性和維護性變差。</p>
+</li>
+<li><p><strong>使用接口進行抽象 (Programming to an Interface)</strong><br>為了實現鬆耦合，我們可以引入接口。接口定義了支付方法的抽象，並允許不同的支付方式去實現該接口，但仍然有個缺點：我們還是必須在類別內部實例化具體的支付方式。</p>
+<pre><code class="csharp">public class PaymentProcessor
+{
+    private IPaymentMethod _paymentMethod = new CreditCardPayment();
+
+    public void CompletePurchase(decimal amount)
+    {
+        _paymentMethod.ProcessPayment(amount);
+    }
+}
+</code></pre>
+</li>
+<li><p><strong>依賴注入的引入 (Dependency Injection)</strong><br>DI 將具體實例的創建移到外部，讓 <code>PaymentProcessor</code> 類別不再直接實例化支付方式，而是由外部在初始化時提供具體的依賴，從而達到完全的鬆耦合設計。現在，只需改變外部傳入的依賴即可變更支付方式，而無需修改 <code>PaymentProcessor</code> 類別。</p>
+<pre><code class="csharp">public class PaymentProcessor
+{
+    private readonly IPaymentMethod _paymentMethod;
+
+    public PaymentProcessor(IPaymentMethod paymentMethod)
+    {
+        _paymentMethod = paymentMethod;
+    }
+
+    public void CompletePurchase(decimal amount)
+    {
+        _paymentMethod.ProcessPayment(amount);
+    }
+}
+</code></pre>
+<p>使用 DI，程式碼變得更具彈性，因為可以在建構 <code>PaymentProcessor</code> 時提供不同的支付方式，例如 <code>CreditCardPayment</code> 或 <code>PaypalPayment</code>。</p>
+</li>
+<li><p><strong>DI 容器和自動化依賴管理</strong><br>在大型應用程式中，手動管理依賴注入可能變得複雜，因此 DI 容器應運而生。DI 容器可以自動解析和管理依賴關係，從而簡化了注入過程。框架如 ASP.NET Core 提供了內建的 DI 容器，允許透過配置的方式在整個應用中管理依賴。</p>
+</li>
+</ol>
+<h3 id="DI-的優勢"><a href="#DI-的優勢" class="headerlink" title="DI 的優勢"></a>DI 的優勢</h3><ul>
+<li><strong>減少耦合性</strong>：物件之間的依賴關係變得靈活，不再直接依賴具體實現，而是依賴於抽象接口。</li>
+<li><strong>提高可測試性</strong>：通過 DI，可以輕易替換依賴的具體實現，例如在單元測試中注入模擬 (mock) 物件。</li>
+<li><strong>增強可擴展性</strong>：增加新功能或替換某個依賴時，不需要更改使用這些依賴的類別。</li>
+<li>**控制反轉 (IoC)**：透過 DI，對象的依賴由容器管理，不再由物件自己控制，這是 IoC 原則的具體應用。</li>
+</ul>
+<h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h3><p>DI 的引入是對系統設計演進過程中的一次重大改進，使系統的各個組件可以更加靈活地替換、測試和擴展。在應用 DI 模式時，建構一個高效的依賴管理系統（如 DI 容器）可以大幅簡化代碼，減少耦合，並提升整體代碼品質。</p>
+<p>當然可以，我們來看一個具體的範例，從最初的硬編碼依賴，到使用接口，再到依賴注入的改進，每一步都會展示程式碼如何演進，以及為什麼每個演進步驟更有利於系統的設計。</p>
+<h3 id="1-硬編碼依賴-Tightly-Coupled-Code"><a href="#1-硬編碼依賴-Tightly-Coupled-Code" class="headerlink" title="1. 硬編碼依賴 (Tightly Coupled Code)"></a>1. 硬編碼依賴 (Tightly Coupled Code)</h3><p>在最早期的設計中，我們會直接在類別中實例化依賴對象，比如說在 <code>PaymentProcessor</code> 中直接依賴 <code>CreditCardPayment</code> 類別：</p>
+<pre><code class="csharp">public class CreditCardPayment
+{
+    public void ProcessPayment(decimal amount)
+    {
+        Console.WriteLine($&quot;Processing credit card payment of {amount}&quot;);
+    }
+}
+
+public class PaymentProcessor
+{
+    private CreditCardPayment _paymentMethod = new CreditCardPayment();
+
+    public void CompletePurchase(decimal amount)
+    {
+        _paymentMethod.ProcessPayment(amount);
+    }
+}
+</code></pre>
+<h4 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h4><ul>
+<li>如果未來需要支持其他支付方式（例如 PayPal 或銀行轉帳），我們需要改動 <code>PaymentProcessor</code> 類別，新增或替換具體的支付類別。</li>
+<li>系統的<strong>可擴展性差</strong>：每次需求變更都需要直接修改程式碼。</li>
+<li>測試難度增加：無法模擬 <code>CreditCardPayment</code> 來進行單元測試。</li>
+</ul>
+<h3 id="2-引入接口-Programming-to-an-Interface"><a href="#2-引入接口-Programming-to-an-Interface" class="headerlink" title="2. 引入接口 (Programming to an Interface)"></a>2. 引入接口 (Programming to an Interface)</h3><p>我們可以將支付方式抽象成一個接口 <code>IPaymentMethod</code>，讓不同支付方式各自實現這個接口。這樣，<code>PaymentProcessor</code> 類別可以依賴於 <code>IPaymentMethod</code> 而非具體的 <code>CreditCardPayment</code>。</p>
+<pre><code class="csharp">public interface IPaymentMethod
+{
+    void ProcessPayment(decimal amount);
+}
+
+public class CreditCardPayment : IPaymentMethod
+{
+    public void ProcessPayment(decimal amount)
+    {
+        Console.WriteLine($&quot;Processing credit card payment of {amount}&quot;);
+    }
+}
+
+public class PaymentProcessor
+{
+    private IPaymentMethod _paymentMethod = new CreditCardPayment(); // 依然是硬編碼的依賴
+
+    public void CompletePurchase(decimal amount)
+    {
+        _paymentMethod.ProcessPayment(amount);
+    }
+}
+</code></pre>
+<h4 id="優點和問題"><a href="#優點和問題" class="headerlink" title="優點和問題"></a>優點和問題</h4><ul>
+<li><strong>可擴展性提升</strong>：增加支付方式時，只需新增實現 <code>IPaymentMethod</code> 的類別，<code>PaymentProcessor</code> 不需要改動。</li>
+<li><strong>耦合性降低</strong>：<code>PaymentProcessor</code> 不再依賴於具體的支付方式。</li>
+<li><strong>問題仍然存在</strong>：<code>PaymentProcessor</code> 依然<strong>自己決定</strong>具體使用哪一個支付方式（仍然硬編碼了 <code>new CreditCardPayment()</code>），導致擴展性受限。如果需求更變，仍需修改 <code>PaymentProcessor</code> 類別的程式碼。</li>
+</ul>
+<h3 id="3-依賴注入-Dependency-Injection"><a href="#3-依賴注入-Dependency-Injection" class="headerlink" title="3. 依賴注入 (Dependency Injection)"></a>3. 依賴注入 (Dependency Injection)</h3><p>這一步，我們通過依賴注入來進一步改善設計，將 <code>PaymentProcessor</code> 的支付方式作為外部傳入的依賴，從而達到更高的靈活性。</p>
+<pre><code class="csharp">public interface IPaymentMethod
+{
+    void ProcessPayment(decimal amount);
+}
+
+public class CreditCardPayment : IPaymentMethod
+{
+    public void ProcessPayment(decimal amount)
+    {
+        Console.WriteLine($&quot;Processing credit card payment of {amount}&quot;);
+    }
+}
+
+public class PaypalPayment : IPaymentMethod
+{
+    public void ProcessPayment(decimal amount)
+    {
+        Console.WriteLine($&quot;Processing PayPal payment of {amount}&quot;);
+    }
+}
+
+public class PaymentProcessor
+{
+    private IPaymentMethod _paymentMethod;
+
+    // 建構子注入：在建構時由外部提供具體的支付方式
+    public PaymentProcessor(IPaymentMethod paymentMethod)
+    {
+        _paymentMethod = paymentMethod;
+    }
+
+    public void CompletePurchase(decimal amount)
+    {
+        _paymentMethod.ProcessPayment(amount);
+    }
+}
+</code></pre>
+<p>現在，使用 <code>PaymentProcessor</code> 時，可以選擇傳入不同的支付方式：</p>
+<pre><code class="csharp">IPaymentMethod paymentMethod = new CreditCardPayment();
+PaymentProcessor processor = new PaymentProcessor(paymentMethod);
+processor.CompletePurchase(100);
+
+paymentMethod = new PaypalPayment();
+processor = new PaymentProcessor(paymentMethod);
+processor.CompletePurchase(50);
+</code></pre>
+<h4 id="優點"><a href="#優點" class="headerlink" title="優點"></a>優點</h4><ul>
+<li><strong>完全鬆耦合</strong>：<code>PaymentProcessor</code> 不再負責創建具體支付方式。它的依賴由外部提供，使得系統更具彈性。</li>
+<li><strong>便於測試</strong>：可以在測試中傳入一個模擬 <code>IPaymentMethod</code>，來測試 <code>PaymentProcessor</code> 的功能，而不需要實際的支付方式。</li>
+<li><strong>擴展性更高</strong>：增加或更改支付方式時，無需修改 <code>PaymentProcessor</code> 的內部實現。</li>
+</ul>
+<h4 id="DI-總結"><a href="#DI-總結" class="headerlink" title="DI 總結"></a>DI 總結</h4><p>依賴注入將類別的依賴關係從內部創建轉移到外部提供，使系統更易擴展和維護。在大型應用中，依賴注入可以使用 DI 容器自動管理依賴，進一步簡化設計流程。</p>
+<p>當然，讓我們逐行分析 <strong>硬編碼依賴 (Tightly Coupled Code)</strong> 的語法和設計。這裡有兩個主要的類別：</p>
+<ol>
+<li><code>CreditCardPayment</code>：代表一種支付方式。</li>
+<li><code>PaymentProcessor</code>：處理支付的主要類別。</li>
+</ol>
+<p>在此設計中，<code>PaymentProcessor</code> 直接依賴於 <code>CreditCardPayment</code>，因此在程式中是“硬編碼”的依賴關係。</p>
+<pre><code class="csharp">public class CreditCardPayment
+{
+    public void ProcessPayment(decimal amount)
+    {
+        Console.WriteLine($&quot;Processing credit card payment of {amount}&quot;);
+    }
+}
+</code></pre>
+<h3 id="逐行解釋"><a href="#逐行解釋" class="headerlink" title="逐行解釋"></a>逐行解釋</h3><ul>
+<li><p>**<code>public class CreditCardPayment</code>**：</p>
+<ul>
+<li>這行宣告了一個名為 <code>CreditCardPayment</code> 的公共類別，這是一個支付方式的具體實現。</li>
+<li>關鍵字 <code>public</code> 表示這個類別可以從其他類別或命名空間訪問。</li>
+<li>類別的名稱 <code>CreditCardPayment</code> 顯示它的用途：處理信用卡支付。</li>
+</ul>
+</li>
+<li><p>**<code>public void ProcessPayment(decimal amount)</code>**：</p>
+<ul>
+<li>這行宣告了一個名為 <code>ProcessPayment</code> 的公共方法，用於處理支付。</li>
+<li><code>void</code> 表示此方法沒有返回值。</li>
+<li>方法參數 <code>(decimal amount)</code> 用於接收支付的金額，<code>decimal</code> 類型適合表示精確的小數值，通常用於金融計算。</li>
+</ul>
+</li>
+<li><p>**<code>Console.WriteLine($&quot;Processing credit card payment of {amount}&quot;);</code>**：</p>
+<ul>
+<li>這行代碼會打印出支付的訊息，用來模擬支付處理的過程。</li>
+<li><code>$</code> 表示字符串插值，可以直接在字符串中插入變數或表達式的值。</li>
+<li>這裡的 <code>{amount}</code> 會被替換為 <code>amount</code> 的值，構建出 <code>&quot;Processing credit card payment of 100.0&quot;</code> 類似的輸出。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<pre><code class="csharp">public class PaymentProcessor
+{
+    private CreditCardPayment _paymentMethod = new CreditCardPayment();
+
+    public void CompletePurchase(decimal amount)
+    {
+        _paymentMethod.ProcessPayment(amount);
+    }
+}
+</code></pre>
+<h3 id="逐行解釋-1"><a href="#逐行解釋-1" class="headerlink" title="逐行解釋"></a>逐行解釋</h3><ul>
+<li><p>**<code>public class PaymentProcessor</code>**：</p>
+<ul>
+<li>宣告一個名為 <code>PaymentProcessor</code> 的公共類別，表示支付處理器。</li>
+<li><code>PaymentProcessor</code> 類別的責任是完成支付流程。</li>
+</ul>
+</li>
+<li><p>**<code>private CreditCardPayment _paymentMethod = new CreditCardPayment();</code>**：</p>
+<ul>
+<li>宣告了一個私有變數 <code>_paymentMethod</code>，其類型為 <code>CreditCardPayment</code>。</li>
+<li><code>private</code> 關鍵字表示 <code>_paymentMethod</code> 只能在 <code>PaymentProcessor</code> 類別內部使用。</li>
+<li><code>_paymentMethod</code> 被初始化為一個新的 <code>CreditCardPayment</code> 實例，這裡的 <code>new CreditCardPayment()</code> 表示直接在程式內部創建該依賴。</li>
+<li>因此，<code>PaymentProcessor</code> 只能使用 <code>CreditCardPayment</code> 作為支付方式，形成“硬編碼依賴”。</li>
+</ul>
+</li>
+<li><p>**<code>public void CompletePurchase(decimal amount)</code>**：</p>
+<ul>
+<li>宣告一個名為 <code>CompletePurchase</code> 的公共方法，用於完成購買。</li>
+<li>方法的參數 <code>(decimal amount)</code> 代表交易的金額。</li>
+</ul>
+</li>
+<li><p>**<code>_paymentMethod.ProcessPayment(amount);</code>**：</p>
+<ul>
+<li>調用 <code>_paymentMethod</code> 的 <code>ProcessPayment</code> 方法來完成支付。</li>
+<li>這裡 <code>_paymentMethod</code> 依賴於具體的 <code>CreditCardPayment</code> 類別，這是“硬編碼依賴”的一部分。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="總結-1"><a href="#總結-1" class="headerlink" title="總結"></a>總結</h3><p>在這種設計中，<code>PaymentProcessor</code> 無法輕易地支持其他支付方式，因為它依賴於 <code>CreditCardPayment</code> 的具體實現。</p>
+<p>在這裡 <code>new CreditCardPayment()</code> 後的括號 <code>()</code> 是用來呼叫 <code>CreditCardPayment</code> 類別的**建構子 (constructor)**。</p>
 <h3 id="為什麼需要-括號"><a href="#為什麼需要-括號" class="headerlink" title="為什麼需要 () 括號"></a>為什麼需要 <code>()</code> 括號</h3><ul>
 <li><p><strong>呼叫建構子</strong>：當你寫 <code>new CreditCardPayment()</code>，<code>()</code> 表示呼叫這個類別的建構子。建構子是一個特殊的方法，會在物件被創建時自動執行，用於初始化物件的狀態。</p>
 </li>
@@ -61,3 +301,79 @@ Console.WriteLine(person.Name); // Output: Unknown
 }
 </code></pre>
 <p>這個隱含建構子在實際情況中不需要我們手動寫出。只要類別內部沒有定義任何建構子，C# 編譯器就會自動生成這個無參數建構子。</p>
+<p>在這種情況下，如果你希望 <code>CreditCardPayment</code> 類別的建構子可以接受參數（如 <code>cardNo</code>、<code>CSV</code>、<code>expYYMM</code>），那麼建構子的定義需要匹配這些參數，並在初始化時將它們賦值給類別中的私有欄位。你可以這樣設置建構子：</p>
+<pre><code class="csharp">public class CreditCardPayment
+{
+    private string _cardNo;
+    private string _CSV;
+    private string _expYYMM;
+
+    // 帶有參數的建構子，用來初始化欄位
+    public CreditCardPayment(string cardNo, string CSV, string expYYMM)
+    {
+        _cardNo = cardNo;
+        _CSV = CSV;
+        _expYYMM = expYYMM;
+    }
+}
+</code></pre>
+<p>這樣，當你使用 <code>new CreditCardPayment(cardNo, CSV, expYYMM)</code> 時，就會調用這個帶參數的建構子，並將 <code>cardNo</code>、<code>CSV</code> 和 <code>expYYMM</code> 的值分別賦予對應的欄位 <code>_cardNo</code>、<code>_CSV</code> 和 <code>_expYYMM</code>。</p>
+<p>所以像 2. 引入接口 (Programming to an Interface)  的方式,<br>那如果要新增支付方式, 就還是要修改<br><code> public class PaymentProcessor {</code><br>裡面的這段程式:<br>private IPaymentMethod _paymentMethod &#x3D; new CreditCardPayment(); &#x2F;&#x2F; 這裡仍然是硬編碼<br>就是把 new CreditCardPayment() , 改成我要的支付方式,<br>比如是  轉帳 , 就是 new BankTransferPayment() , 對嗎?</p>
+<p>是的，你的理解是正確的！在這種情況下，<code>PaymentProcessor</code> 類別內部的 <code>_paymentMethod</code> 仍然是硬編碼的依賴。這意味著如果你想新增支付方式，就需要在 <code>PaymentProcessor</code> 類別中手動修改這段程式碼。</p>
+<p>例如，如果你希望將支付方式從信用卡改為銀行轉帳，你需要將以下這行：</p>
+<pre><code class="csharp">private IPaymentMethod _paymentMethod = new CreditCardPayment(); // 這裡仍然是硬編碼
+</code></pre>
+<p>改成：</p>
+<pre><code class="csharp">private IPaymentMethod _paymentMethod = new BankTransferPayment(); // 改為銀行轉帳支付
+</code></pre>
+<h3 id="這樣的缺點"><a href="#這樣的缺點" class="headerlink" title="這樣的缺點"></a>這樣的缺點</h3><p>這種方式的缺點是你必須每次都手動更改 <code>PaymentProcessor</code> 類別的代碼，這可能導致代碼不易維護和擴展，尤其是在有多個地方使用 <code>PaymentProcessor</code> 的情況下。</p>
+<h3 id="如何改善？"><a href="#如何改善？" class="headerlink" title="如何改善？"></a>如何改善？</h3><p>為了避免這個問題，你可以使用依賴注入（Dependency Injection）來注入支付方法，這樣就不需要在 <code>PaymentProcessor</code> 類別中硬編碼支付方式。具體的做法可以參考以下示例：</p>
+<pre><code class="csharp">public class PaymentProcessor
+{
+    private IPaymentMethod _paymentMethod;
+
+    // 透過建構子注入支付方法
+    public PaymentProcessor(IPaymentMethod paymentMethod)
+    {
+        _paymentMethod = paymentMethod;
+    }
+
+    public void CompletePurchase(decimal amount)
+    {
+        _paymentMethod.ProcessPayment(amount);
+    }
+}
+
+// 使用示例
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        // 在這裡選擇使用哪一種支付方式
+        IPaymentMethod paymentMethod = new BankTransferPayment();
+        PaymentProcessor processor = new PaymentProcessor(paymentMethod);
+        processor.CompletePurchase(100.00m);
+    }
+}
+</code></pre>
+<p>這樣，你只需要在創建 <code>PaymentProcessor</code> 的時候決定使用哪一種支付方式，而不需要修改 <code>PaymentProcessor</code> 的內部代碼。這種方法更符合開放-封閉原則（Open&#x2F;Closed Principle），即對擴展開放，對修改封閉。</p>
+<p>依賴注入（Dependency Injection，DI）的使用確實是設計模式演進過程的一部分，目的是解決早期設計中硬編碼依賴所帶來的問題。以下是一些要點來總結這個演變過程：</p>
+<h3 id="演進過程總結"><a href="#演進過程總結" class="headerlink" title="演進過程總結"></a>演進過程總結</h3><ol>
+<li><p><strong>硬編碼依賴 (Tightly Coupled Code)</strong>:</p>
+<ul>
+<li>在這個階段，類別之間有強烈的耦合，每個類別直接創建其依賴對象，這使得代碼難以測試和維護。當需要改變或擴展功能時，必須直接修改代碼。</li>
+</ul>
+</li>
+<li><p><strong>引入接口 (Programming to an Interface)</strong>:</p>
+<ul>
+<li>當引入接口時，類別開始依賴於抽象而不是具體實現。這樣做可以使代碼更靈活，但仍然需要在類別內部進行修改以更改依賴。這樣的設計雖然比硬編碼依賴有所改善，但在需要頻繁修改的場景中仍然不夠靈活。</li>
+</ul>
+</li>
+<li><p><strong>依賴注入 (Dependency Injection)</strong>:</p>
+<ul>
+<li>這個階段的主要目的是減少類別之間的耦合。通過將依賴作為參數傳遞給類別，開發者可以輕鬆地在不改變類別內部代碼的情況下更改其行為。這樣的設計符合開放-封閉原則（OCP），即對擴展開放，對修改封閉。這意味著你可以新增新的支付方式（或其他功能）而不需要改變已經存在的類別。</li>
+</ul>
+</li>
+</ol>
+<h3 id="總結-2"><a href="#總結-2" class="headerlink" title="總結"></a>總結</h3><p>DI 不僅提高了代碼的靈活性和可維護性，還使單元測試變得更加容易，因為你可以使用模擬對象來測試你的類別，而不需要依賴於具體的實現。</p>
+<p>這樣的設計模式使得系統架構更加清晰、可擴展且易於維護，並且能夠更好地應對未來的需求變更。</p>
