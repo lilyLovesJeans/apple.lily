@@ -1,0 +1,396 @@
+<hr>
+<h2 id="title-2024-11-12-vue-為什麼-vue-屬性-data要用括號-methods-用冒號date-2024-11-18-22-49-21categories-OneDayOneNotetags-Javascript-Vue-description-2024-11-12-vue-為什麼-vue-屬性-data要用括號-methods-用冒號"><a href="#title-2024-11-12-vue-為什麼-vue-屬性-data要用括號-methods-用冒號date-2024-11-18-22-49-21categories-OneDayOneNotetags-Javascript-Vue-description-2024-11-12-vue-為什麼-vue-屬性-data要用括號-methods-用冒號" class="headerlink" title="title: 2024-11-12 vue_為什麼 vue  屬性  data要用括號, methods 用冒號date: 2024-11-18 22:49:21categories: OneDayOneNotetags:  [Javascript,Vue]description:  2024-11-12 vue_為什麼 vue  屬性  data要用括號, methods 用冒號"></a>title: 2024-11-12 vue_為什麼 vue  屬性  data要用括號, methods 用冒號<br>date: 2024-11-18 22:49:21<br>categories: OneDayOneNote<br>tags:  [Javascript,Vue]<br>description:  2024-11-12 vue_為什麼 vue  屬性  data要用括號, methods 用冒號</h2><h2 id="2024-11-12-vue-為什麼-vue-屬性-data要用括號-methods-用冒號"><a href="#2024-11-12-vue-為什麼-vue-屬性-data要用括號-methods-用冒號" class="headerlink" title="2024-11-12 vue_為什麼 vue  屬性  data要用括號, methods 用冒號"></a>2024-11-12 vue_為什麼 vue  屬性  data要用括號, methods 用冒號</h2><p>為什麼 vue  屬性  data要用() , methods 用:<br>在 Vue 的設計中，<code>data</code> 和 <code>methods</code> 的語法差異是基於其性質與用途，讓你能清楚地表達它們的功能和使用方式。以下是詳細解釋：</p>
+<hr>
+<h3 id="1-data-為什麼用-（函數）？"><a href="#1-data-為什麼用-（函數）？" class="headerlink" title="1. data 為什麼用 ()（函數）？"></a><strong>1. <code>data</code> 為什麼用 <code>()</code>（函數）？</strong></h3><p><code>data</code> 是一個方法，返回一個物件，而不是直接是一個物件。這是因為 Vue 的每個組件實例都需要有自己的獨立數據副本。</p>
+<h4 id="具體原因："><a href="#具體原因：" class="headerlink" title="具體原因："></a><strong>具體原因：</strong></h4><ol>
+<li><p><strong>每個組件實例需要獨立的數據：</strong><br>如果直接寫成一個物件：</p>
+<pre><code class="javascript">data: {
+  count: 0
+}
+</code></pre>
+<p>那麼所有使用這個組件的實例會共用同一個 <code>data</code> 物件，修改其中一個的數據，會影響到所有的實例，造成<strong>數據污染</strong>。</p>
+<p>使用函數形式，每次創建組件實例時，Vue 都會調用 <code>data</code> 函數，返回一個新的物件，確保數據互不干擾。</p>
+<pre><code class="javascript">data() {
+  return {
+    count: 0
+  };
+}
+</code></pre>
+</li>
+<li><p><strong>數據隔離的示例：</strong></p>
+<pre><code class="javascript">const componentA = new Vue({
+  data: {
+    count: 0
+  }
+});
+
+const componentB = new Vue({
+  data: {
+    count: 0
+  }
+});
+
+componentA.count++; // 如果 `data` 是直接物件，componentB.count 也會被改動
+</code></pre>
+<p>使用函數保證 <code>componentA</code> 和 <code>componentB</code> 的 <code>count</code> 是獨立的。</p>
+</li>
+</ol>
+<hr>
+<h3 id="2-methods-為什麼用冒號-（物件屬性語法）？"><a href="#2-methods-為什麼用冒號-（物件屬性語法）？" class="headerlink" title="2. methods 為什麼用冒號 :（物件屬性語法）？"></a><strong>2. <code>methods</code> 為什麼用冒號 <code>:</code>（物件屬性語法）？</strong></h3><p><code>methods</code> 是一個普通的物件，定義了組件中可以調用的函數。它不需要像 <code>data</code> 那樣返回一個新的副本，因為：</p>
+<ol>
+<li>方法是組件的邏輯操作，並不需要「每個實例有不同的副本」。</li>
+<li>所有的實例可以安全共用同一套方法定義，因為方法不會像數據那樣直接改變狀態。</li>
+</ol>
+<h4 id="語法示例："><a href="#語法示例：" class="headerlink" title="語法示例："></a><strong>語法示例：</strong></h4><pre><code class="javascript">methods: {
+  increment() {
+    this.count++;
+  }
+}
+</code></pre>
+<hr>
+<h3 id="總結差異："><a href="#總結差異：" class="headerlink" title="總結差異："></a><strong>總結差異：</strong></h3><table>
+<thead>
+<tr>
+<th>特性</th>
+<th><code>data</code></th>
+<th><code>methods</code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>類型</strong></td>
+<td>函數，返回一個物件</td>
+<td>物件</td>
+</tr>
+<tr>
+<td><strong>目的</strong></td>
+<td>提供響應式數據，每個組件實例有自己的副本</td>
+<td>定義組件的行為（邏輯操作），不需要副本</td>
+</tr>
+<tr>
+<td><strong>語法形式</strong></td>
+<td><code>data() { return { ... }; }</code></td>
+<td><code>methods: { ... }</code></td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="3-類比解釋"><a href="#3-類比解釋" class="headerlink" title="3. 類比解釋"></a><strong>3. 類比解釋</strong></h3><p>把 <code>data</code> 和 <code>methods</code> 想像成這樣：</p>
+<ul>
+<li><strong><code>data</code> 是組件的「狀態」，</strong>每個組件都有自己的「屬性」和「值」，因此需要獨立，像是「每個人都有自己的行李箱」。</li>
+<li><strong><code>methods</code> 是組件的「行為」，</strong>邏輯是通用的，所有人可以共用，比如「每個人都可以打開自己的行李箱，但打開的方法是通用的」。</li>
+</ul>
+<p>但妳在 數據隔離的示例 的 data 為什麼是用冒號 :<br>很好！你抓到了這個範例和 Vue 的實際應用之間的細微差別。讓我們來更清楚地說明為什麼這裡的 <code>data</code> 用冒號 <code>:</code> 而不是函數形式，以及為什麼這個範例仍然成立。</p>
+<hr>
+<h3 id="1-這裡的範例不涉及組件"><a href="#1-這裡的範例不涉及組件" class="headerlink" title="1. 這裡的範例不涉及組件"></a><strong>1. 這裡的範例不涉及組件</strong></h3><p>在這個範例中，我用的是 <strong>Vue 根實例（<code>new Vue</code>）</strong>，而不是 Vue 的組件。Vue 的根實例允許 <code>data</code> 使用直接的物件形式，而不需要是函數形式。</p>
+<p><strong>語法：</strong></p>
+<pre><code class="javascript">const app = new Vue({
+  data: {
+    count: 0
+  }
+});
+</code></pre>
+<p>這是合法的，因為 Vue 根實例只會有一個，因此不需要數據隔離。</p>
+<hr>
+<h3 id="2-組件（Vue-component）需要數據隔離"><a href="#2-組件（Vue-component）需要數據隔離" class="headerlink" title="2. 組件（Vue.component）需要數據隔離"></a><strong>2. 組件（<code>Vue.component</code>）需要數據隔離</strong></h3><p>當使用 Vue 組件時，<code>data</code> 必須是一個函數，返回一個物件。這樣做是為了確保每個組件實例都有自己的獨立數據。假如 <code>data</code> 是直接物件，所有實例會共享同一份數據，導致意外的相互干擾。</p>
+<p><strong>語法：</strong></p>
+<pre><code class="javascript">Vue.component(&#39;example-component&#39;, {
+  data() {
+    return {
+      count: 0
+    };
+  }
+});
+</code></pre>
+<p>這種設計可以讓每個組件實例有自己的 <code>count</code>，互不影響。</p>
+<hr>
+<h3 id="3-回到範例：為什麼這裡的-data-是用冒號？"><a href="#3-回到範例：為什麼這裡的-data-是用冒號？" class="headerlink" title="3. 回到範例：為什麼這裡的 data 是用冒號？"></a><strong>3. 回到範例：為什麼這裡的 <code>data</code> 是用冒號？</strong></h3><p>在範例中，我們分別創建了兩個 Vue 根實例 <code>componentA</code> 和 <code>componentB</code>。根實例之間是完全獨立的，無需數據隔離，因此可以直接使用 <code>data: {}</code> 的形式：</p>
+<pre><code class="javascript">const componentA = new Vue({
+  data: {
+    count: 0
+  }
+});
+
+const componentB = new Vue({
+  data: {
+    count: 0
+  }
+});
+
+componentA.count++; // 不會影響 componentB.count
+</code></pre>
+<h4 id="為什麼這不會導致共享數據？"><a href="#為什麼這不會導致共享數據？" class="headerlink" title="為什麼這不會導致共享數據？"></a><strong>為什麼這不會導致共享數據？</strong></h4><p>每個 <code>new Vue()</code> 創建的是一個全新的 Vue 實例，裡面的 <code>data</code> 是獨立的，即便你寫的是 <code>data: {}</code>，Vue 根實例會自動幫你處理數據隔離。</p>
+<hr>
+<h3 id="4-組件和根實例的關鍵區別"><a href="#4-組件和根實例的關鍵區別" class="headerlink" title="4. 組件和根實例的關鍵區別"></a><strong>4. 組件和根實例的關鍵區別</strong></h3><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>根實例（<code>new Vue</code>）</th>
+<th>組件（<code>Vue.component</code>）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>data</code> 是否需要函數形式？</td>
+<td>不需要，可以是物件</td>
+<td>必須是函數形式，返回一個物件</td>
+</tr>
+<tr>
+<td>為什麼？</td>
+<td>根實例通常只有一個，不需要數據隔離</td>
+<td>組件可能會有多個實例，需要數據隔離</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="5-小結"><a href="#5-小結" class="headerlink" title="5. 小結"></a><strong>5. 小結</strong></h3><ul>
+<li><strong>根實例</strong>：<code>data</code> 可以是直接物件，因為 Vue 根實例的數據天然是獨立的。</li>
+<li><strong>組件</strong>：<code>data</code> 必須是函數形式，因為多個組件實例需要自己的數據副本，避免互相干擾。</li>
+</ul>
+<p>所以在範例中，使用冒號 <code>:</code> 定義 <code>data</code> 是因為它是 Vue 根實例，而不是組件。如果改成組件，就需要用函數形式來定義 <code>data</code>！</p>
+<p>但我怎麼知道我用的是實例?<br>export default{<br>  data(){</p>
+<p>在 Vue 中，判斷你使用的是 <strong>Vue 根實例</strong> 還是 <strong>Vue 組件</strong>，可以從代碼結構和上下文來辨別。以下是一些清晰的區分方法：</p>
+<hr>
+<h3 id="1-Vue-根實例（new-Vue-）"><a href="#1-Vue-根實例（new-Vue-）" class="headerlink" title="1. Vue 根實例（new Vue()）"></a><strong>1. Vue 根實例（<code>new Vue()</code>）</strong></h3><p>當你用 <code>new Vue()</code> 創建應用時，就是在定義 Vue 的根實例。這是整個應用的起點，通常會掛載到一個 DOM 元素上（如 <code>#app</code>），例如：</p>
+<pre><code class="javascript">const app = new Vue({
+  el: &#39;#app&#39;, // 指定掛載的 DOM 節點
+  data: {
+    count: 0 // 可以直接用物件定義
+  },
+  methods: {
+    increment() {
+      this.count++;
+    }
+  }
+});
+</code></pre>
+<h4 id="特點："><a href="#特點：" class="headerlink" title="特點："></a><strong>特點：</strong></h4><ul>
+<li><strong><code>new Vue()</code> 是根實例的標誌</strong>，表示這是一個單獨的 Vue 應用程序。</li>
+<li><code>data</code> 可以直接是一個物件 <code>{}</code>。</li>
+<li>根實例通常會有 <code>el</code> 屬性，用來指定掛載的 DOM 節點。</li>
+</ul>
+<hr>
+<h3 id="2-Vue-組件（export-default-或-Vue-component）"><a href="#2-Vue-組件（export-default-或-Vue-component）" class="headerlink" title="2. Vue 組件（export default 或 Vue.component）"></a><strong>2. Vue 組件（<code>export default</code> 或 <code>Vue.component</code>）</strong></h3><p>當你定義一個組件時，通常會看到 <code>export default</code> 或 <code>Vue.component</code>。組件是用來在 Vue 應用中重複使用的結構化代碼。</p>
+<h4 id="示例-1：export-default-定義的組件"><a href="#示例-1：export-default-定義的組件" class="headerlink" title="示例 1：export default 定義的組件"></a><strong>示例 1：<code>export default</code> 定義的組件</strong></h4><pre><code class="javascript">export default {
+  data() {
+    return {
+      count: 0 // 必須用函數返回一個物件
+    };
+  },
+  methods: {
+    increment() {
+      this.count++;
+    }
+  },
+  template: `
+    &lt;div&gt;
+      &lt;p&gt;{{ count }}&lt;/p&gt;
+      &lt;button @click=&quot;increment&quot;&gt;增加&lt;/button&gt;
+    &lt;/div&gt;
+  `
+};
+</code></pre>
+<h4 id="示例-2：用-Vue-component-定義的組件"><a href="#示例-2：用-Vue-component-定義的組件" class="headerlink" title="示例 2：用 Vue.component 定義的組件"></a><strong>示例 2：用 <code>Vue.component</code> 定義的組件</strong></h4><pre><code class="javascript">Vue.component(&#39;my-component&#39;, {
+  data() {
+    return {
+      count: 0
+    };
+  },
+  template: `
+    &lt;div&gt;
+      &lt;p&gt;{{ count }}&lt;/p&gt;
+    &lt;/div&gt;
+  `
+});
+</code></pre>
+<h4 id="特點：-1"><a href="#特點：-1" class="headerlink" title="特點："></a><strong>特點：</strong></h4><ul>
+<li>使用 <code>export default</code> 或 <code>Vue.component</code> 定義。</li>
+<li><strong><code>data</code> 必須是函數</strong>，返回一個物件，確保多個組件實例有獨立的數據副本。</li>
+<li>組件會在根實例內使用，或嵌套到其他組件中。</li>
+</ul>
+<hr>
+<h3 id="3-如何知道你使用的是實例還是組件？"><a href="#3-如何知道你使用的是實例還是組件？" class="headerlink" title="3. 如何知道你使用的是實例還是組件？"></a><strong>3. 如何知道你使用的是實例還是組件？</strong></h3><h4 id="看代碼的上下文"><a href="#看代碼的上下文" class="headerlink" title="看代碼的上下文"></a><strong>看代碼的上下文</strong></h4><ul>
+<li><strong>根實例</strong>：<ul>
+<li>通常會有 <code>new Vue()</code>。</li>
+<li>必須掛載到 DOM 節點（如 <code>el: &#39;#app&#39;</code> 或 <code>mount(&#39;#app&#39;)</code>）。</li>
+</ul>
+</li>
+<li><strong>組件</strong>：<ul>
+<li>會出現在 <code>export default</code> 或 <code>Vue.component()</code> 的定義中。</li>
+<li>不會直接掛載到 DOM 節點，而是被其他地方引用（如在 <code>template</code> 中）。</li>
+</ul>
+</li>
+</ul>
+<h4 id="示例：根實例-vs-組件"><a href="#示例：根實例-vs-組件" class="headerlink" title="示例：根實例 vs 組件"></a><strong>示例：根實例 vs 組件</strong></h4><p><strong>根實例：</strong></p>
+<pre><code class="javascript">new Vue({
+  el: &#39;#app&#39;,
+  data: {
+    message: &#39;這是根實例&#39;
+  }
+});
+</code></pre>
+<p><strong>組件：</strong></p>
+<pre><code class="javascript">export default {
+  data() {
+    return {
+      message: &#39;這是組件&#39;
+    };
+  }
+};
+</code></pre>
+<h4 id="看-main-js-的結構"><a href="#看-main-js-的結構" class="headerlink" title="看 main.js 的結構"></a><strong>看 <code>main.js</code> 的結構</strong></h4><p>在 Vue CLI 應用中，通常 <code>main.js</code> 文件定義的是根實例，而其他 <code>.vue</code> 文件是組件。</p>
+<p><strong><code>main.js</code> 中的根實例：</strong></p>
+<pre><code class="javascript">import Vue from &#39;vue&#39;;
+import App from &#39;./App.vue&#39;;
+
+new Vue({
+  render: h =&gt; h(App),
+}).$mount(&#39;#app&#39;); // 挂载到 #app
+</code></pre>
+<p><strong><code>App.vue</code> 中的組件：</strong></p>
+<pre><code class="javascript">export default {
+  data() {
+    return {
+      title: &#39;這是一個組件&#39;
+    };
+  }
+};
+</code></pre>
+<hr>
+<h3 id="小結"><a href="#小結" class="headerlink" title="小結"></a><strong>小結</strong></h3><ul>
+<li><strong><code>new Vue()</code> 表示創建的是根實例</strong>，<code>data</code> 可以是直接物件。</li>
+<li><strong><code>export default</code> 或 <code>Vue.component</code> 則是定義組件</strong>，<code>data</code> 必須是函數，返回物件。</li>
+<li>如果你在 <code>.vue</code> 文件中用 <code>export default</code>，那麼你正在定義組件，<code>data</code> 需要是函數形式。</li>
+</ul>
+<p>export default 或 Vue.component 則是定義組件，data 必須是函數，返回物件。<br>返回什麼物件? 請舉例它們的不同</p>
+<h3 id="data-必須是函數，返回物件的意義"><a href="#data-必須是函數，返回物件的意義" class="headerlink" title="data 必須是函數，返回物件的意義"></a><strong><code>data</code> 必須是函數，返回物件的意義</strong></h3><p>當你在 Vue 中定義一個組件時，<code>data</code> 必須是函數形式，並返回一個物件，這樣每個組件的實例都可以擁有自己獨立的數據。</p>
+<p>這是為了避免多個組件實例共享同一個數據對象，導致數據互相干擾。</p>
+<hr>
+<h3 id="返回什麼樣的物件？"><a href="#返回什麼樣的物件？" class="headerlink" title="返回什麼樣的物件？"></a><strong>返回什麼樣的物件？</strong></h3><p><code>data</code> 返回的物件是組件的狀態數據，定義該組件中所需的變量。</p>
+<h4 id="示例-1：返回物件作為狀態數據"><a href="#示例-1：返回物件作為狀態數據" class="headerlink" title="示例 1：返回物件作為狀態數據"></a><strong>示例 1：返回物件作為狀態數據</strong></h4><pre><code class="javascript">export default {
+  data() {
+    return {
+      count: 0,          // 數字變量
+      message: &#39;Hello&#39;,  // 字符串變量
+      isVisible: true,   // 布林值
+      items: [&#39;A&#39;, &#39;B&#39;]  // 數組
+    };
+  }
+};
+</code></pre>
+<h4 id="示例-2：返回物件並初始化"><a href="#示例-2：返回物件並初始化" class="headerlink" title="示例 2：返回物件並初始化"></a><strong>示例 2：返回物件並初始化</strong></h4><pre><code class="javascript">export default {
+  data() {
+    return {
+      user: {
+        name: &#39;&#39;,
+        email: &#39;&#39;
+      },
+      tasks: []
+    };
+  }
+};
+</code></pre>
+<p>在這裡，<code>user</code> 和 <code>tasks</code> 是初始化的數據物件，方便用於表單或列表處理。</p>
+<hr>
+<h3 id="export-default-和-Vue-component-的區別"><a href="#export-default-和-Vue-component-的區別" class="headerlink" title="export default 和 Vue.component 的區別"></a><strong><code>export default</code> 和 <code>Vue.component</code> 的區別</strong></h3><p>雖然它們都可以定義組件，但它們的使用場景和方式略有不同。</p>
+<hr>
+<h4 id="1-使用-export-default-定義組件"><a href="#1-使用-export-default-定義組件" class="headerlink" title="1. 使用 export default 定義組件"></a><strong>1. 使用 <code>export default</code> 定義組件</strong></h4><p>這是 Vue CLI 和單文件組件（<code>.vue</code> 文件）的常用寫法，通常配合模組化代碼一起使用。</p>
+<p><strong><code>ExampleComponent.vue</code>：</strong></p>
+<pre><code class="javascript">&lt;template&gt;
+  &lt;div&gt;
+    &lt;h1&gt;{{ title }}&lt;/h1&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  data() {
+    return {
+      title: &#39;Hello Vue Component&#39;
+    };
+  }
+};
+&lt;/script&gt;
+</code></pre>
+<h4 id="特點：-2"><a href="#特點：-2" class="headerlink" title="特點："></a><strong>特點：</strong></h4><ul>
+<li>配合 Vue CLI 使用。</li>
+<li>組件會通過 <code>import</code> 引入。</li>
+<li>適合大型項目，文件結構更清晰。</li>
+</ul>
+<hr>
+<h4 id="2-使用-Vue-component-定義組件"><a href="#2-使用-Vue-component-定義組件" class="headerlink" title="2. 使用 Vue.component 定義組件"></a><strong>2. 使用 <code>Vue.component</code> 定義組件</strong></h4><p>這是 Vue 的全局組件註冊方式，適合簡單項目或需要快速創建組件的情況。</p>
+<p><strong>直接在 <code>main.js</code> 或其他地方註冊：</strong></p>
+<pre><code class="javascript">Vue.component(&#39;example-component&#39;, {
+  data() {
+    return {
+      title: &#39;Hello Vue Component&#39;
+    };
+  },
+  template: &#39;&lt;div&gt;&lt;h1&gt;{{ title }}&lt;/h1&gt;&lt;/div&gt;&#39;
+});
+</code></pre>
+<h4 id="特點：-3"><a href="#特點：-3" class="headerlink" title="特點："></a><strong>特點：</strong></h4><ul>
+<li>全局可用，所有地方都可以使用這個組件。</li>
+<li>適合小型項目或臨時組件。</li>
+<li>對於大型應用，可能會導致命名衝突。</li>
+</ul>
+<hr>
+<h3 id="比較-export-default-與-Vue-component"><a href="#比較-export-default-與-Vue-component" class="headerlink" title="比較 export default 與 Vue.component"></a><strong>比較 <code>export default</code> 與 <code>Vue.component</code></strong></h3><table>
+<thead>
+<tr>
+<th>特性</th>
+<th><code>export default</code></th>
+<th><code>Vue.component</code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>模組化支持</strong></td>
+<td>支持，與 <code>import/export</code> 配合使用</td>
+<td>不支持，適合臨時全局組件</td>
+</tr>
+<tr>
+<td><strong>適用場景</strong></td>
+<td>大型項目，組件結構化</td>
+<td>小型項目，快速全局註冊</td>
+</tr>
+<tr>
+<td><strong>代碼可讀性與維護性</strong></td>
+<td>高，可分離文件，清晰明瞭</td>
+<td>較低，全局組件可能導致混亂</td>
+</tr>
+<tr>
+<td><strong>數據定義方式</strong></td>
+<td>必須是函數，返回物件</td>
+<td>必須是函數，返回物件</td>
+</tr>
+<tr>
+<td><strong>使用方式</strong></td>
+<td>通過 <code>import</code> 引入</td>
+<td>自動全局可用</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="實際項目中的使用方式"><a href="#實際項目中的使用方式" class="headerlink" title="實際項目中的使用方式"></a><strong>實際項目中的使用方式</strong></h3><ol>
+<li><p>如果你是使用 Vue CLI 並有清晰的文件結構，推薦使用 <code>export default</code>。</p>
+<pre><code class="javascript">// 在 .vue 文件中
+export default {
+  data() {
+    return { message: &#39;Hello Vue!&#39; };
+  }
+};
+</code></pre>
+<p>然後在其他組件中引入並使用：</p>
+<pre><code class="javascript">import ExampleComponent from &#39;./ExampleComponent.vue&#39;;
+</code></pre>
+</li>
+<li><p>如果你在單個 HTML 文件中快速開發小型應用，可以使用 <code>Vue.component</code>。</p>
+<pre><code class="javascript">Vue.component(&#39;example-component&#39;, {
+  data() {
+    return { message: &#39;Hello Vue!&#39; };
+  },
+  template: &#39;&lt;div&gt;{{ message }}&lt;/div&gt;&#39;
+});
+</code></pre>
+</li>
+</ol>
+<hr>
+<h3 id="小結-1"><a href="#小結-1" class="headerlink" title="小結"></a><strong>小結</strong></h3><ul>
+<li>無論使用 <code>export default</code> 還是 <code>Vue.component</code>，<code>data</code> 都必須是函數，並返回組件需要的狀態數據物件。</li>
+<li><strong><code>export default</code> 適合大型應用，支持模組化開發；<code>Vue.component</code> 則更適合小型應用或臨時使用。</strong></li>
+</ul>

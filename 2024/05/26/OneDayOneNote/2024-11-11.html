@@ -1,0 +1,255 @@
+<hr>
+<h2 id="title-2024-11-11-vue-computeddate-2024-11-18-22-46-38categories-OneDayOneNotetags-Javascript-Vue-description-2024-11-11-vue-computed"><a href="#title-2024-11-11-vue-computeddate-2024-11-18-22-46-38categories-OneDayOneNotetags-Javascript-Vue-description-2024-11-11-vue-computed" class="headerlink" title="title: 2024-11-11 vue computeddate: 2024-11-18 22:46:38categories: OneDayOneNotetags:  [Javascript,Vue]description:  2024-11-11 vue computed"></a>title: 2024-11-11 vue computed<br>date: 2024-11-18 22:46:38<br>categories: OneDayOneNote<br>tags:  [Javascript,Vue]<br>description:  2024-11-11 vue computed</h2><h2 id="2024-11-11-vue-computed"><a href="#2024-11-11-vue-computed" class="headerlink" title="2024-11-11 vue computed"></a>2024-11-11 vue computed</h2><p> computed: {<br>      formattedTime() {<br>為什麼 formattedTime（）要寫在 computed？</p>
+<h3 id="為什麼-formattedTime-要寫在-computed-中？"><a href="#為什麼-formattedTime-要寫在-computed-中？" class="headerlink" title="為什麼 formattedTime() 要寫在 computed 中？"></a>為什麼 <code>formattedTime()</code> 要寫在 <code>computed</code> 中？</h3><p><code>formattedTime()</code> 放在 <code>computed</code> 中，是因為它的值是 <strong>從其他數據計算而來的</strong>，而且這個計算結果需要根據依賴的數據自動更新。以下是詳細解釋：</p>
+<hr>
+<h3 id="1-自動依賴追蹤（核心原因）"><a href="#1-自動依賴追蹤（核心原因）" class="headerlink" title="1. 自動依賴追蹤（核心原因）"></a>1. <strong>自動依賴追蹤</strong>（核心原因）</h3><ul>
+<li><code>formattedTime()</code> 的結果依賴於 <code>this.time</code>。</li>
+<li>如果 <code>this.time</code> 發生變化，<code>computed</code> 屬性會<strong>自動重新計算</strong>，無需手動更新。</li>
+</ul>
+<p>例如：</p>
+<pre><code class="javascript">this.time = 1000; // 當 this.time 變為 1000，formattedTime 自動更新
+</code></pre>
+<p>這比把 <code>formattedTime</code> 放在 <code>data</code> 中手動更新要高效且方便。</p>
+<hr>
+<h3 id="2-避免重複計算"><a href="#2-避免重複計算" class="headerlink" title="2. 避免重複計算"></a>2. <strong>避免重複計算</strong></h3><p><code>computed</code> 屬性會<strong>緩存結果</strong>，只有當依賴數據發生變化時才重新計算。</p>
+<ul>
+<li>如果 <code>formattedTime</code> 是普通的函數，每次訪問都會重新執行（即使數據沒變化）。</li>
+<li>而 <code>computed</code> 確保只有當 <code>this.time</code> 改變時才會重新執行，<strong>節省性能</strong>。</li>
+</ul>
+<hr>
+<h3 id="3-使模板簡潔"><a href="#3-使模板簡潔" class="headerlink" title="3. 使模板簡潔"></a>3. <strong>使模板簡潔</strong></h3><p>如果不使用 <code>computed</code>，需要在模板中直接計算：</p>
+<pre><code class="vue">&lt;p&gt;時間: {{ Math.floor(time / 60000) }}:{{ Math.floor((time % 60000) / 1000) }}&lt;/p&gt;
+</code></pre>
+<p>這樣會讓模板變得冗長且難以閱讀。</p>
+<p>用 <code>computed</code>：</p>
+<pre><code class="vue">&lt;p&gt;時間: {{ formattedTime }}&lt;/p&gt;
+</code></pre>
+<p>這樣模板會更加清晰直觀。</p>
+<hr>
+<h3 id="舉例比較：computed-vs-data"><a href="#舉例比較：computed-vs-data" class="headerlink" title="舉例比較：computed vs data"></a>舉例比較：<code>computed</code> vs <code>data</code></h3><h4 id="把-formattedTime-放在-data-中（需要手動更新）："><a href="#把-formattedTime-放在-data-中（需要手動更新）：" class="headerlink" title="把 formattedTime 放在 data 中（需要手動更新）："></a>把 <code>formattedTime</code> 放在 <code>data</code> 中（需要手動更新）：</h4><pre><code class="javascript">data() {
+  return {
+    time: 0,
+    formattedTime: &quot;00:00:00&quot;,
+  };
+},
+methods: {
+  updateTime() {
+    this.time += 10;
+    const minutes = Math.floor(this.time / 60000);
+    const seconds = Math.floor((this.time % 60000) / 1000);
+    const milliseconds = Math.floor(this.time % 1000).toString().padStart(2, &#39;0&#39;).slice(0, 2);
+    this.formattedTime = `${this.padZero(minutes)}:${this.padZero(seconds)}:${milliseconds}`;
+  }
+}
+</code></pre>
+<p>這種做法的缺點：</p>
+<ol>
+<li>需要手動計算並更新 <code>formattedTime</code>。</li>
+<li>容易漏掉更新邏輯，導致數據和顯示不同步。</li>
+<li>增加代碼的複雜度。</li>
+</ol>
+<hr>
+<h4 id="使用-computed（自動更新）："><a href="#使用-computed（自動更新）：" class="headerlink" title="使用 computed（自動更新）："></a>使用 <code>computed</code>（自動更新）：</h4><pre><code class="javascript">data() {
+  return {
+    time: 0,
+  };
+},
+computed: {
+  formattedTime() {
+    const minutes = Math.floor(this.time / 60000);
+    const seconds = Math.floor((this.time % 60000) / 1000);
+    const milliseconds = Math.floor(this.time % 1000).toString().padStart(2, &#39;0&#39;).slice(0, 2);
+    return `${this.padZero(minutes)}:${this.padZero(seconds)}:${milliseconds}`;
+  }
+}
+</code></pre>
+<p>優點：</p>
+<ol>
+<li>當 <code>this.time</code> 改變時，<code>formattedTime</code> 自動重新計算。</li>
+<li>確保數據和顯示同步，無需額外手動更新。</li>
+<li>代碼簡潔，方便維護。</li>
+</ol>
+<hr>
+<h3 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h3><p><code>computed</code> 適合用於 <strong>依賴其他數據計算得來的屬性</strong>。<code>formattedTime()</code> 是基於 <code>this.time</code> 計算得來的，因此放在 <code>computed</code> 中是最佳選擇。</p>
+<p>為什麼是 this.time 改變時 就會執行 formattedTime?</p>
+<h3 id="為什麼-this-time-改變時會觸發-formattedTime？"><a href="#為什麼-this-time-改變時會觸發-formattedTime？" class="headerlink" title="為什麼 this.time 改變時會觸發 formattedTime？"></a>為什麼 <code>this.time</code> 改變時會觸發 <code>formattedTime</code>？</h3><p>這是因為 Vue 的 <strong>響應式系統</strong>。Vue 會追蹤數據（例如 <code>this.time</code>）與 <code>computed</code> 屬性之間的依賴關係，當數據發生變化時，會自動重新計算依賴於這些數據的 <code>computed</code> 屬性。</p>
+<hr>
+<h3 id="詳細解釋"><a href="#詳細解釋" class="headerlink" title="詳細解釋"></a>詳細解釋</h3><h4 id="1-響應式數據"><a href="#1-響應式數據" class="headerlink" title="1. 響應式數據"></a>1. <strong>響應式數據</strong></h4><p><code>this.time</code> 是 Vue 中的響應式數據，當它的值改變時，Vue 會觸發與之相關的更新。</p>
+<p>例如：</p>
+<pre><code class="javascript">data() {
+  return {
+    time: 0 // time 是響應式的
+  };
+}
+</code></pre>
+<h4 id="2-依賴追蹤"><a href="#2-依賴追蹤" class="headerlink" title="2. 依賴追蹤"></a>2. <strong>依賴追蹤</strong></h4><p>在 <code>formattedTime</code> 中，我們引用了 <code>this.time</code>：</p>
+<pre><code class="javascript">formattedTime() {
+  const minutes = Math.floor(this.time / 60000);
+  const seconds = Math.floor((this.time % 60000) / 1000);
+  const milliseconds = Math.floor(this.time % 1000).toString().padStart(2, &#39;0&#39;).slice(0, 2);
+  return `${this.padZero(minutes)}:${this.padZero(seconds)}:${milliseconds}`;
+}
+</code></pre>
+<p>當 <code>formattedTime()</code> 第一次執行時，Vue 的響應式系統會記錄它依賴了 <code>this.time</code>。</p>
+<h4 id="3-自動更新"><a href="#3-自動更新" class="headerlink" title="3. 自動更新"></a>3. <strong>自動更新</strong></h4><p>當 <code>this.time</code> 改變時，Vue 會檢查哪些 <code>computed</code> 屬性依賴於 <code>this.time</code>，並自動重新計算這些屬性。例如：</p>
+<pre><code class="javascript">this.time = 1000; // 修改響應式數據
+</code></pre>
+<p>這時，Vue 檢測到 <code>formattedTime()</code> 依賴於 <code>this.time</code>，就會自動重新執行 <code>formattedTime()</code>，以便更新最新的時間格式。</p>
+<hr>
+<h3 id="Vue-的響應式系統如何做到的？"><a href="#Vue-的響應式系統如何做到的？" class="headerlink" title="Vue 的響應式系統如何做到的？"></a>Vue 的響應式系統如何做到的？</h3><ol>
+<li><p><strong>數據代理</strong><br>當你定義了 <code>data</code>，Vue 會通過 <code>Object.defineProperty</code> 或 <code>Proxy</code> 將每個屬性轉為響應式的：</p>
+<ul>
+<li>當你讀取屬性（如 <code>this.time</code>）時，Vue 記錄依賴。</li>
+<li>當你修改屬性時，Vue 通知所有依賴於它的地方重新計算或更新。</li>
+</ul>
+</li>
+<li><p><strong>依賴收集</strong><br>Vue 在計算 <code>computed</code> 屬性時，會動態追蹤哪些數據被訪問，並把這些數據和 <code>computed</code> 屬性關聯起來。</p>
+</li>
+<li><p><strong>觸發更新</strong><br>當某個響應式數據（如 <code>this.time</code>）改變時，Vue 通知所有依賴它的 <code>computed</code> 屬性重新計算，並更新綁定的模板內容。</p>
+</li>
+</ol>
+<hr>
+<h3 id="舉例：數據與-computed-的關係"><a href="#舉例：數據與-computed-的關係" class="headerlink" title="舉例：數據與 computed 的關係"></a>舉例：數據與 <code>computed</code> 的關係</h3><p>假設你有以下代碼：</p>
+<pre><code class="javascript">data() {
+  return {
+    time: 0
+  };
+},
+computed: {
+  formattedTime() {
+    return this.time * 2;
+  }
+}
+</code></pre>
+<p>在模板中使用：</p>
+<pre><code class="html">&lt;p&gt;{{ formattedTime }}&lt;/p&gt;
+</code></pre>
+<ul>
+<li>當 <code>this.time</code> 是 <code>0</code> 時，<code>formattedTime</code> 的結果是 <code>0</code>。</li>
+<li>當你執行 <code>this.time = 10</code> 時：<ul>
+<li>Vue 檢測到 <code>this.time</code> 改變。</li>
+<li>Vue 自動重新執行 <code>formattedTime()</code>，結果變為 <code>20</code>，並更新顯示的內容。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="如果不用-computed，需要怎麼做？"><a href="#如果不用-computed，需要怎麼做？" class="headerlink" title="如果不用 computed，需要怎麼做？"></a>如果不用 <code>computed</code>，需要怎麼做？</h3><p>如果你不用 <code>computed</code>，每次更新 <code>this.time</code>，都需要手動更新格式化的結果，例如：</p>
+<pre><code class="javascript">data() {
+  return {
+    time: 0,
+    formattedTime: &#39;00:00&#39;
+  };
+},
+methods: {
+  updateTime() {
+    this.time += 10;
+    this.formattedTime = this.time * 2; // 手動更新
+  }
+}
+</code></pre>
+<p>這樣做：</p>
+<ol>
+<li>增加代碼的冗餘和複雜度。</li>
+<li>容易出錯，例如忘記更新 <code>formattedTime</code> 時，UI 會顯示舊數據。</li>
+</ol>
+<hr>
+<h3 id="結論-1"><a href="#結論-1" class="headerlink" title="結論"></a>結論</h3><p>當你把 <code>formattedTime</code> 放在 <code>computed</code> 中，Vue 幫你自動處理：</p>
+<ol>
+<li>追蹤 <code>this.time</code> 與 <code>formattedTime</code> 的依賴關係。</li>
+<li>當 <code>this.time</code> 改變時，自動更新 <code>formattedTime</code>。</li>
+</ol>
+<p>這是 Vue 提供的響應式特性，讓代碼更加簡潔和高效。</p>
+<p>computed 適合用於 依賴其他數據計算得來的屬性 ?</p>
+<h3 id="什麼是-computed？"><a href="#什麼是-computed？" class="headerlink" title="什麼是 computed？"></a><strong>什麼是 <code>computed</code>？</strong></h3><p><code>computed</code> 是 Vue 中用來定義「<strong>計算屬性</strong>」的工具。這些屬性不是直接儲存在 <code>data</code> 裡，而是<strong>依賴於其他 <code>data</code> 或屬性</strong>計算得來的值。</p>
+<hr>
+<h3 id="「依賴其他數據計算得來的屬性」的意思"><a href="#「依賴其他數據計算得來的屬性」的意思" class="headerlink" title="「依賴其他數據計算得來的屬性」的意思"></a><strong>「依賴其他數據計算得來的屬性」的意思</strong></h3><p>這表示 <code>computed</code> 屬性的值是根據其他響應式數據（例如 <code>data</code> 中的值）動態計算的。當這些響應式數據改變時，<code>computed</code> 屬性會自動重新計算，並更新顯示。</p>
+<hr>
+<h3 id="舉個例子"><a href="#舉個例子" class="headerlink" title="舉個例子"></a><strong>舉個例子</strong></h3><p>假設我們有一個網頁，讓使用者輸入名字和姓氏，並顯示全名。</p>
+<h4 id="1-沒有使用-computed-的寫法"><a href="#1-沒有使用-computed-的寫法" class="headerlink" title="1. 沒有使用 computed 的寫法"></a>1. <strong>沒有使用 <code>computed</code> 的寫法</strong></h4><pre><code class="javascript">data() {
+  return {
+    firstName: &#39;John&#39;,
+    lastName: &#39;Doe&#39;,
+    fullName: &#39;&#39; // 手動存放全名
+  };
+},
+methods: {
+  updateFullName() {
+    this.fullName = this.firstName + &#39; &#39; + this.lastName; // 每次手動更新
+  }
+}
+</code></pre>
+<p>每次 <code>firstName</code> 或 <code>lastName</code> 改變時，你必須手動呼叫 <code>updateFullName()</code> 更新 <code>fullName</code>：</p>
+<pre><code class="javascript">this.firstName = &#39;Jane&#39;;
+this.updateFullName(); // 必須手動更新，否則 fullName 不會變
+</code></pre>
+<p>這樣會造成：</p>
+<ol>
+<li><strong>代碼冗長</strong>：每次數據改變都要手動更新。</li>
+<li><strong>容易出錯</strong>：如果忘記呼叫 <code>updateFullName()</code>，顯示的 <code>fullName</code> 就會是舊值。</li>
+</ol>
+<hr>
+<h4 id="2-使用-computed-的寫法"><a href="#2-使用-computed-的寫法" class="headerlink" title="2. 使用 computed 的寫法"></a>2. <strong>使用 <code>computed</code> 的寫法</strong></h4><pre><code class="javascript">data() {
+  return {
+    firstName: &#39;John&#39;,
+    lastName: &#39;Doe&#39;
+  };
+},
+computed: {
+  fullName() {
+    return this.firstName + &#39; &#39; + this.lastName; // 自動計算全名
+  }
+}
+</code></pre>
+<p>在模板中直接使用 <code>fullName</code>：</p>
+<pre><code class="html">&lt;p&gt;全名：{{ fullName }}&lt;/p&gt;
+</code></pre>
+<p>當你修改 <code>firstName</code> 或 <code>lastName</code> 時，Vue 自動重新計算 <code>fullName</code>，無需手動更新：</p>
+<pre><code class="javascript">this.firstName = &#39;Jane&#39;;
+// 不需要手動更新，fullName 自動變為 &#39;Jane Doe&#39;
+</code></pre>
+<hr>
+<h3 id="為什麼-computed-適合用於依賴其他數據計算的屬性？"><a href="#為什麼-computed-適合用於依賴其他數據計算的屬性？" class="headerlink" title="為什麼 computed 適合用於依賴其他數據計算的屬性？"></a><strong>為什麼 <code>computed</code> 適合用於依賴其他數據計算的屬性？</strong></h3><ol>
+<li><p><strong>自動更新：</strong><br>當依賴的數據（如 <code>firstName</code> 或 <code>lastName</code>）改變時，<code>computed</code> 屬性會自動重新計算，不需要額外的邏輯。</p>
+</li>
+<li><p><strong>性能優化：</strong><br><code>computed</code> 屬性有<strong>緩存機制</strong>，當依賴的數據沒有變化時，不會重新執行計算邏輯，節省資源。</p>
+</li>
+<li><p><strong>代碼簡潔：</strong><br>你不需要手動撰寫更新邏輯（例如 <code>updateFullName</code> 方法），代碼更易於維護。</p>
+</li>
+</ol>
+<hr>
+<h3 id="更多實例"><a href="#更多實例" class="headerlink" title="更多實例"></a><strong>更多實例</strong></h3><h4 id="例子-1：根據數據計算得來的值"><a href="#例子-1：根據數據計算得來的值" class="headerlink" title="例子 1：根據數據計算得來的值"></a><strong>例子 1：根據數據計算得來的值</strong></h4><pre><code class="javascript">data() {
+  return {
+    price: 100,
+    quantity: 2
+  };
+},
+computed: {
+  totalPrice() {
+    return this.price * this.quantity; // 自動計算總價
+  }
+}
+</code></pre>
+<p>當 <code>price</code> 或 <code>quantity</code> 改變時，<code>totalPrice</code> 自動更新。</p>
+<hr>
+<h4 id="例子-2：格式化數據"><a href="#例子-2：格式化數據" class="headerlink" title="例子 2：格式化數據"></a><strong>例子 2：格式化數據</strong></h4><pre><code class="javascript">data() {
+  return {
+    time: 1234567 // 毫秒
+  };
+},
+computed: {
+  formattedTime() {
+    const seconds = Math.floor(this.time / 1000) % 60;
+    const minutes = Math.floor(this.time / 60000);
+    return `${minutes} 分 ${seconds} 秒`;
+  }
+}
+</code></pre>
+<p>當 <code>time</code> 改變時，<code>formattedTime</code> 自動以特定格式更新。</p>
+<hr>
+<h3 id="結論-2"><a href="#結論-2" class="headerlink" title="結論"></a><strong>結論</strong></h3><p><code>computed</code> 適合用於「依賴其他數據的屬性」，因為：</p>
+<ol>
+<li>它能動態計算值，並且在依賴的數據改變時自動更新。</li>
+<li>它有緩存機制，提升性能。</li>
+<li>代碼簡潔易懂，不需要手動處理更新邏輯。</li>
+</ol>
+<p>如果屬性不需要依賴其他數據，或者只需一次性初始化，那麼可以直接放在 <code>data</code> 中，而不是 <code>computed</code>。</p>
