@@ -1,0 +1,67 @@
+<hr>
+<h2 id="title-2024-11-29-vue-為什麼這裡的-data-用冒號-而不是函數形式date-2024-11-29-23-58-12tags-Javascript-Vue-description-2024-11-29-vue-為什麼這裡的-data-用冒號-而不是函數形式"><a href="#title-2024-11-29-vue-為什麼這裡的-data-用冒號-而不是函數形式date-2024-11-29-23-58-12tags-Javascript-Vue-description-2024-11-29-vue-為什麼這裡的-data-用冒號-而不是函數形式" class="headerlink" title="title:  2024-11-29 vue 為什麼這裡的 data 用冒號 (:) 而不是函數形式date: 2024-11-29 23:58:12tags:  [Javascript,Vue]description:    2024-11-29 vue 為什麼這裡的 data 用冒號 (:) 而不是函數形式"></a>title:  2024-11-29 vue 為什麼這裡的 data 用冒號 (:) 而不是函數形式<br>date: 2024-11-29 23:58:12<br>tags:  [Javascript,Vue]<br>description:    2024-11-29 vue 為什麼這裡的 data 用冒號 (:) 而不是函數形式</h2><h2 id="2024-11-29-vue-為什麼這裡的-data-用冒號-而不是函數形式"><a href="#2024-11-29-vue-為什麼這裡的-data-用冒號-而不是函數形式" class="headerlink" title="2024-11-29 vue 為什麼這裡的 data 用冒號 (:) 而不是函數形式"></a>2024-11-29 vue 為什麼這裡的 data 用冒號 (:) 而不是函數形式</h2><p>很好！你抓到了這個範例和 Vue 的實際應用之間的細微差別。讓我們來更清楚地說明為什麼這裡的 <code>data</code> 用冒號 <code>:</code> 而不是函數形式，以及為什麼這個範例仍然成立。</p>
+<hr>
+<h3 id="1-這裡的範例不涉及組件"><a href="#1-這裡的範例不涉及組件" class="headerlink" title="1. 這裡的範例不涉及組件"></a><strong>1. 這裡的範例不涉及組件</strong></h3><p>在這個範例中，我用的是 <strong>Vue 根實例（<code>new Vue</code>）</strong>，而不是 Vue 的組件。Vue 的根實例允許 <code>data</code> 使用直接的物件形式，而不需要是函數形式。</p>
+<p><strong>語法：</strong></p>
+<pre><code class="javascript">const app = new Vue({
+  data: {
+    count: 0
+  }
+});
+</code></pre>
+<p>這是合法的，因為 Vue 根實例只會有一個，因此不需要數據隔離。</p>
+<hr>
+<h3 id="2-組件（Vue-component）需要數據隔離"><a href="#2-組件（Vue-component）需要數據隔離" class="headerlink" title="2. 組件（Vue.component）需要數據隔離"></a><strong>2. 組件（<code>Vue.component</code>）需要數據隔離</strong></h3><p>當使用 Vue 組件時，<code>data</code> 必須是一個函數，返回一個物件。這樣做是為了確保每個組件實例都有自己的獨立數據。假如 <code>data</code> 是直接物件，所有實例會共享同一份數據，導致意外的相互干擾。</p>
+<p><strong>語法：</strong></p>
+<pre><code class="javascript">Vue.component(&#39;example-component&#39;, {
+  data() {
+    return {
+      count: 0
+    };
+  }
+});
+</code></pre>
+<p>這種設計可以讓每個組件實例有自己的 <code>count</code>，互不影響。</p>
+<hr>
+<h3 id="3-回到範例：為什麼這裡的-data-是用冒號？"><a href="#3-回到範例：為什麼這裡的-data-是用冒號？" class="headerlink" title="3. 回到範例：為什麼這裡的 data 是用冒號？"></a><strong>3. 回到範例：為什麼這裡的 <code>data</code> 是用冒號？</strong></h3><p>在範例中，我們分別創建了兩個 Vue 根實例 <code>componentA</code> 和 <code>componentB</code>。根實例之間是完全獨立的，無需數據隔離，因此可以直接使用 <code>data: {}</code> 的形式：</p>
+<pre><code class="javascript">const componentA = new Vue({
+  data: {
+    count: 0
+  }
+});
+
+const componentB = new Vue({
+  data: {
+    count: 0
+  }
+});
+
+componentA.count++; // 不會影響 componentB.count
+</code></pre>
+<h4 id="為什麼這不會導致共享數據？"><a href="#為什麼這不會導致共享數據？" class="headerlink" title="為什麼這不會導致共享數據？"></a><strong>為什麼這不會導致共享數據？</strong></h4><p>每個 <code>new Vue()</code> 創建的是一個全新的 Vue 實例，裡面的 <code>data</code> 是獨立的，即便你寫的是 <code>data: {}</code>，Vue 根實例會自動幫你處理數據隔離。</p>
+<hr>
+<h3 id="4-組件和根實例的關鍵區別"><a href="#4-組件和根實例的關鍵區別" class="headerlink" title="4. 組件和根實例的關鍵區別"></a><strong>4. 組件和根實例的關鍵區別</strong></h3><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>根實例（<code>new Vue</code>）</th>
+<th>組件（<code>Vue.component</code>）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>data</code> 是否需要函數形式？</td>
+<td>不需要，可以是物件</td>
+<td>必須是函數形式，返回一個物件</td>
+</tr>
+<tr>
+<td>為什麼？</td>
+<td>根實例通常只有一個，不需要數據隔離</td>
+<td>組件可能會有多個實例，需要數據隔離</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="5-小結"><a href="#5-小結" class="headerlink" title="5. 小結"></a><strong>5. 小結</strong></h3><ul>
+<li><strong>根實例</strong>：<code>data</code> 可以是直接物件，因為 Vue 根實例的數據天然是獨立的。</li>
+<li><strong>組件</strong>：<code>data</code> 必須是函數形式，因為多個組件實例需要自己的數據副本，避免互相干擾。</li>
+</ul>
+<p>所以在範例中，使用冒號 <code>:</code> 定義 <code>data</code> 是因為它是 Vue 根實例，而不是組件。如果改成組件，就需要用函數形式來定義 <code>data</code>！</p>

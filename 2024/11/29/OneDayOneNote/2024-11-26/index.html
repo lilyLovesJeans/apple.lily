@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2024-11-26 vue  computed 還有什麼特性及使用時機">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024-11-26 vue  computed 還有什麼特性及使用時機">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2024/11/29/OneDayOneNote/2024-11-26/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2024-11-26 vue  computed 還有什麼特性及使用時機">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2024-11-29T15:47:31.000Z">
+<meta property="article:modified_time" content="2024-11-29T15:49:26.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2024/11/29/OneDayOneNote/2024-11-26/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2024/11/29/OneDayOneNote/2024-11-26/","path":"2024/11/29/OneDayOneNote/2024-11-26/","title":"2024-11-26 vue  computed 還有什麼特性及使用時機"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2024-11-26 vue  computed 還有什麼特性及使用時機 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2024-11-26-vue-computed-%E9%82%84%E6%9C%89%E4%BB%80%E9%BA%BC%E7%89%B9%E6%80%A7%E5%8F%8A%E4%BD%BF%E7%94%A8%E6%99%82%E6%A9%9F"><span class="nav-number">1.</span> <span class="nav-text">2024-11-26 vue  computed 還有什麼特性及使用時機</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#computed-%E7%9A%84%E7%89%B9%E6%80%A7%E8%88%87%E4%BD%BF%E7%94%A8%E6%99%82%E6%A9%9F"><span class="nav-number">1.1.</span> <span class="nav-text">computed 的特性與使用時機</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#computed-%E7%9A%84%E7%89%B9%E6%80%A7"><span class="nav-number">1.2.</span> <span class="nav-text">computed 的特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#computed-%E8%88%87-methods-%E7%9A%84%E5%8D%80%E5%88%A5"><span class="nav-number">1.3.</span> <span class="nav-text">computed 與 methods 的區別</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#computed-%E7%9A%84%E4%BD%BF%E7%94%A8%E6%99%82%E6%A9%9F"><span class="nav-number">1.4.</span> <span class="nav-text">computed 的使用時機</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#computed-%E8%88%87-watch-%E7%9A%84%E5%8D%80%E5%88%A5"><span class="nav-number">1.5.</span> <span class="nav-text">computed 與 watch 的區別</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%B5%90"><span class="nav-number">1.6.</span> <span class="nav-text">小結</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">270</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2024/11/29/OneDayOneNote/2024-11-26/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2024-11-26 vue  computed 還有什麼特性及使用時機 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2024-11-26 vue  computed 還有什麼特性及使用時機">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2024-11-26 vue  computed 還有什麼特性及使用時機
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2024-11-29 23:47:31 / 修改時間：23:49:26" itemprop="dateCreated datePublished" datetime="2024-11-29T23:47:31+08:00">2024-11-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2024-11-26 vue  computed 還有什麼特性及使用時機</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2024-11-26-vue-computed-還有什麼特性及使用時機"><a href="#2024-11-26-vue-computed-還有什麼特性及使用時機" class="headerlink" title="2024-11-26 vue  computed 還有什麼特性及使用時機"></a>2024-11-26 vue  computed 還有什麼特性及使用時機</h2><h3 id="computed-的特性與使用時機"><a href="#computed-的特性與使用時機" class="headerlink" title="computed 的特性與使用時機"></a><strong><code>computed</code> 的特性與使用時機</strong></h3><p><code>computed</code> 是 Vue 的一個重要功能，用於定義依賴其他數據計算而來的屬性。它能有效提高代碼的可讀性和性能，是處理基於數據計算的場景的首選。</p>
+<hr>
+<h3 id="computed-的特性"><a href="#computed-的特性" class="headerlink" title="computed 的特性"></a><strong><code>computed</code> 的特性</strong></h3><ol>
+<li><p><strong>基於依賴的響應式更新</strong>  </p>
+<ul>
+<li><code>computed</code> 屬性會根據它依賴的數據變化自動更新。</li>
+<li>不需要手動觸發重新計算。</li>
+</ul>
+<p><strong>範例</strong>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">computed</span>: &#123;</span><br><span class="line">  <span class="title function_">fullName</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">firstName</span> + <span class="string">&#x27; &#x27;</span> + <span class="variable language_">this</span>.<span class="property">lastName</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>當 <code>firstName</code> 或 <code>lastName</code> 改變時，<code>fullName</code> 會自動更新。</li>
+</ul>
+</li>
+<li><p><strong>具有緩存功能</strong>  </p>
+<ul>
+<li>當依賴的數據沒有發生變化時，<code>computed</code> 屬性不會重新計算，而是返回緩存的結果。</li>
+<li>適合用於涉及複雜計算的場景，提升性能。</li>
+</ul>
+<p><strong>範例</strong>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">computed</span>: &#123;</span><br><span class="line">  <span class="title function_">expensiveCalculation</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;正在重新計算...&#x27;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">number</span> * <span class="number">100</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果 <code>this.number</code> 沒有變化，<code>expensiveCalculation</code> 不會再次執行。</li>
+</ul>
+</li>
+<li><p><strong>只讀屬性</strong>  </p>
+<ul>
+<li>默認情況下，<code>computed</code> 屬性是只讀的。</li>
+<li>如果需要讀寫，可以設置 <strong>getter</strong> 和 <strong>setter</strong>。</li>
+</ul>
+<p><strong>範例</strong>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">computed</span>: &#123;</span><br><span class="line">  <span class="attr">fullName</span>: &#123;</span><br><span class="line">    <span class="title function_">get</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">firstName</span> + <span class="string">&#x27; &#x27;</span> + <span class="variable language_">this</span>.<span class="property">lastName</span>;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title function_">set</span>(<span class="params">newValue</span>) &#123;</span><br><span class="line">      <span class="keyword">const</span> names = newValue.<span class="title function_">split</span>(<span class="string">&#x27; &#x27;</span>);</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">firstName</span> = names[<span class="number">0</span>];</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">lastName</span> = names[<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>適合用於模板中</strong>  </p>
+<ul>
+<li><code>computed</code> 屬性通常用於模板中，讓模板代碼更簡潔。</li>
+<li>與直接在模板內書寫邏輯相比，<code>computed</code> 讓邏輯集中在 JavaScript 部分，易於測試和維護。</li>
+</ul>
+<p><strong>範例</strong>：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; fullName &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h3 id="computed-與-methods-的區別"><a href="#computed-與-methods-的區別" class="headerlink" title="computed 與 methods 的區別"></a><strong><code>computed</code> 與 <code>methods</code> 的區別</strong></h3><p><code>computed</code> 和 <code>methods</code> 都可以實現數據的動態計算，但它們的行為不同。</p>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th><code>computed</code></th>
+<th><code>methods</code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>是否有緩存</strong></td>
+<td>有緩存，依賴數據不變時返回緩存的值</td>
+<td>無緩存，每次調用都會執行</td>
+</tr>
+<tr>
+<td><strong>適合場景</strong></td>
+<td>基於依賴數據計算，且結果可能被多次使用</td>
+<td>僅在需要時調用，不需要依賴數據變化更新</td>
+</tr>
+<tr>
+<td><strong>使用方式</strong></td>
+<td>通常用於模板中直接展示</td>
+<td>通常用於事件處理或不頻繁的邏輯計算</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="computed-的使用時機"><a href="#computed-的使用時機" class="headerlink" title="computed 的使用時機"></a><strong><code>computed</code> 的使用時機</strong></h3><ol>
+<li><p><strong>需要基於數據進行邏輯計算</strong>  </p>
+<ul>
+<li>當某個屬性需要根據其他數據的值計算得出時，應使用 <code>computed</code>。</li>
+<li><strong>範例</strong>：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">computed</span>: &#123;</span><br><span class="line">  <span class="title function_">fullName</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;<span class="variable language_">this</span>.firstName&#125;</span> <span class="subst">$&#123;<span class="variable language_">this</span>.lastName&#125;</span>`</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>避免模板中出現複雜的邏輯</strong>  </p>
+<ul>
+<li>如果模板中需要顯示的內容涉及到條件判斷或計算，應該提取到 <code>computed</code> 中。</li>
+<li><strong>範例</strong>：<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 不建議 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; firstName + &#x27; &#x27; + lastName &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 建議 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; fullName &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>需要提高性能的計算場景</strong>  </p>
+<ul>
+<li>如果一個計算結果會頻繁被多處使用，<code>computed</code> 能通過緩存機制提高性能。</li>
+<li><strong>範例</strong>：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">computed</span>: &#123;</span><br><span class="line">  <span class="title function_">filteredItems</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">items</span>.<span class="title function_">filter</span>(<span class="function"><span class="params">item</span> =&gt;</span> item.<span class="property">active</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>當計算屬性需要可讀可寫</strong>  </p>
+<ul>
+<li>如果需要實現雙向數據綁定，可以為 <code>computed</code> 屬性設置 <strong>getter</strong> 和 <strong>setter</strong>。</li>
+<li><strong>範例</strong>：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">computed</span>: &#123;</span><br><span class="line">  <span class="attr">userName</span>: &#123;</span><br><span class="line">    <span class="title function_">get</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">firstName</span> + <span class="string">&#x27; &#x27;</span> + <span class="variable language_">this</span>.<span class="property">lastName</span>;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title function_">set</span>(<span class="params">newValue</span>) &#123;</span><br><span class="line">      <span class="keyword">const</span> parts = newValue.<span class="title function_">split</span>(<span class="string">&#x27; &#x27;</span>);</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">firstName</span> = parts[<span class="number">0</span>];</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">lastName</span> = parts[<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="computed-與-watch-的區別"><a href="#computed-與-watch-的區別" class="headerlink" title="computed 與 watch 的區別"></a><strong><code>computed</code> 與 <code>watch</code> 的區別</strong></h3><table>
+<thead>
+<tr>
+<th>特性</th>
+<th><code>computed</code></th>
+<th><code>watch</code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>響應數據變化</strong></td>
+<td>自動更新，適合依賴數據計算</td>
+<td>手動執行特定邏輯</td>
+</tr>
+<tr>
+<td><strong>是否返回計算值</strong></td>
+<td>是，直接返回計算值</td>
+<td>否，通常用於執行副作用</td>
+</tr>
+<tr>
+<td><strong>適用場景</strong></td>
+<td>用於計算屬性</td>
+<td>用於監視數據變化並執行副作用</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="小結"><a href="#小結" class="headerlink" title="小結"></a><strong>小結</strong></h3><ul>
+<li><strong>特性</strong>：<code>computed</code> 屬性基於依賴數據自動更新，且具有緩存功能，默認為只讀。</li>
+<li><strong>使用時機</strong>：<ul>
+<li>當屬性依賴於其他數據計算得來。</li>
+<li>需要將複雜的邏輯從模板中移出。</li>
+<li>避免多次執行相同的計算。</li>
+</ul>
+</li>
+<li><strong>與 <code>methods</code> 和 <code>watch</code> 的區別</strong>：<ul>
+<li><code>computed</code> 適合依賴計算，並具有緩存功能。</li>
+<li><code>methods</code> 適合觸發執行。</li>
+<li><code>watch</code> 適合監聽數據變化並執行副作用。</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/Javascript/" rel="tag"># Javascript</a>
+              <a href="/apple.lily/tags/Vue/" rel="tag"># Vue</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/11/29/OneDayOneNote/2024-11-25/" rel="prev" title="2024-11-25 vue 在 computed 所依賴的數據 需要在  data 中定義？">
+                  <i class="fa fa-angle-left"></i> 2024-11-25 vue 在 computed 所依賴的數據 需要在  data 中定義？
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/11/29/OneDayOneNote/2024-11-27/" rel="next" title="2024-11-27 vue export default 或 Vue.component 則是定義組件，data 必須是函數，返回物件。返回什麼物件? 舉例它們的不同">
+                  2024-11-27 vue export default 或 Vue.component 則是定義組件，data 必須是函數，返回物件。返回什麼物件? 舉例它們的不同 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

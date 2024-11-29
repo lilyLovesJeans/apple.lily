@@ -1,0 +1,117 @@
+<hr>
+<h2 id="title-2024-11-22-vue-之-this-的上下文問題date-2024-11-29-23-34-47categories-OneDayOneNotetags-Javascript-Vue-description-2024-11-22-vue-之-this-的上下文問題"><a href="#title-2024-11-22-vue-之-this-的上下文問題date-2024-11-29-23-34-47categories-OneDayOneNotetags-Javascript-Vue-description-2024-11-22-vue-之-this-的上下文問題" class="headerlink" title="title: 2024-11-22 vue 之 this 的上下文問題date: 2024-11-29 23:34:47categories: OneDayOneNotetags:  [Javascript,Vue]description:  2024-11-22 vue 之 this 的上下文問題"></a>title: 2024-11-22 vue 之 this 的上下文問題<br>date: 2024-11-29 23:34:47<br>categories: OneDayOneNote<br>tags:  [Javascript,Vue]<br>description:  2024-11-22 vue 之 this 的上下文問題</h2><h2 id="2024-11-22-vue-之-this-的上下文問題"><a href="#2024-11-22-vue-之-this-的上下文問題" class="headerlink" title="2024-11-22 vue 之 this 的上下文問題"></a>2024-11-22 vue 之 this 的上下文問題</h2><p>在 JavaScript 中，<code>this</code> 是一個特殊的關鍵字，它的值取決於函式的執行上下文（<strong>Context</strong>）。<strong>上下文</strong>可以理解為函式執行時的「當下環境」，<code>this</code> 在不同上下文中可能指向不同的物件。這就是所謂的 <strong>上下文問題</strong>。</p>
+<hr>
+<h3 id="上下文問題簡單舉例"><a href="#上下文問題簡單舉例" class="headerlink" title="上下文問題簡單舉例"></a><strong>上下文問題簡單舉例</strong></h3><h4 id="例子-1：普通函式的上下文"><a href="#例子-1：普通函式的上下文" class="headerlink" title="例子 1：普通函式的上下文"></a><strong>例子 1：普通函式的上下文</strong></h4><pre><code class="javascript">function sayHello() {
+  console.log(this);
+}
+
+sayHello(); // 在瀏覽器中，this 指向全局物件 window
+</code></pre>
+<ul>
+<li>在這個例子中，函式 <code>sayHello</code> 是以普通方式調用。</li>
+<li>在瀏覽器中，普通函式內的 <code>this</code> 默認指向 <code>window</code>（Node.js 中是 <code>global</code>）。</li>
+</ul>
+<hr>
+<h4 id="例子-2：方法的上下文"><a href="#例子-2：方法的上下文" class="headerlink" title="例子 2：方法的上下文"></a><strong>例子 2：方法的上下文</strong></h4><pre><code class="javascript">const person = {
+  name: &#39;Alice&#39;,
+  sayHello: function () {
+    console.log(this.name);
+  }
+};
+
+person.sayHello(); // 輸出: Alice
+</code></pre>
+<ul>
+<li>這裡的 <code>sayHello</code> 是 <code>person</code> 物件的<strong>方法</strong>。</li>
+<li>調用 <code>person.sayHello()</code> 時，<code>this</code> 指向 <code>person</code>。</li>
+</ul>
+<hr>
+<h4 id="例子-3：函式內部嵌套的上下文"><a href="#例子-3：函式內部嵌套的上下文" class="headerlink" title="例子 3：函式內部嵌套的上下文"></a><strong>例子 3：函式內部嵌套的上下文</strong></h4><p>當嵌套函式使用普通函式語法時，內層函式的 <code>this</code> 不再指向外層函式的上下文，而是回到全局上下文。</p>
+<pre><code class="javascript">const person = {
+  name: &#39;Alice&#39;,
+  sayHello: function () {
+    function nestedFunction() {
+      console.log(this); // 這裡的 this 指向全局物件
+    }
+    nestedFunction();
+  }
+};
+
+person.sayHello();
+</code></pre>
+<p>輸出：</p>
+<pre><code>window （在瀏覽器中）
+</code></pre>
+<hr>
+<h3 id="在-Vue-中的上下文問題"><a href="#在-Vue-中的上下文問題" class="headerlink" title="在 Vue 中的上下文問題"></a><strong>在 Vue 中的上下文問題</strong></h3><p>在 Vue 中，我們通常希望 <code>this</code> 始終指向 Vue 實例，但如果你用傳統函式語法（<code>function</code>）而不是箭頭函式，可能會引發上下文問題。</p>
+<h4 id="例子：在-Vue-中失去上下文"><a href="#例子：在-Vue-中失去上下文" class="headerlink" title="例子：在 Vue 中失去上下文"></a><strong>例子：在 Vue 中失去上下文</strong></h4><pre><code class="javascript">methods: {
+  startTimer: function () {
+    setTimeout(function () {
+      console.log(this); // 這裡的 this 指向 window
+    }, 1000);
+  }
+}
+</code></pre>
+<p>在這裡：</p>
+<ul>
+<li><code>setTimeout</code> 的回調函式是以普通方式執行的。</li>
+<li>回調函式內的 <code>this</code> 指向全局物件（<code>window</code>），而不是 Vue 實例。</li>
+</ul>
+<h4 id="解決方法：使用箭頭函式"><a href="#解決方法：使用箭頭函式" class="headerlink" title="解決方法：使用箭頭函式"></a><strong>解決方法：使用箭頭函式</strong></h4><p>箭頭函式不會創建自己的上下文，會繼承定義它的外層上下文的 <code>this</code>。</p>
+<pre><code class="javascript">methods: {
+  startTimer: function () {
+    setTimeout(() =&gt; {
+      console.log(this); // 這裡的 this 指向 Vue 實例
+    }, 1000);
+  }
+}
+</code></pre>
+<hr>
+<h3 id="為什麼上下文問題重要？"><a href="#為什麼上下文問題重要？" class="headerlink" title="為什麼上下文問題重要？"></a><strong>為什麼上下文問題重要？</strong></h3><p>上下文問題直接影響到你的代碼能否正確運行，特別是當你需要訪問 Vue 實例的屬性或方法時。如果上下文丟失，<code>this</code> 會指向錯誤的物件，導致代碼報錯。</p>
+<h4 id="例子：上下文問題導致代碼報錯"><a href="#例子：上下文問題導致代碼報錯" class="headerlink" title="例子：上下文問題導致代碼報錯"></a><strong>例子：上下文問題導致代碼報錯</strong></h4><pre><code class="javascript">methods: {
+  startTimer: function () {
+    setTimeout(function () {
+      this.time += 10; // 嘗試訪問 Vue 實例的 `time`，但報錯
+    }, 1000);
+  }
+}
+</code></pre>
+<p>這裡會報錯：</p>
+<pre><code>TypeError: Cannot read properties of undefined (reading &#39;time&#39;)
+</code></pre>
+<p>原因是：</p>
+<ul>
+<li><code>setTimeout</code> 回調函式中的 <code>this</code> 不再指向 Vue 實例，而是 <code>window</code>。</li>
+<li>所以 <code>this.time</code> 是 <code>undefined</code>。</li>
+</ul>
+<hr>
+<h3 id="上下文問題的解決方法"><a href="#上下文問題的解決方法" class="headerlink" title="上下文問題的解決方法"></a><strong>上下文問題的解決方法</strong></h3><ol>
+<li><p><strong>使用箭頭函式：</strong></p>
+<pre><code class="javascript">methods: {
+  startTimer: function () {
+    setTimeout(() =&gt; {
+      this.time += 10; // this 正確指向 Vue 實例
+    }, 1000);
+  }
+}
+</code></pre>
+</li>
+<li><p><strong>保存外層上下文：</strong><br>如果使用傳統函式，可以用變量保存 Vue 實例的 <code>this</code>：</p>
+<pre><code class="javascript">methods: {
+  startTimer: function () {
+    const that = this; // 保存 Vue 實例的上下文
+    setTimeout(function () {
+      that.time += 10; // 使用保存的上下文
+    }, 1000);
+  }
+}
+</code></pre>
+</li>
+</ol>
+<hr>
+<h3 id="結論"><a href="#結論" class="headerlink" title="結論"></a><strong>結論</strong></h3><p>上下文問題源於 JavaScript 的靈活性，<code>this</code> 的值根據函式執行方式而變化。在 Vue 中：</p>
+<ol>
+<li>用箭頭函式是最簡單的解決方法。</li>
+<li>確保 <code>this</code> 始終指向 Vue 實例是正確操作代碼的關鍵。</li>
+<li>如果不了解上下文，代碼容易出現難以排查的錯誤。v</li>
+</ol>

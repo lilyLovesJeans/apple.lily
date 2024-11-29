@@ -1,0 +1,118 @@
+<hr>
+<h2 id="title-2024-11-21-情境式說明-vue-的thisdate-2024-11-29-23-31-31categories-OneDayOneNotetags-Javascript-Vue-description-2024-11-21-情境式說明-vue-的this"><a href="#title-2024-11-21-情境式說明-vue-的thisdate-2024-11-29-23-31-31categories-OneDayOneNotetags-Javascript-Vue-description-2024-11-21-情境式說明-vue-的this" class="headerlink" title="title: 2024-11-21  情境式說明 vue 的thisdate: 2024-11-29 23:31:31categories: OneDayOneNotetags:  [Javascript,Vue]description:  2024-11-21  情境式說明 vue 的this"></a>title: 2024-11-21  情境式說明 vue 的this<br>date: 2024-11-29 23:31:31<br>categories: OneDayOneNote<br>tags:  [Javascript,Vue]<br>description:  2024-11-21  情境式說明 vue 的this</h2><h2 id="2024-11-21-情境式說明-vue-的this"><a href="#2024-11-21-情境式說明-vue-的this" class="headerlink" title="2024-11-21  情境式說明 vue 的this"></a>2024-11-21  情境式說明 vue 的this</h2><p><code>this</code> 確實有點麻煩，因為它的值會根據執行時的<strong>情境</strong>（上下文）改變。讓我們用一個生活化的情境來類比說明，這樣更容易理解。</p>
+<hr>
+<h3 id="情境設定：餐廳服務員的角色變化"><a href="#情境設定：餐廳服務員的角色變化" class="headerlink" title="情境設定：餐廳服務員的角色變化"></a><strong>情境設定：餐廳服務員的角色變化</strong></h3><p>假設我們有一位服務員（你可以把他想像成代碼中的 <code>this</code>），他在不同場合有不同的「職責」（上下文），因為他身處的情境會影響他應該「服務」誰。</p>
+<hr>
+<h4 id="情境-1：在餐廳工作"><a href="#情境-1：在餐廳工作" class="headerlink" title="情境 1：在餐廳工作"></a><strong>情境 1：在餐廳工作</strong></h4><pre><code class="javascript">const restaurant = {
+  name: &quot;美味餐廳&quot;,
+  service: function () {
+    console.log(`歡迎光臨 ${this.name}`);
+  },
+};
+
+restaurant.service(); // 歡迎光臨 美味餐廳
+</code></pre>
+<ul>
+<li><strong>服務員的角色（<code>this</code>）：</strong> 他在餐廳，當然知道服務的是餐廳的客人。</li>
+<li><strong>結果：</strong> 他會正確地說出餐廳的名字。</li>
+</ul>
+<h4 id="類比："><a href="#類比：" class="headerlink" title="類比："></a><strong>類比：</strong></h4><p>在這裡，<code>this</code> 指向 <code>restaurant</code>，因為 <code>service</code> 方法是從 <code>restaurant</code> 物件內被調用的。</p>
+<hr>
+<h4 id="情境-2：被外派到婚禮現場"><a href="#情境-2：被外派到婚禮現場" class="headerlink" title="情境 2：被外派到婚禮現場"></a><strong>情境 2：被外派到婚禮現場</strong></h4><pre><code class="javascript">const weddingEvent = restaurant.service;
+
+weddingEvent(); // 歡迎光臨 undefined
+</code></pre>
+<ul>
+<li><strong>服務員的角色（<code>this</code>）：</strong> 被派去婚禮現場，但沒有告訴他婚禮現場的名字，他變得迷茫。</li>
+<li><strong>結果：</strong> 他無法正確地說出「歡迎光臨」後的內容。</li>
+</ul>
+<h4 id="類比：-1"><a href="#類比：-1" class="headerlink" title="類比："></a><strong>類比：</strong></h4><p><code>this</code> 失去了原本的指向，默認指向全局（瀏覽器中是 <code>window</code>，Node.js 中是 <code>global</code>）。<code>window.name</code> 默認是 <code>undefined</code>，所以輸出結果不完整。</p>
+<hr>
+<h4 id="情境-3：在婚禮現場給他備忘錄"><a href="#情境-3：在婚禮現場給他備忘錄" class="headerlink" title="情境 3：在婚禮現場給他備忘錄"></a><strong>情境 3：在婚禮現場給他備忘錄</strong></h4><pre><code class="javascript">const weddingEvent = restaurant.service.bind({ name: &quot;幸福婚禮會場&quot; });
+weddingEvent(); // 歡迎光臨 幸福婚禮會場
+</code></pre>
+<ul>
+<li><strong>服務員的角色（<code>this</code>）：</strong> 他被給了一張備忘錄，知道現在要服務的是「幸福婚禮會場」。</li>
+<li><strong>結果：</strong> 他可以正確地說出「歡迎光臨幸福婚禮會場」。</li>
+</ul>
+<h4 id="類比：-2"><a href="#類比：-2" class="headerlink" title="類比："></a><strong>類比：</strong></h4><p>在這裡，我們使用了 <code>bind</code> 方法，手動把 <code>this</code> 綁定到 <code>{ name: &quot;幸福婚禮會場&quot; }</code>。</p>
+<hr>
+<h4 id="情境-4：服務員的記性不好，用了箭頭函式"><a href="#情境-4：服務員的記性不好，用了箭頭函式" class="headerlink" title="情境 4：服務員的記性不好，用了箭頭函式"></a><strong>情境 4：服務員的記性不好，用了箭頭函式</strong></h4><pre><code class="javascript">const restaurant = {
+  name: &quot;美味餐廳&quot;,
+  service: () =&gt; {
+    console.log(`歡迎光臨 ${this.name}`);
+  },
+};
+
+restaurant.service(); // 歡迎光臨 undefined
+</code></pre>
+<ul>
+<li><strong>服務員的角色（<code>this</code>）：</strong> 他記不住自己身處的地方，只認為是「上級指派」的。</li>
+<li><strong>結果：</strong> 他不知道當前餐廳的名字。</li>
+</ul>
+<h4 id="類比：-3"><a href="#類比：-3" class="headerlink" title="類比："></a><strong>類比：</strong></h4><p>箭頭函式中的 <code>this</code> 不會指向當前物件，而是根據<strong>外層上下文</strong>來決定。這裡的外層上下文是 <code>window</code>，所以 <code>this.name</code> 是 <code>undefined</code>。</p>
+<hr>
+<h4 id="情境-5：用箭頭函式保證清晰記憶"><a href="#情境-5：用箭頭函式保證清晰記憶" class="headerlink" title="情境 5：用箭頭函式保證清晰記憶"></a><strong>情境 5：用箭頭函式保證清晰記憶</strong></h4><pre><code class="javascript">const restaurant = {
+  name: &quot;美味餐廳&quot;,
+  service() {
+    const reminder = () =&gt; {
+      console.log(`歡迎光臨 ${this.name}`);
+    };
+    reminder();
+  },
+};
+
+restaurant.service(); // 歡迎光臨 美味餐廳
+</code></pre>
+<ul>
+<li><strong>服務員的角色（<code>this</code>）：</strong> 他得到了一個隨身備忘錄（箭頭函式），隨時告訴他「你是在餐廳裡」。</li>
+<li><strong>結果：</strong> 他正確地服務客人。</li>
+</ul>
+<h4 id="類比：-4"><a href="#類比：-4" class="headerlink" title="類比："></a><strong>類比：</strong></h4><p>箭頭函式不會創建自己的 <code>this</code>，所以會自動繼承外層函式的上下文（<code>restaurant</code>），因此能正確使用 <code>this.name</code>。</p>
+<hr>
+<h3 id="Vue-中的情境：碼表應用的-this-問題"><a href="#Vue-中的情境：碼表應用的-this-問題" class="headerlink" title="Vue 中的情境：碼表應用的 this 問題"></a><strong>Vue 中的情境：碼表應用的 <code>this</code> 問題</strong></h3><p>讓我們用你的 Vue 碼表作例子：</p>
+<h4 id="問題情境：傳統函式導致-this-丟失"><a href="#問題情境：傳統函式導致-this-丟失" class="headerlink" title="問題情境：傳統函式導致 this 丟失"></a><strong>問題情境：傳統函式導致 <code>this</code> 丟失</strong></h4><pre><code class="javascript">methods: {
+  startTimer: function () {
+    setInterval(function () {
+      console.log(this.time); // `this` 是 `window`，time 是 undefined
+    }, 1000);
+  }
+}
+</code></pre>
+<ul>
+<li><strong>服務員的角色（<code>this</code>）：</strong> 他去做定時器的工作，但忘了自己屬於 Vue 實例。</li>
+<li><strong>結果：</strong> Vue 實例的 <code>time</code> 無法被訪問，因為 <code>this</code> 指向 <code>window</code>。</li>
+</ul>
+<hr>
+<h4 id="解決方法：用箭頭函式"><a href="#解決方法：用箭頭函式" class="headerlink" title="解決方法：用箭頭函式"></a><strong>解決方法：用箭頭函式</strong></h4><pre><code class="javascript">methods: {
+  startTimer: function () {
+    setInterval(() =&gt; {
+      console.log(this.time); // 正確的 `this` 指向 Vue 實例
+    }, 1000);
+  }
+}
+</code></pre>
+<ul>
+<li><strong>服務員的角色（<code>this</code>）：</strong> 他隨身帶著備忘錄（箭頭函式），記得自己是 Vue 實例的一部分。</li>
+<li><strong>結果：</strong> 他能正確操作 Vue 實例的數據。</li>
+</ul>
+<hr>
+<h3 id="總結：情境帶出的-this-特性"><a href="#總結：情境帶出的-this-特性" class="headerlink" title="總結：情境帶出的 this 特性"></a><strong>總結：情境帶出的 <code>this</code> 特性</strong></h3><ol>
+<li><p><strong><code>this</code> 的值由執行上下文決定。</strong></p>
+<ul>
+<li><strong>普通函式</strong>：<code>this</code> 由調用方式決定，默認指向全局物件。</li>
+<li><strong>箭頭函式</strong>：<code>this</code> 繼承自定義它時的外層上下文。</li>
+</ul>
+</li>
+<li><p><strong>在 Vue 中，保持 <code>this</code> 指向 Vue 實例很重要。</strong></p>
+<ul>
+<li>用箭頭函式可以避免上下文丟失。</li>
+<li>或者用 <code>bind</code>、<code>that</code> 保存正確的上下文。</li>
+</ul>
+</li>
+<li><p><strong>生活化類比：</strong></p>
+<ul>
+<li>「服務員在不同情境下服務不同的對象」形象地描述了 <code>this</code> 的上下文問題。</li>
+</ul>
+</li>
+</ol>

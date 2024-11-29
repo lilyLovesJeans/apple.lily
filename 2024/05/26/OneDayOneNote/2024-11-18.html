@@ -1,0 +1,69 @@
+<hr>
+<h2 id="title-2024-11-18-如何知道-setInterval-被佔用的資源？date-2024-11-29-23-20-51categories-OneDayOneNotetags-Javascript-Vue-description-2024-11-18-如何知道-setInterval-被佔用的資源？"><a href="#title-2024-11-18-如何知道-setInterval-被佔用的資源？date-2024-11-29-23-20-51categories-OneDayOneNotetags-Javascript-Vue-description-2024-11-18-如何知道-setInterval-被佔用的資源？" class="headerlink" title="title: 2024-11-18 如何知道 setInterval 被佔用的資源？date: 2024-11-29 23:20:51categories: OneDayOneNotetags:  [Javascript,Vue]description:  2024-11-18 如何知道 setInterval 被佔用的資源？"></a>title: 2024-11-18 如何知道 setInterval 被佔用的資源？<br>date: 2024-11-29 23:20:51<br>categories: OneDayOneNote<br>tags:  [Javascript,Vue]<br>description:  2024-11-18 如何知道 setInterval 被佔用的資源？</h2><h2 id="2024-11-18-如何知道-setInterval-被佔用的資源？"><a href="#2024-11-18-如何知道-setInterval-被佔用的資源？" class="headerlink" title="2024-11-18 如何知道 setInterval 被佔用的資源？"></a>2024-11-18 如何知道 setInterval 被佔用的資源？</h2><p>了解 <code>setInterval</code> 被佔用的資源主要涉及以下幾個方面：</p>
+<hr>
+<h3 id="1-通過-console-記錄監控執行次數"><a href="#1-通過-console-記錄監控執行次數" class="headerlink" title="1. 通過 console 記錄監控執行次數"></a><strong>1. 通過 <code>console</code> 記錄監控執行次數</strong></h3><ul>
+<li>如果使用過多的 <code>setInterval</code>，可以藉由記錄執行次數來判斷是否有多餘的計時器在運行。</li>
+</ul>
+<p><strong>範例：監控計時器執行次數</strong></p>
+<pre><code class="javascript">let counter = 0;
+const intervalId = setInterval(() =&gt; {
+  counter++;
+  console.log(`計時器執行次數: ${counter}`);
+}, 1000);
+</code></pre>
+<p>如果不斷看到執行次數激增，可能是有多個計時器在同時運行。</p>
+<hr>
+<h3 id="2-使用瀏覽器開發者工具"><a href="#2-使用瀏覽器開發者工具" class="headerlink" title="2. 使用瀏覽器開發者工具"></a><strong>2. 使用瀏覽器開發者工具</strong></h3><ul>
+<li>瀏覽器提供性能分析工具，可以檢測到因 <code>setInterval</code> 引起的高頻事件執行。</li>
+</ul>
+<p><strong>Chrome DevTools 示例：</strong></p>
+<ol>
+<li><strong>打開開發者工具</strong>（按 <code>F12</code> 或右鍵檢查）。</li>
+<li>切換到 <strong>Performance</strong> 標籤。</li>
+<li>點擊 <strong>Record</strong> 按鈕（錄製性能記錄）。</li>
+<li>停止錄製後，查看是否有大量高頻的定時器事件（如 <code>setInterval</code> 和 <code>setTimeout</code>）。</li>
+</ol>
+<hr>
+<h3 id="3-使用-Node-js-的-process-getActiveHandles"><a href="#3-使用-Node-js-的-process-getActiveHandles" class="headerlink" title="3. 使用 Node.js 的 process._getActiveHandles"></a><strong>3. 使用 Node.js 的 <code>process._getActiveHandles</code></strong></h3><p>如果是在 Node.js 環境中，可以檢查當前活動的計時器。</p>
+<p><strong>範例</strong></p>
+<pre><code class="javascript">setInterval(() =&gt; console.log(&quot;定時器執行中&quot;), 1000);
+
+// 列出當前的活動計時器
+setTimeout(() =&gt; {
+  console.log(process._getActiveHandles());
+}, 5000);
+</code></pre>
+<hr>
+<h3 id="4-查看內存使用狀況"><a href="#4-查看內存使用狀況" class="headerlink" title="4. 查看內存使用狀況"></a><strong>4. 查看內存使用狀況</strong></h3><p>過多的計時器可能導致內存消耗過高，從而影響應用性能。</p>
+<ul>
+<li>在瀏覽器中，可以通過 <strong>Memory</strong> 標籤查看內存使用情況。</li>
+<li>可以觀察 JavaScript Heap Memory，是否因大量計時器的執行而快速增長。</li>
+</ul>
+<hr>
+<h3 id="5-使用-setInterval-的-ID-進行清理和記錄"><a href="#5-使用-setInterval-的-ID-進行清理和記錄" class="headerlink" title="5. 使用 setInterval 的 ID 進行清理和記錄"></a><strong>5. 使用 <code>setInterval</code> 的 ID 進行清理和記錄</strong></h3><p>每次調用 <code>setInterval</code> 都會返回一個唯一的 ID，你可以使用陣列或變數來保存所有計時器 ID，並定期檢查和清除它們。</p>
+<p><strong>範例：記錄計時器 ID</strong></p>
+<pre><code class="javascript">const intervalIds = [];
+
+// 創建多個計時器
+for (let i = 0; i &lt; 5; i++) {
+  const id = setInterval(() =&gt; console.log(`計時器 ${i} 執行`), 1000);
+  intervalIds.push(id);
+}
+
+// 檢查所有活動計時器
+console.log(&quot;計時器 ID 清單:&quot;, intervalIds);
+
+// 清除計時器
+intervalIds.forEach((id) =&gt; clearInterval(id));
+</code></pre>
+<hr>
+<h3 id="過多計時器的危害"><a href="#過多計時器的危害" class="headerlink" title="過多計時器的危害"></a><strong>過多計時器的危害</strong></h3><ol>
+<li><strong>內存洩漏</strong>：未清除的計時器會持續佔用內存，特別是在長時間運行的應用中。</li>
+<li><strong>CPU 壓力</strong>：高頻執行會增加 CPU 的負載，導致應用變慢。</li>
+<li><strong>難以調試</strong>：過多未清除的計時器可能導致多餘的邏輯執行，難以排查問題。</li>
+</ol>
+<p>解決這些問題的關鍵在於：</p>
+<ul>
+<li>適時清除不再需要的計時器（使用 <code>clearInterval</code>）。</li>
+<li>確保不要重複啟動多個類似的計時器。</li>
+</ul>

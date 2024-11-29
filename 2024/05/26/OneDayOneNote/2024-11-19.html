@@ -1,0 +1,88 @@
+<hr>
+<h2 id="title-2024-11-19-setInterval-callback-delay-…args-date-2024-11-29-23-22-59categories-OneDayOneNotetags-Javascript-Vue-description-2024-11-18-如何知道-setInterval-被佔用的資源？"><a href="#title-2024-11-19-setInterval-callback-delay-…args-date-2024-11-29-23-22-59categories-OneDayOneNotetags-Javascript-Vue-description-2024-11-18-如何知道-setInterval-被佔用的資源？" class="headerlink" title="title: 2024-11-19 setInterval(callback, delay, …args);date: 2024-11-29 23:22:59categories: OneDayOneNotetags:  [Javascript,Vue]description:  2024-11-18 如何知道 setInterval 被佔用的資源？"></a>title: 2024-11-19 setInterval(callback, delay, …args);<br>date: 2024-11-29 23:22:59<br>categories: OneDayOneNote<br>tags:  [Javascript,Vue]<br>description:  2024-11-18 如何知道 setInterval 被佔用的資源？</h2><h2 id="2024-11-18-如何知道-setInterval-被佔用的資源？"><a href="#2024-11-18-如何知道-setInterval-被佔用的資源？" class="headerlink" title="2024-11-18 如何知道 setInterval 被佔用的資源？"></a>2024-11-18 如何知道 setInterval 被佔用的資源？</h2><p><code>setInterval</code> 是 JavaScript 中的內建函式，用於根據指定的時間間隔（以毫秒為單位）反覆執行某段程式碼。它的語法如下：</p>
+<pre><code class="javascript">setInterval(callback, delay, ...args);
+</code></pre>
+<h3 id="參數說明"><a href="#參數說明" class="headerlink" title="參數說明"></a><strong>參數說明</strong></h3><ol>
+<li><p><strong><code>callback</code></strong>  </p>
+<ul>
+<li><strong>必需</strong>  </li>
+<li>是一個函式，指明要反覆執行的程式邏輯。  </li>
+<li>這個函式可以直接寫匿名函式（例如 <code>() =&gt; {}</code>），也可以是已定義的函式名稱（例如 <code>myFunction</code>）。  </li>
+<li>在每個間隔時間到達後，<code>callback</code> 會被執行。</li>
+</ul>
+</li>
+<li><p><strong><code>delay</code></strong>  </p>
+<ul>
+<li><strong>必需</strong>  </li>
+<li>是一個數字，指定每次執行 <code>callback</code> 的間隔時間（以毫秒為單位）。  </li>
+<li>如果 <code>delay</code> 的值小於 4 毫秒，瀏覽器會將其強制設為 4 毫秒（標準行為）。</li>
+</ul>
+</li>
+<li><p><strong><code>...args</code></strong>  </p>
+<ul>
+<li><strong>可選</strong>  </li>
+<li>如果指定了參數，它們會在每次執行 <code>callback</code> 時傳遞給 <code>callback</code> 函式。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="例子-1：基本用法"><a href="#例子-1：基本用法" class="headerlink" title="例子 1：基本用法"></a><strong>例子 1：基本用法</strong></h3><pre><code class="javascript">let count = 0;
+const intervalId = setInterval(() =&gt; {
+  count++;
+  console.log(`計數：${count}`);
+  if (count &gt;= 5) {
+    clearInterval(intervalId); // 停止計時器
+    console.log(&quot;計時完成&quot;);
+  }
+}, 1000); // 每隔 1 秒執行一次
+</code></pre>
+<h4 id="執行結果"><a href="#執行結果" class="headerlink" title="執行結果"></a><strong>執行結果</strong></h4><ul>
+<li>每隔 1 秒，<code>count</code> 增加 1，並打印當前值。</li>
+<li>當 <code>count</code> 達到 5 時，停止 <code>setInterval</code>。</li>
+</ul>
+<hr>
+<h3 id="例子-2：帶參數的-setInterval"><a href="#例子-2：帶參數的-setInterval" class="headerlink" title="例子 2：帶參數的 setInterval"></a><strong>例子 2：帶參數的 <code>setInterval</code></strong></h3><pre><code class="javascript">function greet(name) {
+  console.log(`Hello, ${name}!`);
+}
+
+setInterval(greet, 2000, &quot;Alice&quot;); // 每隔 2 秒執行一次，並傳遞 &quot;Alice&quot; 作為參數
+</code></pre>
+<h4 id="執行結果-1"><a href="#執行結果-1" class="headerlink" title="執行結果"></a><strong>執行結果</strong></h4><ul>
+<li>每 2 秒執行一次 <code>greet</code>，輸出：<pre><code>Hello, Alice!
+Hello, Alice!
+...
+</code></pre>
+</li>
+</ul>
+<hr>
+<h3 id="你的範例分析"><a href="#你的範例分析" class="headerlink" title="你的範例分析"></a><strong>你的範例分析</strong></h3><pre><code class="javascript">this.timer = setInterval(() =&gt; {
+  this.time += 10; // 每 10 毫秒，time 增加 10
+}, 10);
+</code></pre>
+<h4 id="參數解釋"><a href="#參數解釋" class="headerlink" title="參數解釋"></a><strong>參數解釋</strong></h4><ol>
+<li><p><strong><code>callback</code></strong>  </p>
+<ul>
+<li><code>() =&gt; { this.time += 10; }</code> 是箭頭函式，表示每 10 毫秒要執行的邏輯：讓 <code>this.time</code> 的值增加 10。  </li>
+<li>使用箭頭函式確保 <code>this</code> 指向 Vue 組件的實例（避免上下文問題）。</li>
+</ul>
+</li>
+<li><p><strong><code>delay</code></strong>  </p>
+<ul>
+<li><code>10</code> 毫秒，表示 <code>callback</code> 函式每 10 毫秒執行一次。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="清除計時器"><a href="#清除計時器" class="headerlink" title="清除計時器"></a><strong>清除計時器</strong></h3><p><code>setInterval</code> 會一直執行，直到被明確停止。如果不停止，會一直佔用資源。</p>
+<p>停止計時器需要使用 <code>clearInterval</code> 並傳入 <code>setInterval</code> 的返回值：</p>
+<pre><code class="javascript">clearInterval(this.timer);
+</code></pre>
+<hr>
+<h3 id="當不清除計時器會發生什麼？"><a href="#當不清除計時器會發生什麼？" class="headerlink" title="當不清除計時器會發生什麼？"></a><strong>當不清除計時器會發生什麼？</strong></h3><ul>
+<li>計時器會一直執行，佔用內存和 CPU 資源。</li>
+<li>多次啟動 <code>setInterval</code> 而不清除舊的計時器，會造成多個計時器同時執行，導致邏輯混亂。</li>
+</ul>
+<p><strong>範例問題：未清除舊計時器</strong></p>
+<pre><code class="javascript">setInterval(() =&gt; console.log(&quot;執行中&quot;), 1000);
+// 這段代碼會每秒打印 &quot;執行中&quot;，除非重啟頁面或清除計時器
+</code></pre>

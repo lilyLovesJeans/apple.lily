@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2024-11-22 vue 之 this 的上下文問題">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024-11-22 vue 之 this 的上下文問題">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2024/11/29/OneDayOneNote/2024-11-22/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2024-11-22 vue 之 this 的上下文問題">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2024-11-29T15:34:47.000Z">
+<meta property="article:modified_time" content="2024-11-29T15:36:09.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2024/11/29/OneDayOneNote/2024-11-22/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2024/11/29/OneDayOneNote/2024-11-22/","path":"2024/11/29/OneDayOneNote/2024-11-22/","title":"2024-11-22 vue 之 this 的上下文問題"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2024-11-22 vue 之 this 的上下文問題 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2024-11-22-vue-%E4%B9%8B-this-%E7%9A%84%E4%B8%8A%E4%B8%8B%E6%96%87%E5%95%8F%E9%A1%8C"><span class="nav-number">1.</span> <span class="nav-text">2024-11-22 vue 之 this 的上下文問題</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8A%E4%B8%8B%E6%96%87%E5%95%8F%E9%A1%8C%E7%B0%A1%E5%96%AE%E8%88%89%E4%BE%8B"><span class="nav-number">1.1.</span> <span class="nav-text">上下文問題簡單舉例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B%E5%AD%90-1%EF%BC%9A%E6%99%AE%E9%80%9A%E5%87%BD%E5%BC%8F%E7%9A%84%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="nav-number">1.1.1.</span> <span class="nav-text">例子 1：普通函式的上下文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B%E5%AD%90-2%EF%BC%9A%E6%96%B9%E6%B3%95%E7%9A%84%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="nav-number">1.1.2.</span> <span class="nav-text">例子 2：方法的上下文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B%E5%AD%90-3%EF%BC%9A%E5%87%BD%E5%BC%8F%E5%85%A7%E9%83%A8%E5%B5%8C%E5%A5%97%E7%9A%84%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="nav-number">1.1.3.</span> <span class="nav-text">例子 3：函式內部嵌套的上下文</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8-Vue-%E4%B8%AD%E7%9A%84%E4%B8%8A%E4%B8%8B%E6%96%87%E5%95%8F%E9%A1%8C"><span class="nav-number">1.2.</span> <span class="nav-text">在 Vue 中的上下文問題</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B%E5%AD%90%EF%BC%9A%E5%9C%A8-Vue-%E4%B8%AD%E5%A4%B1%E5%8E%BB%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="nav-number">1.2.1.</span> <span class="nav-text">例子：在 Vue 中失去上下文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%B3%95%EF%BC%9A%E4%BD%BF%E7%94%A8%E7%AE%AD%E9%A0%AD%E5%87%BD%E5%BC%8F"><span class="nav-number">1.2.2.</span> <span class="nav-text">解決方法：使用箭頭函式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%82%BA%E4%BB%80%E9%BA%BC%E4%B8%8A%E4%B8%8B%E6%96%87%E5%95%8F%E9%A1%8C%E9%87%8D%E8%A6%81%EF%BC%9F"><span class="nav-number">1.3.</span> <span class="nav-text">為什麼上下文問題重要？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B%E5%AD%90%EF%BC%9A%E4%B8%8A%E4%B8%8B%E6%96%87%E5%95%8F%E9%A1%8C%E5%B0%8E%E8%87%B4%E4%BB%A3%E7%A2%BC%E5%A0%B1%E9%8C%AF"><span class="nav-number">1.3.1.</span> <span class="nav-text">例子：上下文問題導致代碼報錯</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8A%E4%B8%8B%E6%96%87%E5%95%8F%E9%A1%8C%E7%9A%84%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%B3%95"><span class="nav-number">1.4.</span> <span class="nav-text">上下文問題的解決方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">1.5.</span> <span class="nav-text">結論</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">270</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2024/11/29/OneDayOneNote/2024-11-22/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2024-11-22 vue 之 this 的上下文問題 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2024-11-22 vue 之 this 的上下文問題">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2024-11-22 vue 之 this 的上下文問題
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2024-11-29 23:34:47 / 修改時間：23:36:09" itemprop="dateCreated datePublished" datetime="2024-11-29T23:34:47+08:00">2024-11-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2024-11-22 vue 之 this 的上下文問題</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2024-11-22-vue-之-this-的上下文問題"><a href="#2024-11-22-vue-之-this-的上下文問題" class="headerlink" title="2024-11-22 vue 之 this 的上下文問題"></a>2024-11-22 vue 之 this 的上下文問題</h2><p>在 JavaScript 中，<code>this</code> 是一個特殊的關鍵字，它的值取決於函式的執行上下文（<strong>Context</strong>）。<strong>上下文</strong>可以理解為函式執行時的「當下環境」，<code>this</code> 在不同上下文中可能指向不同的物件。這就是所謂的 <strong>上下文問題</strong>。</p>
+<hr>
+<h3 id="上下文問題簡單舉例"><a href="#上下文問題簡單舉例" class="headerlink" title="上下文問題簡單舉例"></a><strong>上下文問題簡單舉例</strong></h3><h4 id="例子-1：普通函式的上下文"><a href="#例子-1：普通函式的上下文" class="headerlink" title="例子 1：普通函式的上下文"></a><strong>例子 1：普通函式的上下文</strong></h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">sayHello</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">sayHello</span>(); <span class="comment">// 在瀏覽器中，this 指向全局物件 window</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在這個例子中，函式 <code>sayHello</code> 是以普通方式調用。</li>
+<li>在瀏覽器中，普通函式內的 <code>this</code> 默認指向 <code>window</code>（Node.js 中是 <code>global</code>）。</li>
+</ul>
+<hr>
+<h4 id="例子-2：方法的上下文"><a href="#例子-2：方法的上下文" class="headerlink" title="例子 2：方法的上下文"></a><strong>例子 2：方法的上下文</strong></h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> person = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;Alice&#x27;</span>,</span><br><span class="line">  <span class="attr">sayHello</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">name</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">person.<span class="title function_">sayHello</span>(); <span class="comment">// 輸出: Alice</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>這裡的 <code>sayHello</code> 是 <code>person</code> 物件的<strong>方法</strong>。</li>
+<li>調用 <code>person.sayHello()</code> 時，<code>this</code> 指向 <code>person</code>。</li>
+</ul>
+<hr>
+<h4 id="例子-3：函式內部嵌套的上下文"><a href="#例子-3：函式內部嵌套的上下文" class="headerlink" title="例子 3：函式內部嵌套的上下文"></a><strong>例子 3：函式內部嵌套的上下文</strong></h4><p>當嵌套函式使用普通函式語法時，內層函式的 <code>this</code> 不再指向外層函式的上下文，而是回到全局上下文。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> person = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;Alice&#x27;</span>,</span><br><span class="line">  <span class="attr">sayHello</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">nestedFunction</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>); <span class="comment">// 這裡的 this 指向全局物件</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">nestedFunction</span>();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">person.<span class="title function_">sayHello</span>();</span><br></pre></td></tr></table></figure>
+
+<p>輸出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">window （在瀏覽器中）</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="在-Vue-中的上下文問題"><a href="#在-Vue-中的上下文問題" class="headerlink" title="在 Vue 中的上下文問題"></a><strong>在 Vue 中的上下文問題</strong></h3><p>在 Vue 中，我們通常希望 <code>this</code> 始終指向 Vue 實例，但如果你用傳統函式語法（<code>function</code>）而不是箭頭函式，可能會引發上下文問題。</p>
+<h4 id="例子：在-Vue-中失去上下文"><a href="#例子：在-Vue-中失去上下文" class="headerlink" title="例子：在 Vue 中失去上下文"></a><strong>例子：在 Vue 中失去上下文</strong></h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">methods</span>: &#123;</span><br><span class="line">  <span class="attr">startTimer</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>); <span class="comment">// 這裡的 this 指向 window</span></span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在這裡：</p>
+<ul>
+<li><code>setTimeout</code> 的回調函式是以普通方式執行的。</li>
+<li>回調函式內的 <code>this</code> 指向全局物件（<code>window</code>），而不是 Vue 實例。</li>
+</ul>
+<h4 id="解決方法：使用箭頭函式"><a href="#解決方法：使用箭頭函式" class="headerlink" title="解決方法：使用箭頭函式"></a><strong>解決方法：使用箭頭函式</strong></h4><p>箭頭函式不會創建自己的上下文，會繼承定義它的外層上下文的 <code>this</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">methods</span>: &#123;</span><br><span class="line">  <span class="attr">startTimer</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>); <span class="comment">// 這裡的 this 指向 Vue 實例</span></span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="為什麼上下文問題重要？"><a href="#為什麼上下文問題重要？" class="headerlink" title="為什麼上下文問題重要？"></a><strong>為什麼上下文問題重要？</strong></h3><p>上下文問題直接影響到你的代碼能否正確運行，特別是當你需要訪問 Vue 實例的屬性或方法時。如果上下文丟失，<code>this</code> 會指向錯誤的物件，導致代碼報錯。</p>
+<h4 id="例子：上下文問題導致代碼報錯"><a href="#例子：上下文問題導致代碼報錯" class="headerlink" title="例子：上下文問題導致代碼報錯"></a><strong>例子：上下文問題導致代碼報錯</strong></h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">methods</span>: &#123;</span><br><span class="line">  <span class="attr">startTimer</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">time</span> += <span class="number">10</span>; <span class="comment">// 嘗試訪問 Vue 實例的 `time`，但報錯</span></span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這裡會報錯：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TypeError: Cannot read properties of undefined (reading &#x27;time&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p>原因是：</p>
+<ul>
+<li><code>setTimeout</code> 回調函式中的 <code>this</code> 不再指向 Vue 實例，而是 <code>window</code>。</li>
+<li>所以 <code>this.time</code> 是 <code>undefined</code>。</li>
+</ul>
+<hr>
+<h3 id="上下文問題的解決方法"><a href="#上下文問題的解決方法" class="headerlink" title="上下文問題的解決方法"></a><strong>上下文問題的解決方法</strong></h3><ol>
+<li><p><strong>使用箭頭函式：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">methods</span>: &#123;</span><br><span class="line">  <span class="attr">startTimer</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">time</span> += <span class="number">10</span>; <span class="comment">// this 正確指向 Vue 實例</span></span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>保存外層上下文：</strong><br>如果使用傳統函式，可以用變量保存 Vue 實例的 <code>this</code>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">methods</span>: &#123;</span><br><span class="line">  <span class="attr">startTimer</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> that = <span class="variable language_">this</span>; <span class="comment">// 保存 Vue 實例的上下文</span></span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      that.<span class="property">time</span> += <span class="number">10</span>; <span class="comment">// 使用保存的上下文</span></span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h3 id="結論"><a href="#結論" class="headerlink" title="結論"></a><strong>結論</strong></h3><p>上下文問題源於 JavaScript 的靈活性，<code>this</code> 的值根據函式執行方式而變化。在 Vue 中：</p>
+<ol>
+<li>用箭頭函式是最簡單的解決方法。</li>
+<li>確保 <code>this</code> 始終指向 Vue 實例是正確操作代碼的關鍵。</li>
+<li>如果不了解上下文，代碼容易出現難以排查的錯誤。v</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/Javascript/" rel="tag"># Javascript</a>
+              <a href="/apple.lily/tags/Vue/" rel="tag"># Vue</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/11/29/OneDayOneNote/2024-11-21/" rel="prev" title="2024-11-21  情境式說明 vue 的this">
+                  <i class="fa fa-angle-left"></i> 2024-11-21  情境式說明 vue 的this
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/11/29/OneDayOneNote/2024-11-23/" rel="next" title="2024-11-23 vue 之   if (this.timer) return; 如果沒有這個判斷會怎樣?">
+                  2024-11-23 vue 之   if (this.timer) return; 如果沒有這個判斷會怎樣? <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

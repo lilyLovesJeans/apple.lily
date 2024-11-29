@@ -1,0 +1,212 @@
+<hr>
+<h2 id="title-2024-11-14-為什麼碼錶程式-要用到-setInterval-它並沒有時間的概念date-2024-11-29-22-32-26categories-OneDayOneNotetags-Javascript-Vue-description-2024-11-14-為什麼碼錶程式-要用到-setInterval-它並沒有時間的概念"><a href="#title-2024-11-14-為什麼碼錶程式-要用到-setInterval-它並沒有時間的概念date-2024-11-29-22-32-26categories-OneDayOneNotetags-Javascript-Vue-description-2024-11-14-為什麼碼錶程式-要用到-setInterval-它並沒有時間的概念" class="headerlink" title="title: 2024-11-14 為什麼碼錶程式 要用到 setInterval() ?  它並沒有時間的概念date: 2024-11-29 22:32:26categories: OneDayOneNotetags:  [Javascript,Vue]description:  2024-11-14 為什麼碼錶程式 要用到 setInterval() ?  它並沒有時間的概念"></a>title: 2024-11-14 為什麼碼錶程式 要用到 setInterval() ?  它並沒有時間的概念<br>date: 2024-11-29 22:32:26<br>categories: OneDayOneNote<br>tags:  [Javascript,Vue]<br>description:  2024-11-14 為什麼碼錶程式 要用到 setInterval() ?  它並沒有時間的概念</h2><h2 id="2024-11-14-為什麼碼錶程式-要用到-setInterval-它並沒有時間的概念"><a href="#2024-11-14-為什麼碼錶程式-要用到-setInterval-它並沒有時間的概念" class="headerlink" title="2024-11-14 為什麼碼錶程式 要用到 setInterval() ?  它並沒有時間的概念"></a>2024-11-14 為什麼碼錶程式 要用到 setInterval() ?  它並沒有時間的概念</h2><p>所以為什麼碼錶程式 要用到 setInterval() ?  它並沒有時間的概念</p>
+<p>碼錶程式需要用到 <code>setInterval()</code> 的原因，雖然它本身並不處理「時間的概念」，但它依賴的是 <code>setInterval()</code> 提供的「週期性執行能力」，來模擬碼錶的計時功能。讓我們一步步解析原因。</p>
+<hr>
+<h3 id="1-setInterval-的核心功能"><a href="#1-setInterval-的核心功能" class="headerlink" title="1. setInterval() 的核心功能"></a><strong>1. <code>setInterval()</code> 的核心功能</strong></h3><ul>
+<li><code>setInterval()</code> 的作用是 <strong>每隔一定的時間執行一次指定的操作</strong>。</li>
+<li>在碼錶程式中，我們需要每隔一段時間（例如 10 毫秒）更新碼錶的數值，使畫面上的數字看起來像是在「計時」。</li>
+</ul>
+<hr>
+<h3 id="2-為什麼碼錶需要更新顯示？"><a href="#2-為什麼碼錶需要更新顯示？" class="headerlink" title="2. 為什麼碼錶需要更新顯示？"></a><strong>2. 為什麼碼錶需要更新顯示？</strong></h3><p>碼錶程式的主要功能是：</p>
+<ol>
+<li><strong>展示經過的時間</strong>。</li>
+<li><strong>不斷刷新顯示</strong>，讓人看到時間在變化。</li>
+</ol>
+<p>如果沒有 <code>setInterval()</code>：</p>
+<ul>
+<li>無法讓顯示的數值自動更新。</li>
+<li>用戶就無法看到時間的流逝。</li>
+</ul>
+<hr>
+<h3 id="3-模擬碼錶的例子"><a href="#3-模擬碼錶的例子" class="headerlink" title="3. 模擬碼錶的例子"></a><strong>3. 模擬碼錶的例子</strong></h3><h4 id="沒有-setInterval-的情況"><a href="#沒有-setInterval-的情況" class="headerlink" title="沒有 setInterval() 的情況"></a>沒有 <code>setInterval()</code> 的情況</h4><p>如果不使用 <code>setInterval()</code> 或類似的方式，碼錶的數值必須手動更新：</p>
+<pre><code class="javascript">let time = 0;
+function updateManually() {
+  time += 10; // 每次手動增加時間
+  console.log(time);
+}
+// 需要用戶手動執行
+updateManually();
+updateManually();
+// 時間並不會自動更新
+</code></pre>
+<p>這樣碼錶就無法持續顯示變化，用戶體驗會很差。</p>
+<hr>
+<h4 id="使用-setInterval-模擬碼錶"><a href="#使用-setInterval-模擬碼錶" class="headerlink" title="使用 setInterval() 模擬碼錶"></a>使用 <code>setInterval()</code> 模擬碼錶</h4><p>使用 <code>setInterval()</code> 的碼錶程式如下：</p>
+<pre><code class="javascript">let time = 0;
+const timer = setInterval(() =&gt; {
+  time += 10; // 每隔 10 毫秒增加 10
+  console.log(time); // 顯示當前時間
+  if (time &gt;= 1000) clearInterval(timer); // 假設停止在 1 秒
+}, 10);
+</code></pre>
+<p><strong>結果：</strong></p>
+<ul>
+<li>程式會自動在每 10 毫秒執行一次時間更新，直到停止為止。</li>
+<li>這讓碼錶看起來像是在「計時」。</li>
+</ul>
+<hr>
+<h3 id="4-碼錶程式的需求分析"><a href="#4-碼錶程式的需求分析" class="headerlink" title="4. 碼錶程式的需求分析"></a><strong>4. 碼錶程式的需求分析</strong></h3><ul>
+<li><strong>時間持續增加</strong>：碼錶需要模擬「經過的時間」。<ul>
+<li>解決方法：將每次間隔的時間（如 10 毫秒）加到總時間 <code>time</code> 中。</li>
+</ul>
+</li>
+<li><strong>畫面自動更新</strong>：用戶希望看到「動態的時間」。<ul>
+<li>解決方法：使用 <code>setInterval()</code> 讓時間持續刷新。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="5-碼錶程式用到-setInterval-的具體用途"><a href="#5-碼錶程式用到-setInterval-的具體用途" class="headerlink" title="5. 碼錶程式用到 setInterval() 的具體用途"></a><strong>5. 碼錶程式用到 <code>setInterval()</code> 的具體用途</strong></h3><p>在 Vue 的碼錶程式中，<code>setInterval()</code> 的用途主要是：</p>
+<ol>
+<li><p>**更新數據 (<code>this.time</code>)**：</p>
+<ul>
+<li>程式碼：<code>this.time += 10;</code>。</li>
+<li>每 10 毫秒執行一次，使時間數據不斷增加。</li>
+</ul>
+</li>
+<li><p><strong>觸發 Vue 的響應式更新</strong>：</p>
+<ul>
+<li>透過 Vue 的響應式系統，當 <code>this.time</code> 改變時，自動觸發畫面更新，顯示最新時間。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="6-如果不用-setInterval-，可以用什麼？"><a href="#6-如果不用-setInterval-，可以用什麼？" class="headerlink" title="6. 如果不用 setInterval()，可以用什麼？"></a><strong>6. 如果不用 <code>setInterval()</code>，可以用什麼？</strong></h3><p>雖然 <code>setInterval()</code> 是實現碼錶的常用方式，但也可以考慮以下替代方案：</p>
+<ol>
+<li><p>**<code>setTimeout()</code>**：</p>
+<ul>
+<li>每次執行後再次設定下一次執行，這樣可以更精確地控制執行時間：<pre><code class="javascript">function runTimer() {
+  this.time += 10;
+  console.log(this.time);
+  setTimeout(runTimer, 10); // 設定下一次執行
+}
+runTimer();
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>動畫框架</strong>：</p>
+<ul>
+<li>使用瀏覽器的 <code>requestAnimationFrame()</code> 來計時並刷新畫面（更適合需要高效的動畫場景）。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="7-總結"><a href="#7-總結" class="headerlink" title="7. 總結"></a><strong>7. 總結</strong></h3><p><code>setInterval()</code> 在碼錶程式中是不可或缺的，因為它提供了：</p>
+<ul>
+<li><strong>週期性更新數據的能力</strong>。</li>
+<li><strong>模擬碼錶功能的基礎工具</strong>。</li>
+<li><strong>觸發 Vue 的響應式更新，讓畫面自動同步時間的變化</strong>。</li>
+</ul>
+<p>如果沒有 <code>setInterval()</code>，碼錶就無法自動計時，用戶也無法即時看到時間的變化，失去使用碼錶的意義。</p>
+<p>requestAnimationFrame() 這是 javascript 的原生函式？</p>
+<p>是的，<code>requestAnimationFrame()</code> 是 <strong>JavaScript 的原生函式</strong>，由瀏覽器提供，用於執行高效的動畫或畫面刷新操作。它是專門設計來取代傳統的 <code>setInterval()</code> 或 <code>setTimeout()</code> 進行動畫更新的，提供了更好的性能和流暢度。</p>
+<hr>
+<h3 id="1-requestAnimationFrame-是什麼？"><a href="#1-requestAnimationFrame-是什麼？" class="headerlink" title="1. requestAnimationFrame() 是什麼？"></a><strong>1. <code>requestAnimationFrame()</code> 是什麼？</strong></h3><p><code>requestAnimationFrame()</code> 的作用是：</p>
+<ul>
+<li>告訴瀏覽器：在下一次屏幕重繪之前執行一段指定的函式。</li>
+<li>瀏覽器會根據屏幕的刷新率（通常是每秒 60 次，等於 16.66 毫秒一次）來調整執行頻率，確保動畫更新的效率和流暢性。</li>
+</ul>
+<hr>
+<h3 id="2-語法"><a href="#2-語法" class="headerlink" title="2. 語法"></a><strong>2. 語法</strong></h3><pre><code class="javascript">let requestID = requestAnimationFrame(callback);
+</code></pre>
+<h4 id="參數"><a href="#參數" class="headerlink" title="參數"></a><strong>參數</strong></h4><ul>
+<li><strong><code>callback</code></strong>: 你想要執行的函式，會在每次屏幕重繪時被調用。</li>
+</ul>
+<h4 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a><strong>返回值</strong></h4><ul>
+<li><strong><code>requestID</code></strong>: 一個數字標識符，用於取消這次動畫請求（配合 <code>cancelAnimationFrame()</code>）。</li>
+</ul>
+<hr>
+<h3 id="3-簡單範例"><a href="#3-簡單範例" class="headerlink" title="3. 簡單範例"></a><strong>3. 簡單範例</strong></h3><p>以下是一個使用 <code>requestAnimationFrame()</code> 實現簡單動畫的例子：</p>
+<pre><code class="javascript">let start = null;
+
+function step(timestamp) {
+  if (!start) start = timestamp;
+  const progress = timestamp - start;
+
+  console.log(progress); // 每次刷新時輸出經過的時間
+  if (progress &lt; 2000) { // 動畫持續 2 秒
+    requestAnimationFrame(step);
+  }
+}
+
+requestAnimationFrame(step);
+</code></pre>
+<p><strong>解釋：</strong></p>
+<ol>
+<li><code>timestamp</code>: 由瀏覽器傳入，表示從頁面加載到現在的時間（以毫秒為單位）。</li>
+<li>在 <code>step</code> 函式中，我們計算時間進度 <code>progress</code>，並根據進度執行動畫邏輯。</li>
+</ol>
+<hr>
+<h3 id="4-requestAnimationFrame-的優勢"><a href="#4-requestAnimationFrame-的優勢" class="headerlink" title="4. requestAnimationFrame() 的優勢"></a><strong>4. <code>requestAnimationFrame()</code> 的優勢</strong></h3><p>相比於 <code>setInterval()</code> 或 <code>setTimeout()</code>，<code>requestAnimationFrame()</code> 的優勢如下：</p>
+<h4 id="1-同步屏幕刷新率"><a href="#1-同步屏幕刷新率" class="headerlink" title="1. 同步屏幕刷新率"></a><strong>1. 同步屏幕刷新率</strong></h4><ul>
+<li><code>requestAnimationFrame()</code> 自動根據屏幕刷新率調整執行頻率，通常每秒 60 次（約 16.66 毫秒一次），可以保證動畫的流暢性。</li>
+</ul>
+<h4 id="2-節省資源"><a href="#2-節省資源" class="headerlink" title="2. 節省資源"></a><strong>2. 節省資源</strong></h4><ul>
+<li>在頁面不可見或不活動時（比如切換到其他標籤頁），瀏覽器會暫停動畫執行，減少不必要的資源消耗。</li>
+</ul>
+<h4 id="3-更精確的時間間隔"><a href="#3-更精確的時間間隔" class="headerlink" title="3. 更精確的時間間隔"></a><strong>3. 更精確的時間間隔</strong></h4><ul>
+<li><code>requestAnimationFrame()</code> 的執行時機比 <code>setInterval()</code> 更準確，因為它直接集成到瀏覽器的重繪機制中。</li>
+</ul>
+<h4 id="4-避免卡頓"><a href="#4-避免卡頓" class="headerlink" title="4. 避免卡頓"></a><strong>4. 避免卡頓</strong></h4><ul>
+<li>使用 <code>requestAnimationFrame()</code> 可以減少掉幀的情況，讓動畫更平滑。</li>
+</ul>
+<hr>
+<h3 id="5-在碼錶中使用-requestAnimationFrame"><a href="#5-在碼錶中使用-requestAnimationFrame" class="headerlink" title="5. 在碼錶中使用 requestAnimationFrame()"></a><strong>5. 在碼錶中使用 <code>requestAnimationFrame()</code></strong></h3><p>如果你想用 <code>requestAnimationFrame()</code> 來實現碼錶功能，可以這樣做：</p>
+<h4 id="碼錶範例"><a href="#碼錶範例" class="headerlink" title="碼錶範例"></a><strong>碼錶範例</strong></h4><pre><code class="javascript">let start = null;
+let elapsed = 0; // 經過的時間
+
+function updateTimer(timestamp) {
+  if (!start) start = timestamp;
+  elapsed = timestamp - start;
+
+  console.log(Math.floor(elapsed)); // 輸出經過的時間（毫秒）
+  
+  if (elapsed &lt; 10000) { // 計時到 10 秒為止
+    requestAnimationFrame(updateTimer);
+  }
+}
+
+requestAnimationFrame(updateTimer);
+</code></pre>
+<h4 id="對應的-Vue-實現"><a href="#對應的-Vue-實現" class="headerlink" title="對應的 Vue 實現"></a><strong>對應的 Vue 實現</strong></h4><p>在 Vue 中，可以這樣整合 <code>requestAnimationFrame()</code>：</p>
+<pre><code class="javascript">export default {
+  data() {
+    return {
+      time: 0,
+      startTime: null,
+      timerID: null,
+    };
+  },
+  methods: {
+    startTimer() {
+      const updateTime = (timestamp) =&gt; {
+        if (!this.startTime) this.startTime = timestamp;
+        this.time = Math.floor(timestamp - this.startTime);
+
+        // 繼續請求下一幀
+        this.timerID = requestAnimationFrame(updateTime);
+      };
+
+      this.timerID = requestAnimationFrame(updateTime);
+    },
+    stopTimer() {
+      cancelAnimationFrame(this.timerID); // 停止動畫
+      this.timerID = null;
+    },
+    resetTimer() {
+      this.stopTimer();
+      this.time = 0;
+      this.startTime = null;
+    },
+  },
+};
+</code></pre>
+<hr>
+<h3 id="6-總結"><a href="#6-總結" class="headerlink" title="6. 總結"></a><strong>6. 總結</strong></h3><p><code>requestAnimationFrame()</code> 是 JavaScript 原生的高效動畫工具，適合用於實現：</p>
+<ul>
+<li>動畫</li>
+<li>動態數字變化</li>
+<li>時間計算等</li>
+</ul>
+<p>在碼錶中，它可以作為 <code>setInterval()</code> 的替代方案，提供更加流暢和高效的更新機制。</p>

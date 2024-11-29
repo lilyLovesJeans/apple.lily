@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2024-11-20  javascript 有像 C# 依賴注入的概念嗎">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024-11-20  javascript 有像 C# 依賴注入的概念嗎">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2024/11/29/OneDayOneNote/2024-11-20/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2024-11-20  javascript 有像 C# 依賴注入的概念嗎">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2024-11-29T15:26:24.000Z">
+<meta property="article:modified_time" content="2024-11-29T15:30:07.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2024/11/29/OneDayOneNote/2024-11-20/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2024/11/29/OneDayOneNote/2024-11-20/","path":"2024/11/29/OneDayOneNote/2024-11-20/","title":"2024-11-20  javascript 有像 C# 依賴注入的概念嗎"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2024-11-20  javascript 有像 C# 依賴注入的概念嗎 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2024-11-20-javascript-%E6%9C%89%E5%83%8F-C-%E4%BE%9D%E8%B3%B4%E6%B3%A8%E5%85%A5%E7%9A%84%E6%A6%82%E5%BF%B5%E5%97%8E"><span class="nav-number">1.</span> <span class="nav-text">2024-11-20  javascript 有像 C# 依賴注入的概念嗎</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E9%BA%BC%E6%98%AF%E4%BE%9D%E8%B3%B4%E6%B3%A8%E5%85%A5%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">什麼是依賴注入？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-%E4%B8%AD%E7%9A%84%E4%BE%9D%E8%B3%B4%E6%B3%A8%E5%85%A5%E6%96%B9%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">JavaScript 中的依賴注入方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%89%8B%E5%8B%95%E6%B3%A8%E5%85%A5%E4%BE%9D%E8%B3%B4%E9%A0%85"><span class="nav-number">3.1.</span> <span class="nav-text">1. 手動注入依賴項</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%84%AA%E9%BB%9E"><span class="nav-number">3.1.1.</span> <span class="nav-text">優點</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%BA%E9%BB%9E"><span class="nav-number">3.1.2.</span> <span class="nav-text">缺點</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%BD%BF%E7%94%A8%E5%B7%A5%E5%BB%A0%E6%A8%A1%E5%BC%8F%E9%80%B2%E8%A1%8C%E4%BE%9D%E8%B3%B4%E6%B3%A8%E5%85%A5"><span class="nav-number">3.2.</span> <span class="nav-text">2. 使用工廠模式進行依賴注入</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%81%A9%E7%94%A8%E6%83%85%E5%A2%83"><span class="nav-number">3.2.1.</span> <span class="nav-text">適用情境</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%80%9F%E5%8A%A9%E6%A1%86%E6%9E%B6%E5%AF%A6%E7%8F%BE%E4%BE%9D%E8%B3%B4%E6%B3%A8%E5%85%A5"><span class="nav-number">3.3.</span> <span class="nav-text">3. 借助框架實現依賴注入</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-Angular-%E7%9A%84%E4%BE%9D%E8%B3%B4%E6%B3%A8%E5%85%A5"><span class="nav-number">3.3.1.</span> <span class="nav-text">3.1 Angular 的依賴注入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-NestJS-%E7%9A%84%E4%BE%9D%E8%B3%B4%E6%B3%A8%E5%85%A5"><span class="nav-number">3.3.2.</span> <span class="nav-text">3.2 NestJS 的依賴注入</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%AF%A6%E7%8F%BE%E7%B0%A1%E5%96%AE%E7%9A%84-DI-%E5%AE%B9%E5%99%A8"><span class="nav-number">3.4.</span> <span class="nav-text">4. 實現簡單的 DI 容器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8D%E6%AF%94-JavaScript-%E5%92%8C-C-%E7%9A%84-DI"><span class="nav-number">4.</span> <span class="nav-text">對比 JavaScript 和 C# 的 DI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">5.</span> <span class="nav-text">結論</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue-%E7%9A%84-provide-%E5%92%8C-inject"><span class="nav-number">6.</span> <span class="nav-text">Vue 的 provide 和 inject</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95"><span class="nav-number">6.1.</span> <span class="nav-text">基本用法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B5%90%E6%9E%9C%EF%BC%9A"><span class="nav-number">6.1.1.</span> <span class="nav-text">結果：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%87%89%E7%94%A8%E5%A0%B4%E6%99%AF"><span class="nav-number">6.2.</span> <span class="nav-text">應用場景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%88%87-DI-%E7%9A%84%E7%95%B0%E5%90%8C"><span class="nav-number">7.</span> <span class="nav-text">與 DI 的異同</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%B4%E5%B1%95%EF%BC%9AVue-%E7%9A%84%E5%85%A8%E5%B1%80%E6%B3%A8%E5%85%A5"><span class="nav-number">8.</span> <span class="nav-text">擴展：Vue 的全局注入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%85%A8%E5%B1%80%E9%85%8D%E7%BD%AE"><span class="nav-number">8.1.</span> <span class="nav-text">1. 全局配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%BD%BF%E7%94%A8-Vue-%E6%8F%92%E4%BB%B6"><span class="nav-number">8.2.</span> <span class="nav-text">2. 使用 Vue 插件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%88%87-Angular-%E7%9A%84-DI-%E5%B0%8D%E6%AF%94"><span class="nav-number">9.</span> <span class="nav-text">與 Angular 的 DI 對比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%90%E8%AB%96-1"><span class="nav-number">10.</span> <span class="nav-text">結論</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">270</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2024/11/29/OneDayOneNote/2024-11-20/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2024-11-20  javascript 有像 C# 依賴注入的概念嗎 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2024-11-20  javascript 有像 C# 依賴注入的概念嗎">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2024-11-20  javascript 有像 C# 依賴注入的概念嗎
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2024-11-29 23:26:24 / 修改時間：23:30:07" itemprop="dateCreated datePublished" datetime="2024-11-29T23:26:24+08:00">2024-11-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2024-11-20  javascript 有像 C# 依賴注入的概念嗎</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2024-11-20-javascript-有像-C-依賴注入的概念嗎"><a href="#2024-11-20-javascript-有像-C-依賴注入的概念嗎" class="headerlink" title="2024-11-20  javascript 有像 C# 依賴注入的概念嗎"></a>2024-11-20  javascript 有像 C# 依賴注入的概念嗎</h2><p>JavaScript 本身沒有像 C# 那樣內建的依賴注入（Dependency Injection, DI）框架或概念，但 JavaScript 的靈活性讓它非常適合實現依賴注入，尤其是在框架（如 Angular）中，它廣泛採用了依賴注入的概念。</p>
+<p>以下是解釋 JavaScript 中類似於依賴注入的概念，以及如何實現的一些示例。</p>
+<hr>
+<h2 id="什麼是依賴注入？"><a href="#什麼是依賴注入？" class="headerlink" title="什麼是依賴注入？"></a><strong>什麼是依賴注入？</strong></h2><p>依賴注入是一種設計模式，通過將一個對象的依賴項（如服務或模組）外部注入到該對象，而不是在內部自行創建它們。</p>
+<ul>
+<li><strong>C# 依賴注入：</strong> 通常通過框架（如 ASP.NET Core）的 DI 容器管理服務的註冊與分發。</li>
+<li><strong>JavaScript 依賴注入：</strong> 通過設計模式手動實現，或者借助框架（如 Angular、NestJS）來實現。</li>
+</ul>
+<hr>
+<h2 id="JavaScript-中的依賴注入方式"><a href="#JavaScript-中的依賴注入方式" class="headerlink" title="JavaScript 中的依賴注入方式"></a><strong>JavaScript 中的依賴注入方式</strong></h2><h3 id="1-手動注入依賴項"><a href="#1-手動注入依賴項" class="headerlink" title="1. 手動注入依賴項"></a><strong>1. 手動注入依賴項</strong></h3><p>最基本的依賴注入形式是將依賴項作為參數傳入。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定義一個依賴項</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Logger</span> &#123;</span><br><span class="line">  <span class="title function_">log</span>(<span class="params">message</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`[Logger]: <span class="subst">$&#123;message&#125;</span>`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定義一個需要依賴 Logger 的服務</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">UserService</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">logger</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">logger</span> = logger; <span class="comment">// 注入 Logger</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">createUser</span>(<span class="params">name</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">logger</span>.<span class="title function_">log</span>(<span class="string">`Creating user: <span class="subst">$&#123;name&#125;</span>`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 手動注入 Logger</span></span><br><span class="line"><span class="keyword">const</span> logger = <span class="keyword">new</span> <span class="title class_">Logger</span>();</span><br><span class="line"><span class="keyword">const</span> userService = <span class="keyword">new</span> <span class="title class_">UserService</span>(logger);</span><br><span class="line"></span><br><span class="line">userService.<span class="title function_">createUser</span>(<span class="string">&quot;Alice&quot;</span>);</span><br><span class="line"><span class="comment">// 輸出：[Logger]: Creating user: Alice</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="優點"><a href="#優點" class="headerlink" title="優點"></a><strong>優點</strong></h4><ul>
+<li>簡單、可控。</li>
+<li>適合小型應用。</li>
+</ul>
+<h4 id="缺點"><a href="#缺點" class="headerlink" title="缺點"></a><strong>缺點</strong></h4><ul>
+<li>當依賴關係多時，代碼會變得難以管理。</li>
+</ul>
+<hr>
+<h3 id="2-使用工廠模式進行依賴注入"><a href="#2-使用工廠模式進行依賴注入" class="headerlink" title="2. 使用工廠模式進行依賴注入"></a><strong>2. 使用工廠模式進行依賴注入</strong></h3><p>使用工廠函數創建服務，並在其中管理依賴的注入。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">createUserService</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> logger = <span class="keyword">new</span> <span class="title class_">Logger</span>(); <span class="comment">// 在工廠中管理依賴</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">UserService</span>(logger);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> userService = <span class="title function_">createUserService</span>();</span><br><span class="line">userService.<span class="title function_">createUser</span>(<span class="string">&quot;Bob&quot;</span>);</span><br><span class="line"><span class="comment">// 輸出：[Logger]: Creating user: Bob</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="適用情境"><a href="#適用情境" class="headerlink" title="適用情境"></a><strong>適用情境</strong></h4><ul>
+<li>需要在某些層統一管理依賴項，但不需要完整的 DI 容器。</li>
+</ul>
+<hr>
+<h3 id="3-借助框架實現依賴注入"><a href="#3-借助框架實現依賴注入" class="headerlink" title="3. 借助框架實現依賴注入"></a><strong>3. 借助框架實現依賴注入</strong></h3><h4 id="3-1-Angular-的依賴注入"><a href="#3-1-Angular-的依賴注入" class="headerlink" title="3.1 Angular 的依賴注入"></a><strong>3.1 Angular 的依賴注入</strong></h4><p>Angular 是 JavaScript 框架中依賴注入的最佳實踐。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Angular 中的依賴注入（TypeScript）</span></span><br><span class="line">@<span class="title class_">Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">Logger</span> &#123;</span><br><span class="line">  <span class="title function_">log</span>(<span class="params">message: string</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`[Logger]: <span class="subst">$&#123;message&#125;</span>`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@<span class="title class_">Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">UserService</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">private logger: Logger</span>) &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">createUser</span>(<span class="params">name: string</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">logger</span>.<span class="title function_">log</span>(<span class="string">`Creating user: <span class="subst">$&#123;name&#125;</span>`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用 Angular DI 容器</span></span><br><span class="line"><span class="keyword">const</span> appModule = <span class="title class_">NgModule</span>(&#123;</span><br><span class="line">  <span class="attr">providers</span>: [<span class="title class_">Logger</span>, <span class="title class_">UserService</span>],</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-2-NestJS-的依賴注入"><a href="#3-2-NestJS-的依賴注入" class="headerlink" title="3.2 NestJS 的依賴注入"></a><strong>3.2 NestJS 的依賴注入</strong></h4><p>NestJS 是一個基於 Node.js 的後端框架，它使用與 Angular 相同的 DI 模型。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@<span class="title class_">Injectable</span>()</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Logger</span> &#123;</span><br><span class="line">  <span class="title function_">log</span>(<span class="params">message</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`[Logger]: <span class="subst">$&#123;message&#125;</span>`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@<span class="title class_">Injectable</span>()</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">UserService</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">private logger: Logger</span>) &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">createUser</span>(<span class="params">name</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">logger</span>.<span class="title function_">log</span>(<span class="string">`Creating user: <span class="subst">$&#123;name&#125;</span>`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在這些框架中，DI 容器會根據需要自動管理依賴項的創建和注入，開發者只需要專注於邏輯本身。</p>
+<hr>
+<h3 id="4-實現簡單的-DI-容器"><a href="#4-實現簡單的-DI-容器" class="headerlink" title="4. 實現簡單的 DI 容器"></a><strong>4. 實現簡單的 DI 容器</strong></h3><p>你也可以手動實現一個簡單的 DI 容器來管理依賴。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Container</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">services</span> = <span class="keyword">new</span> <span class="title class_">Map</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">register</span>(<span class="params">name, implementation</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">services</span>.<span class="title function_">set</span>(name, implementation);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">resolve</span>(<span class="params">name</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> service = <span class="variable language_">this</span>.<span class="property">services</span>.<span class="title function_">get</span>(name);</span><br><span class="line">    <span class="keyword">if</span> (!service) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">`Service <span class="subst">$&#123;name&#125;</span> not found`</span>);</span><br><span class="line">    <span class="keyword">return</span> service;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定義服務</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Logger</span> &#123;</span><br><span class="line">  <span class="title function_">log</span>(<span class="params">message</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`[Logger]: <span class="subst">$&#123;message&#125;</span>`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">UserService</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">logger</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">logger</span> = logger;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">createUser</span>(<span class="params">name</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">logger</span>.<span class="title function_">log</span>(<span class="string">`Creating user: <span class="subst">$&#123;name&#125;</span>`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用 DI 容器</span></span><br><span class="line"><span class="keyword">const</span> container = <span class="keyword">new</span> <span class="title class_">Container</span>();</span><br><span class="line">container.<span class="title function_">register</span>(<span class="string">&quot;logger&quot;</span>, <span class="keyword">new</span> <span class="title class_">Logger</span>());</span><br><span class="line">container.<span class="title function_">register</span>(<span class="string">&quot;userService&quot;</span>, <span class="keyword">new</span> <span class="title class_">UserService</span>(container.<span class="title function_">resolve</span>(<span class="string">&quot;logger&quot;</span>)));</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> userService = container.<span class="title function_">resolve</span>(<span class="string">&quot;userService&quot;</span>);</span><br><span class="line">userService.<span class="title function_">createUser</span>(<span class="string">&quot;Charlie&quot;</span>);</span><br><span class="line"><span class="comment">// 輸出：[Logger]: Creating user: Charlie</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="對比-JavaScript-和-C-的-DI"><a href="#對比-JavaScript-和-C-的-DI" class="headerlink" title="對比 JavaScript 和 C# 的 DI"></a><strong>對比 JavaScript 和 C# 的 DI</strong></h2><table>
+<thead>
+<tr>
+<th><strong>特性</strong></th>
+<th><strong>JavaScript</strong></th>
+<th><strong>C#</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>實現方式</strong></td>
+<td>手動注入或依賴框架（如 Angular、NestJS）</td>
+<td>使用內建 DI 容器，如 ASP.NET Core 的 Service</td>
+</tr>
+<tr>
+<td><strong>靈活性</strong></td>
+<td>極高，可以自定義</td>
+<td>較高，但依賴於框架</td>
+</tr>
+<tr>
+<td><strong>代碼結構清晰度</strong></td>
+<td>手動管理依賴關係時較難維護</td>
+<td>內建容器提供自動管理</td>
+</tr>
+<tr>
+<td><strong>應用場景</strong></td>
+<td>前端（Angular）、後端（NestJS）</td>
+<td>企業級後端開發</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a><strong>結論</strong></h2><ul>
+<li>JavaScript 雖然沒有內建依賴注入，但可以通過設計模式、手動管理或框架實現類似功能。</li>
+<li>如果你熟悉 C# 的依賴注入，可以快速理解 Angular 或 NestJS 中的 DI 概念。</li>
+<li>對於小型應用，手動注入或工廠模式已經足夠；大型應用則推薦使用框架內建的 DI 機制來簡化開發。</li>
+</ul>
+<p>Vue 框架本身不像 Angular 那樣有內建的依賴注入（Dependency Injection, DI）機制，但它提供了類似的功能來實現依賴注入的效果，主要通過 <strong><code>provide</code> 和 <code>inject</code> API</strong>。</p>
+<p>這種方式在某些場景下可以替代傳統的依賴注入模式，尤其是當需要在組件樹中進行數據共享而不需要顯式的 props 傳遞時。</p>
+<hr>
+<h2 id="Vue-的-provide-和-inject"><a href="#Vue-的-provide-和-inject" class="headerlink" title="Vue 的 provide 和 inject"></a><strong>Vue 的 <code>provide</code> 和 <code>inject</code></strong></h2><p><code>provide</code> 和 <code>inject</code> 是 Vue 3 中實現跨組件數據共享的 API，可以理解為一種簡單的依賴注入方式。父組件使用 <code>provide</code> 提供依賴，子組件使用 <code>inject</code> 注入依賴。</p>
+<h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a><strong>基本用法</strong></h3><p>以下是一個簡單的示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 父組件 ParentComponent.vue --&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;p&gt;父組件：提供了一個 message&lt;/p&gt;</span><br><span class="line">    &lt;ChildComponent /&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import ChildComponent from &#x27;./ChildComponent.vue&#x27;;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  components: &#123; ChildComponent &#125;,</span><br><span class="line">  provide() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      message: &#x27;Hello from Parent!&#x27;,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 子組件 ChildComponent.vue --&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;p&gt;子組件：接收到的 message 是 &quot;&#123;&#123; message &#125;&#125;&quot;&lt;/p&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  inject: [&#x27;message&#x27;],</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="結果："><a href="#結果：" class="headerlink" title="結果："></a><strong>結果：</strong></h4><ul>
+<li>父組件提供的 <code>message</code> 會被子組件直接注入並使用。</li>
+<li>跨越多層組件時，<code>provide</code> 和 <code>inject</code> 仍然有效。</li>
+</ul>
+<hr>
+<h3 id="應用場景"><a href="#應用場景" class="headerlink" title="應用場景"></a><strong>應用場景</strong></h3><ol>
+<li><strong>跨層級組件數據共享：</strong> 不需要逐層使用 <code>props</code> 傳遞數據。</li>
+<li><strong>注入服務或工具：</strong> 如全局的日誌服務、API 客戶端等。</li>
+</ol>
+<hr>
+<h2 id="與-DI-的異同"><a href="#與-DI-的異同" class="headerlink" title="與 DI 的異同"></a><strong>與 DI 的異同</strong></h2><table>
+<thead>
+<tr>
+<th><strong>特性</strong></th>
+<th><strong>Vue 的 <code>provide/inject</code></strong></th>
+<th><strong>傳統 DI（如 Angular&#x2F;NestJS）</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>設計目標</strong></td>
+<td>跨組件數據共享</td>
+<td>對象的依賴管理與注入</td>
+</tr>
+<tr>
+<td><strong>依賴管理的範圍</strong></td>
+<td>僅限於 Vue 組件樹內的父子組件</td>
+<td>全局管理，適用於應用的任何部分</td>
+</tr>
+<tr>
+<td><strong>依賴的生命周期</strong></td>
+<td>與 Vue 組件的生命周期一致</td>
+<td>通常由 DI 容器控制，可配置生命周期</td>
+</tr>
+<tr>
+<td><strong>靈活性</strong></td>
+<td>較靈活，但功能較簡單</td>
+<td>功能豐富，支持工廠模式、範圍、配置等</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="擴展：Vue-的全局注入"><a href="#擴展：Vue-的全局注入" class="headerlink" title="擴展：Vue 的全局注入"></a><strong>擴展：Vue 的全局注入</strong></h2><p>除了 <code>provide/inject</code>，Vue 也提供其他方式來實現類似 DI 的功能：</p>
+<h3 id="1-全局配置"><a href="#1-全局配置" class="headerlink" title="1. 全局配置"></a><strong>1. 全局配置</strong></h3><p>Vue 的全局實例（如 <code>app.config.globalProperties</code>）可以存放一些全局可用的依賴。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; createApp &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">App</span> <span class="keyword">from</span> <span class="string">&#x27;./App.vue&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="title function_">createApp</span>(<span class="title class_">App</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 全局添加一個工具服務</span></span><br><span class="line">app.<span class="property">config</span>.<span class="property">globalProperties</span>.<span class="property">$logger</span> = &#123;</span><br><span class="line">  <span class="attr">log</span>: <span class="function">(<span class="params">message</span>) =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`[Logger]: <span class="subst">$&#123;message&#125;</span>`</span>),</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">mount</span>(<span class="string">&#x27;#app&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>在組件中使用：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;button @click=&quot;logMessage&quot;&gt;Log Message&lt;/button&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  methods: &#123;</span><br><span class="line">    logMessage() &#123;</span><br><span class="line">      this.$logger.log(&#x27;Hello from component!&#x27;);</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="2-使用-Vue-插件"><a href="#2-使用-Vue-插件" class="headerlink" title="2. 使用 Vue 插件"></a><strong>2. 使用 Vue 插件</strong></h3><p>可以將依賴包裝成插件，讓整個應用統一注入。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// loggerPlugin.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="title function_">install</span>(<span class="params">app</span>) &#123;</span><br><span class="line">    app.<span class="property">config</span>.<span class="property">globalProperties</span>.<span class="property">$logger</span> = &#123;</span><br><span class="line">      <span class="attr">log</span>: <span class="function">(<span class="params">message</span>) =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`[Logger Plugin]: <span class="subst">$&#123;message&#125;</span>`</span>),</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; createApp &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">App</span> <span class="keyword">from</span> <span class="string">&#x27;./App.vue&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> loggerPlugin <span class="keyword">from</span> <span class="string">&#x27;./loggerPlugin&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="title function_">createApp</span>(<span class="title class_">App</span>);</span><br><span class="line">app.<span class="title function_">use</span>(loggerPlugin);</span><br><span class="line">app.<span class="title function_">mount</span>(<span class="string">&#x27;#app&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="與-Angular-的-DI-對比"><a href="#與-Angular-的-DI-對比" class="headerlink" title="與 Angular 的 DI 對比"></a><strong>與 Angular 的 DI 對比</strong></h2><table>
+<thead>
+<tr>
+<th><strong>特性</strong></th>
+<th><strong>Vue 的 <code>provide/inject</code> 和其他機制</strong></th>
+<th><strong>Angular 的依賴注入系統</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>基於 API&#x2F;語法</strong></td>
+<td>通過 API（<code>provide/inject</code> 或插件）實現</td>
+<td>內建依賴注入系統，通過 <code>@Injectable</code> 和注入器</td>
+</tr>
+<tr>
+<td><strong>注入的粒度</strong></td>
+<td>限定於 Vue 組件樹內的父子關係</td>
+<td>全局可用，支持任何地方注入</td>
+</tr>
+<tr>
+<td><strong>使用場景</strong></td>
+<td>跨層級數據共享、輕量依賴管理</td>
+<td>後端或複雜應用中的依賴管理</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="結論-1"><a href="#結論-1" class="headerlink" title="結論"></a><strong>結論</strong></h2><ul>
+<li>Vue 的 <code>provide/inject</code> 提供了一種輕量級的依賴注入解決方案，適合在組件間傳遞依賴。</li>
+<li>如果需要更複雜的依賴注入（如服務的全局管理和多層依賴關係），需要手動實現或依賴第三方框架（如 Vuex、Pinia）。</li>
+<li>Vue 框架的設計目標是靈活、簡單，因此內建的依賴管理機制不如 Angular 這樣的框架強大，但也適合大部分前端應用場景。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/Javascript/" rel="tag"># Javascript</a>
+              <a href="/apple.lily/tags/Vue/" rel="tag"># Vue</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/11/29/OneDayOneNote/2024-11-19/" rel="prev" title="2024-11-19 setInterval(callback, delay, ...args);">
+                  <i class="fa fa-angle-left"></i> 2024-11-19 setInterval(callback, delay, ...args);
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/11/29/OneDayOneNote/2024-11-21/" rel="next" title="2024-11-21  情境式說明 vue 的this">
+                  2024-11-21  情境式說明 vue 的this <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,111 @@
+<hr>
+<h2 id="title-2024-11-16-requestAnimationFrame-是什麼-date-2024-11-29-23-09-51categories-OneDayOneNotetags-Javascript-Vue-description-2024-11-16-requestAnimationFrame-是什麼"><a href="#title-2024-11-16-requestAnimationFrame-是什麼-date-2024-11-29-23-09-51categories-OneDayOneNotetags-Javascript-Vue-description-2024-11-16-requestAnimationFrame-是什麼" class="headerlink" title="title: 2024-11-16 requestAnimationFrame() 是什麼?date: 2024-11-29 23:09:51categories: OneDayOneNotetags:  [Javascript,Vue]description:  2024-11-16 requestAnimationFrame() 是什麼?"></a>title: 2024-11-16 requestAnimationFrame() 是什麼?<br>date: 2024-11-29 23:09:51<br>categories: OneDayOneNote<br>tags:  [Javascript,Vue]<br>description:  2024-11-16 requestAnimationFrame() 是什麼?</h2><h2 id="2024-11-16-requestAnimationFrame-是什麼"><a href="#2024-11-16-requestAnimationFrame-是什麼" class="headerlink" title="2024-11-16 requestAnimationFrame() 是什麼?"></a>2024-11-16 requestAnimationFrame() 是什麼?</h2><p>是的，<code>requestAnimationFrame()</code> 是 <strong>JavaScript 的原生函式</strong>，由瀏覽器提供，用於執行高效的動畫或畫面刷新操作。它是專門設計來取代傳統的 <code>setInterval()</code> 或 <code>setTimeout()</code> 進行動畫更新的，提供了更好的性能和流暢度。</p>
+<hr>
+<h3 id="1-requestAnimationFrame-是什麼？"><a href="#1-requestAnimationFrame-是什麼？" class="headerlink" title="1. requestAnimationFrame() 是什麼？"></a><strong>1. <code>requestAnimationFrame()</code> 是什麼？</strong></h3><p><code>requestAnimationFrame()</code> 的作用是：</p>
+<ul>
+<li>告訴瀏覽器：在下一次屏幕重繪之前執行一段指定的函式。</li>
+<li>瀏覽器會根據屏幕的刷新率（通常是每秒 60 次，等於 16.66 毫秒一次）來調整執行頻率，確保動畫更新的效率和流暢性。</li>
+</ul>
+<hr>
+<h3 id="2-語法"><a href="#2-語法" class="headerlink" title="2. 語法"></a><strong>2. 語法</strong></h3><pre><code class="javascript">let requestID = requestAnimationFrame(callback);
+</code></pre>
+<h4 id="參數"><a href="#參數" class="headerlink" title="參數"></a><strong>參數</strong></h4><ul>
+<li><strong><code>callback</code></strong>: 你想要執行的函式，會在每次屏幕重繪時被調用。</li>
+</ul>
+<h4 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a><strong>返回值</strong></h4><ul>
+<li><strong><code>requestID</code></strong>: 一個數字標識符，用於取消這次動畫請求（配合 <code>cancelAnimationFrame()</code>）。</li>
+</ul>
+<hr>
+<h3 id="3-簡單範例"><a href="#3-簡單範例" class="headerlink" title="3. 簡單範例"></a><strong>3. 簡單範例</strong></h3><p>以下是一個使用 <code>requestAnimationFrame()</code> 實現簡單動畫的例子：</p>
+<pre><code class="javascript">let start = null;
+
+function step(timestamp) {
+  if (!start) start = timestamp;
+  const progress = timestamp - start;
+
+  console.log(progress); // 每次刷新時輸出經過的時間
+  if (progress &lt; 2000) { // 動畫持續 2 秒
+    requestAnimationFrame(step);
+  }
+}
+
+requestAnimationFrame(step);
+</code></pre>
+<p><strong>解釋：</strong></p>
+<ol>
+<li><code>timestamp</code>: 由瀏覽器傳入，表示從頁面加載到現在的時間（以毫秒為單位）。</li>
+<li>在 <code>step</code> 函式中，我們計算時間進度 <code>progress</code>，並根據進度執行動畫邏輯。</li>
+</ol>
+<hr>
+<h3 id="4-requestAnimationFrame-的優勢"><a href="#4-requestAnimationFrame-的優勢" class="headerlink" title="4. requestAnimationFrame() 的優勢"></a><strong>4. <code>requestAnimationFrame()</code> 的優勢</strong></h3><p>相比於 <code>setInterval()</code> 或 <code>setTimeout()</code>，<code>requestAnimationFrame()</code> 的優勢如下：</p>
+<h4 id="1-同步屏幕刷新率"><a href="#1-同步屏幕刷新率" class="headerlink" title="1. 同步屏幕刷新率"></a><strong>1. 同步屏幕刷新率</strong></h4><ul>
+<li><code>requestAnimationFrame()</code> 自動根據屏幕刷新率調整執行頻率，通常每秒 60 次（約 16.66 毫秒一次），可以保證動畫的流暢性。</li>
+</ul>
+<h4 id="2-節省資源"><a href="#2-節省資源" class="headerlink" title="2. 節省資源"></a><strong>2. 節省資源</strong></h4><ul>
+<li>在頁面不可見或不活動時（比如切換到其他標籤頁），瀏覽器會暫停動畫執行，減少不必要的資源消耗。</li>
+</ul>
+<h4 id="3-更精確的時間間隔"><a href="#3-更精確的時間間隔" class="headerlink" title="3. 更精確的時間間隔"></a><strong>3. 更精確的時間間隔</strong></h4><ul>
+<li><code>requestAnimationFrame()</code> 的執行時機比 <code>setInterval()</code> 更準確，因為它直接集成到瀏覽器的重繪機制中。</li>
+</ul>
+<h4 id="4-避免卡頓"><a href="#4-避免卡頓" class="headerlink" title="4. 避免卡頓"></a><strong>4. 避免卡頓</strong></h4><ul>
+<li>使用 <code>requestAnimationFrame()</code> 可以減少掉幀的情況，讓動畫更平滑。</li>
+</ul>
+<hr>
+<h3 id="5-在碼錶中使用-requestAnimationFrame"><a href="#5-在碼錶中使用-requestAnimationFrame" class="headerlink" title="5. 在碼錶中使用 requestAnimationFrame()"></a><strong>5. 在碼錶中使用 <code>requestAnimationFrame()</code></strong></h3><p>如果你想用 <code>requestAnimationFrame()</code> 來實現碼錶功能，可以這樣做：</p>
+<h4 id="碼錶範例"><a href="#碼錶範例" class="headerlink" title="碼錶範例"></a><strong>碼錶範例</strong></h4><pre><code class="javascript">let start = null;
+let elapsed = 0; // 經過的時間
+
+function updateTimer(timestamp) {
+  if (!start) start = timestamp;
+  elapsed = timestamp - start;
+
+  console.log(Math.floor(elapsed)); // 輸出經過的時間（毫秒）
+  
+  if (elapsed &lt; 10000) { // 計時到 10 秒為止
+    requestAnimationFrame(updateTimer);
+  }
+}
+
+requestAnimationFrame(updateTimer);
+</code></pre>
+<h4 id="對應的-Vue-實現"><a href="#對應的-Vue-實現" class="headerlink" title="對應的 Vue 實現"></a><strong>對應的 Vue 實現</strong></h4><p>在 Vue 中，可以這樣整合 <code>requestAnimationFrame()</code>：</p>
+<pre><code class="javascript">export default {
+  data() {
+    return {
+      time: 0,
+      startTime: null,
+      timerID: null,
+    };
+  },
+  methods: {
+    startTimer() {
+      const updateTime = (timestamp) =&gt; {
+        if (!this.startTime) this.startTime = timestamp;
+        this.time = Math.floor(timestamp - this.startTime);
+
+        // 繼續請求下一幀
+        this.timerID = requestAnimationFrame(updateTime);
+      };
+
+      this.timerID = requestAnimationFrame(updateTime);
+    },
+    stopTimer() {
+      cancelAnimationFrame(this.timerID); // 停止動畫
+      this.timerID = null;
+    },
+    resetTimer() {
+      this.stopTimer();
+      this.time = 0;
+      this.startTime = null;
+    },
+  },
+};
+</code></pre>
+<hr>
+<h3 id="6-總結"><a href="#6-總結" class="headerlink" title="6. 總結"></a><strong>6. 總結</strong></h3><p><code>requestAnimationFrame()</code> 是 JavaScript 原生的高效動畫工具，適合用於實現：</p>
+<ul>
+<li>動畫</li>
+<li>動態數字變化</li>
+<li>時間計算等</li>
+</ul>
+<p>在碼錶中，它可以作為 <code>setInterval()</code> 的替代方案，提供更加流暢和高效的更新機制。</p>

@@ -1,0 +1,106 @@
+<hr>
+<h2 id="title-2024-11-15-debug-vue-可以設定-breakpoint-嗎-date-2024-11-29-23-05-09categories-OneDayOneNotetags-Javascript-Vue-description-2024-11-15-debug-vue-可以設定-breakpoint-嗎"><a href="#title-2024-11-15-debug-vue-可以設定-breakpoint-嗎-date-2024-11-29-23-05-09categories-OneDayOneNotetags-Javascript-Vue-description-2024-11-15-debug-vue-可以設定-breakpoint-嗎" class="headerlink" title="title: 2024-11-15 debug vue 可以設定 breakpoint 嗎?date: 2024-11-29 23:05:09categories: OneDayOneNotetags:  [Javascript,Vue]description:  2024-11-15 debug vue 可以設定 breakpoint 嗎?"></a>title: 2024-11-15 debug vue 可以設定 breakpoint 嗎?<br>date: 2024-11-29 23:05:09<br>categories: OneDayOneNote<br>tags:  [Javascript,Vue]<br>description:  2024-11-15 debug vue 可以設定 breakpoint 嗎?</h2><h2 id="2024-11-15-debug-vue-可以設定-breakpoint-嗎"><a href="#2024-11-15-debug-vue-可以設定-breakpoint-嗎" class="headerlink" title="2024-11-15 debug vue 可以設定 breakpoint 嗎?"></a>2024-11-15 debug vue 可以設定 breakpoint 嗎?</h2><p>是的，您可以在 Vue 應用中設定 <code>breakpoint</code> 來進行調試。這可以幫助您更清楚地了解程式碼的執行流程、檢查變數的值，並確保程式在執行時按預期工作。以下是如何在 Vue 中設定和使用 <code>breakpoint</code> 的方法：</p>
+<h3 id="1-在瀏覽器的開發者工具中設置斷點"><a href="#1-在瀏覽器的開發者工具中設置斷點" class="headerlink" title="1. 在瀏覽器的開發者工具中設置斷點"></a>1. <strong>在瀏覽器的開發者工具中設置斷點</strong></h3><p>您可以使用瀏覽器的開發者工具來設置 <code>breakpoint</code>，這是最常見的調試方法。步驟如下：</p>
+<h4 id="1-1-打開開發者工具"><a href="#1-1-打開開發者工具" class="headerlink" title="1.1 打開開發者工具"></a>1.1 打開開發者工具</h4><p>在大多數現代瀏覽器中，您可以按 <code>F12</code> 或 <code>Ctrl + Shift + I</code>（或 <code>Cmd + Option + I</code> 在 Mac 上）來打開開發者工具。</p>
+<h4 id="1-2-設置斷點"><a href="#1-2-設置斷點" class="headerlink" title="1.2 設置斷點"></a>1.2 設置斷點</h4><ol>
+<li>轉到 “Sources” 標籤（這是你瀏覽器開發者工具中的源碼頁面，能夠查看和調試 JavaScript 代碼）。</li>
+<li>找到您的 Vue 代碼文件，通常是 <code>.js</code> 或 <code>.vue</code> 文件。</li>
+<li>點擊您想要設置斷點的行數，這會在該行上設置一個紅點，表示斷點已經設置。</li>
+</ol>
+<h4 id="1-3-使用-debugger-關鍵字"><a href="#1-3-使用-debugger-關鍵字" class="headerlink" title="1.3 使用 debugger 關鍵字"></a>1.3 使用 <code>debugger</code> 關鍵字</h4><p>如果您希望在某個特定條件下進行調試，您可以在代碼中手動插入 <code>debugger</code> 語句。這會在執行到這一行時，強制進入調試模式，並在瀏覽器的開發者工具中停下來：</p>
+<pre><code class="javascript">methods: {
+  startTimer() {
+    debugger;  // 程式執行到這行時會停下來
+    if (this.timer) return;
+    this.timer = setInterval(() =&gt; {
+      this.time += 10;
+    }, 10);
+  }
+}
+</code></pre>
+<p>當這段代碼執行到 <code>debugger</code> 這一行時，瀏覽器會停下來，讓您檢查當前的變數值和程式狀態。</p>
+<h3 id="2-在-VS-Code-中使用調試工具"><a href="#2-在-VS-Code-中使用調試工具" class="headerlink" title="2. 在 VS Code 中使用調試工具"></a>2. <strong>在 VS Code 中使用調試工具</strong></h3><p>如果您使用的是 VS Code，您可以設定一個 Node.js 調試環境來直接在本地開發中進行調試。以下是如何在 VS Code 中設置斷點的步驟：</p>
+<h4 id="2-1-配置-launch-json-文件"><a href="#2-1-配置-launch-json-文件" class="headerlink" title="2.1 配置 launch.json 文件"></a>2.1 配置 <code>launch.json</code> 文件</h4><ol>
+<li>打開您的 Vue 項目，並確保安裝了 Vue 開發工具和相關插件。</li>
+<li>點擊左側的 “Run and Debug” 按鈕，然後選擇 “Add Configuration…”。</li>
+<li>在彈出窗口中選擇 <code>Node.js</code> 或 <code>Chrome</code> 作為調試目標，這取決於您是用 <code>npm</code> 還是 <code>Vue CLI</code> 啟動的。</li>
+</ol>
+<h4 id="2-2-設置斷點"><a href="#2-2-設置斷點" class="headerlink" title="2.2 設置斷點"></a>2.2 設置斷點</h4><ol>
+<li>打開您想要設置斷點的 <code>.js</code> 或 <code>.vue</code> 文件。</li>
+<li>點擊行號左邊的空白處，這會設置一個紅點來標識斷點。</li>
+<li>開始調試您的 Vue 應用，當程式執行到該行時，調試器會停下來。</li>
+</ol>
+<h3 id="3-在-Vue-CLI-中啟用調試模式"><a href="#3-在-Vue-CLI-中啟用調試模式" class="headerlink" title="3. 在 Vue CLI 中啟用調試模式"></a>3. <strong>在 Vue CLI 中啟用調試模式</strong></h3><p>如果您使用的是 Vue CLI 進行開發，您還可以啟用調試模式：</p>
+<ol>
+<li><p>在 <code>vue.config.js</code> 配置文件中，啟用調試工具：</p>
+<pre><code class="js">module.exports = {
+  configureWebpack: {
+    devtool: &#39;source-map&#39;,  // 啟用 source map 以便進行調試
+  }
+};
+</code></pre>
+</li>
+<li><p>在瀏覽器的開發者工具中，打開 “Sources” 標籤，您就可以看到您未經壓縮的源代碼（不是編譯後的代碼），這樣就可以進行調試。</p>
+</li>
+</ol>
+<h3 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h3><ul>
+<li>您可以在瀏覽器開發者工具中設置斷點，或者通過在代碼中插入 <code>debugger</code> 來實現調試。</li>
+<li>如果您使用 VS Code，則可以設置調試配置來進行本地調試。</li>
+<li>啟用 <code>source-map</code> 能讓您查看未經壓縮的代碼，並在瀏覽器開發者工具中進行調試。</li>
+</ul>
+<p>是的，通過設置斷點，您可以在調試過程中查看變數的變化。當您使用開發者工具（例如 Chrome DevTools）或 VS Code 進行調試時，您可以：</p>
+<ol>
+<li><p><strong>查看變數的值</strong>：當程式碼執行到設置的斷點時，程序會暫停。這時，您可以查看當前作用域內所有變數的值，包括函式內部的變數、<code>data</code> 屬性、<code>computed</code> 屬性等。</p>
+</li>
+<li><p><strong>逐行執行代碼</strong>：在斷點處停下來後，您可以逐行執行代碼，這樣就能夠看到每次執行時變數值的變化。例如，您可以在 <code>setInterval</code> 中調試 <code>this.time</code> 的變化過程。</p>
+</li>
+<li><p><strong>查看物件的屬性</strong>：如果您需要查看某個物件的屬性值，您可以將鼠標懸停在該物件上，開發者工具會顯示它的當前值，或者在控制台中輸入變數名稱來查看它。</p>
+</li>
+</ol>
+<h3 id="具體操作步驟："><a href="#具體操作步驟：" class="headerlink" title="具體操作步驟："></a>具體操作步驟：</h3><h4 id="1-使用-Chrome-開發者工具調試變數"><a href="#1-使用-Chrome-開發者工具調試變數" class="headerlink" title="1. 使用 Chrome 開發者工具調試變數"></a>1. <strong>使用 Chrome 開發者工具調試變數</strong></h4><ol>
+<li>打開 Chrome 開發者工具（<code>F12</code> 或 <code>Ctrl + Shift + I</code>）。</li>
+<li>在 “Sources” 標籤中，找到您的 Vue 應用代碼。</li>
+<li>設置斷點：點擊您想要停下來的代碼行號，這會設置一個紅點。</li>
+<li>當執行到該行時，程序會停下來，您可以：<ul>
+<li>在開發者工具的右側面板中查看變數值。</li>
+<li>使用 “Watch” 面板來監視特定變數。</li>
+<li>使用 “Console” 面板輸入變數名稱並查看其當前值。</li>
+</ul>
+</li>
+</ol>
+<h4 id="2-使用-VS-Code-的調試功能"><a href="#2-使用-VS-Code-的調試功能" class="headerlink" title="2. 使用 VS Code 的調試功能"></a>2. <strong>使用 VS Code 的調試功能</strong></h4><ol>
+<li>在 <code>launch.json</code> 中配置好調試環境（如果您使用 VS Code）。</li>
+<li>設置斷點：在您感興趣的代碼行左側點擊設置斷點。</li>
+<li>開始調試：點擊 “Run and Debug” 按鈕來啟動調試。</li>
+<li>當程式執行到斷點時，您可以：<ul>
+<li>在左側的變數面板中查看當前作用域下的所有變數。</li>
+<li>點擊變數名來查看更詳細的物件或數組結構。</li>
+<li>使用調試控制台來查看變數的值或執行 JavaScript 表達式。</li>
+</ul>
+</li>
+</ol>
+<h4 id="3-查看變數的變化"><a href="#3-查看變數的變化" class="headerlink" title="3. 查看變數的變化"></a>3. <strong>查看變數的變化</strong></h4><ul>
+<li><strong>步進執行代碼</strong>：在斷點停下後，您可以使用 “Step Over”、”Step Into” 或 “Step Out” 等步進控制按鈕，這樣您可以逐步執行代碼並觀察變數在每個步驟中的變化。</li>
+<li><strong>監視表達式</strong>：您可以在 “Watch” 面板中添加變數或表達式，這樣每當程式執行到下一步時，這些變數的值會自動更新顯示。</li>
+</ul>
+<h4 id="4-在控制台中檢查變數"><a href="#4-在控制台中檢查變數" class="headerlink" title="4. 在控制台中檢查變數"></a>4. <strong>在控制台中檢查變數</strong></h4><p>在開發者工具的控制台中，您還可以輸入變數名來查看其當前值。例如，假設您有一個 <code>time</code> 變數，您可以在控制台中輸入：</p>
+<pre><code class="js">console.log(this.time);
+</code></pre>
+<p>或者：</p>
+<pre><code class="js">this.time
+</code></pre>
+<p>這樣可以即時看到變數的當前值。</p>
+<h3 id="實際範例："><a href="#實際範例：" class="headerlink" title="實際範例："></a>實際範例：</h3><p>假設在 Vue 中您有一個 <code>time</code> 變數，每當用戶點擊啟動按鈕時，<code>time</code> 會每 10 毫秒增加 10。您可以設置斷點並逐步檢查 <code>time</code> 變數的變化過程：</p>
+<pre><code class="javascript">startTimer() {
+  if (this.timer) return;
+  this.timer = setInterval(() =&gt; {
+    this.time += 10; // 每 10 毫秒增加一次
+  }, 10);
+}
+</code></pre>
+<p>當程式執行到 <code>this.time += 10</code> 這行時，您可以在開發者工具中查看 <code>this.time</code> 的值。每次進入 <code>setInterval</code> 時，您都可以查看它如何逐步增加。</p>
+<h3 id="小結："><a href="#小結：" class="headerlink" title="小結："></a>小結：</h3><ul>
+<li>在調試過程中，您可以查看變數的值、物件的屬性、數組的元素等。</li>
+<li>逐步執行代碼可以幫助您觀察變數在每一步中的變化。</li>
+<li>控制台可以即時檢查變數的值，並幫助您進行交互式調試。</li>
+</ul>

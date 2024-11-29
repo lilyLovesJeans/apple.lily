@@ -1,0 +1,23 @@
+<hr>
+<h2 id="title-2024-11-13-Install-vitejs-plugin-vue-to-handle-vue-filesdate-2024-11-29-22-30-31categories-OneDayOneNotetags-Javascript-Vue-description-2024-11-13-Install-vitejs-plugin-vue-to-handle-vue-files"><a href="#title-2024-11-13-Install-vitejs-plugin-vue-to-handle-vue-filesdate-2024-11-29-22-30-31categories-OneDayOneNotetags-Javascript-Vue-description-2024-11-13-Install-vitejs-plugin-vue-to-handle-vue-files" class="headerlink" title="title: 2024-11-13 Install @vitejs&#x2F;plugin-vue to handle .vue filesdate: 2024-11-29 22:30:31categories: OneDayOneNotetags:  [Javascript,Vue]description:  2024-11-13 Install @vitejs&#x2F;plugin-vue to handle .vue files"></a>title: 2024-11-13 Install @vitejs&#x2F;plugin-vue to handle .vue files<br>date: 2024-11-29 22:30:31<br>categories: OneDayOneNote<br>tags:  [Javascript,Vue]<br>description:  2024-11-13 Install @vitejs&#x2F;plugin-vue to handle .vue files</h2><h2 id="2024-11-13-Install-vitejs-plugin-vue-to-handle-vue-files"><a href="#2024-11-13-Install-vitejs-plugin-vue-to-handle-vue-files" class="headerlink" title="2024-11-13 Install @vitejs&#x2F;plugin-vue to handle .vue files"></a>2024-11-13 Install @vitejs&#x2F;plugin-vue to handle .vue files</h2><p>[plugin:vite:import-analysis] Failed to parse source for import analysis because the content contains invalid JS syntax. Install @vitejs&#x2F;plugin-vue to handle .vue files.</p>
+<p>這個錯誤表明 Vite 無法解析 <code>.vue</code> 文件的內容，因為項目缺少專門處理 Vue 文件的插件。需要安裝 <code>@vitejs/plugin-vue</code> 來正確解析 <code>.vue</code> 文件。以下是安裝和配置步驟：</p>
+<h3 id="安裝-vitejs-plugin-vue-插件"><a href="#安裝-vitejs-plugin-vue-插件" class="headerlink" title="安裝 @vitejs&#x2F;plugin-vue 插件"></a>安裝 @vitejs&#x2F;plugin-vue 插件</h3><ol>
+<li><p><strong>安裝插件：</strong><br>在終端中運行以下命令來安裝 <code>@vitejs/plugin-vue</code>：</p>
+<pre><code class="bash">npm install @vitejs/plugin-vue --save-dev
+</code></pre>
+</li>
+<li><p><strong>配置 Vite 使用插件：</strong><br>如果沒有 <code>vite.config.js</code> 文件，先創建它。在項目的根目錄下打開或創建 <code>vite.config.js</code> 文件，並添加以下內容：</p>
+<pre><code class="javascript">import { defineConfig } from &#39;vite&#39;;
+import vue from &#39;@vitejs/plugin-vue&#39;;
+
+export default defineConfig({
+  plugins: [vue()],
+});
+</code></pre>
+</li>
+<li><p><strong>重啟 Vite 開發伺服器：</strong><br>安裝並配置插件後，重新啟動開發伺服器：</p>
+<pre><code class="bash">npm run dev
+</code></pre>
+</li>
+</ol>
+<h3 id="驗證解決方案"><a href="#驗證解決方案" class="headerlink" title="驗證解決方案"></a>驗證解決方案</h3><p>完成這些步驟後，Vite 應該能夠正確解析 <code>.vue</code> 文件。</p>

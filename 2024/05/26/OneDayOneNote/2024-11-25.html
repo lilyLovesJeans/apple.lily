@@ -1,0 +1,76 @@
+<hr>
+<h2 id="title-2024-11-25-vue-在-computed-所依賴的數據-需要在-data-中定義？date-2024-11-29-23-45-13categories-OneDayOneNotetags-Javascript-Vue-description-2024-11-25-vue-在-computed-所依賴的數據-需要在-data-中定義？"><a href="#title-2024-11-25-vue-在-computed-所依賴的數據-需要在-data-中定義？date-2024-11-29-23-45-13categories-OneDayOneNotetags-Javascript-Vue-description-2024-11-25-vue-在-computed-所依賴的數據-需要在-data-中定義？" class="headerlink" title="title: 2024-11-25 vue 在 computed 所依賴的數據 需要在  data 中定義？date: 2024-11-29 23:45:13categories: OneDayOneNotetags:  [Javascript,Vue]description:  2024-11-25 vue 在 computed 所依賴的數據 需要在  data 中定義？"></a>title: 2024-11-25 vue 在 computed 所依賴的數據 需要在  data 中定義？<br>date: 2024-11-29 23:45:13<br>categories: OneDayOneNote<br>tags:  [Javascript,Vue]<br>description:  2024-11-25 vue 在 computed 所依賴的數據 需要在  data 中定義？</h2><h2 id="2024-11-25-vue-在-computed-所依賴的數據-需要在-data-中定義？"><a href="#2024-11-25-vue-在-computed-所依賴的數據-需要在-data-中定義？" class="headerlink" title="2024-11-25 vue 在 computed 所依賴的數據 需要在  data 中定義？"></a>2024-11-25 vue 在 computed 所依賴的數據 需要在  data 中定義？</h2><p>是的，**<code>computed</code> 所依賴的數據** 通常需要在 <code>data</code> 中定義，因為 Vue 的響應式系統只能追蹤那些已經被定義為響應式的屬性。</p>
+<hr>
+<h3 id="為什麼-computed-的依賴數據需要定義在-data-中？"><a href="#為什麼-computed-的依賴數據需要定義在-data-中？" class="headerlink" title="為什麼 computed 的依賴數據需要定義在 data 中？"></a><strong>為什麼 <code>computed</code> 的依賴數據需要定義在 <code>data</code> 中？</strong></h3><ul>
+<li><strong>Vue 的響應式特性</strong><br>Vue 會將 <code>data</code> 中的屬性轉換為響應式屬性（通過 <code>Object.defineProperty</code> 或代理的方式），從而實現自動追蹤和更新。<br>當 <code>computed</code> 屬性依賴於這些響應式數據時，Vue 能自動知道什麼時候需要重新計算該屬性。</li>
+</ul>
+<hr>
+<h3 id="舉例說明"><a href="#舉例說明" class="headerlink" title="舉例說明"></a><strong>舉例說明</strong></h3><h4 id="正確做法：依賴數據在-data-中定義"><a href="#正確做法：依賴數據在-data-中定義" class="headerlink" title="正確做法：依賴數據在 data 中定義"></a>正確做法：依賴數據在 <code>data</code> 中定義</h4><pre><code class="javascript">export default {
+  data() {
+    return {
+      firstName: &#39;John&#39;,
+      lastName: &#39;Doe&#39;
+    };
+  },
+  computed: {
+    fullName() {
+      return `${this.firstName} ${this.lastName}`;
+    }
+  }
+};
+</code></pre>
+<ul>
+<li><strong>流程</strong>：<ol>
+<li>當 <code>firstName</code> 或 <code>lastName</code> 改變時（例如透過某個事件修改它們），Vue 的響應式系統會檢測到變化。</li>
+<li><code>fullName</code> 自動重新計算，模板中使用 <code>fullName</code> 的地方也會同步更新。</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h4 id="錯誤做法：依賴數據未在-data-中定義"><a href="#錯誤做法：依賴數據未在-data-中定義" class="headerlink" title="錯誤做法：依賴數據未在 data 中定義"></a>錯誤做法：依賴數據未在 <code>data</code> 中定義</h4><pre><code class="javascript">export default {
+  computed: {
+    fullName() {
+      return `${this.firstName} ${this.lastName}`;
+    }
+  }
+};
+</code></pre>
+<ul>
+<li><strong>問題</strong>：  <ul>
+<li>這裡的 <code>firstName</code> 和 <code>lastName</code> 沒有定義在 <code>data</code> 中，Vue 無法追蹤它們的變化。</li>
+<li>導致 <code>fullName</code> 永遠不會被重新計算，即使你試圖手動更改 <code>firstName</code> 或 <code>lastName</code>。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="其他可被-computed-依賴的數據"><a href="#其他可被-computed-依賴的數據" class="headerlink" title="其他可被 computed 依賴的數據"></a><strong>其他可被 <code>computed</code> 依賴的數據</strong></h3><p>除了 <code>data</code> 中的屬性，以下數據也可以被 <code>computed</code> 屬性依賴：</p>
+<ol>
+<li><p><strong><code>props</code></strong><br>如果是組件，<code>props</code> 傳入的數據也是響應式的，因此可以被 <code>computed</code> 屬性依賴。</p>
+<p><strong>範例</strong>：</p>
+<pre><code class="javascript">props: [&#39;items&#39;],
+computed: {
+  activeItems() {
+    return this.items.filter(item =&gt; item.active);
+  }
+}
+</code></pre>
+</li>
+<li><p><strong>其他 <code>computed</code> 屬性</strong><br>一個 <code>computed</code> 屬性可以依賴其他 <code>computed</code> 屬性，前提是這些屬性本身依賴於響應式數據。</p>
+<p><strong>範例</strong>：</p>
+<pre><code class="javascript">computed: {
+  fullName() {
+    return `${this.firstName} ${this.lastName}`;
+  },
+  fullNameUpperCase() {
+    return this.fullName.toUpperCase();
+  }
+}
+</code></pre>
+</li>
+</ol>
+<hr>
+<h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a><strong>總結</strong></h3><ul>
+<li><strong><code>computed</code> 的依賴數據</strong> 必須是響應式數據，通常在 <code>data</code> 中定義。</li>
+<li>如果依賴數據未定義為響應式，<code>computed</code> 屬性將無法感知變化，無法重新計算。</li>
+<li><code>data</code> 是響應式數據的主要來源，但 <code>props</code> 和其他 <code>computed</code> 屬性也可以作為依賴數據。</li>
+</ul>

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2024-11-23 vue 之   if (this.timer) return; 如果沒有這個判斷會怎樣?">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024-11-23 vue 之   if (this.timer) return; 如果沒有這個判斷會怎樣?">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2024/11/29/OneDayOneNote/2024-11-23/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2024-11-23 vue 之   if (this.timer) return; 如果沒有這個判斷會怎樣?">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2024-11-29T15:38:52.000Z">
+<meta property="article:modified_time" content="2024-11-29T15:39:53.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2024/11/29/OneDayOneNote/2024-11-23/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2024/11/29/OneDayOneNote/2024-11-23/","path":"2024/11/29/OneDayOneNote/2024-11-23/","title":"2024-11-23 vue 之   if (this.timer) return; 如果沒有這個判斷會怎樣?"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2024-11-23 vue 之   if (this.timer) return; 如果沒有這個判斷會怎樣? | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2024-11-23-vue-%E4%B9%8B-if-this-timer-return-%E5%A6%82%E6%9E%9C%E6%B2%92%E6%9C%89%E9%80%99%E5%80%8B%E5%88%A4%E6%96%B7%E6%9C%83%E6%80%8E%E6%A8%A3"><span class="nav-number">1.</span> <span class="nav-text">2024-11-23 vue 之   if (this.timer) return; 如果沒有這個判斷會怎樣?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A8%8B%E5%BC%8F%E7%A2%BC%E4%B8%AD%E7%9A%84%E9%82%8F%E8%BC%AF"><span class="nav-number">1.1.</span> <span class="nav-text">程式碼中的邏輯</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B2%92%E6%9C%89%E9%80%99%E6%AE%B5%E4%BB%A3%E7%A2%BC%E7%9A%84%E6%83%85%E6%B3%81"><span class="nav-number">1.2.</span> <span class="nav-text">沒有這段代碼的情況</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E6%8C%89%E4%B8%8B%E5%A4%9A%E6%AC%A1%E3%80%8C%E5%95%9F%E5%8B%95%E3%80%8D%E6%8C%89%E9%88%95%EF%BC%8C%E6%9C%83%E7%99%BC%E7%94%9F%E4%BB%80%E9%BA%BC%EF%BC%9F"><span class="nav-number">1.3.</span> <span class="nav-text">如果按下多次「啟動」按鈕，會發生什麼？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%A6%E9%9A%9B%E7%AF%84%E4%BE%8B"><span class="nav-number">1.3.1.</span> <span class="nav-text">實際範例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E9%98%B2%E9%87%8D%E5%95%9F%E7%9A%84%E6%95%88%E6%9E%9C"><span class="nav-number">1.4.</span> <span class="nav-text">有防重啟的效果</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A3%E7%A2%BA%E6%83%85%E6%B3%81"><span class="nav-number">1.4.1.</span> <span class="nav-text">正確情況</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E7%AF%84%E4%BE%8B"><span class="nav-number">1.5.</span> <span class="nav-text">完整範例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%AC%E8%A9%A6%E7%B5%90%E6%9E%9C"><span class="nav-number">1.6.</span> <span class="nav-text">測試結果</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8C%89%E3%80%8C%E5%95%9F%E5%8B%95%E3%80%8D%E5%BE%8C%E6%AF%8F%E7%A7%92%E8%BC%B8%E5%87%BA%E7%9A%84%E5%80%BC%EF%BC%9A"><span class="nav-number">1.6.1.</span> <span class="nav-text">按「啟動」後每秒輸出的值：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B8%BD%E7%B5%90"><span class="nav-number">1.7.</span> <span class="nav-text">總結</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">270</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2024/11/29/OneDayOneNote/2024-11-23/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2024-11-23 vue 之   if (this.timer) return; 如果沒有這個判斷會怎樣? | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2024-11-23 vue 之   if (this.timer) return; 如果沒有這個判斷會怎樣?">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2024-11-23 vue 之   if (this.timer) return; 如果沒有這個判斷會怎樣?
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2024-11-29 23:38:52 / 修改時間：23:39:53" itemprop="dateCreated datePublished" datetime="2024-11-29T23:38:52+08:00">2024-11-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2024-11-23 vue 之   if (this.timer) return; 如果沒有這個判斷會怎樣?</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2024-11-23-vue-之-if-this-timer-return-如果沒有這個判斷會怎樣"><a href="#2024-11-23-vue-之-if-this-timer-return-如果沒有這個判斷會怎樣" class="headerlink" title="2024-11-23 vue 之   if (this.timer) return; 如果沒有這個判斷會怎樣?"></a>2024-11-23 vue 之   if (this.timer) return; 如果沒有這個判斷會怎樣?</h2><p>這句話的目的是<strong>防止計時器重複啟動</strong>。如果沒有這個判斷，可能會導致多個計時器同時運行，導致時間計算出錯。</p>
+<hr>
+<h3 id="程式碼中的邏輯"><a href="#程式碼中的邏輯" class="headerlink" title="程式碼中的邏輯"></a><strong>程式碼中的邏輯</strong></h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">timer</span>) <span class="keyword">return</span>; <span class="comment">// 防止重複啟動</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>**<code>this.timer</code>**：是一個計時器 ID，用來追蹤計時器是否已經啟動。如果 <code>this.timer</code> 不為 <code>null</code>，代表計時器正在運行。</li>
+<li>**<code>return</code>**：中止執行後續程式碼，防止重複啟動。</li>
+</ul>
+<hr>
+<h3 id="沒有這段代碼的情況"><a href="#沒有這段代碼的情況" class="headerlink" title="沒有這段代碼的情況"></a><strong>沒有這段代碼的情況</strong></h3><p>假設有以下程式碼：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">startTimer</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">timer</span> = <span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">time</span> += <span class="number">10</span>; <span class="comment">// 每 10 毫秒增加 10</span></span><br><span class="line">  &#125;, <span class="number">10</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="如果按下多次「啟動」按鈕，會發生什麼？"><a href="#如果按下多次「啟動」按鈕，會發生什麼？" class="headerlink" title="如果按下多次「啟動」按鈕，會發生什麼？"></a><strong>如果按下多次「啟動」按鈕，會發生什麼？</strong></h3><ol>
+<li>每按一次「啟動」，都會新建一個計時器（<code>setInterval</code>）。</li>
+<li>這些計時器會同時運行，導致時間以更快的速度累加。</li>
+</ol>
+<h4 id="實際範例"><a href="#實際範例" class="headerlink" title="實際範例"></a><strong>實際範例</strong></h4><p>假設我們連續按了 3 次「啟動」：</p>
+<ul>
+<li>第一次按下：時間每 10 毫秒增加 10。</li>
+<li>第二次按下：時間每 10 毫秒增加 20（兩個計時器在運行）。</li>
+<li>第三次按下：時間每 10 毫秒增加 30（三個計時器在運行）。</li>
+</ul>
+<p>假設過了 1 秒鐘：</p>
+<ul>
+<li>正確情況（只有一個計時器）：<code>time = 1000</code>（1 秒 &#x3D; 1000 毫秒）。</li>
+<li>沒有防重啟的情況（三個計時器同時運行）：<ul>
+<li>第 1 個計時器：<code>time = 1000</code></li>
+<li>第 2 個計時器：<code>time = 1000</code></li>
+<li>第 3 個計時器：<code>time = 1000</code></li>
+<li>總計：<code>time = 3000</code></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="有防重啟的效果"><a href="#有防重啟的效果" class="headerlink" title="有防重啟的效果"></a><strong>有防重啟的效果</strong></h3><p>加入 <code>if (this.timer) return</code> 後：</p>
+<ol>
+<li>當第一次按下「啟動」時：<ul>
+<li><code>this.timer</code> 為 <code>null</code>，計時器啟動。</li>
+</ul>
+</li>
+<li>當第二次按下「啟動」時：<ul>
+<li><code>this.timer</code> 已有值，表示計時器正在運行，程式碼會直接 <code>return</code>，不再啟動新的計時器。</li>
+</ul>
+</li>
+</ol>
+<h4 id="正確情況"><a href="#正確情況" class="headerlink" title="正確情況"></a><strong>正確情況</strong></h4><ul>
+<li>無論按下多少次「啟動」，都只有一個計時器運行。</li>
+</ul>
+<hr>
+<h3 id="完整範例"><a href="#完整範例" class="headerlink" title="完整範例"></a><strong>完整範例</strong></h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">startTimer</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">timer</span>) <span class="keyword">return</span>; <span class="comment">// 防止重複啟動</span></span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">timer</span> = <span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">time</span> += <span class="number">10</span>;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">time</span>); <span class="comment">// 顯示時間</span></span><br><span class="line">  &#125;, <span class="number">10</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">stopTimer</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="built_in">clearInterval</span>(<span class="variable language_">this</span>.<span class="property">timer</span>);</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">timer</span> = <span class="literal">null</span>; <span class="comment">// 重置計時器狀態</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">resetTimer</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">time</span> = <span class="number">0</span>;</span><br><span class="line">  <span class="built_in">clearInterval</span>(<span class="variable language_">this</span>.<span class="property">timer</span>);</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">timer</span> = <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="測試結果"><a href="#測試結果" class="headerlink" title="測試結果"></a><strong>測試結果</strong></h3><h4 id="按「啟動」後每秒輸出的值："><a href="#按「啟動」後每秒輸出的值：" class="headerlink" title="按「啟動」後每秒輸出的值："></a><strong>按「啟動」後每秒輸出的值：</strong></h4><ul>
+<li><p><strong>沒有防重啟：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">10, 20, 30, 40... (第一個計時器)</span><br><span class="line">20, 40, 60, 80... (第二個計時器)</span><br><span class="line">30, 60, 90, 120... (第三個計時器)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>有防重啟：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10, 20, 30, 40, 50... （正確情況）</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a><strong>總結</strong></h3><ul>
+<li><strong><code>if (this.timer) return</code></strong> 是為了防止多次啟動計時器，保證程式邏輯的正確性。</li>
+<li><strong>沒有這句判斷會導致多個計時器同時運行，時間累加錯誤。</strong></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/Javascript/" rel="tag"># Javascript</a>
+              <a href="/apple.lily/tags/Vue/" rel="tag"># Vue</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/11/29/OneDayOneNote/2024-11-22/" rel="prev" title="2024-11-22 vue 之 this 的上下文問題">
+                  <i class="fa fa-angle-left"></i> 2024-11-22 vue 之 this 的上下文問題
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/11/29/OneDayOneNote/2024-11-24/" rel="next" title="2024-11-24 vue 之 什麼是props ?">
+                  2024-11-24 vue 之 什麼是props ? <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

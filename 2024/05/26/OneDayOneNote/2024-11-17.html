@@ -1,0 +1,73 @@
+<hr>
+<h2 id="title-2024-11-17-用果用vue-框架要如何寫，才能-有效防止-setInterval-在意外情況下持續佔用資源date-2024-11-29-23-12-58categories-OneDayOneNotetags-Javascript-Vue-description-2024-11-17-用果用vue-框架要如何寫，才能-有效防止-setInterval-在意外情況下持續佔用資源"><a href="#title-2024-11-17-用果用vue-框架要如何寫，才能-有效防止-setInterval-在意外情況下持續佔用資源date-2024-11-29-23-12-58categories-OneDayOneNotetags-Javascript-Vue-description-2024-11-17-用果用vue-框架要如何寫，才能-有效防止-setInterval-在意外情況下持續佔用資源" class="headerlink" title="title: 2024-11-17 用果用vue 框架要如何寫，才能 有效防止 setInterval 在意外情況下持續佔用資源date: 2024-11-29 23:12:58categories: OneDayOneNotetags:  [Javascript,Vue]description:  2024-11-17 用果用vue 框架要如何寫，才能 有效防止 setInterval 在意外情況下持續佔用資源"></a>title: 2024-11-17 用果用vue 框架要如何寫，才能 有效防止 setInterval 在意外情況下持續佔用資源<br>date: 2024-11-29 23:12:58<br>categories: OneDayOneNote<br>tags:  [Javascript,Vue]<br>description:  2024-11-17 用果用vue 框架要如何寫，才能 有效防止 setInterval 在意外情況下持續佔用資源</h2><h2 id="2024-11-17-用果用vue-框架要如何寫，才能-有效防止-setInterval-在意外情況下持續佔用資源"><a href="#2024-11-17-用果用vue-框架要如何寫，才能-有效防止-setInterval-在意外情況下持續佔用資源" class="headerlink" title="2024-11-17 用果用vue 框架要如何寫，才能 有效防止 setInterval 在意外情況下持續佔用資源"></a>2024-11-17 用果用vue 框架要如何寫，才能 有效防止 setInterval 在意外情況下持續佔用資源</h2><p>是的，為了防止意外資源佔用，特別是在 Vue 應用中使用像 <code>setInterval</code> 這樣的長時間執行的計時器時，您需要遵守以下 <strong>4 項原則</strong>，以確保程式資源得到有效管理並防止內存泄漏：</p>
+<hr>
+<h3 id="1-清理計時器"><a href="#1-清理計時器" class="headerlink" title="1. 清理計時器"></a><strong>1. 清理計時器</strong></h3><ul>
+<li><strong>原因</strong>：當 Vue 組件被銷毀或頁面發生變更時，未清除的計時器仍會在背景運行，造成資源浪費。</li>
+<li><strong>方法</strong>：<ul>
+<li>在 Vue 的生命週期鉤子（如 <code>onBeforeUnmount</code> 或 <code>beforeDestroy</code>）中調用 <code>clearInterval</code>。</li>
+<li>確保所有計時器 ID 都被正確管理，並在適當的時機清除。</li>
+</ul>
+</li>
+</ul>
+<h4 id="範例："><a href="#範例：" class="headerlink" title="範例："></a>範例：</h4><pre><code class="javascript">onBeforeUnmount(() =&gt; {
+  if (timerId) clearInterval(timerId); // 清理計時器
+});
+</code></pre>
+<hr>
+<h3 id="2-集中管理計時器"><a href="#2-集中管理計時器" class="headerlink" title="2. 集中管理計時器"></a><strong>2. 集中管理計時器</strong></h3><ul>
+<li><strong>原因</strong>：當一個組件內有多個計時器時，手動管理每個計時器 ID 容易出錯。</li>
+<li><strong>方法</strong>：<ul>
+<li>使用一個陣列或物件來儲存所有計時器 ID，便於統一管理。</li>
+<li>在組件銷毀時，遍歷該結構，清除所有記錄的計時器。</li>
+</ul>
+</li>
+</ul>
+<h4 id="範例：-1"><a href="#範例：-1" class="headerlink" title="範例："></a>範例：</h4><pre><code class="javascript">const timers = []; // 用來儲存所有計時器的 ID
+const addTimer = (callback, interval) =&gt; {
+  const id = setInterval(callback, interval);
+  timers.push(id);
+};
+const clearAllTimers = () =&gt; {
+  timers.forEach((id) =&gt; clearInterval(id)); // 清理所有計時器
+};
+</code></pre>
+<hr>
+<h3 id="3-避免重複啟動"><a href="#3-避免重複啟動" class="headerlink" title="3. 避免重複啟動"></a><strong>3. 避免重複啟動</strong></h3><ul>
+<li><strong>原因</strong>：如果多次啟動同一計時器邏輯，會導致重複執行相同的操作，造成性能下降或邏輯錯亂。</li>
+<li><strong>方法</strong>：<ul>
+<li>啟動計時器前，檢查是否已存在活動中的計時器。</li>
+<li>如果存在，則直接返回，避免多次啟動。</li>
+</ul>
+</li>
+</ul>
+<h4 id="範例：-2"><a href="#範例：-2" class="headerlink" title="範例："></a>範例：</h4><pre><code class="javascript">if (this.timer) {
+  console.warn(&#39;計時器已啟動，避免重複啟動&#39;);
+  return;
+}
+this.timer = setInterval(() =&gt; {
+  console.log(&#39;計時器運行中&#39;);
+}, 1000);
+</code></pre>
+<hr>
+<h3 id="4-防止全域泄漏"><a href="#4-防止全域泄漏" class="headerlink" title="4. 防止全域泄漏"></a><strong>4. 防止全域泄漏</strong></h3><ul>
+<li><strong>原因</strong>：在某些情況下（例如頁面異常關閉或程式碼錯誤），計時器可能無法正常被清除，導致資源佔用。</li>
+<li><strong>方法</strong>：<ul>
+<li>在應用的全局層面添加錯誤監聽，確保在異常情況下清理所有計時器。</li>
+<li>使用框架內建的資源回收機制或事件總線。</li>
+</ul>
+</li>
+</ul>
+<h4 id="範例：-3"><a href="#範例：-3" class="headerlink" title="範例："></a>範例：</h4><pre><code class="javascript">window.addEventListener(&#39;beforeunload&#39;, () =&gt; {
+  if (timerId) {
+    clearInterval(timerId);
+    console.log(&#39;清理計時器，防止全域泄漏&#39;);
+  }
+});
+</code></pre>
+<hr>
+<h3 id="這-4-項的重要性"><a href="#這-4-項的重要性" class="headerlink" title="這 4 項的重要性"></a><strong>這 4 項的重要性</strong></h3><ul>
+<li><strong>防止資源浪費</strong>：避免多餘的 CPU 時間和內存佔用。</li>
+<li><strong>提高程式穩定性</strong>：防止計時器導致的錯誤或資源競爭問題。</li>
+<li><strong>增強程式可維護性</strong>：便於排查問題，減少不必要的代碼複雜度。</li>
+</ul>
+<h4 id="總結："><a href="#總結：" class="headerlink" title="總結："></a><strong>總結：</strong></h4><p>當您採取這些步驟時，能確保計時器的生命周期與組件的生命周期一致，進一步防止在計時器意外未被清除的情況下持續佔用系統資源。</p>

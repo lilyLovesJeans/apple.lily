@@ -1,0 +1,92 @@
+<hr>
+<h2 id="title-2024-11-23-vue-之-if-this-timer-return-如果沒有這個判斷會怎樣-date-2024-11-29-23-38-52categories-OneDayOneNotetags-Javascript-Vue-description-2024-11-23-vue-之-if-this-timer-return-如果沒有這個判斷會怎樣"><a href="#title-2024-11-23-vue-之-if-this-timer-return-如果沒有這個判斷會怎樣-date-2024-11-29-23-38-52categories-OneDayOneNotetags-Javascript-Vue-description-2024-11-23-vue-之-if-this-timer-return-如果沒有這個判斷會怎樣" class="headerlink" title="title: 2024-11-23 vue 之   if (this.timer) return; 如果沒有這個判斷會怎樣?date: 2024-11-29 23:38:52categories: OneDayOneNotetags:  [Javascript,Vue]description:  2024-11-23 vue 之   if (this.timer) return; 如果沒有這個判斷會怎樣?"></a>title: 2024-11-23 vue 之   if (this.timer) return; 如果沒有這個判斷會怎樣?<br>date: 2024-11-29 23:38:52<br>categories: OneDayOneNote<br>tags:  [Javascript,Vue]<br>description:  2024-11-23 vue 之   if (this.timer) return; 如果沒有這個判斷會怎樣?</h2><h2 id="2024-11-23-vue-之-if-this-timer-return-如果沒有這個判斷會怎樣"><a href="#2024-11-23-vue-之-if-this-timer-return-如果沒有這個判斷會怎樣" class="headerlink" title="2024-11-23 vue 之   if (this.timer) return; 如果沒有這個判斷會怎樣?"></a>2024-11-23 vue 之   if (this.timer) return; 如果沒有這個判斷會怎樣?</h2><p>這句話的目的是<strong>防止計時器重複啟動</strong>。如果沒有這個判斷，可能會導致多個計時器同時運行，導致時間計算出錯。</p>
+<hr>
+<h3 id="程式碼中的邏輯"><a href="#程式碼中的邏輯" class="headerlink" title="程式碼中的邏輯"></a><strong>程式碼中的邏輯</strong></h3><pre><code class="javascript">if (this.timer) return; // 防止重複啟動
+</code></pre>
+<ul>
+<li>**<code>this.timer</code>**：是一個計時器 ID，用來追蹤計時器是否已經啟動。如果 <code>this.timer</code> 不為 <code>null</code>，代表計時器正在運行。</li>
+<li>**<code>return</code>**：中止執行後續程式碼，防止重複啟動。</li>
+</ul>
+<hr>
+<h3 id="沒有這段代碼的情況"><a href="#沒有這段代碼的情況" class="headerlink" title="沒有這段代碼的情況"></a><strong>沒有這段代碼的情況</strong></h3><p>假設有以下程式碼：</p>
+<pre><code class="javascript">startTimer() {
+  this.timer = setInterval(() =&gt; {
+    this.time += 10; // 每 10 毫秒增加 10
+  }, 10);
+}
+</code></pre>
+<hr>
+<h3 id="如果按下多次「啟動」按鈕，會發生什麼？"><a href="#如果按下多次「啟動」按鈕，會發生什麼？" class="headerlink" title="如果按下多次「啟動」按鈕，會發生什麼？"></a><strong>如果按下多次「啟動」按鈕，會發生什麼？</strong></h3><ol>
+<li>每按一次「啟動」，都會新建一個計時器（<code>setInterval</code>）。</li>
+<li>這些計時器會同時運行，導致時間以更快的速度累加。</li>
+</ol>
+<h4 id="實際範例"><a href="#實際範例" class="headerlink" title="實際範例"></a><strong>實際範例</strong></h4><p>假設我們連續按了 3 次「啟動」：</p>
+<ul>
+<li>第一次按下：時間每 10 毫秒增加 10。</li>
+<li>第二次按下：時間每 10 毫秒增加 20（兩個計時器在運行）。</li>
+<li>第三次按下：時間每 10 毫秒增加 30（三個計時器在運行）。</li>
+</ul>
+<p>假設過了 1 秒鐘：</p>
+<ul>
+<li>正確情況（只有一個計時器）：<code>time = 1000</code>（1 秒 &#x3D; 1000 毫秒）。</li>
+<li>沒有防重啟的情況（三個計時器同時運行）：<ul>
+<li>第 1 個計時器：<code>time = 1000</code></li>
+<li>第 2 個計時器：<code>time = 1000</code></li>
+<li>第 3 個計時器：<code>time = 1000</code></li>
+<li>總計：<code>time = 3000</code></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="有防重啟的效果"><a href="#有防重啟的效果" class="headerlink" title="有防重啟的效果"></a><strong>有防重啟的效果</strong></h3><p>加入 <code>if (this.timer) return</code> 後：</p>
+<ol>
+<li>當第一次按下「啟動」時：<ul>
+<li><code>this.timer</code> 為 <code>null</code>，計時器啟動。</li>
+</ul>
+</li>
+<li>當第二次按下「啟動」時：<ul>
+<li><code>this.timer</code> 已有值，表示計時器正在運行，程式碼會直接 <code>return</code>，不再啟動新的計時器。</li>
+</ul>
+</li>
+</ol>
+<h4 id="正確情況"><a href="#正確情況" class="headerlink" title="正確情況"></a><strong>正確情況</strong></h4><ul>
+<li>無論按下多少次「啟動」，都只有一個計時器運行。</li>
+</ul>
+<hr>
+<h3 id="完整範例"><a href="#完整範例" class="headerlink" title="完整範例"></a><strong>完整範例</strong></h3><pre><code class="javascript">startTimer() {
+  if (this.timer) return; // 防止重複啟動
+  this.timer = setInterval(() =&gt; {
+    this.time += 10;
+    console.log(this.time); // 顯示時間
+  }, 10);
+}
+
+stopTimer() {
+  clearInterval(this.timer);
+  this.timer = null; // 重置計時器狀態
+}
+
+resetTimer() {
+  this.time = 0;
+  clearInterval(this.timer);
+  this.timer = null;
+}
+</code></pre>
+<hr>
+<h3 id="測試結果"><a href="#測試結果" class="headerlink" title="測試結果"></a><strong>測試結果</strong></h3><h4 id="按「啟動」後每秒輸出的值："><a href="#按「啟動」後每秒輸出的值：" class="headerlink" title="按「啟動」後每秒輸出的值："></a><strong>按「啟動」後每秒輸出的值：</strong></h4><ul>
+<li><p><strong>沒有防重啟：</strong></p>
+<pre><code>10, 20, 30, 40... (第一個計時器)
+20, 40, 60, 80... (第二個計時器)
+30, 60, 90, 120... (第三個計時器)
+</code></pre>
+</li>
+<li><p><strong>有防重啟：</strong></p>
+<pre><code>10, 20, 30, 40, 50... （正確情況）
+</code></pre>
+</li>
+</ul>
+<hr>
+<h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a><strong>總結</strong></h3><ul>
+<li><strong><code>if (this.timer) return</code></strong> 是為了防止多次啟動計時器，保證程式邏輯的正確性。</li>
+<li><strong>沒有這句判斷會導致多個計時器同時運行，時間累加錯誤。</strong></li>
+</ul>

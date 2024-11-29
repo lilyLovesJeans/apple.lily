@@ -1,0 +1,109 @@
+<hr>
+<h2 id="title-2024-11-24-vue-之-什麼是props-date-2024-11-29-23-41-06categories-OneDayOneNotetags-Javascript-Vue-description-2024-11-24-vue-之-什麼是props"><a href="#title-2024-11-24-vue-之-什麼是props-date-2024-11-29-23-41-06categories-OneDayOneNotetags-Javascript-Vue-description-2024-11-24-vue-之-什麼是props" class="headerlink" title="title: 2024-11-24 vue 之 什麼是props ?date: 2024-11-29 23:41:06categories: OneDayOneNotetags:  [Javascript,Vue]description:  2024-11-24 vue 之 什麼是props ?"></a>title: 2024-11-24 vue 之 什麼是props ?<br>date: 2024-11-29 23:41:06<br>categories: OneDayOneNote<br>tags:  [Javascript,Vue]<br>description:  2024-11-24 vue 之 什麼是props ?</h2><h2 id="2024-11-24-vue-之-什麼是props"><a href="#2024-11-24-vue-之-什麼是props" class="headerlink" title="2024-11-24 vue 之 什麼是props ?"></a>2024-11-24 vue 之 什麼是props ?</h2><h3 id="什麼是-Props？"><a href="#什麼是-Props？" class="headerlink" title="什麼是 Props？"></a><strong>什麼是 Props？</strong></h3><p>在 Vue 中，**<code>props</code>（屬性）** 是父組件用來向子組件傳遞數據的一種機制。<br>父組件可以透過 <code>props</code> 把數據或參數傳遞給子組件，子組件可以通過聲明 <code>props</code> 來接收這些數據。</p>
+<hr>
+<h3 id="Props-的核心概念"><a href="#Props-的核心概念" class="headerlink" title="Props 的核心概念"></a><strong>Props 的核心概念</strong></h3><ol>
+<li><p><strong>父到子</strong><br>Props 是單向數據流的一部分，數據只能從父組件流向子組件，子組件無法直接更改這些數據。</p>
+</li>
+<li><p><strong>數據封裝</strong><br>父組件和子組件之間通過 <code>props</code> 傳遞數據，使得子組件更易於重用且不依賴於父組件的具體實現。</p>
+</li>
+<li><p><strong>只讀屬性</strong><br>子組件內不能直接修改 <code>props</code>，它們是只讀的。如果需要修改，可以通過子組件的事件通知父組件，再由父組件進行更新。</p>
+</li>
+</ol>
+<hr>
+<h3 id="基本範例"><a href="#基本範例" class="headerlink" title="基本範例"></a><strong>基本範例</strong></h3><h4 id="父組件（App-vue）"><a href="#父組件（App-vue）" class="headerlink" title="父組件（App.vue）"></a>父組件（App.vue）</h4><pre><code class="html">&lt;template&gt;
+  &lt;div&gt;
+    &lt;h1&gt;父組件&lt;/h1&gt;
+    &lt;child-component message=&quot;Hello, Vue!&quot; :count=&quot;5&quot;&gt;&lt;/child-component&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import ChildComponent from &#39;./ChildComponent.vue&#39;;
+
+export default {
+  components: {
+    ChildComponent
+  }
+};
+&lt;/script&gt;
+</code></pre>
+<h4 id="子組件（ChildComponent-vue）"><a href="#子組件（ChildComponent-vue）" class="headerlink" title="子組件（ChildComponent.vue）"></a>子組件（ChildComponent.vue）</h4><pre><code class="html">&lt;template&gt;
+  &lt;div&gt;
+    &lt;h2&gt;子組件&lt;/h2&gt;
+    &lt;p&gt;父組件傳來的訊息：{{ message }}&lt;/p&gt;
+    &lt;p&gt;父組件傳來的數字：{{ count }}&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  props: {
+    message: String, // 定義 message 為字串類型的 Prop
+    count: Number    // 定義 count 為數字類型的 Prop
+  }
+};
+&lt;/script&gt;
+</code></pre>
+<h4 id="執行結果"><a href="#執行結果" class="headerlink" title="執行結果"></a><strong>執行結果</strong></h4><p>父組件向子組件傳遞了 <code>message</code> 和 <code>count</code>，子組件通過 <code>props</code> 接收並顯示：</p>
+<pre><code>父組件
+  ↓ 傳遞數據
+子組件
+  父組件傳來的訊息：Hello, Vue!
+  父組件傳來的數字：5
+</code></pre>
+<hr>
+<h3 id="詳細解釋-Props-的屬性"><a href="#詳細解釋-Props-的屬性" class="headerlink" title="詳細解釋 Props 的屬性"></a><strong>詳細解釋 Props 的屬性</strong></h3><h4 id="1-Props-的定義"><a href="#1-Props-的定義" class="headerlink" title="1. Props 的定義"></a>1. <strong>Props 的定義</strong></h4><p><code>props</code> 可以用多種形式定義：</p>
+<ul>
+<li><p><strong>字串陣列形式</strong><br>只定義屬性名稱：</p>
+<pre><code class="javascript">props: [&#39;message&#39;, &#39;count&#39;]
+</code></pre>
+</li>
+<li><p><strong>物件形式</strong><br>定義屬性名稱及其類型和限制條件：</p>
+<pre><code class="javascript">props: {
+  message: String,
+  count: {
+    type: Number,
+    required: true, // 必須傳入
+    default: 0,     // 預設值
+    validator: value =&gt; value &gt;= 0 // 自定義驗證
+  }
+}
+</code></pre>
+</li>
+</ul>
+<hr>
+<h4 id="2-父組件傳值"><a href="#2-父組件傳值" class="headerlink" title="2. 父組件傳值"></a>2. <strong>父組件傳值</strong></h4><p>父組件在子組件上使用屬性傳值：</p>
+<ul>
+<li><p>靜態值：</p>
+<pre><code class="html">&lt;child-component message=&quot;Hello&quot; count=&quot;10&quot;&gt;&lt;/child-component&gt;
+</code></pre>
+</li>
+<li><p>動態值（使用 <code>:</code>）：</p>
+<pre><code class="html">&lt;child-component :message=&quot;parentMessage&quot; :count=&quot;parentCount&quot;&gt;&lt;/child-component&gt;
+</code></pre>
+</li>
+</ul>
+<hr>
+<h4 id="3-單向數據流"><a href="#3-單向數據流" class="headerlink" title="3. 單向數據流"></a>3. <strong>單向數據流</strong></h4><p>父組件修改傳遞的數據時，子組件的 <code>props</code> 會隨之更新；但子組件不能直接修改 <code>props</code>。</p>
+<ul>
+<li><p><strong>錯誤操作：直接修改 <code>props</code></strong></p>
+<pre><code class="javascript">this.message = &quot;New Message&quot;; // ❌ 不允許
+</code></pre>
+</li>
+<li><p><strong>正確操作：觸發事件讓父組件更新數據</strong><br>子組件通過 <code>$emit</code> 通知父組件更新數據：</p>
+<pre><code class="javascript">this.$emit(&#39;update-message&#39;, &#39;New Message&#39;);
+</code></pre>
+</li>
+</ul>
+<hr>
+<h3 id="使用-Props-的場景"><a href="#使用-Props-的場景" class="headerlink" title="使用 Props 的場景"></a><strong>使用 Props 的場景</strong></h3><ol>
+<li><strong>數據傳遞</strong>：從父組件傳遞靜態或動態數據給子組件。</li>
+<li><strong>參數化子組件</strong>：讓子組件能根據不同數據呈現不同的內容。</li>
+<li><strong>重用組件</strong>：例如一個按鈕組件，可以通過 <code>props</code> 傳遞不同文字、樣式或行為參數。</li>
+</ol>
+<hr>
+<h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a><strong>總結</strong></h3><ul>
+<li><strong><code>props</code> 是用來在父子組件間傳遞數據的工具。</strong></li>
+<li><strong>子組件的 <code>props</code> 必須明確定義，且是只讀的。</strong></li>
+<li><strong>如果需要讓子組件更改數據，應使用事件通知父組件更新數據。</strong></li>
+</ul>

@@ -1,0 +1,114 @@
+<hr>
+<h2 id="title-2024-11-28-vue-判斷你使用的是-Vue-根實例-還是-Vue-組件date-2024-11-29-23-55-06categories-OneDayOneNotetags-Javascript-Vue-description-2024-11-28-vue-判斷你使用的是-Vue-根實例-還是-Vue-組件"><a href="#title-2024-11-28-vue-判斷你使用的是-Vue-根實例-還是-Vue-組件date-2024-11-29-23-55-06categories-OneDayOneNotetags-Javascript-Vue-description-2024-11-28-vue-判斷你使用的是-Vue-根實例-還是-Vue-組件" class="headerlink" title="title: 2024-11-28 vue 判斷你使用的是 Vue 根實例 還是 Vue 組件date: 2024-11-29 23:55:06categories: OneDayOneNotetags:  [Javascript,Vue]description:   2024-11-28 vue 判斷你使用的是 Vue 根實例 還是 Vue 組件"></a>title: 2024-11-28 vue 判斷你使用的是 Vue 根實例 還是 Vue 組件<br>date: 2024-11-29 23:55:06<br>categories: OneDayOneNote<br>tags:  [Javascript,Vue]<br>description:   2024-11-28 vue 判斷你使用的是 Vue 根實例 還是 Vue 組件</h2><h2 id="2024-11-28-vue-判斷你使用的是-Vue-根實例-還是-Vue-組件"><a href="#2024-11-28-vue-判斷你使用的是-Vue-根實例-還是-Vue-組件" class="headerlink" title="2024-11-28 vue 判斷你使用的是 Vue 根實例 還是 Vue 組件"></a>2024-11-28 vue 判斷你使用的是 Vue 根實例 還是 Vue 組件</h2><p>在 Vue 中，判斷你使用的是 <strong>Vue 根實例</strong> 還是 <strong>Vue 組件</strong>，可以從代碼結構和上下文來辨別。以下是一些清晰的區分方法：</p>
+<hr>
+<h3 id="1-Vue-根實例（new-Vue-）"><a href="#1-Vue-根實例（new-Vue-）" class="headerlink" title="1. Vue 根實例（new Vue()）"></a><strong>1. Vue 根實例（<code>new Vue()</code>）</strong></h3><p>當你用 <code>new Vue()</code> 創建應用時，就是在定義 Vue 的根實例。這是整個應用的起點，通常會掛載到一個 DOM 元素上（如 <code>#app</code>），例如：</p>
+<pre><code class="javascript">const app = new Vue({
+  el: &#39;#app&#39;, // 指定掛載的 DOM 節點
+  data: {
+    count: 0 // 可以直接用物件定義
+  },
+  methods: {
+    increment() {
+      this.count++;
+    }
+  }
+});
+</code></pre>
+<h4 id="特點："><a href="#特點：" class="headerlink" title="特點："></a><strong>特點：</strong></h4><ul>
+<li><strong><code>new Vue()</code> 是根實例的標誌</strong>，表示這是一個單獨的 Vue 應用程序。</li>
+<li><code>data</code> 可以直接是一個物件 <code>{}</code>。</li>
+<li>根實例通常會有 <code>el</code> 屬性，用來指定掛載的 DOM 節點。</li>
+</ul>
+<hr>
+<h3 id="2-Vue-組件（export-default-或-Vue-component）"><a href="#2-Vue-組件（export-default-或-Vue-component）" class="headerlink" title="2. Vue 組件（export default 或 Vue.component）"></a><strong>2. Vue 組件（<code>export default</code> 或 <code>Vue.component</code>）</strong></h3><p>當你定義一個組件時，通常會看到 <code>export default</code> 或 <code>Vue.component</code>。組件是用來在 Vue 應用中重複使用的結構化代碼。</p>
+<h4 id="示例-1：export-default-定義的組件"><a href="#示例-1：export-default-定義的組件" class="headerlink" title="示例 1：export default 定義的組件"></a><strong>示例 1：<code>export default</code> 定義的組件</strong></h4><pre><code class="javascript">export default {
+  data() {
+    return {
+      count: 0 // 必須用函數返回一個物件
+    };
+  },
+  methods: {
+    increment() {
+      this.count++;
+    }
+  },
+  template: `
+    &lt;div&gt;
+      &lt;p&gt;{{ count }}&lt;/p&gt;
+      &lt;button @click=&quot;increment&quot;&gt;增加&lt;/button&gt;
+    &lt;/div&gt;
+  `
+};
+</code></pre>
+<h4 id="示例-2：用-Vue-component-定義的組件"><a href="#示例-2：用-Vue-component-定義的組件" class="headerlink" title="示例 2：用 Vue.component 定義的組件"></a><strong>示例 2：用 <code>Vue.component</code> 定義的組件</strong></h4><pre><code class="javascript">Vue.component(&#39;my-component&#39;, {
+  data() {
+    return {
+      count: 0
+    };
+  },
+  template: `
+    &lt;div&gt;
+      &lt;p&gt;{{ count }}&lt;/p&gt;
+    &lt;/div&gt;
+  `
+});
+</code></pre>
+<h4 id="特點：-1"><a href="#特點：-1" class="headerlink" title="特點："></a><strong>特點：</strong></h4><ul>
+<li>使用 <code>export default</code> 或 <code>Vue.component</code> 定義。</li>
+<li><strong><code>data</code> 必須是函數</strong>，返回一個物件，確保多個組件實例有獨立的數據副本。</li>
+<li>組件會在根實例內使用，或嵌套到其他組件中。</li>
+</ul>
+<hr>
+<h3 id="3-如何知道你使用的是實例還是組件？"><a href="#3-如何知道你使用的是實例還是組件？" class="headerlink" title="3. 如何知道你使用的是實例還是組件？"></a><strong>3. 如何知道你使用的是實例還是組件？</strong></h3><h4 id="看代碼的上下文"><a href="#看代碼的上下文" class="headerlink" title="看代碼的上下文"></a><strong>看代碼的上下文</strong></h4><ul>
+<li><strong>根實例</strong>：<ul>
+<li>通常會有 <code>new Vue()</code>。</li>
+<li>必須掛載到 DOM 節點（如 <code>el: &#39;#app&#39;</code> 或 <code>mount(&#39;#app&#39;)</code>）。</li>
+</ul>
+</li>
+<li><strong>組件</strong>：<ul>
+<li>會出現在 <code>export default</code> 或 <code>Vue.component()</code> 的定義中。</li>
+<li>不會直接掛載到 DOM 節點，而是被其他地方引用（如在 <code>template</code> 中）。</li>
+</ul>
+</li>
+</ul>
+<h4 id="示例：根實例-vs-組件"><a href="#示例：根實例-vs-組件" class="headerlink" title="示例：根實例 vs 組件"></a><strong>示例：根實例 vs 組件</strong></h4><p><strong>根實例：</strong></p>
+<pre><code class="javascript">new Vue({
+  el: &#39;#app&#39;,
+  data: {
+    message: &#39;這是根實例&#39;
+  }
+});
+</code></pre>
+<p><strong>組件：</strong></p>
+<pre><code class="javascript">export default {
+  data() {
+    return {
+      message: &#39;這是組件&#39;
+    };
+  }
+};
+</code></pre>
+<h4 id="看-main-js-的結構"><a href="#看-main-js-的結構" class="headerlink" title="看 main.js 的結構"></a><strong>看 <code>main.js</code> 的結構</strong></h4><p>在 Vue CLI 應用中，通常 <code>main.js</code> 文件定義的是根實例，而其他 <code>.vue</code> 文件是組件。</p>
+<p><strong><code>main.js</code> 中的根實例：</strong></p>
+<pre><code class="javascript">import Vue from &#39;vue&#39;;
+import App from &#39;./App.vue&#39;;
+
+new Vue({
+  render: h =&gt; h(App),
+}).$mount(&#39;#app&#39;); // 挂载到 #app
+</code></pre>
+<p><strong><code>App.vue</code> 中的組件：</strong></p>
+<pre><code class="javascript">export default {
+  data() {
+    return {
+      title: &#39;這是一個組件&#39;
+    };
+  }
+};
+</code></pre>
+<hr>
+<h3 id="小結"><a href="#小結" class="headerlink" title="小結"></a><strong>小結</strong></h3><ul>
+<li><strong><code>new Vue()</code> 表示創建的是根實例</strong>，<code>data</code> 可以是直接物件。</li>
+<li><strong><code>export default</code> 或 <code>Vue.component</code> 則是定義組件</strong>，<code>data</code> 必須是函數，返回物件。</li>
+<li>如果你在 <code>.vue</code> 文件中用 <code>export default</code>，那麼你正在定義組件，<code>data</code> 需要是函數形式。</li>
+</ul>
