@@ -1,0 +1,136 @@
+<hr>
+<h2 id="title-2024-12-12-Vue裡面的-ref-是什麼-date-2024-12-12-23-50-08tags-Javascript-Vue-description-2024-12-12-Vue裡面的-ref-是什麼"><a href="#title-2024-12-12-Vue裡面的-ref-是什麼-date-2024-12-12-23-50-08tags-Javascript-Vue-description-2024-12-12-Vue裡面的-ref-是什麼" class="headerlink" title="title: 2024-12-12  Vue裡面的 ref 是什麼?date: 2024-12-12 23:50:08tags:  [Javascript,Vue]description:  2024-12-12  Vue裡面的 ref 是什麼?"></a>title: 2024-12-12  Vue裡面的 ref 是什麼?<br>date: 2024-12-12 23:50:08<br>tags:  [Javascript,Vue]<br>description:  2024-12-12  Vue裡面的 ref 是什麼?</h2><h2 id="2024-12-12-Vue裡面的-ref-是什麼"><a href="#2024-12-12-Vue裡面的-ref-是什麼" class="headerlink" title="2024-12-12  Vue裡面的 ref 是什麼?"></a>2024-12-12  Vue裡面的 ref 是什麼?</h2><p><code>ref</code> 是 Vue 3 Composition API 中的一個函式，用來建立<strong>可響應的變數</strong>。它允許你追蹤和反應數據的變化，並且可以直接用於模板或其他邏輯中。</p>
+<h3 id="為什麼使用-ref？"><a href="#為什麼使用-ref？" class="headerlink" title="為什麼使用 ref？"></a><strong>為什麼使用 <code>ref</code>？</strong></h3><p>在 Vue 中，數據變化時會自動更新相關的視圖，而 <code>ref</code> 提供了一種簡單的方式來建立這種響應式數據。當 <code>ref</code> 中的數據改變時，Vue 會自動更新與該數據相關聯的部分視圖。</p>
+<hr>
+<h3 id="如何使用-ref"><a href="#如何使用-ref" class="headerlink" title="如何使用 ref"></a><strong>如何使用 <code>ref</code></strong></h3><h4 id="基本語法："><a href="#基本語法：" class="headerlink" title="基本語法："></a><strong>基本語法：</strong></h4><pre><code class="javascript">import { ref } from &#39;vue&#39;;
+
+const myVariable = ref(initialValue);
+</code></pre>
+<ul>
+<li><code>initialValue</code>：<code>ref</code> 的初始值，可以是任意類型的數據（如字串、數字、物件、陣列等）。</li>
+<li><code>myVariable.value</code>：用來訪問或修改 <code>ref</code> 的值。</li>
+</ul>
+<h4 id="範例：簡單的響應數據"><a href="#範例：簡單的響應數據" class="headerlink" title="範例：簡單的響應數據"></a><strong>範例：簡單的響應數據</strong></h4><pre><code class="javascript">&lt;script&gt;
+import { ref } from &#39;vue&#39;;
+
+export default {
+  setup() {
+    const counter = ref(0); // 建立一個響應式數據，初始值為 0
+
+    const increment = () =&gt; {
+      counter.value += 1; // 修改 counter 的值
+    };
+
+    return { counter, increment }; // 返回以便模板中使用
+  },
+};
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;p&gt;Counter: {{ counter }}&lt;/p&gt; &lt;!-- 當 counter 改變時，視圖會自動更新 --&gt;
+    &lt;button @click=&quot;increment&quot;&gt;Increment&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+</code></pre>
+<hr>
+<h3 id="ref-的特點"><a href="#ref-的特點" class="headerlink" title="ref 的特點"></a><strong><code>ref</code> 的特點</strong></h3><ol>
+<li><p><strong>包裝響應式數據</strong>：</p>
+<ul>
+<li><code>ref</code> 會將非物件類型（如字串、數字等）包裝為一個響應式對象。</li>
+<li>存取或改變數據時需使用 <code>.value</code>。</li>
+</ul>
+<pre><code class="javascript">const count = ref(0);
+console.log(count.value); // 0
+count.value = 10;
+console.log(count.value); // 10
+</code></pre>
+</li>
+<li><p><strong>可用於物件或陣列</strong>：</p>
+<ul>
+<li>當 <code>ref</code> 的初始值是一個物件或陣列時，其內部屬性也會是響應式的。</li>
+</ul>
+<pre><code class="javascript">const user = ref({ name: &#39;Alice&#39;, age: 25 });
+user.value.name = &#39;Bob&#39;; // 視圖自動更新
+</code></pre>
+</li>
+<li><p><strong>適合 DOM 元素引用</strong>：</p>
+<ul>
+<li><code>ref</code> 不僅用於數據，也可以用來引用 DOM 元素。</li>
+<li>在 <code>setup</code> 中，你可以用 <code>ref</code> 來存放一個 DOM 元素的引用。</li>
+</ul>
+<pre><code class="javascript">&lt;template&gt;
+  &lt;input ref=&quot;inputRef&quot; type=&quot;text&quot; /&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import { ref, onMounted } from &#39;vue&#39;;
+
+export default {
+  setup() {
+    const inputRef = ref(null); // 建立 DOM 元素的引用
+
+    onMounted(() =&gt; {
+      inputRef.value.focus(); // 在組件掛載後，讓 input 獲得焦點
+    });
+
+    return { inputRef };
+  },
+};
+&lt;/script&gt;
+</code></pre>
+</li>
+<li><p><strong>用於模板中的雙向綁定</strong>：</p>
+<ul>
+<li>在表單中，<code>ref</code> 非常適合用來雙向綁定數據。</li>
+</ul>
+<pre><code class="javascript">const message = ref(&#39;&#39;);
+</code></pre>
+<pre><code class="html">&lt;input v-model=&quot;message&quot; /&gt;
+&lt;p&gt;{{ message }}&lt;/p&gt;
+</code></pre>
+</li>
+</ol>
+<hr>
+<h3 id="ref-vs-reactive"><a href="#ref-vs-reactive" class="headerlink" title="ref vs reactive"></a><strong><code>ref</code> vs <code>reactive</code></strong></h3><p>Vue 提供兩種方式來創建響應式數據：<code>ref</code> 和 <code>reactive</code>。</p>
+<table>
+<thead>
+<tr>
+<th><strong>特性</strong></th>
+<th><strong><code>ref</code></strong></th>
+<th><strong><code>reactive</code></strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>適用場景</strong></td>
+<td>單一變數或簡單數據類型</td>
+<td>複雜物件或多屬性數據</td>
+</tr>
+<tr>
+<td><strong>存取方式</strong></td>
+<td>使用 <code>.value</code></td>
+<td>可直接存取屬性</td>
+</tr>
+<tr>
+<td><strong>結構化數據（物件&#x2F;陣列）</strong></td>
+<td>包裝後的物件，其內部屬性自動響應</td>
+<td>整個物件是響應式的</td>
+</tr>
+<tr>
+<td><strong>語法簡潔性</strong></td>
+<td>更適合單一變數或 DOM 引用</td>
+<td>更適合定義完整的響應式物件</td>
+</tr>
+</tbody></table>
+<h4 id="範例：ref"><a href="#範例：ref" class="headerlink" title="範例：ref"></a><strong>範例：<code>ref</code></strong></h4><pre><code class="javascript">const count = ref(0);
+count.value += 1; // 使用 .value 更新值
+</code></pre>
+<h4 id="範例：reactive"><a href="#範例：reactive" class="headerlink" title="範例：reactive"></a><strong>範例：<code>reactive</code></strong></h4><pre><code class="javascript">const state = reactive({ count: 0 });
+state.count += 1; // 無需使用 .value
+</code></pre>
+<hr>
+<h3 id="結論"><a href="#結論" class="headerlink" title="結論"></a><strong>結論</strong></h3><ul>
+<li><code>ref</code> 是 Vue 3 中強大的工具，用於建立簡單的響應式數據或引用 DOM 元素。</li>
+<li>在你處理單一變數（如數字、字串）或需要 DOM 元素引用時，推薦使用 <code>ref</code>。</li>
+<li>如果你需要管理更複雜的物件結構（如整個表單的數據），可以考慮使用 <code>reactive</code>。</li>
+</ul>

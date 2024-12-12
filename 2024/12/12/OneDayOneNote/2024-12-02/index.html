@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2024-12-02 從開發者到架構師">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024-12-02 從開發者到架構師">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2024/12/12/OneDayOneNote/2024-12-02/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2024-12-02 從開發者到架構師">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2024-12-12T15:10:28.000Z">
+<meta property="article:modified_time" content="2024-12-12T15:11:34.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2024/12/12/OneDayOneNote/2024-12-02/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2024/12/12/OneDayOneNote/2024-12-02/","path":"2024/12/12/OneDayOneNote/2024-12-02/","title":"2024-12-02 從開發者到架構師"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2024-12-02 從開發者到架構師 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2024-12-02-%E5%BE%9E%E9%96%8B%E7%99%BC%E8%80%85%E5%88%B0%E6%9E%B6%E6%A7%8B%E5%B8%AB"><span class="nav-number">1.</span> <span class="nav-text">2024-12-02 從開發者到架構師</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%B8%E7%BF%92%E8%B7%AF%E7%B7%9A%E7%B8%BD%E8%A6%BD"><span class="nav-number">2.</span> <span class="nav-text">學習路線總覽</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%8E%E6%AE%B5-1%EF%BC%9A%E5%BE%8C%E7%AB%AF%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%EF%BC%883-4-%E5%80%8B%E6%9C%88%EF%BC%89"><span class="nav-number">2.1.</span> <span class="nav-text">階段 1：後端基礎入門（3~4 個月）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%8E%E6%AE%B5-2%EF%BC%9A%E9%80%B2%E9%9A%8E%E5%BE%8C%E7%AB%AF%E6%8A%80%E8%83%BD%E8%88%87%E5%B0%88%E6%A1%88%E5%AF%A6%E8%B8%90%EF%BC%885-6-%E5%80%8B%E6%9C%88%EF%BC%89"><span class="nav-number">2.2.</span> <span class="nav-text">階段 2：進階後端技能與專案實踐（5~6 個月）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%8E%E6%AE%B5-3%EF%BC%9A%E6%9E%B6%E6%A7%8B%E5%B8%AB%E6%A0%B8%E5%BF%83%E6%8A%80%E8%83%BD%E8%88%87%E5%A4%A7%E5%9E%8B%E7%B3%BB%E7%B5%B1%E8%A8%AD%E8%A8%88%EF%BC%886-12-%E5%80%8B%E6%9C%88%EF%BC%89"><span class="nav-number">2.3.</span> <span class="nav-text">階段 3：架構師核心技能與大型系統設計（6~12 個月）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B8%BD%E7%B5%90%E8%88%87%E5%9F%B7%E8%A1%8C%E5%BB%BA%E8%AD%B0"><span class="nav-number">2.4.</span> <span class="nav-text">總結與執行建議</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">284</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2024/12/12/OneDayOneNote/2024-12-02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2024-12-02 從開發者到架構師 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2024-12-02 從開發者到架構師">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2024-12-02 從開發者到架構師
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2024-12-12 23:10:28 / 修改時間：23:11:34" itemprop="dateCreated datePublished" datetime="2024-12-12T23:10:28+08:00">2024-12-12</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2024-12-02 從開發者到架構師</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2024-12-02-從開發者到架構師"><a href="#2024-12-02-從開發者到架構師" class="headerlink" title="2024-12-02 從開發者到架構師"></a>2024-12-02 從開發者到架構師</h2><p>當然可以！以下是針對你的背景和目標，為你設計的<strong>後端學習計劃</strong>，重點是幫助你從學習基礎技術到實踐專案，逐步邁向架構師的方向。計劃分為三個階段：<strong>基礎入門</strong>、<strong>進階與實踐</strong>、<strong>架構師核心技能</strong>。</p>
+<hr>
+<h2 id="學習路線總覽"><a href="#學習路線總覽" class="headerlink" title="學習路線總覽"></a><strong>學習路線總覽</strong></h2><h3 id="階段-1：後端基礎入門（3-4-個月）"><a href="#階段-1：後端基礎入門（3-4-個月）" class="headerlink" title="階段 1：後端基礎入門（3~4 個月）"></a><strong>階段 1：後端基礎入門（3~4 個月）</strong></h3><p><strong>目標</strong>：學會核心語言（C# 或 Java）與基礎後端開發技能，熟悉 RESTful API 與資料庫操作。</p>
+<ol>
+<li><p><strong>選擇開發語言：C# 或 Java</strong></p>
+<ul>
+<li>如果選擇 **C#**：學習 .NET Core 開發環境與基礎語法。</li>
+<li>如果選擇 <strong>Java</strong>：學習基礎語法與使用 Spring Boot 開發 Web API。</li>
+</ul>
+</li>
+<li><p><strong>後端基礎技術</strong></p>
+<ul>
+<li>HTTP 協議：理解請求&#x2F;回應結構（GET、POST、PUT、DELETE）。</li>
+<li>RESTful API：設計簡單的 API（如用戶管理系統）。</li>
+<li>資料庫操作：學習 SQL，掌握如何用 C# 或 Java 操作 Oracle 或 MySQL。</li>
+</ul>
+</li>
+<li><p><strong>學習資源</strong></p>
+<ul>
+<li><p>**C#**：  </p>
+<ul>
+<li>《C# 7.0 in a Nutshell》（參考學習書籍）。  </li>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/dotnet/csharp/">C# Tutorials (Microsoft)</a>  </li>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-web-api">ASP.NET Core Web API 入門</a></li>
+</ul>
+</li>
+<li><p><strong>Java</strong>：  </p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.coursera.org/specializations/java-programming">Java Programming and Software Engineering Fundamentals (Coursera)</a>  </li>
+<li><a target="_blank" rel="noopener" href="https://www.baeldung.com/spring-boot">Spring Boot Beginner Guide (Baeldung)</a>  </li>
+<li>《Head First Java》（入門經典書籍）。</li>
+</ul>
+</li>
+<li><p><strong>SQL</strong>：  </p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.w3schools.com/sql/">w3schools SQL 教程</a>  </li>
+<li>練習平台：<a target="_blank" rel="noopener" href="https://www.hackerrank.com/domains/tutorials/10-days-of-sql">HackerRank SQL</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>小專題實踐</strong></p>
+<ul>
+<li><strong>用戶管理系統</strong>：開發一個小型 Web API，包含用戶 CRUD 功能。</li>
+<li><strong>圖書館管理系統</strong>：整合資料庫，完成查詢和借閱紀錄操作。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="階段-2：進階後端技能與專案實踐（5-6-個月）"><a href="#階段-2：進階後端技能與專案實踐（5-6-個月）" class="headerlink" title="階段 2：進階後端技能與專案實踐（5~6 個月）"></a><strong>階段 2：進階後端技能與專案實踐（5~6 個月）</strong></h3><p><strong>目標</strong>：掌握後端開發進階技能，深入學習框架、測試與部署，開始開發更複雜的專案。</p>
+<ol>
+<li><p><strong>框架與工具</strong></p>
+<ul>
+<li>**C#**：深入學習 ASP.NET Core，包含身份驗證、依賴注入（DI）、中介軟件（Middleware）。  </li>
+<li><strong>Java</strong>：深入學習 Spring Boot，包含 Spring Security、Spring Data JPA。</li>
+</ul>
+</li>
+<li><p><strong>測試與版本控制</strong></p>
+<ul>
+<li>單元測試：學習使用 <strong>xUnit</strong>（C#）或 <strong>JUnit</strong>（Java）。</li>
+<li>版本控制：熟悉 <strong>Git</strong> 與 <strong>GitHub</strong>，學會團隊協作。</li>
+</ul>
+</li>
+<li><p><strong>雲端與容器化</strong></p>
+<ul>
+<li>了解基本的雲端部署：  <ul>
+<li>**C#**：學習 Azure，部署 ASP.NET Core 應用。  </li>
+<li><strong>Java</strong>：學習 AWS，部署 Spring Boot 應用。</li>
+</ul>
+</li>
+<li>學習 Docker：容器化應用並部署到雲端。</li>
+</ul>
+</li>
+<li><p><strong>進階資源</strong></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/aspnet/core/">ASP.NET Core 官方教程</a>  </li>
+<li><a target="_blank" rel="noopener" href="https://spring.io/projects/spring-boot">Spring Boot 官方文檔</a>  </li>
+<li>《Clean Code》（編碼風格提升必讀）。  </li>
+<li><a target="_blank" rel="noopener" href="https://www.docker.com/101-tutorial">Docker 初學者教程</a></li>
+</ul>
+</li>
+<li><p><strong>進階專案實踐</strong></p>
+<ul>
+<li><strong>線上購物平台</strong>：包含用戶認證、商品管理、訂單系統，並與資料庫整合。</li>
+<li><strong>博客系統</strong>：支援多用戶，包含文章發布、評論與分類功能。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="階段-3：架構師核心技能與大型系統設計（6-12-個月）"><a href="#階段-3：架構師核心技能與大型系統設計（6-12-個月）" class="headerlink" title="階段 3：架構師核心技能與大型系統設計（6~12 個月）"></a><strong>階段 3：架構師核心技能與大型系統設計（6~12 個月）</strong></h3><p><strong>目標</strong>：深入理解設計模式、分散式系統和性能優化，學會設計和管理大型系統架構。</p>
+<ol>
+<li><p><strong>設計模式</strong></p>
+<ul>
+<li>學習常見設計模式（工廠模式、單例模式、觀察者模式等）。</li>
+<li>學習 SOLID 原則，設計可擴展的系統。</li>
+</ul>
+</li>
+<li><p><strong>分散式系統</strong></p>
+<ul>
+<li><strong>微服務架構</strong>：學習如何將應用拆分為多個微服務，使用 API Gateway 進行管理。</li>
+<li>消息佇列：學習 RabbitMQ 或 Kafka。</li>
+<li>分散式數據存儲：熟悉 Redis。</li>
+</ul>
+</li>
+<li><p><strong>性能優化與可靠性</strong></p>
+<ul>
+<li>效能調優：學習程式碼效能分析與資料庫查詢優化。</li>
+<li>系統穩定性：學習負載平衡與容錯設計。</li>
+</ul>
+</li>
+<li><p><strong>高級資源</strong></p>
+<ul>
+<li>《Designing Data-Intensive Applications》（分散式系統必讀）。  </li>
+<li><a target="_blank" rel="noopener" href="https://microservices.io/">Microservices.io</a>  </li>
+<li><a target="_blank" rel="noopener" href="https://aws.amazon.com/training/architect/">AWS Solutions Architect Learning Path</a></li>
+</ul>
+</li>
+<li><p><strong>架構師專案實踐</strong></p>
+<ul>
+<li>設計並開發 <strong>分散式訂單處理系統</strong>，支援多用戶、高併發操作。</li>
+<li>模擬企業環境，設計一個 <strong>微服務電商系統</strong>，實現商品服務、訂單服務和支付服務的分離。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="總結與執行建議"><a href="#總結與執行建議" class="headerlink" title="總結與執行建議"></a><strong>總結與執行建議</strong></h3><ol>
+<li><p><strong>每階段學習步驟分解</strong>：</p>
+<ul>
+<li>根據每週學習時間規劃內容（比如每天 2 小時，每週 10 小時）。</li>
+<li>每階段結合小專題實踐，邊學邊用。</li>
+</ul>
+</li>
+<li><p><strong>循序漸進，逐步深化</strong>：</p>
+<ul>
+<li>先熟練基礎語言和後端框架，再進一步學習架構相關技能。</li>
+</ul>
+</li>
+<li><p><strong>整合現有經驗</strong>：</p>
+<ul>
+<li>把你在前端學到的 Vue 與後端專案結合，開發全棧專案，提升整體技能。</li>
+</ul>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/Javascript/" rel="tag"># Javascript</a>
+              <a href="/apple.lily/tags/Vue/" rel="tag"># Vue</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/12/12/OneDayOneNote/2024-12-01/" rel="prev" title="2024-12-01 Vue 專案中引用了一個名為 autosize 的依賴">
+                  <i class="fa fa-angle-left"></i> 2024-12-01 Vue 專案中引用了一個名為 autosize 的依賴
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/12/12/OneDayOneNote/2024-12-03/" rel="next" title="2024-12-03 C# 還是 java ,那一個較適合朝 架構師方向邁進">
+                  2024-12-03 C# 還是 java ,那一個較適合朝 架構師方向邁進 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,297 @@
+<hr>
+<h2 id="title-2024-12-11-輸入-text-及-textarea-要自動存入-localstoragedate-2024-12-12-23-47-54tags-Javascript-Vue-description-2024-12-11-輸入-text-及-textarea-要自動存入-localstorage"><a href="#title-2024-12-11-輸入-text-及-textarea-要自動存入-localstoragedate-2024-12-12-23-47-54tags-Javascript-Vue-description-2024-12-11-輸入-text-及-textarea-要自動存入-localstorage" class="headerlink" title="title: 2024-12-11 輸入 text 及  textarea 要自動存入 localstoragedate: 2024-12-12 23:47:54tags:  [Javascript,Vue]description:   2024-12-11 輸入 text 及  textarea 要自動存入 localstorage"></a>title: 2024-12-11 輸入 text 及  textarea 要自動存入 localstorage<br>date: 2024-12-12 23:47:54<br>tags:  [Javascript,Vue]<br>description:   2024-12-11 輸入 text 及  textarea 要自動存入 localstorage</h2><h2 id="2024-12-11-輸入-text-及-textarea-要自動存入-localstorage"><a href="#2024-12-11-輸入-text-及-textarea-要自動存入-localstorage" class="headerlink" title="2024-12-11 輸入 text 及  textarea 要自動存入 localstorage"></a>2024-12-11 輸入 text 及  textarea 要自動存入 localstorage</h2><p>要在 <code>text</code> 和 <code>textarea</code> 中輸入時自動將內容儲存至 <code>localStorage</code>，並且右側顯示清單並在畫面載入時從 <code>localStorage</code> 中導入清單，可以按照以下方式進行：</p>
+<h3 id="主要步驟："><a href="#主要步驟：" class="headerlink" title="主要步驟："></a>主要步驟：</h3><ol>
+<li>當用戶在 <code>text</code> 或 <code>textarea</code> 輸入內容時，自動將資料儲存到 <code>localStorage</code>。</li>
+<li>在組件掛載時（<code>onMounted</code>），從 <code>localStorage</code> 中讀取清單並顯示。</li>
+<li>在畫面上顯示清單，並將每個清單項目呈現出來。</li>
+</ol>
+<h3 id="完整範例："><a href="#完整範例：" class="headerlink" title="完整範例："></a>完整範例：</h3><h4 id="JavaScript-部分："><a href="#JavaScript-部分：" class="headerlink" title="JavaScript 部分："></a><strong>JavaScript 部分：</strong></h4><pre><code class="javascript">&lt;script&gt;
+import { ref, onMounted, onUnmounted } from &#39;vue&#39;;
+import autosize from &#39;autosize&#39;;
+
+export default {
+  setup() {
+    const title = ref(&#39;&#39;); // 標題
+    const note = ref(&#39;&#39;); // 筆記
+    const textarea = ref(null); // 參考textarea元素
+    const notesList = ref([]); // 儲存所有筆記的清單
+
+    // 初始化並導入localStorage中的清單
+    onMounted(() =&gt; {
+      if (textarea.value) {
+        autosize(textarea.value);
+      }
+
+      // 從 localStorage 載入筆記清單
+      const storedNotes = JSON.parse(localStorage.getItem(&#39;notesList&#39;)) || [];
+      notesList.value = storedNotes;
+    });
+
+    // 清理資源
+    onUnmounted(() =&gt; {
+      if (textarea.value) {
+        autosize.destroy(textarea.value);
+      }
+    });
+
+    // 儲存筆記至 localStorage
+    const saveToLocalStorage = () =&gt; {
+      const newNote = {
+        title: title.value,
+        note: note.value,
+      };
+      
+      notesList.value.push(newNote); // 新筆記加入清單
+      localStorage.setItem(&#39;notesList&#39;, JSON.stringify(notesList.value)); // 更新 localStorage
+    };
+
+    // 建立新筆記
+    const enableEditing = () =&gt; {
+      title.value = &#39;&#39;; // 清空標題
+      note.value = &#39;&#39;; // 清空筆記
+    };
+
+    return {
+      title,
+      note,
+      textarea,
+      notesList,
+      enableEditing,
+      saveToLocalStorage,
+    };
+  },
+};
+&lt;/script&gt;
+</code></pre>
+<h4 id="Template-部分："><a href="#Template-部分：" class="headerlink" title="Template 部分："></a><strong>Template 部分：</strong></h4><pre><code class="html">&lt;template&gt;
+  &lt;p class=&quot;s_header&quot;&gt;Notes&lt;/p&gt;
+
+  &lt;div class=&quot;notes_container&quot;&gt;
+    &lt;div class=&quot;inputBox&quot;&gt;
+      &lt;input
+        type=&quot;text&quot;
+        v-model=&quot;title&quot;
+        required
+        spellcheck=&quot;false&quot;
+        @input=&quot;saveToLocalStorage&quot;
+      /&gt;
+      &lt;span class=&quot;labelline&quot;&gt;標題&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;inputBox&quot;&gt;
+      &lt;textarea
+        v-model=&quot;note&quot;
+        ref=&quot;textarea&quot;
+        spellcheck=&quot;false&quot;
+        required
+        @input=&quot;saveToLocalStorage&quot;
+      &gt;&lt;/textarea&gt;
+      &lt;span class=&quot;labelline&quot;&gt;筆記&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;btn-container&quot;&gt;
+      &lt;a href=&quot;#&quot; class=&quot;btn&quot; @click.prevent=&quot;enableEditing&quot;&gt;建立新筆記&lt;/a&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;notes-list&quot;&gt;
+      &lt;p&gt;筆記清單：&lt;/p&gt;
+      &lt;ul&gt;
+        &lt;li v-for=&quot;(noteItem, index) in notesList&quot; :key=&quot;index&quot;&gt;
+          &lt;strong&gt;{{ noteItem.title }}&lt;/strong&gt; - {{ noteItem.note }}
+        &lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;footer&quot;&gt;筆記應用程式&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+</code></pre>
+<hr>
+<h3 id="說明："><a href="#說明：" class="headerlink" title="說明："></a><strong>說明：</strong></h3><ol>
+<li><p><strong>自動儲存筆記：</strong></p>
+<ul>
+<li><code>@input=&quot;saveToLocalStorage&quot;</code>：每當用戶在 <code>input</code> 或 <code>textarea</code> 中輸入時，就會觸發 <code>saveToLocalStorage</code> 函數，將當前的標題和筆記儲存到 <code>localStorage</code> 中。</li>
+</ul>
+</li>
+<li><p><strong>載入清單：</strong></p>
+<ul>
+<li><code>onMounted</code>：當組件掛載時，從 <code>localStorage</code> 讀取存儲的筆記清單，並更新 <code>notesList</code>。</li>
+</ul>
+</li>
+<li><p><strong>筆記清單顯示：</strong></p>
+<ul>
+<li>在模板中，使用 <code>v-for</code> 迴圈來顯示 <code>notesList</code> 中的每一筆筆記。每個筆記顯示其標題和內容。</li>
+</ul>
+</li>
+<li><p><strong>建立新筆記：</strong></p>
+<ul>
+<li>按下 “建立新筆記” 會清空 <code>title</code> 和 <code>note</code> 的內容，並允許用戶輸入新的筆記。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="LocalStorage-流程："><a href="#LocalStorage-流程：" class="headerlink" title="LocalStorage 流程："></a><strong>LocalStorage 流程：</strong></h3><ol>
+<li>當用戶在標題或筆記框中輸入時，<code>saveToLocalStorage</code> 函數會將新筆記存入 <code>localStorage</code>，並更新筆記清單。</li>
+<li>當頁面重新載入時，<code>onMounted</code> 中的邏輯會從 <code>localStorage</code> 讀取筆記清單並顯示。</li>
+</ol>
+<p>這樣一來，筆記就會自動儲存至 <code>localStorage</code> 並顯示在右側的清單中，並且畫面載入時會自動加載過去的資料。</p>
+<p>為了達到你的需求，在這裡我們將進行兩個主要的修改：</p>
+<ol>
+<li>**等標題與筆記內容都輸入完畢後再儲存至 <code>localStorage</code>**：只有當 <code>textarea</code> 中的內容有變動時才儲存，並且使用標題作為 <code>key</code> 儲存，將筆記的內容作為 <code>value</code>。</li>
+<li>**當標題變更或筆記內容變更時，自動儲存更新到 <code>localStorage</code>**：筆記的內容會根據標題（<code>key</code>）自動存入。</li>
+</ol>
+<h3 id="完整範例"><a href="#完整範例" class="headerlink" title="完整範例"></a>完整範例</h3><h4 id="JavaScript-部分：-1"><a href="#JavaScript-部分：-1" class="headerlink" title="JavaScript 部分："></a><strong>JavaScript 部分：</strong></h4><pre><code class="javascript">&lt;script&gt;
+import { ref, onMounted, onUnmounted } from &#39;vue&#39;;
+import autosize from &#39;autosize&#39;;
+
+export default {
+  setup() {
+    const title = ref(&#39;&#39;); // 標題
+    const note = ref(&#39;&#39;); // 筆記
+    const textarea = ref(null); // 參考textarea元素
+    const notesList = ref([]); // 儲存所有筆記的標題清單
+
+    // 初始化並導入localStorage中的筆記
+    onMounted(() =&gt; {
+      if (textarea.value) {
+        autosize(textarea.value);
+      }
+
+      // 從 localStorage 載入筆記標題清單
+      const storedNotes = Object.keys(localStorage); // 取得所有localStorage的key，即所有標題
+      notesList.value = storedNotes;
+    });
+
+    // 清理資源
+    onUnmounted(() =&gt; {
+      if (textarea.value) {
+        autosize.destroy(textarea.value);
+      }
+    });
+
+    // 儲存筆記至 localStorage
+    const saveToLocalStorage = () =&gt; {
+      if (title.value.trim() !== &#39;&#39; &amp;&amp; note.value.trim() !== &#39;&#39;) {
+        // 只有當標題與筆記內容都有填寫時才儲存
+        localStorage.setItem(title.value, note.value); // 用標題作為key，筆記內容作為value儲存
+        // 更新筆記清單
+        if (!notesList.value.includes(title.value)) {
+          notesList.value.push(title.value); // 當筆記是新標題時，將標題加入清單
+        }
+      }
+    };
+
+    // 建立新筆記
+    const enableEditing = () =&gt; {
+      title.value = &#39;&#39;; // 清空標題
+      note.value = &#39;&#39;; // 清空筆記
+    };
+
+    // 載入選中的筆記
+    const loadNote = (selectedTitle) =&gt; {
+      title.value = selectedTitle;
+      note.value = localStorage.getItem(selectedTitle); // 從localStorage取出對應標題的內容
+    };
+
+    // 監控筆記的變動並自動儲存
+    const updateNote = () =&gt; {
+      if (title.value.trim() !== &#39;&#39;) {
+        saveToLocalStorage();
+      }
+    };
+
+    return {
+      title,
+      note,
+      textarea,
+      notesList,
+      enableEditing,
+      saveToLocalStorage,
+      loadNote,
+      updateNote,
+    };
+  },
+};
+&lt;/script&gt;
+</code></pre>
+<h4 id="Template-部分：-1"><a href="#Template-部分：-1" class="headerlink" title="Template 部分："></a><strong>Template 部分：</strong></h4><pre><code class="html">&lt;template&gt;
+  &lt;p class=&quot;s_header&quot;&gt;Notes&lt;/p&gt;
+
+  &lt;div class=&quot;notes_container&quot;&gt;
+    &lt;div class=&quot;inputBox&quot;&gt;
+      &lt;input
+        type=&quot;text&quot;
+        v-model=&quot;title&quot;
+        required
+        spellcheck=&quot;false&quot;
+        @input=&quot;updateNote&quot; &lt;!-- 每次變動時儲存 --&gt;
+      /&gt;
+      &lt;span class=&quot;labelline&quot;&gt;標題&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;inputBox&quot;&gt;
+      &lt;textarea
+        v-model=&quot;note&quot;
+        ref=&quot;textarea&quot;
+        spellcheck=&quot;false&quot;
+        required
+        @input=&quot;updateNote&quot; &lt;!-- 每次變動時儲存 --&gt;
+      &gt;&lt;/textarea&gt;
+      &lt;span class=&quot;labelline&quot;&gt;筆記&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;btn-container&quot;&gt;
+      &lt;a href=&quot;#&quot; class=&quot;btn&quot; @click.prevent=&quot;enableEditing&quot;&gt;建立新筆記&lt;/a&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;notes-list&quot;&gt;
+      &lt;p&gt;筆記清單：&lt;/p&gt;
+      &lt;ul&gt;
+        &lt;li
+          v-for=&quot;(noteTitle, index) in notesList&quot;
+          :key=&quot;index&quot;
+          @click=&quot;loadNote(noteTitle)&quot;
+        &gt;
+          {{ noteTitle }}
+        &lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;footer&quot;&gt;筆記應用程式&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+</code></pre>
+<h3 id="關鍵更改說明："><a href="#關鍵更改說明：" class="headerlink" title="關鍵更改說明："></a><strong>關鍵更改說明：</strong></h3><ol>
+<li><p>**<code>@input=&quot;updateNote&quot;</code>**：</p>
+<ul>
+<li>每次用戶修改標題或筆記內容時，<code>updateNote</code> 方法會被觸發。這個方法會呼叫 <code>saveToLocalStorage()</code> 來儲存最新的筆記。</li>
+<li>只有當標題（<code>title</code>）和筆記（<code>note</code>）都有內容時才會儲存，防止儲存空白內容。</li>
+</ul>
+</li>
+<li><p><strong><code>saveToLocalStorage</code> 方法</strong>：</p>
+<ul>
+<li>當標題和筆記內容都不為空時，將標題作為 <code>key</code>，筆記內容作為 <code>value</code> 存儲到 <code>localStorage</code>。</li>
+<li>如果標題是新的，會將該標題加入筆記清單 <code>notesList</code>。</li>
+</ul>
+</li>
+<li><p><strong>筆記清單顯示</strong>：</p>
+<ul>
+<li>當 <code>localStorage</code> 中有筆記時，會顯示筆記清單。</li>
+<li>當用戶點擊某一筆記標題時，會顯示對應的筆記內容。</li>
+</ul>
+</li>
+<li><p><strong><code>loadNote</code> 方法</strong>：</p>
+<ul>
+<li>用來載入點選的筆記標題及其內容，將標題與內容顯示在相應的 <code>input</code> 和 <code>textarea</code> 中。</li>
+</ul>
+</li>
+<li><p><strong><code>enableEditing</code> 方法</strong>：</p>
+<ul>
+<li>用於建立新筆記時清空標題與筆記內容。</li>
+</ul>
+</li>
+</ol>
+<h3 id="效果預期："><a href="#效果預期：" class="headerlink" title="效果預期："></a><strong>效果預期：</strong></h3><ul>
+<li>當用戶在 <code>textarea</code> 輸入筆記內容或在 <code>input</code> 輸入標題時，會即時儲存並更新到 <code>localStorage</code>。</li>
+<li>筆記標題與筆記內容會依照 <code>title</code>（標題）來存儲，並且只有當用戶輸入筆記內容時才會儲存。</li>
+<li>當頁面加載時，會自動顯示 <code>localStorage</code> 中的筆記清單，並且用戶可以點選來查看或編輯相應的筆記。</li>
+</ul>
+<p>這樣，你的應用程式就可以根據標題作為 <code>key</code> 儲存每一條筆記，並且確保資料的更新和儲存。</p>

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2024-12-07  import { v4 as uuidv4 } from &#39;&#39;uuid&#39;&#39;;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024-12-07  import { v4 as uuidv4 } from &#39;&#39;uuid&#39;&#39;;">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2024/12/12/OneDayOneNote/2024-12-07/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2024-12-07  import { v4 as uuidv4 } from &#39;&#39;uuid&#39;&#39;;">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2024-12-12T15:25:22.000Z">
+<meta property="article:modified_time" content="2024-12-12T15:26:29.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2024/12/12/OneDayOneNote/2024-12-07/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2024/12/12/OneDayOneNote/2024-12-07/","path":"2024/12/12/OneDayOneNote/2024-12-07/","title":"2024-12-07  import { v4 as uuidv4 } from ''uuid'';"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2024-12-07  import { v4 as uuidv4 } from ''uuid''; | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2024-12-07-import-v4-as-uuidv4-from-%E2%80%98%E2%80%99uuid%E2%80%99%E2%80%99"><span class="nav-number">1.</span> <span class="nav-text">2024-12-07  import { v4 as uuidv4 } from ‘’uuid’’;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%9D%E6%8C%87%E4%BB%A4"><span class="nav-number">1.1.</span> <span class="nav-text">安裝指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E8%AA%AA%E6%98%8E"><span class="nav-number">1.2.</span> <span class="nav-text">使用說明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F"><span class="nav-number">1.3.</span> <span class="nav-text">注意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UUID-%E7%B0%A1%E4%BB%8B"><span class="nav-number">1.4.</span> <span class="nav-text">UUID 簡介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UUID-%E7%9A%84%E7%89%B9%E9%BB%9E"><span class="nav-number">1.5.</span> <span class="nav-text">UUID 的特點</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UUID-%E7%9A%84%E5%B8%B8%E8%A6%8B%E7%89%88%E6%9C%AC"><span class="nav-number">1.6.</span> <span class="nav-text">UUID 的常見版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UUID-%E7%9A%84%E7%94%A8%E9%80%94"><span class="nav-number">1.7.</span> <span class="nav-text">UUID 的用途</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%82%BA%E4%BB%80%E9%BA%BC%E4%BD%BF%E7%94%A8-UUID%EF%BC%9F"><span class="nav-number">1.8.</span> <span class="nav-text">為什麼使用 UUID？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A%E7%94%9F%E6%88%90-UUID"><span class="nav-number">1.9.</span> <span class="nav-text">示例：生成 UUID</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A6%8B%E5%95%8F%E9%A1%8C"><span class="nav-number">1.10.</span> <span class="nav-text">常見問題</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">284</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2024/12/12/OneDayOneNote/2024-12-07/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2024-12-07  import { v4 as uuidv4 } from ''uuid''; | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2024-12-07  import { v4 as uuidv4 } from ''uuid'';">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2024-12-07  import { v4 as uuidv4 } from ''uuid'';
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2024-12-12 23:25:22 / 修改時間：23:26:29" itemprop="dateCreated datePublished" datetime="2024-12-12T23:25:22+08:00">2024-12-12</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2024-12-07  import { v4 as uuidv4 } from ''uuid'';</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2024-12-07-import-v4-as-uuidv4-from-‘’uuid’’"><a href="#2024-12-07-import-v4-as-uuidv4-from-‘’uuid’’" class="headerlink" title="2024-12-07  import { v4 as uuidv4 } from ‘’uuid’’;"></a>2024-12-07  import { v4 as uuidv4 } from ‘’uuid’’;</h2><p>要使用 <code>import &#123; v4 as uuidv4 &#125; from &#39;uuid&#39;;</code>，需要安裝 <strong><code>uuid</code></strong> 這個 npm 套件。以下是詳細步驟：</p>
+<hr>
+<h3 id="安裝指令"><a href="#安裝指令" class="headerlink" title="安裝指令"></a>安裝指令</h3><p>在你的項目根目錄，運行以下命令來安裝 <code>uuid</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install uuid</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="使用說明"><a href="#使用說明" class="headerlink" title="使用說明"></a>使用說明</h3><ol>
+<li><p><strong>安裝完後</strong>，就可以在你的項目中使用 <code>uuid</code> 提供的功能，例如生成唯一的 UUID：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; v4 <span class="keyword">as</span> uuidv4 &#125; <span class="keyword">from</span> <span class="string">&#x27;uuid&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> uniqueId = <span class="title function_">uuidv4</span>(); <span class="comment">// 生成一個新的 UUID</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(uniqueId); <span class="comment">// 如 &quot;1b4e28ba-2fa1-11d2-883f-0016d3cca427&quot;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>為什麼選擇 <code>uuid</code></strong></p>
+<ul>
+<li><code>uuid</code> 是生成唯一標識符（Universally Unique Identifier，簡稱 UUID）的標準工具。</li>
+<li><code>v4</code> 是一種生成隨機 UUID 的版本（基於隨機數）。</li>
+<li>安全且廣泛使用於需要唯一標識的場景（如筆記 ID、會話令牌等）。</li>
+</ul>
+</li>
+<li><p><strong>檢查版本</strong><br>確保你安裝的是 <code>uuid</code> 的最新版本，可以運行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm show uuid version</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>如果在安裝後仍然遇到問題，確認以下事項：</p>
+<ul>
+<li><p>確保使用的是支持 ES 模塊（<code>import</code> 語法）的環境。</p>
+</li>
+<li><p>如果是舊版 Node.js，可能需要使用 <code>require</code> 語法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; <span class="attr">v4</span>: uuidv4 &#125; = <span class="built_in">require</span>(<span class="string">&#x27;uuid&#x27;</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果有 TypeScript，需要安裝對應型別定義：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev @types/uuid</span><br></pre></td></tr></table></figure>
+
+<h3 id="UUID-簡介"><a href="#UUID-簡介" class="headerlink" title="UUID 簡介"></a>UUID 簡介</h3></li>
+</ul>
+<p><strong>UUID</strong> 全名是 <strong>Universally Unique Identifier</strong>（通用唯一識別碼）。它是一種標準，用於生成全球範圍內幾乎不會重複的唯一標識符。常用於需要唯一性標識的情況，比如數據庫中的主鍵、文件名、會話標識等。</p>
+<hr>
+<h3 id="UUID-的特點"><a href="#UUID-的特點" class="headerlink" title="UUID 的特點"></a>UUID 的特點</h3><ol>
+<li><strong>全球唯一性：</strong> 理論上每個生成的 UUID 都是唯一的，重複的概率極低。</li>
+<li><strong>結構固定：</strong> 通常是 128 位（16 字節），以 36 個字元的格式表示：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xxxxxxxx-xxxx-Mxxx-Nxxx-xxxxxxxxxxxx</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>M</strong> 表示 UUID 的版本號，例如 <code>v4</code>。</li>
+<li><strong>N</strong> 表示變體信息，通常與兼容性有關。</li>
+</ul>
+</li>
+<li><strong>無需中心化：</strong> 不需要中央服務器協調，也能保證生成的值具有唯一性。</li>
+</ol>
+<hr>
+<h3 id="UUID-的常見版本"><a href="#UUID-的常見版本" class="headerlink" title="UUID 的常見版本"></a>UUID 的常見版本</h3><p>UUID 有多種版本，目前最常用的是 <strong>v4</strong> 和 <strong>v1</strong>：</p>
+<ol>
+<li><p><strong>UUID v4（隨機生成）：</strong></p>
+<ul>
+<li>基於隨機數生成，沒有基於時間或設備的信息。</li>
+<li>非常適合用於大部分應用場景。</li>
+<li>例如：<code>3f2504e0-4f89-11d3-9a0c-0305e82c3301</code></li>
+</ul>
+</li>
+<li><p><strong>UUID v1（基於時間戳生成）：</strong></p>
+<ul>
+<li>包含時間戳和網卡的 MAC 地址。</li>
+<li>更適合需要按時間排序的場景。</li>
+<li>例如：<code>550e8400-e29b-41d4-a716-446655440000</code></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="UUID-的用途"><a href="#UUID-的用途" class="headerlink" title="UUID 的用途"></a>UUID 的用途</h3><ol>
+<li><p><strong>唯一標識符：</strong><br>用於需要唯一性的場景，如數據庫中的主鍵。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> userId = <span class="title function_">uuidv4</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(userId); <span class="comment">// &quot;f47ac10b-58cc-4372-a567-0e02b2c3d479&quot;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>文件命名：</strong><br>避免文件名衝突。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fileName = <span class="string">`<span class="subst">$&#123;uuidv4()&#125;</span>.png`</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Session 或 Token：</strong><br>用於標識用戶的會話或生成 API 的訪問令牌。</p>
+</li>
+<li><p><strong>分布式系統：</strong><br>在無法使用中心化數據庫生成主鍵時，UUID 是分布式系統中一種可靠的標識符。</p>
+</li>
+</ol>
+<hr>
+<h3 id="為什麼使用-UUID？"><a href="#為什麼使用-UUID？" class="headerlink" title="為什麼使用 UUID？"></a>為什麼使用 UUID？</h3><ol>
+<li><strong>去中心化：</strong> UUID 不依賴於任何外部系統或伺服器來生成。</li>
+<li><strong>防止衝突：</strong> 即使多個系統獨立生成 UUID，出現重複的概率也極低。</li>
+<li><strong>簡單方便：</strong> 使用現有工具（如 npm 的 <code>uuid</code>）即可快速生成。</li>
+</ol>
+<hr>
+<h3 id="示例：生成-UUID"><a href="#示例：生成-UUID" class="headerlink" title="示例：生成 UUID"></a>示例：生成 UUID</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; v4 <span class="keyword">as</span> uuidv4 &#125; <span class="keyword">from</span> <span class="string">&#x27;uuid&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 生成一個唯一的 UUID</span></span><br><span class="line"><span class="keyword">const</span> uniqueId = <span class="title function_">uuidv4</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(uniqueId); <span class="comment">// 例如： &quot;f47ac10b-58cc-4372-a567-0e02b2c3d479&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="常見問題"><a href="#常見問題" class="headerlink" title="常見問題"></a>常見問題</h3><ul>
+<li><strong>UUID 是真的絕對唯一嗎？</strong>  <ul>
+<li>雖然 UUID 沒有絕對保證唯一性，但重複的概率非常低。以 UUID v4 為例，其重複的概率是極其微小的（每生成 10 億個 UUID，理論上需要 68 年才可能出現一次重複）。</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/Javascript/" rel="tag"># Javascript</a>
+              <a href="/apple.lily/tags/Vue/" rel="tag"># Vue</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/12/12/OneDayOneNote/2024-12-06/" rel="prev" title="2024-12-06 titleInput.value?.focus(); 為什麼 value 後面要加？">
+                  <i class="fa fa-angle-left"></i> 2024-12-06 titleInput.value?.focus(); 為什麼 value 後面要加？
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/12/12/OneDayOneNote/2024-12-08/" rel="next" title="2024-12-08 style scoped">
+                  2024-12-08 style scoped <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

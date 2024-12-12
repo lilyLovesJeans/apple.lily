@@ -1,0 +1,43 @@
+<hr>
+<h2 id="title-2024-12-01-Vue-專案中引用了一個名為-autosize-的依賴date-2024-12-12-23-08-03tags-Javascript-Vue-description-2024-12-01-Vue-專案中引用了一個名為-autosize-的依賴"><a href="#title-2024-12-01-Vue-專案中引用了一個名為-autosize-的依賴date-2024-12-12-23-08-03tags-Javascript-Vue-description-2024-12-01-Vue-專案中引用了一個名為-autosize-的依賴" class="headerlink" title="title: 2024-12-01 Vue 專案中引用了一個名為 autosize 的依賴date: 2024-12-12 23:08:03tags:  [Javascript,Vue]description:     2024-12-01 Vue 專案中引用了一個名為 autosize 的依賴"></a>title: 2024-12-01 Vue 專案中引用了一個名為 autosize 的依賴<br>date: 2024-12-12 23:08:03<br>tags:  [Javascript,Vue]<br>description:     2024-12-01 Vue 專案中引用了一個名為 autosize 的依賴</h2><h2 id="2024-12-01-Vue-專案中引用了一個名為-autosize-的依賴"><a href="#2024-12-01-Vue-專案中引用了一個名為-autosize-的依賴" class="headerlink" title="2024-12-01 Vue 專案中引用了一個名為 autosize 的依賴"></a>2024-12-01 Vue 專案中引用了一個名為 autosize 的依賴</h2><p>VITE v4.5.1  ready in 545 ms</p>
+<p>  ➜  Local:   <a href="http://localhost:5173/">http://localhost:5173/</a><br>  ➜  Network: <a href="http://172.31.196.23:5173/">http://172.31.196.23:5173/</a><br>  ➜  press h to show help<br>Error: The following dependencies are imported but could not be resolved:</p>
+<p>  autosize (imported by &#x2F;home&#x2F;runner&#x2F;JavaScript-Xi-Lie-Ba-Vue-Xiao-Xing-Ying-Yong-Cheng-Shi-less&#x2F;src&#x2F;components&#x2F;Notes.vue?id&#x3D;0)</p>
+<p>Are they installed?<br>    at file:&#x2F;&#x2F;&#x2F;home&#x2F;runner&#x2F;JavaScript-Xi-Lie-Ba-Vue-Xiao-Xing-Ying-Yong-Cheng-Shi-less&#x2F;node_modules&#x2F;vite&#x2F;dist&#x2F;node&#x2F;chunks&#x2F;dep-68d1a114.js:45779:23<br>    at process.processTicksAndRejections (node:internal&#x2F;process&#x2F;task_queues:95:5)<br>    at async file:&#x2F;&#x2F;&#x2F;home&#x2F;runner&#x2F;JavaScript-Xi-Lie-Ba-Vue-Xiao-Xing-Ying-Yong-Cheng-Shi-less&#x2F;node_modules&#x2F;vite&#x2F;dist&#x2F;node&#x2F;chunks&#x2F;dep-68d1a114.js:45187:38</p>
+<pre><code>這個錯誤表明你的專案中引用了一個名為 `autosize` 的依賴，但該依賴並未安裝到你的專案中。
+</code></pre>
+<p>以下是解決此問題的步驟：</p>
+<hr>
+<h3 id="1-安裝-autosize"><a href="#1-安裝-autosize" class="headerlink" title="1. 安裝 autosize"></a>1. <strong>安裝 <code>autosize</code></strong></h3><p>   在 Replit 的 Shell 或 Console 中執行以下命令以安裝缺失的依賴：</p>
+<pre><code class="bash">npm install autosize
+</code></pre>
+<p>   此命令會安裝 <code>autosize</code> 並將其添加到 <code>package.json</code> 的 <code>dependencies</code> 中。</p>
+<hr>
+<h3 id="2-檢查-package-json"><a href="#2-檢查-package-json" class="headerlink" title="2. 檢查 package.json"></a>2. <strong>檢查 <code>package.json</code></strong></h3><p>   確保安裝後，<code>autosize</code> 出現在 <code>package.json</code> 的 <code>dependencies</code> 列表中，例如：</p>
+<pre><code class="json">&quot;dependencies&quot;: {
+  &quot;autosize&quot;: &quot;^5.0.1&quot;, 
+  &quot;vue&quot;: &quot;^3.2.0&quot;,
+  &quot;vue-router&quot;: &quot;^4.0.0&quot;
+}
+</code></pre>
+<p>   如果沒有，可能是安裝過程出錯，重新執行 <code>npm install autosize</code>。</p>
+<hr>
+<h3 id="3-重新運行專案"><a href="#3-重新運行專案" class="headerlink" title="3. 重新運行專案"></a>3. <strong>重新運行專案</strong></h3><ul>
+<li><p>點擊 Replit 的「Run」按鈕，或者在 Shell 中執行以下命令啟動應用：</p>
+<pre><code class="bash">npm run dev
+</code></pre>
+</li>
+</ul>
+<p>   應用應該能夠正常啟動，並解決 <code>autosize</code> 相關的錯誤。</p>
+<hr>
+<h3 id="4-如果仍有問題"><a href="#4-如果仍有問題" class="headerlink" title="4. 如果仍有問題"></a>4. <strong>如果仍有問題</strong></h3><ul>
+<li><p>檢查 <code>Notes.vue</code> 文件中的 <code>autosize</code> 引用是否正確，例如：</p>
+<pre><code class="javascript">import autosize from &#39;autosize&#39;;
+</code></pre>
+<p>確保 <code>autosize</code> 的版本與其使用方式相匹配。</p>
+</li>
+<li><p>如果不需要這個依賴，可以考慮移除 <code>Notes.vue</code> 中的相關代碼，或者註釋掉：</p>
+<pre><code class="javascript">// import autosize from &#39;autosize&#39;;
+</code></pre>
+</li>
+</ul>
+<p>完成以上步驟後，應能解決問題並成功運行你的專案！</p>

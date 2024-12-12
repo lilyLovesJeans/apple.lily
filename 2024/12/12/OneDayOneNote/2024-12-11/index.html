@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2024-12-11 輸入 text 及  textarea 要自動存入 localstorage">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024-12-11 輸入 text 及  textarea 要自動存入 localstorage">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2024/12/12/OneDayOneNote/2024-12-11/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2024-12-11 輸入 text 及  textarea 要自動存入 localstorage">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2024-12-12T15:47:54.000Z">
+<meta property="article:modified_time" content="2024-12-12T15:49:20.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2024/12/12/OneDayOneNote/2024-12-11/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2024/12/12/OneDayOneNote/2024-12-11/","path":"2024/12/12/OneDayOneNote/2024-12-11/","title":"2024-12-11 輸入 text 及  textarea 要自動存入 localstorage"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2024-12-11 輸入 text 及  textarea 要自動存入 localstorage | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2024-12-11-%E8%BC%B8%E5%85%A5-text-%E5%8F%8A-textarea-%E8%A6%81%E8%87%AA%E5%8B%95%E5%AD%98%E5%85%A5-localstorage"><span class="nav-number">1.</span> <span class="nav-text">2024-12-11 輸入 text 及  textarea 要自動存入 localstorage</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E6%AD%A5%E9%A9%9F%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">主要步驟：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E7%AF%84%E4%BE%8B%EF%BC%9A"><span class="nav-number">1.2.</span> <span class="nav-text">完整範例：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#JavaScript-%E9%83%A8%E5%88%86%EF%BC%9A"><span class="nav-number">1.2.1.</span> <span class="nav-text">JavaScript 部分：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Template-%E9%83%A8%E5%88%86%EF%BC%9A"><span class="nav-number">1.2.2.</span> <span class="nav-text">Template 部分：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AA%AA%E6%98%8E%EF%BC%9A"><span class="nav-number">1.3.</span> <span class="nav-text">說明：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LocalStorage-%E6%B5%81%E7%A8%8B%EF%BC%9A"><span class="nav-number">1.4.</span> <span class="nav-text">LocalStorage 流程：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E7%AF%84%E4%BE%8B"><span class="nav-number">1.5.</span> <span class="nav-text">完整範例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#JavaScript-%E9%83%A8%E5%88%86%EF%BC%9A-1"><span class="nav-number">1.5.1.</span> <span class="nav-text">JavaScript 部分：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Template-%E9%83%A8%E5%88%86%EF%BC%9A-1"><span class="nav-number">1.5.2.</span> <span class="nav-text">Template 部分：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%9C%E9%8D%B5%E6%9B%B4%E6%94%B9%E8%AA%AA%E6%98%8E%EF%BC%9A"><span class="nav-number">1.6.</span> <span class="nav-text">關鍵更改說明：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%88%E6%9E%9C%E9%A0%90%E6%9C%9F%EF%BC%9A"><span class="nav-number">1.7.</span> <span class="nav-text">效果預期：</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">284</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2024/12/12/OneDayOneNote/2024-12-11/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2024-12-11 輸入 text 及  textarea 要自動存入 localstorage | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2024-12-11 輸入 text 及  textarea 要自動存入 localstorage">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2024-12-11 輸入 text 及  textarea 要自動存入 localstorage
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2024-12-12 23:47:54 / 修改時間：23:49:20" itemprop="dateCreated datePublished" datetime="2024-12-12T23:47:54+08:00">2024-12-12</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2024-12-11 輸入 text 及  textarea 要自動存入 localstorage</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2024-12-11-輸入-text-及-textarea-要自動存入-localstorage"><a href="#2024-12-11-輸入-text-及-textarea-要自動存入-localstorage" class="headerlink" title="2024-12-11 輸入 text 及  textarea 要自動存入 localstorage"></a>2024-12-11 輸入 text 及  textarea 要自動存入 localstorage</h2><p>要在 <code>text</code> 和 <code>textarea</code> 中輸入時自動將內容儲存至 <code>localStorage</code>，並且右側顯示清單並在畫面載入時從 <code>localStorage</code> 中導入清單，可以按照以下方式進行：</p>
+<h3 id="主要步驟："><a href="#主要步驟：" class="headerlink" title="主要步驟："></a>主要步驟：</h3><ol>
+<li>當用戶在 <code>text</code> 或 <code>textarea</code> 輸入內容時，自動將資料儲存到 <code>localStorage</code>。</li>
+<li>在組件掛載時（<code>onMounted</code>），從 <code>localStorage</code> 中讀取清單並顯示。</li>
+<li>在畫面上顯示清單，並將每個清單項目呈現出來。</li>
+</ol>
+<h3 id="完整範例："><a href="#完整範例：" class="headerlink" title="完整範例："></a>完整範例：</h3><h4 id="JavaScript-部分："><a href="#JavaScript-部分：" class="headerlink" title="JavaScript 部分："></a><strong>JavaScript 部分：</strong></h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">import</span> &#123; ref, onMounted, onUnmounted &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> autosize <span class="keyword">from</span> <span class="string">&#x27;autosize&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="title function_">setup</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> title = <span class="title function_">ref</span>(<span class="string">&#x27;&#x27;</span>); <span class="comment">// 標題</span></span><br><span class="line">    <span class="keyword">const</span> note = <span class="title function_">ref</span>(<span class="string">&#x27;&#x27;</span>); <span class="comment">// 筆記</span></span><br><span class="line">    <span class="keyword">const</span> textarea = <span class="title function_">ref</span>(<span class="literal">null</span>); <span class="comment">// 參考textarea元素</span></span><br><span class="line">    <span class="keyword">const</span> notesList = <span class="title function_">ref</span>([]); <span class="comment">// 儲存所有筆記的清單</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 初始化並導入localStorage中的清單</span></span><br><span class="line">    <span class="title function_">onMounted</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (textarea.<span class="property">value</span>) &#123;</span><br><span class="line">        <span class="title function_">autosize</span>(textarea.<span class="property">value</span>);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 從 localStorage 載入筆記清單</span></span><br><span class="line">      <span class="keyword">const</span> storedNotes = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(<span class="variable language_">localStorage</span>.<span class="title function_">getItem</span>(<span class="string">&#x27;notesList&#x27;</span>)) || [];</span><br><span class="line">      notesList.<span class="property">value</span> = storedNotes;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 清理資源</span></span><br><span class="line">    <span class="title function_">onUnmounted</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (textarea.<span class="property">value</span>) &#123;</span><br><span class="line">        autosize.<span class="title function_">destroy</span>(textarea.<span class="property">value</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 儲存筆記至 localStorage</span></span><br><span class="line">    <span class="keyword">const</span> <span class="title function_">saveToLocalStorage</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">      <span class="keyword">const</span> newNote = &#123;</span><br><span class="line">        <span class="attr">title</span>: title.<span class="property">value</span>,</span><br><span class="line">        <span class="attr">note</span>: note.<span class="property">value</span>,</span><br><span class="line">      &#125;;</span><br><span class="line">      </span><br><span class="line">      notesList.<span class="property">value</span>.<span class="title function_">push</span>(newNote); <span class="comment">// 新筆記加入清單</span></span><br><span class="line">      <span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(<span class="string">&#x27;notesList&#x27;</span>, <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(notesList.<span class="property">value</span>)); <span class="comment">// 更新 localStorage</span></span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 建立新筆記</span></span><br><span class="line">    <span class="keyword">const</span> <span class="title function_">enableEditing</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">      title.<span class="property">value</span> = <span class="string">&#x27;&#x27;</span>; <span class="comment">// 清空標題</span></span><br><span class="line">      note.<span class="property">value</span> = <span class="string">&#x27;&#x27;</span>; <span class="comment">// 清空筆記</span></span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      title,</span><br><span class="line">      note,</span><br><span class="line">      textarea,</span><br><span class="line">      notesList,</span><br><span class="line">      enableEditing,</span><br><span class="line">      saveToLocalStorage,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Template-部分："><a href="#Template-部分：" class="headerlink" title="Template 部分："></a><strong>Template 部分：</strong></h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;s_header&quot;</span>&gt;</span>Notes<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;notes_container&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;inputBox&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span></span></span><br><span class="line"><span class="tag">        <span class="attr">type</span>=<span class="string">&quot;text&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">v-model</span>=<span class="string">&quot;title&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">required</span></span></span><br><span class="line"><span class="tag">        <span class="attr">spellcheck</span>=<span class="string">&quot;false&quot;</span></span></span><br><span class="line"><span class="tag">        @<span class="attr">input</span>=<span class="string">&quot;saveToLocalStorage&quot;</span></span></span><br><span class="line"><span class="tag">      /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;labelline&quot;</span>&gt;</span>標題<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;inputBox&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">textarea</span></span></span><br><span class="line"><span class="tag">        <span class="attr">v-model</span>=<span class="string">&quot;note&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">ref</span>=<span class="string">&quot;textarea&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">spellcheck</span>=<span class="string">&quot;false&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">required</span></span></span><br><span class="line"><span class="tag">        @<span class="attr">input</span>=<span class="string">&quot;saveToLocalStorage&quot;</span></span></span><br><span class="line"><span class="tag">      &gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;labelline&quot;</span>&gt;</span>筆記<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;btn-container&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span> <span class="attr">class</span>=<span class="string">&quot;btn&quot;</span> @<span class="attr">click.prevent</span>=<span class="string">&quot;enableEditing&quot;</span>&gt;</span>建立新筆記<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;notes-list&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>筆記清單：<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">&quot;(noteItem, index) in notesList&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;index&quot;</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">strong</span>&gt;</span>&#123;&#123; noteItem.title &#125;&#125;<span class="tag">&lt;/<span class="name">strong</span>&gt;</span> - &#123;&#123; noteItem.note &#125;&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;footer&quot;</span>&gt;</span>筆記應用程式<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="說明："><a href="#說明：" class="headerlink" title="說明："></a><strong>說明：</strong></h3><ol>
+<li><p><strong>自動儲存筆記：</strong></p>
+<ul>
+<li><code>@input=&quot;saveToLocalStorage&quot;</code>：每當用戶在 <code>input</code> 或 <code>textarea</code> 中輸入時，就會觸發 <code>saveToLocalStorage</code> 函數，將當前的標題和筆記儲存到 <code>localStorage</code> 中。</li>
+</ul>
+</li>
+<li><p><strong>載入清單：</strong></p>
+<ul>
+<li><code>onMounted</code>：當組件掛載時，從 <code>localStorage</code> 讀取存儲的筆記清單，並更新 <code>notesList</code>。</li>
+</ul>
+</li>
+<li><p><strong>筆記清單顯示：</strong></p>
+<ul>
+<li>在模板中，使用 <code>v-for</code> 迴圈來顯示 <code>notesList</code> 中的每一筆筆記。每個筆記顯示其標題和內容。</li>
+</ul>
+</li>
+<li><p><strong>建立新筆記：</strong></p>
+<ul>
+<li>按下 “建立新筆記” 會清空 <code>title</code> 和 <code>note</code> 的內容，並允許用戶輸入新的筆記。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="LocalStorage-流程："><a href="#LocalStorage-流程：" class="headerlink" title="LocalStorage 流程："></a><strong>LocalStorage 流程：</strong></h3><ol>
+<li>當用戶在標題或筆記框中輸入時，<code>saveToLocalStorage</code> 函數會將新筆記存入 <code>localStorage</code>，並更新筆記清單。</li>
+<li>當頁面重新載入時，<code>onMounted</code> 中的邏輯會從 <code>localStorage</code> 讀取筆記清單並顯示。</li>
+</ol>
+<p>這樣一來，筆記就會自動儲存至 <code>localStorage</code> 並顯示在右側的清單中，並且畫面載入時會自動加載過去的資料。</p>
+<p>為了達到你的需求，在這裡我們將進行兩個主要的修改：</p>
+<ol>
+<li>**等標題與筆記內容都輸入完畢後再儲存至 <code>localStorage</code>**：只有當 <code>textarea</code> 中的內容有變動時才儲存，並且使用標題作為 <code>key</code> 儲存，將筆記的內容作為 <code>value</code>。</li>
+<li>**當標題變更或筆記內容變更時，自動儲存更新到 <code>localStorage</code>**：筆記的內容會根據標題（<code>key</code>）自動存入。</li>
+</ol>
+<h3 id="完整範例"><a href="#完整範例" class="headerlink" title="完整範例"></a>完整範例</h3><h4 id="JavaScript-部分：-1"><a href="#JavaScript-部分：-1" class="headerlink" title="JavaScript 部分："></a><strong>JavaScript 部分：</strong></h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">import</span> &#123; ref, onMounted, onUnmounted &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> autosize <span class="keyword">from</span> <span class="string">&#x27;autosize&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="title function_">setup</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> title = <span class="title function_">ref</span>(<span class="string">&#x27;&#x27;</span>); <span class="comment">// 標題</span></span><br><span class="line">    <span class="keyword">const</span> note = <span class="title function_">ref</span>(<span class="string">&#x27;&#x27;</span>); <span class="comment">// 筆記</span></span><br><span class="line">    <span class="keyword">const</span> textarea = <span class="title function_">ref</span>(<span class="literal">null</span>); <span class="comment">// 參考textarea元素</span></span><br><span class="line">    <span class="keyword">const</span> notesList = <span class="title function_">ref</span>([]); <span class="comment">// 儲存所有筆記的標題清單</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 初始化並導入localStorage中的筆記</span></span><br><span class="line">    <span class="title function_">onMounted</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (textarea.<span class="property">value</span>) &#123;</span><br><span class="line">        <span class="title function_">autosize</span>(textarea.<span class="property">value</span>);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 從 localStorage 載入筆記標題清單</span></span><br><span class="line">      <span class="keyword">const</span> storedNotes = <span class="title class_">Object</span>.<span class="title function_">keys</span>(<span class="variable language_">localStorage</span>); <span class="comment">// 取得所有localStorage的key，即所有標題</span></span><br><span class="line">      notesList.<span class="property">value</span> = storedNotes;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 清理資源</span></span><br><span class="line">    <span class="title function_">onUnmounted</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (textarea.<span class="property">value</span>) &#123;</span><br><span class="line">        autosize.<span class="title function_">destroy</span>(textarea.<span class="property">value</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 儲存筆記至 localStorage</span></span><br><span class="line">    <span class="keyword">const</span> <span class="title function_">saveToLocalStorage</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">      <span class="keyword">if</span> (title.<span class="property">value</span>.<span class="title function_">trim</span>() !== <span class="string">&#x27;&#x27;</span> &amp;&amp; note.<span class="property">value</span>.<span class="title function_">trim</span>() !== <span class="string">&#x27;&#x27;</span>) &#123;</span><br><span class="line">        <span class="comment">// 只有當標題與筆記內容都有填寫時才儲存</span></span><br><span class="line">        <span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(title.<span class="property">value</span>, note.<span class="property">value</span>); <span class="comment">// 用標題作為key，筆記內容作為value儲存</span></span><br><span class="line">        <span class="comment">// 更新筆記清單</span></span><br><span class="line">        <span class="keyword">if</span> (!notesList.<span class="property">value</span>.<span class="title function_">includes</span>(title.<span class="property">value</span>)) &#123;</span><br><span class="line">          notesList.<span class="property">value</span>.<span class="title function_">push</span>(title.<span class="property">value</span>); <span class="comment">// 當筆記是新標題時，將標題加入清單</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 建立新筆記</span></span><br><span class="line">    <span class="keyword">const</span> <span class="title function_">enableEditing</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">      title.<span class="property">value</span> = <span class="string">&#x27;&#x27;</span>; <span class="comment">// 清空標題</span></span><br><span class="line">      note.<span class="property">value</span> = <span class="string">&#x27;&#x27;</span>; <span class="comment">// 清空筆記</span></span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 載入選中的筆記</span></span><br><span class="line">    <span class="keyword">const</span> <span class="title function_">loadNote</span> = (<span class="params">selectedTitle</span>) =&gt; &#123;</span><br><span class="line">      title.<span class="property">value</span> = selectedTitle;</span><br><span class="line">      note.<span class="property">value</span> = <span class="variable language_">localStorage</span>.<span class="title function_">getItem</span>(selectedTitle); <span class="comment">// 從localStorage取出對應標題的內容</span></span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 監控筆記的變動並自動儲存</span></span><br><span class="line">    <span class="keyword">const</span> <span class="title function_">updateNote</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">      <span class="keyword">if</span> (title.<span class="property">value</span>.<span class="title function_">trim</span>() !== <span class="string">&#x27;&#x27;</span>) &#123;</span><br><span class="line">        <span class="title function_">saveToLocalStorage</span>();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      title,</span><br><span class="line">      note,</span><br><span class="line">      textarea,</span><br><span class="line">      notesList,</span><br><span class="line">      enableEditing,</span><br><span class="line">      saveToLocalStorage,</span><br><span class="line">      loadNote,</span><br><span class="line">      updateNote,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Template-部分：-1"><a href="#Template-部分：-1" class="headerlink" title="Template 部分："></a><strong>Template 部分：</strong></h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;s_header&quot;</span>&gt;</span>Notes<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;notes_container&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;inputBox&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span></span></span><br><span class="line"><span class="tag">        <span class="attr">type</span>=<span class="string">&quot;text&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">v-model</span>=<span class="string">&quot;title&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">required</span></span></span><br><span class="line"><span class="tag">        <span class="attr">spellcheck</span>=<span class="string">&quot;false&quot;</span></span></span><br><span class="line"><span class="tag">        @<span class="attr">input</span>=<span class="string">&quot;updateNote&quot;</span> &lt;!<span class="attr">--</span> <span class="attr">每次變動時儲存</span> <span class="attr">--</span>&gt;</span></span><br><span class="line">      /&gt;</span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;labelline&quot;</span>&gt;</span>標題<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;inputBox&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">textarea</span></span></span><br><span class="line"><span class="tag">        <span class="attr">v-model</span>=<span class="string">&quot;note&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">ref</span>=<span class="string">&quot;textarea&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">spellcheck</span>=<span class="string">&quot;false&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">required</span></span></span><br><span class="line"><span class="tag">        @<span class="attr">input</span>=<span class="string">&quot;updateNote&quot;</span> &lt;!<span class="attr">--</span> <span class="attr">每次變動時儲存</span> <span class="attr">--</span>&gt;</span></span><br><span class="line">      &gt;<span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;labelline&quot;</span>&gt;</span>筆記<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;btn-container&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span> <span class="attr">class</span>=<span class="string">&quot;btn&quot;</span> @<span class="attr">click.prevent</span>=<span class="string">&quot;enableEditing&quot;</span>&gt;</span>建立新筆記<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;notes-list&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>筆記清單：<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span></span></span><br><span class="line"><span class="tag">          <span class="attr">v-for</span>=<span class="string">&quot;(noteTitle, index) in notesList&quot;</span></span></span><br><span class="line"><span class="tag">          <span class="attr">:key</span>=<span class="string">&quot;index&quot;</span></span></span><br><span class="line"><span class="tag">          @<span class="attr">click</span>=<span class="string">&quot;loadNote(noteTitle)&quot;</span></span></span><br><span class="line"><span class="tag">        &gt;</span></span><br><span class="line">          &#123;&#123; noteTitle &#125;&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;footer&quot;</span>&gt;</span>筆記應用程式<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="關鍵更改說明："><a href="#關鍵更改說明：" class="headerlink" title="關鍵更改說明："></a><strong>關鍵更改說明：</strong></h3><ol>
+<li><p>**<code>@input=&quot;updateNote&quot;</code>**：</p>
+<ul>
+<li>每次用戶修改標題或筆記內容時，<code>updateNote</code> 方法會被觸發。這個方法會呼叫 <code>saveToLocalStorage()</code> 來儲存最新的筆記。</li>
+<li>只有當標題（<code>title</code>）和筆記（<code>note</code>）都有內容時才會儲存，防止儲存空白內容。</li>
+</ul>
+</li>
+<li><p><strong><code>saveToLocalStorage</code> 方法</strong>：</p>
+<ul>
+<li>當標題和筆記內容都不為空時，將標題作為 <code>key</code>，筆記內容作為 <code>value</code> 存儲到 <code>localStorage</code>。</li>
+<li>如果標題是新的，會將該標題加入筆記清單 <code>notesList</code>。</li>
+</ul>
+</li>
+<li><p><strong>筆記清單顯示</strong>：</p>
+<ul>
+<li>當 <code>localStorage</code> 中有筆記時，會顯示筆記清單。</li>
+<li>當用戶點擊某一筆記標題時，會顯示對應的筆記內容。</li>
+</ul>
+</li>
+<li><p><strong><code>loadNote</code> 方法</strong>：</p>
+<ul>
+<li>用來載入點選的筆記標題及其內容，將標題與內容顯示在相應的 <code>input</code> 和 <code>textarea</code> 中。</li>
+</ul>
+</li>
+<li><p><strong><code>enableEditing</code> 方法</strong>：</p>
+<ul>
+<li>用於建立新筆記時清空標題與筆記內容。</li>
+</ul>
+</li>
+</ol>
+<h3 id="效果預期："><a href="#效果預期：" class="headerlink" title="效果預期："></a><strong>效果預期：</strong></h3><ul>
+<li>當用戶在 <code>textarea</code> 輸入筆記內容或在 <code>input</code> 輸入標題時，會即時儲存並更新到 <code>localStorage</code>。</li>
+<li>筆記標題與筆記內容會依照 <code>title</code>（標題）來存儲，並且只有當用戶輸入筆記內容時才會儲存。</li>
+<li>當頁面加載時，會自動顯示 <code>localStorage</code> 中的筆記清單，並且用戶可以點選來查看或編輯相應的筆記。</li>
+</ul>
+<p>這樣，你的應用程式就可以根據標題作為 <code>key</code> 儲存每一條筆記，並且確保資料的更新和儲存。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/Javascript/" rel="tag"># Javascript</a>
+              <a href="/apple.lily/tags/Vue/" rel="tag"># Vue</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/12/12/OneDayOneNote/2024-12-10/" rel="prev" title="2024-12-10 按下建立新筆記時， text 及 textarea 都清空">
+                  <i class="fa fa-angle-left"></i> 2024-12-10 按下建立新筆記時， text 及 textarea 都清空
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/12/12/OneDayOneNote/2024-12-12/" rel="next" title="2024-12-12  Vue裡面的 ref 是什麼?">
+                  2024-12-12  Vue裡面的 ref 是什麼? <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+<hr>
+<h2 id="title-2024-12-04-jacklmoore-的-Autosize-可以用在vue-裡面嗎-date-2024-12-12-23-18-39tags-Javascript-Vue-description-2024-12-04-jacklmoore-的-Autosize-可以用在vue-裡面嗎"><a href="#title-2024-12-04-jacklmoore-的-Autosize-可以用在vue-裡面嗎-date-2024-12-12-23-18-39tags-Javascript-Vue-description-2024-12-04-jacklmoore-的-Autosize-可以用在vue-裡面嗎" class="headerlink" title="title: 2024-12-04 jacklmoore 的 Autosize  可以用在vue 裡面嗎?date: 2024-12-12 23:18:39tags:  [Javascript,Vue]description:     2024-12-04 jacklmoore 的 Autosize  可以用在vue 裡面嗎?"></a>title: 2024-12-04 jacklmoore 的 Autosize  可以用在vue 裡面嗎?<br>date: 2024-12-12 23:18:39<br>tags:  [Javascript,Vue]<br>description:     2024-12-04 jacklmoore 的 Autosize  可以用在vue 裡面嗎?</h2><h2 id="2024-12-04-jacklmoore-的-Autosize-可以用在vue-裡面嗎"><a href="#2024-12-04-jacklmoore-的-Autosize-可以用在vue-裡面嗎" class="headerlink" title="2024-12-04 jacklmoore 的 Autosize  可以用在vue 裡面嗎?"></a>2024-12-04 jacklmoore 的 Autosize  可以用在vue 裡面嗎?</h2><p>是的，Jack Moore 的 <a href="https://github.com/jackmoore/autosize">Autosize</a> 可以用在 Vue 中，但需要稍微調整以適應 Vue 的框架。Autosize 的作用是自動調整 <code>&lt;textarea&gt;</code> 的高度以適應其內容，這與 Vue 是兼容的。以下是一些具體的實現步驟和建議：</p>
+<hr>
+<h3 id="1-安裝-Autosize"><a href="#1-安裝-Autosize" class="headerlink" title="1. 安裝 Autosize"></a>1. <strong>安裝 Autosize</strong></h3><p>你可以使用 npm 安裝 Autosize：</p>
+<pre><code class="bash">npm install autosize
+</code></pre>
+<p>或直接透過 <code>&lt;script&gt;</code> 引用 CDN：</p>
+<pre><code class="html">&lt;script src=&quot;https://cdn.jsdelivr.net/npm/autosize/dist/autosize.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<hr>
+<h3 id="2-在-Vue-中使用-Autosize"><a href="#2-在-Vue-中使用-Autosize" class="headerlink" title="2. 在 Vue 中使用 Autosize"></a>2. <strong>在 Vue 中使用 Autosize</strong></h3><h4 id="使用-Vue-的-onMounted（Vue-3）"><a href="#使用-Vue-的-onMounted（Vue-3）" class="headerlink" title="使用 Vue 的 onMounted（Vue 3）"></a>使用 Vue 的 <code>onMounted</code>（Vue 3）</h4><p>你可以在組件的 <code>onMounted</code> 中初始化 Autosize，並監聽 <code>textarea</code> 元素的變化。</p>
+<pre><code class="vue">&lt;template&gt;
+  &lt;div&gt;
+    &lt;textarea v-model=&quot;text&quot; ref=&quot;textarea&quot; placeholder=&quot;Type something...&quot;&gt;&lt;/textarea&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import { ref, onMounted, onUnmounted } from &#39;vue&#39;;
+import autosize from &#39;autosize&#39;;
+
+export default {
+  setup() {
+    const text = ref(&#39;&#39;);
+    const textarea = ref(null);
+
+    onMounted(() =&gt; {
+      if (textarea.value) {
+        autosize(textarea.value);
+      }
+    });
+
+    onUnmounted(() =&gt; {
+      if (textarea.value) {
+        autosize.destroy(textarea.value); // 確保在組件卸載時清理資源
+      }
+    });
+
+    return {
+      text,
+      textarea,
+    };
+  },
+};
+&lt;/script&gt;
+
+&lt;style&gt;
+textarea {
+  width: 100%;
+  min-height: 50px;
+  resize: none; /* 禁止用戶手動調整大小 */
+}
+&lt;/style&gt;
+</code></pre>
+<hr>
+<h3 id="3-注意點"><a href="#3-注意點" class="headerlink" title="3. 注意點"></a>3. <strong>注意點</strong></h3><ul>
+<li><p><strong>更新數據時的同步問題：</strong><br>當內容更新時，Autosize 會自動調整，但如果是通過程式設置 <code>v-model</code> 值，則可能需要手動觸發調整：</p>
+<pre><code class="js">autosize.update(textarea.value);
+</code></pre>
+</li>
+<li><p><strong>僅作用於 <code>&lt;textarea&gt;</code> 元素：</strong><br>Autosize 不會對其他輸入類型生效，所以請確保你只用於 <code>&lt;textarea&gt;</code>。</p>
+</li>
+</ul>
+<hr>
+<h3 id="4-封裝成自定義指令（可選）"><a href="#4-封裝成自定義指令（可選）" class="headerlink" title="4. 封裝成自定義指令（可選）"></a>4. <strong>封裝成自定義指令（可選）</strong></h3><p>為了更方便重用，可以將 Autosize 封裝成 Vue 的自定義指令：</p>
+<pre><code class="js">import autosize from &#39;autosize&#39;;
+
+export default {
+  mounted(el) {
+    autosize(el);
+  },
+  updated(el) {
+    autosize.update(el);
+  },
+  unmounted(el) {
+    autosize.destroy(el);
+  },
+};
+</code></pre>
+<p>使用這個指令：</p>
+<pre><code class="vue">&lt;template&gt;
+  &lt;textarea v-autosize v-model=&quot;text&quot; placeholder=&quot;Type something...&quot;&gt;&lt;/textarea&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import autosizeDirective from &#39;./directives/autosize&#39;;
+
+export default {
+  directives: {
+    autosize: autosizeDirective,
+  },
+  data() {
+    return {
+      text: &#39;&#39;,
+    };
+  },
+};
+&lt;/script&gt;
+</code></pre>
+<hr>
+<p>這樣做可以讓 Autosize 更方便地集成到你的 Vue 應用中！如需更多調整，可參考 Autosize 的<a href="https://github.com/jackmoore/autosize">官方文檔</a>。</p>

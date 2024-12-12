@@ -1,0 +1,116 @@
+<hr>
+<h2 id="title-2024-11-30-利用-replit-寫一個-Vue專案，但裡面會包含多個不同程式功能date-2024-12-12-23-01-26tags-Javascript-Vue-description-2024-11-30-利用-replit-寫一個-Vue專案，但裡面會包含多個不同程式功能"><a href="#title-2024-11-30-利用-replit-寫一個-Vue專案，但裡面會包含多個不同程式功能date-2024-12-12-23-01-26tags-Javascript-Vue-description-2024-11-30-利用-replit-寫一個-Vue專案，但裡面會包含多個不同程式功能" class="headerlink" title="title: 2024-11-30 利用 replit 寫一個 Vue專案，但裡面會包含多個不同程式功能date: 2024-12-12 23:01:26tags:  [Javascript,Vue]description:    2024-11-30 利用 replit 寫一個 Vue專案，但裡面會包含多個不同程式功能"></a>title: 2024-11-30 利用 replit 寫一個 Vue專案，但裡面會包含多個不同程式功能<br>date: 2024-12-12 23:01:26<br>tags:  [Javascript,Vue]<br>description:    2024-11-30 利用 replit 寫一個 Vue專案，但裡面會包含多個不同程式功能</h2><h2 id="2024-11-30-利用-replit-寫一個-Vue專案，但裡面會包含多個不同程式功能"><a href="#2024-11-30-利用-replit-寫一個-Vue專案，但裡面會包含多個不同程式功能" class="headerlink" title="2024-11-30 利用 replit 寫一個 Vue專案，但裡面會包含多個不同程式功能"></a>2024-11-30 利用 replit 寫一個 Vue專案，但裡面會包含多個不同程式功能</h2><p>為了在 Replit 上建立一個包含多個應用功能的 Vue.js 專案，可以將每個應用規劃為一個獨立的 Vue 組件，並整合到一個主 Vue 專案中。以下是詳細的規劃建議：</p>
+<h3 id="1-初始化-Vue-專案"><a href="#1-初始化-Vue-專案" class="headerlink" title="1. 初始化 Vue 專案"></a>1. <strong>初始化 Vue 專案</strong></h3><ul>
+<li>在 Replit 中建立一個新的 Vue.js 專案，並安裝 Vue CLI（若還沒安裝的話）。</li>
+<li>在主專案目錄下建立 <code>src</code> 目錄，用於存放應用的所有組件和功能。</li>
+</ul>
+<h3 id="2-建立不同的應用組件"><a href="#2-建立不同的應用組件" class="headerlink" title="2. 建立不同的應用組件"></a>2. <strong>建立不同的應用組件</strong></h3><ul>
+<li>在 <code>src/components</code> 目錄中，為每個應用建立一個 Vue 組件。例如：<ul>
+<li><code>Stopwatch.vue</code>：碼表應用程式</li>
+<li><code>SplitBill.vue</code>：分帳應用程式</li>
+<li><code>Calendar.vue</code>：行事曆應用程式</li>
+<li><code>WeatherQuery.vue</code>：天氣查詢應用程式</li>
+<li><code>CountryInfo.vue</code>：國家資訊與地圖應用程式</li>
+</ul>
+</li>
+<li>每個組件專注於特定功能，包含其獨立的 HTML 模板、JavaScript 邏輯和 CSS 樣式。</li>
+</ul>
+<h3 id="3-設定-Vue-路由"><a href="#3-設定-Vue-路由" class="headerlink" title="3. 設定 Vue 路由"></a>3. <strong>設定 Vue 路由</strong></h3><ul>
+<li>使用 <code>vue-router</code> 來配置每個組件的路由，讓用戶可以通過 URL 瀏覽不同應用。例如：<pre><code class="javascript">import Vue from &#39;vue&#39;;
+import Router from &#39;vue-router&#39;;
+import Stopwatch from &#39;./components/Stopwatch.vue&#39;;
+import SplitBill from &#39;./components/SplitBill.vue&#39;;
+import Calendar from &#39;./components/Calendar.vue&#39;;
+import WeatherQuery from &#39;./components/WeatherQuery.vue&#39;;
+import CountryInfo from &#39;./components/CountryInfo.vue&#39;;
+
+Vue.use(Router);
+
+export default new Router({
+  routes: [
+    { path: &#39;/&#39;, component: Stopwatch },
+    { path: &#39;/stopwatch&#39;, component: Stopwatch },
+    { path: &#39;/splitbill&#39;, component: SplitBill },
+    { path: &#39;/calendar&#39;, component: Calendar },
+    { path: &#39;/weather&#39;, component: WeatherQuery },
+    { path: &#39;/countryinfo&#39;, component: CountryInfo },
+  ]
+});
+</code></pre>
+</li>
+</ul>
+<h3 id="4-設置主應用入口"><a href="#4-設置主應用入口" class="headerlink" title="4. 設置主應用入口"></a>4. <strong>設置主應用入口</strong></h3><ul>
+<li>在 <code>App.vue</code> 中建立一個導航欄，讓使用者可以輕鬆地從一個應用跳轉到另一個應用。你可以使用 <code>router-link</code> 組件來建立導航按鈕。</li>
+<li>例如：<pre><code class="html">&lt;template&gt;
+  &lt;div id=&quot;app&quot;&gt;
+    &lt;nav&gt;
+      &lt;router-link to=&quot;/stopwatch&quot;&gt;碼表應用程式&lt;/router-link&gt;
+      &lt;router-link to=&quot;/splitbill&quot;&gt;分帳應用程式&lt;/router-link&gt;
+      &lt;router-link to=&quot;/calendar&quot;&gt;行事曆應用程式&lt;/router-link&gt;
+      &lt;router-link to=&quot;/weather&quot;&gt;天氣查詢應用程式&lt;/router-link&gt;
+      &lt;router-link to=&quot;/countryinfo&quot;&gt;國家資訊與地圖應用程式&lt;/router-link&gt;
+    &lt;/nav&gt;
+    &lt;router-view&gt;&lt;/router-view&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+</code></pre>
+</li>
+</ul>
+<h3 id="5-撰寫各組件的功能邏輯"><a href="#5-撰寫各組件的功能邏輯" class="headerlink" title="5. 撰寫各組件的功能邏輯"></a>5. <strong>撰寫各組件的功能邏輯</strong></h3><ul>
+<li>每個應用程式組件內都會包含其特定的 JavaScript 代碼。例如：<ul>
+<li><code>Stopwatch.vue</code>：計時邏輯</li>
+<li><code>WeatherQuery.vue</code>：調用天氣 API 進行查詢</li>
+<li><code>CountryInfo.vue</code>：調用地圖 API 顯示國家資訊</li>
+</ul>
+</li>
+</ul>
+<h3 id="6-測試與調整"><a href="#6-測試與調整" class="headerlink" title="6. 測試與調整"></a>6. <strong>測試與調整</strong></h3><ul>
+<li>每個功能建立後，在 Replit 頁面上測試，確認各個應用都能正確顯示和切換。</li>
+</ul>
+<h3 id="7-部屬到-Replit-的靜態伺服器"><a href="#7-部屬到-Replit-的靜態伺服器" class="headerlink" title="7. 部屬到 Replit 的靜態伺服器"></a>7. <strong>部屬到 Replit 的靜態伺服器</strong></h3><ul>
+<li>確保 <code>.replit</code> 設定檔配置正確，並將 <code>dist</code> 資料夾作為靜態文件的根目錄來運行。</li>
+</ul>
+<p>這樣的規劃可以讓你在 Replit 上建立一個包含多種功能的 Vue.js 應用，並確保每個應用模組化、可維護性高且易於拓展。</p>
+<p>在 Vue 3 的 <code>&lt;script setup&gt;</code> 中配置路由，需要先確認是否正確安裝了 <code>vue-router</code> 並將其初始化為 Vue 應用的部分。在 Vue 3 中，應使用 <code>createRouter</code> 和 <code>createWebHistory</code> 來初始化路由器。以下是一些步驟來幫助確認路由是否正確連結到你的 <code>App.vue</code>：</p>
+<h3 id="1-確認路由配置"><a href="#1-確認路由配置" class="headerlink" title="1. 確認路由配置"></a>1. <strong>確認路由配置</strong></h3><p>   確認 <code>src/router/index.js</code> 使用 Vue 3 的方式來創建路由：</p>
+<pre><code class="javascript">// src/router/index.js
+import { createRouter, createWebHistory } from &#39;vue-router&#39;;
+import Stopwatch from &#39;../components/Stopwatch.vue&#39;;
+import SplitBill from &#39;../components/SplitBill.vue&#39;;
+import Calendar from &#39;../components/Calendar.vue&#39;;
+import WeatherQuery from &#39;../components/WeatherQuery.vue&#39;;
+import CountryInfo from &#39;../components/CountryInfo.vue&#39;;
+
+const routes = [
+  { path: &#39;/&#39;, component: Stopwatch },
+  { path: &#39;/stopwatch&#39;, component: Stopwatch },
+  { path: &#39;/splitbill&#39;, component: SplitBill },
+  { path: &#39;/calendar&#39;, component: Calendar },
+  { path: &#39;/weather&#39;, component: WeatherQuery },
+  { path: &#39;/countryinfo&#39;, component: CountryInfo },
+];
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes,
+});
+
+export default router;
+</code></pre>
+<h3 id="2-在-main-js-中導入並使用路由"><a href="#2-在-main-js-中導入並使用路由" class="headerlink" title="2. 在 main.js 中導入並使用路由"></a>2. <strong>在 main.js 中導入並使用路由</strong></h3><p>   在 <code>src/main.js</code> 中，確保使用了 <code>createApp</code> 並導入路由：</p>
+<pre><code class="javascript">import { createApp } from &#39;vue&#39;;
+import App from &#39;./App.vue&#39;;
+import router from &#39;./router&#39;;
+
+const app = createApp(App);
+app.use(router); // 把 router 加入應用
+app.mount(&#39;#app&#39;);
+</code></pre>
+<h3 id="3-檢查-App-vue-的模板"><a href="#3-檢查-App-vue-的模板" class="headerlink" title="3. 檢查 App.vue 的模板"></a>3. <strong>檢查 App.vue 的模板</strong></h3><p>   確認 <code>App.vue</code> 使用正確的 <code>&lt;router-view&gt;</code> 和 <code>&lt;router-link&gt;</code>，你的代碼已經正確無誤，但完整應用需確認路由初始化。</p>
+<h3 id="4-確認已安裝-vue-router"><a href="#4-確認已安裝-vue-router" class="headerlink" title="4. 確認已安裝 vue-router"></a>4. <strong>確認已安裝 vue-router</strong></h3><p>   在專案中，確認安裝了 <code>vue-router</code> 版本 4（適用於 Vue 3）：</p>
+<pre><code class="bash">npm install vue-router@4
+</code></pre>
+<h3 id="5-重新啟動開發伺服器"><a href="#5-重新啟動開發伺服器" class="headerlink" title="5. 重新啟動開發伺服器"></a>5. <strong>重新啟動開發伺服器</strong></h3><p>   確保在安裝或配置更改後，重啟你的開發伺服器來應用新的路由設定：</p>
+<pre><code class="bash">npm run serve
+</code></pre>
+<p>這樣應該可以在你的 <code>App.vue</code> 中正確顯示並導覽路由。</p>

@@ -1,0 +1,120 @@
+<hr>
+<h2 id="title-2024-12-10-按下建立新筆記時，-text-及-textarea-都清空date-2024-12-12-23-45-29tags-Javascript-Vue-description-2024-12-10-按下建立新筆記時，-text-及-textarea-都清空"><a href="#title-2024-12-10-按下建立新筆記時，-text-及-textarea-都清空date-2024-12-12-23-45-29tags-Javascript-Vue-description-2024-12-10-按下建立新筆記時，-text-及-textarea-都清空" class="headerlink" title="title: 2024-12-10 按下建立新筆記時， text 及 textarea 都清空date: 2024-12-12 23:45:29tags:  [Javascript,Vue]description:    2024-12-10 按下建立新筆記時， text 及 textarea 都清空"></a>title: 2024-12-10 按下建立新筆記時， text 及 textarea 都清空<br>date: 2024-12-12 23:45:29<br>tags:  [Javascript,Vue]<br>description:    2024-12-10 按下建立新筆記時， text 及 textarea 都清空</h2><h2 id="2024-12-10-按下建立新筆記時，-text-及-textarea-都清空"><a href="#2024-12-10-按下建立新筆記時，-text-及-textarea-都清空" class="headerlink" title="2024-12-10 按下建立新筆記時， text 及 textarea 都清空"></a>2024-12-10 按下建立新筆記時， text 及 textarea 都清空</h2><p>現在的問題是 <code>text</code> 和 <code>textarea</code> 使用了相同的 <code>v-model</code>，導致兩者內容同步變動。我們需要為標題 (<code>text</code> 對應的 <code>input</code>) 和筆記 (<code>textarea</code>) 分別建立獨立的 <code>ref</code>。</p>
+<p>以下是修正的程式碼：</p>
+<hr>
+<h3 id="修正程式碼"><a href="#修正程式碼" class="headerlink" title="修正程式碼"></a>修正程式碼</h3><h4 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a><strong>JavaScript</strong></h4><p>分開管理 <code>title</code>（標題）和 <code>note</code>（筆記）的值。</p>
+<pre><code class="javascript">&lt;script&gt;
+import { ref, onMounted, onUnmounted } from &#39;vue&#39;;
+import autosize from &#39;autosize&#39;;
+
+export default {
+  setup() {
+    const title = ref(&#39;&#39;); // 管理標題
+    const note = ref(&#39;&#39;); // 管理筆記
+    const textarea = ref(null); // 參考 textarea 元素
+    const isEditing = ref(false); // 控制是否可編輯
+
+    onMounted(() =&gt; {
+      if (textarea.value) {
+        autosize(textarea.value);
+      }
+    });
+
+    onUnmounted(() =&gt; {
+      if (textarea.value) {
+        autosize.destroy(textarea.value); // 確保在組件卸載時清理資源
+      }
+    });
+
+    const enableEditing = () =&gt; {
+      title.value = &#39;&#39;; // 清空標題
+      note.value = &#39;&#39;; // 清空筆記
+      isEditing.value = true; // 啟用輸入
+    };
+
+    return {
+      title,
+      note,
+      textarea,
+      isEditing,
+      enableEditing,
+    };
+  },
+};
+&lt;/script&gt;
+</code></pre>
+<hr>
+<h4 id="Template"><a href="#Template" class="headerlink" title="Template"></a><strong>Template</strong></h4><p>將標題的 <code>v-model</code> 綁定到 <code>title</code>，將筆記的 <code>v-model</code> 綁定到 <code>note</code>。</p>
+<pre><code class="html">&lt;template&gt;
+  &lt;p class=&quot;s_header&quot;&gt;Notes&lt;/p&gt;
+
+  &lt;div class=&quot;notes_container&quot;&gt;
+    &lt;div class=&quot;inputBox&quot;&gt;
+      &lt;input
+        type=&quot;text&quot;
+        v-model=&quot;title&quot;
+        required
+        spellcheck=&quot;false&quot;
+        :disabled=&quot;!isEditing&quot;
+      /&gt;
+      &lt;span class=&quot;labelline&quot;&gt;標題&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;inputBox&quot;&gt;
+      &lt;textarea
+        v-model=&quot;note&quot;
+        ref=&quot;textarea&quot;
+        spellcheck=&quot;false&quot;
+        required
+        :disabled=&quot;!isEditing&quot;
+      &gt;&lt;/textarea&gt;
+      &lt;span class=&quot;labelline&quot;&gt;筆記&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;btn-container&quot;&gt;
+      &lt;a href=&quot;#&quot; class=&quot;btn&quot; @click.prevent=&quot;enableEditing&quot;&gt;建立新筆記&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;footer&quot;&gt;筆記應用程式&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+</code></pre>
+<hr>
+<h3 id="修改點解釋"><a href="#修改點解釋" class="headerlink" title="修改點解釋"></a>修改點解釋</h3><ol>
+<li><p><strong>獨立管理的狀態</strong>：</p>
+<ul>
+<li><code>title</code> 用於綁定標題的輸入框。</li>
+<li><code>note</code> 用於綁定筆記的文字區域。</li>
+</ul>
+</li>
+<li><p><strong>按下「建立新筆記」</strong>：</p>
+<ul>
+<li><code>enableEditing</code> 方法會清空 <code>title</code> 和 <code>note</code> 的內容，並啟用輸入功能。</li>
+</ul>
+</li>
+<li><p><strong>避免連動</strong>：</p>
+<ul>
+<li>使用不同的 <code>ref</code> 變數分開管理標題和筆記的內容，解決同步變動的問題。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="行為說明"><a href="#行為說明" class="headerlink" title="行為說明"></a><strong>行為說明</strong></h3><ol>
+<li><p><strong>初始狀態</strong>：</p>
+<ul>
+<li>標題和筆記輸入框不可編輯。</li>
+<li><code>title</code> 和 <code>note</code> 的值為空。</li>
+</ul>
+</li>
+<li><p><strong>按下「建立新筆記」</strong>：</p>
+<ul>
+<li>清空 <code>title</code> 和 <code>note</code> 的內容。</li>
+<li>輸入框和文字區域切換到可編輯狀態。</li>
+</ul>
+</li>
+<li><p><strong>輸入新內容</strong>：</p>
+<ul>
+<li><code>title</code> 和 <code>note</code> 的值獨立管理，避免連動。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<p>這樣設計後，標題和筆記的內容可以獨立操作，不會再互相影響。</p>

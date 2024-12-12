@@ -1,0 +1,91 @@
+<hr>
+<h2 id="title-2024-12-09-當按下-建立新筆記-時，才可䠼入-text-及-textareadate-2024-12-12-23-44-05tags-Javascript-Vue-description-2024-12-09-當按下-建立新筆記-時，才可䠼入-text-及-textarea"><a href="#title-2024-12-09-當按下-建立新筆記-時，才可䠼入-text-及-textareadate-2024-12-12-23-44-05tags-Javascript-Vue-description-2024-12-09-當按下-建立新筆記-時，才可䠼入-text-及-textarea" class="headerlink" title="title: 2024-12-09 當按下 建立新筆記 時，才可䠼入 text 及 textareadate: 2024-12-12 23:44:05tags:  [Javascript,Vue]description:   2024-12-09 當按下 建立新筆記 時，才可䠼入 text 及 textarea"></a>title: 2024-12-09 當按下 建立新筆記 時，才可䠼入 text 及 textarea<br>date: 2024-12-12 23:44:05<br>tags:  [Javascript,Vue]<br>description:   2024-12-09 當按下 建立新筆記 時，才可䠼入 text 及 textarea</h2><h2 id="2024-12-09-當按下-建立新筆記-時，才可䠼入-text-及-textarea"><a href="#2024-12-09-當按下-建立新筆記-時，才可䠼入-text-及-textarea" class="headerlink" title="2024-12-09 當按下 建立新筆記 時，才可䠼入 text 及 textarea"></a>2024-12-09 當按下 建立新筆記 時，才可䠼入 text 及 textarea</h2><p>要實現點擊「建立新筆記」按鈕後才可輸入 <code>text</code> 和 <code>textarea</code> 的行為，可以透過 Vue.js 的條件控制來完成。例如，可以用布林變數來控制 <code>textarea</code> 和 <code>input</code> 是否禁用 (<code>disabled</code> 屬性)，直到按下按鈕後再啟用它們。</p>
+<p>以下是實現方式：</p>
+<hr>
+<h3 id="修改程式碼"><a href="#修改程式碼" class="headerlink" title="修改程式碼"></a>修改程式碼</h3><h4 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a><strong>JavaScript</strong></h4><p>新增一個 <code>isEditing</code> 狀態，初始為 <code>false</code>，按下按鈕後設為 <code>true</code>。</p>
+<pre><code class="javascript">&lt;script&gt;
+import { ref, onMounted, onUnmounted } from &#39;vue&#39;;
+import autosize from &#39;autosize&#39;;
+
+export default {
+  setup() {
+    const text = ref(null); // 初始值為 null
+    const textarea = ref(null);
+    const isEditing = ref(false); // 控制是否可以輸入
+
+    onMounted(() =&gt; {
+      if (textarea.value) {
+        autosize(textarea.value);
+      }
+    });
+
+    onUnmounted(() =&gt; {
+      if (textarea.value) {
+        autosize.destroy(textarea.value); // 確保在組件卸載時清理資源
+      }
+    });
+
+    const enableEditing = () =&gt; {
+      isEditing.value = true; // 按下按鈕後啟用輸入
+    };
+
+    return {
+      text,
+      textarea,
+      isEditing,
+      enableEditing,
+    };
+  },
+};
+&lt;/script&gt;
+</code></pre>
+<hr>
+<h4 id="Template"><a href="#Template" class="headerlink" title="Template"></a><strong>Template</strong></h4><p>根據 <code>isEditing</code> 狀態，切換 <code>input</code> 和 <code>textarea</code> 的 <code>disabled</code> 屬性。</p>
+<pre><code class="html">&lt;template&gt;
+  &lt;p class=&quot;s_header&quot;&gt;Notes&lt;/p&gt;
+
+  &lt;div class=&quot;notes_container&quot;&gt;
+    &lt;div class=&quot;inputBox&quot;&gt;
+      &lt;input
+        type=&quot;text&quot;
+        required
+        spellcheck=&quot;false&quot;
+        :disabled=&quot;!isEditing&quot;
+      /&gt;
+      &lt;span class=&quot;labelline&quot;&gt;標題&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;inputBox&quot;&gt;
+      &lt;textarea
+        v-model=&quot;text&quot;
+        ref=&quot;textarea&quot;
+        spellcheck=&quot;false&quot;
+        required
+        :disabled=&quot;!isEditing&quot;
+      &gt;&lt;/textarea&gt;
+      &lt;span class=&quot;labelline&quot;&gt;筆記&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;btn-container&quot;&gt;
+      &lt;a href=&quot;#&quot; class=&quot;btn&quot; @click.prevent=&quot;enableEditing&quot;&gt;建立新筆記&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;footer&quot;&gt;筆記應用程式&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+</code></pre>
+<hr>
+<h4 id="行為說明"><a href="#行為說明" class="headerlink" title="行為說明"></a><strong>行為說明</strong></h4><ol>
+<li><strong>初始狀態</strong>：<ul>
+<li><code>isEditing</code> 為 <code>false</code>，<code>input</code> 和 <code>textarea</code> 加上 <code>disabled</code> 屬性，無法輸入。</li>
+</ul>
+</li>
+<li><strong>按下「建立新筆記」按鈕</strong>：<ul>
+<li>呼叫 <code>enableEditing</code> 方法，將 <code>isEditing</code> 設為 <code>true</code>。</li>
+<li>移除 <code>disabled</code> 屬性，允許輸入。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a><strong>效果</strong></h3><ul>
+<li>畫面載入時，<code>input</code> 和 <code>textarea</code> 是不可編輯的。</li>
+<li>點擊「建立新筆記」按鈕後，<code>input</code> 和 <code>textarea</code> 變為可編輯。</li>
+</ul>

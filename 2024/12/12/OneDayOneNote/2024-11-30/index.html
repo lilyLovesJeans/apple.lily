@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2024-11-30 利用 replit 寫一個 Vue專案，但裡面會包含多個不同程式功能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024-11-30 利用 replit 寫一個 Vue專案，但裡面會包含多個不同程式功能">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2024/12/12/OneDayOneNote/2024-11-30/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2024-11-30 利用 replit 寫一個 Vue專案，但裡面會包含多個不同程式功能">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2024-12-12T15:01:26.000Z">
+<meta property="article:modified_time" content="2024-12-12T15:10:44.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2024/12/12/OneDayOneNote/2024-11-30/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2024/12/12/OneDayOneNote/2024-11-30/","path":"2024/12/12/OneDayOneNote/2024-11-30/","title":"2024-11-30 利用 replit 寫一個 Vue專案，但裡面會包含多個不同程式功能"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2024-11-30 利用 replit 寫一個 Vue專案，但裡面會包含多個不同程式功能 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2024-11-30-%E5%88%A9%E7%94%A8-replit-%E5%AF%AB%E4%B8%80%E5%80%8B-Vue%E5%B0%88%E6%A1%88%EF%BC%8C%E4%BD%86%E8%A3%A1%E9%9D%A2%E6%9C%83%E5%8C%85%E5%90%AB%E5%A4%9A%E5%80%8B%E4%B8%8D%E5%90%8C%E7%A8%8B%E5%BC%8F%E5%8A%9F%E8%83%BD"><span class="nav-number">1.</span> <span class="nav-text">2024-11-30 利用 replit 寫一個 Vue專案，但裡面會包含多個不同程式功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%88%9D%E5%A7%8B%E5%8C%96-Vue-%E5%B0%88%E6%A1%88"><span class="nav-number">1.1.</span> <span class="nav-text">1. 初始化 Vue 專案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%BB%BA%E7%AB%8B%E4%B8%8D%E5%90%8C%E7%9A%84%E6%87%89%E7%94%A8%E7%B5%84%E4%BB%B6"><span class="nav-number">1.2.</span> <span class="nav-text">2. 建立不同的應用組件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E8%A8%AD%E5%AE%9A-Vue-%E8%B7%AF%E7%94%B1"><span class="nav-number">1.3.</span> <span class="nav-text">3. 設定 Vue 路由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E8%A8%AD%E7%BD%AE%E4%B8%BB%E6%87%89%E7%94%A8%E5%85%A5%E5%8F%A3"><span class="nav-number">1.4.</span> <span class="nav-text">4. 設置主應用入口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E6%92%B0%E5%AF%AB%E5%90%84%E7%B5%84%E4%BB%B6%E7%9A%84%E5%8A%9F%E8%83%BD%E9%82%8F%E8%BC%AF"><span class="nav-number">1.5.</span> <span class="nav-text">5. 撰寫各組件的功能邏輯</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E6%B8%AC%E8%A9%A6%E8%88%87%E8%AA%BF%E6%95%B4"><span class="nav-number">1.6.</span> <span class="nav-text">6. 測試與調整</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E9%83%A8%E5%B1%AC%E5%88%B0-Replit-%E7%9A%84%E9%9D%9C%E6%85%8B%E4%BC%BA%E6%9C%8D%E5%99%A8"><span class="nav-number">1.7.</span> <span class="nav-text">7. 部屬到 Replit 的靜態伺服器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%A2%BA%E8%AA%8D%E8%B7%AF%E7%94%B1%E9%85%8D%E7%BD%AE"><span class="nav-number">1.8.</span> <span class="nav-text">1. 確認路由配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%9C%A8-main-js-%E4%B8%AD%E5%B0%8E%E5%85%A5%E4%B8%A6%E4%BD%BF%E7%94%A8%E8%B7%AF%E7%94%B1"><span class="nav-number">1.9.</span> <span class="nav-text">2. 在 main.js 中導入並使用路由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%AA%A2%E6%9F%A5-App-vue-%E7%9A%84%E6%A8%A1%E6%9D%BF"><span class="nav-number">1.10.</span> <span class="nav-text">3. 檢查 App.vue 的模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E7%A2%BA%E8%AA%8D%E5%B7%B2%E5%AE%89%E8%A3%9D-vue-router"><span class="nav-number">1.11.</span> <span class="nav-text">4. 確認已安裝 vue-router</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E9%87%8D%E6%96%B0%E5%95%9F%E5%8B%95%E9%96%8B%E7%99%BC%E4%BC%BA%E6%9C%8D%E5%99%A8"><span class="nav-number">1.12.</span> <span class="nav-text">5. 重新啟動開發伺服器</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">284</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2024/12/12/OneDayOneNote/2024-11-30/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2024-11-30 利用 replit 寫一個 Vue專案，但裡面會包含多個不同程式功能 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2024-11-30 利用 replit 寫一個 Vue專案，但裡面會包含多個不同程式功能">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2024-11-30 利用 replit 寫一個 Vue專案，但裡面會包含多個不同程式功能
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2024-12-12 23:01:26 / 修改時間：23:10:44" itemprop="dateCreated datePublished" datetime="2024-12-12T23:01:26+08:00">2024-12-12</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2024-11-30 利用 replit 寫一個 Vue專案，但裡面會包含多個不同程式功能</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2024-11-30-利用-replit-寫一個-Vue專案，但裡面會包含多個不同程式功能"><a href="#2024-11-30-利用-replit-寫一個-Vue專案，但裡面會包含多個不同程式功能" class="headerlink" title="2024-11-30 利用 replit 寫一個 Vue專案，但裡面會包含多個不同程式功能"></a>2024-11-30 利用 replit 寫一個 Vue專案，但裡面會包含多個不同程式功能</h2><p>為了在 Replit 上建立一個包含多個應用功能的 Vue.js 專案，可以將每個應用規劃為一個獨立的 Vue 組件，並整合到一個主 Vue 專案中。以下是詳細的規劃建議：</p>
+<h3 id="1-初始化-Vue-專案"><a href="#1-初始化-Vue-專案" class="headerlink" title="1. 初始化 Vue 專案"></a>1. <strong>初始化 Vue 專案</strong></h3><ul>
+<li>在 Replit 中建立一個新的 Vue.js 專案，並安裝 Vue CLI（若還沒安裝的話）。</li>
+<li>在主專案目錄下建立 <code>src</code> 目錄，用於存放應用的所有組件和功能。</li>
+</ul>
+<h3 id="2-建立不同的應用組件"><a href="#2-建立不同的應用組件" class="headerlink" title="2. 建立不同的應用組件"></a>2. <strong>建立不同的應用組件</strong></h3><ul>
+<li>在 <code>src/components</code> 目錄中，為每個應用建立一個 Vue 組件。例如：<ul>
+<li><code>Stopwatch.vue</code>：碼表應用程式</li>
+<li><code>SplitBill.vue</code>：分帳應用程式</li>
+<li><code>Calendar.vue</code>：行事曆應用程式</li>
+<li><code>WeatherQuery.vue</code>：天氣查詢應用程式</li>
+<li><code>CountryInfo.vue</code>：國家資訊與地圖應用程式</li>
+</ul>
+</li>
+<li>每個組件專注於特定功能，包含其獨立的 HTML 模板、JavaScript 邏輯和 CSS 樣式。</li>
+</ul>
+<h3 id="3-設定-Vue-路由"><a href="#3-設定-Vue-路由" class="headerlink" title="3. 設定 Vue 路由"></a>3. <strong>設定 Vue 路由</strong></h3><ul>
+<li>使用 <code>vue-router</code> 來配置每個組件的路由，讓用戶可以通過 URL 瀏覽不同應用。例如：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Vue</span> <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Router</span> <span class="keyword">from</span> <span class="string">&#x27;vue-router&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Stopwatch</span> <span class="keyword">from</span> <span class="string">&#x27;./components/Stopwatch.vue&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">SplitBill</span> <span class="keyword">from</span> <span class="string">&#x27;./components/SplitBill.vue&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Calendar</span> <span class="keyword">from</span> <span class="string">&#x27;./components/Calendar.vue&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">WeatherQuery</span> <span class="keyword">from</span> <span class="string">&#x27;./components/WeatherQuery.vue&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">CountryInfo</span> <span class="keyword">from</span> <span class="string">&#x27;./components/CountryInfo.vue&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(<span class="title class_">Router</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> <span class="title class_">Router</span>(&#123;</span><br><span class="line">  <span class="attr">routes</span>: [</span><br><span class="line">    &#123; <span class="attr">path</span>: <span class="string">&#x27;/&#x27;</span>, <span class="attr">component</span>: <span class="title class_">Stopwatch</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">path</span>: <span class="string">&#x27;/stopwatch&#x27;</span>, <span class="attr">component</span>: <span class="title class_">Stopwatch</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">path</span>: <span class="string">&#x27;/splitbill&#x27;</span>, <span class="attr">component</span>: <span class="title class_">SplitBill</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">path</span>: <span class="string">&#x27;/calendar&#x27;</span>, <span class="attr">component</span>: <span class="title class_">Calendar</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">path</span>: <span class="string">&#x27;/weather&#x27;</span>, <span class="attr">component</span>: <span class="title class_">WeatherQuery</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">path</span>: <span class="string">&#x27;/countryinfo&#x27;</span>, <span class="attr">component</span>: <span class="title class_">CountryInfo</span> &#125;,</span><br><span class="line">  ]</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="4-設置主應用入口"><a href="#4-設置主應用入口" class="headerlink" title="4. 設置主應用入口"></a>4. <strong>設置主應用入口</strong></h3><ul>
+<li>在 <code>App.vue</code> 中建立一個導航欄，讓使用者可以輕鬆地從一個應用跳轉到另一個應用。你可以使用 <code>router-link</code> 組件來建立導航按鈕。</li>
+<li>例如：<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">nav</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">&quot;/stopwatch&quot;</span>&gt;</span>碼表應用程式<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">&quot;/splitbill&quot;</span>&gt;</span>分帳應用程式<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">&quot;/calendar&quot;</span>&gt;</span>行事曆應用程式<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">&quot;/weather&quot;</span>&gt;</span>天氣查詢應用程式<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">&quot;/countryinfo&quot;</span>&gt;</span>國家資訊與地圖應用程式<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">router-view</span>&gt;</span><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="5-撰寫各組件的功能邏輯"><a href="#5-撰寫各組件的功能邏輯" class="headerlink" title="5. 撰寫各組件的功能邏輯"></a>5. <strong>撰寫各組件的功能邏輯</strong></h3><ul>
+<li>每個應用程式組件內都會包含其特定的 JavaScript 代碼。例如：<ul>
+<li><code>Stopwatch.vue</code>：計時邏輯</li>
+<li><code>WeatherQuery.vue</code>：調用天氣 API 進行查詢</li>
+<li><code>CountryInfo.vue</code>：調用地圖 API 顯示國家資訊</li>
+</ul>
+</li>
+</ul>
+<h3 id="6-測試與調整"><a href="#6-測試與調整" class="headerlink" title="6. 測試與調整"></a>6. <strong>測試與調整</strong></h3><ul>
+<li>每個功能建立後，在 Replit 頁面上測試，確認各個應用都能正確顯示和切換。</li>
+</ul>
+<h3 id="7-部屬到-Replit-的靜態伺服器"><a href="#7-部屬到-Replit-的靜態伺服器" class="headerlink" title="7. 部屬到 Replit 的靜態伺服器"></a>7. <strong>部屬到 Replit 的靜態伺服器</strong></h3><ul>
+<li>確保 <code>.replit</code> 設定檔配置正確，並將 <code>dist</code> 資料夾作為靜態文件的根目錄來運行。</li>
+</ul>
+<p>這樣的規劃可以讓你在 Replit 上建立一個包含多種功能的 Vue.js 應用，並確保每個應用模組化、可維護性高且易於拓展。</p>
+<p>在 Vue 3 的 <code>&lt;script setup&gt;</code> 中配置路由，需要先確認是否正確安裝了 <code>vue-router</code> 並將其初始化為 Vue 應用的部分。在 Vue 3 中，應使用 <code>createRouter</code> 和 <code>createWebHistory</code> 來初始化路由器。以下是一些步驟來幫助確認路由是否正確連結到你的 <code>App.vue</code>：</p>
+<h3 id="1-確認路由配置"><a href="#1-確認路由配置" class="headerlink" title="1. 確認路由配置"></a>1. <strong>確認路由配置</strong></h3><p>   確認 <code>src/router/index.js</code> 使用 Vue 3 的方式來創建路由：</p>
+   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/router/index.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; createRouter, createWebHistory &#125; <span class="keyword">from</span> <span class="string">&#x27;vue-router&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Stopwatch</span> <span class="keyword">from</span> <span class="string">&#x27;../components/Stopwatch.vue&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">SplitBill</span> <span class="keyword">from</span> <span class="string">&#x27;../components/SplitBill.vue&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Calendar</span> <span class="keyword">from</span> <span class="string">&#x27;../components/Calendar.vue&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">WeatherQuery</span> <span class="keyword">from</span> <span class="string">&#x27;../components/WeatherQuery.vue&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">CountryInfo</span> <span class="keyword">from</span> <span class="string">&#x27;../components/CountryInfo.vue&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> routes = [</span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&#x27;/&#x27;</span>, <span class="attr">component</span>: <span class="title class_">Stopwatch</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&#x27;/stopwatch&#x27;</span>, <span class="attr">component</span>: <span class="title class_">Stopwatch</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&#x27;/splitbill&#x27;</span>, <span class="attr">component</span>: <span class="title class_">SplitBill</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&#x27;/calendar&#x27;</span>, <span class="attr">component</span>: <span class="title class_">Calendar</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&#x27;/weather&#x27;</span>, <span class="attr">component</span>: <span class="title class_">WeatherQuery</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&#x27;/countryinfo&#x27;</span>, <span class="attr">component</span>: <span class="title class_">CountryInfo</span> &#125;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> router = <span class="title function_">createRouter</span>(&#123;</span><br><span class="line">  <span class="attr">history</span>: <span class="title function_">createWebHistory</span>(),</span><br><span class="line">  routes,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> router;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-在-main-js-中導入並使用路由"><a href="#2-在-main-js-中導入並使用路由" class="headerlink" title="2. 在 main.js 中導入並使用路由"></a>2. <strong>在 main.js 中導入並使用路由</strong></h3><p>   在 <code>src/main.js</code> 中，確保使用了 <code>createApp</code> 並導入路由：</p>
+   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createApp &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">App</span> <span class="keyword">from</span> <span class="string">&#x27;./App.vue&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">&#x27;./router&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="title function_">createApp</span>(<span class="title class_">App</span>);</span><br><span class="line">app.<span class="title function_">use</span>(router); <span class="comment">// 把 router 加入應用</span></span><br><span class="line">app.<span class="title function_">mount</span>(<span class="string">&#x27;#app&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-檢查-App-vue-的模板"><a href="#3-檢查-App-vue-的模板" class="headerlink" title="3. 檢查 App.vue 的模板"></a>3. <strong>檢查 App.vue 的模板</strong></h3><p>   確認 <code>App.vue</code> 使用正確的 <code>&lt;router-view&gt;</code> 和 <code>&lt;router-link&gt;</code>，你的代碼已經正確無誤，但完整應用需確認路由初始化。</p>
+<h3 id="4-確認已安裝-vue-router"><a href="#4-確認已安裝-vue-router" class="headerlink" title="4. 確認已安裝 vue-router"></a>4. <strong>確認已安裝 vue-router</strong></h3><p>   在專案中，確認安裝了 <code>vue-router</code> 版本 4（適用於 Vue 3）：</p>
+   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vue-router@4</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-重新啟動開發伺服器"><a href="#5-重新啟動開發伺服器" class="headerlink" title="5. 重新啟動開發伺服器"></a>5. <strong>重新啟動開發伺服器</strong></h3><p>   確保在安裝或配置更改後，重啟你的開發伺服器來應用新的路由設定：</p>
+   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run serve</span><br></pre></td></tr></table></figure>
+
+<p>這樣應該可以在你的 <code>App.vue</code> 中正確顯示並導覽路由。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/Javascript/" rel="tag"># Javascript</a>
+              <a href="/apple.lily/tags/Vue/" rel="tag"># Vue</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/11/29/OneDayOneNote/2024-11-29/" rel="prev" title="2024-11-29 vue 為什麼這裡的 data 用冒號 (:) 而不是函數形式">
+                  <i class="fa fa-angle-left"></i> 2024-11-29 vue 為什麼這裡的 data 用冒號 (:) 而不是函數形式
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/12/12/OneDayOneNote/2024-12-01/" rel="next" title="2024-12-01 Vue 專案中引用了一個名為 autosize 的依賴">
+                  2024-12-01 Vue 專案中引用了一個名為 autosize 的依賴 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
