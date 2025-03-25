@@ -1,0 +1,139 @@
+<hr>
+<h2 id="title-2024-12-16-在-Vue-中，props-和-emitsdate-2025-03-25-23-07-07tags-Javascript-Vue-description-2024-12-16-在-Vue-中，props-和-emits"><a href="#title-2024-12-16-在-Vue-中，props-和-emitsdate-2025-03-25-23-07-07tags-Javascript-Vue-description-2024-12-16-在-Vue-中，props-和-emits" class="headerlink" title="title: 2024-12-16 在 Vue 中，props 和 emitsdate: 2025-03-25 23:07:07tags:  [Javascript,Vue]description:  2024-12-16 在 Vue 中，props 和 emits"></a>title: 2024-12-16 在 Vue 中，props 和 emits<br>date: 2025-03-25 23:07:07<br>tags:  [Javascript,Vue]<br>description:  2024-12-16 在 Vue 中，props 和 emits</h2><h2 id="2024-12-16-在-Vue-中，props-和-emits"><a href="#2024-12-16-在-Vue-中，props-和-emits" class="headerlink" title="2024-12-16 在 Vue 中，props 和 emits"></a>2024-12-16 在 Vue 中，props 和 emits</h2><p>在 Vue 中，props 和 emits</p>
+<p>在 Vue 中，**<code>props</code> 和 <code>emits</code>** 是用來實現<strong>父子組件之間的數據傳遞</strong>的兩種核心機制，主要用於建立單向數據流和事件驅動的交互。</p>
+<hr>
+<h2 id="父子組件的架構與數據傳遞流程"><a href="#父子組件的架構與數據傳遞流程" class="headerlink" title="父子組件的架構與數據傳遞流程"></a><strong>父子組件的架構與數據傳遞流程</strong></h2><h3 id="1-父-子：使用-props"><a href="#1-父-子：使用-props" class="headerlink" title="1. 父 -&gt; 子：使用 props"></a>1. <strong>父 -&gt; 子：使用 <code>props</code></strong></h3><p>父組件可以通過 <strong><code>props</code></strong> 將數據傳遞給子組件。</p>
+<ul>
+<li><strong>機制</strong>：父組件定義數據，子組件通過 <code>props</code> 接收。</li>
+<li><strong>特性</strong>：數據是 <strong>單向的</strong>（從父到子，子不能直接修改 <code>props</code>）。</li>
+</ul>
+<h4 id="例子："><a href="#例子：" class="headerlink" title="例子："></a>例子：</h4><p><strong>父組件：SplitBill.vue</strong></p>
+<pre><code class="vue">&lt;template&gt;
+  &lt;AddExpenseModal :members=&quot;members&quot; /&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import AddExpenseModal from &#39;./AddExpenseModal.vue&#39;;
+
+export default {
+  components: { AddExpenseModal },
+  data() {
+    return {
+      members: [
+        { name: &#39;Alice&#39;, balance: 0 },
+        { name: &#39;Bob&#39;, balance: 0 },
+      ],
+    };
+  },
+};
+&lt;/script&gt;
+</code></pre>
+<p><strong>子組件：AddExpenseModal.vue</strong></p>
+<pre><code class="vue">&lt;template&gt;
+  &lt;div&gt;
+    &lt;select v-model=&quot;selectedMember&quot;&gt;
+      &lt;option v-for=&quot;member in members&quot; :key=&quot;member.name&quot; :value=&quot;member.name&quot;&gt;
+        {{ member.name }}
+      &lt;/option&gt;
+    &lt;/select&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  props: {
+    members: {
+      type: Array,
+      required: true,
+    },
+  },
+  data() {
+    return {
+      selectedMember: &#39;&#39;,
+    };
+  },
+};
+&lt;/script&gt;
+</code></pre>
+<hr>
+<h3 id="2-子-父：使用-emits"><a href="#2-子-父：使用-emits" class="headerlink" title="2. 子 -&gt; 父：使用 emits"></a>2. <strong>子 -&gt; 父：使用 <code>emits</code></strong></h3><p>子組件可以通過 <strong><code>emits</code></strong> 將事件傳遞給父組件，父組件可以監聽這些事件來接收數據或觸發響應。</p>
+<ul>
+<li><strong>機制</strong>：子組件使用 <code>$emit</code> 發送事件，父組件使用 <code>v-on</code> 或 <code>@</code> 監聽事件。</li>
+<li><strong>特性</strong>：事件是 <strong>單向的</strong>（從子到父，子不能直接改變父組件的狀態）。</li>
+</ul>
+<h4 id="例子：-1"><a href="#例子：-1" class="headerlink" title="例子："></a>例子：</h4><p><strong>子組件：AddExpenseModal.vue</strong></p>
+<pre><code class="vue">&lt;template&gt;
+  &lt;button @click=&quot;emitExpense&quot;&gt;新增支出&lt;/button&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  emits: [&#39;add-expense&#39;], // 聲明事件名稱
+  methods: {
+    emitExpense() {
+      const expense = { name: &#39;Dinner&#39;, amount: 100 };
+      this.$emit(&#39;add-expense&#39;, expense); // 發送事件給父組件
+    },
+  },
+};
+&lt;/script&gt;
+</code></pre>
+<p><strong>父組件：SplitBill.vue</strong></p>
+<pre><code class="vue">&lt;template&gt;
+  &lt;AddExpenseModal @add-expense=&quot;handleExpense&quot; /&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import AddExpenseModal from &#39;./AddExpenseModal.vue&#39;;
+
+export default {
+  components: { AddExpenseModal },
+  methods: {
+    handleExpense(expense) {
+      console.log(&#39;收到的支出:&#39;, expense); // 在此處接收子組件傳來的數據
+    },
+  },
+};
+&lt;/script&gt;
+</code></pre>
+<hr>
+<h2 id="props-與-emits-的關係與設計哲學"><a href="#props-與-emits-的關係與設計哲學" class="headerlink" title="props 與 emits 的關係與設計哲學"></a><strong><code>props</code> 與 <code>emits</code> 的關係與設計哲學</strong></h2><ol>
+<li><p><strong>單向數據流</strong>：</p>
+<ul>
+<li>Vue 遵循「數據由上而下，事件由下而上」的設計。</li>
+<li>父組件用 <code>props</code> 給子組件提供數據。</li>
+<li>子組件用 <code>emits</code> 通知父組件狀態變化。</li>
+</ul>
+</li>
+<li><p><strong>分工明確</strong>：</p>
+<ul>
+<li><code>props</code> 用於傳遞靜態或基於父組件動態變化的數據。</li>
+<li><code>emits</code> 用於傳遞交互事件或通知父組件數據更新。</li>
+</ul>
+</li>
+<li><p><strong>解耦性高</strong>：</p>
+<ul>
+<li>子組件不需要直接操作父組件的數據，只需要 <code>emit</code> 事件，保持子組件的獨立性和可重用性。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="完整架構：父子數據交互示意圖"><a href="#完整架構：父子數據交互示意圖" class="headerlink" title="完整架構：父子數據交互示意圖"></a><strong>完整架構：父子數據交互示意圖</strong></h3><pre><code class="plaintext">父組件 SplitBill.vue
+  ↓ （數據傳遞）
+props：members
+  ↓
+子組件 AddExpenseModal.vue
+  ↑
+emits：add-expense
+  ↑ （事件回傳）
+</code></pre>
+<hr>
+<h3 id="3-在設計父子交互時的注意事項"><a href="#3-在設計父子交互時的注意事項" class="headerlink" title="3. 在設計父子交互時的注意事項"></a>3. <strong>在設計父子交互時的注意事項</strong></h3><ul>
+<li><p><strong>命名一致性</strong>：<br>子組件的 <code>props</code> 和 <code>emits</code> 名稱要清晰、語義化，方便父組件理解。</p>
+</li>
+<li><p><strong>避免過多的父子耦合</strong>：<br>如果父子組件的數據傳遞過於頻繁，可以考慮用 Vuex 或其他狀態管理工具。</p>
+</li>
+<li><p>**不能直接修改 <code>props</code>**：<br>子組件如需修改數據，應通過 <code>$emit</code> 通知父組件更新，不能直接更改 <code>props</code>。</p>
+</li>
+</ul>
+<hr>

@@ -1,0 +1,67 @@
+<hr>
+<h2 id="title-2024-12-15-value-default-為什麼是檔案路徑date-2025-03-25-23-03-41tags-Javascript-Vue-description-2024-12-15-value-default-為什麼是檔案路徑"><a href="#title-2024-12-15-value-default-為什麼是檔案路徑date-2025-03-25-23-03-41tags-Javascript-Vue-description-2024-12-15-value-default-為什麼是檔案路徑" class="headerlink" title="title: 2024-12-15 value.default 為什麼是檔案路徑date: 2025-03-25 23:03:41tags:  [Javascript,Vue]description:   2024-12-15 value.default 為什麼是檔案路徑"></a>title: 2024-12-15 value.default 為什麼是檔案路徑<br>date: 2025-03-25 23:03:41<br>tags:  [Javascript,Vue]<br>description:   2024-12-15 value.default 為什麼是檔案路徑</h2><h2 id="2024-12-15-value-default-為什麼是檔案路徑"><a href="#2024-12-15-value-default-為什麼是檔案路徑" class="headerlink" title="2024-12-15 value.default 為什麼是檔案路徑"></a>2024-12-15 value.default 為什麼是檔案路徑</h2><p>value.default 為什麼是檔案路徑?</p>
+<p><code>value.default</code> 是檔案路徑，這是因為 <strong>Vite 的 <code>import.meta.glob</code> 特性</strong>會將匹配到的靜態資源檔案進行處理，返回一個包含檔案相關資訊的物件。以下是詳細說明：</p>
+<hr>
+<h3 id="1-import-meta-glob-如何工作？"><a href="#1-import-meta-glob-如何工作？" class="headerlink" title="1. import.meta.glob 如何工作？"></a><strong>1. <code>import.meta.glob</code> 如何工作？</strong></h3><ul>
+<li><code>import.meta.glob</code> 是 Vite 提供的一個方法，用於動態引入一組檔案。</li>
+<li>它會返回一個物件，其中：<ul>
+<li><strong>Key</strong> 是檔案的相對路徑（以你的程式碼為例，像 <code>./SplitBill_images/Electricity.png</code>）。</li>
+<li><strong>Value</strong> 是一個模組的物件，當設定 <code>{ eager: true }</code> 時，它會直接載入檔案，並將該檔案的內容作為值。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="2-value-default-的來源"><a href="#2-value-default-的來源" class="headerlink" title="2. value.default 的來源"></a><strong>2. <code>value.default</code> 的來源</strong></h3><p>當使用 <code>{ eager: true }</code> 時，Vite 會預先處理每個檔案並返回類似的模組物件。例如：</p>
+<pre><code class="javascript">{
+  &#39;./SplitBill_images/Electricity.png&#39;: {
+    default: &#39;/assets/Electricity.abc123.png&#39; // 處理後的靜態資源路徑
+  },
+  &#39;./SplitBill_images/gas.png&#39;: {
+    default: &#39;/assets/gas.def456.png&#39;
+  }
+}
+</code></pre>
+<p><code>value.default</code> 其實就是該檔案經過 Vite 編譯後的靜態資源 URL，它指向檔案在最終打包後的位置。</p>
+<hr>
+<h3 id="3-為什麼-default-是檔案路徑？"><a href="#3-為什麼-default-是檔案路徑？" class="headerlink" title="3. 為什麼 default 是檔案路徑？"></a><strong>3. 為什麼 <code>default</code> 是檔案路徑？</strong></h3><ul>
+<li>Vite 內部會處理靜態資源檔案（如 <code>.png</code>、<code>.jpg</code>），並根據配置（如 <code>assetsDir</code>）將它們移到 <code>assets</code> 目錄。</li>
+<li>然後，Vite 會為每個檔案生成唯一的 URL，並將它映射到模組的 <code>default</code> 屬性。</li>
+</ul>
+<hr>
+<h3 id="4-使用範例"><a href="#4-使用範例" class="headerlink" title="4. 使用範例"></a><strong>4. 使用範例</strong></h3><p>假設檔案結構如下：</p>
+<pre><code>/src/SplitBill_images/Electricity.png
+/src/SplitBill_images/gas.png
+</code></pre>
+<p>當你執行以下程式碼：</p>
+<pre><code class="javascript">const allImages = import.meta.glob(&#39;./SplitBill_images/*.png&#39;, { eager: true });
+console.log(allImages);
+</code></pre>
+<p>輸出會是：</p>
+<pre><code class="javascript">{
+  &#39;./SplitBill_images/Electricity.png&#39;: { default: &#39;/assets/Electricity.abc123.png&#39; },
+  &#39;./SplitBill_images/gas.png&#39;: { default: &#39;/assets/gas.def456.png&#39; }
+}
+</code></pre>
+<hr>
+<h3 id="5-value-default-的用途"><a href="#5-value-default-的用途" class="headerlink" title="5. value.default 的用途"></a><strong>5. <code>value.default</code> 的用途</strong></h3><ul>
+<li><code>value.default</code> 是檔案在網頁中的實際路徑，可以直接用作 <code>&lt;img&gt;</code> 的 <code>src</code> 屬性。</li>
+<li>當你要動態加載圖片時，它是非常方便的。</li>
+</ul>
+<p>例如：</p>
+<pre><code class="javascript">const images = {};
+for (const [key, value] of Object.entries(allImages)) {
+  const fileName = key.replace(&#39;./SplitBill_images/&#39;, &#39;&#39;).replace(&#39;.png&#39;, &#39;&#39;);
+  images[fileName] = value.default;
+}
+
+console.log(images);
+// 結果：
+/*
+{
+  Electricity: &#39;/assets/Electricity.abc123.png&#39;,
+  gas: &#39;/assets/gas.def456.png&#39;
+}
+*/
+</code></pre>
+<hr>
+<h3 id="結論"><a href="#結論" class="headerlink" title="結論"></a><strong>結論</strong></h3><p><code>value.default</code> 是檔案的實際 URL，因為 Vite 在處理 <code>import.meta.glob</code> 時會自動為每個靜態檔案生成一個唯一的 URL，並將它存放在模組的 <code>default</code> 屬性中，方便你直接使用。</p>

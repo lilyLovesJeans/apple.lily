@@ -19,15 +19,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
 
-    <meta name="description" content="2024-12-15 value.default 為什麼是檔案路徑">
+    <meta name="description" content="2024-12-16 在 Vue 中，props 和 emits">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2024-12-16 在 Vue 中，props 和 emits">
 <meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/03/25/OneDayOneNote/2024-12-16/index.html">
 <meta property="og:site_name" content="Apple.Lily 前端學習筆記">
-<meta property="og:description" content="2024-12-15 value.default 為什麼是檔案路徑">
+<meta property="og:description" content="2024-12-16 在 Vue 中，props 和 emits">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2025-03-25T15:07:07.000Z">
-<meta property="article:modified_time" content="2025-03-25T15:08:02.000Z">
+<meta property="article:modified_time" content="2025-03-25T15:11:45.000Z">
 <meta property="article:author" content="Apple.Lily">
 <meta property="article:tag" content="Javascript">
 <meta property="article:tag" content="Vue">
@@ -114,7 +114,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2024-12-15-value-default-%E7%82%BA%E4%BB%80%E9%BA%BC%E6%98%AF%E6%AA%94%E6%A1%88%E8%B7%AF%E5%BE%91"><span class="nav-number">1.</span> <span class="nav-text">2024-12-15 value.default 為什麼是檔案路徑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%88%B6%E5%AD%90%E7%B5%84%E4%BB%B6%E7%9A%84%E6%9E%B6%E6%A7%8B%E8%88%87%E6%95%B8%E6%93%9A%E5%82%B3%E9%81%9E%E6%B5%81%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">父子組件的架構與數據傳遞流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%88%B6-%E5%AD%90%EF%BC%9A%E4%BD%BF%E7%94%A8-props"><span class="nav-number">2.1.</span> <span class="nav-text">1. 父 -&gt; 子：使用 props</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B%E5%AD%90%EF%BC%9A"><span class="nav-number">2.1.1.</span> <span class="nav-text">例子：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%AD%90-%E7%88%B6%EF%BC%9A%E4%BD%BF%E7%94%A8-emits"><span class="nav-number">2.2.</span> <span class="nav-text">2. 子 -&gt; 父：使用 emits</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B%E5%AD%90%EF%BC%9A-1"><span class="nav-number">2.2.1.</span> <span class="nav-text">例子：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#props-%E8%88%87-emits-%E7%9A%84%E9%97%9C%E4%BF%82%E8%88%87%E8%A8%AD%E8%A8%88%E5%93%B2%E5%AD%B8"><span class="nav-number">3.</span> <span class="nav-text">props 與 emits 的關係與設計哲學</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E6%9E%B6%E6%A7%8B%EF%BC%9A%E7%88%B6%E5%AD%90%E6%95%B8%E6%93%9A%E4%BA%A4%E4%BA%92%E7%A4%BA%E6%84%8F%E5%9C%96"><span class="nav-number">3.1.</span> <span class="nav-text">完整架構：父子數據交互示意圖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%9C%A8%E8%A8%AD%E8%A8%88%E7%88%B6%E5%AD%90%E4%BA%A4%E4%BA%92%E6%99%82%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A0%85"><span class="nav-number">3.2.</span> <span class="nav-text">3. 在設計父子交互時的注意事項</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2024-12-16-%E5%9C%A8-Vue-%E4%B8%AD%EF%BC%8Cprops-%E5%92%8C-emits"><span class="nav-number">1.</span> <span class="nav-text">2024-12-16 在 Vue 中，props 和 emits</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%88%B6%E5%AD%90%E7%B5%84%E4%BB%B6%E7%9A%84%E6%9E%B6%E6%A7%8B%E8%88%87%E6%95%B8%E6%93%9A%E5%82%B3%E9%81%9E%E6%B5%81%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">父子組件的架構與數據傳遞流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%88%B6-%E5%AD%90%EF%BC%9A%E4%BD%BF%E7%94%A8-props"><span class="nav-number">2.1.</span> <span class="nav-text">1. 父 -&gt; 子：使用 props</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B%E5%AD%90%EF%BC%9A"><span class="nav-number">2.1.1.</span> <span class="nav-text">例子：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%AD%90-%E7%88%B6%EF%BC%9A%E4%BD%BF%E7%94%A8-emits"><span class="nav-number">2.2.</span> <span class="nav-text">2. 子 -&gt; 父：使用 emits</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B%E5%AD%90%EF%BC%9A-1"><span class="nav-number">2.2.1.</span> <span class="nav-text">例子：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#props-%E8%88%87-emits-%E7%9A%84%E9%97%9C%E4%BF%82%E8%88%87%E8%A8%AD%E8%A8%88%E5%93%B2%E5%AD%B8"><span class="nav-number">3.</span> <span class="nav-text">props 與 emits 的關係與設計哲學</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E6%9E%B6%E6%A7%8B%EF%BC%9A%E7%88%B6%E5%AD%90%E6%95%B8%E6%93%9A%E4%BA%A4%E4%BA%92%E7%A4%BA%E6%84%8F%E5%9C%96"><span class="nav-number">3.1.</span> <span class="nav-text">完整架構：父子數據交互示意圖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%9C%A8%E8%A8%AD%E8%A8%88%E7%88%B6%E5%AD%90%E4%BA%A4%E4%BA%92%E6%99%82%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A0%85"><span class="nav-number">3.2.</span> <span class="nav-text">3. 在設計父子交互時的注意事項</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -129,7 +129,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/apple.lily/archives/">
-          <span class="site-state-item-count">287</span>
+          <span class="site-state-item-count">288</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -181,7 +181,7 @@
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
       <meta itemprop="name" content="2024-12-16 在 Vue 中，props 和 emits | Apple.Lily 前端學習筆記">
-      <meta itemprop="description" content="2024-12-15 value.default 為什麼是檔案路徑">
+      <meta itemprop="description" content="2024-12-16 在 Vue 中，props 和 emits">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -197,7 +197,7 @@
       <span class="post-meta-item-text">發表於</span>
       
 
-      <time title="創建時間：2025-03-25 23:07:07 / 修改時間：23:08:02" itemprop="dateCreated datePublished" datetime="2025-03-25T23:07:07+08:00">2025-03-25</time>
+      <time title="創建時間：2025-03-25 23:07:07 / 修改時間：23:11:45" itemprop="dateCreated datePublished" datetime="2025-03-25T23:07:07+08:00">2025-03-25</time>
     </span>
 
   
@@ -210,14 +210,14 @@
     </span>
 </div>
 
-            <div class="post-description">2024-12-15 value.default 為什麼是檔案路徑</div>
+            <div class="post-description">2024-12-16 在 Vue 中，props 和 emits</div>
         </div>
       </header>
 
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="2024-12-15-value-default-為什麼是檔案路徑"><a href="#2024-12-15-value-default-為什麼是檔案路徑" class="headerlink" title="2024-12-15 value.default 為什麼是檔案路徑"></a>2024-12-15 value.default 為什麼是檔案路徑</h2><p>在 Vue 中，props 和 emits</p>
+    <div class="post-body" itemprop="articleBody"><h2 id="2024-12-16-在-Vue-中，props-和-emits"><a href="#2024-12-16-在-Vue-中，props-和-emits" class="headerlink" title="2024-12-16 在 Vue 中，props 和 emits"></a>2024-12-16 在 Vue 中，props 和 emits</h2><p>在 Vue 中，props 和 emits</p>
 <p>在 Vue 中，**<code>props</code> 和 <code>emits</code>** 是用來實現<strong>父子組件之間的數據傳遞</strong>的兩種核心機制，主要用於建立單向數據流和事件驅動的交互。</p>
 <hr>
 <h2 id="父子組件的架構與數據傳遞流程"><a href="#父子組件的架構與數據傳遞流程" class="headerlink" title="父子組件的架構與數據傳遞流程"></a><strong>父子組件的架構與數據傳遞流程</strong></h2><h3 id="1-父-子：使用-props"><a href="#1-父-子：使用-props" class="headerlink" title="1. 父 -&gt; 子：使用 props"></a>1. <strong>父 -&gt; 子：使用 <code>props</code></strong></h3><p>父組件可以通過 <strong><code>props</code></strong> 將數據傳遞給子組件。</p>
@@ -299,6 +299,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/apple.lily/2025/03/25/OneDayOneNote/2024-12-17/" rel="next" title="2024-12-17 符合 props 定義的格式 是什麼格式?">
+                  2024-12-17 符合 props 定義的格式 是什麼格式? <i class="fa fa-angle-right"></i>
+                </a>
             </div>
           </div>
     </footer>

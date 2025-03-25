@@ -1,0 +1,124 @@
+<hr>
+<h2 id="title-2024-12-17-符合-props-定義的格式-是什麼格式-date-2025-03-25-23-10-23tags-Javascript-Vue-description-2024-12-17-符合-props-定義的格式-是什麼格式"><a href="#title-2024-12-17-符合-props-定義的格式-是什麼格式-date-2025-03-25-23-10-23tags-Javascript-Vue-description-2024-12-17-符合-props-定義的格式-是什麼格式" class="headerlink" title="title: 2024-12-17 符合 props 定義的格式 是什麼格式?date: 2025-03-25 23:10:23tags:  [Javascript,Vue]description:  2024-12-17 符合 props 定義的格式 是什麼格式?"></a>title: 2024-12-17 符合 props 定義的格式 是什麼格式?<br>date: 2025-03-25 23:10:23<br>tags:  [Javascript,Vue]<br>description:  2024-12-17 符合 props 定義的格式 是什麼格式?</h2><h2 id="2024-12-17-符合-props-定義的格式-是什麼格式"><a href="#2024-12-17-符合-props-定義的格式-是什麼格式" class="headerlink" title="2024-12-17 符合 props 定義的格式 是什麼格式?"></a>2024-12-17 符合 props 定義的格式 是什麼格式?</h2><p>符合 props 定義的格式 是什麼格式?</p>
+<p>在 Vue 中，**<code>props</code> 定義的格式<strong>，就是用來描述父組件需要傳給子組件的資料的</strong>形態<strong>和</strong>規則**。當你使用 <code>props</code> 時，需要遵循以下格式與規則來定義和傳遞資料。</p>
+<hr>
+<h3 id="1-基本格式"><a href="#1-基本格式" class="headerlink" title="1. 基本格式"></a><strong>1. 基本格式</strong></h3><p>在子組件的 <code>props</code> 選項中，你可以用多種方式定義接收的 <code>props</code>，從最簡單的形式到更嚴格的類型檢查。</p>
+<h4 id="1-字串陣列格式"><a href="#1-字串陣列格式" class="headerlink" title="(1) 字串陣列格式"></a><strong>(1) 字串陣列格式</strong></h4><p>如果你只想定義 <code>props</code> 的名稱而不檢查類型，可以使用字串陣列的方式：</p>
+<pre><code class="javascript">props: [&#39;title&#39;, &#39;members&#39;]
+</code></pre>
+<ul>
+<li>這代表子組件可以接收 <code>title</code> 和 <code>members</code>，但不會對它們的類型或結構進行驗證。</li>
+</ul>
+<hr>
+<h4 id="2-對象格式"><a href="#2-對象格式" class="headerlink" title="(2) 對象格式"></a><strong>(2) 對象格式</strong></h4><p>當你需要檢查類型或添加更多規則時，可以使用對象格式：</p>
+<pre><code class="javascript">props: {
+  title: String, // 必須是字串
+  members: Array, // 必須是陣列
+}
+</code></pre>
+<p>這裡的 <code>title</code> 和 <code>members</code> 都是 <code>props</code>，並且指定了它們的類型（<code>String</code> 和 <code>Array</code>）。</p>
+<hr>
+<h3 id="2-高級格式"><a href="#2-高級格式" class="headerlink" title="2. 高級格式"></a><strong>2. 高級格式</strong></h3><p>可以進一步添加更多選項，例如：是否必填、預設值、型別檢查等。</p>
+<h4 id="1-基本型別驗證"><a href="#1-基本型別驗證" class="headerlink" title="(1) 基本型別驗證"></a><strong>(1) 基本型別驗證</strong></h4><p>你可以用 Vue 提供的型別來檢查 <code>props</code> 的格式：</p>
+<pre><code class="javascript">props: {
+  title: {
+    type: String, // 期望是一個字串
+    required: true, // 父組件必須提供這個 prop
+  },
+  members: {
+    type: Array, // 期望是一個陣列
+    required: true, // 父組件必須提供
+    default: () =&gt; [], // 預設值是空陣列
+  },
+}
+</code></pre>
+<h4 id="2-多種型別驗證"><a href="#2-多種型別驗證" class="headerlink" title="(2) 多種型別驗證"></a><strong>(2) 多種型別驗證</strong></h4><p>如果一個 <code>prop</code> 可以是多種類型，可以用陣列定義：</p>
+<pre><code class="javascript">props: {
+  content: {
+    type: [String, Array], // 可以是字串或陣列
+    default: &#39;&#39;, // 預設值為空字串
+  },
+}
+</code></pre>
+<hr>
+<h3 id="3-父組件如何傳入-props"><a href="#3-父組件如何傳入-props" class="headerlink" title="3. 父組件如何傳入 props"></a><strong>3. 父組件如何傳入 props</strong></h3><p>父組件在使用子組件時，通過屬性傳遞 <code>props</code>，格式如下：</p>
+<pre><code class="html">&lt;AddExpenseModal :title=&quot;modalTitle&quot; :members=&quot;groupMembers&quot; /&gt;
+</code></pre>
+<ul>
+<li><code>:title=&quot;modalTitle&quot;</code>：傳遞父組件中的變數 <code>modalTitle</code> 作為子組件的 <code>title</code>。</li>
+<li><code>:members=&quot;groupMembers&quot;</code>：傳遞父組件中的變數 <code>groupMembers</code> 作為子組件的 <code>members</code>。</li>
+</ul>
+<p>這裡的 <code>modalTitle</code> 和 <code>groupMembers</code> 必須符合子組件 <code>props</code> 定義的格式，例如類型是正確的。</p>
+<hr>
+<h3 id="4-Vue-的型別驗證規則"><a href="#4-Vue-的型別驗證規則" class="headerlink" title="4. Vue 的型別驗證規則"></a><strong>4. Vue 的型別驗證規則</strong></h3><p>Vue 在執行時會檢查傳入的 <code>props</code> 是否符合定義，並在控制台顯示警告。如果你傳入的資料不符合定義，例如類型錯誤，會出現以下情況：</p>
+<ul>
+<li><strong>正確：</strong> 資料會正確地傳遞到子組件。</li>
+<li><strong>錯誤：</strong> Vue 會在開發模式下顯示警告，但不會阻止程式執行。</li>
+</ul>
+<p>例如：</p>
+<pre><code class="javascript">props: {
+  members: {
+    type: Array,
+    required: true,
+  },
+}
+</code></pre>
+<p>如果父組件傳入的 <code>members</code> 不是陣列，Vue 就會顯示警告：</p>
+<pre><code>[Vue warn]: Invalid prop: type check failed for prop &quot;members&quot;. Expected Array, got Object.
+</code></pre>
+<hr>
+<h3 id="5-綜合範例"><a href="#5-綜合範例" class="headerlink" title="5. 綜合範例"></a><strong>5. 綜合範例</strong></h3><p>假設我們有一個子組件 <code>AddExpenseModal.vue</code>：</p>
+<pre><code class="javascript">export default {
+  props: {
+    members: {
+      type: Array,
+      required: true,
+    },
+    title: {
+      type: String,
+      default: &#39;新增支出&#39;,
+    },
+  },
+};
+</code></pre>
+<p>父組件使用時：</p>
+<pre><code class="html">&lt;AddExpenseModal :members=&quot;groupMembers&quot; :title=&quot;&#39;新增支出表單&#39;&quot; /&gt;
+</code></pre>
+<p>傳遞的資料：</p>
+<ul>
+<li>父組件的 <code>groupMembers</code> 必須是陣列，否則會報警告。</li>
+<li>如果沒有傳 <code>title</code>，子組件會使用預設值 <code>&#39;新增支出&#39;</code>。</li>
+</ul>
+<hr>
+<h3 id="6-常見錯誤與解決方法"><a href="#6-常見錯誤與解決方法" class="headerlink" title="6. 常見錯誤與解決方法"></a><strong>6. 常見錯誤與解決方法</strong></h3><h4 id="1-傳遞類型不符"><a href="#1-傳遞類型不符" class="headerlink" title="(1) 傳遞類型不符"></a><strong>(1) 傳遞類型不符</strong></h4><pre><code class="javascript">props: {
+  members: Array,
+}
+</code></pre>
+<p>但父組件傳了字串：</p>
+<pre><code class="html">&lt;AddExpenseModal :members=&quot;&#39;這是一個字串&#39;&quot; /&gt;
+</code></pre>
+<p>會顯示警告：<code>Invalid prop: type check failed for prop &quot;members&quot;. Expected Array, got String.</code></p>
+<h4 id="2-忘記用-傳遞變數"><a href="#2-忘記用-傳遞變數" class="headerlink" title="(2) 忘記用 : 傳遞變數"></a><strong>(2) 忘記用 <code>:</code> 傳遞變數</strong></h4><p>正確：</p>
+<pre><code class="html">&lt;AddExpenseModal :members=&quot;groupMembers&quot; /&gt;
+</code></pre>
+<p>錯誤：</p>
+<pre><code class="html">&lt;AddExpenseModal members=&quot;groupMembers&quot; /&gt;
+</code></pre>
+<p>這樣會把字串 <code>&quot;groupMembers&quot;</code> 傳給 <code>members</code>，而不是變數。</p>
+<hr>
+<h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a><strong>總結</strong></h3><ol>
+<li><p><strong><code>props</code> 定義的格式</strong>：</p>
+<ul>
+<li>可以是簡單字串陣列（<code>[&#39;name&#39;, &#39;age&#39;]</code>）。</li>
+<li>可以是物件格式（包含類型和規則）。</li>
+</ul>
+</li>
+<li><p><strong>定義規則的好處</strong>：</p>
+<ul>
+<li>明確定義子組件應該接收什麼資料，讓程式碼更易於維護。</li>
+<li>自動檢查類型，減少錯誤。</li>
+</ul>
+</li>
+<li><p><strong>父組件傳遞 <code>props</code> 時需要符合定義的規範</strong>，例如類型、格式和是否必填。</p>
+</li>
+</ol>
