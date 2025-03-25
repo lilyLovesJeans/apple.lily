@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2024-12-14  規劃小型分帳系統">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024-12-14 規劃小型分帳系統">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/03/25/OneDayOneNote/2024-12-14/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2024-12-14  規劃小型分帳系統">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-03-25T14:33:00.000Z">
+<meta property="article:modified_time" content="2025-03-25T14:34:15.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2025/03/25/OneDayOneNote/2024-12-14/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2025/03/25/OneDayOneNote/2024-12-14/","path":"2025/03/25/OneDayOneNote/2024-12-14/","title":"2024-12-14 規劃小型分帳系統"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2024-12-14 規劃小型分帳系統 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2024-12-14-%E8%A6%8F%E5%8A%83%E5%B0%8F%E5%9E%8B%E5%88%86%E5%B8%B3%E7%B3%BB%E7%B5%B1"><span class="nav-number">1.</span> <span class="nav-text">2024-12-14  規劃小型分帳系統</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%A2%BA%E5%AE%9A%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD"><span class="nav-number">1.1.</span> <span class="nav-text">1. 確定基本功能</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD"><span class="nav-number">1.1.1.</span> <span class="nav-text">核心功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%AF%E9%81%B8%E5%8A%9F%E8%83%BD"><span class="nav-number">1.1.2.</span> <span class="nav-text">可選功能</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E8%A8%AD%E8%A8%88%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B"><span class="nav-number">1.2.</span> <span class="nav-text">2. 設計資料結構</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E8%A6%8F%E5%8A%83%E7%95%8C%E9%9D%A2%E7%B5%90%E6%A7%8B"><span class="nav-number">1.3.</span> <span class="nav-text">3. 規劃界面結構</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BC%B8%E5%85%A5%E5%8F%83%E8%88%87%E8%80%85"><span class="nav-number">1.3.1.</span> <span class="nav-text">輸入參與者</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A8%98%E9%8C%84%E8%B2%BB%E7%94%A8"><span class="nav-number">1.3.2.</span> <span class="nav-text">記錄費用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A1%AF%E7%A4%BA%E5%88%86%E5%B8%B3%E7%B5%90%E6%9E%9C"><span class="nav-number">1.3.3.</span> <span class="nav-text">顯示分帳結果</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E7%B7%A8%E5%AF%AB%E5%8A%9F%E8%83%BD%E4%BB%A3%E7%A2%BC"><span class="nav-number">1.4.</span> <span class="nav-text">4. 編寫功能代碼</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A8%88%E7%AE%97%E5%88%86%E5%B8%B3"><span class="nav-number">1.4.1.</span> <span class="nav-text">計算分帳</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E9%96%8B%E7%99%BC%E6%B5%81%E7%A8%8B"><span class="nav-number">1.5.</span> <span class="nav-text">5. 開發流程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E5%9F%BA%E7%A4%8E%E5%8A%9F%E8%83%BD"><span class="nav-number">1.5.1.</span> <span class="nav-text">第一步：基礎功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E6%94%B9%E5%96%84%E7%94%A8%E6%88%B6%E9%AB%94%E9%A9%97"><span class="nav-number">1.5.2.</span> <span class="nav-text">第二步：改善用戶體驗</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E6%93%B4%E5%B1%95%E5%8A%9F%E8%83%BD"><span class="nav-number">1.5.3.</span> <span class="nav-text">第三步：擴展功能</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E7%AF%84%E4%BE%8B%E7%95%8C%E9%9D%A2%E8%A8%AD%E8%A8%88"><span class="nav-number">1.6.</span> <span class="nav-text">6. 範例界面設計</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A6%8F%E5%8A%83%E7%B8%BD%E7%B5%90"><span class="nav-number">1.7.</span> <span class="nav-text">規劃總結</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">285</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2025/03/25/OneDayOneNote/2024-12-14/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2024-12-14 規劃小型分帳系統 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2024-12-14  規劃小型分帳系統">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2024-12-14 規劃小型分帳系統
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2025-03-25 22:33:00 / 修改時間：22:34:15" itemprop="dateCreated datePublished" datetime="2025-03-25T22:33:00+08:00">2025-03-25</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2024-12-14  規劃小型分帳系統</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2024-12-14-規劃小型分帳系統"><a href="#2024-12-14-規劃小型分帳系統" class="headerlink" title="2024-12-14  規劃小型分帳系統"></a>2024-12-14  規劃小型分帳系統</h2><p>寫一個小型分帳系統可以從以下幾個步驟來規劃，並根據需求漸進式完善功能。</p>
+<hr>
+<h3 id="1-確定基本功能"><a href="#1-確定基本功能" class="headerlink" title="1. 確定基本功能"></a><strong>1. 確定基本功能</strong></h3><h4 id="核心功能"><a href="#核心功能" class="headerlink" title="核心功能"></a>核心功能</h4><ul>
+<li><strong>輸入參與者</strong>：能夠新增或移除分帳的成員。</li>
+<li><strong>輸入費用</strong>：記錄每筆消費，包括金額、支付者、參與者等。</li>
+<li><strong>計算分帳結果</strong>：自動計算每人應該支付或收到的金額。</li>
+</ul>
+<h4 id="可選功能"><a href="#可選功能" class="headerlink" title="可選功能"></a>可選功能</h4><ul>
+<li><strong>分類費用</strong>：按餐飲、交通等分類。</li>
+<li><strong>保存數據</strong>：利用 LocalStorage 保存分帳記錄。</li>
+<li><strong>導出數據</strong>：生成分帳明細的 CSV 或 PDF。</li>
+</ul>
+<hr>
+<h3 id="2-設計資料結構"><a href="#2-設計資料結構" class="headerlink" title="2. 設計資料結構"></a><strong>2. 設計資料結構</strong></h3><p>使用響應式資料結構以便在 Vue 中更新視圖：</p>
+<ul>
+<li><strong>參與者清單</strong>：<code>participants</code>，存儲所有參與者的名稱。</li>
+<li><strong>費用列表</strong>：<code>expenses</code>，存儲每筆費用的詳細信息。</li>
+</ul>
+<p>範例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> participants = <span class="title function_">ref</span>([]); <span class="comment">// [&quot;Alice&quot;, &quot;Bob&quot;, &quot;Charlie&quot;]</span></span><br><span class="line"><span class="keyword">const</span> expenses = <span class="title function_">ref</span>([</span><br><span class="line">  &#123; <span class="attr">id</span>: <span class="number">1</span>, <span class="attr">description</span>: <span class="string">&quot;Dinner&quot;</span>, <span class="attr">amount</span>: <span class="number">300</span>, <span class="attr">payer</span>: <span class="string">&quot;Alice&quot;</span>, <span class="attr">participants</span>: [<span class="string">&quot;Alice&quot;</span>, <span class="string">&quot;Bob&quot;</span>] &#125;,</span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="3-規劃界面結構"><a href="#3-規劃界面結構" class="headerlink" title="3. 規劃界面結構"></a><strong>3. 規劃界面結構</strong></h3><p>用簡單的 Vue 模板實現以下功能區域：</p>
+<h4 id="輸入參與者"><a href="#輸入參與者" class="headerlink" title="輸入參與者"></a><strong>輸入參與者</strong></h4><ul>
+<li><strong>功能</strong>：新增&#x2F;移除分帳成員。</li>
+<li><strong>界面</strong>：<ul>
+<li>文本框輸入成員姓名。</li>
+<li>按鈕「新增成員」和「移除成員」。</li>
+</ul>
+</li>
+</ul>
+<h4 id="記錄費用"><a href="#記錄費用" class="headerlink" title="記錄費用"></a><strong>記錄費用</strong></h4><ul>
+<li><strong>功能</strong>：輸入費用及相關信息。</li>
+<li><strong>界面</strong>：<ul>
+<li>文本框輸入費用描述和金額。</li>
+<li>下拉選擇支付者。</li>
+<li>勾選參與分帳的成員。</li>
+<li>按鈕「新增費用」。</li>
+</ul>
+</li>
+</ul>
+<h4 id="顯示分帳結果"><a href="#顯示分帳結果" class="headerlink" title="顯示分帳結果"></a><strong>顯示分帳結果</strong></h4><ul>
+<li><strong>功能</strong>：自動計算每人應支付或收到的金額。</li>
+<li><strong>界面</strong>：<ul>
+<li>表格列出所有費用。</li>
+<li>表格列出每個人應付&#x2F;應收。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="4-編寫功能代碼"><a href="#4-編寫功能代碼" class="headerlink" title="4. 編寫功能代碼"></a><strong>4. 編寫功能代碼</strong></h3><h4 id="計算分帳"><a href="#計算分帳" class="headerlink" title="計算分帳"></a><strong>計算分帳</strong></h4><p>實現核心邏輯：</p>
+<ul>
+<li>總費用平分，計算每人應分攤金額。</li>
+<li>比較實際支付與應支付，計算每人需付或收的金額。</li>
+</ul>
+<p>範例邏輯：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">calculateBalances</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> balances = &#123;&#125;; <span class="comment">// &#123;&quot;Alice&quot;: 50, &quot;Bob&quot;: -25, &quot;Charlie&quot;: -25&#125;</span></span><br><span class="line">  participants.<span class="property">value</span>.<span class="title function_">forEach</span>(<span class="function"><span class="params">person</span> =&gt;</span> balances[person] = <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">  expenses.<span class="property">value</span>.<span class="title function_">forEach</span>(<span class="function"><span class="params">expense</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> share = expense.<span class="property">amount</span> / expense.<span class="property">participants</span>.<span class="property">length</span>;</span><br><span class="line">    expense.<span class="property">participants</span>.<span class="title function_">forEach</span>(<span class="function"><span class="params">person</span> =&gt;</span> balances[person] -= share);</span><br><span class="line">    balances[expense.<span class="property">payer</span>] += expense.<span class="property">amount</span>;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> balances;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="5-開發流程"><a href="#5-開發流程" class="headerlink" title="5. 開發流程"></a><strong>5. 開發流程</strong></h3><h4 id="第一步：基礎功能"><a href="#第一步：基礎功能" class="headerlink" title="第一步：基礎功能"></a>第一步：基礎功能</h4><ul>
+<li>實現新增成員、記錄費用、計算結果的功能。</li>
+<li>使用 Vue 的 <code>v-for</code> 渲染清單和表格。</li>
+</ul>
+<h4 id="第二步：改善用戶體驗"><a href="#第二步：改善用戶體驗" class="headerlink" title="第二步：改善用戶體驗"></a>第二步：改善用戶體驗</h4><ul>
+<li>驗證輸入資料（如金額為正數，至少選擇一名參與者）。</li>
+<li>加入樣式和交互設計。</li>
+</ul>
+<h4 id="第三步：擴展功能"><a href="#第三步：擴展功能" class="headerlink" title="第三步：擴展功能"></a>第三步：擴展功能</h4><ul>
+<li>增加費用分類。</li>
+<li>保存到 LocalStorage，支持重新加載。</li>
+</ul>
+<hr>
+<h3 id="6-範例界面設計"><a href="#6-範例界面設計" class="headerlink" title="6. 範例界面設計"></a><strong>6. 範例界面設計</strong></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;h1&gt;小型分帳系統&lt;/h1&gt;</span><br><span class="line">    &lt;!-- 輸入參與者 --&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h2&gt;參與者&lt;/h2&gt;</span><br><span class="line">      &lt;input v-model=&quot;newParticipant&quot; placeholder=&quot;輸入成員名稱&quot; /&gt;</span><br><span class="line">      &lt;button @click=&quot;addParticipant&quot;&gt;新增&lt;/button&gt;</span><br><span class="line">      &lt;ul&gt;</span><br><span class="line">        &lt;li v-for=&quot;person in participants&quot; :key=&quot;person&quot;&gt;</span><br><span class="line">          &#123;&#123; person &#125;&#125; &lt;button @click=&quot;removeParticipant(person)&quot;&gt;移除&lt;/button&gt;</span><br><span class="line">        &lt;/li&gt;</span><br><span class="line">      &lt;/ul&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 記錄費用 --&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h2&gt;新增費用&lt;/h2&gt;</span><br><span class="line">      &lt;input v-model=&quot;newExpense.description&quot; placeholder=&quot;描述&quot; /&gt;</span><br><span class="line">      &lt;input v-model.number=&quot;newExpense.amount&quot; type=&quot;number&quot; placeholder=&quot;金額&quot; /&gt;</span><br><span class="line">      &lt;select v-model=&quot;newExpense.payer&quot;&gt;</span><br><span class="line">        &lt;option v-for=&quot;person in participants&quot; :key=&quot;person&quot; :value=&quot;person&quot;&gt;&#123;&#123; person &#125;&#125;&lt;/option&gt;</span><br><span class="line">      &lt;/select&gt;</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;label v-for=&quot;person in participants&quot; :key=&quot;person&quot;&gt;</span><br><span class="line">          &lt;input type=&quot;checkbox&quot; :value=&quot;person&quot; v-model=&quot;newExpense.participants&quot; /&gt;</span><br><span class="line">          &#123;&#123; person &#125;&#125;</span><br><span class="line">        &lt;/label&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">      &lt;button @click=&quot;addExpense&quot;&gt;記錄費用&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 顯示分帳結果 --&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h2&gt;結果&lt;/h2&gt;</span><br><span class="line">      &lt;ul&gt;</span><br><span class="line">        &lt;li v-for=&quot;(balance, person) in balances&quot; :key=&quot;person&quot;&gt;</span><br><span class="line">          &#123;&#123; person &#125;&#125;: &#123;&#123; balance &gt; 0 ? `應收 $&#123;balance&#125;` : `應付 $&#123;-balance&#125;` &#125;&#125;</span><br><span class="line">        &lt;/li&gt;</span><br><span class="line">      &lt;/ul&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import &#123; ref, computed &#125; from &quot;vue&quot;;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  setup() &#123;</span><br><span class="line">    const participants = ref([]);</span><br><span class="line">    const expenses = ref([]);</span><br><span class="line">    const newParticipant = ref(&quot;&quot;);</span><br><span class="line">    const newExpense = ref(&#123;</span><br><span class="line">      description: &quot;&quot;,</span><br><span class="line">      amount: 0,</span><br><span class="line">      payer: &quot;&quot;,</span><br><span class="line">      participants: [],</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    const addParticipant = () =&gt; &#123;</span><br><span class="line">      if (newParticipant.value &amp;&amp; !participants.value.includes(newParticipant.value)) &#123;</span><br><span class="line">        participants.value.push(newParticipant.value);</span><br><span class="line">        newParticipant.value = &quot;&quot;;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    const removeParticipant = (person) =&gt; &#123;</span><br><span class="line">      participants.value = participants.value.filter((p) =&gt; p !== person);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    const addExpense = () =&gt; &#123;</span><br><span class="line">      if (</span><br><span class="line">        newExpense.value.description &amp;&amp;</span><br><span class="line">        newExpense.value.amount &gt; 0 &amp;&amp;</span><br><span class="line">        newExpense.value.payer &amp;&amp;</span><br><span class="line">        newExpense.value.participants.length</span><br><span class="line">      ) &#123;</span><br><span class="line">        expenses.value.push(&#123; ...newExpense.value &#125;);</span><br><span class="line">        newExpense.value = &#123; description: &quot;&quot;, amount: 0, payer: &quot;&quot;, participants: [] &#125;;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    const balances = computed(() =&gt; &#123;</span><br><span class="line">      const result = &#123;&#125;;</span><br><span class="line">      participants.value.forEach((person) =&gt; (result[person] = 0));</span><br><span class="line">      expenses.value.forEach((expense) =&gt; &#123;</span><br><span class="line">        const share = expense.amount / expense.participants.length;</span><br><span class="line">        expense.participants.forEach((person) =&gt; (result[person] -= share));</span><br><span class="line">        result[expense.payer] += expense.amount;</span><br><span class="line">      &#125;);</span><br><span class="line">      return result;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    return &#123;</span><br><span class="line">      participants,</span><br><span class="line">      expenses,</span><br><span class="line">      newParticipant,</span><br><span class="line">      newExpense,</span><br><span class="line">      addParticipant,</span><br><span class="line">      removeParticipant,</span><br><span class="line">      addExpense,</span><br><span class="line">      balances,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="規劃總結"><a href="#規劃總結" class="headerlink" title="規劃總結"></a><strong>規劃總結</strong></h3><ol>
+<li>從簡單功能開始，逐步擴展。</li>
+<li>資料結構應清晰且易於維護。</li>
+<li>重點實現計算邏輯，並驗證準確性。</li>
+<li>添加持久化（LocalStorage）以提升用戶體驗。</li>
+</ol>
+<p>記帳功能說明：<br>新增一筆記帳，點選圖片，帶入名稱，填入金額，及付款人，付款人可以多個.</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/Javascript/" rel="tag"># Javascript</a>
+              <a href="/apple.lily/tags/Vue/" rel="tag"># Vue</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2024/12/12/OneDayOneNote/2024-12-13/" rel="prev" title="2024-12-13  @input=updateNote 這是什麼意思??">
+                  <i class="fa fa-angle-left"></i> 2024-12-13  @input=updateNote 這是什麼意思??
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

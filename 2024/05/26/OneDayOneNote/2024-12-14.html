@@ -1,0 +1,202 @@
+<hr>
+<h2 id="title-2024-12-14-規劃小型分帳系統date-2025-03-25-22-33-00tags-Javascript-Vue-description-2024-12-14-規劃小型分帳系統"><a href="#title-2024-12-14-規劃小型分帳系統date-2025-03-25-22-33-00tags-Javascript-Vue-description-2024-12-14-規劃小型分帳系統" class="headerlink" title="title: 2024-12-14 規劃小型分帳系統date: 2025-03-25 22:33:00tags:  [Javascript,Vue]description:   2024-12-14  規劃小型分帳系統"></a>title: 2024-12-14 規劃小型分帳系統<br>date: 2025-03-25 22:33:00<br>tags:  [Javascript,Vue]<br>description:   2024-12-14  規劃小型分帳系統</h2><h2 id="2024-12-14-規劃小型分帳系統"><a href="#2024-12-14-規劃小型分帳系統" class="headerlink" title="2024-12-14  規劃小型分帳系統"></a>2024-12-14  規劃小型分帳系統</h2><p>寫一個小型分帳系統可以從以下幾個步驟來規劃，並根據需求漸進式完善功能。</p>
+<hr>
+<h3 id="1-確定基本功能"><a href="#1-確定基本功能" class="headerlink" title="1. 確定基本功能"></a><strong>1. 確定基本功能</strong></h3><h4 id="核心功能"><a href="#核心功能" class="headerlink" title="核心功能"></a>核心功能</h4><ul>
+<li><strong>輸入參與者</strong>：能夠新增或移除分帳的成員。</li>
+<li><strong>輸入費用</strong>：記錄每筆消費，包括金額、支付者、參與者等。</li>
+<li><strong>計算分帳結果</strong>：自動計算每人應該支付或收到的金額。</li>
+</ul>
+<h4 id="可選功能"><a href="#可選功能" class="headerlink" title="可選功能"></a>可選功能</h4><ul>
+<li><strong>分類費用</strong>：按餐飲、交通等分類。</li>
+<li><strong>保存數據</strong>：利用 LocalStorage 保存分帳記錄。</li>
+<li><strong>導出數據</strong>：生成分帳明細的 CSV 或 PDF。</li>
+</ul>
+<hr>
+<h3 id="2-設計資料結構"><a href="#2-設計資料結構" class="headerlink" title="2. 設計資料結構"></a><strong>2. 設計資料結構</strong></h3><p>使用響應式資料結構以便在 Vue 中更新視圖：</p>
+<ul>
+<li><strong>參與者清單</strong>：<code>participants</code>，存儲所有參與者的名稱。</li>
+<li><strong>費用列表</strong>：<code>expenses</code>，存儲每筆費用的詳細信息。</li>
+</ul>
+<p>範例：</p>
+<pre><code class="javascript">const participants = ref([]); // [&quot;Alice&quot;, &quot;Bob&quot;, &quot;Charlie&quot;]
+const expenses = ref([
+  { id: 1, description: &quot;Dinner&quot;, amount: 300, payer: &quot;Alice&quot;, participants: [&quot;Alice&quot;, &quot;Bob&quot;] },
+]);
+</code></pre>
+<hr>
+<h3 id="3-規劃界面結構"><a href="#3-規劃界面結構" class="headerlink" title="3. 規劃界面結構"></a><strong>3. 規劃界面結構</strong></h3><p>用簡單的 Vue 模板實現以下功能區域：</p>
+<h4 id="輸入參與者"><a href="#輸入參與者" class="headerlink" title="輸入參與者"></a><strong>輸入參與者</strong></h4><ul>
+<li><strong>功能</strong>：新增&#x2F;移除分帳成員。</li>
+<li><strong>界面</strong>：<ul>
+<li>文本框輸入成員姓名。</li>
+<li>按鈕「新增成員」和「移除成員」。</li>
+</ul>
+</li>
+</ul>
+<h4 id="記錄費用"><a href="#記錄費用" class="headerlink" title="記錄費用"></a><strong>記錄費用</strong></h4><ul>
+<li><strong>功能</strong>：輸入費用及相關信息。</li>
+<li><strong>界面</strong>：<ul>
+<li>文本框輸入費用描述和金額。</li>
+<li>下拉選擇支付者。</li>
+<li>勾選參與分帳的成員。</li>
+<li>按鈕「新增費用」。</li>
+</ul>
+</li>
+</ul>
+<h4 id="顯示分帳結果"><a href="#顯示分帳結果" class="headerlink" title="顯示分帳結果"></a><strong>顯示分帳結果</strong></h4><ul>
+<li><strong>功能</strong>：自動計算每人應支付或收到的金額。</li>
+<li><strong>界面</strong>：<ul>
+<li>表格列出所有費用。</li>
+<li>表格列出每個人應付&#x2F;應收。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="4-編寫功能代碼"><a href="#4-編寫功能代碼" class="headerlink" title="4. 編寫功能代碼"></a><strong>4. 編寫功能代碼</strong></h3><h4 id="計算分帳"><a href="#計算分帳" class="headerlink" title="計算分帳"></a><strong>計算分帳</strong></h4><p>實現核心邏輯：</p>
+<ul>
+<li>總費用平分，計算每人應分攤金額。</li>
+<li>比較實際支付與應支付，計算每人需付或收的金額。</li>
+</ul>
+<p>範例邏輯：</p>
+<pre><code class="javascript">const calculateBalances = () =&gt; {
+  const balances = {}; // {&quot;Alice&quot;: 50, &quot;Bob&quot;: -25, &quot;Charlie&quot;: -25}
+  participants.value.forEach(person =&gt; balances[person] = 0);
+
+  expenses.value.forEach(expense =&gt; {
+    const share = expense.amount / expense.participants.length;
+    expense.participants.forEach(person =&gt; balances[person] -= share);
+    balances[expense.payer] += expense.amount;
+  });
+
+  return balances;
+};
+</code></pre>
+<hr>
+<h3 id="5-開發流程"><a href="#5-開發流程" class="headerlink" title="5. 開發流程"></a><strong>5. 開發流程</strong></h3><h4 id="第一步：基礎功能"><a href="#第一步：基礎功能" class="headerlink" title="第一步：基礎功能"></a>第一步：基礎功能</h4><ul>
+<li>實現新增成員、記錄費用、計算結果的功能。</li>
+<li>使用 Vue 的 <code>v-for</code> 渲染清單和表格。</li>
+</ul>
+<h4 id="第二步：改善用戶體驗"><a href="#第二步：改善用戶體驗" class="headerlink" title="第二步：改善用戶體驗"></a>第二步：改善用戶體驗</h4><ul>
+<li>驗證輸入資料（如金額為正數，至少選擇一名參與者）。</li>
+<li>加入樣式和交互設計。</li>
+</ul>
+<h4 id="第三步：擴展功能"><a href="#第三步：擴展功能" class="headerlink" title="第三步：擴展功能"></a>第三步：擴展功能</h4><ul>
+<li>增加費用分類。</li>
+<li>保存到 LocalStorage，支持重新加載。</li>
+</ul>
+<hr>
+<h3 id="6-範例界面設計"><a href="#6-範例界面設計" class="headerlink" title="6. 範例界面設計"></a><strong>6. 範例界面設計</strong></h3><pre><code class="vue">&lt;template&gt;
+  &lt;div&gt;
+    &lt;h1&gt;小型分帳系統&lt;/h1&gt;
+    &lt;!-- 輸入參與者 --&gt;
+    &lt;div&gt;
+      &lt;h2&gt;參與者&lt;/h2&gt;
+      &lt;input v-model=&quot;newParticipant&quot; placeholder=&quot;輸入成員名稱&quot; /&gt;
+      &lt;button @click=&quot;addParticipant&quot;&gt;新增&lt;/button&gt;
+      &lt;ul&gt;
+        &lt;li v-for=&quot;person in participants&quot; :key=&quot;person&quot;&gt;
+          {{ person }} &lt;button @click=&quot;removeParticipant(person)&quot;&gt;移除&lt;/button&gt;
+        &lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+
+    &lt;!-- 記錄費用 --&gt;
+    &lt;div&gt;
+      &lt;h2&gt;新增費用&lt;/h2&gt;
+      &lt;input v-model=&quot;newExpense.description&quot; placeholder=&quot;描述&quot; /&gt;
+      &lt;input v-model.number=&quot;newExpense.amount&quot; type=&quot;number&quot; placeholder=&quot;金額&quot; /&gt;
+      &lt;select v-model=&quot;newExpense.payer&quot;&gt;
+        &lt;option v-for=&quot;person in participants&quot; :key=&quot;person&quot; :value=&quot;person&quot;&gt;{{ person }}&lt;/option&gt;
+      &lt;/select&gt;
+      &lt;div&gt;
+        &lt;label v-for=&quot;person in participants&quot; :key=&quot;person&quot;&gt;
+          &lt;input type=&quot;checkbox&quot; :value=&quot;person&quot; v-model=&quot;newExpense.participants&quot; /&gt;
+          {{ person }}
+        &lt;/label&gt;
+      &lt;/div&gt;
+      &lt;button @click=&quot;addExpense&quot;&gt;記錄費用&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;!-- 顯示分帳結果 --&gt;
+    &lt;div&gt;
+      &lt;h2&gt;結果&lt;/h2&gt;
+      &lt;ul&gt;
+        &lt;li v-for=&quot;(balance, person) in balances&quot; :key=&quot;person&quot;&gt;
+          {{ person }}: {{ balance &gt; 0 ? `應收 ${balance}` : `應付 ${-balance}` }}
+        &lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import { ref, computed } from &quot;vue&quot;;
+
+export default {
+  setup() {
+    const participants = ref([]);
+    const expenses = ref([]);
+    const newParticipant = ref(&quot;&quot;);
+    const newExpense = ref({
+      description: &quot;&quot;,
+      amount: 0,
+      payer: &quot;&quot;,
+      participants: [],
+    });
+
+    const addParticipant = () =&gt; {
+      if (newParticipant.value &amp;&amp; !participants.value.includes(newParticipant.value)) {
+        participants.value.push(newParticipant.value);
+        newParticipant.value = &quot;&quot;;
+      }
+    };
+
+    const removeParticipant = (person) =&gt; {
+      participants.value = participants.value.filter((p) =&gt; p !== person);
+    };
+
+    const addExpense = () =&gt; {
+      if (
+        newExpense.value.description &amp;&amp;
+        newExpense.value.amount &gt; 0 &amp;&amp;
+        newExpense.value.payer &amp;&amp;
+        newExpense.value.participants.length
+      ) {
+        expenses.value.push({ ...newExpense.value });
+        newExpense.value = { description: &quot;&quot;, amount: 0, payer: &quot;&quot;, participants: [] };
+      }
+    };
+
+    const balances = computed(() =&gt; {
+      const result = {};
+      participants.value.forEach((person) =&gt; (result[person] = 0));
+      expenses.value.forEach((expense) =&gt; {
+        const share = expense.amount / expense.participants.length;
+        expense.participants.forEach((person) =&gt; (result[person] -= share));
+        result[expense.payer] += expense.amount;
+      });
+      return result;
+    });
+
+    return {
+      participants,
+      expenses,
+      newParticipant,
+      newExpense,
+      addParticipant,
+      removeParticipant,
+      addExpense,
+      balances,
+    };
+  },
+};
+&lt;/script&gt;
+</code></pre>
+<hr>
+<h3 id="規劃總結"><a href="#規劃總結" class="headerlink" title="規劃總結"></a><strong>規劃總結</strong></h3><ol>
+<li>從簡單功能開始，逐步擴展。</li>
+<li>資料結構應清晰且易於維護。</li>
+<li>重點實現計算邏輯，並驗證準確性。</li>
+<li>添加持久化（LocalStorage）以提升用戶體驗。</li>
+</ol>
+<p>記帳功能說明：<br>新增一筆記帳，點選圖片，帶入名稱，填入金額，及付款人，付款人可以多個.</p>
