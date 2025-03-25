@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2024-12-15 value.default 為什麼是檔案路徑">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024-12-16 在 Vue 中，props 和 emits">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/03/25/OneDayOneNote/2024-12-16/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2024-12-15 value.default 為什麼是檔案路徑">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-03-25T15:07:07.000Z">
+<meta property="article:modified_time" content="2025-03-25T15:08:02.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2025/03/25/OneDayOneNote/2024-12-16/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2025/03/25/OneDayOneNote/2024-12-16/","path":"2025/03/25/OneDayOneNote/2024-12-16/","title":"2024-12-16 在 Vue 中，props 和 emits"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2024-12-16 在 Vue 中，props 和 emits | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2024-12-15-value-default-%E7%82%BA%E4%BB%80%E9%BA%BC%E6%98%AF%E6%AA%94%E6%A1%88%E8%B7%AF%E5%BE%91"><span class="nav-number">1.</span> <span class="nav-text">2024-12-15 value.default 為什麼是檔案路徑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%88%B6%E5%AD%90%E7%B5%84%E4%BB%B6%E7%9A%84%E6%9E%B6%E6%A7%8B%E8%88%87%E6%95%B8%E6%93%9A%E5%82%B3%E9%81%9E%E6%B5%81%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">父子組件的架構與數據傳遞流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%88%B6-%E5%AD%90%EF%BC%9A%E4%BD%BF%E7%94%A8-props"><span class="nav-number">2.1.</span> <span class="nav-text">1. 父 -&gt; 子：使用 props</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B%E5%AD%90%EF%BC%9A"><span class="nav-number">2.1.1.</span> <span class="nav-text">例子：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%AD%90-%E7%88%B6%EF%BC%9A%E4%BD%BF%E7%94%A8-emits"><span class="nav-number">2.2.</span> <span class="nav-text">2. 子 -&gt; 父：使用 emits</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B%E5%AD%90%EF%BC%9A-1"><span class="nav-number">2.2.1.</span> <span class="nav-text">例子：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#props-%E8%88%87-emits-%E7%9A%84%E9%97%9C%E4%BF%82%E8%88%87%E8%A8%AD%E8%A8%88%E5%93%B2%E5%AD%B8"><span class="nav-number">3.</span> <span class="nav-text">props 與 emits 的關係與設計哲學</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E6%9E%B6%E6%A7%8B%EF%BC%9A%E7%88%B6%E5%AD%90%E6%95%B8%E6%93%9A%E4%BA%A4%E4%BA%92%E7%A4%BA%E6%84%8F%E5%9C%96"><span class="nav-number">3.1.</span> <span class="nav-text">完整架構：父子數據交互示意圖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%9C%A8%E8%A8%AD%E8%A8%88%E7%88%B6%E5%AD%90%E4%BA%A4%E4%BA%92%E6%99%82%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A0%85"><span class="nav-number">3.2.</span> <span class="nav-text">3. 在設計父子交互時的注意事項</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">287</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2025/03/25/OneDayOneNote/2024-12-16/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2024-12-16 在 Vue 中，props 和 emits | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2024-12-15 value.default 為什麼是檔案路徑">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2024-12-16 在 Vue 中，props 和 emits
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2025-03-25 23:07:07 / 修改時間：23:08:02" itemprop="dateCreated datePublished" datetime="2025-03-25T23:07:07+08:00">2025-03-25</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2024-12-15 value.default 為什麼是檔案路徑</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2024-12-15-value-default-為什麼是檔案路徑"><a href="#2024-12-15-value-default-為什麼是檔案路徑" class="headerlink" title="2024-12-15 value.default 為什麼是檔案路徑"></a>2024-12-15 value.default 為什麼是檔案路徑</h2><p>在 Vue 中，props 和 emits</p>
+<p>在 Vue 中，**<code>props</code> 和 <code>emits</code>** 是用來實現<strong>父子組件之間的數據傳遞</strong>的兩種核心機制，主要用於建立單向數據流和事件驅動的交互。</p>
+<hr>
+<h2 id="父子組件的架構與數據傳遞流程"><a href="#父子組件的架構與數據傳遞流程" class="headerlink" title="父子組件的架構與數據傳遞流程"></a><strong>父子組件的架構與數據傳遞流程</strong></h2><h3 id="1-父-子：使用-props"><a href="#1-父-子：使用-props" class="headerlink" title="1. 父 -&gt; 子：使用 props"></a>1. <strong>父 -&gt; 子：使用 <code>props</code></strong></h3><p>父組件可以通過 <strong><code>props</code></strong> 將數據傳遞給子組件。</p>
+<ul>
+<li><strong>機制</strong>：父組件定義數據，子組件通過 <code>props</code> 接收。</li>
+<li><strong>特性</strong>：數據是 <strong>單向的</strong>（從父到子，子不能直接修改 <code>props</code>）。</li>
+</ul>
+<h4 id="例子："><a href="#例子：" class="headerlink" title="例子："></a>例子：</h4><p><strong>父組件：SplitBill.vue</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;AddExpenseModal :members=&quot;members&quot; /&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import AddExpenseModal from &#x27;./AddExpenseModal.vue&#x27;;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  components: &#123; AddExpenseModal &#125;,</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      members: [</span><br><span class="line">        &#123; name: &#x27;Alice&#x27;, balance: 0 &#125;,</span><br><span class="line">        &#123; name: &#x27;Bob&#x27;, balance: 0 &#125;,</span><br><span class="line">      ],</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>子組件：AddExpenseModal.vue</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;select v-model=&quot;selectedMember&quot;&gt;</span><br><span class="line">      &lt;option v-for=&quot;member in members&quot; :key=&quot;member.name&quot; :value=&quot;member.name&quot;&gt;</span><br><span class="line">        &#123;&#123; member.name &#125;&#125;</span><br><span class="line">      &lt;/option&gt;</span><br><span class="line">    &lt;/select&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  props: &#123;</span><br><span class="line">    members: &#123;</span><br><span class="line">      type: Array,</span><br><span class="line">      required: true,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      selectedMember: &#x27;&#x27;,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="2-子-父：使用-emits"><a href="#2-子-父：使用-emits" class="headerlink" title="2. 子 -&gt; 父：使用 emits"></a>2. <strong>子 -&gt; 父：使用 <code>emits</code></strong></h3><p>子組件可以通過 <strong><code>emits</code></strong> 將事件傳遞給父組件，父組件可以監聽這些事件來接收數據或觸發響應。</p>
+<ul>
+<li><strong>機制</strong>：子組件使用 <code>$emit</code> 發送事件，父組件使用 <code>v-on</code> 或 <code>@</code> 監聽事件。</li>
+<li><strong>特性</strong>：事件是 <strong>單向的</strong>（從子到父，子不能直接改變父組件的狀態）。</li>
+</ul>
+<h4 id="例子：-1"><a href="#例子：-1" class="headerlink" title="例子："></a>例子：</h4><p><strong>子組件：AddExpenseModal.vue</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;button @click=&quot;emitExpense&quot;&gt;新增支出&lt;/button&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  emits: [&#x27;add-expense&#x27;], // 聲明事件名稱</span><br><span class="line">  methods: &#123;</span><br><span class="line">    emitExpense() &#123;</span><br><span class="line">      const expense = &#123; name: &#x27;Dinner&#x27;, amount: 100 &#125;;</span><br><span class="line">      this.$emit(&#x27;add-expense&#x27;, expense); // 發送事件給父組件</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>父組件：SplitBill.vue</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;AddExpenseModal @add-expense=&quot;handleExpense&quot; /&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import AddExpenseModal from &#x27;./AddExpenseModal.vue&#x27;;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  components: &#123; AddExpenseModal &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    handleExpense(expense) &#123;</span><br><span class="line">      console.log(&#x27;收到的支出:&#x27;, expense); // 在此處接收子組件傳來的數據</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="props-與-emits-的關係與設計哲學"><a href="#props-與-emits-的關係與設計哲學" class="headerlink" title="props 與 emits 的關係與設計哲學"></a><strong><code>props</code> 與 <code>emits</code> 的關係與設計哲學</strong></h2><ol>
+<li><p><strong>單向數據流</strong>：</p>
+<ul>
+<li>Vue 遵循「數據由上而下，事件由下而上」的設計。</li>
+<li>父組件用 <code>props</code> 給子組件提供數據。</li>
+<li>子組件用 <code>emits</code> 通知父組件狀態變化。</li>
+</ul>
+</li>
+<li><p><strong>分工明確</strong>：</p>
+<ul>
+<li><code>props</code> 用於傳遞靜態或基於父組件動態變化的數據。</li>
+<li><code>emits</code> 用於傳遞交互事件或通知父組件數據更新。</li>
+</ul>
+</li>
+<li><p><strong>解耦性高</strong>：</p>
+<ul>
+<li>子組件不需要直接操作父組件的數據，只需要 <code>emit</code> 事件，保持子組件的獨立性和可重用性。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="完整架構：父子數據交互示意圖"><a href="#完整架構：父子數據交互示意圖" class="headerlink" title="完整架構：父子數據交互示意圖"></a><strong>完整架構：父子數據交互示意圖</strong></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">父組件 SplitBill.vue</span><br><span class="line">  ↓ （數據傳遞）</span><br><span class="line">props：members</span><br><span class="line">  ↓</span><br><span class="line">子組件 AddExpenseModal.vue</span><br><span class="line">  ↑</span><br><span class="line">emits：add-expense</span><br><span class="line">  ↑ （事件回傳）</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="3-在設計父子交互時的注意事項"><a href="#3-在設計父子交互時的注意事項" class="headerlink" title="3. 在設計父子交互時的注意事項"></a>3. <strong>在設計父子交互時的注意事項</strong></h3><ul>
+<li><p><strong>命名一致性</strong>：<br>子組件的 <code>props</code> 和 <code>emits</code> 名稱要清晰、語義化，方便父組件理解。</p>
+</li>
+<li><p><strong>避免過多的父子耦合</strong>：<br>如果父子組件的數據傳遞過於頻繁，可以考慮用 Vuex 或其他狀態管理工具。</p>
+</li>
+<li><p>**不能直接修改 <code>props</code>**：<br>子組件如需修改數據，應通過 <code>$emit</code> 通知父組件更新，不能直接更改 <code>props</code>。</p>
+</li>
+</ul>
+<hr>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/Javascript/" rel="tag"># Javascript</a>
+              <a href="/apple.lily/tags/Vue/" rel="tag"># Vue</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/03/25/OneDayOneNote/2024-12-15/" rel="prev" title="2024-12-15 value.default 為什麼是檔案路徑">
+                  <i class="fa fa-angle-left"></i> 2024-12-15 value.default 為什麼是檔案路徑
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
