@@ -1,0 +1,28 @@
+<hr>
+<h2 id="title-2024-12-21-CSS-flex-growdate-2025-04-01-23-20-18tags-Javascript-Vue-description-2024-12-21-CSS-flex-grow"><a href="#title-2024-12-21-CSS-flex-growdate-2025-04-01-23-20-18tags-Javascript-Vue-description-2024-12-21-CSS-flex-grow" class="headerlink" title="title: 2024-12-21 CSS flex-growdate: 2025-04-01 23:20:18tags:  [Javascript,Vue]description:  2024-12-21 CSS flex-grow"></a>title: 2024-12-21 CSS flex-grow<br>date: 2025-04-01 23:20:18<br>tags:  [Javascript,Vue]<br>description:  2024-12-21 CSS flex-grow</h2><h2 id="2024-12-21-CSS-flex-grow"><a href="#2024-12-21-CSS-flex-grow" class="headerlink" title="2024-12-21 CSS flex-grow"></a>2024-12-21 CSS flex-grow</h2><p>當我們刪除了 flex-grow: 1;，成員清單變成了 垂直置中，而不是緊貼在中間列的最上方</p>
+<p>很好，你發現了一個很重要的現象！當我們刪除了 **<code>flex-grow: 1;</code>**，成員清單變成了 <strong>垂直置中</strong>，而不是緊貼在中間列的最上方。讓我們來看看為什麼會這樣發生！  </p>
+<hr>
+<h2 id="🎯-1-刪除-flex-grow-1-之後發生了什麼？"><a href="#🎯-1-刪除-flex-grow-1-之後發生了什麼？" class="headerlink" title="🎯 1. 刪除 flex-grow: 1; 之後發生了什麼？"></a><strong>🎯 1. 刪除 <code>flex-grow: 1;</code> 之後發生了什麼？</strong></h2><p>當 <code>.member-list</code> <strong>沒有 <code>flex-grow: 1;</code></strong> 時，它的行為變成這樣：</p>
+<ol>
+<li><code>.app-container</code> 仍然是 **<code>display: flex; flex-direction: column;</code>**，所以 <strong>子元素仍然垂直排列</strong>。</li>
+<li><strong>沒有 <code>flex-grow</code>，代表 <code>.member-list</code> 只會佔據自身內容的高度</strong>，而不會自動填滿剩餘空間。</li>
+<li>**<code>.app-container</code> 預設 <code>align-items: stretch;</code>**，但 <code>.member-list</code> 內容不足以撐滿剩餘空間，導致 <code>justify-content: space-between;</code> 變得明顯，把 <code>.member-list</code> 推到中間。</li>
+</ol>
+<h3 id="🚨-結果"><a href="#🚨-結果" class="headerlink" title="🚨 結果"></a>🚨 <strong>結果</strong></h3><p><strong>成員清單變小，只佔自身高度，而上下兩塊的 <code>space-between</code> 讓它變成「垂直置中」！</strong></p>
+<hr>
+<h2 id="🎯-2-為什麼-flex-grow-1-可以解決這個問題？"><a href="#🎯-2-為什麼-flex-grow-1-可以解決這個問題？" class="headerlink" title="🎯 2. 為什麼 flex-grow: 1; 可以解決這個問題？"></a><strong>🎯 2. 為什麼 <code>flex-grow: 1;</code> 可以解決這個問題？</strong></h2><p>當我們加回 **<code>flex-grow: 1;</code>**，它的行為變成這樣：</p>
+<ol>
+<li><code>.member-list</code> 會 <strong>自動填滿中間的剩餘空間</strong>（因為 <code>flex-grow</code> 會讓這個區塊撐開）。</li>
+<li>這樣 <code>.member-list</code> 會被「推到最上方」，從而不會在畫面中央 <strong>「漂浮」</strong>。</li>
+<li><strong><code>.member-list</code> 內容過少時，它還是會保持固定大小，但內容過多時，它會自動填滿可用空間，並且出現滾動條（如果有 <code>overflow: auto;</code>）</strong>。</li>
+</ol>
+<hr>
+<h2 id="🎯-3-如何測試這個行為？"><a href="#🎯-3-如何測試這個行為？" class="headerlink" title="🎯 3. 如何測試這個行為？"></a><strong>🎯 3. 如何測試這個行為？</strong></h2><p>你可以做以下實驗來感受 <code>flex-grow</code> 的作用：</p>
+<ol>
+<li>**刪除 <code>flex-grow: 1;</code>**，看看 <code>.member-list</code> 是不是變小、漂浮在畫面中間。</li>
+<li>**改成 <code>flex-grow: 2;</code>**，看看 <code>.member-list</code> 是否變得更大，甚至佔據比預期更多的空間。</li>
+<li>**給 <code>.member-list</code> 加上 <code>border: 1px solid red;</code>**，觀察它的大小變化 🚀。</li>
+</ol>
+<hr>
+<h2 id="✅-結論"><a href="#✅-結論" class="headerlink" title="✅ 結論"></a><strong>✅ 結論</strong></h2><p>👉 <strong><code>flex-grow: 1;</code> 是讓 <code>.member-list</code> 能夠填滿中間空間的關鍵</strong>。<br>如果沒有 <code>flex-grow: 1;</code>，<code>.member-list</code> 只會佔據自身內容的大小，而 <code>justify-content: space-between;</code> 會讓它被「推到」畫面中央，形成 <strong>「垂直置中」的錯覺</strong>！  </p>
+<p>這樣你理解了嗎？你可以試試不同的 <code>flex-grow</code> 值來更直觀地體驗它的作用 😃！</p>

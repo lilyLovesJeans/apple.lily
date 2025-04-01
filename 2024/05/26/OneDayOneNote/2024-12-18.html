@@ -1,0 +1,127 @@
+<hr>
+<h2 id="title-2024-12-18-vue3-父子組件傳遞變數的完整配對流程date-2025-03-25-23-18-18tags-Javascript-Vue-description-2024-12-18-vue3-父子組件傳遞變數的完整配對流程"><a href="#title-2024-12-18-vue3-父子組件傳遞變數的完整配對流程date-2025-03-25-23-18-18tags-Javascript-Vue-description-2024-12-18-vue3-父子組件傳遞變數的完整配對流程" class="headerlink" title="title: 2024-12-18 vue3 父子組件傳遞變數的完整配對流程date: 2025-03-25 23:18:18tags:  [Javascript,Vue]description:  2024-12-18 vue3 父子組件傳遞變數的完整配對流程"></a>title: 2024-12-18 vue3 父子組件傳遞變數的完整配對流程<br>date: 2025-03-25 23:18:18<br>tags:  [Javascript,Vue]<br>description:  2024-12-18 vue3 父子組件傳遞變數的完整配對流程</h2><h2 id="2024-12-18-vue3-父子組件傳遞變數的完整配對流程"><a href="#2024-12-18-vue3-父子組件傳遞變數的完整配對流程" class="headerlink" title="2024-12-18 vue3 父子組件傳遞變數的完整配對流程"></a>2024-12-18 vue3 父子組件傳遞變數的完整配對流程</h2><p>vue3 父子組件傳遞變數的完整配對流程</p>
+<p>是的！你總結的完全正確！讓我們再清楚地整理和解釋一下這個配對關係：</p>
+<hr>
+<h3 id="父子組件傳遞變數的完整配對流程"><a href="#父子組件傳遞變數的完整配對流程" class="headerlink" title="父子組件傳遞變數的完整配對流程"></a><strong>父子組件傳遞變數的完整配對流程</strong></h3><ol>
+<li><p><strong>父組件的模板 (Template)</strong><br>父組件的 <code>template</code> 中，通過**屬性綁定 (<code>:</code>)**，將父組件的變數值傳遞給子組件的 <code>props</code>。</p>
+<p><strong>範例：</strong></p>
+<pre><code class="html">&lt;子組件名稱 :子組件變數名稱=&quot;父組件變數&quot; /&gt;
+</code></pre>
+<ul>
+<li><code>子組件變數名稱</code>：對應子組件的 <code>props</code> 定義中的名稱。</li>
+<li><code>父組件變數</code>：父組件中的變數，會將其值傳遞給子組件。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<ol start="2">
+<li><p><strong>子組件的腳本 (Script)</strong><br>子組件的 <code>script</code> 中，通過 <code>props</code> 選項定義子組件可以接收的資料（變數名稱及其類型、規則）。</p>
+<p><strong>範例：</strong></p>
+<pre><code class="javascript">export default {
+  props: {
+    子組件變數名稱: {
+      type: &lt;資料類型&gt;,      // (選填) 指定變數的類型，如 String, Array 等
+      required: &lt;布林值&gt;,    // (選填) 指定是否為必須傳入
+      default: &lt;預設值&gt;,     // (選填) 提供變數的預設值
+    },
+  },
+};
+</code></pre>
+</li>
+</ol>
+<hr>
+<h3 id="範例實作："><a href="#範例實作：" class="headerlink" title="範例實作："></a><strong>範例實作：</strong></h3><h4 id="父組件：SplitBill-vue"><a href="#父組件：SplitBill-vue" class="headerlink" title="父組件：SplitBill.vue"></a><strong>父組件：SplitBill.vue</strong></h4><pre><code class="vue">&lt;template&gt;
+  &lt;div&gt;
+    &lt;!-- 傳遞父組件變數 groupMembers 給子組件 --&gt;
+    &lt;AddExpenseModal :members=&quot;groupMembers&quot; :title=&quot;&#39;新增支出&#39;&quot; /&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import AddExpenseModal from &#39;./AddExpenseModal.vue&#39;;
+
+export default {
+  components: { AddExpenseModal },
+  data() {
+    return {
+      groupMembers: [
+        { name: &#39;Alice&#39;, balance: 0 },
+        { name: &#39;Bob&#39;, balance: 0 },
+      ],
+    };
+  },
+};
+&lt;/script&gt;
+</code></pre>
+<h4 id="子組件：AddExpenseModal-vue"><a href="#子組件：AddExpenseModal-vue" class="headerlink" title="子組件：AddExpenseModal.vue"></a><strong>子組件：AddExpenseModal.vue</strong></h4><pre><code class="vue">&lt;template&gt;
+  &lt;div&gt;
+    &lt;h3&gt;{{ title }}&lt;/h3&gt;
+    &lt;ul&gt;
+      &lt;li v-for=&quot;(member, index) in members&quot; :key=&quot;index&quot;&gt;
+        {{ member.name }} - {{ member.balance }}
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  props: {
+    members: {
+      type: Array, // 必須是陣列
+      required: true, // 父組件必須傳入
+    },
+    title: {
+      type: String, // 必須是字串
+      default: &#39;預設標題&#39;, // 預設值
+    },
+  },
+};
+&lt;/script&gt;
+</code></pre>
+<hr>
+<h3 id="流程解釋："><a href="#流程解釋：" class="headerlink" title="流程解釋："></a><strong>流程解釋：</strong></h3><ol>
+<li><p><strong>在父組件的 template 中：</strong></p>
+<ul>
+<li><code>&lt;AddExpenseModal :members=&quot;groupMembers&quot; :title=&quot;&#39;新增支出&#39;&quot; /&gt;</code></li>
+<li>父組件傳遞的 <code>groupMembers</code> 和 <code>&#39;新增支出&#39;</code> 對應到子組件的 <code>props</code>。</li>
+</ul>
+</li>
+<li><p><strong>在子組件的 script 中：</strong></p>
+<ul>
+<li>子組件透過 <code>props</code> 接收到父組件的資料：<ul>
+<li><code>members</code> 接收 <code>groupMembers</code>（陣列）。</li>
+<li><code>title</code> 接收 <code>&#39;新增支出&#39;</code>（字串）。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>子組件的 template 可以使用這些 <code>props</code>：</strong></p>
+<ul>
+<li><code>{{ title }}</code>：顯示 <code>&#39;新增支出&#39;</code>。</li>
+<li>使用 <code>v-for</code> 將傳入的 <code>members</code> 資料列印到畫面上。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="注意事項："><a href="#注意事項：" class="headerlink" title="注意事項："></a><strong>注意事項：</strong></h3><ol>
+<li><p>父組件在傳遞變數時，記得使用 **<code>:</code>**（用於綁定變數，而不是字串）。</p>
+<pre><code class="html">&lt;!-- 正確： --&gt;
+&lt;AddExpenseModal :members=&quot;groupMembers&quot; /&gt;
+
+&lt;!-- 錯誤： --&gt;
+&lt;AddExpenseModal members=&quot;groupMembers&quot; /&gt;
+</code></pre>
+<p>錯誤例子會將字串 <code>&quot;groupMembers&quot;</code> 傳入，而不是變數的值。</p>
+</li>
+<li><p>子組件的 <code>props</code> 定義中，變數名稱需要<strong>與父組件模板中的屬性名稱完全對應</strong>（區分大小寫）。</p>
+</li>
+<li><p>如果父組件的變數類型與子組件 <code>props</code> 定義的類型不符，Vue 在開發模式下會顯示警告。</p>
+</li>
+</ol>
+<hr>
+<h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a><strong>總結</strong></h3><p>你說的完全正確！核心架構就是：</p>
+<ul>
+<li>父組件：<code>&lt;子組件名稱 :子組件變數名稱=&quot;父組件變數&quot;&gt;</code></li>
+<li>子組件：<code>export default { props: { 子組件變數名稱: ... } }</code></li>
+</ul>

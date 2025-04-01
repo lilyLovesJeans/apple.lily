@@ -1,0 +1,52 @@
+<hr>
+<h2 id="title-2024-12-22-Flexbox自動分配空間date-2025-04-01-23-36-38tags-Javascript-Vue-description-2024-12-22-Flexbox自動分配空間"><a href="#title-2024-12-22-Flexbox自動分配空間date-2025-04-01-23-36-38tags-Javascript-Vue-description-2024-12-22-Flexbox自動分配空間" class="headerlink" title="title: 2024-12-22-Flexbox自動分配空間date: 2025-04-01 23:36:38tags:  [Javascript,Vue]description:  2024-12-22-Flexbox自動分配空間"></a>title: 2024-12-22-Flexbox自動分配空間<br>date: 2025-04-01 23:36:38<br>tags:  [Javascript,Vue]<br>description:  2024-12-22-Flexbox自動分配空間</h2><h2 id="2024-12-22-Flexbox自動分配空間"><a href="#2024-12-22-Flexbox自動分配空間" class="headerlink" title="2024-12-22-Flexbox自動分配空間"></a>2024-12-22-Flexbox自動分配空間</h2><p>*Flexbox 自動分配空間</p>
+<p>上  中  下 這三個區塊 ，為什麼不用指定大小？<br>然後中間那塊就會比較大?</p>
+<p>這是一個很棒的問題！我們並沒有直接指定 <strong>「上、中、下」區塊的大小</strong>，但中間那塊（成員清單）卻自然變大了。為什麼呢？這是 <strong>Flexbox 自動分配空間</strong> 的結果！🎯  </p>
+<hr>
+<h2 id="🎯-1-觀察-app-container-的設定"><a href="#🎯-1-觀察-app-container-的設定" class="headerlink" title="🎯 1. 觀察 app-container 的設定"></a><strong>🎯 1. 觀察 <code>app-container</code> 的設定</strong></h2><pre><code class="css">.app-container {
+  display: flex;
+  flex-direction: column; /* 讓子元素垂直排列 */
+  height: 100vh; /* 讓畫面填滿整個視窗 */
+  justify-content: space-between; /* 讓三個區塊均勻分佈 */
+}
+</code></pre>
+<ul>
+<li><strong><code>display: flex; flex-direction: column;</code></strong> → 讓子元素沿 <strong>垂直方向排列</strong></li>
+<li><strong><code>height: 100vh;</code></strong> → 讓整個 <code>app-container</code> <strong>佔滿整個視窗高度</strong></li>
+<li><strong><code>justify-content: space-between;</code></strong> → <strong>上、下區塊會貼齊頂部和底部，中間區塊填滿剩餘空間！</strong></li>
+</ul>
+<hr>
+<h2 id="🎯-2-為什麼中間那塊會比較大？"><a href="#🎯-2-為什麼中間那塊會比較大？" class="headerlink" title="🎯 2. 為什麼中間那塊會比較大？"></a><strong>🎯 2. 為什麼中間那塊會比較大？</strong></h2><p>關鍵在於這行：</p>
+<pre><code class="css">.member-list {
+  flex-grow: 1;
+}
+</code></pre>
+<p>👉 <code>flex-grow: 1;</code> 這個屬性會讓這個區塊 <strong>佔據剩餘的可用空間</strong>！  </p>
+<p>🔹 <strong>上區塊（標題）</strong> 沒有 <code>flex-grow</code>，所以只會佔 <strong>自身內容的高度</strong><br>🔹 <strong>下區塊（按鈕）</strong> 也是一樣，佔 <strong>自身內容的高度</strong><br>🔹 <strong>中區塊（成員清單）</strong> 有 <code>flex-grow: 1;</code>，所以它會 <strong>自動填滿剩下的空間</strong> 🎉</p>
+<hr>
+<h2 id="🎯-3-如果我們指定固定大小，會發生什麼事？"><a href="#🎯-3-如果我們指定固定大小，會發生什麼事？" class="headerlink" title="🎯 3. 如果我們指定固定大小，會發生什麼事？"></a><strong>🎯 3. 如果我們指定固定大小，會發生什麼事？</strong></h2><p>假設我們手動設定高度：</p>
+<pre><code class="css">.header {
+  height: 100px;
+}
+
+.member-list {
+  height: 300px;
+}
+
+.bottom-section {
+  height: 80px;
+}
+</code></pre>
+<p>這樣會有兩個問題：</p>
+<ol>
+<li><strong>裝置不同時，高度會不適應</strong>（有些裝置可能畫面太小，導致下方按鈕被擠出視窗）  </li>
+<li><strong>如果成員很多，內容會溢出</strong>（固定 <code>300px</code>，超過就會被切掉）</li>
+</ol>
+<p>相比之下，**<code>flex-grow: 1;</code>** 讓 <strong>中間區塊根據畫面大小自動調整</strong>，不管螢幕大小如何，都能保持 <strong>標題固定、按鈕固定，中間區塊盡可能撐滿空間</strong>！</p>
+<hr>
+<h2 id="✅-結論"><a href="#✅-結論" class="headerlink" title="✅ 結論"></a><strong>✅ 結論</strong></h2><ol>
+<li><strong>上、下區塊沒有 <code>flex-grow</code>，所以只佔自身大小</strong>  </li>
+<li><strong>中間區塊 <code>flex-grow: 1;</code>，所以會撐滿剩餘空間</strong>  </li>
+<li><strong>這樣的設計讓畫面在不同螢幕上都能保持彈性</strong> 🎯</li>
+</ol>
+<p>這樣，你覺得這個方式比手動設定高度更靈活嗎？你可以試著 <strong>刪除 <code>flex-grow: 1;</code></strong> 看看會發生什麼變化 🚀</p>

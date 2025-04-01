@@ -1,0 +1,143 @@
+<hr>
+<h2 id="title-2024-12-19-父子組件之間通過事件傳遞資料的方式。date-2025-03-25-23-19-36tags-Javascript-Vue-description-2024-12-19-父子組件之間通過事件傳遞資料的方式。"><a href="#title-2024-12-19-父子組件之間通過事件傳遞資料的方式。date-2025-03-25-23-19-36tags-Javascript-Vue-description-2024-12-19-父子組件之間通過事件傳遞資料的方式。" class="headerlink" title="title: 2024-12-19 父子組件之間通過事件傳遞資料的方式。date: 2025-03-25 23:19:36tags:  [Javascript,Vue]description: 2024-12-19 父子組件之間通過事件傳遞資料的方式。"></a>title: 2024-12-19 父子組件之間通過事件傳遞資料的方式。<br>date: 2025-03-25 23:19:36<br>tags:  [Javascript,Vue]<br>description: 2024-12-19 父子組件之間通過事件傳遞資料的方式。</h2><h2 id="2024-12-19-父子組件之間通過事件傳遞資料的方式。"><a href="#2024-12-19-父子組件之間通過事件傳遞資料的方式。" class="headerlink" title="2024-12-19 父子組件之間通過事件傳遞資料的方式。"></a>2024-12-19 父子組件之間通過事件傳遞資料的方式。</h2><p>父子組件之間通過事件傳遞資料的方式。讓我們整理和補充這個配對關係。</p>
+<hr>
+<h3 id="父子組件事件傳遞的完整架構"><a href="#父子組件事件傳遞的完整架構" class="headerlink" title="父子組件事件傳遞的完整架構"></a><strong>父子組件事件傳遞的完整架構</strong></h3><h4 id="1-父組件模板："><a href="#1-父組件模板：" class="headerlink" title="1. 父組件模板："></a>1. <strong>父組件模板：</strong></h4><ul>
+<li><p>父組件透過 <code>@</code> 綁定子組件的事件到自己的方法上。</p>
+</li>
+<li><p>語法：</p>
+<pre><code class="html">&lt;子組件名稱 @子組件事件名稱=&quot;父組件方法&quot; /&gt;
+</code></pre>
+</li>
+<li><p><code>子組件事件名稱</code>：對應子組件內部使用 <code>$emit</code> 觸發的自定義事件名稱。</p>
+</li>
+<li><p><code>父組件方法</code>：父組件中定義的具體方法，用於處理事件。</p>
+</li>
+</ul>
+<hr>
+<h4 id="2-子組件腳本："><a href="#2-子組件腳本：" class="headerlink" title="2. 子組件腳本："></a>2. <strong>子組件腳本：</strong></h4><ul>
+<li>子組件使用 <code>this.$emit(&#39;事件名稱&#39;, 資料)</code> 觸發事件，並將資料傳遞給父組件。</li>
+<li>在 <code>emits</code> 中聲明子組件能觸發的事件名稱（Vue 3 新增的功能，避免意外事件發生）。</li>
+</ul>
+<p>   <strong>語法：</strong></p>
+<pre><code class="javascript">export default {
+  emits: [&#39;事件名稱&#39;], // 聲明子組件觸發的事件名稱
+  methods: {
+    someMethod() {
+      this.$emit(&#39;事件名稱&#39;, 傳遞的資料);
+    },
+  },
+};
+</code></pre>
+<hr>
+<h3 id="範例實作："><a href="#範例實作：" class="headerlink" title="範例實作："></a><strong>範例實作：</strong></h3><h4 id="父組件：SplitBill-vue"><a href="#父組件：SplitBill-vue" class="headerlink" title="父組件：SplitBill.vue"></a><strong>父組件：SplitBill.vue</strong></h4><pre><code class="vue">&lt;template&gt;
+  &lt;div&gt;
+    &lt;h2&gt;成員清單&lt;/h2&gt;
+    &lt;ul&gt;
+      &lt;li v-for=&quot;(member, index) in groupMembers&quot; :key=&quot;index&quot;&gt;
+        {{ member.name }} - {{ member.balance }}
+      &lt;/li&gt;
+    &lt;/ul&gt;
+    
+    &lt;!-- 父組件監聽子組件的 add-expense 事件，並呼叫父組件的 handleAddExpense 方法 --&gt;
+    &lt;AddExpenseModal :members=&quot;groupMembers&quot; @add-expense=&quot;handleAddExpense&quot; /&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import AddExpenseModal from &#39;./AddExpenseModal.vue&#39;;
+
+export default {
+  components: { AddExpenseModal },
+  data() {
+    return {
+      groupMembers: [
+        { name: &#39;Alice&#39;, balance: 0 },
+        { name: &#39;Bob&#39;, balance: 0 },
+      ],
+    };
+  },
+  methods: {
+    handleAddExpense(expenseData) {
+      // 處理子組件傳來的資料
+      console.log(&#39;收到的支出資料：&#39;, expenseData);
+      alert(`${expenseData.name} 支出 ${expenseData.amount}`);
+    },
+  },
+};
+&lt;/script&gt;
+</code></pre>
+<hr>
+<h4 id="子組件：AddExpenseModal-vue"><a href="#子組件：AddExpenseModal-vue" class="headerlink" title="子組件：AddExpenseModal.vue"></a><strong>子組件：AddExpenseModal.vue</strong></h4><pre><code class="vue">&lt;template&gt;
+  &lt;div&gt;
+    &lt;h3&gt;新增支出&lt;/h3&gt;
+    &lt;input v-model=&quot;expenseAmount&quot; type=&quot;number&quot; placeholder=&quot;輸入支出金額&quot; /&gt;
+    &lt;select v-model=&quot;selectedMember&quot;&gt;
+      &lt;option v-for=&quot;(member, index) in members&quot; :key=&quot;index&quot; :value=&quot;member.name&quot;&gt;
+        {{ member.name }}
+      &lt;/option&gt;
+    &lt;/select&gt;
+    &lt;button @click=&quot;addExpense&quot;&gt;確定&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  props: {
+    members: {
+      type: Array,
+      required: true,
+    },
+  },
+  emits: [&#39;add-expense&#39;], // 聲明子組件會觸發的自定義事件
+  data() {
+    return {
+      expenseAmount: 0, // 綁定使用者輸入的支出金額
+      selectedMember: &#39;&#39;, // 綁定選擇的成員名稱
+    };
+  },
+  methods: {
+    addExpense() {
+      if (!this.selectedMember || this.expenseAmount &lt;= 0) {
+        alert(&#39;請選擇成員並輸入有效金額&#39;);
+        return;
+      }
+      // 觸發自定義事件，並傳遞資料給父組件
+      this.$emit(&#39;add-expense&#39;, {
+        name: this.selectedMember,
+        amount: this.expenseAmount,
+      });
+
+      // 清空輸入框
+      this.expenseAmount = 0;
+      this.selectedMember = &#39;&#39;;
+    },
+  },
+};
+&lt;/script&gt;
+</code></pre>
+<hr>
+<h3 id="流程解釋："><a href="#流程解釋：" class="headerlink" title="流程解釋："></a><strong>流程解釋：</strong></h3><ol>
+<li><p><strong>父組件監聽事件：</strong></p>
+<ul>
+<li>父組件在 <code>AddExpenseModal</code> 的標籤中，使用 <code>@add-expense=&quot;handleAddExpense&quot;</code> 綁定子組件事件 <code>add-expense</code>。</li>
+<li>當子組件觸發 <code>add-expense</code> 時，父組件會執行 <code>handleAddExpense</code> 方法。</li>
+</ul>
+</li>
+<li><p><strong>子組件觸發事件：</strong></p>
+<ul>
+<li>子組件在需要時（例如按下「確定」按鈕後），通過 <code>this.$emit(&#39;add-expense&#39;, 資料)</code> 觸發 <code>add-expense</code> 事件，並傳遞資料給父組件。</li>
+</ul>
+</li>
+<li><p><strong>資料傳遞：</strong></p>
+<ul>
+<li>子組件內部 <code>this.$emit(&#39;add-expense&#39;, {name: ..., amount: ...})</code> 傳出資料。</li>
+<li>父組件的 <code>handleAddExpense</code> 方法接收到這個資料，並進行後續處理。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="補充：props-和-emits-的搭配"><a href="#補充：props-和-emits-的搭配" class="headerlink" title="補充：props 和 emits 的搭配"></a><strong>補充：props 和 emits 的搭配</strong></h3><ul>
+<li>**<code>props</code>**：用於從父組件傳資料給子組件（父 → 子）。</li>
+<li>**<code>emits</code>**：用於子組件將事件和資料傳回給父組件（子 → 父）。</li>
+</ul>
+<p>這樣，父子組件之間的互動就可以完成雙向的資料流通。</p>

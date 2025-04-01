@@ -1,0 +1,63 @@
+<hr>
+<h2 id="title-2024-12-20-在-JavaScript-中，-和-和-都是「不等於」運算符，但它們有重要的區別date-2025-03-25-23-21-25tags-Javascript-Vue-description-2024-12-20-在-JavaScript-中，-和-和-都是「不等於」運算符，但它們有重要的區別"><a href="#title-2024-12-20-在-JavaScript-中，-和-和-都是「不等於」運算符，但它們有重要的區別date-2025-03-25-23-21-25tags-Javascript-Vue-description-2024-12-20-在-JavaScript-中，-和-和-都是「不等於」運算符，但它們有重要的區別" class="headerlink" title="title: 2024-12-20 在 JavaScript 中， !&#x3D;&#x3D; 和 !&#x3D; 和  都是「不等於」運算符，但它們有重要的區別date: 2025-03-25 23:21:25tags:  [Javascript,Vue]description:  2024-12-20 在 JavaScript 中， !&#x3D;&#x3D; 和 !&#x3D; 和  都是「不等於」運算符，但它們有重要的區別"></a>title: 2024-12-20 在 JavaScript 中， !&#x3D;&#x3D; 和 !&#x3D; 和  都是「不等於」運算符，但它們有<strong>重要的區別</strong><br>date: 2025-03-25 23:21:25<br>tags:  [Javascript,Vue]<br>description:  2024-12-20 在 JavaScript 中， !&#x3D;&#x3D; 和 !&#x3D; 和  都是「不等於」運算符，但它們有<strong>重要的區別</strong></h2><h2 id="2024-12-20-在-JavaScript-中，-和-和-都是「不等於」運算符，但它們有重要的區別"><a href="#2024-12-20-在-JavaScript-中，-和-和-都是「不等於」運算符，但它們有重要的區別" class="headerlink" title="2024-12-20 在 JavaScript 中， !&#x3D;&#x3D; 和 !&#x3D; 和  都是「不等於」運算符，但它們有重要的區別"></a>2024-12-20 在 JavaScript 中， !&#x3D;&#x3D; 和 !&#x3D; 和  都是「不等於」運算符，但它們有<strong>重要的區別</strong></h2><p>在 JavaScript 中，<code>!==</code> 和 <code>!=</code> 都是「不等於」運算符，但它們有<strong>重要的區別</strong>：</p>
+<hr>
+<h2 id="1-（不嚴格不等於，Loose-Inequality）"><a href="#1-（不嚴格不等於，Loose-Inequality）" class="headerlink" title="1. !=（不嚴格不等於，Loose Inequality）"></a><strong>1. <code>!=</code>（不嚴格不等於，Loose Inequality）</strong></h2><p><code>!=</code> 會 <strong>自動轉換</strong> 變數的類型（Type Coercion），再進行比較：</p>
+<pre><code class="js">console.log(0 != &#39;0&#39;);   // false，因為 &#39;0&#39; 會被轉換成數字 0
+console.log(false != &#39;&#39;); // false，因為 &#39;&#39; 會被轉換成 false
+console.log(null != undefined); // false，因為 JavaScript 會認為它們相等
+</code></pre>
+<hr>
+<h2 id="2-（嚴格不等於，Strict-Inequality）"><a href="#2-（嚴格不等於，Strict-Inequality）" class="headerlink" title="2. !==（嚴格不等於，Strict Inequality）"></a><strong>2. <code>!==</code>（嚴格不等於，Strict Inequality）</strong></h2><p><code>!==</code> 會<strong>比較數值和資料型態</strong>，不會自動轉換類型：</p>
+<pre><code class="js">console.log(0 !== &#39;0&#39;);   // true，因為數字 0 和字串 &#39;0&#39; 類型不同
+console.log(false !== &#39;&#39;); // true，因為 false 是布林值，&#39;&#39; 是字串
+console.log(null !== undefined); // true，因為 null 和 undefined 類型不同
+</code></pre>
+<hr>
+<h2 id="3-vs-在-if-判斷式中的影響"><a href="#3-vs-在-if-判斷式中的影響" class="headerlink" title="3. !== &#39;&#39; vs. != &#39;&#39; 在 if 判斷式中的影響"></a><strong>3. <code>!== &#39;&#39;</code> vs. <code>!= &#39;&#39;</code> 在 if 判斷式中的影響</strong></h2><p>如果 <code>newMember</code> 可能包含 <code>null</code>、<code>undefined</code> 或 <code>0</code>，使用 <code>!= &#39;&#39;</code> 可能會有不預期的結果：</p>
+<pre><code class="js">const newMember = null;
+
+if (newMember != &#39;&#39;) {
+  console.log(&quot;進入 if&quot;);
+} else {
+  console.log(&quot;進入 else&quot;);
+}
+// 輸出: 進入 else （因為 null 會被轉換成 &#39;&#39;）
+</code></pre>
+<p>但如果使用 <code>!== &#39;&#39;</code>，則 <code>null</code>、<code>undefined</code>、<code>0</code> 這些值都不會被當成空字串：</p>
+<pre><code class="js">const newMember = null;
+
+if (newMember !== &#39;&#39;) {
+  console.log(&quot;進入 if&quot;);
+} else {
+  console.log(&quot;進入 else&quot;);
+}
+// 輸出: 進入 if （因為 newMember 是 null，不等於字串 &#39;&#39;）
+</code></pre>
+<p>這樣可以避免 <strong>非預期的類型轉換</strong>，讓程式更加嚴謹，減少 Bug。</p>
+<hr>
+<h2 id="4-何時應該使用-？"><a href="#4-何時應該使用-？" class="headerlink" title="4. 何時應該使用 !==？"></a><strong>4. 何時應該使用 <code>!==</code>？</strong></h2><p>✅ 當你想確保變數值與類型都不等時（避免隱式轉換造成的錯誤）<br>✅ 當你處理使用者輸入時（避免 <code>null</code>、<code>undefined</code>、<code>0</code> 影響判斷）<br>✅ 當你希望程式碼更加嚴謹、可預測  </p>
+<hr>
+<h2 id="5-總結"><a href="#5-總結" class="headerlink" title="5. 總結"></a><strong>5. 總結</strong></h2><table>
+<thead>
+<tr>
+<th>運算符</th>
+<th>作用</th>
+<th>是否進行類型轉換</th>
+<th>適用情境</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>!=</code></td>
+<td>不等於</td>
+<td>✅ 會轉換類型</td>
+<td>一般情況，但可能會有隱藏錯誤</td>
+</tr>
+<tr>
+<td><code>!==</code></td>
+<td>嚴格不等於</td>
+<td>❌ 不轉換類型</td>
+<td>最佳選擇，避免潛在 Bug</td>
+</tr>
+</tbody></table>
+<p>所以，在 Vue 3 或 JavaScript 開發中，<strong>推薦使用 <code>!==</code> 來寫判斷式，確保類型與值都匹配，減少意外錯誤</strong> 🚀</p>
+<p>這樣的解釋清楚嗎？😊</p>
