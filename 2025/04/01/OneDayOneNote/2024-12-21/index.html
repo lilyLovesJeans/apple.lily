@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2024-12-21 CSS flex-grow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024-12-21 CSS flex-grow">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/04/01/OneDayOneNote/2024-12-21/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2024-12-21 CSS flex-grow">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-04-01T15:20:18.000Z">
+<meta property="article:modified_time" content="2025-04-01T15:23:46.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2025/04/01/OneDayOneNote/2024-12-21/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2025/04/01/OneDayOneNote/2024-12-21/","path":"2025/04/01/OneDayOneNote/2024-12-21/","title":"2024-12-21 CSS flex-grow"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2024-12-21 CSS flex-grow | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2024-12-21-CSS-flex-grow"><span class="nav-number">1.</span> <span class="nav-text">2024-12-21 CSS flex-grow</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%8E%AF-1-%E5%88%AA%E9%99%A4-flex-grow-1-%E4%B9%8B%E5%BE%8C%E7%99%BC%E7%94%9F%E4%BA%86%E4%BB%80%E9%BA%BC%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">🎯 1. 刪除 flex-grow: 1; 之後發生了什麼？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%9A%A8-%E7%B5%90%E6%9E%9C"><span class="nav-number">2.1.</span> <span class="nav-text">🚨 結果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%8E%AF-2-%E7%82%BA%E4%BB%80%E9%BA%BC-flex-grow-1-%E5%8F%AF%E4%BB%A5%E8%A7%A3%E6%B1%BA%E9%80%99%E5%80%8B%E5%95%8F%E9%A1%8C%EF%BC%9F"><span class="nav-number">3.</span> <span class="nav-text">🎯 2. 為什麼 flex-grow: 1; 可以解決這個問題？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%8E%AF-3-%E5%A6%82%E4%BD%95%E6%B8%AC%E8%A9%A6%E9%80%99%E5%80%8B%E8%A1%8C%E7%82%BA%EF%BC%9F"><span class="nav-number">4.</span> <span class="nav-text">🎯 3. 如何測試這個行為？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%85-%E7%B5%90%E8%AB%96"><span class="nav-number">5.</span> <span class="nav-text">✅ 結論</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">292</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2025/04/01/OneDayOneNote/2024-12-21/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2024-12-21 CSS flex-grow | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2024-12-21 CSS flex-grow">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2024-12-21 CSS flex-grow
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2025-04-01 23:20:18 / 修改時間：23:23:46" itemprop="dateCreated datePublished" datetime="2025-04-01T23:20:18+08:00">2025-04-01</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2024-12-21 CSS flex-grow</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2024-12-21-CSS-flex-grow"><a href="#2024-12-21-CSS-flex-grow" class="headerlink" title="2024-12-21 CSS flex-grow"></a>2024-12-21 CSS flex-grow</h2><p>當我們刪除了 flex-grow: 1;，成員清單變成了 垂直置中，而不是緊貼在中間列的最上方</p>
+<p>很好，你發現了一個很重要的現象！當我們刪除了 **<code>flex-grow: 1;</code>**，成員清單變成了 <strong>垂直置中</strong>，而不是緊貼在中間列的最上方。讓我們來看看為什麼會這樣發生！  </p>
+<hr>
+<h2 id="🎯-1-刪除-flex-grow-1-之後發生了什麼？"><a href="#🎯-1-刪除-flex-grow-1-之後發生了什麼？" class="headerlink" title="🎯 1. 刪除 flex-grow: 1; 之後發生了什麼？"></a><strong>🎯 1. 刪除 <code>flex-grow: 1;</code> 之後發生了什麼？</strong></h2><p>當 <code>.member-list</code> <strong>沒有 <code>flex-grow: 1;</code></strong> 時，它的行為變成這樣：</p>
+<ol>
+<li><code>.app-container</code> 仍然是 **<code>display: flex; flex-direction: column;</code>**，所以 <strong>子元素仍然垂直排列</strong>。</li>
+<li><strong>沒有 <code>flex-grow</code>，代表 <code>.member-list</code> 只會佔據自身內容的高度</strong>，而不會自動填滿剩餘空間。</li>
+<li>**<code>.app-container</code> 預設 <code>align-items: stretch;</code>**，但 <code>.member-list</code> 內容不足以撐滿剩餘空間，導致 <code>justify-content: space-between;</code> 變得明顯，把 <code>.member-list</code> 推到中間。</li>
+</ol>
+<h3 id="🚨-結果"><a href="#🚨-結果" class="headerlink" title="🚨 結果"></a>🚨 <strong>結果</strong></h3><p><strong>成員清單變小，只佔自身高度，而上下兩塊的 <code>space-between</code> 讓它變成「垂直置中」！</strong></p>
+<hr>
+<h2 id="🎯-2-為什麼-flex-grow-1-可以解決這個問題？"><a href="#🎯-2-為什麼-flex-grow-1-可以解決這個問題？" class="headerlink" title="🎯 2. 為什麼 flex-grow: 1; 可以解決這個問題？"></a><strong>🎯 2. 為什麼 <code>flex-grow: 1;</code> 可以解決這個問題？</strong></h2><p>當我們加回 **<code>flex-grow: 1;</code>**，它的行為變成這樣：</p>
+<ol>
+<li><code>.member-list</code> 會 <strong>自動填滿中間的剩餘空間</strong>（因為 <code>flex-grow</code> 會讓這個區塊撐開）。</li>
+<li>這樣 <code>.member-list</code> 會被「推到最上方」，從而不會在畫面中央 <strong>「漂浮」</strong>。</li>
+<li><strong><code>.member-list</code> 內容過少時，它還是會保持固定大小，但內容過多時，它會自動填滿可用空間，並且出現滾動條（如果有 <code>overflow: auto;</code>）</strong>。</li>
+</ol>
+<hr>
+<h2 id="🎯-3-如何測試這個行為？"><a href="#🎯-3-如何測試這個行為？" class="headerlink" title="🎯 3. 如何測試這個行為？"></a><strong>🎯 3. 如何測試這個行為？</strong></h2><p>你可以做以下實驗來感受 <code>flex-grow</code> 的作用：</p>
+<ol>
+<li>**刪除 <code>flex-grow: 1;</code>**，看看 <code>.member-list</code> 是不是變小、漂浮在畫面中間。</li>
+<li>**改成 <code>flex-grow: 2;</code>**，看看 <code>.member-list</code> 是否變得更大，甚至佔據比預期更多的空間。</li>
+<li>**給 <code>.member-list</code> 加上 <code>border: 1px solid red;</code>**，觀察它的大小變化 🚀。</li>
+</ol>
+<hr>
+<h2 id="✅-結論"><a href="#✅-結論" class="headerlink" title="✅ 結論"></a><strong>✅ 結論</strong></h2><p>👉 <strong><code>flex-grow: 1;</code> 是讓 <code>.member-list</code> 能夠填滿中間空間的關鍵</strong>。<br>如果沒有 <code>flex-grow: 1;</code>，<code>.member-list</code> 只會佔據自身內容的大小，而 <code>justify-content: space-between;</code> 會讓它被「推到」畫面中央，形成 <strong>「垂直置中」的錯覺</strong>！  </p>
+<p>這樣你理解了嗎？你可以試試不同的 <code>flex-grow</code> 值來更直觀地體驗它的作用 😃！</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/Javascript/" rel="tag"># Javascript</a>
+              <a href="/apple.lily/tags/Vue/" rel="tag"># Vue</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/03/25/OneDayOneNote/2024-12-20/" rel="prev" title="2024-12-20 在 JavaScript 中， !== 和 != 和  都是「不等於」運算符，但它們有**重要的區別**">
+                  <i class="fa fa-angle-left"></i> 2024-12-20 在 JavaScript 中， !== 和 != 和  都是「不等於」運算符，但它們有**重要的區別**
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
