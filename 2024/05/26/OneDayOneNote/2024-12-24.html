@@ -1,0 +1,106 @@
+<hr>
+<h2 id="title-2024-12-24-旅行分帳應用程式-步驟02date-2025-04-14-21-14-21tags-Javascript-Vue-description-2024-12-24-旅行分帳應用程式-步驟02"><a href="#title-2024-12-24-旅行分帳應用程式-步驟02date-2025-04-14-21-14-21tags-Javascript-Vue-description-2024-12-24-旅行分帳應用程式-步驟02" class="headerlink" title="title: 2024-12-24 旅行分帳應用程式-步驟02date: 2025-04-14 21:14:21tags:  [Javascript,Vue]description:   2024-12-24 旅行分帳應用程式-步驟02"></a>title: 2024-12-24 旅行分帳應用程式-步驟02<br>date: 2025-04-14 21:14:21<br>tags:  [Javascript,Vue]<br>description:   2024-12-24 旅行分帳應用程式-步驟02</h2><h2 id="2024-12-24-旅行分帳應用程式-步驟02"><a href="#2024-12-24-旅行分帳應用程式-步驟02" class="headerlink" title="2024-12-24 旅行分帳應用程式-步驟02"></a>2024-12-24 旅行分帳應用程式-步驟02</h2><p>從 <strong>Vue 3 + Composition API + <code>&lt;script setup&gt;</code></strong> 開始，一步步帶你上手。</p>
+<hr>
+<h3 id="🚀【第一步】基礎元件：分帳畫面框架"><a href="#🚀【第一步】基礎元件：分帳畫面框架" class="headerlink" title="🚀【第一步】基礎元件：分帳畫面框架"></a>🚀【第一步】基礎元件：分帳畫面框架</h3><p>我們從之前的畫面，改寫成 Composition API 的語法：</p>
+<pre><code class="vue">&lt;!-- SplitBill.vue --&gt;
+&lt;template&gt;
+  &lt;div class=&quot;app-container&quot;&gt;
+    &lt;!-- 上方: 標題 --&gt;
+    &lt;div class=&quot;header&quot;&gt;
+      &lt;h1&gt;旅行分帳應用程式&lt;/h1&gt;
+    &lt;/div&gt;
+
+    &lt;!-- 中間: 成員清單 --&gt;
+    &lt;div class=&quot;member-list&quot;&gt;
+      &lt;h2&gt;分帳成員&lt;/h2&gt;
+      &lt;ul&gt;
+        &lt;li v-for=&quot;member in members&quot; :key=&quot;member&quot;&gt;
+          {{ member }}
+        &lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+
+    &lt;!-- 下方: 新增成員按鈕 --&gt;
+    &lt;div class=&quot;bottom-section&quot;&gt;
+      &lt;button class=&quot;btn&quot; @click=&quot;addMember&quot;&gt;➕ 新增成員&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+
+// Vue 3 Composition API：定義成員清單
+const members = ref([&#39;小明&#39;, &#39;小美&#39;])
+
+// 暫時簡單新增一個假成員
+function addMember() {
+  members.value.push(&#39;新成員&#39;)
+}
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+/* ... 保留你原本的樣式 ... */
+&lt;/style&gt;
+</code></pre>
+<hr>
+<h3 id="✅-結果"><a href="#✅-結果" class="headerlink" title="✅ 結果"></a>✅ 結果</h3><ul>
+<li><code>ref([])</code> 是用來儲存成員清單的 Vue 3 變數（reactive）</li>
+<li><code>@click=&quot;addMember&quot;</code> 是點按鈕就會新增一筆資料</li>
+<li>你點按一次 ➕ 按鈕，畫面就會多一個「新成員」</li>
+</ul>
+<hr>
+<h3 id="下一步你想做什麼？"><a href="#下一步你想做什麼？" class="headerlink" title="下一步你想做什麼？"></a>下一步你想做什麼？</h3><ol>
+<li>🔤 改成可以「輸入名字」再新增</li>
+<li>💸 加入「支出紀錄」</li>
+<li>💾 學會存進 <code>localStorage</code></li>
+<li>📱 把畫面變漂亮＋響應式設計（手機用）</li>
+</ol>
+<p>或你想照之前的步驟繼續走也可以，我可以一步步帶你組裝起來 😄<br>你想繼續哪一部分呢？</p>
+<p>很棒的問題！🌟<br>你看到的這個 <code>:</code> 冒號，在 Vue 裡面是<strong>縮寫語法</strong>，它的全名是 <code>v-bind:</code>。</p>
+<hr>
+<h3 id="✅-在-Vue-中的功能是？"><a href="#✅-在-Vue-中的功能是？" class="headerlink" title="✅ : 在 Vue 中的功能是？"></a>✅ <code>:</code> 在 Vue 中的功能是？</h3><p><code>:</code> 是 <code>v-bind</code> 的簡寫，用來「綁定變數到 HTML 屬性」上。</p>
+<hr>
+<h3 id="🔍-看一個例子"><a href="#🔍-看一個例子" class="headerlink" title="🔍 看一個例子"></a>🔍 看一個例子</h3><pre><code class="vue">&lt;!-- 綁定字串，寫死 --&gt;
+&lt;li :key=&quot;&#39;user-&#39; + index&quot;&gt;{{ user.name }}&lt;/li&gt;
+</code></pre>
+<p>這段等於：</p>
+<pre><code class="vue">&lt;li v-bind:key=&quot;&#39;user-&#39; + index&quot;&gt;{{ user.name }}&lt;/li&gt;
+</code></pre>
+<p>也就是把 key 綁定到動態變數 <code>&#39;user-&#39; + index</code>。</p>
+<hr>
+<h3 id="📌-常見用法舉例"><a href="#📌-常見用法舉例" class="headerlink" title="📌 常見用法舉例"></a>📌 常見用法舉例</h3><table>
+<thead>
+<tr>
+<th>Vue 寫法</th>
+<th>等價寫法</th>
+<th>意思是…</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>:src=&quot;imgUrl&quot;</code></td>
+<td><code>v-bind:src=&quot;imgUrl&quot;</code></td>
+<td>把變數 <code>imgUrl</code> 的值當作圖片路徑</td>
+</tr>
+<tr>
+<td><code>:class=&quot;myClass&quot;</code></td>
+<td><code>v-bind:class=&quot;myClass&quot;</code></td>
+<td>根據變數控制 class 名稱</td>
+</tr>
+<tr>
+<td><code>:style=&quot;styleObj&quot;</code></td>
+<td><code>v-bind:style=&quot;styleObj&quot;</code></td>
+<td>動態指定 style 屬性</td>
+</tr>
+<tr>
+<td><code>:key=&quot;item.id&quot;</code></td>
+<td><code>v-bind:key=&quot;item.id&quot;</code></td>
+<td>給 v-for 每個元素一個獨一無二的 key</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="🎯-所以在這裡："><a href="#🎯-所以在這裡：" class="headerlink" title="🎯 所以在這裡："></a>🎯 所以在這裡：</h3><pre><code class="vue">&lt;li v-for=&quot;member in members&quot; :key=&quot;member&quot;&gt;
+</code></pre>
+<p>這就是告訴 Vue：「這個 list 裡，每個項目的 key 是 <code>member</code> 值」，用來<strong>追蹤 DOM 的變動</strong>，以提升效能和避免錯誤。</p>
+<hr>
+<p>如果你還不太確定 <code>v-bind</code> 跟 <code>:</code> 的用途，我可以設計幾個簡單的練習給你玩玩 🔁<br>你想練習一下 <code>v-bind:</code> 嗎？還是繼續往下寫「新增成員功能」？</p>

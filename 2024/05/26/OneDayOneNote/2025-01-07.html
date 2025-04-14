@@ -1,0 +1,119 @@
+<hr>
+<h2 id="title-2025-01-07-旅行分帳應用程式-步驟08date-2025-04-14-22-59-25tags-Javascript-Vue-description-2025-01-07-旅行分帳應用程式-步驟08"><a href="#title-2025-01-07-旅行分帳應用程式-步驟08date-2025-04-14-22-59-25tags-Javascript-Vue-description-2025-01-07-旅行分帳應用程式-步驟08" class="headerlink" title="title: 2025-01-07 旅行分帳應用程式-步驟08date: 2025-04-14 22:59:25tags:  [Javascript,Vue]description:   2025-01-07 旅行分帳應用程式-步驟08"></a>title: 2025-01-07 旅行分帳應用程式-步驟08<br>date: 2025-04-14 22:59:25<br>tags:  [Javascript,Vue]<br>description:   2025-01-07 旅行分帳應用程式-步驟08</h2><h2 id="2025-01-07-旅行分帳應用程式-步驟08"><a href="#2025-01-07-旅行分帳應用程式-步驟08" class="headerlink" title="2025-01-07 旅行分帳應用程式-步驟08"></a>2025-01-07 旅行分帳應用程式-步驟08</h2><p>好，回到比較簡單的目標 👇<br>我們先完成這個功能：</p>
+<p>🔧 <strong>功能目標：顯示每位成員應付的金額</strong>（取代現在的「應付 $0」）</p>
+<hr>
+<h2 id="🧮-分帳計算邏輯簡化說明"><a href="#🧮-分帳計算邏輯簡化說明" class="headerlink" title="🧮 分帳計算邏輯簡化說明"></a>🧮 分帳計算邏輯簡化說明</h2><ol>
+<li><strong>每筆支出</strong>會由某位成員支付一筆金額。</li>
+<li>所有支出總額，平均分配給所有人。</li>
+<li>每個人「應付」的金額 &#x3D; <strong>平均金額 - 他實際支付的金額</strong></li>
+<li>「應付金額」為正，代表他還要付給其他人；為負代表他已經付比較多。</li>
+</ol>
+<hr>
+<h2 id="✅-要做的步驟"><a href="#✅-要做的步驟" class="headerlink" title="✅ 要做的步驟"></a>✅ 要做的步驟</h2><ol>
+<li>計算所有人平均應付的金額。</li>
+<li>計算每個人實際支出的總額。</li>
+<li>計算每個人的應付金額 &#x3D; 平均 - 實支。</li>
+<li>顯示在 UI 上 <code>{{ member.name }} &lt;span&gt;應付 $xx&lt;/span&gt;</code></li>
+</ol>
+<hr>
+<h2 id="🛠️-修改-script-setup-代碼"><a href="#🛠️-修改-script-setup-代碼" class="headerlink" title="🛠️ 修改 script setup 代碼"></a>🛠️ 修改 <code>script setup</code> 代碼</h2><p>在 <code>&lt;script setup&gt;</code> 區塊中加上這段：</p>
+<pre><code class="js">// 計算每人應付金額
+import { computed } from &#39;vue&#39;
+
+const memberOwedAmounts = computed(() =&gt; {
+  const totalAmount = expenses.value.reduce((sum, e) =&gt; sum + e.amount, 0)
+  const memberCount = members.value.length
+  const avg = memberCount &gt; 0 ? totalAmount / memberCount : 0
+
+  // 建立一個 { [name]: 應付金額 } 的物件
+  const actualPaidMap = {}
+  members.value.forEach(m =&gt; actualPaidMap[m.name] = 0)
+
+  expenses.value.forEach(e =&gt; {
+    if (actualPaidMap[e.member] !== undefined) {
+      actualPaidMap[e.member] += e.amount
+    }
+  })
+
+  const result = {}
+  for (const name in actualPaidMap) {
+    result[name] = Math.round((avg - actualPaidMap[name]) * 100) / 100
+  }
+
+  return result
+})
+</code></pre>
+<hr>
+<h2 id="👁️‍🗨️-修改模板中的「應付-0」"><a href="#👁️‍🗨️-修改模板中的「應付-0」" class="headerlink" title="👁️‍🗨️ 修改模板中的「應付 $0」"></a>👁️‍🗨️ 修改模板中的「應付 $0」</h2><p>找到這段 HTML：</p>
+<pre><code class="html">{{ member.name }} &lt;span class=&quot;owe&quot;&gt;應付 $0&lt;/span&gt;
+</code></pre>
+<p>改為：</p>
+<pre><code class="html">{{ member.name }} 
+&lt;span class=&quot;owe&quot;&gt;應付 ${{ memberOwedAmounts[member.name] ?? 0 }}&lt;/span&gt;
+</code></pre>
+<hr>
+<h2 id="🧪-測試方式"><a href="#🧪-測試方式" class="headerlink" title="🧪 測試方式"></a>🧪 測試方式</h2><ol>
+<li>新增三位成員，例如 A、B、C。</li>
+<li>假設 A 支出 300。</li>
+<li>平均每人要出 100 → A 應付 -200（已多付），B&#x2F;C 應付 100。</li>
+</ol>
+<hr>
+<p>要不要下一步再幫你把「應收」顯示為綠色、「應付」顯示為紅色？還是你想先這樣？</p>
+<p>你可以這樣修改：  </p>
+<ol>
+<li>在 <code>&lt;template&gt;</code> 裡的「應付 $0」區塊改為動態顯示「應收 &#x2F; 應付」  </li>
+<li>根據金額正負變化 class 來變色  </li>
+<li>在 <code>&lt;style scoped&gt;</code> 裡新增 <code>.credit</code> 和 <code>.debt</code> 樣式</li>
+</ol>
+<hr>
+<h3 id="✅-修改-（成員清單那邊）"><a href="#✅-修改-（成員清單那邊）" class="headerlink" title="✅ 修改 &lt;template&gt;（成員清單那邊）"></a>✅ 修改 <code>&lt;template&gt;</code>（成員清單那邊）</h3><p>把這段：</p>
+<pre><code class="html">&lt;span class=&quot;owe&quot;&gt;應付 $0&lt;/span&gt;
+</code></pre>
+<p>改成這段：</p>
+<pre><code class="html">&lt;span :class=&quot;balanceClass(member.name)&quot;&gt;
+  {{ balanceText(member.name) }}
+&lt;/span&gt;
+</code></pre>
+<hr>
+<h3 id="✅-在-裡新增-balanceText-與-balanceClass："><a href="#✅-在-裡新增-balanceText-與-balanceClass：" class="headerlink" title="✅ 在 &lt;script setup&gt; 裡新增 balanceText 與 balanceClass："></a>✅ 在 <code>&lt;script setup&gt;</code> 裡新增 balanceText 與 balanceClass：</h3><pre><code class="js">// 計算個別成員的淨支出金額
+function getMemberBalance(name) {
+  const paid = expenses.value
+    .filter(e =&gt; e.member === name)
+    .reduce((sum, e) =&gt; sum + e.amount, 0)
+
+  const total = expenses.value.reduce((sum, e) =&gt; sum + e.amount, 0)
+  const average = members.value.length &gt; 0 ? total / members.value.length : 0
+
+  return paid - average
+}
+
+// 回傳文字描述
+function balanceText(name) {
+  const balance = getMemberBalance(name)
+  if (balance &gt; 0) return `應收 $${balance.toFixed(2)}`
+  if (balance &lt; 0) return `應付 $${Math.abs(balance).toFixed(2)}`
+  return &#39;結清&#39;
+}
+
+// 回傳對應的 class
+function balanceClass(name) {
+  const balance = getMemberBalance(name)
+  if (balance &gt; 0) return &#39;credit&#39;
+  if (balance &lt; 0) return &#39;debt&#39;
+  return &#39;&#39;
+}
+</code></pre>
+<hr>
+<h3 id="✅-在-裡新增樣式："><a href="#✅-在-裡新增樣式：" class="headerlink" title="✅ 在 &lt;style scoped&gt; 裡新增樣式："></a>✅ 在 <code>&lt;style scoped&gt;</code> 裡新增樣式：</h3><pre><code class="css">.credit {
+  color: green;
+  font-weight: bold;
+}
+
+.debt {
+  color: red;
+  font-weight: bold;
+}
+</code></pre>
+<hr>
+<p>這樣就可以依照支出情況，讓成員旁邊顯示「應收 $」為綠色，「應付 $」為紅色，「結清」不加樣式。</p>
+<p>如果你希望我幫你一起整合進整份 code，我也可以幫你貼上完整版 😄<br>要嗎？</p>

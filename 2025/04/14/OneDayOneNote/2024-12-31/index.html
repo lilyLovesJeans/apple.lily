@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2024-12-31 javascript的some">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024-12-31 javascript的some">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/04/14/OneDayOneNote/2024-12-31/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2024-12-31 javascript的some">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-04-14T13:30:06.000Z">
+<meta property="article:modified_time" content="2025-04-14T13:31:08.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2025/04/14/OneDayOneNote/2024-12-31/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2025/04/14/OneDayOneNote/2024-12-31/","path":"2025/04/14/OneDayOneNote/2024-12-31/","title":"2024-12-31 javascript的some"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2024-12-31 javascript的some | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2024-12-31-javascript%E7%9A%84some"><span class="nav-number">1.</span> <span class="nav-text">2024-12-31 javascript的some</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B9-name"><span class="nav-number">1.1.</span> <span class="nav-text">🔹 name !&#x3D;&#x3D; &#39;&#39;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B9-members-value-some-m-m-name-name"><span class="nav-number">1.2.</span> <span class="nav-text">🔹 members.value.some(m &#x3D;&gt; m.name &#x3D;&#x3D;&#x3D; name)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B9-members-value-some"><span class="nav-number">1.3.</span> <span class="nav-text">🔹 !members.value.some(...)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%9C%85-%E7%B6%9C%E5%90%88%E8%B5%B7%E4%BE%86%E6%95%B4%E5%8F%A5%E8%A9%B1%E7%9A%84%E6%84%8F%E6%80%9D%E6%98%AF%EF%BC%9A"><span class="nav-number">1.4.</span> <span class="nav-text">✅ 綜合起來整句話的意思是：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%A7%A0-%E5%B0%8F%E8%A3%9C%E5%85%85%EF%BC%9Asome-%E6%98%AF%E5%80%8B%E8%B6%85%E5%A5%BD%E7%94%A8%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">1.5.</span> <span class="nav-text">🧠 小補充：some() 是個超好用的方法</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">309</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2025/04/14/OneDayOneNote/2024-12-31/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2024-12-31 javascript的some | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2024-12-31 javascript的some">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2024-12-31 javascript的some
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2025-04-14 21:30:06 / 修改時間：21:31:08" itemprop="dateCreated datePublished" datetime="2025-04-14T21:30:06+08:00">2025-04-14</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2024-12-31 javascript的some</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2024-12-31-javascript的some"><a href="#2024-12-31-javascript的some" class="headerlink" title="2024-12-31 javascript的some"></a>2024-12-31 javascript的some</h2><p>javascript的some()</p>
+<p>這句話是：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (name !== <span class="string">&#x27;&#x27;</span> &amp;&amp; !members.<span class="property">value</span>.<span class="title function_">some</span>(<span class="function"><span class="params">m</span> =&gt;</span> m.<span class="property">name</span> === name))</span><br></pre></td></tr></table></figure>
+
+<p>我們來一句一句拆解說明 👇：</p>
+<hr>
+<h3 id="🔹-name"><a href="#🔹-name" class="headerlink" title="🔹 name !== &#39;&#39;"></a>🔹 <code>name !== &#39;&#39;</code></h3><p>👉 這是檢查：輸入的名字 <code>name</code> <strong>不是空的</strong><br>（也就是確保你有輸入東西，而不是空白）</p>
+<hr>
+<h3 id="🔹-members-value-some-m-m-name-name"><a href="#🔹-members-value-some-m-m-name-name" class="headerlink" title="🔹 members.value.some(m =&gt; m.name === name)"></a>🔹 <code>members.value.some(m =&gt; m.name === name)</code></h3><p>這是 <strong>檢查成員清單裡，有沒有重複的名字</strong></p>
+<p>我們拆開來看：</p>
+<ul>
+<li><p><code>members.value</code>：成員陣列（用 Vue 的 <code>ref</code> 包起來的）</p>
+</li>
+<li><p><code>.some(...)</code>：JavaScript 陣列的方法，意思是：</p>
+<blockquote>
+<p>❓「這個陣列中<strong>是否有</strong>至少一個元素符合條件？」</p>
+</blockquote>
+</li>
+<li><p><code>(m =&gt; m.name === name)</code>：</p>
+<ul>
+<li>每一個成員叫 <code>m</code></li>
+<li>檢查 <code>m.name</code> 是不是等於目前輸入的 <code>name</code></li>
+</ul>
+</li>
+</ul>
+<p>👉 所以整句的意思是：</p>
+<blockquote>
+<p>✅ 成員清單中有沒有人<strong>名字跟輸入的一樣</strong>？</p>
+</blockquote>
+<hr>
+<h3 id="🔹-members-value-some"><a href="#🔹-members-value-some" class="headerlink" title="🔹 !members.value.some(...)"></a>🔹 <code>!members.value.some(...)</code></h3><p>前面有一個 <code>!</code>（驚嘆號），代表 <strong>「沒有這個人」</strong></p>
+<hr>
+<h3 id="✅-綜合起來整句話的意思是："><a href="#✅-綜合起來整句話的意思是：" class="headerlink" title="✅ 綜合起來整句話的意思是："></a>✅ 綜合起來整句話的意思是：</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (name !== <span class="string">&#x27;&#x27;</span> &amp;&amp; !members.<span class="property">value</span>.<span class="title function_">some</span>(<span class="function"><span class="params">m</span> =&gt;</span> m.<span class="property">name</span> === name))</span><br></pre></td></tr></table></figure>
+
+<p>就是：</p>
+<blockquote>
+<p>✅ <strong>如果有輸入名字</strong><br>✅ <strong>而且這個名字還沒在清單裡</strong><br>👉 就可以加入新的成員</p>
+</blockquote>
+<hr>
+<h3 id="🧠-小補充：some-是個超好用的方法"><a href="#🧠-小補充：some-是個超好用的方法" class="headerlink" title="🧠 小補充：some() 是個超好用的方法"></a>🧠 小補充：<code>some()</code> 是個超好用的方法</h3><p>舉例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">numbers.<span class="title function_">some</span>(<span class="function"><span class="params">n</span> =&gt;</span> n &gt; <span class="number">3</span>)  <span class="comment">// 會回傳 true，因為有 4 &gt; 3</span></span><br></pre></td></tr></table></figure>
+
+<p>如果你對 <code>some()</code> 想更深入學一點，我也可以幫你做簡單練習題 😄</p>
+<p>要嗎？</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/Javascript/" rel="tag"># Javascript</a>
+              <a href="/apple.lily/tags/Vue/" rel="tag"># Vue</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/04/14/OneDayOneNote/2024-12-30/" rel="prev" title="2024-12-30 el_dos_scrollTop_equal_el_dot_scrollHeighte">
+                  <i class="fa fa-angle-left"></i> 2024-12-30 el_dos_scrollTop_equal_el_dot_scrollHeighte
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/04/14/OneDayOneNote/2025-01-01/" rel="next" title="2025-01-01 旅行分帳應用程式-步驟03">
+                  2025-01-01 旅行分帳應用程式-步驟03 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<hr>
+<h2 id="title-2024-12-28-CSS讓背景變灰date-2025-04-14-21-22-53tags-Javascript-Vue-description-2024-12-28-CSS讓背景變灰"><a href="#title-2024-12-28-CSS讓背景變灰date-2025-04-14-21-22-53tags-Javascript-Vue-description-2024-12-28-CSS讓背景變灰" class="headerlink" title="title: 2024-12-28 CSS讓背景變灰date: 2025-04-14 21:22:53tags:  [Javascript,Vue]description:   2024-12-28 CSS讓背景變灰"></a>title: 2024-12-28 CSS讓背景變灰<br>date: 2025-04-14 21:22:53<br>tags:  [Javascript,Vue]<br>description:   2024-12-28 CSS讓背景變灰</h2><h2 id="2024-12-28-CSS讓背景變灰"><a href="#2024-12-28-CSS讓背景變灰" class="headerlink" title="2024-12-28 CSS讓背景變灰"></a>2024-12-28 CSS讓背景變灰</h2><p>CSS讓背景變灰</p>
+<pre><code class="css">.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+```css
+
+對！你完全理解正確！👏
+
+這段 `.modal-backdrop` 的 CSS 的確就是用來**讓背景變灰、並置中 modal 視窗**的。來，我幫你逐行解析：
+
+---
+
+### 🔍 `.modal-backdrop` 的每個屬性解釋：
+
+```css
+.modal-backdrop {
+  position: fixed;
+</code></pre>
+<p>➡️ <strong>固定定位</strong>：讓背景遮罩浮在畫面上，不會因為頁面滾動而消失。</p>
+<pre><code class="css">  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+</code></pre>
+<p>➡️ <strong>覆蓋整個畫面</strong>：從左上角開始，占滿整個螢幕。</p>
+<pre><code class="css">  background-color: rgba(0, 0, 0, 0.4);
+</code></pre>
+<p>➡️ <strong>半透明黑背景</strong>：這就是讓背景變灰的關鍵。<code>rgba(0, 0, 0, 0.4)</code> 表示黑色但透明度 40%。</p>
+<pre><code class="css">  display: flex;
+  justify-content: center;
+  align-items: center;
+</code></pre>
+<p>➡️ <strong>置中 modal</strong>：使用 flex 盒模型，讓子元素（你的 modal 視窗）<strong>水平與垂直置中</strong>。</p>
+<hr>
+<h3 id="💡-小技巧補充："><a href="#💡-小技巧補充：" class="headerlink" title="💡 小技巧補充："></a>💡 小技巧補充：</h3><p>如果你想讓灰背景<strong>更暗或更淺</strong>，可以調整透明度這個值：</p>
+<pre><code class="css">rgba(0, 0, 0, 0.2) // 淺灰
+rgba(0, 0, 0, 0.6) // 深灰
+</code></pre>
+<hr>
+<p>如果你想做出更美的 modal 效果（像動畫、彈出縮放等），我也可以幫你加上哦 😄<br>要加嗎？還是先做下一步功能？</p>

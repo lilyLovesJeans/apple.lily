@@ -1,0 +1,54 @@
+<hr>
+<h2 id="title-2025-01-04-旅行分帳應用程式-步驟06date-2025-04-14-22-55-39tags-Javascript-Vue-description-2025-01-04-旅行分帳應用程式-步驟06"><a href="#title-2025-01-04-旅行分帳應用程式-步驟06date-2025-04-14-22-55-39tags-Javascript-Vue-description-2025-01-04-旅行分帳應用程式-步驟06" class="headerlink" title="title: 2025-01-04 旅行分帳應用程式-步驟06date: 2025-04-14 22:55:39tags:  [Javascript,Vue]description:   2025-01-04 旅行分帳應用程式-步驟06"></a>title: 2025-01-04 旅行分帳應用程式-步驟06<br>date: 2025-04-14 22:55:39<br>tags:  [Javascript,Vue]<br>description:   2025-01-04 旅行分帳應用程式-步驟06</h2><h2 id="2025-01-04-旅行分帳應用程式-步驟06"><a href="#2025-01-04-旅行分帳應用程式-步驟06" class="headerlink" title="2025-01-04 旅行分帳應用程式-步驟06"></a>2025-01-04 旅行分帳應用程式-步驟06</h2><p>資料「即時儲存到 localStorage」</p>
+<p>太好了，我來幫你把資料「即時儲存到 localStorage」的功能整合進你的 Vue 應用程式，這樣就算重新整理畫面，資料也不會消失。</p>
+<hr>
+<h3 id="✅-我們要儲存哪些資料？"><a href="#✅-我們要儲存哪些資料？" class="headerlink" title="✅ 我們要儲存哪些資料？"></a>✅ 我們要儲存哪些資料？</h3><ul>
+<li>成員資料 <code>members</code></li>
+<li>支出資料 <code>expenses</code></li>
+<li>預設的支出項目 <code>defaultExpenseItems</code></li>
+</ul>
+<hr>
+<h3 id="🛠-修改步驟"><a href="#🛠-修改步驟" class="headerlink" title="🛠 修改步驟"></a>🛠 修改步驟</h3><ol>
+<li><strong>加入 <code>watch</code> 監聽變化 → 自動存入 localStorage</strong></li>
+<li><strong>在 <code>onMounted</code> 時自動從 localStorage 載入資料</strong></li>
+</ol>
+<hr>
+<h3 id="✅-完整整合範例（請加在-中）"><a href="#✅-完整整合範例（請加在-中）" class="headerlink" title="✅ 完整整合範例（請加在 &lt;script setup&gt; 中）"></a>✅ 完整整合範例（請加在 <code>&lt;script setup&gt;</code> 中）</h3><pre><code class="js">import { ref, watch, onMounted } from &#39;vue&#39;
+
+const members = ref([])
+const expenses = ref([])
+const defaultExpenseItems = ref([])
+
+// 儲存到 localStorage 的方法
+function saveToLocalStorage() {
+  localStorage.setItem(&#39;splitBill_members&#39;, JSON.stringify(members.value))
+  localStorage.setItem(&#39;splitBill_expenses&#39;, JSON.stringify(expenses.value))
+  localStorage.setItem(&#39;splitBill_defaultItems&#39;, JSON.stringify(defaultExpenseItems.value))
+}
+
+// 載入 localStorage 中的資料
+function loadFromLocalStorage() {
+  const savedMembers = localStorage.getItem(&#39;splitBill_members&#39;)
+  const savedExpenses = localStorage.getItem(&#39;splitBill_expenses&#39;)
+  const savedItems = localStorage.getItem(&#39;splitBill_defaultItems&#39;)
+
+  if (savedMembers) members.value = JSON.parse(savedMembers)
+  if (savedExpenses) expenses.value = JSON.parse(savedExpenses)
+  if (savedItems) defaultExpenseItems.value = JSON.parse(savedItems)
+}
+
+// 監聽 members、expenses、defaultExpenseItems 有變動就儲存
+watch([members, expenses, defaultExpenseItems], saveToLocalStorage, { deep: true })
+
+// 初始化時載入
+onMounted(() =&gt; {
+  loadFromLocalStorage()
+})
+</code></pre>
+<hr>
+<h3 id="📌-注意"><a href="#📌-注意" class="headerlink" title="📌 注意"></a>📌 注意</h3><ul>
+<li><code>watch([...], ..., { deep: true })</code> 是為了監控陣列或物件裡的變化。</li>
+<li>key 名像 <code>splitBill_members</code> 可以依你的 App 名稱自訂，避免不同 app 的 key 衝突。</li>
+</ul>
+<hr>
+<p>需要我幫你把這段直接整合到目前的完整程式碼裡嗎？還是你想試試看加進去？👩‍💻</p>

@@ -1,0 +1,140 @@
+<hr>
+<h2 id="title-2024-12-23-旅行分帳應用程式-步驟01date-2025-04-14-21-12-22tags-Javascript-Vue-description-2024-12-23-旅行分帳應用程式-步驟01"><a href="#title-2024-12-23-旅行分帳應用程式-步驟01date-2025-04-14-21-12-22tags-Javascript-Vue-description-2024-12-23-旅行分帳應用程式-步驟01" class="headerlink" title="title: 2024-12-23 旅行分帳應用程式-步驟01date: 2025-04-14 21:12:22tags:  [Javascript,Vue]description:   2024-12-23 旅行分帳應用程式-步驟01"></a>title: 2024-12-23 旅行分帳應用程式-步驟01<br>date: 2025-04-14 21:12:22<br>tags:  [Javascript,Vue]<br>description:   2024-12-23 旅行分帳應用程式-步驟01</h2><h2 id="2024-12-23-旅行分帳應用程式-步驟01"><a href="#2024-12-23-旅行分帳應用程式-步驟01" class="headerlink" title="2024-12-23 旅行分帳應用程式-步驟01"></a>2024-12-23 旅行分帳應用程式-步驟01</h2><p>這是一個完整的 UI 規格，我們可以按照以下步驟逐步完成：  </p>
+<hr>
+<h3 id="📌-步驟-1：建立基本畫面（這一步沒有-Vue-邏輯）"><a href="#📌-步驟-1：建立基本畫面（這一步沒有-Vue-邏輯）" class="headerlink" title="📌 步驟 1：建立基本畫面（這一步沒有 Vue 邏輯）"></a><strong>📌 步驟 1：建立基本畫面</strong>（這一步沒有 Vue 邏輯）</h3><p>我們先搭建基本的 Vue 模板，讓畫面上有：</p>
+<ul>
+<li><strong>「分帳成員」區塊</strong></li>
+<li><strong>「新增成員」按鈕</strong></li>
+<li><strong>「新增支出款項」按鈕</strong></li>
+<li><strong>帳款清單</strong></li>
+<li><strong>應付 &#x2F; 應收金額顯示</strong></li>
+<li><strong>「旅程結束」按鈕</strong></li>
+</ul>
+<h4 id="🔷-畫面設計"><a href="#🔷-畫面設計" class="headerlink" title="🔷 畫面設計"></a><strong>🔷 畫面設計</strong></h4><p>這裡的畫面還沒有功能，下一步我們會用 Vue 讓它變成動態的。</p>
+<pre><code class="vue">&lt;template&gt;
+  &lt;div class=&quot;app-container&quot;&gt;
+    &lt;!-- 標題 --&gt;
+    &lt;div class=&quot;header&quot;&gt;
+      &lt;h1&gt;旅行分帳應用程式&lt;/h1&gt;
+    &lt;/div&gt;
+
+    &lt;!-- 分帳成員 --&gt;
+    &lt;div class=&quot;section&quot;&gt;
+      &lt;h2&gt;分帳成員&lt;/h2&gt;
+      &lt;ul&gt;
+        &lt;li&gt;
+          小明 &lt;span class=&quot;owe&quot;&gt;應付 $500&lt;/span&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+          小美 &lt;span class=&quot;receive&quot;&gt;應收 $500&lt;/span&gt;
+        &lt;/li&gt;
+      &lt;/ul&gt;
+      &lt;button class=&quot;btn&quot;&gt;➕ 新增成員&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;!-- 新增支出款項 --&gt;
+    &lt;div class=&quot;section&quot;&gt;
+      &lt;h2&gt;支出紀錄&lt;/h2&gt;
+      &lt;button class=&quot;btn&quot;&gt;➕ 新增支出款項&lt;/button&gt;
+      &lt;ul&gt;
+        &lt;li&gt;🛏️ 住宿費 - 小明支付 $3000 &lt;button class=&quot;delete-btn&quot;&gt;🗑️&lt;/button&gt;&lt;/li&gt;
+        &lt;li&gt;🍽️ 晚餐 - 小美支付 $1500 &lt;button class=&quot;delete-btn&quot;&gt;🗑️&lt;/button&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+
+    &lt;!-- 旅程結束 --&gt;
+    &lt;div class=&quot;section&quot;&gt;
+      &lt;button class=&quot;end-trip-btn&quot;&gt;🚀 旅程結束&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;style scoped&gt;
+.app-container {
+  max-width: 500px;
+  margin: auto;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  font-size: 1.5em;
+  font-weight: 600;
+  color: #5e3a4a;
+  text-align: center;
+  padding: 10px;
+}
+
+.section {
+  margin: 20px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+h2 {
+  color: #4a2c38;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  background: #f8f8f8;
+  margin: 5px 0;
+  padding: 8px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.owe {
+  color: red;
+}
+
+.receive {
+  color: green;
+}
+
+.btn {
+  background-color: #d16a7b;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #b85967;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.end-trip-btn {
+  background-color: #555;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.end-trip-btn:hover {
+  background-color: #333;
+}
+&lt;/style&gt;
+</code></pre>
+<hr>
+<h3 id="🔍-你的任務"><a href="#🔍-你的任務" class="headerlink" title="🔍 你的任務"></a><strong>🔍 你的任務</strong></h3><p>✅ 把這個模板放進 Vue 項目，看看畫面是否正確顯示。<br>✅ 調整假資料（成員姓名、金額）讓它符合你的需求。  </p>
+<hr>
+<h3 id="🚀-下一步"><a href="#🚀-下一步" class="headerlink" title="🚀 下一步"></a><strong>🚀 下一步</strong></h3><p><strong>👉 在步驟 2</strong>，我們會用 Vue <code>data()</code> 讓這些成員和支出變成動態的，讓你可以「新增」和「刪除」項目！  </p>
+<p>你先試試這一步，確保 UI 沒問題後，我們再繼續。 🎉</p>

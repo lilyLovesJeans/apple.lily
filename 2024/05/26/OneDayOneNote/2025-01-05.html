@@ -1,0 +1,75 @@
+<hr>
+<h2 id="title-2025-01-05-watch-deep-truedate-2025-04-14-22-56-53tags-Javascript-Vue-description-2025-01-05-watch-deep-true"><a href="#title-2025-01-05-watch-deep-truedate-2025-04-14-22-56-53tags-Javascript-Vue-description-2025-01-05-watch-deep-true" class="headerlink" title="title: 2025-01-05 watch_deep-truedate: 2025-04-14 22:56:53tags:  [Javascript,Vue]description:   2025-01-05 watch_deep-true"></a>title: 2025-01-05 watch_deep-true<br>date: 2025-04-14 22:56:53<br>tags:  [Javascript,Vue]<br>description:   2025-01-05 watch_deep-true</h2><h2 id="2025-01-05-watch-deep-true"><a href="#2025-01-05-watch-deep-true" class="headerlink" title="2025-01-05 watch_deep-true"></a>2025-01-05 watch_deep-true</h2><p>deep: true</p>
+<p>當然可以，我來逐行說明這句：</p>
+<pre><code class="js">watch([members, expenses, defaultExpenseItems], saveToLocalStorage, { deep: true })
+</code></pre>
+<p>這是 Vue 3 Composition API 中的 <code>watch()</code> 函式，用來「監聽變數變化」並做出反應。</p>
+<hr>
+<h3 id="🔍-各部分解釋："><a href="#🔍-各部分解釋：" class="headerlink" title="🔍 各部分解釋："></a>🔍 各部分解釋：</h3><h4 id="✅-watch"><a href="#✅-watch" class="headerlink" title="✅ watch(...)"></a>✅ <code>watch(...)</code></h4><p>Vue 的函式，會監聽你指定的資料，當它們的值變了，就會自動執行你給的函式。</p>
+<hr>
+<h4 id="✅-members-expenses-defaultExpenseItems"><a href="#✅-members-expenses-defaultExpenseItems" class="headerlink" title="✅ [members, expenses, defaultExpenseItems]"></a>✅ <code>[members, expenses, defaultExpenseItems]</code></h4><p>這是「要被監聽的資料清單」，意思是：</p>
+<ul>
+<li>只要 <code>members</code> 有變化（新增&#x2F;刪除&#x2F;修改人）</li>
+<li>或 <code>expenses</code> 有變化（新增&#x2F;刪除支出）</li>
+<li>或 <code>defaultExpenseItems</code> 有變化（新增支出項目）</li>
+</ul>
+<p><strong>任何一個變了，就會觸發 <code>saveToLocalStorage()</code>。</strong></p>
+<hr>
+<h4 id="✅-saveToLocalStorage"><a href="#✅-saveToLocalStorage" class="headerlink" title="✅ saveToLocalStorage"></a>✅ <code>saveToLocalStorage</code></h4><p>這是你定義的函式，用來把資料存到 localStorage：</p>
+<pre><code class="js">function saveToLocalStorage() {
+  localStorage.setItem(&#39;splitBill_members&#39;, JSON.stringify(members.value))
+  localStorage.setItem(&#39;splitBill_expenses&#39;, JSON.stringify(expenses.value))
+  localStorage.setItem(&#39;splitBill_defaultItems&#39;, JSON.stringify(defaultExpenseItems.value))
+}
+</code></pre>
+<hr>
+<h4 id="✅-deep-true"><a href="#✅-deep-true" class="headerlink" title="✅ { deep: true }"></a>✅ <code>{ deep: true }</code></h4><p>這表示「深層監聽」：</p>
+<ul>
+<li>不只監控陣列本身是否改變（例如整個重新指定）</li>
+<li>也會監控陣列 <strong>裡面</strong> 的物件有無變動（例如你改了某位成員的名字）</li>
+</ul>
+<blockquote>
+<p>如果你不寫 <code>deep: true</code>，Vue 只會監聽「變數整個被替換」的情況，不會監聽物件內部的內容變化。</p>
+</blockquote>
+<hr>
+<h3 id="✅-小結："><a href="#✅-小結：" class="headerlink" title="✅ 小結："></a>✅ 小結：</h3><p>這一句就是在說：</p>
+<blockquote>
+<p>「只要 <code>members</code>、<code>expenses</code> 或 <code>defaultExpenseItems</code> 中<strong>任一資料有變動</strong>，不論是陣列變了、還是物件內容改了，就會自動呼叫 <code>saveToLocalStorage()</code> 去把資料儲存到 localStorage。」</p>
+</blockquote>
+<hr>
+<p>如果你想試試看，可以在畫面中加入一個 console log，例如：</p>
+<pre><code class="js">function saveToLocalStorage() {
+  console.log(&#39;資料有變動，儲存中...&#39;)
+  // ...
+}
+</code></pre>
+<p>這樣只要一動資料，就會在 console 中看到訊息 😊</p>
+<p>有需要我幫你示範怎麼加 <code>deep: false</code> 的效果比較嗎？</p>
+<p>對，你目前的程式只有「新增成員」和「點選成員」，<strong>沒有提供編輯（修改）成員名字的功能</strong>。</p>
+<p>不過你用 <code>deep: true</code> 是對的，因為未來你可能會：</p>
+<ul>
+<li>修改成員的名字</li>
+<li>增加欄位，例如記錄誰付了錢、有多少餘額等等</li>
+<li>修改支出的某些欄位（例如改支出金額或名稱）</li>
+</ul>
+<p>這些都牽涉到 <strong>物件內部的變化</strong>，如果沒有 <code>deep: true</code>，Vue 是偵測不到這些變化的，<code>watch()</code> 就不會觸發。</p>
+<hr>
+<h3 id="✅-你可以這樣理解："><a href="#✅-你可以這樣理解：" class="headerlink" title="✅ 你可以這樣理解："></a>✅ 你可以這樣理解：</h3><table>
+<thead>
+<tr>
+<th>有沒有 <code>deep: true</code></th>
+<th>可以偵測的變化</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>❌ 沒有 <code>deep</code></td>
+<td>只能偵測 <code>members = [...]</code> 這種「整個換掉」</td>
+</tr>
+<tr>
+<td>✅ 有 <code>deep: true</code></td>
+<td>可以偵測 <code>members[0].name = &quot;小王&quot;</code> 這種「內部改變」</td>
+</tr>
+</tbody></table>
+<hr>
+<p>雖然你「目前」沒有修改功能，但你選用 <code>deep: true</code> 是個好習慣，讓系統 <strong>一開始就為將來的擴充做準備</strong>。</p>
+<p>如果你想，我可以幫你加一個「點擊成員名字可以修改」的功能，順便實際示範 <code>deep</code> 的用途？</p>

@@ -1,0 +1,86 @@
+<hr>
+<h2 id="title-2024-12-26-Vue3-script-setupdate-2025-04-14-21-20-05tags-Javascript-Vue-description-2024-12-26-Vue3-script-setup"><a href="#title-2024-12-26-Vue3-script-setupdate-2025-04-14-21-20-05tags-Javascript-Vue-description-2024-12-26-Vue3-script-setup" class="headerlink" title="title: 2024-12-26 Vue3_script setupdate: 2025-04-14 21:20:05tags:  [Javascript,Vue]description:   2024-12-26 Vue3_script setup"></a>title: 2024-12-26 Vue3_script setup<br>date: 2025-04-14 21:20:05<br>tags:  [Javascript,Vue]<br>description:   2024-12-26 Vue3_script setup</h2><h2 id="2024-12-26-Vue3-script-setup"><a href="#2024-12-26-Vue3-script-setup" class="headerlink" title="2024-12-26 Vue3_script setup"></a>2024-12-26 Vue3_script setup</h2><p>太好了！這裡是給你的一張超實用 ✅ <strong>Vue 3 <code>&lt;script setup&gt;</code> 小抄</strong>，超簡明清晰，保證新手也看得懂：</p>
+<hr>
+<h2 id="🧠-小抄速查表"><a href="#🧠-小抄速查表" class="headerlink" title="🧠 &lt;script setup&gt; 小抄速查表"></a>🧠 <code>&lt;script setup&gt;</code> 小抄速查表</h2><h3 id="✅-基本語法"><a href="#✅-基本語法" class="headerlink" title="✅ 基本語法"></a>✅ 基本語法</h3><pre><code class="vue">&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+
+const count = ref(0)
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;button @click=&quot;count++&quot;&gt;點我：{{ count }}&lt;/button&gt;
+&lt;/template&gt;
+</code></pre>
+<hr>
+<h3 id="📌-常用功能速查表"><a href="#📌-常用功能速查表" class="headerlink" title="📌 常用功能速查表"></a>📌 常用功能速查表</h3><table>
+<thead>
+<tr>
+<th>功能</th>
+<th>寫法（<code>&lt;script setup&gt;</code>）</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>定義變數</td>
+<td><code>const name = ref(&#39;Lily&#39;)</code></td>
+<td><code>ref</code> 用來定義可變變數（響應式）</td>
+</tr>
+<tr>
+<td>多個變數</td>
+<td><code>const a = ref(1); const b = ref(2)</code></td>
+<td>多個 <code>ref</code></td>
+</tr>
+<tr>
+<td>陣列&#x2F;物件</td>
+<td><code>const users = ref([])</code></td>
+<td>可以用 <code>.value.push(...)</code> 修改</td>
+</tr>
+<tr>
+<td>方法（函式）</td>
+<td><code>function sayHi() { console.log(&#39;Hi&#39;) }</code></td>
+<td>直接定義函式即可</td>
+</tr>
+<tr>
+<td>引入元件</td>
+<td><code>import MyComponent from &#39;./MyComponent.vue&#39;</code></td>
+<td>然後在 <code>&lt;template&gt;</code> 中使用</td>
+</tr>
+<tr>
+<td>v-for 用 key</td>
+<td><code>&lt;li v-for=&quot;item in list&quot; :key=&quot;item.id&quot;&gt;</code></td>
+<td>綁定 key 用 <code>:</code> 是 <code>v-bind</code></td>
+</tr>
+<tr>
+<td>計算屬性</td>
+<td><code>import { computed } from &#39;vue&#39;</code> <br> <code>const total = computed(() =&gt; a.value + b.value)</code></td>
+<td>自動更新的計算值</td>
+</tr>
+<tr>
+<td>props（接收外部傳值）</td>
+<td><code>defineProps([&#39;title&#39;])</code> 或 <code>defineProps&lt;{ title: string }&gt;()</code></td>
+<td>自動建立 props</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="🔥-加分技巧"><a href="#🔥-加分技巧" class="headerlink" title="🔥 加分技巧"></a>🔥 加分技巧</h3><h4 id="✅-reactive（多層物件）"><a href="#✅-reactive（多層物件）" class="headerlink" title="✅ reactive（多層物件）"></a>✅ <code>reactive</code>（多層物件）</h4><pre><code class="ts">import { reactive } from &#39;vue&#39;
+
+const user = reactive({
+  name: &#39;Lily&#39;,
+  age: 18
+})
+</code></pre>
+<h4 id="✅-不用-return，變數自動可在-template-用！"><a href="#✅-不用-return，變數自動可在-template-用！" class="headerlink" title="✅ 不用 return，變數自動可在 template 用！"></a>✅ 不用 return，變數自動可在 template 用！</h4><pre><code class="ts">const message = ref(&#39;Hello&#39;)
+</code></pre>
+<pre><code class="html">&lt;template&gt;
+  &lt;p&gt;{{ message }}&lt;/p&gt;
+&lt;/template&gt;
+</code></pre>
+<hr>
+<h3 id="😎-你可以這樣記住："><a href="#😎-你可以這樣記住：" class="headerlink" title="😎 你可以這樣記住："></a>😎 你可以這樣記住：</h3><ul>
+<li><code>ref()</code>：單一值（字串、數字）</li>
+<li><code>reactive()</code>：多層資料（物件、陣列）</li>
+<li><code>&lt;script setup&gt;</code>：變數不用回傳（return），直接就能用！</li>
+</ul>
+<hr>
+<p>如果你想，我可以幫你做一個 <code>SplitBill.vue</code> 的練習版，搭配 <code>&lt;script setup&gt;</code> + <code>ref()</code>，讓你邊看邊做！</p>
+<p>要現在來寫「新增成員功能」嗎？還是你想再熟悉一下某個概念？🌱</p>

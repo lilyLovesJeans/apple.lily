@@ -1,0 +1,46 @@
+<hr>
+<h2 id="title-2024-12-31-javascript的somedate-2025-04-14-21-30-06tags-Javascript-Vue-description-2024-12-31-javascript的some"><a href="#title-2024-12-31-javascript的somedate-2025-04-14-21-30-06tags-Javascript-Vue-description-2024-12-31-javascript的some" class="headerlink" title="title: 2024-12-31 javascript的somedate: 2025-04-14 21:30:06tags:  [Javascript,Vue]description:   2024-12-31 javascript的some"></a>title: 2024-12-31 javascript的some<br>date: 2025-04-14 21:30:06<br>tags:  [Javascript,Vue]<br>description:   2024-12-31 javascript的some</h2><h2 id="2024-12-31-javascript的some"><a href="#2024-12-31-javascript的some" class="headerlink" title="2024-12-31 javascript的some"></a>2024-12-31 javascript的some</h2><p>javascript的some()</p>
+<p>這句話是：</p>
+<pre><code class="js">if (name !== &#39;&#39; &amp;&amp; !members.value.some(m =&gt; m.name === name))
+</code></pre>
+<p>我們來一句一句拆解說明 👇：</p>
+<hr>
+<h3 id="🔹-name"><a href="#🔹-name" class="headerlink" title="🔹 name !== &#39;&#39;"></a>🔹 <code>name !== &#39;&#39;</code></h3><p>👉 這是檢查：輸入的名字 <code>name</code> <strong>不是空的</strong><br>（也就是確保你有輸入東西，而不是空白）</p>
+<hr>
+<h3 id="🔹-members-value-some-m-m-name-name"><a href="#🔹-members-value-some-m-m-name-name" class="headerlink" title="🔹 members.value.some(m =&gt; m.name === name)"></a>🔹 <code>members.value.some(m =&gt; m.name === name)</code></h3><p>這是 <strong>檢查成員清單裡，有沒有重複的名字</strong></p>
+<p>我們拆開來看：</p>
+<ul>
+<li><p><code>members.value</code>：成員陣列（用 Vue 的 <code>ref</code> 包起來的）</p>
+</li>
+<li><p><code>.some(...)</code>：JavaScript 陣列的方法，意思是：</p>
+<blockquote>
+<p>❓「這個陣列中<strong>是否有</strong>至少一個元素符合條件？」</p>
+</blockquote>
+</li>
+<li><p><code>(m =&gt; m.name === name)</code>：</p>
+<ul>
+<li>每一個成員叫 <code>m</code></li>
+<li>檢查 <code>m.name</code> 是不是等於目前輸入的 <code>name</code></li>
+</ul>
+</li>
+</ul>
+<p>👉 所以整句的意思是：</p>
+<blockquote>
+<p>✅ 成員清單中有沒有人<strong>名字跟輸入的一樣</strong>？</p>
+</blockquote>
+<hr>
+<h3 id="🔹-members-value-some"><a href="#🔹-members-value-some" class="headerlink" title="🔹 !members.value.some(...)"></a>🔹 <code>!members.value.some(...)</code></h3><p>前面有一個 <code>!</code>（驚嘆號），代表 <strong>「沒有這個人」</strong></p>
+<hr>
+<h3 id="✅-綜合起來整句話的意思是："><a href="#✅-綜合起來整句話的意思是：" class="headerlink" title="✅ 綜合起來整句話的意思是："></a>✅ 綜合起來整句話的意思是：</h3><pre><code class="js">if (name !== &#39;&#39; &amp;&amp; !members.value.some(m =&gt; m.name === name))
+</code></pre>
+<p>就是：</p>
+<blockquote>
+<p>✅ <strong>如果有輸入名字</strong><br>✅ <strong>而且這個名字還沒在清單裡</strong><br>👉 就可以加入新的成員</p>
+</blockquote>
+<hr>
+<h3 id="🧠-小補充：some-是個超好用的方法"><a href="#🧠-小補充：some-是個超好用的方法" class="headerlink" title="🧠 小補充：some() 是個超好用的方法"></a>🧠 小補充：<code>some()</code> 是個超好用的方法</h3><p>舉例：</p>
+<pre><code class="js">const numbers = [1, 2, 3, 4]
+numbers.some(n =&gt; n &gt; 3)  // 會回傳 true，因為有 4 &gt; 3
+</code></pre>
+<p>如果你對 <code>some()</code> 想更深入學一點，我也可以幫你做簡單練習題 😄</p>
+<p>要嗎？</p>

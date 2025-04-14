@@ -1,0 +1,42 @@
+<hr>
+<h2 id="title-2024-12-29-要拿到-DOM-實體要用-valuedate-2025-04-14-21-24-01tags-Javascript-Vue-description-2024-12-29-要拿到-DOM-實體要用-value"><a href="#title-2024-12-29-要拿到-DOM-實體要用-valuedate-2025-04-14-21-24-01tags-Javascript-Vue-description-2024-12-29-要拿到-DOM-實體要用-value" class="headerlink" title="title: 2024-12-29 要拿到 DOM 實體要用_valuedate: 2025-04-14 21:24:01tags:  [Javascript,Vue]description:   2024-12-29 要拿到 DOM 實體要用_value"></a>title: 2024-12-29 要拿到 DOM 實體要用_value<br>date: 2025-04-14 21:24:01<br>tags:  [Javascript,Vue]<br>description:   2024-12-29 要拿到 DOM 實體要用_value</h2><h2 id="2024-12-29-要拿到-DOM-實體要用-value"><a href="#2024-12-29-要拿到-DOM-實體要用-value" class="headerlink" title="2024-12-29 要拿到 DOM 實體要用_value"></a>2024-12-29 要拿到 DOM 實體要用_value</h2><p>要拿到 DOM 實體要用 .value</p>
+<p>非常棒的觀察！你完全說對了，我來幫你詳細拆解：</p>
+<hr>
+<h3 id="✅-你問的這段程式碼："><a href="#✅-你問的這段程式碼：" class="headerlink" title="✅ 你問的這段程式碼："></a>✅ 你問的這段程式碼：</h3><pre><code class="js">const el = memberListRef.value
+if (el) {
+  el.scrollTop = el.scrollHeight
+}
+</code></pre>
+<p>確實等同於：</p>
+<pre><code class="js">if (memberListRef.value) {
+  memberListRef.value.scrollTop = memberListRef.value.scrollHeight
+}
+</code></pre>
+<hr>
+<h3 id="👇-那這裡每個部分是什麼意思呢？"><a href="#👇-那這裡每個部分是什麼意思呢？" class="headerlink" title="👇 那這裡每個部分是什麼意思呢？"></a>👇 那這裡每個部分是什麼意思呢？</h3><h4 id="🔸-memberListRef-value"><a href="#🔸-memberListRef-value" class="headerlink" title="🔸 memberListRef.value"></a>🔸 <code>memberListRef.value</code></h4><ul>
+<li>因為 <code>memberListRef</code> 是一個 Vue 的 <code>ref()</code>，要拿到 DOM 實體要用 <code>.value</code>。</li>
+<li>這個對應的是 <code>&lt;div class=&quot;member-list&quot; ref=&quot;memberListRef&quot;&gt;</code> 裡的 DOM 元素。</li>
+</ul>
+<h4 id="🔸-scrollTop"><a href="#🔸-scrollTop" class="headerlink" title="🔸 scrollTop"></a>🔸 <code>scrollTop</code></h4><ul>
+<li>這是 DOM 元素的屬性。</li>
+<li>代表「目前這個區塊<strong>已經滾動了多少像素的距離</strong>」。</li>
+<li>你可以設定它，讓畫面自動捲動。</li>
+</ul>
+<h4 id="🔸-scrollHeight"><a href="#🔸-scrollHeight" class="headerlink" title="🔸 scrollHeight"></a>🔸 <code>scrollHeight</code></h4><ul>
+<li>這是 DOM 元素的總高度（包含看不到的那部分，也就是整個捲軸的內容高度）。</li>
+<li>也就是「所有內容的總高度」。</li>
+</ul>
+<hr>
+<h3 id="✅-所以這行的意思是："><a href="#✅-所以這行的意思是：" class="headerlink" title="✅ 所以這行的意思是："></a>✅ 所以這行的意思是：</h3><pre><code class="js">el.scrollTop = el.scrollHeight
+</code></pre>
+<p>就是把「目前滾動距離」設成「整個內容的總高度」<br>➡️ <strong>這樣畫面就會滾到底部啦！</strong></p>
+<hr>
+<h3 id="❓為什麼要寫成這樣？為什麼不用合併？"><a href="#❓為什麼要寫成這樣？為什麼不用合併？" class="headerlink" title="❓為什麼要寫成這樣？為什麼不用合併？"></a>❓為什麼要寫成這樣？為什麼不用合併？</h3><p>兩種寫法都可以，這是純粹為了可讀性：</p>
+<pre><code class="js">const el = memberListRef.value
+if (el) {
+  el.scrollTop = el.scrollHeight
+}
+</code></pre>
+<p>這樣讓程式更好理解、也比較方便在 <code>el</code> 上加除錯點，或在未來擴充邏輯時多做別的事。</p>
+<hr>
+<p>如果你還想進一步了解滾動的原理，或試著改成「每次新增都用動畫滾動到底」也可以，我可以幫你升級！🌟</p>

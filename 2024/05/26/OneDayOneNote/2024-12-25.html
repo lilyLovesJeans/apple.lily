@@ -1,0 +1,61 @@
+<hr>
+<h2 id="title-2024-12-25-旅行分帳應用程式-設定路由date-2025-04-14-21-17-08tags-Javascript-Vue-description-2024-12-25-旅行分帳應用程式-設定路由"><a href="#title-2024-12-25-旅行分帳應用程式-設定路由date-2025-04-14-21-17-08tags-Javascript-Vue-description-2024-12-25-旅行分帳應用程式-設定路由" class="headerlink" title="title: 2024-12-25 旅行分帳應用程式-設定路由date: 2025-04-14 21:17:08tags:  [Javascript,Vue]description:   2024-12-25 旅行分帳應用程式-設定路由"></a>title: 2024-12-25 旅行分帳應用程式-設定路由<br>date: 2025-04-14 21:17:08<br>tags:  [Javascript,Vue]<br>description:   2024-12-25 旅行分帳應用程式-設定路由</h2><h2 id="2024-12-25-旅行分帳應用程式-設定路由"><a href="#2024-12-25-旅行分帳應用程式-設定路由" class="headerlink" title="2024-12-25 旅行分帳應用程式-設定路由"></a>2024-12-25 旅行分帳應用程式-設定路由</h2><p>好的！你的 Vue 元件名稱是 **<code>SplitBill.vue</code>**，那麼你的專案應該是這樣的結構：  </p>
+<pre><code>src/
+  lily_learning/
+    202404_js_trainging/
+      javascript_8/
+        splitBill_components/
+          SplitBill.vue  &lt;-- 這是你的元件
+</code></pre>
+<hr>
+<h2 id="🚀-下一步"><a href="#🚀-下一步" class="headerlink" title="🚀 下一步"></a><strong>🚀 下一步</strong></h2><p>我們需要<strong>把這個 <code>SplitBill.vue</code> 元件正確地運行</strong>，你可以這樣做：</p>
+<h3 id="📌-1️⃣-確保-Vue-專案正在執行"><a href="#📌-1️⃣-確保-Vue-專案正在執行" class="headerlink" title="📌 1️⃣ 確保 Vue 專案正在執行"></a><strong>📌 1️⃣ 確保 Vue 專案正在執行</strong></h3><p>你的專案應該是用 <strong>Vite</strong> 建立的，那麼請先在終端機（Terminal）裡輸入：</p>
+<pre><code class="sh">npm run dev
+</code></pre>
+<p>這樣你的 Vue 開發伺服器就會啟動，然後你可以在 <strong><a href="http://localhost:5173/">http://localhost:5173/</a></strong> 看到你的應用程式。</p>
+<hr>
+<h3 id="📌-2️⃣-確保-SplitBill-vue-被匯入並使用"><a href="#📌-2️⃣-確保-SplitBill-vue-被匯入並使用" class="headerlink" title="📌 2️⃣ 確保 SplitBill.vue 被匯入並使用"></a><strong>📌 2️⃣ 確保 <code>SplitBill.vue</code> 被匯入並使用</strong></h3><p>如果 <code>SplitBill.vue</code> 是一個 <strong>元件（Component）</strong>，那麼你需要在 <code>App.vue</code> 裡 <strong>匯入</strong> 它並使用：</p>
+<h4 id="修改-App-vue"><a href="#修改-App-vue" class="headerlink" title="修改 App.vue"></a><strong>修改 <code>App.vue</code></strong></h4><pre><code class="vue">&lt;script setup&gt;
+import SplitBill from &quot;./splitBill_components/SplitBill.vue&quot;; // 確保路徑正確
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;SplitBill /&gt;
+&lt;/template&gt;
+</code></pre>
+<p>這樣 <code>App.vue</code> 就會**正確載入 <code>SplitBill.vue</code>**，然後在瀏覽器上顯示。</p>
+<hr>
+<h3 id="📌-3️⃣-如果-SplitBill-vue-是獨立頁面"><a href="#📌-3️⃣-如果-SplitBill-vue-是獨立頁面" class="headerlink" title="📌 3️⃣ 如果 SplitBill.vue 是獨立頁面"></a><strong>📌 3️⃣ 如果 <code>SplitBill.vue</code> 是獨立頁面</strong></h3><p>如果你希望 <code>SplitBill.vue</code> 是一個獨立的頁面（而不是 <code>App.vue</code> 裡的元件），你需要使用 Vue Router。  </p>
+<p>請先確保專案有安裝 Vue Router：</p>
+<pre><code class="sh">npm install vue-router
+</code></pre>
+<p>然後設定路由，讓 <code>SplitBill.vue</code> 作為某個頁面：</p>
+<h4 id="router-js"><a href="#router-js" class="headerlink" title="router.js"></a><strong><code>router.js</code></strong></h4><pre><code class="js">import { createRouter, createWebHistory } from &quot;vue-router&quot;;
+import SplitBill from &quot;./splitBill_components/SplitBill.vue&quot;;
+
+const routes = [
+  { path: &quot;/&quot;, component: SplitBill } // 讓 `SplitBill.vue` 成為首頁
+];
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes
+});
+
+export default router;
+</code></pre>
+<h4 id="在-main-js-啟用路由"><a href="#在-main-js-啟用路由" class="headerlink" title="在 main.js 啟用路由"></a><strong>在 <code>main.js</code> 啟用路由</strong></h4><pre><code class="js">import { createApp } from &quot;vue&quot;;
+import App from &quot;./App.vue&quot;;
+import router from &quot;./router&quot;; // 匯入 router.js
+
+const app = createApp(App);
+app.use(router);
+app.mount(&quot;#app&quot;);
+</code></pre>
+<hr>
+<h3 id="📌-4️⃣-重新啟動專案"><a href="#📌-4️⃣-重新啟動專案" class="headerlink" title="📌 4️⃣ 重新啟動專案"></a><strong>📌 4️⃣ 重新啟動專案</strong></h3><p>如果你改了路由，請記得<strong>重新啟動開發伺服器</strong>：</p>
+<pre><code class="sh">npm run dev
+</code></pre>
+<p>然後你可以打開 <strong><a href="http://localhost:5173/">http://localhost:5173/</a></strong> 來測試你的 <strong><code>SplitBill.vue</code></strong> 🎉</p>
+<hr>
+<h3 id="🔜-下一步"><a href="#🔜-下一步" class="headerlink" title="🔜 下一步"></a><strong>🔜 下一步</strong></h3><p>現在你的 Vue 元件應該可以跑起來了！<br>👉 <strong>步驟 3：新增「支出款項」功能，讓成員可以記錄誰付了錢！</strong> 🎯</p>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2025-01-01 旅行分帳應用程式-步驟03">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025-01-01 旅行分帳應用程式-步驟03">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/04/14/OneDayOneNote/2025-01-01/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2025-01-01 旅行分帳應用程式-步驟03">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-04-14T14:51:31.000Z">
+<meta property="article:modified_time" content="2025-04-14T14:52:10.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2025/04/14/OneDayOneNote/2025-01-01/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2025/04/14/OneDayOneNote/2025-01-01/","path":"2025/04/14/OneDayOneNote/2025-01-01/","title":"2025-01-01 旅行分帳應用程式-步驟03"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2025-01-01 旅行分帳應用程式-步驟03 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2025-01-01-%E6%97%85%E8%A1%8C%E5%88%86%E5%B8%B3%E6%87%89%E7%94%A8%E7%A8%8B%E5%BC%8F-%E6%AD%A5%E9%A9%9F03"><span class="nav-number">1.</span> <span class="nav-text">2025-01-01 旅行分帳應用程式-步驟03</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%85-%E7%9B%AE%E6%A8%99"><span class="nav-number">2.</span> <span class="nav-text">✅ 目標</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%A8-%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E9%BB%9E%E6%88%90%E5%93%A1%E6%99%82%EF%BC%8C%E5%87%BA%E7%8F%BE%E3%80%8C%E6%96%B0%E5%A2%9E%E6%94%AF%E5%87%BA%E6%AC%BE%E9%A0%85%E3%80%8D%E6%8C%89%E9%88%95"><span class="nav-number">3.</span> <span class="nav-text">✨ 第一步：點成員時，出現「新增支出款項」按鈕</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%A7-%E4%BF%AE%E6%94%B9-%E4%B8%AD%E7%9A%84%E6%88%90%E5%93%A1%E5%88%97%E8%A1%A8%E5%8D%80%E5%A1%8A%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="nav-number">3.1.</span> <span class="nav-text">🔧 修改 &lt;template&gt; 中的成員列表區塊如下：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%A7%A0-%E5%9C%A8-%E4%B8%AD%E5%8A%A0%E9%80%99%E4%BA%9B%E8%AE%8A%E6%95%B8%E8%88%87%E6%96%B9%E6%B3%95"><span class="nav-number">3.2.</span> <span class="nav-text">🧠 在 &lt;script setup&gt; 中加這些變數與方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%8E%A8-%E5%BB%BA%E8%AD%B0%E5%8A%A0%E4%B8%80%E9%BB%9E-CSS-%E8%AE%93%E9%81%B8%E5%88%B0%E7%9A%84%E6%88%90%E5%93%A1%E6%9C%89%E8%83%8C%E6%99%AF%E8%89%B2"><span class="nav-number">3.3.</span> <span class="nav-text">🎨 建議加一點 CSS 讓選到的成員有背景色</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%8E%AF-%E6%B8%AC%E8%A9%A6%E4%BD%A0%E6%9C%83%E7%9C%8B%E5%88%B0%E7%9A%84%E6%95%88%E6%9E%9C%EF%BC%9A"><span class="nav-number">4.</span> <span class="nav-text">🎯 測試你會看到的效果：</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">309</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2025/04/14/OneDayOneNote/2025-01-01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2025-01-01 旅行分帳應用程式-步驟03 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2025-01-01 旅行分帳應用程式-步驟03">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2025-01-01 旅行分帳應用程式-步驟03
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2025-04-14 22:51:31 / 修改時間：22:52:10" itemprop="dateCreated datePublished" datetime="2025-04-14T22:51:31+08:00">2025-04-14</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2025-01-01 旅行分帳應用程式-步驟03</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2025-01-01-旅行分帳應用程式-步驟03"><a href="#2025-01-01-旅行分帳應用程式-步驟03" class="headerlink" title="2025-01-01 旅行分帳應用程式-步驟03"></a>2025-01-01 旅行分帳應用程式-步驟03</h2><p>太棒了～這樣設計互動更直覺、也更人性化！<br>你點選某位成員時，就針對那位成員新增「他／她付款的支出」對吧？<br>那我們來一步一步做這個功能：</p>
+<hr>
+<h2 id="✅-目標"><a href="#✅-目標" class="headerlink" title="✅ 目標"></a>✅ 目標</h2><ul>
+<li>點某個成員 <code>li</code> 時 → 該成員下面出現「➕ 新增支出款項」按鈕</li>
+<li>點按鈕後可以輸入：<strong>支出說明 + 金額</strong></li>
+<li>點「記錄支出」按鈕 → 將這筆支出記錄下來（下一步再處理）</li>
+</ul>
+<hr>
+<h2 id="✨-第一步：點成員時，出現「新增支出款項」按鈕"><a href="#✨-第一步：點成員時，出現「新增支出款項」按鈕" class="headerlink" title="✨ 第一步：點成員時，出現「新增支出款項」按鈕"></a>✨ 第一步：點成員時，出現「新增支出款項」按鈕</h2><h3 id="🔧-修改-中的成員列表區塊如下："><a href="#🔧-修改-中的成員列表區塊如下：" class="headerlink" title="🔧 修改 &lt;template&gt; 中的成員列表區塊如下："></a>🔧 修改 <code>&lt;template&gt;</code> 中的成員列表區塊如下：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;li </span><br><span class="line">    v-for=&quot;(member, index) in members&quot; </span><br><span class="line">    :key=&quot;index&quot;</span><br><span class="line">    @click=&quot;selectMember(index)&quot;</span><br><span class="line">    :class=&quot;&#123; selected: selectedMemberIndex === index &#125;&quot;</span><br><span class="line">  &gt;</span><br><span class="line">    &#123;&#123; member.name &#125;&#125;</span><br><span class="line">    &lt;span class=&quot;owe&quot;&gt;應付 $0&lt;/span&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 如果這位成員是被選中的，就顯示新增支出按鈕 --&gt;</span><br><span class="line">    &lt;div v-if=&quot;selectedMemberIndex === index&quot; class=&quot;add-expense-section&quot;&gt;</span><br><span class="line">      &lt;button class=&quot;btn small-btn&quot; @click.stop=&quot;showAddExpense = true&quot;&gt;</span><br><span class="line">        ➕ 新增支出款項</span><br><span class="line">      &lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="🧠-在-中加這些變數與方法"><a href="#🧠-在-中加這些變數與方法" class="headerlink" title="🧠 在 &lt;script setup&gt; 中加這些變數與方法"></a>🧠 在 <code>&lt;script setup&gt;</code> 中加這些變數與方法</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> selectedMemberIndex = <span class="title function_">ref</span>(<span class="literal">null</span>)  <span class="comment">// 儲存目前選中的成員 index</span></span><br><span class="line"><span class="keyword">const</span> showAddExpense = <span class="title function_">ref</span>(<span class="literal">false</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">selectMember</span>(<span class="params">index</span>) &#123;</span><br><span class="line">  <span class="comment">// 點第二次同一位就取消選取</span></span><br><span class="line">  <span class="keyword">if</span> (selectedMemberIndex.<span class="property">value</span> === index) &#123;</span><br><span class="line">    selectedMemberIndex.<span class="property">value</span> = <span class="literal">null</span></span><br><span class="line">    showAddExpense.<span class="property">value</span> = <span class="literal">false</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    selectedMemberIndex.<span class="property">value</span> = index</span><br><span class="line">    showAddExpense.<span class="property">value</span> = <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="🎨-建議加一點-CSS-讓選到的成員有背景色"><a href="#🎨-建議加一點-CSS-讓選到的成員有背景色" class="headerlink" title="🎨 建議加一點 CSS 讓選到的成員有背景色"></a>🎨 建議加一點 CSS 讓選到的成員有背景色</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.selected</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#ffe6e6</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.small-btn</span> &#123;</span><br><span class="line">  <span class="attribute">margin-top</span>: <span class="number">8px</span>;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">14px</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">6px</span> <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="🎯-測試你會看到的效果："><a href="#🎯-測試你會看到的效果：" class="headerlink" title="🎯 測試你會看到的效果："></a>🎯 測試你會看到的效果：</h2><ul>
+<li>點成員 → 該列下面出現「➕ 新增支出款項」按鈕</li>
+<li>再點一次該成員 → 關閉按鈕（取消選取）</li>
+<li>點其他成員 → 切換顯示位置</li>
+</ul>
+<hr>
+<p>要不要我接下來幫你做「新增支出款項」的輸入表單呢？ 😎</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/Javascript/" rel="tag"># Javascript</a>
+              <a href="/apple.lily/tags/Vue/" rel="tag"># Vue</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/04/14/OneDayOneNote/2024-12-31/" rel="prev" title="2024-12-31 javascript的some">
+                  <i class="fa fa-angle-left"></i> 2024-12-31 javascript的some
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/04/14/OneDayOneNote/2025-01-02/" rel="next" title="2025-01-02 旅行分帳應用程式-步驟04">
+                  2025-01-02 旅行分帳應用程式-步驟04 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

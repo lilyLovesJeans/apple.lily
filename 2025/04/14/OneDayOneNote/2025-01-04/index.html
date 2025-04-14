@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2025-01-04 旅行分帳應用程式-步驟06">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025-01-04 旅行分帳應用程式-步驟06">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/04/14/OneDayOneNote/2025-01-04/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2025-01-04 旅行分帳應用程式-步驟06">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-04-14T14:55:39.000Z">
+<meta property="article:modified_time" content="2025-04-14T14:56:20.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2025/04/14/OneDayOneNote/2025-01-04/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2025/04/14/OneDayOneNote/2025-01-04/","path":"2025/04/14/OneDayOneNote/2025-01-04/","title":"2025-01-04 旅行分帳應用程式-步驟06"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2025-01-04 旅行分帳應用程式-步驟06 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2025-01-04-%E6%97%85%E8%A1%8C%E5%88%86%E5%B8%B3%E6%87%89%E7%94%A8%E7%A8%8B%E5%BC%8F-%E6%AD%A5%E9%A9%9F06"><span class="nav-number">1.</span> <span class="nav-text">2025-01-04 旅行分帳應用程式-步驟06</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%9C%85-%E6%88%91%E5%80%91%E8%A6%81%E5%84%B2%E5%AD%98%E5%93%AA%E4%BA%9B%E8%B3%87%E6%96%99%EF%BC%9F"><span class="nav-number">1.1.</span> <span class="nav-text">✅ 我們要儲存哪些資料？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%9B%A0-%E4%BF%AE%E6%94%B9%E6%AD%A5%E9%A9%9F"><span class="nav-number">1.2.</span> <span class="nav-text">🛠 修改步驟</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%9C%85-%E5%AE%8C%E6%95%B4%E6%95%B4%E5%90%88%E7%AF%84%E4%BE%8B%EF%BC%88%E8%AB%8B%E5%8A%A0%E5%9C%A8-%E4%B8%AD%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">✅ 完整整合範例（請加在 &lt;script setup&gt; 中）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%93%8C-%E6%B3%A8%E6%84%8F"><span class="nav-number">1.4.</span> <span class="nav-text">📌 注意</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">309</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2025/04/14/OneDayOneNote/2025-01-04/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2025-01-04 旅行分帳應用程式-步驟06 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2025-01-04 旅行分帳應用程式-步驟06">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2025-01-04 旅行分帳應用程式-步驟06
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2025-04-14 22:55:39 / 修改時間：22:56:20" itemprop="dateCreated datePublished" datetime="2025-04-14T22:55:39+08:00">2025-04-14</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2025-01-04 旅行分帳應用程式-步驟06</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2025-01-04-旅行分帳應用程式-步驟06"><a href="#2025-01-04-旅行分帳應用程式-步驟06" class="headerlink" title="2025-01-04 旅行分帳應用程式-步驟06"></a>2025-01-04 旅行分帳應用程式-步驟06</h2><p>資料「即時儲存到 localStorage」</p>
+<p>太好了，我來幫你把資料「即時儲存到 localStorage」的功能整合進你的 Vue 應用程式，這樣就算重新整理畫面，資料也不會消失。</p>
+<hr>
+<h3 id="✅-我們要儲存哪些資料？"><a href="#✅-我們要儲存哪些資料？" class="headerlink" title="✅ 我們要儲存哪些資料？"></a>✅ 我們要儲存哪些資料？</h3><ul>
+<li>成員資料 <code>members</code></li>
+<li>支出資料 <code>expenses</code></li>
+<li>預設的支出項目 <code>defaultExpenseItems</code></li>
+</ul>
+<hr>
+<h3 id="🛠-修改步驟"><a href="#🛠-修改步驟" class="headerlink" title="🛠 修改步驟"></a>🛠 修改步驟</h3><ol>
+<li><strong>加入 <code>watch</code> 監聽變化 → 自動存入 localStorage</strong></li>
+<li><strong>在 <code>onMounted</code> 時自動從 localStorage 載入資料</strong></li>
+</ol>
+<hr>
+<h3 id="✅-完整整合範例（請加在-中）"><a href="#✅-完整整合範例（請加在-中）" class="headerlink" title="✅ 完整整合範例（請加在 &lt;script setup&gt; 中）"></a>✅ 完整整合範例（請加在 <code>&lt;script setup&gt;</code> 中）</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; ref, watch, onMounted &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> members = <span class="title function_">ref</span>([])</span><br><span class="line"><span class="keyword">const</span> expenses = <span class="title function_">ref</span>([])</span><br><span class="line"><span class="keyword">const</span> defaultExpenseItems = <span class="title function_">ref</span>([])</span><br><span class="line"></span><br><span class="line"><span class="comment">// 儲存到 localStorage 的方法</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">saveToLocalStorage</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(<span class="string">&#x27;splitBill_members&#x27;</span>, <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(members.<span class="property">value</span>))</span><br><span class="line">  <span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(<span class="string">&#x27;splitBill_expenses&#x27;</span>, <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(expenses.<span class="property">value</span>))</span><br><span class="line">  <span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(<span class="string">&#x27;splitBill_defaultItems&#x27;</span>, <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(defaultExpenseItems.<span class="property">value</span>))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 載入 localStorage 中的資料</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">loadFromLocalStorage</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> savedMembers = <span class="variable language_">localStorage</span>.<span class="title function_">getItem</span>(<span class="string">&#x27;splitBill_members&#x27;</span>)</span><br><span class="line">  <span class="keyword">const</span> savedExpenses = <span class="variable language_">localStorage</span>.<span class="title function_">getItem</span>(<span class="string">&#x27;splitBill_expenses&#x27;</span>)</span><br><span class="line">  <span class="keyword">const</span> savedItems = <span class="variable language_">localStorage</span>.<span class="title function_">getItem</span>(<span class="string">&#x27;splitBill_defaultItems&#x27;</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (savedMembers) members.<span class="property">value</span> = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(savedMembers)</span><br><span class="line">  <span class="keyword">if</span> (savedExpenses) expenses.<span class="property">value</span> = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(savedExpenses)</span><br><span class="line">  <span class="keyword">if</span> (savedItems) defaultExpenseItems.<span class="property">value</span> = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(savedItems)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 監聽 members、expenses、defaultExpenseItems 有變動就儲存</span></span><br><span class="line"><span class="title function_">watch</span>([members, expenses, defaultExpenseItems], saveToLocalStorage, &#123; <span class="attr">deep</span>: <span class="literal">true</span> &#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始化時載入</span></span><br><span class="line"><span class="title function_">onMounted</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="title function_">loadFromLocalStorage</span>()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="📌-注意"><a href="#📌-注意" class="headerlink" title="📌 注意"></a>📌 注意</h3><ul>
+<li><code>watch([...], ..., &#123; deep: true &#125;)</code> 是為了監控陣列或物件裡的變化。</li>
+<li>key 名像 <code>splitBill_members</code> 可以依你的 App 名稱自訂，避免不同 app 的 key 衝突。</li>
+</ul>
+<hr>
+<p>需要我幫你把這段直接整合到目前的完整程式碼裡嗎？還是你想試試看加進去？👩‍💻</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/Javascript/" rel="tag"># Javascript</a>
+              <a href="/apple.lily/tags/Vue/" rel="tag"># Vue</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/04/14/OneDayOneNote/2025-01-03/" rel="prev" title="2025-01-03 旅行分帳應用程式-步驟05">
+                  <i class="fa fa-angle-left"></i> 2025-01-03 旅行分帳應用程式-步驟05
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/04/14/OneDayOneNote/2025-01-05/" rel="next" title="2025-01-05 watch_deep-true">
+                  2025-01-05 watch_deep-true <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

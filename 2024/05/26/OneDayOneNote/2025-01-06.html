@@ -1,0 +1,58 @@
+<hr>
+<h2 id="title-2025-01-06-旅行分帳應用程式-步驟07date-2025-04-14-22-58-12tags-Javascript-Vue-description-2025-01-06-旅行分帳應用程式-步驟07"><a href="#title-2025-01-06-旅行分帳應用程式-步驟07date-2025-04-14-22-58-12tags-Javascript-Vue-description-2025-01-06-旅行分帳應用程式-步驟07" class="headerlink" title="title: 2025-01-06 旅行分帳應用程式-步驟07date: 2025-04-14 22:58:12tags:  [Javascript,Vue]description:   2025-01-06 旅行分帳應用程式-步驟07"></a>title: 2025-01-06 旅行分帳應用程式-步驟07<br>date: 2025-04-14 22:58:12<br>tags:  [Javascript,Vue]<br>description:   2025-01-06 旅行分帳應用程式-步驟07</h2><h2 id="2025-01-06-旅行分帳應用程式-步驟07"><a href="#2025-01-06-旅行分帳應用程式-步驟07" class="headerlink" title="2025-01-06 旅行分帳應用程式-步驟07"></a>2025-01-06 旅行分帳應用程式-步驟07</h2><p>成員名字的左邊加上一個「❌」按鈕來刪除成員</p>
+<p>你想在成員名字的左邊加上一個「❌」按鈕來刪除成員，我來幫你一步步加上去 ✅</p>
+<hr>
+<h3 id="✅-第一步：在模板中每個成員左邊加「刪除按鈕」"><a href="#✅-第一步：在模板中每個成員左邊加「刪除按鈕」" class="headerlink" title="✅ 第一步：在模板中每個成員左邊加「刪除按鈕」"></a>✅ 第一步：在模板中每個成員左邊加「刪除按鈕」</h3><p>請修改這一段 template 的 <code>&lt;li&gt;</code>：</p>
+<h4 id="原本："><a href="#原本：" class="headerlink" title="原本："></a>原本：</h4><pre><code class="html">&lt;li v-for=&quot;(member, index) in members&quot;
+    :key=&quot;index&quot; @click=&quot;selectMember(index)&quot;
+    :class=&quot;{ selected: selectedMemberIndex === index }&quot;&gt;
+  {{ member.name }} &lt;span class=&quot;owe&quot;&gt;應付 $0&lt;/span&gt;
+  &lt;div v-if=&quot;selectedMemberIndex === index&quot; class=&quot;add-expense-section&quot;&gt;
+    &lt;button class=&quot;btn small-btn&quot; @click.stop=&quot;showAddExpense = true&quot;&gt;➕ 支出&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/li&gt;
+</code></pre>
+<hr>
+<h4 id="改成這樣-⬇（重點在加上-❌-按鈕）："><a href="#改成這樣-⬇（重點在加上-❌-按鈕）：" class="headerlink" title="改成這樣 ⬇（重點在加上 ❌ 按鈕）："></a>改成這樣 ⬇（重點在加上 <code>❌</code> 按鈕）：</h4><pre><code class="html">&lt;li v-for=&quot;(member, index) in members&quot;
+    :key=&quot;index&quot; :class=&quot;{ selected: selectedMemberIndex === index }&quot;&gt;
+  &lt;!-- ❌ 刪除按鈕 --&gt;
+  &lt;button class=&quot;btn delete-btn small-delete&quot; @click.stop=&quot;deleteMember(index)&quot;&gt;❌&lt;/button&gt;
+
+  &lt;!-- 成員姓名與應付金額 --&gt;
+  &lt;div @click=&quot;selectMember(index)&quot; style=&quot;flex-grow: 1; display: flex; justify-content: space-between;&quot;&gt;
+    {{ member.name }} &lt;span class=&quot;owe&quot;&gt;應付 $0&lt;/span&gt;
+  &lt;/div&gt;
+
+  &lt;!-- 支出按鈕 --&gt;
+  &lt;div v-if=&quot;selectedMemberIndex === index&quot; class=&quot;add-expense-section&quot;&gt;
+    &lt;button class=&quot;btn small-btn&quot; @click.stop=&quot;showAddExpense = true&quot;&gt;➕ 支出&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/li&gt;
+</code></pre>
+<hr>
+<h3 id="✅-第二步：在-加入-deleteMember-方法"><a href="#✅-第二步：在-加入-deleteMember-方法" class="headerlink" title="✅ 第二步：在 &lt;script setup&gt; 加入 deleteMember 方法"></a>✅ 第二步：在 <code>&lt;script setup&gt;</code> 加入 <code>deleteMember</code> 方法</h3><pre><code class="js">function deleteMember(index) {
+  members.value.splice(index, 1)
+  // 若刪除的是選取成員，取消選取
+  if (selectedMemberIndex.value === index) {
+    selectedMemberIndex.value = null
+    showAddExpense.value = false
+  }
+}
+</code></pre>
+<hr>
+<h3 id="✅-第三步：給刪除按鈕一些樣式（optional）"><a href="#✅-第三步：給刪除按鈕一些樣式（optional）" class="headerlink" title="✅ 第三步：給刪除按鈕一些樣式（optional）"></a>✅ 第三步：給刪除按鈕一些樣式（optional）</h3><p>在你的 <code>&lt;style scoped&gt;</code> 中加上這段：</p>
+<pre><code class="css">.small-delete {
+  background-color: #e74c3c;
+  padding: 4px 6px;
+  font-size: 12px;
+  margin-right: 8px;
+}
+</code></pre>
+<hr>
+<h3 id="🧪-最終效果"><a href="#🧪-最終效果" class="headerlink" title="🧪 最終效果"></a>🧪 最終效果</h3><ul>
+<li>每個成員左邊會出現一個小小的 ❌ 按鈕。</li>
+<li>點了之後會刪除該成員。</li>
+<li>點成員右邊區域可選取並開啟支出按鈕。</li>
+</ul>
+<hr>
+<p>需要順便一起把「應付 $0」的計算功能做出來嗎？可以自動算出誰應該出多少～</p>

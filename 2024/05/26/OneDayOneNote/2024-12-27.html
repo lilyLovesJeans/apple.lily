@@ -1,0 +1,185 @@
+<hr>
+<h2 id="title-2024-12-27-Vue3-新增成員用-Modal-視窗date-2025-04-14-21-21-22tags-Javascript-Vue-description-2024-12-27-Vue3-新增成員用-Modal-視窗"><a href="#title-2024-12-27-Vue3-新增成員用-Modal-視窗date-2025-04-14-21-21-22tags-Javascript-Vue-description-2024-12-27-Vue3-新增成員用-Modal-視窗" class="headerlink" title="title: 2024-12-27 Vue3_新增成員用 Modal 視窗date: 2025-04-14 21:21:22tags:  [Javascript,Vue]description:   2024-12-27 Vue3_新增成員用 Modal 視窗"></a>title: 2024-12-27 Vue3_新增成員用 Modal 視窗<br>date: 2025-04-14 21:21:22<br>tags:  [Javascript,Vue]<br>description:   2024-12-27 Vue3_新增成員用 Modal 視窗</h2><h2 id="2024-12-27-Vue3-新增成員用-Modal-視窗"><a href="#2024-12-27-Vue3-新增成員用-Modal-視窗" class="headerlink" title="2024-12-27 Vue3_新增成員用 Modal 視窗"></a>2024-12-27 Vue3_新增成員用 Modal 視窗</h2><p>新增成員用 Modal 視窗</p>
+<p>實作 <strong>「新增成員用 Modal 視窗」</strong> 的方式 ✅<br>這樣畫面會更乾淨，互動也更清楚。</p>
+<hr>
+<h2 id="🧩-目標："><a href="#🧩-目標：" class="headerlink" title="🧩 目標："></a>🧩 目標：</h2><p>點下「➕ 新增成員」→ 彈出一個對話視窗 → 輸入名字 → 按「確定」→ 加入成員 → 關閉 modal</p>
+<hr>
+<h3 id="✅-第一步：畫面結構調整（加入-modal）"><a href="#✅-第一步：畫面結構調整（加入-modal）" class="headerlink" title="✅ 第一步：畫面結構調整（加入 modal）"></a>✅ 第一步：畫面結構調整（加入 modal）</h3><p>請將你的 <code>SplitBill.vue</code> 改成這樣：</p>
+<pre><code class="vue">&lt;template&gt;
+  &lt;div class=&quot;app-container&quot;&gt;
+    &lt;!-- 上方: 標題 --&gt;
+    &lt;div class=&quot;header&quot;&gt;
+      &lt;h1&gt;旅行分帳應用程式&lt;/h1&gt;
+    &lt;/div&gt;
+
+    &lt;!-- 中間: 成員清單 --&gt;
+    &lt;div class=&quot;member-list&quot;&gt;
+      &lt;h2&gt;分帳成員&lt;/h2&gt;
+      &lt;ul&gt;
+        &lt;li v-for=&quot;(member, index) in members&quot; :key=&quot;index&quot;&gt;
+          {{ member.name }} &lt;span class=&quot;owe&quot;&gt;應付 $0&lt;/span&gt;
+        &lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+
+    &lt;!-- 下方: 新增成員按鈕 --&gt;
+    &lt;div class=&quot;bottom-section&quot;&gt;
+      &lt;button class=&quot;btn&quot; @click=&quot;showModal = true&quot;&gt;➕ 新增成員&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Modal 視窗 --&gt;
+    &lt;div class=&quot;modal-backdrop&quot; v-if=&quot;showModal&quot;&gt;
+      &lt;div class=&quot;modal&quot;&gt;
+        &lt;h3&gt;新增成員&lt;/h3&gt;
+        &lt;input v-model=&quot;newMemberName&quot; placeholder=&quot;請輸入成員姓名&quot; /&gt;
+        &lt;div class=&quot;modal-buttons&quot;&gt;
+          &lt;button class=&quot;btn confirm&quot; @click=&quot;addMember&quot;&gt;確定&lt;/button&gt;
+          &lt;button class=&quot;btn cancel&quot; @click=&quot;showModal = false&quot;&gt;取消&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+
+const members = ref([])
+const newMemberName = ref(&#39;&#39;)
+const showModal = ref(false)
+
+function addMember() {
+  if (newMemberName.value.trim() !== &#39;&#39;) {
+    members.value.push({ name: newMemberName.value.trim() })
+    newMemberName.value = &#39;&#39;
+    showModal.value = false
+  }
+}
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+/* 原有樣式保持不變 */
+.app-container {
+  max-width: 500px;
+  margin: auto;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: space-between;
+}
+
+.header {
+  font-size: 1.5em;
+  font-weight: 600;
+  color: #5e3a4a;
+  text-align: center;
+  padding: 10px;
+  background-color: #f8e6e6;
+  border-bottom: 2px solid #d16a7b;
+}
+
+.member-list {
+  flex-grow: 1;
+  padding: 10px;
+  overflow-y: auto;
+  border: 1px solid red;
+}
+
+.bottom-section {
+  padding: 10px;
+  text-align: center;
+  background-color: #f8e6e6;
+  border-top: 2px solid #d16a7b;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  margin-bottom: 5px;
+  background-color: #f8f8f8;
+  border-radius: 5px;
+}
+
+.owe {
+  color: red;
+}
+
+.receive {
+  color: green;
+}
+
+.btn {
+  background-color: #d16a7b;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn:hover {
+  background-color: #b85967;
+}
+
+/* modal 相關樣式 */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  min-width: 300px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.modal input {
+  width: 80%;
+  padding: 8px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn.confirm {
+  background-color: #4caf50;
+}
+
+.btn.cancel {
+  background-color: #f44336;
+}
+&lt;/style&gt;
+</code></pre>
+<hr>
+<h3 id="🧪-測試流程："><a href="#🧪-測試流程：" class="headerlink" title="🧪 測試流程："></a>🧪 測試流程：</h3><ol>
+<li>點「➕ 新增成員」</li>
+<li>modal 視窗會彈出，輸入姓名</li>
+<li>按「確定」會新增成員，modal 關閉</li>
+<li>按「取消」則不新增並關閉</li>
+</ol>
+<hr>
+<p>✅ 完成這步之後，我們就可以進行下一步：<br>👉 加入 <strong>儲存到 localStorage</strong> 的功能，讓你重新整理頁面，資料也還在！</p>
+<p>你想現在就進下一步嗎？還是先玩一下新增功能 😄</p>
