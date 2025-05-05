@@ -1,0 +1,85 @@
+<hr>
+<h2 id="title-2025-01-12-JavaScript-系列八：第4課-──-行事曆應用程式-步驟03date-2025-05-05-21-44-19tags-Javascript-Vue-description-title-2025-01-12-JavaScript-系列八：第4課-──-行事曆應用程式-步驟03"><a href="#title-2025-01-12-JavaScript-系列八：第4課-──-行事曆應用程式-步驟03date-2025-05-05-21-44-19tags-Javascript-Vue-description-title-2025-01-12-JavaScript-系列八：第4課-──-行事曆應用程式-步驟03" class="headerlink" title="title: 2025-01-12 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟03date: 2025-05-05 21:44:19tags:  [Javascript,Vue]description:title:  2025-01-12 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟03"></a>title: 2025-01-12 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟03<br>date: 2025-05-05 21:44:19<br>tags:  [Javascript,Vue]<br>description:<br>title:  2025-01-12 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟03</h2><h2 id="2025-01-12-JavaScript-系列八：第4課-──-行事曆應用程式-步驟03"><a href="#2025-01-12-JavaScript-系列八：第4課-──-行事曆應用程式-步驟03" class="headerlink" title="2025-01-12 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟03"></a>2025-01-12 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟03</h2><p>點日期 ,然後在日期的那一格 顯示 新增活動的按鈕</p>
+<p>好，來～我們分步驟做：</p>
+<p>✅ <strong>目標</strong>：點月曆中的某一天，在那一天的格子中出現「新增活動」按鈕。</p>
+<hr>
+<h2 id="🔧-1-修改-FullCalendar-的設定"><a href="#🔧-1-修改-FullCalendar-的設定" class="headerlink" title="🔧 1. 修改 FullCalendar 的設定"></a>🔧 1. 修改 FullCalendar 的設定</h2><p>FullCalendar 提供 <code>dateClick</code> 事件，當使用者點某個日期時會觸發，我們就用這個來動態插入按鈕。</p>
+<hr>
+<h2 id="✨-修改後的-Calendar-vue"><a href="#✨-修改後的-Calendar-vue" class="headerlink" title="✨ 修改後的 Calendar.vue"></a>✨ 修改後的 <code>Calendar.vue</code></h2><pre><code class="vue">&lt;template&gt;
+  &lt;div&gt;
+    &lt;h2&gt;我的行事曆&lt;/h2&gt;
+    &lt;div ref=&quot;calendarRef&quot; id=&quot;calendar&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { ref, onMounted } from &#39;vue&#39;
+
+const calendarRef = ref(null)
+
+onMounted(() =&gt; {
+  if (window.FullCalendar &amp;&amp; window.FullCalendar.Calendar) {
+    const calendar = new window.FullCalendar.Calendar(calendarRef.value, {
+      initialView: &#39;dayGridMonth&#39;,
+      locale: &#39;zh-tw&#39;,
+      events: [
+        {
+          title: &#39;測試活動&#39;,
+          start: new Date().toISOString().split(&#39;T&#39;)[0],
+        }
+      ],
+      dateClick: function (info) {
+        // 移除之前的按鈕
+        document.querySelectorAll(&#39;.add-event-button&#39;).forEach(btn =&gt; btn.remove())
+
+        // 找到被點的 cell
+        const cellEl = info.dayEl
+
+        // 建立按鈕
+        const button = document.createElement(&#39;button&#39;)
+        button.textContent = &#39;新增活動&#39;
+        button.className = &#39;add-event-button&#39;
+        button.style.marginTop = &#39;5px&#39;
+        button.style.fontSize = &#39;12px&#39;
+
+        // 加入 click 功能（可以彈出視窗、打開表單...）
+        button.onclick = () =&gt; {
+          alert(`你點了 ${info.dateStr}，這裡可以打開活動編輯表單！`)
+        }
+
+        // 加到 cell 裡面
+        cellEl.appendChild(button)
+      }
+    })
+
+    calendar.render()
+  } else {
+    console.error(&#39;FullCalendar 尚未載入，請檢查 index.html CDN script。&#39;)
+  }
+})
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+#calendar {
+  max-width: 800px;
+  margin: 20px auto;
+}
+.add-event-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 2px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+&lt;/style&gt;
+</code></pre>
+<hr>
+<h2 id="🧪-測試方式"><a href="#🧪-測試方式" class="headerlink" title="🧪 測試方式"></a>🧪 測試方式</h2><ol>
+<li>開啟你的頁面</li>
+<li>點任一天的格子</li>
+<li>那一格底下會出現「新增活動」按鈕</li>
+<li>點按鈕會彈出 alert（之後可改成打開 <code>datetimepicker</code> 或輸入框）</li>
+</ol>
+<hr>
+<p>下一步想做什麼？我可以幫你接上表單、時間選擇器、或讓活動存進 localStorage～你決定😄</p>

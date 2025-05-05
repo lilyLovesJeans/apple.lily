@@ -1,0 +1,36 @@
+<hr>
+<h2 id="title-2025-01-08-旅行分帳應用程式-步驟10date-2025-05-05-21-37-17tags-Javascript-Vue-description-title-2025-01-08-旅行分帳應用程式-步驟10"><a href="#title-2025-01-08-旅行分帳應用程式-步驟10date-2025-05-05-21-37-17tags-Javascript-Vue-description-title-2025-01-08-旅行分帳應用程式-步驟10" class="headerlink" title="title: 2025-01-08 旅行分帳應用程式-步驟10date: 2025-05-05 21:37:17tags:  [Javascript,Vue]description:title: 2025-01-08 旅行分帳應用程式-步驟10"></a>title: 2025-01-08 旅行分帳應用程式-步驟10<br>date: 2025-05-05 21:37:17<br>tags:  [Javascript,Vue]<br>description:<br>title: 2025-01-08 旅行分帳應用程式-步驟10</h2><h2 id="title-2025-01-08-旅行分帳應用程式-步驟10"><a href="#title-2025-01-08-旅行分帳應用程式-步驟10" class="headerlink" title="title: 2025-01-08 旅行分帳應用程式-步驟10"></a>title: 2025-01-08 旅行分帳應用程式-步驟10</h2><p>要在您的 Vue 旅遊分帳應用程式中新增「支出總計」功能，您可以使用 Vue 的計算屬性（<code>computed</code>）來自動計算所有支出的總和，並在模板中顯示。這樣可以確保每當支出資料變動時，總計會自動更新。</p>
+<h3 id="步驟一：新增計算屬性-totalAmount"><a href="#步驟一：新增計算屬性-totalAmount" class="headerlink" title="步驟一：新增計算屬性 totalAmount"></a>步驟一：新增計算屬性 <code>totalAmount</code></h3><p>在 <code>&lt;script setup&gt;</code> 區塊中，使用 <code>computed</code> 函數來定義一個新的計算屬性 <code>totalAmount</code>，該屬性會計算所有支出的總和：</p>
+<pre><code class="javascript">import { computed } from &#39;vue&#39;
+
+const totalAmount = computed(() =&gt; {
+  return expenses.value.reduce((sum, expense) =&gt; sum + expense.amount, 0)
+})
+</code></pre>
+<p></p>
+<p>這段程式碼使用 <code>reduce</code> 方法遍歷 <code>expenses</code> 陣列，將每筆支出的 <code>amount</code> 加總起來，並返回總和。</p>
+<h3 id="步驟二：在模板中顯示總計"><a href="#步驟二：在模板中顯示總計" class="headerlink" title="步驟二：在模板中顯示總計"></a>步驟二：在模板中顯示總計</h3><p>在您的 <code>&lt;template&gt;</code> 區塊中，找到顯示支出清單的部分，並在清單下方新增一行來顯示總計：</p>
+<pre><code class="html">&lt;ul v-else&gt;
+  &lt;li v-for=&quot;(expense, index) in expenses&quot; :key=&quot;index&quot;&gt;
+    &lt;strong&gt;{{ expense.member }}&lt;/strong&gt; 支出
+    &lt;strong class=&quot;amount&quot;&gt;${{ Math.round(expense.amount) }}&lt;/strong&gt; - {{ expense.category }}
+    &lt;button class=&quot;btn delete-btn&quot; @click=&quot;deleteExpense(index)&quot;&gt;❌&lt;/button&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;total-section&quot;&gt;
+  &lt;strong&gt;總計：&lt;/strong&gt; ${{ Math.round(totalAmount) }}
+&lt;/div&gt;
+</code></pre>
+<p></p>
+<p>這段模板程式碼會在支出清單下方新增一個 <code>div</code>，顯示所有支出的總計金額。</p>
+<h3 id="步驟三：新增樣式（可選）"><a href="#步驟三：新增樣式（可選）" class="headerlink" title="步驟三：新增樣式（可選）"></a>步驟三：新增樣式（可選）</h3><p>為了讓總計的顯示更清晰，您可以在 <code>&lt;style scoped&gt;</code> 區塊中新增以下樣式：</p>
+<pre><code class="css">.total-section {
+  margin-top: 10px;
+  font-weight: bold;
+  text-align: right;
+  font-size: 1.1em;
+}
+</code></pre>
+<p></p>
+<p>這段 CSS 會將總計文字加粗、靠右對齊，並稍微放大字體，讓使用者更容易注意到。</p>
+<p>完成以上步驟後，您的應用程式將會自動計算並顯示所有支出的總計金額，提升使用者體驗。 </p>

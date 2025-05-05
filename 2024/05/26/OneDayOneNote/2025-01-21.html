@@ -1,0 +1,42 @@
+<hr>
+<h2 id="title-2025-01-21-JavaScript-系列八：第4課-──-行事曆應用程式-步驟11date-2025-05-05-22-34-30tags-Javascript-Vue-description-title-2025-01-21-JavaScript-系列八：第4課-──-行事曆應用程式-步驟11"><a href="#title-2025-01-21-JavaScript-系列八：第4課-──-行事曆應用程式-步驟11date-2025-05-05-22-34-30tags-Javascript-Vue-description-title-2025-01-21-JavaScript-系列八：第4課-──-行事曆應用程式-步驟11" class="headerlink" title="title: 2025-01-21 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟11date: 2025-05-05 22:34:30tags:  [Javascript,Vue]description:title:     2025-01-21 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟11"></a>title: 2025-01-21 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟11<br>date: 2025-05-05 22:34:30<br>tags:  [Javascript,Vue]<br>description:<br>title:     2025-01-21 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟11</h2><h2 id="2025-01-21-JavaScript-系列八：第4課-──-行事曆應用程式-步驟11"><a href="#2025-01-21-JavaScript-系列八：第4課-──-行事曆應用程式-步驟11" class="headerlink" title="2025-01-21 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟11"></a>2025-01-21 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟11</h2><p>下一步:<br>點擊行事曆內的活動，可以刪除活動。請使用 javascript 內建的 confirm 函式，確認「是否刪除此筆活動？」後刪除</p>
+<p>很好！你現在要實作的功能是：<br>👉 <strong>點擊行事曆內的活動，跳出 <code>confirm</code>，確認後刪除活動，並從 <code>localStorage</code> 移除</strong></p>
+<hr>
+<h3 id="✅-第一步：加入-eventClick-事件處理"><a href="#✅-第一步：加入-eventClick-事件處理" class="headerlink" title="✅ 第一步：加入 eventClick 事件處理"></a>✅ 第一步：加入 <code>eventClick</code> 事件處理</h3><p>在你初始化 FullCalendar 的 <code>new Calendar(...)</code> 裡，新增：</p>
+<pre><code class="js">eventClick(info) {
+  const confirmed = confirm(`是否刪除活動「${info.event.title}」？`)
+  if (confirmed) {
+    info.event.remove() // ✅ 從行事曆上移除
+    deleteEventFromLocalStorage(info.event) // ✅ 自 localStorage 移除
+  }
+}
+</code></pre>
+<hr>
+<h3 id="✅-第二步：新增-deleteEventFromLocalStorage-函式"><a href="#✅-第二步：新增-deleteEventFromLocalStorage-函式" class="headerlink" title="✅ 第二步：新增 deleteEventFromLocalStorage 函式"></a>✅ 第二步：新增 <code>deleteEventFromLocalStorage</code> 函式</h3><p>在 <code>&lt;script setup&gt;</code> 裡的 <code>saveEventToLocalStorage()</code> 下方，加上這段：</p>
+<pre><code class="js">function deleteEventFromLocalStorage(event) {
+  const events = JSON.parse(localStorage.getItem(STORAGE_KEY)) || []
+
+  // 依照 title 和 start 完全比對
+  const updatedEvents = events.filter(e =&gt; {
+    return !(e.title === event.title &amp;&amp; e.start === event.start)
+  })
+
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedEvents))
+}
+</code></pre>
+<hr>
+<h3 id="✅-完整位置說明"><a href="#✅-完整位置說明" class="headerlink" title="✅ 完整位置說明"></a>✅ 完整位置說明</h3><pre><code class="js">calendar = new window.FullCalendar.Calendar(calendarRef.value, {
+  ...
+  events: loadEventsFromLocalStorage(),
+  dateClick(info) { ... },
+  eventClick(info) {       // ✅ ← 加這裡
+    const confirmed = confirm(`是否刪除活動「${info.event.title}」？`)
+    if (confirmed) {
+      info.event.remove()
+      deleteEventFromLocalStorage(info.event)
+    }
+  }
+})
+</code></pre>
+<hr>
+<p>要我幫你一起加一個「活動刪除成功」的提示嗎？💡</p>

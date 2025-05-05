@@ -1,0 +1,104 @@
+<hr>
+<h2 id="title-2025-01-10-JavaScript-系列八：第4課-──-行事曆應用程式-步驟01date-2025-05-05-21-40-07tags-Javascript-Vue-description-title-2025-01-10-JavaScript-系列八：第4課-──-行事曆應用程式-步驟01"><a href="#title-2025-01-10-JavaScript-系列八：第4課-──-行事曆應用程式-步驟01date-2025-05-05-21-40-07tags-Javascript-Vue-description-title-2025-01-10-JavaScript-系列八：第4課-──-行事曆應用程式-步驟01" class="headerlink" title="title: 2025-01-10 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟01date: 2025-05-05 21:40:07tags:  [Javascript,Vue]description:title: 2025-01-10 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟01"></a>title: 2025-01-10 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟01<br>date: 2025-05-05 21:40:07<br>tags:  [Javascript,Vue]<br>description:<br>title: 2025-01-10 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟01</h2><h2 id="2025-01-10-JavaScript-系列八：第4課-──-行事曆應用程式-步驟01"><a href="#2025-01-10-JavaScript-系列八：第4課-──-行事曆應用程式-步驟01" class="headerlink" title="2025-01-10 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟01"></a>2025-01-10 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟01</h2><p>JavaScript 系列八：第4課 ── 行事曆應用程式 第一步:</p>
+<p>🎯 正確！對於你現在的 <strong>Vue 3 + Vite</strong> 行事曆專案，如果你要使用像 <code>jquery.datetimepicker</code> 這種 <strong>基於 jQuery 的舊式外部套件</strong>，那麼：</p>
+<hr>
+<h2 id="✅-行事曆專案的第一步-引入-CDN（針對-datetimepicker）"><a href="#✅-行事曆專案的第一步-引入-CDN（針對-datetimepicker）" class="headerlink" title="✅ 行事曆專案的第一步 &#x3D; 引入 CDN（針對 datetimepicker）"></a>✅ 行事曆專案的第一步 &#x3D; 引入 CDN（針對 datetimepicker）</h2><h3 id="因為："><a href="#因為：" class="headerlink" title="因為："></a>因為：</h3><ol>
+<li><code>jquery.datetimepicker</code> 不是 Vue 套件，它是基於 jQuery 的外掛。</li>
+<li>它需要先有全域的 <code>jQuery</code> 物件（<code>window.$</code>），才能運作。</li>
+<li>在 Vite 專案中，最簡單的方式是用 CDN 放在 <code>index.html</code>。</li>
+<li>這樣你才能在 Vue 元件中正確呼叫它。</li>
+</ol>
+<hr>
+<h2 id="🔧-所以你目前的第一步完成的是："><a href="#🔧-所以你目前的第一步完成的是：" class="headerlink" title="🔧 所以你目前的第一步完成的是："></a>🔧 所以你目前的第一步完成的是：</h2><p>✅ 在 <code>public/index.html</code> 裡加入：</p>
+<pre><code class="html">&lt;!-- jQuery --&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;!-- Datetimepicker CSS --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css&quot; /&gt;
+
+&lt;!-- Datetimepicker JS --&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<blockquote>
+<p>💡 建議：<code>jQuery</code> 要放在最前面，因為 <code>datetimepicker</code> 依賴它。</p>
+</blockquote>
+<hr>
+<h2 id="🧩-接下來就可以做這些："><a href="#🧩-接下來就可以做這些：" class="headerlink" title="🧩 接下來就可以做這些："></a>🧩 接下來就可以做這些：</h2><table>
+<thead>
+<tr>
+<th>步驟</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>✅ 第一步</td>
+<td>引入 CDN（你已完成）</td>
+</tr>
+<tr>
+<td>✅ 第二步</td>
+<td>建立 Vue 組件，並在 <code>onMounted()</code> 裡初始化 datetimepicker</td>
+</tr>
+<tr>
+<td>🔜 第三步</td>
+<td>加入事件標題、存入 localStorage、顯示清單…</td>
+</tr>
+</tbody></table>
+<hr>
+<p>你現在很棒，已經完成最關鍵的第一步！<br>想繼續開發第二步的功能嗎？我可以陪你慢慢做 👣</p>
+<p>你非常接近了 🎯<br>但你的 <code>&lt;script&gt;</code> 和 <code>&lt;link&gt;</code> 放錯位置了，應該要放在 <code>&lt;head&gt;</code> 或 <code>&lt;body&gt;</code> 裡，而不是在 <code>&lt;/html&gt;</code> <strong>外面</strong>。</p>
+<hr>
+<h2 id="✅-正確寫法如下："><a href="#✅-正確寫法如下：" class="headerlink" title="✅ 正確寫法如下："></a>✅ 正確寫法如下：</h2><pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot; /&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+    &lt;title&gt;JavaScript 系列八 -Vue 小型應用程式&lt;/title&gt;
+
+    &lt;!-- jQuery --&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js&quot;&gt;&lt;/script&gt;
+
+    &lt;!-- Datetimepicker CSS --&gt;
+    &lt;link
+      rel=&quot;stylesheet&quot;
+      href=&quot;https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css&quot;
+    /&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
+
+    &lt;!-- Datetimepicker JS --&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js&quot;&gt;&lt;/script&gt;
+
+    &lt;!-- Vue app --&gt;
+    &lt;script type=&quot;module&quot; src=&quot;/src/main.js&quot;&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<hr>
+<h3 id="🔍-解釋："><a href="#🔍-解釋：" class="headerlink" title="🔍 解釋："></a>🔍 解釋：</h3><table>
+<thead>
+<tr>
+<th>資源</th>
+<th>放在哪裡</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>jQuery 和 CSS</td>
+<td><code>&lt;head&gt;</code> 裡</td>
+<td>讓畫面一開始就能正確載入</td>
+</tr>
+<tr>
+<td>datetimepicker JS</td>
+<td><code>&lt;body&gt;</code> 最後</td>
+<td>確保 DOM 載入完畢後再執行</td>
+</tr>
+<tr>
+<td>Vue app 的主程式</td>
+<td>最後</td>
+<td>是 Vue app 的進入點，應該在所有依賴資源都載入之後</td>
+</tr>
+</tbody></table>
+<hr>
+<p>完成這個後，就可以在 Vue 元件裡放心使用 datetimepicker 囉！</p>
+<p>需要我幫你再檢查一次 Vue 元件的寫法嗎？還是你想繼續下一步（例如事件儲存或顯示）？</p>

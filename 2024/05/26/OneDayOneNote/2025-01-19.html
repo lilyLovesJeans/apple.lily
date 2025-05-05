@@ -1,0 +1,76 @@
+<hr>
+<h2 id="title-2025-01-19-JavaScript-系列八：第4課-──-行事曆應用程式-步驟09date-2025-05-05-22-22-48tags-Javascript-Vue-description-title-2025-01-19-JavaScript-系列八：第4課-──-行事曆應用程式-步驟09"><a href="#title-2025-01-19-JavaScript-系列八：第4課-──-行事曆應用程式-步驟09date-2025-05-05-22-22-48tags-Javascript-Vue-description-title-2025-01-19-JavaScript-系列八：第4課-──-行事曆應用程式-步驟09" class="headerlink" title="title: 2025-01-19 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟09date: 2025-05-05 22:22:48tags:  [Javascript,Vue]description:title:    2025-01-19 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟09"></a>title: 2025-01-19 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟09<br>date: 2025-05-05 22:22:48<br>tags:  [Javascript,Vue]<br>description:<br>title:    2025-01-19 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟09</h2><h2 id="2025-01-19-JavaScript-系列八：第4課-──-行事曆應用程式-步驟09"><a href="#2025-01-19-JavaScript-系列八：第4課-──-行事曆應用程式-步驟09" class="headerlink" title="2025-01-19 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟09"></a>2025-01-19 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟09</h2><p>詳細解釋 function saveEventToLocalStorage 及  function loadEventsFromLocalStorage()</p>
+<p>非常好👍，這兩個 function 是今天的重點之一，<br>我來用<strong>很清楚的方式</strong>，幫你逐行<strong>慢慢解析</strong>：</p>
+<hr>
+<h1 id="🧠-先看-saveEventToLocalStorage-event"><a href="#🧠-先看-saveEventToLocalStorage-event" class="headerlink" title="🧠 先看 saveEventToLocalStorage(event)"></a>🧠 先看 <code>saveEventToLocalStorage(event)</code></h1><p>這個 function 是「<strong>儲存一個新的活動</strong>到 localStorage」。</p>
+<pre><code class="javascript">function saveEventToLocalStorage(event) {
+  const events = JSON.parse(localStorage.getItem(STORAGE_KEY)) || []
+  events.push(event)
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(events))
+}
+</code></pre>
+<h2 id="🔍-每一行解釋："><a href="#🔍-每一行解釋：" class="headerlink" title="🔍 每一行解釋："></a>🔍 每一行解釋：</h2><hr>
+<h3 id="1️⃣"><a href="#1️⃣" class="headerlink" title="1️⃣"></a>1️⃣</h3><pre><code class="javascript">const events = JSON.parse(localStorage.getItem(STORAGE_KEY)) || []
+</code></pre>
+<ul>
+<li><code>localStorage.getItem(STORAGE_KEY)</code> ➔<br>從 localStorage 抓出之前存的資料（會是一個字串，或是 <code>null</code>）。</li>
+<li><code>JSON.parse(...)</code> ➔<br>把那個<strong>字串</strong>轉回**陣列 (Array)**，因為 localStorage 裡面只能存字串，存進去前我們會先 <code>stringify</code>，讀出來要 <code>parse</code>。</li>
+<li><code>|| []</code> ➔<br>如果 <code>localStorage</code> 裡面<strong>根本沒有資料</strong>（例如第一次使用），那就給一個空陣列 <code>[]</code>。</li>
+</ul>
+<p>✅ <strong>結果：</strong><br>這行就是：<strong>取得目前所有活動資料的陣列</strong>。</p>
+<hr>
+<h3 id="2️⃣"><a href="#2️⃣" class="headerlink" title="2️⃣"></a>2️⃣</h3><pre><code class="javascript">events.push(event)
+</code></pre>
+<ul>
+<li>把**新的活動 (event)**，加入剛剛拿到的那個活動陣列 <code>events</code> 裡。</li>
+</ul>
+<p>✅ <strong>結果：</strong><br>活動陣列中多了一筆新的活動！</p>
+<hr>
+<h3 id="3️⃣"><a href="#3️⃣" class="headerlink" title="3️⃣"></a>3️⃣</h3><pre><code class="javascript">localStorage.setItem(STORAGE_KEY, JSON.stringify(events))
+</code></pre>
+<ul>
+<li><code>JSON.stringify(events)</code> ➔<br>把整個陣列<strong>轉成字串</strong>。</li>
+<li><code>localStorage.setItem(...)</code> ➔<br>把這個<strong>新的字串</strong>，存回 localStorage 裡，覆蓋掉原本的。</li>
+</ul>
+<p>✅ <strong>結果：</strong><br>localStorage 裡的活動資料 ➔ 更新為<strong>含有新活動</strong>的版本！</p>
+<hr>
+<hr>
+<h1 id="🧠-再看-loadEventsFromLocalStorage"><a href="#🧠-再看-loadEventsFromLocalStorage" class="headerlink" title="🧠 再看 loadEventsFromLocalStorage()"></a>🧠 再看 <code>loadEventsFromLocalStorage()</code></h1><p>這個 function 是「<strong>從 localStorage 抓出所有活動</strong>」。</p>
+<pre><code class="javascript">function loadEventsFromLocalStorage() {
+  return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []
+}
+</code></pre>
+<h2 id="🔍-解釋："><a href="#🔍-解釋：" class="headerlink" title="🔍 解釋："></a>🔍 解釋：</h2><hr>
+<h3 id="只有一行："><a href="#只有一行：" class="headerlink" title="只有一行："></a>只有一行：</h3><pre><code class="javascript">return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []
+</code></pre>
+<p>跟剛剛第一行很像，意思是：</p>
+<ul>
+<li><code>localStorage.getItem(STORAGE_KEY)</code> ➔<br>從 localStorage 抓資料（會是字串）。</li>
+<li><code>JSON.parse(...)</code> ➔<br>把字串轉回活動陣列。</li>
+<li><code>|| []</code> ➔<br>如果抓不到（例如第一次開啟），就回傳空陣列。</li>
+</ul>
+<p>✅ <strong>結果：</strong><br>這個 function 的結果是：<br><strong>一個活動陣列</strong>（可能是空的，也可能是有很多活動的）。</p>
+<hr>
+<h1 id="🏆【總結】兩個-function-的角色："><a href="#🏆【總結】兩個-function-的角色：" class="headerlink" title="🏆【總結】兩個 function 的角色："></a>🏆【總結】兩個 function 的角色：</h1><table>
+<thead>
+<tr>
+<th align="left">function</th>
+<th align="left">做什麼？</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">saveEventToLocalStorage(event)</td>
+<td align="left">把<strong>新活動加到 localStorage</strong> 裡</td>
+</tr>
+<tr>
+<td align="left">loadEventsFromLocalStorage()</td>
+<td align="left"><strong>從 localStorage 載出所有活動</strong>，給 FullCalendar 顯示</td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="🎯【順便整理一個小流程圖】"><a href="#🎯【順便整理一個小流程圖】" class="headerlink" title="🎯【順便整理一個小流程圖】"></a>🎯【順便整理一個小流程圖】</h1><pre><code>新增活動 ➔ saveEventToLocalStorage(event) ➔ 更新 localStorage
+
+開啟網頁 ➔ loadEventsFromLocalStorage() ➔ 把 localStorage 資料顯示到 FullCalendar
+</code></pre>
+<hr>
+<p>要不要我也幫你畫成一個超簡單的【流程圖】？👀<br>如果想要，回我【要流程圖】～我可以用圖片更直覺畫給你！🎨</p>

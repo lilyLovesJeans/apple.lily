@@ -1,0 +1,31 @@
+<hr>
+<h2 id="title-2025-01-23-JavaScript-系列八：第4課-──-行事曆應用程式-步驟13date-2025-05-05-22-37-56tags-Javascript-Vue-description-title-2025-01-23-JavaScript-系列八：第4課-──-行事曆應用程式-步驟13"><a href="#title-2025-01-23-JavaScript-系列八：第4課-──-行事曆應用程式-步驟13date-2025-05-05-22-37-56tags-Javascript-Vue-description-title-2025-01-23-JavaScript-系列八：第4課-──-行事曆應用程式-步驟13" class="headerlink" title="title: 2025-01-23 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟13date: 2025-05-05 22:37:56tags:  [Javascript,Vue]description:title:    2025-01-23 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟13"></a>title: 2025-01-23 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟13<br>date: 2025-05-05 22:37:56<br>tags:  [Javascript,Vue]<br>description:<br>title:    2025-01-23 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟13</h2><h2 id="2025-01-23-JavaScript-系列八：第4課-──-行事曆應用程式-步驟13"><a href="#2025-01-23-JavaScript-系列八：第4課-──-行事曆應用程式-步驟13" class="headerlink" title="2025-01-23 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟13"></a>2025-01-23 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟13</h2><p>刪除 localStorage 中事件後，refresh 仍會出現」**的問題。</p>
+<p>你整體寫得很好，現在來幫你解決 **「刪除 localStorage 中事件後，refresh 仍會出現」**的問題。</p>
+<hr>
+<h2 id="🔍-問題根源"><a href="#🔍-問題根源" class="headerlink" title="🔍 問題根源"></a>🔍 問題根源</h2><p>你的 <code>deleteEventFromLocalStorage(info.event)</code> 裡這一行比對失敗：</p>
+<pre><code class="js">e.start === event.start
+</code></pre>
+<p>原因是 <code>info.event.start</code> 是 <strong><code>Date</code> 物件</strong>，而 <code>e.start</code> 是儲存在 localStorage 中的 <strong>字串（如：”2025-04-28T09:00”）</strong>。</p>
+<hr>
+<h2 id="✅-解法：統一比對格式"><a href="#✅-解法：統一比對格式" class="headerlink" title="✅ 解法：統一比對格式"></a>✅ 解法：統一比對格式</h2><p>請改寫 <code>deleteEventFromLocalStorage</code> 如下，把 <code>event.start</code> 轉成 ISO 格式（<code>toISOString().slice(0, 16)</code>）再比對：</p>
+<pre><code class="js">function deleteEventFromLocalStorage(event){
+  const events = JSON.parse(localStorage.getItem(STORAGE_KEY)) || []
+
+  const eventStartStr = event.start instanceof Date
+    ? event.start.toISOString().slice(0, 16) // &quot;YYYY-MM-DDTHH:mm&quot;
+    : event.start
+
+  const updateEvents = events.filter(e =&gt; {
+    return !(e.title === event.title &amp;&amp; e.start === eventStartStr)
+  })
+
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(updateEvents))
+}
+</code></pre>
+<hr>
+<h2 id="✅-額外建議：加除錯訊息"><a href="#✅-額外建議：加除錯訊息" class="headerlink" title="✅ 額外建議：加除錯訊息"></a>✅ 額外建議：加除錯訊息</h2><p>幫助你開發時能看到刪除是否成功：</p>
+<pre><code class="js">console.log(&#39;刪除前事件數：&#39;, events.length)
+console.log(&#39;刪除後事件數：&#39;, updateEvents.length)
+</code></pre>
+<hr>
+<p>這樣改完後，應該就能正確刪除事件了。你想要我幫你補一個「修改活動」的功能嗎？</p>

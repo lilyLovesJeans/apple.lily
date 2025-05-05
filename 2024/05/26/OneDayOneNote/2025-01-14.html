@@ -1,0 +1,301 @@
+<hr>
+<h2 id="title-2025-01-14-JavaScript-系列八：第4課-──-行事曆應用程式-步驟05date-2025-05-05-21-47-30tags-Javascript-Vue-description-title-2025-01-14-JavaScript-系列八：第4課-──-行事曆應用程式-步驟05"><a href="#title-2025-01-14-JavaScript-系列八：第4課-──-行事曆應用程式-步驟05date-2025-05-05-21-47-30tags-Javascript-Vue-description-title-2025-01-14-JavaScript-系列八：第4課-──-行事曆應用程式-步驟05" class="headerlink" title="title: 2025-01-14 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟05date: 2025-05-05 21:47:30tags:  [Javascript,Vue]description:title:   2025-01-14 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟05"></a>title: 2025-01-14 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟05<br>date: 2025-05-05 21:47:30<br>tags:  [Javascript,Vue]<br>description:<br>title:   2025-01-14 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟05</h2><h2 id="2025-01-14-JavaScript-系列八：第4課-──-行事曆應用程式-步驟05"><a href="#2025-01-14-JavaScript-系列八：第4課-──-行事曆應用程式-步驟05" class="headerlink" title="2025-01-14 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟05"></a>2025-01-14 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟05</h2><p>我的按鈕想做成 RWD , 當變成手機的螢幕大小時，變成沒有文字的圖示按鈕</p>
+<p>太棒了～你想讓按鈕在手機上變成圖示（icon button），這就是 RWD（響應式設計）的好實踐 👏<br>我來教你一步一步怎麼做，用最簡單的方法來實現這個效果！</p>
+<hr>
+<h3 id="✅-效果目標："><a href="#✅-效果目標：" class="headerlink" title="✅ 效果目標："></a>✅ 效果目標：</h3><ul>
+<li>👉 電腦螢幕：按鈕顯示「新增活動」文字</li>
+<li>👉 手機螢幕：按鈕只顯示 ➕ 圖示（用 emoji 或 FontAwesome）</li>
+</ul>
+<hr>
+<h3 id="🧩-方法一：使用純-CSS-media-query（簡單易懂）"><a href="#🧩-方法一：使用純-CSS-media-query（簡單易懂）" class="headerlink" title="🧩 方法一：使用純 CSS + media query（簡單易懂）"></a>🧩 方法一：使用純 CSS + media query（簡單易懂）</h3><h4 id="🧾-修改樣式（Calendar-vue-的-裡）"><a href="#🧾-修改樣式（Calendar-vue-的-裡）" class="headerlink" title="🧾 修改樣式（Calendar.vue 的 &lt;style scoped&gt; 裡）"></a>🧾 修改樣式（Calendar.vue 的 <code>&lt;style scoped&gt;</code> 裡）</h4><pre><code class="css">.add-event-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.add-event-icon {
+  display: none;
+}
+
+/* 電腦版，顯示文字 + 圖示（可選） */
+@media (min-width: 600px) {
+  .add-event-text {
+    display: inline;
+  }
+}
+
+/* 手機版，只顯示圖示，隱藏文字 */
+@media (max-width: 599px) {
+  .add-event-text {
+    display: none;
+  }
+  .add-event-icon {
+    display: inline;
+  }
+}
+</code></pre>
+<hr>
+<h3 id="🧾-修改-JS-建立按鈕的部分（dateClick-裡）"><a href="#🧾-修改-JS-建立按鈕的部分（dateClick-裡）" class="headerlink" title="🧾 修改 JS 建立按鈕的部分（dateClick 裡）"></a>🧾 修改 JS 建立按鈕的部分（<code>dateClick</code> 裡）</h3><pre><code class="js">const button = document.createElement(&#39;button&#39;)
+button.className = &#39;add-event-button&#39;
+
+// 建立 icon span
+const icon = document.createElement(&#39;span&#39;)
+icon.className = &#39;add-event-icon&#39;
+icon.textContent = &#39;➕&#39; // 你也可以用 FontAwesome 的 `&lt;i class=&quot;fas fa-plus&quot;&gt;&lt;/i&gt;`
+
+// 建立文字 span
+const text = document.createElement(&#39;span&#39;)
+text.className = &#39;add-event-text&#39;
+text.textContent = &#39;新增活動&#39;
+
+// 組合按鈕內容
+button.appendChild(icon)
+button.appendChild(text)
+</code></pre>
+<hr>
+<p>這樣一來：</p>
+<ul>
+<li>👀 在桌機畫面會看到：➕ 新增活動</li>
+<li>📱 在手機畫面只會看到：➕</li>
+</ul>
+<hr>
+<h3 id="想加-FontAwesome-圖示？"><a href="#想加-FontAwesome-圖示？" class="headerlink" title="想加 FontAwesome 圖示？"></a>想加 FontAwesome 圖示？</h3><p>只要在 <code>index.html</code> 加上這一行就能用：</p>
+<pre><code class="html">&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css&quot; /&gt;
+</code></pre>
+<p>然後把 <code>icon.textContent = &#39;➕&#39;</code> 改為：</p>
+<pre><code class="js">icon.innerHTML = &#39;&lt;i class=&quot;fas fa-plus&quot;&gt;&lt;/i&gt;&#39;
+</code></pre>
+<hr>
+<p>要不要我幫你加上完整的程式碼一起貼上測試？還是你想先自己試看看？😎</p>
+<p>很好問題！針對你使用的 Vue <code>&lt;style scoped&gt;</code>，如果你希望在 <strong>scoped 樣式</strong>中，影響由 <strong>JS 動態插入的 DOM 元素</strong>（像你用 FullCalendar 建的 <code>.add-event-button</code>），這時候就要用 <code>:deep()</code>。</p>
+<hr>
+<h3 id="✅-所以你應該這樣寫："><a href="#✅-所以你應該這樣寫：" class="headerlink" title="✅ 所以你應該這樣寫："></a>✅ 所以你應該這樣寫：</h3><pre><code class="css">:deep(.add-event-button) {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+:deep(.add-event-text) {
+  display: inline;
+}
+
+:deep(.add-event-icon) {
+  display: none;
+}
+
+@media (max-width: 599px) {
+  :deep(.add-event-text) {
+    display: none;
+  }
+
+  :deep(.add-event-icon) {
+    display: inline;
+  }
+}
+</code></pre>
+<hr>
+<h3 id="💡-為什麼要用-deep-？"><a href="#💡-為什麼要用-deep-？" class="headerlink" title="💡 為什麼要用 :deep()？"></a>💡 為什麼要用 <code>:deep()</code>？</h3><p>因為 <code>.add-event-button</code> 是你用 JS 動態加入到 DOM 裡的，它不是 <code>.vue</code> 組件內部產生的元素，因此 scoped CSS 的 attribute selector 不會套用到它。<br>使用 <code>:deep()</code> 就能讓 CSS 穿透 scoped 限制，正確影響這些外部或第三方 DOM。</p>
+<hr>
+<h3 id="小提醒："><a href="#小提醒：" class="headerlink" title="小提醒："></a>小提醒：</h3><ul>
+<li><code>:deep()</code> <strong>只需要加在 <code>.vue</code> 檔的 scoped <code>&lt;style&gt;</code> 中</strong></li>
+<li>如果你改成 <code>&lt;style&gt;</code> 沒有 <code>scoped</code>，就不需要 <code>:deep()</code>，但會全域影響整個網站樣式</li>
+</ul>
+<hr>
+<p>你要不要我幫你整理成完整的 RWD calendar 按鈕小樣板？還是你想自己組合試試？😄</p>
+<p>當然可以，這裡是整理後的版本，包含以下幾個重點：</p>
+<p>✅ 使用 <code>:deep()</code> 讓按鈕樣式正確套用<br>✅ 按鈕插入 <code>.fc-daygrid-day-frame</code> 中，保持版面整潔<br>✅ 保留點擊事件，可以擴充成開啟表單功能<br>✅ 結構清楚，註解清晰，方便日後維護</p>
+<hr>
+<h3 id="✅-整理後的程式碼如下："><a href="#✅-整理後的程式碼如下：" class="headerlink" title="✅ 整理後的程式碼如下："></a>✅ 整理後的程式碼如下：</h3><pre><code class="vue">&lt;template&gt;
+  &lt;div&gt;
+    &lt;h2&gt;我的行事曆&lt;/h2&gt;
+    &lt;div ref=&quot;calendarRef&quot; id=&quot;calendar&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { ref, onMounted } from &#39;vue&#39;
+
+const calendarRef = ref(null)
+
+onMounted(() =&gt; {
+  if (window.FullCalendar &amp;&amp; window.FullCalendar.Calendar) {
+    const calendar = new window.FullCalendar.Calendar(calendarRef.value, {
+      initialView: &#39;dayGridMonth&#39;,
+      locale: &#39;zh-tw&#39;,
+      events: [
+        {
+          title: &#39;測試活動&#39;,
+          start: new Date().toISOString().split(&#39;T&#39;)[0], // 今天
+        }
+      ],
+      dateClick(info) {
+        // 🧪 印出 DOM 結構可供除錯觀察
+        console.log(info.dayEl.outerHTML)
+
+        // 移除已存在的新增按鈕
+        document.querySelectorAll(&#39;.add-event-button&#39;).forEach(btn =&gt; btn.remove())
+
+        // ✅ 找到可插入的區塊（不是 dayEl 自己，避免 layout 混亂）
+        const cellEl = info.dayEl.querySelector(&#39;.fc-daygrid-day-frame&#39;)
+        if (!cellEl) return
+
+        // 建立按鈕元素
+        const button = document.createElement(&#39;button&#39;)
+        button.textContent = &#39;新增活動&#39;
+        button.className = &#39;add-event-button&#39;
+
+        // 設定點擊行為
+        button.onclick = () =&gt; {
+          alert(`你點了 ${info.dateStr}，這裡可以打開活動編輯表單！`)
+        }
+
+        // 插入到 cell 中
+        cellEl.appendChild(button)
+      }
+    })
+    calendar.render()
+  } else {
+    console.error(&#39;FullCalendar 尚未載入，請檢查 index.html CDN script。&#39;)
+  }
+})
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+#calendar {
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+/* ✅ 使用 :deep() 讓樣式能穿透 scoped 套用到 JS 動態加的按鈕 */
+:deep(.add-event-button) {
+  background-color: #1e2b37;
+  color: white;
+  border: none;
+  padding: 2px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+&lt;/style&gt;
+</code></pre>
+<hr>
+<p>如果你要進一步做 <strong>RWD 的圖示按鈕切換</strong>（例如手機只顯示 icon），我可以再幫你加入 <code>@media</code> 和 icon 的樣式結構 👌<br>要不要我幫你做那一段也一起整進來？</p>
+<p>太好了，我幫你把 RWD 版本整合進來了 ✅<br>目標是：</p>
+<ul>
+<li>電腦寬度下顯示「新增活動」文字按鈕</li>
+<li>手機寬度下變成只顯示 icon（使用 emoji 作為示意，可換成 Font Awesome 等）</li>
+</ul>
+<hr>
+<h3 id="✅-完整整合版：含-deep-RWD-響應式樣式"><a href="#✅-完整整合版：含-deep-RWD-響應式樣式" class="headerlink" title="✅ 完整整合版：含 :deep() + RWD 響應式樣式"></a>✅ 完整整合版：含 <code>:deep()</code> + RWD 響應式樣式</h3><pre><code class="vue">&lt;template&gt;
+  &lt;div&gt;
+    &lt;h2&gt;我的行事曆&lt;/h2&gt;
+    &lt;div ref=&quot;calendarRef&quot; id=&quot;calendar&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { ref, onMounted } from &#39;vue&#39;
+
+const calendarRef = ref(null)
+
+onMounted(() =&gt; {
+  if (window.FullCalendar &amp;&amp; window.FullCalendar.Calendar) {
+    const calendar = new window.FullCalendar.Calendar(calendarRef.value, {
+      initialView: &#39;dayGridMonth&#39;,
+      locale: &#39;zh-tw&#39;,
+      events: [
+        {
+          title: &#39;測試活動&#39;,
+          start: new Date().toISOString().split(&#39;T&#39;)[0],
+        }
+      ],
+      dateClick(info) {
+        console.log(info.dayEl.outerHTML)
+
+        // 移除舊按鈕
+        document.querySelectorAll(&#39;.add-event-button&#39;).forEach(btn =&gt; btn.remove())
+
+        const cellEl = info.dayEl.querySelector(&#39;.fc-daygrid-day-frame&#39;)
+        if (!cellEl) return
+
+        // 建立按鈕
+        const button = document.createElement(&#39;button&#39;)
+        button.className = &#39;add-event-button&#39;
+        button.innerHTML = `&lt;span class=&quot;text&quot;&gt;新增活動&lt;/span&gt;&lt;span class=&quot;icon&quot;&gt;➕&lt;/span&gt;` // icon 可改用 Font Awesome
+
+        button.onclick = () =&gt; {
+          alert(`你點了 ${info.dateStr}，這裡可以打開活動編輯表單！`)
+        }
+
+        cellEl.appendChild(button)
+      }
+    })
+    calendar.render()
+  } else {
+    console.error(&#39;FullCalendar 尚未載入，請檢查 index.html CDN script。&#39;)
+  }
+})
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+#calendar {
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+/* ✅ 基本樣式：使用 :deep() 讓 scoped CSS 有效 */
+:deep(.add-event-button) {
+  background-color: #1e2b37;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ✅ 預設顯示文字與 icon */
+:deep(.add-event-button .icon) {
+  display: none;
+}
+
+:deep(.add-event-button .text) {
+  display: inline;
+}
+
+/* ✅ 手機寬度下改為只顯示 icon */
+@media (max-width: 600px) {
+  :deep(.add-event-button .text) {
+    display: none;
+  }
+  :deep(.add-event-button .icon) {
+    display: inline;
+    font-size: 16px;
+  }
+}
+&lt;/style&gt;
+</code></pre>
+<hr>
+<h3 id="🔍-測試方式建議："><a href="#🔍-測試方式建議：" class="headerlink" title="🔍 測試方式建議："></a>🔍 測試方式建議：</h3><ol>
+<li>開啟開發者工具 → 切換手機預覽模式看看是否成功切換</li>
+<li>若有安裝 icon 套件（如 Font Awesome），可將 <code>➕</code> 改為 <code>&lt;i class=&quot;fas fa-plus&quot;&gt;&lt;/i&gt;</code> 等</li>
+</ol>
+<hr>
+<p>想進一步加 popup 表單編輯活動，或改用 modal？我也可以幫你整合進來喔！要嗎？😎</p>

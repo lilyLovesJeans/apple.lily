@@ -1,0 +1,60 @@
+<hr>
+<h2 id="title-2025-01-24-JavaScript-系列八：第4課-──-行事曆應用程式-步驟14date-2025-05-05-22-40-43tags-Javascript-Vue-description-title-2025-01-24-JavaScript-系列八：第4課-──-行事曆應用程式-步驟14"><a href="#title-2025-01-24-JavaScript-系列八：第4課-──-行事曆應用程式-步驟14date-2025-05-05-22-40-43tags-Javascript-Vue-description-title-2025-01-24-JavaScript-系列八：第4課-──-行事曆應用程式-步驟14" class="headerlink" title="title: 2025-01-24 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟14date: 2025-05-05 22:40:43tags:  [Javascript,Vue]description:title:   2025-01-24 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟14"></a>title: 2025-01-24 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟14<br>date: 2025-05-05 22:40:43<br>tags:  [Javascript,Vue]<br>description:<br>title:   2025-01-24 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟14</h2><h2 id="2025-01-24-JavaScript-系列八：第4課-──-行事曆應用程式-步驟14"><a href="#2025-01-24-JavaScript-系列八：第4課-──-行事曆應用程式-步驟14" class="headerlink" title="2025-01-24 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟14"></a>2025-01-24 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟14</h2><p>FullCalendar 在建立事件時，會自動把 start 字串轉成 Date 物件</p>
+<p>這是一個非常棒的問題，顯示你對資料處理過程有深入的思考！</p>
+<hr>
+<h3 id="✅-你的觀點沒錯："><a href="#✅-你的觀點沒錯：" class="headerlink" title="✅ 你的觀點沒錯："></a>✅ 你的觀點沒錯：</h3><p>你說得對——<strong>localStorage 儲存的本來就是字串型別</strong>（例如 <code>&quot;2025-05-05T09:00&quot;</code>），如果你在讀取事件時就保持字串型式（不轉成 <code>Date</code> 物件），<strong>的確可以避免轉來轉去產生的時區問題</strong>。</p>
+<hr>
+<h3 id="💡-但為何仍常看到「轉成-Date-物件」的作法？"><a href="#💡-但為何仍常看到「轉成-Date-物件」的作法？" class="headerlink" title="💡 但為何仍常看到「轉成 Date 物件」的作法？"></a>💡 但為何仍常看到「轉成 <code>Date</code> 物件」的作法？</h3><p>這是因為 FullCalendar 在建立事件時，會<strong>自動把 <code>start</code> 字串轉成 <code>Date</code> 物件</strong>，例如：</p>
+<pre><code class="js">calendar.addEvent({
+  title: &#39;活動&#39;,
+  start: &#39;2025-05-05T09:00&#39; // ✅ 你給它字串，它會自動變成 Date 物件
+})
+</code></pre>
+<p>所以你之後在 <code>eventClick</code> 裡取得的 <code>event.start</code> 就變成一個 <code>Date</code> 物件了，而不是原本的字串。</p>
+<hr>
+<h3 id="❗結果導致比較錯誤："><a href="#❗結果導致比較錯誤：" class="headerlink" title="❗結果導致比較錯誤："></a>❗結果導致比較錯誤：</h3><p>你：</p>
+<pre><code class="js">e.start === event.start // 錯！型別不同：e 是字串，event.start 是 Date
+</code></pre>
+<p>FullCalendar：</p>
+<pre><code class="js">event.start → Date 物件
+</code></pre>
+<p>你的 localStorage：</p>
+<pre><code class="js">e.start → 字串
+</code></pre>
+<hr>
+<h3 id="✅-最簡解法："><a href="#✅-最簡解法：" class="headerlink" title="✅ 最簡解法："></a>✅ 最簡解法：</h3><p>你可以保留字串比對，但<strong>要記得把 <code>event.start</code>（Date 物件）手動格式化為字串</strong>再來比，例如：</p>
+<pre><code class="js">e.start === formatDateLocal(event.start)
+</code></pre>
+<hr>
+<h3 id="🎯-你可以選兩種策略之一："><a href="#🎯-你可以選兩種策略之一：" class="headerlink" title="🎯 你可以選兩種策略之一："></a>🎯 你可以選兩種策略之一：</h3><h4 id="✅-方法-A：保留-Date-→-再手動比對字串（推薦）"><a href="#✅-方法-A：保留-Date-→-再手動比對字串（推薦）" class="headerlink" title="✅ 方法 A：保留 Date → 再手動比對字串（推薦）"></a>✅ 方法 A：保留 Date → 再手動比對字串（推薦）</h4><p>最安全、兼容 FullCalendar 的使用方式：</p>
+<pre><code class="js">function deleteEventFromLocalStorage(event){
+  const events = JSON.parse(localStorage.getItem(STORAGE_KEY)) || []
+  const updatedEvents = events.filter(e =&gt; {
+    return !(e.title === event.title &amp;&amp; e.start === formatDateLocal(event.start))
+  })
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedEvents))
+}
+</code></pre>
+<h4 id="✅-方法-B：完全不轉成-Date，只用字串操作"><a href="#✅-方法-B：完全不轉成-Date，只用字串操作" class="headerlink" title="✅ 方法 B：完全不轉成 Date，只用字串操作"></a>✅ 方法 B：<strong>完全不轉成 Date，只用字串操作</strong></h4><p>這樣你就不能用 <code>event.start</code>（因為是 Date），而是要自己從 <code>localStorage</code> 保留原始格式進行比對，但這比較難整合 FullCalendar 的行為，因為它會「自動」轉成 <code>Date</code>。</p>
+<hr>
+<h3 id="✅-總結"><a href="#✅-總結" class="headerlink" title="✅ 總結"></a>✅ 總結</h3><table>
+<thead>
+<tr>
+<th>做法</th>
+<th>優點</th>
+<th>缺點</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A. 轉成 <code>Date</code> 再手動格式化</td>
+<td>跟 FullCalendar 完全兼容，格式可控</td>
+<td>要手動格式化、比較麻煩</td>
+</tr>
+<tr>
+<td>B. 保留字串不轉</td>
+<td>最直觀，資料單純</td>
+<td>不適合 FullCalendar 的自動 <code>Date</code> 行為</td>
+</tr>
+</tbody></table>
+<hr>
+<p>你希望我幫你重寫成方法 A 的最終版本嗎？</p>

@@ -1,0 +1,58 @@
+<hr>
+<h2 id="title-2025-01-22-JavaScript-系列八：第4課-──-行事曆應用程式-步驟12date-2025-05-05-22-36-31tags-Javascript-Vue-description-title-2025-01-22-JavaScript-系列八：第4課-──-行事曆應用程式-步驟12"><a href="#title-2025-01-22-JavaScript-系列八：第4課-──-行事曆應用程式-步驟12date-2025-05-05-22-36-31tags-Javascript-Vue-description-title-2025-01-22-JavaScript-系列八：第4課-──-行事曆應用程式-步驟12" class="headerlink" title="title: 2025-01-22 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟12date: 2025-05-05 22:36:31tags:  [Javascript,Vue]description:title:    2025-01-22 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟12"></a>title: 2025-01-22 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟12<br>date: 2025-05-05 22:36:31<br>tags:  [Javascript,Vue]<br>description:<br>title:    2025-01-22 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟12</h2><h2 id="2025-01-22-JavaScript-系列八：第4課-──-行事曆應用程式-步驟12"><a href="#2025-01-22-JavaScript-系列八：第4課-──-行事曆應用程式-步驟12" class="headerlink" title="2025-01-22 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟12"></a>2025-01-22 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟12</h2><p>info.event.extendedProps.location 是 FullCalendar 中的自訂欄位</p>
+<p><code>info.event.extendedProps.location</code> 是 <strong>FullCalendar 中的自訂欄位</strong>，意思是說：</p>
+<p>你可以在建立事件時，除了標準的欄位（如 <code>title</code>, <code>start</code>, <code>end</code>），<strong>還能加上你自己額外需要的資訊</strong>，這些資料就會被包在 <code>extendedProps</code> 裡。</p>
+<hr>
+<h2 id="🔍-什麼是-extendedProps？"><a href="#🔍-什麼是-extendedProps？" class="headerlink" title="🔍 什麼是 extendedProps？"></a>🔍 什麼是 <code>extendedProps</code>？</h2><p>它是 FullCalendar 提供的一個「容器」，讓你加入任何你想要的額外欄位，不影響原本功能。<br>例如：地點、說明、講者、費用、分類代碼等都可以放進去。</p>
+<hr>
+<h3 id="✅-什麼時候用到？"><a href="#✅-什麼時候用到？" class="headerlink" title="✅ 什麼時候用到？"></a>✅ 什麼時候用到？</h3><p>你會用到 <code>extendedProps</code> 的情境包括：</p>
+<table>
+<thead>
+<tr>
+<th>情境</th>
+<th>欄位內容</th>
+<th>用法範例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>活動地點</td>
+<td><code>location</code></td>
+<td><code>extendedProps.location = &quot;教室 B2&quot;</code></td>
+</tr>
+<tr>
+<td>活動說明</td>
+<td><code>description</code></td>
+<td>在 Modal 彈窗顯示詳細描述</td>
+</tr>
+<tr>
+<td>活動主辦人</td>
+<td><code>host</code></td>
+<td>可以過濾出某個主辦人的活動</td>
+</tr>
+<tr>
+<td>活動類型</td>
+<td><code>type = &quot;會議&quot;</code> 或 <code>&quot;旅遊&quot;</code></td>
+<td>UI 中可以不同顏色呈現</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="✅-建立活動時加入自訂欄位"><a href="#✅-建立活動時加入自訂欄位" class="headerlink" title="✅ 建立活動時加入自訂欄位"></a>✅ 建立活動時加入自訂欄位</h3><pre><code class="js">const event = {
+  title: &#39;考試&#39;,
+  start: &#39;2025-05-01T10:00&#39;,
+  extendedProps: {
+    location: &#39;台北101&#39;,
+    description: &#39;期中考，記得帶學生證&#39;
+  }
+}
+calendar.addEvent(event)
+</code></pre>
+<hr>
+<h3 id="✅-點擊活動時讀取自訂欄位"><a href="#✅-點擊活動時讀取自訂欄位" class="headerlink" title="✅ 點擊活動時讀取自訂欄位"></a>✅ 點擊活動時讀取自訂欄位</h3><pre><code class="js">eventClick(info) {
+  const location = info.event.extendedProps.location
+  const desc = info.event.extendedProps.description
+
+  alert(`活動地點：${location}\n說明：${desc}`)
+}
+</code></pre>
+<hr>
+<p>是否要我幫你修改目前的程式碼，加入 <code>location</code> 欄位的功能？（可在表單新增一格輸入欄）</p>

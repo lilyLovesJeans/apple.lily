@@ -1,0 +1,44 @@
+<hr>
+<h2 id="title-2025-01-15-JavaScript-系列八：第4課-──-行事曆應用程式-步驟06date-2025-05-05-21-49-02tags-Javascript-Vue-description-title-2025-01-15-JavaScript-系列八：第4課-──-行事曆應用程式-步驟06"><a href="#title-2025-01-15-JavaScript-系列八：第4課-──-行事曆應用程式-步驟06date-2025-05-05-21-49-02tags-Javascript-Vue-description-title-2025-01-15-JavaScript-系列八：第4課-──-行事曆應用程式-步驟06" class="headerlink" title="title: 2025-01-15 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟06date: 2025-05-05 21:49:02tags:  [Javascript,Vue]description:title:    2025-01-15 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟06"></a>title: 2025-01-15 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟06<br>date: 2025-05-05 21:49:02<br>tags:  [Javascript,Vue]<br>description:<br>title:    2025-01-15 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟06</h2><h2 id="2025-01-15-JavaScript-系列八：第4課-──-行事曆應用程式-步驟06"><a href="#2025-01-15-JavaScript-系列八：第4課-──-行事曆應用程式-步驟06" class="headerlink" title="2025-01-15 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟06"></a>2025-01-15 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟06</h2><p>當點選 ellEl ，那格的背景要變成淺灰色</p>
+<p>你可以在 <code>dateClick</code> 裡對 <code>cellEl</code> 加上一個 class（例如 <code>selected-day</code>），然後在 CSS 裡定義這個 class 的背景色為淺灰色。</p>
+<p>同時，記得在點擊新的一格時，要先清掉所有舊的 <code>.selected-day</code> class，以免多格同時高亮。</p>
+<hr>
+<h3 id="✅-改好的-JS-部分（加上背景變色）"><a href="#✅-改好的-JS-部分（加上背景變色）" class="headerlink" title="✅ 改好的 JS 部分（加上背景變色）"></a>✅ 改好的 JS 部分（加上背景變色）</h3><pre><code class="js">dateClick(info) {
+  console.log(info.dayEl.outerHTML)
+
+  // 移除舊按鈕
+  document.querySelectorAll(&#39;.add-event-button&#39;).forEach(btn =&gt; btn.remove())
+
+  // 移除舊的背景選擇
+  document.querySelectorAll(&#39;.selected-day&#39;).forEach(el =&gt; {
+    el.classList.remove(&#39;selected-day&#39;)
+  })
+
+  const cellEl = info.dayEl.querySelector(&#39;.fc-daygrid-day-frame&#39;)
+  if (!cellEl) return
+
+  // ✅ 加上背景色的 class
+  cellEl.classList.add(&#39;selected-day&#39;)
+
+  // 建立按鈕
+  const button = document.createElement(&#39;button&#39;)
+  button.className = &#39;add-event-button&#39;
+  button.innerHTML = `&lt;span class=&quot;text&quot;&gt;新增活動&lt;/span&gt;&lt;span class=&quot;icon&quot;&gt;➕&lt;/span&gt;`
+
+  button.onclick = () =&gt; {
+    alert(`你點了 ${info.dateStr}，這裡可以打開活動編輯表單！`)
+  }
+
+  cellEl.appendChild(button)
+}
+</code></pre>
+<hr>
+<h3 id="✅-CSS-部分加上背景樣式（仍使用-deep-）"><a href="#✅-CSS-部分加上背景樣式（仍使用-deep-）" class="headerlink" title="✅ CSS 部分加上背景樣式（仍使用 :deep()）"></a>✅ CSS 部分加上背景樣式（仍使用 <code>:deep()</code>）</h3><pre><code class="css">/* 點選日期格背景變淺灰 */
+:deep(.selected-day) {
+  background-color: #f0f0f0 !important;
+  transition: background-color 0.3s ease;
+}
+</code></pre>
+<hr>
+<p>這樣就完成了 ✅<br>👉 當你點選某天格子，該格會變淺灰，同時顯示「新增活動」按鈕<br>👉 點別的格子會移除之前的淺灰色，只留下目前的高亮格</p>
+<p>需要進一步加「取消選取」或「點第二下取消選擇」嗎？可以再加上判斷邏輯～</p>

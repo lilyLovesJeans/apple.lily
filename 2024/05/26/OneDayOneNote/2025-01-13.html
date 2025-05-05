@@ -1,0 +1,44 @@
+<hr>
+<h2 id="title-2025-01-13-JavaScript-系列八：第4課-──-行事曆應用程式-步驟04date-2025-05-05-21-45-48tags-Javascript-Vue-description-title-2025-01-13-JavaScript-系列八：第4課-──-行事曆應用程式-步驟04"><a href="#title-2025-01-13-JavaScript-系列八：第4課-──-行事曆應用程式-步驟04date-2025-05-05-21-45-48tags-Javascript-Vue-description-title-2025-01-13-JavaScript-系列八：第4課-──-行事曆應用程式-步驟04" class="headerlink" title="title: 2025-01-13 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟04date: 2025-05-05 21:45:48tags:  [Javascript,Vue]description:title:   2025-01-13 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟04"></a>title: 2025-01-13 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟04<br>date: 2025-05-05 21:45:48<br>tags:  [Javascript,Vue]<br>description:<br>title:   2025-01-13 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟04</h2><h2 id="2025-01-13-JavaScript-系列八：第4課-──-行事曆應用程式-步驟04"><a href="#2025-01-13-JavaScript-系列八：第4課-──-行事曆應用程式-步驟04" class="headerlink" title="2025-01-13 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟04"></a>2025-01-13 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟04</h2><p>按鈕並不會在格子中</p>
+<p>你觀察得很準確！🧐<br><code>dateClick</code> 裡的 <code>info.dayEl</code> <strong>預設是整個日期格的 <code>td</code> 元素</strong>，但 FullCalendar 6.x 的 DOM 結構變得比較嚴謹，<strong>它不會讓你直接在格子 (<code>td</code>) 裡加東西</strong>，因為裡面是用內部的 <code>div</code> 結構組成的。</p>
+<hr>
+<h3 id="✅-解決方式：把按鈕加到-info-dayEl-querySelector-fc-daygrid-day-frame-裡！"><a href="#✅-解決方式：把按鈕加到-info-dayEl-querySelector-fc-daygrid-day-frame-裡！" class="headerlink" title="✅ 解決方式：把按鈕加到 info.dayEl.querySelector(&#39;.fc-daygrid-day-frame&#39;) 裡！"></a>✅ 解決方式：把按鈕加到 <code>info.dayEl.querySelector(&#39;.fc-daygrid-day-frame&#39;)</code> 裡！</h3><p>你可以這樣改 👇：</p>
+<pre><code class="js">const cellEl = info.dayEl.querySelector(&#39;.fc-daygrid-day-frame&#39;)
+</code></pre>
+<p>然後再 <code>appendChild(button)</code> 就可以把按鈕放進格子裡了 ✅</p>
+<hr>
+<h3 id="🔧-修正後的程式片段（重點部分）"><a href="#🔧-修正後的程式片段（重點部分）" class="headerlink" title="🔧 修正後的程式片段（重點部分）"></a>🔧 修正後的程式片段（重點部分）</h3><pre><code class="js">dateClick: function (info) {
+  // 移除之前的按鈕
+  document.querySelectorAll(&#39;.add-event-button&#39;).forEach(btn =&gt; btn.remove())
+
+  // ✅ 找到格子中可插入的 div
+  const cellEl = info.dayEl.querySelector(&#39;.fc-daygrid-day-frame&#39;)
+
+  // 建立按鈕
+  const button = document.createElement(&#39;button&#39;)
+  button.textContent = &#39;新增活動&#39;
+  button.className = &#39;add-event-button&#39;
+  button.style.marginTop = &#39;5px&#39;
+  button.style.fontSize = &#39;12px&#39;
+
+  // 加入 click 功能
+  button.onclick = () =&gt; {
+    alert(`你點了 ${info.dateStr}，這裡可以打開活動編輯表單！`)
+  }
+
+  // ✅ 加到 cell 裡面
+  if (cellEl) {
+    cellEl.appendChild(button)
+  }
+}
+</code></pre>
+<hr>
+<h3 id="👀-額外補充：為什麼不能加在-info-dayEl？"><a href="#👀-額外補充：為什麼不能加在-info-dayEl？" class="headerlink" title="👀 額外補充：為什麼不能加在 info.dayEl？"></a>👀 額外補充：為什麼不能加在 <code>info.dayEl</code>？</h3><p>因為 <code>info.dayEl</code> 是 <code>td</code>，HTML 裡不允許隨便把 <code>&lt;button&gt;</code> 放進 <code>&lt;td&gt;</code> 直接加的結構會被瀏覽器忽略或錯誤解析。FullCalendar 把顯示用的內容放在一層叫 <code>.fc-daygrid-day-frame</code> 的 <code>div</code> 裡，我們就插在這裡就對了 ✅</p>
+<hr>
+<p>需要我幫你做成點了按鈕之後顯示輸入欄位嗎？我們可以一步步加上：</p>
+<ul>
+<li>活動名稱</li>
+<li>開始時間（用 datetimepicker）</li>
+<li>儲存按鈕（寫入 localStorage）</li>
+</ul>
+<p>你想接下來做哪一步？😄</p>

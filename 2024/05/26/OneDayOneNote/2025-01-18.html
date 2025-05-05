@@ -1,0 +1,231 @@
+<hr>
+<h2 id="title-2025-01-18-JavaScript-系列八：第4課-──-行事曆應用程式-步驟08date-2025-05-05-22-15-40tags-Javascript-Vue-description-title-2025-01-18-JavaScript-系列八：第4課-──-行事曆應用程式-步驟08"><a href="#title-2025-01-18-JavaScript-系列八：第4課-──-行事曆應用程式-步驟08date-2025-05-05-22-15-40tags-Javascript-Vue-description-title-2025-01-18-JavaScript-系列八：第4課-──-行事曆應用程式-步驟08" class="headerlink" title="title: 2025-01-18 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟08date: 2025-05-05 22:15:40tags:  [Javascript,Vue]description:title:    2025-01-18 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟08"></a>title: 2025-01-18 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟08<br>date: 2025-05-05 22:15:40<br>tags:  [Javascript,Vue]<br>description:<br>title:    2025-01-18 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟08</h2><h2 id="2025-01-18-JavaScript-系列八：第4課-──-行事曆應用程式-步驟08"><a href="#2025-01-18-JavaScript-系列八：第4課-──-行事曆應用程式-步驟08" class="headerlink" title="2025-01-18 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟08"></a>2025-01-18 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟08</h2><p>把資料存在 local storage<br>好！超棒！💪<br>你已經完成<strong>在 FullCalendar 上新增活動</strong>了，<br><strong>下一步：</strong>要做到 ➔ 「<strong>把活動存到 localStorage</strong>」✅</p>
+<p>這個功能目標是：</p>
+<ul>
+<li>每次新增活動時，存一份到 localStorage</li>
+<li>下次打開網頁時，localStorage 的活動可以自動載入到 FullCalendar</li>
+</ul>
+<hr>
+<h1 id="✨【完整加上-localStorage-版】✨"><a href="#✨【完整加上-localStorage-版】✨" class="headerlink" title="✨【完整加上 localStorage 版】✨"></a>✨【完整加上 localStorage 版】✨</h1><p>我直接在你剛剛那一版上，<strong>加上 localStorage 功能</strong>喔：</p>
+<pre><code class="vue">&lt;template&gt;
+  &lt;div&gt;
+    &lt;h2&gt;我的行事曆&lt;/h2&gt;
+    &lt;div ref=&quot;calendarRef&quot; id=&quot;calendar&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;!-- 新增活動 Modal --&gt;
+  &lt;div v-if=&quot;showForm&quot; class=&quot;modal-overlay&quot;&gt;
+    &lt;div class=&quot;modal&quot;&gt;
+      &lt;h3&gt;新增活動&lt;/h3&gt;
+      &lt;label&gt;
+        活動名稱：
+        &lt;input v-model=&quot;formData.title&quot; type=&quot;text&quot;&gt;
+      &lt;/label&gt;
+      &lt;label&gt;
+        活動日期：
+        &lt;input v-model=&quot;formData.date&quot; type=&quot;date&quot;&gt;
+      &lt;/label&gt;
+      &lt;label&gt;
+        活動時間：
+        &lt;input v-model=&quot;formData.time&quot; type=&quot;time&quot;&gt;
+      &lt;/label&gt;
+      &lt;div class=&quot;modal-buttons&quot;&gt;
+        &lt;button @click=&quot;saveEvent&quot;&gt;儲存&lt;/button&gt;
+        &lt;button @click=&quot;showForm = false&quot;&gt;取消&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { ref, onMounted } from &#39;vue&#39;
+
+const calendarRef = ref(null)
+const showForm = ref(false)
+const formData = ref({
+  title: &#39;&#39;,
+  date: &#39;&#39;,
+  time: &#39;&#39;
+})
+
+let calendar = null
+
+const STORAGE_KEY = &#39;calendar-events&#39;  // 👈 localStorage 專用 key 名
+
+onMounted(() =&gt; {
+  if (window.FullCalendar &amp;&amp; window.FullCalendar.Calendar) {
+    calendar = new window.FullCalendar.Calendar(calendarRef.value, {
+      initialView: &#39;dayGridMonth&#39;,
+      locale: &#39;zh-tw&#39;,
+      events: loadEventsFromLocalStorage(), // 👈 初始化時載入 localStorage
+      dateClick(info) {
+        document.querySelectorAll(&#39;.add-event-button&#39;).forEach(btn =&gt; btn.remove())
+        document.querySelectorAll(&#39;.selected-day&#39;).forEach(el =&gt; el.classList.remove(&#39;selected-day&#39;))
+
+        const cellEl = info.dayEl.querySelector(&#39;.fc-daygrid-day-frame&#39;)
+        if (!cellEl) return
+
+        cellEl.classList.add(&#39;selected-day&#39;)
+
+        const button = document.createElement(&#39;button&#39;)
+        button.className = &#39;add-event-button&#39;
+        button.innerHTML = `&lt;span class=&quot;text&quot;&gt;新增活動&lt;/span&gt;&lt;span class=&quot;icon&quot;&gt;➕&lt;/span&gt;`
+
+        button.onclick = () =&gt; {
+          formData.value.date = info.dateStr
+          formData.value.time = &#39;09:00&#39;
+          formData.value.title = &#39;&#39;
+          showForm.value = true
+        }
+
+        cellEl.appendChild(button)
+      }
+    })
+    calendar.render()
+  } else {
+    console.error(&#39;FullCalendar 尚未載入，請確認 CDN script&#39;)
+  }
+})
+
+function saveEvent() {
+  if (!formData.value.title) {
+    alert(&#39;請輸入活動名稱&#39;)
+    return
+  }
+
+  const event = {
+    title: formData.value.title,
+    start: `${formData.value.date}T${formData.value.time}`
+  }
+
+  calendar.addEvent(event)
+  saveEventToLocalStorage(event)  // 👈 儲存到 localStorage
+
+  showForm.value = false
+}
+
+function saveEventToLocalStorage(event) {
+  const events = JSON.parse(localStorage.getItem(STORAGE_KEY)) || []
+  events.push(event)
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(events))
+}
+
+function loadEventsFromLocalStorage() {
+  return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []
+}
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+/* 🔥 之前的樣式不變 */
+#calendar {
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+:deep(.selected-day) {
+  background-color: #f0f0f0 !important;
+  transition: background-color 0.3s ease;
+}
+
+:deep(.add-event-button) {
+  background-color: #1e2b37;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+:deep(.add-event-button .icon) {
+  display: none;
+}
+:deep(.add-event-button .text) {
+  display: inline;
+}
+@media (max-width: 600px) {
+  :deep(.add-event-button .text) {
+    display: none;
+  }
+  :deep(.add-event-button .icon) {
+    display: inline;
+    font-size: 16px;
+  }
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 300px;
+}
+
+.modal label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.modal input {
+  width: 100%;
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+&lt;/style&gt;
+</code></pre>
+<hr>
+<h1 id="🎯【現在功能完整】"><a href="#🎯【現在功能完整】" class="headerlink" title="🎯【現在功能完整】"></a>🎯【現在功能完整】</h1><ul>
+<li>🔵 加活動 ➡️ localStorage 自動存起來</li>
+<li>🔵 重新整理網頁 ➡️ 活動不會消失</li>
+<li>🔵 每次加新活動 ➡️ 自動同步 localStorage</li>
+</ul>
+<hr>
+<h1 id="📦-整理一下，今天你學會了："><a href="#📦-整理一下，今天你學會了：" class="headerlink" title="📦 整理一下，今天你學會了："></a>📦 整理一下，今天你學會了：</h1><table>
+<thead>
+<tr>
+<th align="left">主題</th>
+<th align="left">重點</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">FullCalendar 基礎使用</td>
+<td align="left">初始畫面、點擊事件</td>
+</tr>
+<tr>
+<td align="left">Modal 表單互動</td>
+<td align="left"><code>v-if</code> 顯示&#x2F;隱藏、<code>v-model</code> 資料綁定</td>
+</tr>
+<tr>
+<td align="left">操作 localStorage</td>
+<td align="left"><code>JSON.parse()</code>、<code>JSON.stringify()</code></td>
+</tr>
+<tr>
+<td align="left">RWD 響應式按鈕</td>
+<td align="left">手機版按鈕自動變簡單</td>
+</tr>
+</tbody></table>
+<hr>
+<p>要不要【下一步升級】：<br>➔ <strong>「刪除活動 + localStorage 同步更新」</strong>？<br>（這樣就可以點活動 ➔ 刪除 ➔ localStorage 自動跟著刪）</p>
+<p>要繼續的話，回我【刪除功能】～🚀<br>要嗎？😄</p>

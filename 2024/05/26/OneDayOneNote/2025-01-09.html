@@ -1,0 +1,459 @@
+<hr>
+<h2 id="title-2025-01-09-旅行分帳應用程式-完整date-2025-05-05-21-38-41tags-Javascript-Vue-description-title-2025-01-09-旅行分帳應用程式-完整"><a href="#title-2025-01-09-旅行分帳應用程式-完整date-2025-05-05-21-38-41tags-Javascript-Vue-description-title-2025-01-09-旅行分帳應用程式-完整" class="headerlink" title="title: 2025-01-09 旅行分帳應用程式-完整date: 2025-05-05 21:38:41tags:  [Javascript,Vue]description:title: 2025-01-09 旅行分帳應用程式-完整"></a>title: 2025-01-09 旅行分帳應用程式-完整<br>date: 2025-05-05 21:38:41<br>tags:  [Javascript,Vue]<br>description:<br>title: 2025-01-09 旅行分帳應用程式-完整</h2><h2 id="2025-01-09-旅行分帳應用程式-完整"><a href="#2025-01-09-旅行分帳應用程式-完整" class="headerlink" title="2025-01-09 旅行分帳應用程式-完整"></a>2025-01-09 旅行分帳應用程式-完整</h2><template>
+  <div class="app-container">
+    <!-- 上方標題 -->
+    <div class="header">
+      <h1>旅遊分帳應用程式</h1>
+    </div>
+
+<pre><code>&lt;!-- 中間：分成左右 --&gt;
+&lt;div class=&quot;middle-section&quot;&gt;
+  &lt;!-- 左：成員列表 --&gt;
+  &lt;div class=&quot;member-list&quot; ref=&quot;memberListRef&quot;&gt;
+    &lt;h2&gt;分帳成員&lt;/h2&gt;
+    &lt;ul&gt;
+      &lt;li v-for=&quot;(member, index) in members&quot;
+          :key=&quot;index&quot; @click=&quot;selectMember(index)&quot;
+          :class=&quot;{ selected: selectedMemberIndex === index }&quot;&gt;
+          {{ member.name }}
+          &lt;span v-if=&quot;selectedMemberIndex !== index&quot; :class=&quot;balanceClass(member.name)&quot;&gt;
+            {{ balanceText(member.name) }}
+          &lt;/span&gt;
+
+        &lt;div v-if=&quot;selectedMemberIndex === index&quot; class=&quot;add-expense-section&quot;&gt;
+          &lt;button class=&quot;btn small-btn&quot; @click.stop=&quot;showAddExpense = true&quot;&gt;➕ 支出&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+
+  &lt;/div&gt;
+
+  &lt;!-- 右：帳款列表 --&gt;
+  &lt;div class=&quot;expense-list&quot;&gt;
+    &lt;h2&gt;支出清單&lt;/h2&gt;
+    &lt;div v-if=&quot;expenses.length === 0&quot;&gt;尚無支出紀錄&lt;/div&gt;
+    &lt;ul v-else&gt;
+      &lt;li v-for=&quot;(expense, index) in expenses&quot; :key=&quot;index&quot; class=&quot;expense-row&quot;&gt;
+        &lt;span class=&quot;label&quot;&gt;
+          &lt;strong&gt;{{ expense.member }}&lt;/strong&gt; 支出 - {{ expense.category }}
+        &lt;/span&gt;
+        &lt;span class=&quot;amount&quot;&gt;${{ Math.round(expense.amount) }}&lt;/span&gt;
+        &lt;button class=&quot;btn delete-btn&quot; @click=&quot;deleteExpense(index)&quot;&gt;❌&lt;/button&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;!-- 總計 --&gt;
+    &lt;div class=&quot;expense-row total-row&quot;&gt;
+      &lt;span class=&quot;label&quot;&gt;總計&lt;/span&gt;
+      &lt;span class=&quot;amount&quot;&gt;${{ totalAmount }}&lt;/span&gt;
+      &lt;span style=&quot;width: 32px;&quot;&gt;&lt;/span&gt; &lt;!-- 空白欄對齊刪除按鈕 --&gt;
+    &lt;/div&gt;
+
+    &lt;!-- 旅程結束 --&gt;
+    &lt;div style=&quot;margin-top: 20px;&quot;&gt;
+      &lt;button class=&quot;btn danger&quot; @click=&quot;endTrip&quot;&gt;🚨 旅程結束（清空所有資料）&lt;/button&gt;
+    &lt;/div&gt;
+
+
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 底部：新增成員 --&gt;
+&lt;div class=&quot;bottom-section&quot;&gt;
+  &lt;input
+    v-model=&quot;newMemberName&quot;
+    class=&quot;member-input&quot;
+    placeholder=&quot;輸入成員姓名&quot;
+    @keyup.enter=&quot;addMember&quot;
+  /&gt;
+  &lt;button class=&quot;btn add-btn&quot; @click=&quot;addMember&quot;&gt;➕ 新增成員&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;!-- Modal: 新增支出款項 --&gt;
+&lt;div v-if=&quot;showAddExpense&quot; class=&quot;modal-backdrop&quot;&gt;
+  &lt;div class=&quot;modal&quot;&gt;
+    &lt;h3&gt;新增支出&lt;/h3&gt;
+    &lt;label&gt;支出項目：&lt;/label&gt;
+    &lt;input
+      list=&quot;category-options&quot;
+      v-model=&quot;selectedCategory&quot;
+      placeholder=&quot;輸入或選擇項目&quot;
+    /&gt;
+    &lt;datalist id=&quot;category-options&quot;&gt;
+      &lt;option v-for=&quot;cat in expenseCategories&quot; :key=&quot;cat&quot; :value=&quot;cat&quot; /&gt;
+    &lt;/datalist&gt;
+
+    &lt;label&gt;金額：&lt;/label&gt;
+    &lt;input
+      v-model.number=&quot;expenseAmount&quot;
+      type=&quot;number&quot;
+      placeholder=&quot;輸入金額&quot;
+    /&gt;
+
+    &lt;div class=&quot;modal-buttons&quot;&gt;
+      &lt;button class=&quot;btn confirm&quot; @click=&quot;addExpense&quot;&gt;確認&lt;/button&gt;
+      &lt;button class=&quot;btn cancel&quot; @click=&quot;showAddExpense = false&quot;&gt;取消&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+  </div>
+</template>
+
+
+<script setup>
+import { ref, watch, onMounted, nextTick,computed } from 'vue'
+
+const members = ref([])
+const newMemberName = ref('')
+const memberListRef = ref(null)
+const selectedMemberIndex = ref(null)
+const showAddExpense = ref(false)
+
+// 支出項目選項
+const expenseCategories = ref(['餐飲', '住宿', '門票', '交通', '其他'])
+const defaultExpenseItems = ref([])
+const selectedCategory = ref('')
+const expenseAmount = ref(0)
+
+// 支出清單資料
+const expenses = ref([])
+const totalAmount = computed(() =>
+  expenses.value.reduce((sum, e) => sum + e.amount, 0)
+)
+
+// ➕ 新增成員
+function addMember() {
+  const name = newMemberName.value.trim()
+  if (name !== '' && !members.value.some(m => m.name === name)) {
+    members.value.push({ name })
+    newMemberName.value = ''
+    nextTick(() => {
+      const el = memberListRef.value
+      if (el) el.scrollTop = el.scrollHeight
+    })
+  }
+}
+
+// ✋ 選取成員
+function selectMember(index) {
+  if (selectedMemberIndex.value === index) {
+    selectedMemberIndex.value = null
+    showAddExpense.value = false
+  } else {
+    selectedMemberIndex.value = index
+    showAddExpense.value = false
+  }
+}
+
+// 💰 新增支出
+function addExpense() {
+  const member = members.value[selectedMemberIndex.value]
+  const trimmedCategory = selectedCategory.value.trim()
+
+  if (member && trimmedCategory && expenseAmount.value > 0) {
+    expenses.value.push({
+      member: member.name,
+      category: trimmedCategory,
+      amount: expenseAmount.value
+    })
+
+    if (!expenseCategories.value.includes(trimmedCategory)) {
+      expenseCategories.value.push(trimmedCategory)
+    }
+
+    selectedCategory.value = ''
+    expenseAmount.value = 0
+    showAddExpense.value = false
+  } else {
+    alert('請輸入有效的項目與金額')
+  }
+  selectedMemberIndex.value = null
+}
+
+// ❌ 刪除支出
+function deleteExpense(index) {
+  expenses.value.splice(index, 1)
+}
+
+// 儲存到 localStorage 的方法
+function saveToLocalStorage(){
+  localStorage.setItem('splitBill_members', JSON.stringify(members.value)) 
+  localStorage.setItem('splitBill_expenses', JSON.stringify(expenses.value))
+  localStorage.setItem('splitBill_defaultItems', JSON.stringify(defaultExpenseItems.value))
+}
+
+// 計算個別成員的淨支出金額
+function getMemberBalance(name) {
+  const paid = expenses.value
+    .filter(e => e.member === name)
+    .reduce((sum, e) => sum + e.amount, 0)
+
+  const total = expenses.value.reduce((sum, e) => sum + e.amount, 0)
+  const average = members.value.length > 0 ? total / members.value.length : 0
+
+  return paid - average
+}
+
+// 回傳文字描述
+function balanceText(name) {
+  const balance = getMemberBalance(name)
+  if (balance > 0) return `應收 $${Math.round(balance)}`
+  if (balance < 0) return `應付 $${Math.round(Math.abs(balance))}`
+
+  return '結清'
+}
+
+
+// 回傳對應的 class
+function balanceClass(name) {
+  const balance = getMemberBalance(name)
+  if (balance > 0) return 'credit'
+  if (balance < 0) return 'debt'
+  return ''
+}
+
+
+// 載入 localStorage 中的資料
+function loadFromLocalStorage(){
+  const savedMembers = localStorage.getItem('splitBill_members')
+  const savedExpenses = localStorage.getItem('splitBill_expenses')
+  const savedItems = localStorage.getItem('splitBill_defaultItems')
+
+  if(savedMembers) members.value = JSON.parse(savedMembers)
+  if(savedExpenses) expenses.value = JSON.parse(savedExpenses)
+  if(savedItems) defaultExpenseItems.value = JSON.parse(savedItems)
+
+
+}
+
+function endTrip() {
+  if (confirm("確定要結束旅程？這將刪除所有資料！")) {
+    members.value = []
+    expenses.value = []
+    localStorage.removeItem("trip_members")
+    localStorage.removeItem("trip_expenses")
+  }
+}
+
+
+// 監聽 members、expenses、defaultExpenseItems 有變動就儲存
+watch([members,expenses,defaultExpenseItems],saveToLocalStorage , {deep: true})
+
+// 初始化時載入
+onMounted(()=>{
+  loadFromLocalStorage()
+})
+</script>
+
+
+<style scoped>
+  h1 {
+    font-size: 2rem;
+  }
+.app-container {
+  max-width: 800px;
+  margin: auto;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: space-between;
+}
+
+.header {
+  font-size: 1.5em;
+  font-weight: 600;
+  color: #5e3a4a;
+  text-align: center;
+  padding: 10px;
+  background-color: #f8e6e6;
+  border-bottom: 2px solid #d16a7b;
+}
+
+.middle-section {
+  flex-grow: 1;
+  display: flex;
+  padding: 10px;
+  gap: 10px;
+  overflow-y: auto;
+}
+
+.member-list, .expense-list {
+  flex: 1;
+  background: #fdfdfd;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.member-list ul, .expense-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin: 5px 0;
+  background: #f8f8f8;
+  padding: 8px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.owe {
+  color: red;
+}
+
+.bottom-section {
+  padding: 10px;
+  background-color: #f8e6e6;
+  border-top: 2px solid #d16a7b;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.member-input {
+  flex: 1;
+  min-width: 200px;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.add-btn {
+  padding: 10px 20px;
+}
+
+.btn {
+  background-color: #d16a7b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #b85967;
+}
+
+.selected {
+  background-color: #ffe6e6;
+}
+
+.small-btn {
+  margin-top: 8px;
+  font-size: 14px;
+  padding: 6px 10px;
+}
+
+.delete-btn {
+  background-color: #f44336;
+  padding: 4px 8px;
+  font-size: 14px;
+}
+
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  min-width: 300px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.modal input {
+  width: 80%;
+  padding: 8px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.credit {
+  color: green;
+  font-weight: bold;
+}
+
+.debt {
+  color: red;
+  font-weight: bold;
+}
+
+
+.amount {
+  text-align: right;
+  display: inline-block;
+  min-width: 80px; /* 根據需要調整寬度 */
+}
+.expense-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 0;
+  gap: 8px;
+}
+
+.expense-row .label {
+  flex: 1;
+}
+
+.expense-row .amount {
+  min-width: 80px;
+  text-align: right;
+}
+
+.expense-row .delete-btn {
+  width: 32px;
+  text-align: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.total-row {
+  border-top: 1px dashed #ccc;
+  margin-top: 10px;
+  padding-top: 10px;
+  font-weight: bold;
+}
+
+.btn.danger {
+  background-color: #b85967;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn.danger:hover {
+  background-color: #c0392b;
+}
+
+</style>

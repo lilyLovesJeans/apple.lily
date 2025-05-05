@@ -1,0 +1,234 @@
+<hr>
+<h2 id="title-2025-01-17-JavaScript-系列八：第4課-──-行事曆應用程式-步驟07date-2025-05-05-21-51-42tags-Javascript-Vue-description-title-2025-01-17-JavaScript-系列八：第4課-──-行事曆應用程式-步驟07"><a href="#title-2025-01-17-JavaScript-系列八：第4課-──-行事曆應用程式-步驟07date-2025-05-05-21-51-42tags-Javascript-Vue-description-title-2025-01-17-JavaScript-系列八：第4課-──-行事曆應用程式-步驟07" class="headerlink" title="title: 2025-01-17 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟07date: 2025-05-05 21:51:42tags:  [Javascript,Vue]description:title:    2025-01-17 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟07"></a>title: 2025-01-17 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟07<br>date: 2025-05-05 21:51:42<br>tags:  [Javascript,Vue]<br>description:<br>title:    2025-01-17 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟07</h2><h2 id="2025-01-17-JavaScript-系列八：第4課-──-行事曆應用程式-步驟07"><a href="#2025-01-17-JavaScript-系列八：第4課-──-行事曆應用程式-步驟07" class="headerlink" title="2025-01-17 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟07"></a>2025-01-17 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟07</h2><p>正統 Vue 3 的做法</p>
+<p>太棒了！🥳<br>你說【要】，那我來幫你整理成一版 <strong>「完整版、糾正後、超乾淨、專業版」</strong> ✨<br>這版會修掉你所有小問題，而且讓你的 Vue 程式更乾淨。</p>
+<hr>
+<h1 id="🔥【完整版修正版】🔥"><a href="#🔥【完整版修正版】🔥" class="headerlink" title="🔥【完整版修正版】🔥"></a>🔥【完整版修正版】🔥</h1><pre><code class="vue">&lt;template&gt;
+  &lt;div&gt;
+    &lt;h2&gt;我的行事曆&lt;/h2&gt;
+    &lt;div ref=&quot;calendarRef&quot; id=&quot;calendar&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;!-- 新增活動的表單 Modal --&gt;
+  &lt;div v-if=&quot;showForm&quot; class=&quot;modal-overlay&quot;&gt;
+    &lt;div class=&quot;modal&quot;&gt;
+      &lt;h3&gt;新增活動&lt;/h3&gt;
+      &lt;label&gt;
+        活動名稱：
+        &lt;input v-model=&quot;formData.title&quot; type=&quot;text&quot;&gt;
+      &lt;/label&gt;
+      &lt;label&gt;
+        活動日期：
+        &lt;input v-model=&quot;formData.date&quot; type=&quot;date&quot;&gt;
+      &lt;/label&gt;
+      &lt;label&gt;
+        活動時間：
+        &lt;input v-model=&quot;formData.time&quot; type=&quot;time&quot;&gt;
+      &lt;/label&gt;
+      &lt;div class=&quot;modal-buttons&quot;&gt;
+        &lt;button @click=&quot;saveEvent&quot;&gt;儲存&lt;/button&gt;
+        &lt;button @click=&quot;showForm = false&quot;&gt;取消&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { ref, onMounted } from &#39;vue&#39;
+
+const calendarRef = ref(null)
+const showForm = ref(false)
+const formData = ref({
+  title: &#39;&#39;,
+  date: &#39;&#39;,
+  time: &#39;&#39;
+})
+
+let calendar = null // 👈 這裡設全域變數，不要再用 window
+
+onMounted(() =&gt; {
+  if (window.FullCalendar &amp;&amp; window.FullCalendar.Calendar) {
+    calendar = new window.FullCalendar.Calendar(calendarRef.value, {
+      initialView: &#39;dayGridMonth&#39;,
+      locale: &#39;zh-tw&#39;,
+      events: [],
+      dateClick(info) {
+        // 移除所有舊的按鈕
+        document.querySelectorAll(&#39;.add-event-button&#39;).forEach(btn =&gt; btn.remove())
+
+        // 移除舊的灰色背景
+        document.querySelectorAll(&#39;.selected-day&#39;).forEach(el =&gt; {
+          el.classList.remove(&#39;selected-day&#39;)
+        })
+
+        const cellEl = info.dayEl.querySelector(&#39;.fc-daygrid-day-frame&#39;)
+        if (!cellEl) return
+
+        // ✅ 加背景色 class
+        cellEl.classList.add(&#39;selected-day&#39;)
+
+        // ✅ 新增按鈕
+        const button = document.createElement(&#39;button&#39;)
+        button.className = &#39;add-event-button&#39;
+        button.innerHTML = `&lt;span class=&quot;text&quot;&gt;新增活動&lt;/span&gt;&lt;span class=&quot;icon&quot;&gt;➕&lt;/span&gt;`
+
+        button.onclick = () =&gt; {
+          formData.value.date = info.dateStr
+          formData.value.time = &#39;09:00&#39;
+          formData.value.title = &#39;&#39;
+          showForm.value = true
+        }
+
+        cellEl.appendChild(button)
+      }
+    })
+    calendar.render()
+  } else {
+    console.error(&#39;FullCalendar 尚未載入，請確認 CDN script&#39;)
+  }
+})
+
+function saveEvent() {
+  if (!formData.value.title) {
+    alert(&#39;請輸入活動名稱&#39;)
+    return
+  }
+
+  const event = {
+    title: formData.value.title,
+    start: `${formData.value.date}T${formData.value.time}`
+  }
+
+  // ✅ 直接用 calendar.addEvent，不要掛到 window
+  calendar.addEvent(event)
+
+  showForm.value = false
+}
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+#calendar {
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+/* ✅ 點選日期格背景變淺灰色 */
+:deep(.selected-day) {
+  background-color: #f0f0f0 !important;
+  transition: background-color 0.3s ease;
+}
+
+/* ✅ 新增活動按鈕基本樣式 */
+:deep(.add-event-button) {
+  background-color: #1e2b37;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ✅ 桌機版：顯示文字+icon */
+:deep(.add-event-button .icon) {
+  display: none;
+}
+
+:deep(.add-event-button .text) {
+  display: inline;
+}
+
+/* ✅ 手機版 RWD：只顯示 icon */
+@media (max-width: 600px) {
+  :deep(.add-event-button .text) {
+    display: none;
+  }
+  :deep(.add-event-button .icon) {
+    display: inline;
+    font-size: 16px;
+  }
+}
+
+/* ✅ Modal 樣式 */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 300px;
+}
+
+.modal label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.modal input {
+  width: 100%;
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+&lt;/style&gt;
+</code></pre>
+<hr>
+<h1 id="🎯這版有什麼改進？"><a href="#🎯這版有什麼改進？" class="headerlink" title="🎯這版有什麼改進？"></a>🎯這版有什麼改進？</h1><table>
+<thead>
+<tr>
+<th align="left">原本</th>
+<th align="left">現在</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>window.addEventToCalendar</code>（外洩全域）</td>
+<td align="left">直接使用 <code>calendar</code> 變數</td>
+</tr>
+<tr>
+<td align="left"><code>caldar</code> 打錯</td>
+<td align="left">正確是 <code>calendar</code></td>
+</tr>
+<tr>
+<td align="left">window 掛方法，不乾淨</td>
+<td align="left">全部留在 <code>script setup</code> 裡管理</td>
+</tr>
+<tr>
+<td align="left">小細節錯誤</td>
+<td align="left">全部校正 &amp; 專業化</td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="✅-現在這版效果"><a href="#✅-現在這版效果" class="headerlink" title="✅ 現在這版效果"></a>✅ 現在這版效果</h1><ul>
+<li>點日期 ➡️ 出現淺灰色</li>
+<li>自動出現「新增活動」按鈕</li>
+<li>按下「新增活動」➡️ 彈出輸入表單</li>
+<li>儲存後 ➡️ 活動直接顯示在該格子裡</li>
+<li>手機版按鈕自動變成小圖示 (RWD OK)</li>
+</ul>
+<hr>
+<p>要不要我也順便教你：</p>
+<ul>
+<li>怎麼加「編輯活動」？</li>
+<li>怎麼加「刪除活動」？</li>
+<li>或是「活動列表」管理？</li>
+</ul>
+<p>要的話跟我說【繼續升級】，我可以帶你一步一步進階～🚀✨<br>要嗎？要的話回我【繼續升級】！🌟</p>

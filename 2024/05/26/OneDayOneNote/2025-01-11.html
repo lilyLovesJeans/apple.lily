@@ -1,0 +1,104 @@
+<hr>
+<h2 id="title-2025-01-11-JavaScript-系列八：第4課-──-行事曆應用程式-步驟02date-2025-05-05-21-42-38tags-Javascript-Vue-description-title-2025-01-11-JavaScript-系列八：第4課-──-行事曆應用程式-步驟02"><a href="#title-2025-01-11-JavaScript-系列八：第4課-──-行事曆應用程式-步驟02date-2025-05-05-21-42-38tags-Javascript-Vue-description-title-2025-01-11-JavaScript-系列八：第4課-──-行事曆應用程式-步驟02" class="headerlink" title="title: 2025-01-11 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟02date: 2025-05-05 21:42:38tags:  [Javascript,Vue]description:title:  2025-01-11 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟02"></a>title: 2025-01-11 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟02<br>date: 2025-05-05 21:42:38<br>tags:  [Javascript,Vue]<br>description:<br>title:  2025-01-11 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟02</h2><h2 id="2025-01-11-JavaScript-系列八：第4課-──-行事曆應用程式-步驟02"><a href="#2025-01-11-JavaScript-系列八：第4課-──-行事曆應用程式-步驟02" class="headerlink" title="2025-01-11 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟02"></a>2025-01-11 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟02</h2><p>把 datetimepicker 的程式碼寫在 <code>Calendar.vue</code> 裡面**，這樣會比較直觀，也比較容易理解整體流程 👍</p>
+<hr>
+<h2 id="✅-完整範例：簡易版的-Calendar-vue"><a href="#✅-完整範例：簡易版的-Calendar-vue" class="headerlink" title="✅ 完整範例：簡易版的 Calendar.vue"></a>✅ 完整範例：簡易版的 <code>Calendar.vue</code></h2><pre><code class="vue">&lt;template&gt;
+  &lt;div&gt;
+    &lt;h2&gt;行事曆應用程式&lt;/h2&gt;
+
+    &lt;label for=&quot;datetime&quot;&gt;選擇日期時間：&lt;/label&gt;
+    &lt;input type=&quot;text&quot; id=&quot;datetime&quot; ref=&quot;datetimeInput&quot; /&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { ref, onMounted } from &#39;vue&#39;
+
+const datetimeInput = ref(null)
+
+onMounted(() =&gt; {
+  // 初始化 jQuery datetimepicker
+  $(datetimeInput.value).datetimepicker({
+    format: &#39;Y-m-d H:i&#39;, // 日期時間格式
+    step: 30 // 每 30 分鐘一格
+  })
+})
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+input {
+  padding: 8px;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+&lt;/style&gt;
+</code></pre>
+<hr>
+<h2 id="✅-確認幾件事："><a href="#✅-確認幾件事：" class="headerlink" title="✅ 確認幾件事："></a>✅ 確認幾件事：</h2><ol>
+<li><strong>你有引入 CDN 嗎？</strong><br>確保你 <code>index.html</code> 裡面有這些：</li>
+</ol>
+<pre><code class="html">&lt;!-- jQuery --&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;!-- datetimepicker CSS --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css&quot; /&gt;
+
+&lt;!-- datetimepicker JS --&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<ol start="2">
+<li><strong>你有用 <code>ref=&quot;datetimeInput&quot;</code> 指定輸入框嗎？</strong></li>
+<li><strong>初始化放在 <code>onMounted()</code> 裡嗎？</strong>（保證 DOM 載入後才初始化）</li>
+</ol>
+<hr>
+<h2 id="🧪-成功的畫面會："><a href="#🧪-成功的畫面會：" class="headerlink" title="🧪 成功的畫面會："></a>🧪 成功的畫面會：</h2><ul>
+<li>出現一個輸入框</li>
+<li>點進去會跳出「日期＋時間」選擇器</li>
+</ul>
+<hr>
+<p>如果你這邊成功了，我們就可以往下一步做：</p>
+<ul>
+<li>👉 加一個「事件標題」欄位？</li>
+<li>👉 或者加入「新增事件」按鈕，儲存到 localStorage？</li>
+<li>👉 還是你想開始加入 FullCalendar 畫整個月的日曆？</li>
+</ul>
+<p>你決定節奏，我會陪你慢慢做，一步一個功能 👣</p>
+<p>index.html</p>
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot; /&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+    &lt;title&gt;JavaScript 系列八 -Vue 小型應用程式&lt;/title&gt;
+
+    &lt;!-- jQuery --&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js&quot;&gt;&lt;/script&gt;
+
+    &lt;!-- Datetimepicker CSS --&gt;
+    &lt;link
+      rel=&quot;stylesheet&quot;
+      href=&quot;https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css&quot;
+    /&gt;
+
+    &lt;!-- FullCalendar CSS --&gt;
+    &lt;link href=&quot;https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css&quot; rel=&quot;stylesheet&quot;&gt;
+
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
+
+    &lt;!-- Datetimepicker JS --&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js&quot;&gt;&lt;/script&gt;
+
+
+    &lt;!-- FullCalendar JS 核心 --&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/fullcalendar@6.1.17/index.global.min.js
+    &quot;&gt;&lt;/script&gt;
+
+    &lt;!-- FullCalendar 語言包 --&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/locales-all.min.js&quot;&gt;&lt;/script&gt;
+
+    &lt;!-- Vue app --&gt;
+    &lt;script type=&quot;module&quot; src=&quot;/src/main.js&quot;&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
