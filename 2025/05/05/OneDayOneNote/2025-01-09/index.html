@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2025-01-09 旅行分帳應用程式-完整">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025-01-09 旅行分帳應用程式-完整">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/05/05/OneDayOneNote/2025-01-09/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2025-01-09 旅行分帳應用程式-完整">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-05-05T13:38:41.000Z">
+<meta property="article:modified_time" content="2025-05-05T14:51:00.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2025/05/05/OneDayOneNote/2025-01-09/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2025/05/05/OneDayOneNote/2025-01-09/","path":"2025/05/05/OneDayOneNote/2025-01-09/","title":"2025-01-09 旅行分帳應用程式-完整"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2025-01-09 旅行分帳應用程式-完整 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2025-01-09-%E6%97%85%E8%A1%8C%E5%88%86%E5%B8%B3%E6%87%89%E7%94%A8%E7%A8%8B%E5%BC%8F-%E5%AE%8C%E6%95%B4"><span class="nav-number">1.</span> <span class="nav-text">2025-01-09 旅行分帳應用程式-完整</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number"></span> <span class="nav-text">旅遊分帳應用程式</span></a></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">326</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2025/05/05/OneDayOneNote/2025-01-09/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2025-01-09 旅行分帳應用程式-完整 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2025-01-09 旅行分帳應用程式-完整">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2025-01-09 旅行分帳應用程式-完整
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2025-05-05 21:38:41 / 修改時間：22:51:00" itemprop="dateCreated datePublished" datetime="2025-05-05T21:38:41+08:00">2025-05-05</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2025-01-09 旅行分帳應用程式-完整</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2025-01-09-旅行分帳應用程式-完整"><a href="#2025-01-09-旅行分帳應用程式-完整" class="headerlink" title="2025-01-09 旅行分帳應用程式-完整"></a>2025-01-09 旅行分帳應用程式-完整</h2><template>
+  <div class="app-container">
+    <!-- 上方標題 -->
+    <div class="header">
+      <h1>旅遊分帳應用程式</h1>
+    </div>
+
+<pre><code>&lt;!-- 中間：分成左右 --&gt;
+&lt;div class=&quot;middle-section&quot;&gt;
+  &lt;!-- 左：成員列表 --&gt;
+  &lt;div class=&quot;member-list&quot; ref=&quot;memberListRef&quot;&gt;
+    &lt;h2&gt;分帳成員&lt;/h2&gt;
+    &lt;ul&gt;
+      &lt;li v-for=&quot;(member, index) in members&quot;
+          :key=&quot;index&quot; @click=&quot;selectMember(index)&quot;
+          :class=&quot;&#123; selected: selectedMemberIndex === index &#125;&quot;&gt;
+          &#123;&#123; member.name &#125;&#125;
+          &lt;span v-if=&quot;selectedMemberIndex !== index&quot; :class=&quot;balanceClass(member.name)&quot;&gt;
+            &#123;&#123; balanceText(member.name) &#125;&#125;
+          &lt;/span&gt;
+
+        &lt;div v-if=&quot;selectedMemberIndex === index&quot; class=&quot;add-expense-section&quot;&gt;
+          &lt;button class=&quot;btn small-btn&quot; @click.stop=&quot;showAddExpense = true&quot;&gt;➕ 支出&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+
+  &lt;/div&gt;
+
+  &lt;!-- 右：帳款列表 --&gt;
+  &lt;div class=&quot;expense-list&quot;&gt;
+    &lt;h2&gt;支出清單&lt;/h2&gt;
+    &lt;div v-if=&quot;expenses.length === 0&quot;&gt;尚無支出紀錄&lt;/div&gt;
+    &lt;ul v-else&gt;
+      &lt;li v-for=&quot;(expense, index) in expenses&quot; :key=&quot;index&quot; class=&quot;expense-row&quot;&gt;
+        &lt;span class=&quot;label&quot;&gt;
+          &lt;strong&gt;&#123;&#123; expense.member &#125;&#125;&lt;/strong&gt; 支出 - &#123;&#123; expense.category &#125;&#125;
+        &lt;/span&gt;
+        &lt;span class=&quot;amount&quot;&gt;$&#123;&#123; Math.round(expense.amount) &#125;&#125;&lt;/span&gt;
+        &lt;button class=&quot;btn delete-btn&quot; @click=&quot;deleteExpense(index)&quot;&gt;❌&lt;/button&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;!-- 總計 --&gt;
+    &lt;div class=&quot;expense-row total-row&quot;&gt;
+      &lt;span class=&quot;label&quot;&gt;總計&lt;/span&gt;
+      &lt;span class=&quot;amount&quot;&gt;$&#123;&#123; totalAmount &#125;&#125;&lt;/span&gt;
+      &lt;span style=&quot;width: 32px;&quot;&gt;&lt;/span&gt; &lt;!-- 空白欄對齊刪除按鈕 --&gt;
+    &lt;/div&gt;
+
+    &lt;!-- 旅程結束 --&gt;
+    &lt;div style=&quot;margin-top: 20px;&quot;&gt;
+      &lt;button class=&quot;btn danger&quot; @click=&quot;endTrip&quot;&gt;🚨 旅程結束（清空所有資料）&lt;/button&gt;
+    &lt;/div&gt;
+
+
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 底部：新增成員 --&gt;
+&lt;div class=&quot;bottom-section&quot;&gt;
+  &lt;input
+    v-model=&quot;newMemberName&quot;
+    class=&quot;member-input&quot;
+    placeholder=&quot;輸入成員姓名&quot;
+    @keyup.enter=&quot;addMember&quot;
+  /&gt;
+  &lt;button class=&quot;btn add-btn&quot; @click=&quot;addMember&quot;&gt;➕ 新增成員&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;!-- Modal: 新增支出款項 --&gt;
+&lt;div v-if=&quot;showAddExpense&quot; class=&quot;modal-backdrop&quot;&gt;
+  &lt;div class=&quot;modal&quot;&gt;
+    &lt;h3&gt;新增支出&lt;/h3&gt;
+    &lt;label&gt;支出項目：&lt;/label&gt;
+    &lt;input
+      list=&quot;category-options&quot;
+      v-model=&quot;selectedCategory&quot;
+      placeholder=&quot;輸入或選擇項目&quot;
+    /&gt;
+    &lt;datalist id=&quot;category-options&quot;&gt;
+      &lt;option v-for=&quot;cat in expenseCategories&quot; :key=&quot;cat&quot; :value=&quot;cat&quot; /&gt;
+    &lt;/datalist&gt;
+
+    &lt;label&gt;金額：&lt;/label&gt;
+    &lt;input
+      v-model.number=&quot;expenseAmount&quot;
+      type=&quot;number&quot;
+      placeholder=&quot;輸入金額&quot;
+    /&gt;
+
+    &lt;div class=&quot;modal-buttons&quot;&gt;
+      &lt;button class=&quot;btn confirm&quot; @click=&quot;addExpense&quot;&gt;確認&lt;/button&gt;
+      &lt;button class=&quot;btn cancel&quot; @click=&quot;showAddExpense = false&quot;&gt;取消&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+  </div>
+</template>
+
+
+<script setup>
+import { ref, watch, onMounted, nextTick,computed } from 'vue'
+
+const members = ref([])
+const newMemberName = ref('')
+const memberListRef = ref(null)
+const selectedMemberIndex = ref(null)
+const showAddExpense = ref(false)
+
+// 支出項目選項
+const expenseCategories = ref(['餐飲', '住宿', '門票', '交通', '其他'])
+const defaultExpenseItems = ref([])
+const selectedCategory = ref('')
+const expenseAmount = ref(0)
+
+// 支出清單資料
+const expenses = ref([])
+const totalAmount = computed(() =>
+  expenses.value.reduce((sum, e) => sum + e.amount, 0)
+)
+
+// ➕ 新增成員
+function addMember() {
+  const name = newMemberName.value.trim()
+  if (name !== '' && !members.value.some(m => m.name === name)) {
+    members.value.push({ name })
+    newMemberName.value = ''
+    nextTick(() => {
+      const el = memberListRef.value
+      if (el) el.scrollTop = el.scrollHeight
+    })
+  }
+}
+
+// ✋ 選取成員
+function selectMember(index) {
+  if (selectedMemberIndex.value === index) {
+    selectedMemberIndex.value = null
+    showAddExpense.value = false
+  } else {
+    selectedMemberIndex.value = index
+    showAddExpense.value = false
+  }
+}
+
+// 💰 新增支出
+function addExpense() {
+  const member = members.value[selectedMemberIndex.value]
+  const trimmedCategory = selectedCategory.value.trim()
+
+  if (member && trimmedCategory && expenseAmount.value > 0) {
+    expenses.value.push({
+      member: member.name,
+      category: trimmedCategory,
+      amount: expenseAmount.value
+    })
+
+    if (!expenseCategories.value.includes(trimmedCategory)) {
+      expenseCategories.value.push(trimmedCategory)
+    }
+
+    selectedCategory.value = ''
+    expenseAmount.value = 0
+    showAddExpense.value = false
+  } else {
+    alert('請輸入有效的項目與金額')
+  }
+  selectedMemberIndex.value = null
+}
+
+// ❌ 刪除支出
+function deleteExpense(index) {
+  expenses.value.splice(index, 1)
+}
+
+// 儲存到 localStorage 的方法
+function saveToLocalStorage(){
+  localStorage.setItem('splitBill_members', JSON.stringify(members.value)) 
+  localStorage.setItem('splitBill_expenses', JSON.stringify(expenses.value))
+  localStorage.setItem('splitBill_defaultItems', JSON.stringify(defaultExpenseItems.value))
+}
+
+// 計算個別成員的淨支出金額
+function getMemberBalance(name) {
+  const paid = expenses.value
+    .filter(e => e.member === name)
+    .reduce((sum, e) => sum + e.amount, 0)
+
+  const total = expenses.value.reduce((sum, e) => sum + e.amount, 0)
+  const average = members.value.length > 0 ? total / members.value.length : 0
+
+  return paid - average
+}
+
+// 回傳文字描述
+function balanceText(name) {
+  const balance = getMemberBalance(name)
+  if (balance > 0) return `應收 $${Math.round(balance)}`
+  if (balance < 0) return `應付 $${Math.round(Math.abs(balance))}`
+
+  return '結清'
+}
+
+
+// 回傳對應的 class
+function balanceClass(name) {
+  const balance = getMemberBalance(name)
+  if (balance > 0) return 'credit'
+  if (balance < 0) return 'debt'
+  return ''
+}
+
+
+// 載入 localStorage 中的資料
+function loadFromLocalStorage(){
+  const savedMembers = localStorage.getItem('splitBill_members')
+  const savedExpenses = localStorage.getItem('splitBill_expenses')
+  const savedItems = localStorage.getItem('splitBill_defaultItems')
+
+  if(savedMembers) members.value = JSON.parse(savedMembers)
+  if(savedExpenses) expenses.value = JSON.parse(savedExpenses)
+  if(savedItems) defaultExpenseItems.value = JSON.parse(savedItems)
+
+
+}
+
+function endTrip() {
+  if (confirm("確定要結束旅程？這將刪除所有資料！")) {
+    members.value = []
+    expenses.value = []
+    localStorage.removeItem("trip_members")
+    localStorage.removeItem("trip_expenses")
+  }
+}
+
+
+// 監聽 members、expenses、defaultExpenseItems 有變動就儲存
+watch([members,expenses,defaultExpenseItems],saveToLocalStorage , {deep: true})
+
+// 初始化時載入
+onMounted(()=>{
+  loadFromLocalStorage()
+})
+</script>
+
+
+<style scoped>
+  h1 {
+    font-size: 2rem;
+  }
+.app-container {
+  max-width: 800px;
+  margin: auto;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: space-between;
+}
+
+.header {
+  font-size: 1.5em;
+  font-weight: 600;
+  color: #5e3a4a;
+  text-align: center;
+  padding: 10px;
+  background-color: #f8e6e6;
+  border-bottom: 2px solid #d16a7b;
+}
+
+.middle-section {
+  flex-grow: 1;
+  display: flex;
+  padding: 10px;
+  gap: 10px;
+  overflow-y: auto;
+}
+
+.member-list, .expense-list {
+  flex: 1;
+  background: #fdfdfd;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.member-list ul, .expense-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin: 5px 0;
+  background: #f8f8f8;
+  padding: 8px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.owe {
+  color: red;
+}
+
+.bottom-section {
+  padding: 10px;
+  background-color: #f8e6e6;
+  border-top: 2px solid #d16a7b;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.member-input {
+  flex: 1;
+  min-width: 200px;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.add-btn {
+  padding: 10px 20px;
+}
+
+.btn {
+  background-color: #d16a7b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #b85967;
+}
+
+.selected {
+  background-color: #ffe6e6;
+}
+
+.small-btn {
+  margin-top: 8px;
+  font-size: 14px;
+  padding: 6px 10px;
+}
+
+.delete-btn {
+  background-color: #f44336;
+  padding: 4px 8px;
+  font-size: 14px;
+}
+
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  min-width: 300px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.modal input {
+  width: 80%;
+  padding: 8px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.credit {
+  color: green;
+  font-weight: bold;
+}
+
+.debt {
+  color: red;
+  font-weight: bold;
+}
+
+
+.amount {
+  text-align: right;
+  display: inline-block;
+  min-width: 80px; /* 根據需要調整寬度 */
+}
+.expense-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 0;
+  gap: 8px;
+}
+
+.expense-row .label {
+  flex: 1;
+}
+
+.expense-row .amount {
+  min-width: 80px;
+  text-align: right;
+}
+
+.expense-row .delete-btn {
+  width: 32px;
+  text-align: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.total-row {
+  border-top: 1px dashed #ccc;
+  margin-top: 10px;
+  padding-top: 10px;
+  font-weight: bold;
+}
+
+.btn.danger {
+  background-color: #b85967;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn.danger:hover {
+  background-color: #c0392b;
+}
+
+</style>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/Javascript/" rel="tag"># Javascript</a>
+              <a href="/apple.lily/tags/Vue/" rel="tag"># Vue</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/05/05/OneDayOneNote/2025-01-08/" rel="prev" title="2025-01-08 旅行分帳應用程式-步驟10">
+                  <i class="fa fa-angle-left"></i> 2025-01-08 旅行分帳應用程式-步驟10
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/05/05/OneDayOneNote/2025-01-10/" rel="next" title="2025-01-10 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟01">
+                  2025-01-10 JavaScript 系列八：第4課 ── 行事曆應用程式-步驟01 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
