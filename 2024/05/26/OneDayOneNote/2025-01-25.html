@@ -1,0 +1,80 @@
+<hr>
+<h2 id="title-2024-01-25-JavaScript-系列八：第5課-──-體重追蹤應用程式-步驟01date-2025-09-04-22-31-41tags-Javascript-Vue-description-2024-01-25-JavaScript-系列八：第5課-──-體重追蹤應用程式-步驟01"><a href="#title-2024-01-25-JavaScript-系列八：第5課-──-體重追蹤應用程式-步驟01date-2025-09-04-22-31-41tags-Javascript-Vue-description-2024-01-25-JavaScript-系列八：第5課-──-體重追蹤應用程式-步驟01" class="headerlink" title="title: 2024-01-25 - JavaScript 系列八：第5課 ── 體重追蹤應用程式-步驟01date: 2025-09-04 22:31:41tags:  [Javascript,Vue]description:  2024-01-25 - JavaScript 系列八：第5課 ── 體重追蹤應用程式-步驟01"></a>title: 2024-01-25 - JavaScript 系列八：第5課 ── 體重追蹤應用程式-步驟01<br>date: 2025-09-04 22:31:41<br>tags:  [Javascript,Vue]<br>description:  2024-01-25 - JavaScript 系列八：第5課 ── 體重追蹤應用程式-步驟01</h2><h2 id="2024-01-25-JavaScript-系列八：第5課-──-體重追蹤應用程式-步驟01"><a href="#2024-01-25-JavaScript-系列八：第5課-──-體重追蹤應用程式-步驟01" class="headerlink" title="2024-01-25 - JavaScript 系列八：第5課 ── 體重追蹤應用程式-步驟01"></a>2024-01-25 - JavaScript 系列八：第5課 ── 體重追蹤應用程式-步驟01</h2><p>繼續 JavaScript 系列八：第5課 ── 體重追蹤應用程式<br>這次作業的規格如下：</p>
+<p>這種程式應該要讓人註冊登入使用，需要後端配合，但我們簡化吧：免登入、把資料存在 local storage 就好<br>此程式能夠新增一筆體重資料，input 欄位有「體重」、「日期」<br>有清單列表顯示每一筆輸入的資料，按照日期排序。每筆資料旁邊有刪除按鈕<br>使用 Chart.js 將體重的走勢，用折線圖（Line Chart）呈現<br>請「不要」使用社群包裝的版本（vue-chartjs），學著自己在框架內導入套件<br>請一步步教我，先有個架構即可，我現在是用 vite vue3</p>
+<p>太好了！我們一步一步來用 Vite + Vue 3（Composition API）建構這個體重追蹤應用程式，第 5 課的核心目標是：</p>
+<p>✅ 使用 localStorage<br>✅ 可以新增體重和日期<br>✅ 顯示清單，按日期排序<br>✅ 可刪除<br>✅ 使用 Chart.js 畫出折線圖</p>
+<hr>
+<h2 id="🧱-第一步：建立基本-Vue-應用架構"><a href="#🧱-第一步：建立基本-Vue-應用架構" class="headerlink" title="🧱 第一步：建立基本 Vue 應用架構"></a>🧱 第一步：建立基本 Vue 應用架構</h2><p>我們先完成這些：</p>
+<ol>
+<li>建好畫面結構</li>
+<li>設計體重資料格式</li>
+<li>確保 localStorage 的讀寫沒問題</li>
+<li>設定 Chart.js（稍後再畫圖）</li>
+</ol>
+<hr>
+<h3 id="✅-1-建立基本檔案結構"><a href="#✅-1-建立基本檔案結構" class="headerlink" title="✅ 1. 建立基本檔案結構"></a>✅ 1. 建立基本檔案結構</h3><p>目標放在 <code>src/lily_learning/202404_js_trainging/javascript_8/weightTrackerApp/</code></p>
+<pre><code>src/
+└── lily_learning/
+    └── 202404_js_trainging/
+        └── javascript_8/
+            └── weightTrackerApp/
+                ├── WeightTracker.vue   &lt;- 主元件
+                └── components/
+                    ├── WeightForm.vue      &lt;- 表單：新增資料
+                    ├── WeightList.vue      &lt;- 清單：顯示 + 刪除
+                    └── WeightChart.vue     &lt;- 折線圖
+</code></pre>
+<hr>
+<h3 id="✅-2-建立-WeightTracker-vue（主元件）"><a href="#✅-2-建立-WeightTracker-vue（主元件）" class="headerlink" title="✅ 2. 建立 WeightTracker.vue（主元件）"></a>✅ 2. 建立 WeightTracker.vue（主元件）</h3><pre><code class="vue">&lt;!-- src/lily_learning/202404_js_trainging/javascript_8/weightTrackerApp/WeightTracker.vue --&gt;
+&lt;template&gt;
+  &lt;div class=&quot;p-4&quot;&gt;
+    &lt;h1 class=&quot;text-xl font-bold mb-4&quot;&gt;體重追蹤器&lt;/h1&gt;
+    &lt;WeightForm @add-weight=&quot;addWeight&quot; /&gt;
+    &lt;WeightList :weights=&quot;weights&quot; @delete-weight=&quot;deleteWeight&quot; /&gt;
+    &lt;WeightChart :weights=&quot;weights&quot; /&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { ref, onMounted, watch } from &#39;vue&#39;
+import WeightForm from &#39;./components/WeightForm.vue&#39;
+import WeightList from &#39;./components/WeightList.vue&#39;
+import WeightChart from &#39;./components/WeightChart.vue&#39;
+
+const weights = ref([])
+
+// 載入 localStorage
+onMounted(() =&gt; {
+  const saved = localStorage.getItem(&#39;weights&#39;)
+  if (saved) {
+    weights.value = JSON.parse(saved)
+  }
+})
+
+// 寫入 localStorage
+watch(weights, (newVal) =&gt; {
+  localStorage.setItem(&#39;weights&#39;, JSON.stringify(newVal))
+}, { deep: true })
+
+// 新增體重
+function addWeight(weightData) {
+  weights.value.push(weightData)
+  // 按日期排序（新到舊）
+  weights.value.sort((a, b) =&gt; new Date(b.date) - new Date(a.date))
+}
+
+// 刪除
+function deleteWeight(index) {
+  weights.value.splice(index, 1)
+}
+&lt;/script&gt;
+</code></pre>
+<hr>
+<p>接下來，我們會一步步建立這 3 個元件：</p>
+<ol>
+<li><code>WeightForm.vue</code>（輸入）</li>
+<li><code>WeightList.vue</code>（清單）</li>
+<li><code>WeightChart.vue</code>（Chart.js 折線圖）</li>
+</ol>
+<hr>
+<h3 id="🚀-下一步：要先做-WeightForm-vue-還是-WeightList-vue？"><a href="#🚀-下一步：要先做-WeightForm-vue-還是-WeightList-vue？" class="headerlink" title="🚀 下一步：要先做 WeightForm.vue 還是 WeightList.vue？"></a>🚀 下一步：要先做 <code>WeightForm.vue</code> 還是 <code>WeightList.vue</code>？</h3><p>你想先完成「表單輸入」還是「資料清單顯示」部分呢？</p>
