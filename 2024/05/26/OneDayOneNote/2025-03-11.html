@@ -1,0 +1,132 @@
+<hr>
+<h2 id="title-2025-03-11-國家資訊與地圖應用程式-第一步date-2025-09-06-23-07-08tags-Javascript-Vue-description-2025-03-11-國家資訊與地圖應用程式-第一步"><a href="#title-2025-03-11-國家資訊與地圖應用程式-第一步date-2025-09-06-23-07-08tags-Javascript-Vue-description-2025-03-11-國家資訊與地圖應用程式-第一步" class="headerlink" title="title: 2025-03-11-國家資訊與地圖應用程式 -第一步date: 2025-09-06 23:07:08tags:  [Javascript,Vue]description: 2025-03-11-國家資訊與地圖應用程式 -第一步"></a>title: 2025-03-11-國家資訊與地圖應用程式 -第一步<br>date: 2025-09-06 23:07:08<br>tags:  [Javascript,Vue]<br>description: 2025-03-11-國家資訊與地圖應用程式 -第一步</h2><h1 id="2025-03-11-國家資訊與地圖應用程式-第一步"><a href="#2025-03-11-國家資訊與地圖應用程式-第一步" class="headerlink" title="2025-03-11-國家資訊與地圖應用程式 -第一步"></a>2025-03-11-國家資訊與地圖應用程式 -第一步</h1><p>國家資訊與地圖應用程式</p>
+<p>以下是完整、可直接運作的 <code>CountryInfo.vue</code>，使用 <strong>CDN 引入 Vue 和 Leaflet</strong>，並適合你目前的開發方式（無 npm、只用 CDN 的方式）。</p>
+<hr>
+<h2 id="✅-完整的-CountryInfo-vue（配合-CDN）"><a href="#✅-完整的-CountryInfo-vue（配合-CDN）" class="headerlink" title="✅ 完整的 CountryInfo.vue（配合 CDN）"></a>✅ 完整的 <code>CountryInfo.vue</code>（配合 CDN）</h2><pre><code class="vue">&lt;!-- CountryInfo.vue --&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;h2&gt;🌍 國家資訊與地圖應用程式&lt;/h2&gt;
+    &lt;div id=&quot;map&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { onMounted } from &#39;vue&#39;
+
+// CDN Leaflet 是全域變數 L（不需要 import &#39;leaflet&#39;）
+
+onMounted(async () =&gt; {
+  const map = L.map(&#39;map&#39;).setView([20, 0], 2)
+
+  L.tileLayer(&#39;https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png&#39;, {
+    attribution: &#39;© OpenStreetMap contributors&#39;
+  }).addTo(map)
+
+  // 修正 Leaflet marker 圖示無法顯示（CDN 圖檔）
+  const iconUrl = &#39;https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png&#39;
+  const shadowUrl = &#39;https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png&#39;
+  const DefaultIcon = L.icon({
+    iconUrl,
+    shadowUrl,
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+  })
+  L.Marker.prototype.options.icon = DefaultIcon
+
+  // 抓取國家資料
+  const res = await fetch(&#39;https://restcountries.com/v3.1/all&#39;)
+  const countries = await res.json()
+
+  countries.forEach((country) =&gt; {
+    const latlng = country.latlng
+    const name = country.name?.common || &#39;未知&#39;
+    const capital = country.capital?.[0] || &#39;未知&#39;
+    const flag = country.flags?.png || &#39;&#39;
+    const currency = country.currencies
+      ? Object.values(country.currencies)[0]?.symbol || &#39;未知&#39;
+      : &#39;未知&#39;
+
+    if (latlng?.length === 2) {
+      const marker = L.marker(latlng).addTo(map)
+      marker.bindPopup(`
+        &lt;div style=&quot;text-align: center;&quot;&gt;
+          &lt;img src=&quot;${flag}&quot; width=&quot;80&quot;&gt;&lt;br&gt;
+          &lt;strong&gt;${name}&lt;/strong&gt;&lt;br&gt;
+          首都：${capital}&lt;br&gt;
+          貨幣：${currency}
+        &lt;/div&gt;
+      `)
+    }
+  })
+})
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+#map {
+  height: 90vh;
+  width: 100%;
+}
+&lt;/style&gt;
+</code></pre>
+<hr>
+<h2 id="✅-index-html（配合這個-vue-檔案時）"><a href="#✅-index-html（配合這個-vue-檔案時）" class="headerlink" title="✅ index.html（配合這個 .vue 檔案時）"></a>✅ index.html（配合這個 <code>.vue</code> 檔案時）</h2><p>如果你是用 Vite + CDN，就要確保你的 <code>index.html</code>（或 <code>public/index.html</code>）中包含以下內容：</p>
+<pre><code class="html">&lt;!-- 放在 &lt;head&gt; 中 --&gt;
+&lt;link
+  rel=&quot;stylesheet&quot;
+  href=&quot;https://unpkg.com/leaflet@1.9.4/dist/leaflet.css&quot;
+/&gt;
+
+&lt;!-- 放在 &lt;body&gt; 最下方 --&gt;
+&lt;script src=&quot;https://unpkg.com/leaflet@1.9.4/dist/leaflet.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>這樣 Leaflet 的 CSS 和 JS 就會正確載入。</p>
+<hr>
+<h2 id="✅-如何在-App-vue-使用它"><a href="#✅-如何在-App-vue-使用它" class="headerlink" title="✅ 如何在 App.vue 使用它"></a>✅ 如何在 App.vue 使用它</h2><pre><code class="vue">&lt;template&gt;
+  &lt;CountryInfo /&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import CountryInfo from &#39;./components/CountryInfo.vue&#39;
+&lt;/script&gt;
+</code></pre>
+<hr>
+<p>如果你使用的是 Vite 建立的 Vue 專案，但想<strong>不用 npm 安裝 leaflet</strong>，只靠 CDN，也完全沒問題，只要記得：</p>
+<ul>
+<li>Leaflet 的 JS 不要 <code>import</code>，直接用 CDN + <code>window.L</code></li>
+<li>Leaflet 的 CSS 必須放在 <code>index.html</code> 中</li>
+</ul>
+<hr>
+<p>當然可以，以下是加入詳細備註說明的版本：</p>
+<hr>
+<pre><code class="html">&lt;!-- ✅ Leaflet 地圖樣式（一定要放在 &lt;head&gt;，否則地圖會顯示異常或空白） --&gt;
+&lt;link
+  rel=&quot;stylesheet&quot;
+  href=&quot;https://unpkg.com/leaflet@1.9.4/dist/leaflet.css&quot;
+/&gt;
+</code></pre>
+<pre><code class="html">&lt;!-- ✅ Leaflet JavaScript 功能（建議放在 &lt;body&gt; 最下方，讓 HTML 載入完再執行） --&gt;
+&lt;script src=&quot;https://unpkg.com/leaflet@1.9.4/dist/leaflet.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<hr>
+<h3 id="🔎-為什麼這樣放？"><a href="#🔎-為什麼這樣放？" class="headerlink" title="🔎 為什麼這樣放？"></a>🔎 為什麼這樣放？</h3><table>
+<thead>
+<tr>
+<th>資源類型</th>
+<th>建議放在哪裡</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CSS 樣式</td>
+<td><code>&lt;head&gt;</code> 中</td>
+<td>提早載入樣式，避免地圖變形或閃爍</td>
+</tr>
+<tr>
+<td>JS 腳本</td>
+<td><code>&lt;body&gt;</code> 最後</td>
+<td>避免阻塞 HTML 載入、避免找不到 DOM 元素錯誤</td>
+</tr>
+</tbody></table>
+<hr>

@@ -1,0 +1,95 @@
+<hr>
+<h2 id="title-2025-04-12-Tailwind-CSS-簡短複習date-2025-09-07-00-00-44tags-Javascript-Vue-description-2025-04-12-Tailwind-CSS-簡短複習"><a href="#title-2025-04-12-Tailwind-CSS-簡短複習date-2025-09-07-00-00-44tags-Javascript-Vue-description-2025-04-12-Tailwind-CSS-簡短複習" class="headerlink" title="title: 2025-04-12-Tailwind CSS 簡短複習date: 2025-09-07 00:00:44tags:  [Javascript,Vue]description:  2025-04-12-Tailwind CSS 簡短複習"></a>title: 2025-04-12-Tailwind CSS 簡短複習<br>date: 2025-09-07 00:00:44<br>tags:  [Javascript,Vue]<br>description:  2025-04-12-Tailwind CSS 簡短複習</h2><h1 id="2025-04-12-Tailwind-CSS-簡短複習"><a href="#2025-04-12-Tailwind-CSS-簡短複習" class="headerlink" title="2025-04-12-Tailwind CSS 簡短複習"></a>2025-04-12-Tailwind CSS 簡短複習</h1><h1 id="Tailwind-CSS-簡短複習（中文重點版）"><a href="#Tailwind-CSS-簡短複習（中文重點版）" class="headerlink" title="Tailwind CSS 簡短複習（中文重點版）"></a>Tailwind CSS 簡短複習（中文重點版）</h1><p>很好，Tailwind 在現代前端很常見 —— 它不是一個「預做好的元件庫」，而是一個 <strong>utility-first（實用類別優先）</strong> 的 CSS 工具集。下面把重點、優點、使用方法與實務範例都說清楚，方便你馬上回去套在 Vue 元件上。</p>
+<hr>
+<h2 id="什麼是-Tailwind？"><a href="#什麼是-Tailwind？" class="headerlink" title="什麼是 Tailwind？"></a>什麼是 Tailwind？</h2><ul>
+<li><strong>Utility-first</strong>：提供大量小而單一職責的 class（像 <code>p-4</code>、<code>text-sm</code>、<code>bg-blue-500</code>），透過組合這些 class 來完成樣式，而不是寫大量自訂 CSS。</li>
+<li><strong>不預設外觀</strong>：不像 Bootstrap 那樣有強烈主題，Tailwind 提供基礎工具，讓你自由打造風格。</li>
+<li><strong>高度可客製</strong>：可以在 <code>tailwind.config.js</code> 裡擴充顏色、間距、字型等。</li>
+</ul>
+<hr>
+<h2 id="優點與缺點（實用判斷）"><a href="#優點與缺點（實用判斷）" class="headerlink" title="優點與缺點（實用判斷）"></a>優點與缺點（實用判斷）</h2><p><strong>優點</strong></p>
+<ul>
+<li>快速開發 UI：不用在 CSS 檔案來回切換，直接在 markup 上寫 class。</li>
+<li>一致性好：團隊上使用同一套 spacing &#x2F; color scale。</li>
+<li>生產環境體積小：透過 <code>content</code>（或 purge）只保留用到的 class，輸出 CSS 很小。</li>
+<li>易做 RWD：用 <code>sm:</code>, <code>md:</code>, <code>lg:</code> 簡單寫響應式。</li>
+</ul>
+<p><strong>缺點</strong></p>
+<ul>
+<li>初期 class 看起來「很長」或「雜」，可用 <code>@apply</code> 抽成 class。</li>
+<li>習慣上需要改變思維（從寫 CSS 移到組合 class）。</li>
+<li>若把邏輯產生的 class 亂寫，可能導致無法被 purge（需要注意 content 配置或用 safelist）。</li>
+</ul>
+<hr>
+<h2 id="在-Vue-Vite-專案快設定（重點）"><a href="#在-Vue-Vite-專案快設定（重點）" class="headerlink" title="在 Vue + Vite 專案快設定（重點）"></a>在 Vue + Vite 專案快設定（重點）</h2><p>已做過的指令回顧：</p>
+<pre><code class="bash">npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+</code></pre>
+<p><code>index.css</code>（或 <code>src/index.css</code>）要有：</p>
+<pre><code class="css">@tailwind base;
+@tailwind components;
+@tailwind utilities;
+</code></pre>
+<p><code>tailwind.config.js</code> 最重要的 <code>content</code> 設定：</p>
+<pre><code class="js">module.exports = {
+  content: [
+    &quot;./index.html&quot;,
+    &quot;./src/**/*.{vue,js,ts,jsx,tsx}&quot;
+  ],
+  theme: { extend: {} },
+  plugins: [],
+}
+</code></pre>
+<p>把 <code>index.css</code> 在 <code>main.js</code> 引入：<code>import &#39;./index.css&#39;</code></p>
+<hr>
+<h2 id="常用語法範例（最好懂）"><a href="#常用語法範例（最好懂）" class="headerlink" title="常用語法範例（最好懂）"></a>常用語法範例（最好懂）</h2><ul>
+<li>文字與間距：<code>text-sm</code>, <code>text-xl</code>, <code>p-4</code>, <code>px-6</code>, <code>py-2</code>, <code>m-2</code></li>
+<li>色彩與背景：<code>text-white</code>, <code>bg-blue-500</code>, <code>hover:bg-blue-600</code></li>
+<li>版型：<code>flex</code>, <code>grid</code>, <code>gap-4</code>, <code>items-center</code>, <code>justify-between</code></li>
+<li>邊框與陰影：<code>border</code>, <code>rounded-lg</code>, <code>shadow-md</code></li>
+<li>響應式：<code>sm:text-sm md:text-base lg:text-lg</code></li>
+<li>偽類：<code>hover:</code>, <code>focus:</code>, <code>active:</code></li>
+</ul>
+<p>範例按鈕：</p>
+<pre><code class="html">&lt;button class=&quot;bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md&quot;&gt;
+  送出
+&lt;/button&gt;
+</code></pre>
+<hr>
+<h2 id="在-Vue-的實務小技巧"><a href="#在-Vue-的實務小技巧" class="headerlink" title="在 Vue 的實務小技巧"></a>在 Vue 的實務小技巧</h2><ul>
+<li><p><strong>動態 class</strong>：可以用 <code>:class</code> 綁定字串或物件：</p>
+<pre><code class="vue">&lt;button :class=&quot;[&#39;px-4 py-2 rounded&#39;, isActive ? &#39;bg-green-500&#39; : &#39;bg-gray-300&#39;]&quot;&gt;按我&lt;/button&gt;
+</code></pre>
+</li>
+<li><p><strong>避免無法 purge 的動態 class</strong>：若 class 是由變數拼接（像 <code>bg-${color}-500</code>），Tailwind 可能無法偵測到。可用 safelist 或在 template 裡列明所有可能的 class。</p>
+</li>
+<li><p><strong>重複樣式抽出</strong>：用 <code>@apply</code> 在你的 CSS 裡抽成一個自訂 class（減少長長的 class 列表）：</p>
+<pre><code class="css">.btn {
+  @apply px-4 py-2 rounded bg-blue-500 text-white hover:bg-blue-600;
+}
+</code></pre>
+</li>
+<li><p><strong>表單美化</strong>：安裝官方 plugin <code>@tailwindcss/forms</code> 能快速讓 input&#x2F;select&#x2F;look 更好看。</p>
+</li>
+</ul>
+<hr>
+<h2 id="範例：把-InputForm-vue-用-Tailwind-改造"><a href="#範例：把-InputForm-vue-用-Tailwind-改造" class="headerlink" title="範例：把 InputForm.vue 用 Tailwind 改造"></a>範例：把 InputForm.vue 用 Tailwind 改造</h2><pre><code class="vue">&lt;template&gt;
+  &lt;form @submit.prevent=&quot;submitForm&quot; class=&quot;flex flex-col gap-4 w-full max-w-sm&quot;&gt;
+    &lt;input v-model=&quot;name&quot; type=&quot;text&quot; placeholder=&quot;姓名&quot;
+           class=&quot;border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-400&quot; /&gt;
+    &lt;input v-model=&quot;birthday&quot; type=&quot;date&quot;
+           class=&quot;border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-400&quot; /&gt;
+    &lt;button type=&quot;submit&quot; class=&quot;bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md&quot;&gt;
+      送出
+    &lt;/button&gt;
+  &lt;/form&gt;
+&lt;/template&gt;
+</code></pre>
+<hr>
+<h2 id="最佳實務與建議"><a href="#最佳實務與建議" class="headerlink" title="最佳實務與建議"></a>最佳實務與建議</h2><ol>
+<li><strong>先熟悉常用 utility</strong>（flex、spacing、typography、colors）再用進階功能。</li>
+<li><strong>用 <code>@apply</code> 抽重複樣式</strong>，維持模板可讀性。</li>
+<li><strong>注意 <code>content</code> 配置</strong>，確保生產環境能正確 tree-shake CSS。</li>
+<li><strong>把設計 token（colors、spacing）放到 <code>tailwind.config.js</code> 的 <code>theme.extend</code>，團隊一致性更好。</strong></li>
+</ol>
+<hr>

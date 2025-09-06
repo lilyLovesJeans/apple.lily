@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="20250307-天氣查詢應用程式」的第 3 步：自由選擇三個城市">
+<meta property="og:type" content="article">
+<meta property="og:title" content="20250307-天氣查詢應用程式」的第 3 步：自由選擇三個城市">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/09/06/OneDayOneNote/2025-03-07/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="20250307-天氣查詢應用程式」的第 3 步：自由選擇三個城市">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-09-06T15:01:39.000Z">
+<meta property="article:modified_time" content="2025-09-06T15:03:05.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2025/09/06/OneDayOneNote/2025-03-07/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2025/09/06/OneDayOneNote/2025-03-07/","path":"2025/09/06/OneDayOneNote/2025-03-07/","title":"20250307-天氣查詢應用程式」的第 3 步：自由選擇三個城市"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>20250307-天氣查詢應用程式」的第 3 步：自由選擇三個城市 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#20250307-%E5%A4%A9%E6%B0%A3%E6%9F%A5%E8%A9%A2%E6%87%89%E7%94%A8%E7%A8%8B%E5%BC%8F%E3%80%8D%E7%9A%84%E7%AC%AC-3-%E6%AD%A5%EF%BC%9A%E8%87%AA%E7%94%B1%E9%81%B8%E6%93%87%E4%B8%89%E5%80%8B%E5%9F%8E%E5%B8%82"><span class="nav-number">1.</span> <span class="nav-text">20250307-天氣查詢應用程式」的第 3 步：自由選擇三個城市</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%9C%85-%E4%B8%8B%E4%B8%80%E6%AD%A5%E7%9B%AE%E6%A8%99%EF%BC%88%E4%BD%A0%E8%AA%AA%E7%9A%84%E3%80%8C%E5%8F%AF%E4%BB%A5%E4%B8%80%E6%AC%A1%E9%81%B8%E4%B8%89%E5%80%8B%E5%9F%8E%E5%B8%82%E3%80%8D%EF%BC%89%EF%BC%9A"><span class="nav-number">1.0.1.</span> <span class="nav-text">✅ 下一步目標（你說的「可以一次選三個城市」）：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%85-%E4%BF%AE%E6%94%B9%E7%9B%AE%E6%A8%99%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">✅ 修改目標：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%85-%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E6%96%B0%E5%A2%9E%E4%B8%80%E5%80%8B%E5%A4%9A%E9%81%B8%E4%B8%8B%E6%8B%89%E9%81%B8%E5%96%AE"><span class="nav-number">1.2.</span> <span class="nav-text">✅ 第一步：新增一個多選下拉選單</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%85-%E5%AE%8C%E6%95%B4%E7%A8%8B%E5%BC%8F%E7%A2%BC%EF%BC%88%E6%94%AF%E6%8F%B4%E8%87%AA%E7%94%B1%E9%81%B8%E4%B8%89%E5%9F%8E%E5%B8%82%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">✅ 完整程式碼（支援自由選三城市）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%85-Bonus-%E5%B0%8F%E6%8F%90%E9%86%92%EF%BC%9A%E9%99%90%E5%88%B6%E6%9C%80%E5%A4%9A%E9%81%B8%E4%B8%89%E5%80%8B%E5%9F%8E%E5%B8%82%EF%BC%88%E9%80%B2%E9%9A%8E%EF%BC%89"><span class="nav-number">1.4.</span> <span class="nav-text">✅ Bonus 小提醒：限制最多選三個城市（進階）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%85-%E5%AE%8C%E6%95%B4%E7%A8%8B%E5%BC%8F%E7%A2%BC%EF%BC%9A%E9%99%90%E5%88%B6%E9%81%B8%E6%9C%80%E5%A4%9A%E4%B8%89%E5%80%8B%E5%9F%8E%E5%B8%82"><span class="nav-number">1.5.</span> <span class="nav-text">✅ 完整程式碼：限制選最多三個城市</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%A7%A0-%E9%87%8D%E9%BB%9E%E8%AA%AA%E6%98%8E%EF%BC%9A"><span class="nav-number">1.5.1.</span> <span class="nav-text">🧠 重點說明：</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">408</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2025/09/06/OneDayOneNote/2025-03-07/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="20250307-天氣查詢應用程式」的第 3 步：自由選擇三個城市 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="20250307-天氣查詢應用程式」的第 3 步：自由選擇三個城市">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          20250307-天氣查詢應用程式」的第 3 步：自由選擇三個城市
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2025-09-06 23:01:39 / 修改時間：23:03:05" itemprop="dateCreated datePublished" datetime="2025-09-06T23:01:39+08:00">2025-09-06</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">20250307-天氣查詢應用程式」的第 3 步：自由選擇三個城市</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="20250307-天氣查詢應用程式」的第-3-步：自由選擇三個城市"><a href="#20250307-天氣查詢應用程式」的第-3-步：自由選擇三個城市" class="headerlink" title="20250307-天氣查詢應用程式」的第 3 步：自由選擇三個城市"></a>20250307-天氣查詢應用程式」的第 3 步：自由選擇三個城市</h1><p>你現在的程式其實<strong>已經能顯示三個城市的天氣</strong>了（臺北市、臺中市、高雄市），因為你用這行篩選了資料：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> allCities = [<span class="string">&#x27;臺北市&#x27;</span>, <span class="string">&#x27;臺中市&#x27;</span>, <span class="string">&#x27;高雄市&#x27;</span>]</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="✅-下一步目標（你說的「可以一次選三個城市」）："><a href="#✅-下一步目標（你說的「可以一次選三個城市」）：" class="headerlink" title="✅ 下一步目標（你說的「可以一次選三個城市」）："></a>✅ 下一步目標（你說的「可以一次選三個城市」）：</h3><p>你想讓使用者「<strong>自由選擇三個城市</strong>」，而不是程式寫死三個城市名稱。</p>
+<hr>
+<h2 id="✅-修改目標："><a href="#✅-修改目標：" class="headerlink" title="✅ 修改目標："></a>✅ 修改目標：</h2><p>讓使用者從城市下拉選單中選擇三個城市，並顯示它們的天氣資訊。</p>
+<hr>
+<h2 id="✅-第一步：新增一個多選下拉選單"><a href="#✅-第一步：新增一個多選下拉選單" class="headerlink" title="✅ 第一步：新增一個多選下拉選單"></a>✅ 第一步：新增一個多選下拉選單</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">multiple</span> <span class="attr">v-model</span>=<span class="string">&quot;selectedCities&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">option</span> <span class="attr">v-for</span>=<span class="string">&quot;city in allCityNames&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;city&quot;</span>&gt;</span>&#123;&#123; city &#125;&#125;<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="✅-完整程式碼（支援自由選三城市）"><a href="#✅-完整程式碼（支援自由選三城市）" class="headerlink" title="✅ 完整程式碼（支援自由選三城市）"></a>✅ 完整程式碼（支援自由選三城市）</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;h2&gt;🌦️ 自選三個城市天氣概況&lt;/h2&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- 多選城市 --&gt;</span><br><span class="line">  &lt;label&gt;選擇最多三個城市：&lt;/label&gt;</span><br><span class="line">  &lt;select multiple v-model=&quot;selectedCities&quot;&gt;</span><br><span class="line">    &lt;option v-for=&quot;city in allCityNames&quot; :key=&quot;city&quot;&gt;&#123;&#123; city &#125;&#125;&lt;/option&gt;</span><br><span class="line">  &lt;/select&gt;</span><br><span class="line">  &lt;p&gt;目前選擇：&#123;&#123; selectedCities.join(&#x27;, &#x27;) &#125;&#125;&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">  &lt;div class=&quot;weather-container&quot;&gt;</span><br><span class="line">    &lt;div v-for=&quot;city in filteredWeatherData&quot; :key=&quot;city.locationName&quot; class=&quot;city-card&quot;&gt;</span><br><span class="line">      &lt;h3&gt;🌆 &#123;&#123; city.locationName &#125;&#125;&lt;/h3&gt;</span><br><span class="line">      &lt;p&gt;☀️ 天氣：&#123;&#123; getWeatherElement(city, &#x27;Wx&#x27;) &#125;&#125;&lt;/p&gt;</span><br><span class="line">      &lt;p&gt;🔥 最高溫：&#123;&#123; getWeatherElement(city, &#x27;MaxT&#x27;) &#125;&#125;°C&lt;/p&gt;</span><br><span class="line">      &lt;p&gt;❄️ 最低溫：&#123;&#123; getWeatherElement(city, &#x27;MinT&#x27;) &#125;&#125;°C&lt;/p&gt;</span><br><span class="line">      &lt;p&gt;🌧️ 降雨機率：&#123;&#123; getWeatherElement(city, &#x27;PoP&#x27;) &#125;&#125;%&lt;/p&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">import &#123; ref, computed, onMounted &#125; from &#x27;vue&#x27;</span><br><span class="line"></span><br><span class="line">const apiKey = &#x27;你的 CWA API Key&#x27; // 請替換成你的 key</span><br><span class="line">const url = `https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=$&#123;apiKey&#125;`</span><br><span class="line"></span><br><span class="line">const weatherData = ref([])</span><br><span class="line">const allCityNames = ref([])</span><br><span class="line">const selectedCities = ref([])</span><br><span class="line"></span><br><span class="line">onMounted(async () =&gt; &#123;</span><br><span class="line">  try &#123;</span><br><span class="line">    const response = await fetch(url)</span><br><span class="line">    const data = await response.json()</span><br><span class="line">    const locations = data.records.location</span><br><span class="line"></span><br><span class="line">    weatherData.value = locations</span><br><span class="line">    allCityNames.value = locations.map(loc =&gt; loc.locationName)</span><br><span class="line"></span><br><span class="line">    // 預設三個城市</span><br><span class="line">    selectedCities.value = [&#x27;臺北市&#x27;, &#x27;臺中市&#x27;, &#x27;高雄市&#x27;]</span><br><span class="line">  &#125; catch (error) &#123;</span><br><span class="line">    console.error(&#x27;❌ 發生錯誤:&#x27;, error)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">const filteredWeatherData = computed(() =&gt;</span><br><span class="line">  weatherData.value.filter(city =&gt; selectedCities.value.includes(city.locationName))</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">function getWeatherElement(city, elementName) &#123;</span><br><span class="line">  const element = city.weatherElement.find(el =&gt; el.elementName === elementName)</span><br><span class="line">  return element?.time[0]?.parameter?.parameterName || &#x27;N/A&#x27;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">select &#123;</span><br><span class="line">  width: 100%;</span><br><span class="line">  padding: 0.5rem;</span><br><span class="line">  margin-bottom: 1rem;</span><br><span class="line">  font-size: 1rem;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.weather-container &#123;</span><br><span class="line">  display: flex;</span><br><span class="line">  flex-wrap: wrap;</span><br><span class="line">  gap: 1.5rem;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.city-card &#123;</span><br><span class="line">  flex: 1 1 300px;</span><br><span class="line">  max-width: 300px;</span><br><span class="line">  background: #f0f8ff;</span><br><span class="line">  padding: 1rem;</span><br><span class="line">  border-radius: 0.75rem;</span><br><span class="line">  box-shadow: 0 2px 6px rgba(0,0,0,0.1);</span><br><span class="line">  border-left: 6px solid #3498db;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="✅-Bonus-小提醒：限制最多選三個城市（進階）"><a href="#✅-Bonus-小提醒：限制最多選三個城市（進階）" class="headerlink" title="✅ Bonus 小提醒：限制最多選三個城市（進階）"></a>✅ Bonus 小提醒：限制最多選三個城市（進階）</h2><p>你可以加入檢查邏輯，限制使用者最多只能選三個城市，有需要我可以幫你加上這段邏輯。</p>
+<hr>
+<p>需要我幫你加「限制只能選三個城市」或「根據天氣變化變色背景」嗎？👀</p>
+<p>好的！以下是加上「<strong>最多只能選三個城市</strong>」的版本 ✅<br>當使用者選超過三個時，會自動移除最後選的那個，並顯示警告。</p>
+<hr>
+<h2 id="✅-完整程式碼：限制選最多三個城市"><a href="#✅-完整程式碼：限制選最多三個城市" class="headerlink" title="✅ 完整程式碼：限制選最多三個城市"></a>✅ 完整程式碼：限制選最多三個城市</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;h2&gt;🌦️ 自選三個城市天氣概況&lt;/h2&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- 多選城市 --&gt;</span><br><span class="line">  &lt;label&gt;請選擇最多三個城市：&lt;/label&gt;</span><br><span class="line">  &lt;select multiple v-model=&quot;selectedCities&quot; @change=&quot;checkLimit&quot;&gt;</span><br><span class="line">    &lt;option v-for=&quot;city in allCityNames&quot; :key=&quot;city&quot;&gt;&#123;&#123; city &#125;&#125;&lt;/option&gt;</span><br><span class="line">  &lt;/select&gt;</span><br><span class="line">  &lt;p&gt;目前選擇：&#123;&#123; selectedCities.join(&#x27;, &#x27;) &#125;&#125;&lt;/p&gt;</span><br><span class="line">  &lt;p v-if=&quot;limitReached&quot; style=&quot;color: red;&quot;&gt;⚠️ 最多只能選三個城市&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">  &lt;div class=&quot;weather-container&quot;&gt;</span><br><span class="line">    &lt;div v-for=&quot;city in filteredWeatherData&quot; :key=&quot;city.locationName&quot; class=&quot;city-card&quot;&gt;</span><br><span class="line">      &lt;h3&gt;🌆 &#123;&#123; city.locationName &#125;&#125;&lt;/h3&gt;</span><br><span class="line">      &lt;p&gt;☀️ 天氣：&#123;&#123; getWeatherElement(city, &#x27;Wx&#x27;) &#125;&#125;&lt;/p&gt;</span><br><span class="line">      &lt;p&gt;🔥 最高溫：&#123;&#123; getWeatherElement(city, &#x27;MaxT&#x27;) &#125;&#125;°C&lt;/p&gt;</span><br><span class="line">      &lt;p&gt;❄️ 最低溫：&#123;&#123; getWeatherElement(city, &#x27;MinT&#x27;) &#125;&#125;°C&lt;/p&gt;</span><br><span class="line">      &lt;p&gt;🌧️ 降雨機率：&#123;&#123; getWeatherElement(city, &#x27;PoP&#x27;) &#125;&#125;%&lt;/p&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">import &#123; ref, computed, onMounted &#125; from &#x27;vue&#x27;</span><br><span class="line"></span><br><span class="line">const apiKey = &#x27;你的 CWA API Key&#x27; // 請換成你的</span><br><span class="line">const url = `https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=$&#123;apiKey&#125;`</span><br><span class="line"></span><br><span class="line">const weatherData = ref([])</span><br><span class="line">const allCityNames = ref([])</span><br><span class="line">const selectedCities = ref([])</span><br><span class="line">const limitReached = ref(false)</span><br><span class="line"></span><br><span class="line">onMounted(async () =&gt; &#123;</span><br><span class="line">  try &#123;</span><br><span class="line">    const response = await fetch(url)</span><br><span class="line">    const data = await response.json()</span><br><span class="line">    const locations = data.records.location</span><br><span class="line"></span><br><span class="line">    weatherData.value = locations</span><br><span class="line">    allCityNames.value = locations.map(loc =&gt; loc.locationName)</span><br><span class="line"></span><br><span class="line">    // 預設三個城市</span><br><span class="line">    selectedCities.value = [&#x27;臺北市&#x27;, &#x27;臺中市&#x27;, &#x27;高雄市&#x27;]</span><br><span class="line">  &#125; catch (error) &#123;</span><br><span class="line">    console.error(&#x27;❌ 發生錯誤:&#x27;, error)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">// ✅ 限制最多三個城市</span><br><span class="line">function checkLimit() &#123;</span><br><span class="line">  if (selectedCities.value.length &gt; 3) &#123;</span><br><span class="line">    selectedCities.value.pop() // 移除最後選的</span><br><span class="line">    limitReached.value = true</span><br><span class="line">    setTimeout(() =&gt; &#123;</span><br><span class="line">      limitReached.value = false</span><br><span class="line">    &#125;, 2000)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const filteredWeatherData = computed(() =&gt;</span><br><span class="line">  weatherData.value.filter(city =&gt; selectedCities.value.includes(city.locationName))</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">function getWeatherElement(city, elementName) &#123;</span><br><span class="line">  const element = city.weatherElement.find(el =&gt; el.elementName === elementName)</span><br><span class="line">  return element?.time[0]?.parameter?.parameterName || &#x27;N/A&#x27;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">select &#123;</span><br><span class="line">  width: 100%;</span><br><span class="line">  padding: 0.5rem;</span><br><span class="line">  margin-bottom: 0.5rem;</span><br><span class="line">  font-size: 1rem;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.weather-container &#123;</span><br><span class="line">  display: flex;</span><br><span class="line">  flex-wrap: wrap;</span><br><span class="line">  gap: 1.5rem;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.city-card &#123;</span><br><span class="line">  flex: 1 1 300px;</span><br><span class="line">  max-width: 300px;</span><br><span class="line">  background: #f0f8ff;</span><br><span class="line">  padding: 1rem;</span><br><span class="line">  border-radius: 0.75rem;</span><br><span class="line">  box-shadow: 0 2px 6px rgba(0,0,0,0.1);</span><br><span class="line">  border-left: 6px solid #3498db;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="🧠-重點說明："><a href="#🧠-重點說明：" class="headerlink" title="🧠 重點說明："></a>🧠 重點說明：</h3><table>
+<thead>
+<tr>
+<th>部分</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>@change=&quot;checkLimit&quot;</code></td>
+<td>每次下拉選單變動時，觸發檢查</td>
+</tr>
+<tr>
+<td><code>selectedCities.value.pop()</code></td>
+<td>超過 3 個，就把最後選的移除</td>
+</tr>
+<tr>
+<td><code>limitReached</code></td>
+<td>用來控制是否顯示警告訊息</td>
+</tr>
+</tbody></table>
+<hr>
+<p>你可以自己試著把 <code>3</code> 改成 <code>2</code> 或 <code>5</code> 看會發生什麼～</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/Javascript/" rel="tag"># Javascript</a>
+              <a href="/apple.lily/tags/Vue/" rel="tag"># Vue</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/09/06/OneDayOneNote/2025-03-06/" rel="prev" title="2025-03-06-天氣查詢應用程式」的第 2 步：畫面顯示三個城市的主要天氣資訊">
+                  <i class="fa fa-angle-left"></i> 2025-03-06-天氣查詢應用程式」的第 2 步：畫面顯示三個城市的主要天氣資訊
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/09/06/OneDayOneNote/2025-03-08/" rel="next" title="20250308-天氣查詢應用程式」的第 4 步：自由選擇多個城市">
+                  20250308-天氣查詢應用程式」的第 4 步：自由選擇多個城市 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

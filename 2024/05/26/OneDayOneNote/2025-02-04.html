@@ -1,0 +1,97 @@
+<hr>
+<h2 id="title-2025-02-04-JavaScript-系列八：第5課-──-體重追蹤應用程式-程式結構date-2025-09-06-21-00-05tags-Javascript-Vue-description-2025-02-04-JavaScript-系列八：第5課-──-體重追蹤應用程式-程式結構"><a href="#title-2025-02-04-JavaScript-系列八：第5課-──-體重追蹤應用程式-程式結構date-2025-09-06-21-00-05tags-Javascript-Vue-description-2025-02-04-JavaScript-系列八：第5課-──-體重追蹤應用程式-程式結構" class="headerlink" title="title: 2025-02-04- JavaScript 系列八：第5課 ── 體重追蹤應用程式-程式結構date: 2025-09-06 21:00:05tags:  [Javascript,Vue]description:   2025-02-04- JavaScript 系列八：第5課 ── 體重追蹤應用程式-程式結構"></a>title: 2025-02-04- JavaScript 系列八：第5課 ── 體重追蹤應用程式-程式結構<br>date: 2025-09-06 21:00:05<br>tags:  [Javascript,Vue]<br>description:   2025-02-04- JavaScript 系列八：第5課 ── 體重追蹤應用程式-程式結構</h2><h1 id="2025-02-04-JavaScript-系列八：第5課-──-體重追蹤應用程式-程式結構"><a href="#2025-02-04-JavaScript-系列八：第5課-──-體重追蹤應用程式-程式結構" class="headerlink" title="2025-02-04- JavaScript 系列八：第5課 ── 體重追蹤應用程式-程式結構"></a>2025-02-04- JavaScript 系列八：第5課 ── 體重追蹤應用程式-程式結構</h1><hr>
+<h2 id="🔧-程式結構總覽"><a href="#🔧-程式結構總覽" class="headerlink" title="🔧 程式結構總覽"></a>🔧 程式結構總覽</h2><p>這個 <code>weightTrackerApp.vue</code> 是一個 Vue 3 組件，使用了：</p>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>技術</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>UI 設計</td>
+<td>Tailwind CSS</td>
+<td>控制版面與排版（像是 flex、w-1&#x2F;4、rounded 等）</td>
+</tr>
+<tr>
+<td>狀態管理</td>
+<td><code>ref</code>、<code>computed</code></td>
+<td>用來追蹤使用者輸入與記錄資料</td>
+</tr>
+<tr>
+<td>資料儲存</td>
+<td><code>localStorage</code></td>
+<td>存入瀏覽器本地，資料不會消失</td>
+</tr>
+<tr>
+<td>圖表</td>
+<td>Chart.js</td>
+<td>繪製體重變化折線圖（透過 CDN 引入）</td>
+</tr>
+<tr>
+<td>DOM 操作</td>
+<td><code>ref</code>、<code>nextTick</code></td>
+<td>操作 canvas 畫圖表</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🧱-程式邏輯分成幾個區塊"><a href="#🧱-程式邏輯分成幾個區塊" class="headerlink" title="🧱 程式邏輯分成幾個區塊"></a>🧱 程式邏輯分成幾個區塊</h2><h3 id="①-newRecord：使用者的輸入"><a href="#①-newRecord：使用者的輸入" class="headerlink" title="① newRecord：使用者的輸入"></a>① <code>newRecord</code>：使用者的輸入</h3><pre><code class="js">const newRecord = ref({
+  date: &#39;&#39;,
+  weight: null,
+})
+</code></pre>
+<p>這是一個響應式資料，綁定表單的 <code>v-model</code>。使用者每次輸入的日期與體重都暫存在這裡。</p>
+<hr>
+<h3 id="②-records：所有紀錄（會被存到-localStorage）"><a href="#②-records：所有紀錄（會被存到-localStorage）" class="headerlink" title="② records：所有紀錄（會被存到 localStorage）"></a>② <code>records</code>：所有紀錄（會被存到 localStorage）</h3><pre><code class="js">const records = ref([])
+</code></pre>
+<p>這個陣列儲存所有已輸入的紀錄，每一筆格式如下：</p>
+<pre><code class="js">{
+  id: 1683901019283, // 唯一值（用 Date.now() 產生）
+  date: &#39;2025-05-07&#39;,
+  weight: 55.2
+}
+</code></pre>
+<hr>
+<h3 id="③-排序後的紀錄：sortedRecords"><a href="#③-排序後的紀錄：sortedRecords" class="headerlink" title="③ 排序後的紀錄：sortedRecords"></a>③ 排序後的紀錄：<code>sortedRecords</code></h3><pre><code class="js">const sortedRecords = computed(() =&gt; {
+  return [...records.value].sort((a, b) =&gt; new Date(a.date) - new Date(b.date))
+})
+</code></pre>
+<p>這個 <code>computed</code> 屬性會產生依照日期排序的清單，讓畫面與圖表都按照時間順序顯示。</p>
+<hr>
+<h3 id="④-加入記錄與刪除記錄"><a href="#④-加入記錄與刪除記錄" class="headerlink" title="④ 加入記錄與刪除記錄"></a>④ 加入記錄與刪除記錄</h3><pre><code class="js">const addRecord = () =&gt; {
+  // 檢查有填資料才加入
+  records.value.push({...})
+}
+const deleteRecord = (id) =&gt; {
+  records.value = records.value.filter(r =&gt; r.id !== id)
+}
+</code></pre>
+<p>每新增&#x2F;刪除資料，畫面與 localStorage 都會更新。</p>
+<hr>
+<h3 id="⑤-自動儲存到-localStorage-重新繪圖"><a href="#⑤-自動儲存到-localStorage-重新繪圖" class="headerlink" title="⑤ 自動儲存到 localStorage + 重新繪圖"></a>⑤ 自動儲存到 localStorage + 重新繪圖</h3><pre><code class="js">watch(records, (newVal) =&gt; {
+  localStorage.setItem(&#39;weight-records&#39;, JSON.stringify(newVal))
+  nextTick(() =&gt; renderChart())
+}, { deep: true })
+</code></pre>
+<p>每當 <code>records</code> 發生變化，就會自動儲存到 localStorage，並重新繪製圖表。</p>
+<hr>
+<h3 id="⑥-renderChart-：用-Chart-js-畫圖"><a href="#⑥-renderChart-：用-Chart-js-畫圖" class="headerlink" title="⑥ renderChart()：用 Chart.js 畫圖"></a>⑥ <code>renderChart()</code>：用 Chart.js 畫圖</h3><pre><code class="js">const renderChart = () =&gt; {
+  // 銷毀舊圖表
+  // 根據 sortedRecords 的資料畫新圖
+}
+</code></pre>
+<p>這個函數會根據資料畫出折線圖，用來顯示體重變化趨勢。</p>
+<hr>
+<h3 id="⑦-版面配置（使用-Tailwind）"><a href="#⑦-版面配置（使用-Tailwind）" class="headerlink" title="⑦ 版面配置（使用 Tailwind）"></a>⑦ 版面配置（使用 Tailwind）</h3><pre><code class="html">&lt;div class=&quot;flex flex-col md:flex-row gap-6&quot;&gt;
+  &lt;div class=&quot;w-full md:w-1/4&quot;&gt;...&lt;/div&gt; &lt;!-- 輸入表單 --&gt;
+  &lt;div class=&quot;w-full md:w-3/4&quot;&gt;...&lt;/div&gt; &lt;!-- 清單＋圖表 --&gt;
+&lt;/div&gt;
+</code></pre>
+<p>這段用 <code>flex</code> 將畫面切成兩欄：</p>
+<ul>
+<li>小畫面（手機）是直的：<code>flex-col</code></li>
+<li>大畫面（桌機）是橫的：<code>md:flex-row</code></li>
+<li>左側是 1&#x2F;4，右側是 3&#x2F;4</li>
+</ul>
+<hr>

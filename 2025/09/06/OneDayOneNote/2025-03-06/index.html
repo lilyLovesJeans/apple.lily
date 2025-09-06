@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2025-03-06-天氣查詢應用程式」的第 2 步：畫面顯示三個城市的主要天氣資訊">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025-03-06-天氣查詢應用程式」的第 2 步：畫面顯示三個城市的主要天氣資訊">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/09/06/OneDayOneNote/2025-03-06/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2025-03-06-天氣查詢應用程式」的第 2 步：畫面顯示三個城市的主要天氣資訊">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-09-06T15:00:34.000Z">
+<meta property="article:modified_time" content="2025-09-06T15:02:30.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2025/09/06/OneDayOneNote/2025-03-06/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2025/09/06/OneDayOneNote/2025-03-06/","path":"2025/09/06/OneDayOneNote/2025-03-06/","title":"2025-03-06-天氣查詢應用程式」的第 2 步：畫面顯示三個城市的主要天氣資訊"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2025-03-06-天氣查詢應用程式」的第 2 步：畫面顯示三個城市的主要天氣資訊 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2025-03-06-%E5%A4%A9%E6%B0%A3%E6%9F%A5%E8%A9%A2%E6%87%89%E7%94%A8%E7%A8%8B%E5%BC%8F%E3%80%8D%E7%9A%84%E7%AC%AC-2-%E6%AD%A5%EF%BC%9A%E7%95%AB%E9%9D%A2%E9%A1%AF%E7%A4%BA%E4%B8%89%E5%80%8B%E5%9F%8E%E5%B8%82%E7%9A%84%E4%B8%BB%E8%A6%81%E5%A4%A9%E6%B0%A3%E8%B3%87%E8%A8%8A"><span class="nav-number">1.</span> <span class="nav-text">2025-03-06-天氣查詢應用程式」的第 2 步：畫面顯示三個城市的主要天氣資訊</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%85-%E8%A6%8F%E6%A0%BC%E8%AA%AA%E6%98%8E%EF%BC%88%E7%AC%AC-2-%E6%AD%A5%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">✅ 規格說明（第 2 步）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%85-%E5%AE%8C%E6%95%B4%E7%AF%84%E4%BE%8B%E7%A8%8B%E5%BC%8F%E7%A2%BC%EF%BC%88Vue-3-Composition-API%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">✅ 完整範例程式碼（Vue 3 + Composition API）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%94%8D-%E8%AA%AA%E6%98%8E%E9%87%8D%E9%BB%9E"><span class="nav-number">1.3.</span> <span class="nav-text">🔍 說明重點</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%85-%E4%B8%8B%E4%B8%80%E6%AD%A5%E5%8F%AF%E9%81%B8%EF%BC%9A"><span class="nav-number">1.4.</span> <span class="nav-text">✅ 下一步可選：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%9C%85-%E3%80%90%E7%95%AB%E9%9D%A2%E6%B2%92%E7%9B%B4%E5%90%91%E6%8E%92%E5%88%97%E3%80%91%E5%B8%B8%E8%A6%8B-3-%E5%80%8B%E5%8F%AF%E8%83%BD%E5%8E%9F%E5%9B%A0%EF%BC%9A"><span class="nav-number">1.4.1.</span> <span class="nav-text">✅ 【畫面沒直向排列】常見 3 個可能原因：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%9C%85-1-%E6%9C%80%E5%A4%96%E5%B1%A4%E5%AE%B9%E5%99%A8%E6%98%AF%E5%90%A6%E6%9C%89-display-flex-flex-direction-column"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">✅ 1. 最外層容器是否有 display: flex; flex-direction: column;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%9C%85-2-%E7%A2%BA%E5%AE%9A-weather-container-%E6%98%AF%E5%90%A6%E6%9C%89%E5%A5%97%E4%B8%8A-class%EF%BC%9F"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">✅ 2. 確定 .weather-container 是否有套上 class？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%9C%85-3-%E4%B8%8D%E6%98%AF-border-box-%E5%95%8F%E9%A1%8C%EF%BC%88%E5%AE%83%E6%98%AF%E5%85%A7%E5%AE%B9%E5%8D%80%E5%9F%9F%E7%9A%84%E8%A8%88%E7%AE%97%E6%96%B9%E5%BC%8F%EF%BC%89"><span class="nav-number">1.4.1.3.</span> <span class="nav-text">✅ 3. 不是 border-box 問題（它是內容區域的計算方式）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%A7-%E5%BF%AB%E9%80%9F%E6%AA%A2%E6%9F%A5%E6%AD%A5%E9%A9%9F%EF%BC%9A"><span class="nav-number">1.4.2.</span> <span class="nav-text">🔧 快速檢查步驟：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bonus%EF%BC%9A%E6%83%B3%E5%BC%B7%E5%88%B6%E7%9B%B4%E5%90%91%E6%8E%92%E5%88%97"><span class="nav-number">1.4.3.</span> <span class="nav-text">bonus：想強制直向排列</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">408</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2025/09/06/OneDayOneNote/2025-03-06/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2025-03-06-天氣查詢應用程式」的第 2 步：畫面顯示三個城市的主要天氣資訊 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2025-03-06-天氣查詢應用程式」的第 2 步：畫面顯示三個城市的主要天氣資訊">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2025-03-06-天氣查詢應用程式」的第 2 步：畫面顯示三個城市的主要天氣資訊
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2025-09-06 23:00:34 / 修改時間：23:02:30" itemprop="dateCreated datePublished" datetime="2025-09-06T23:00:34+08:00">2025-09-06</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2025-03-06-天氣查詢應用程式」的第 2 步：畫面顯示三個城市的主要天氣資訊</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="2025-03-06-天氣查詢應用程式」的第-2-步：畫面顯示三個城市的主要天氣資訊"><a href="#2025-03-06-天氣查詢應用程式」的第-2-步：畫面顯示三個城市的主要天氣資訊" class="headerlink" title="2025-03-06-天氣查詢應用程式」的第 2 步：畫面顯示三個城市的主要天氣資訊"></a>2025-03-06-天氣查詢應用程式」的第 2 步：畫面顯示三個城市的主要天氣資訊</h1><p><strong>第 2 步：畫面顯示三個城市的主要天氣資訊</strong>。</p>
+<hr>
+<h2 id="✅-規格說明（第-2-步）"><a href="#✅-規格說明（第-2-步）" class="headerlink" title="✅ 規格說明（第 2 步）"></a>✅ 規格說明（第 2 步）</h2><p>畫面要顯示三筆資料，每筆為一個城市，並顯示以下資訊：</p>
+<ul>
+<li>城市名稱 <code>locationName</code></li>
+<li>天氣現象（<code>Wx</code>）→ 顯示今天天氣</li>
+<li>最高溫度（<code>MaxT</code>）</li>
+<li>最低溫度（<code>MinT</code>）</li>
+<li>降雨機率（<code>PoP</code>）</li>
+</ul>
+<p>每個城市一塊區塊，<strong>直向排列三排</strong>。</p>
+<hr>
+<h2 id="✅-完整範例程式碼（Vue-3-Composition-API）"><a href="#✅-完整範例程式碼（Vue-3-Composition-API）" class="headerlink" title="✅ 完整範例程式碼（Vue 3 + Composition API）"></a>✅ 完整範例程式碼（Vue 3 + Composition API）</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;h2&gt;🌦️ 三個城市的天氣概況&lt;/h2&gt;</span><br><span class="line"></span><br><span class="line">  &lt;div v-for=&quot;city in weatherData&quot; :key=&quot;city.locationName&quot; class=&quot;city-card&quot;&gt;</span><br><span class="line">    &lt;h3&gt;&#123;&#123; city.locationName &#125;&#125;&lt;/h3&gt;</span><br><span class="line">    &lt;p&gt;🌤️ 天氣現象：&#123;&#123; getWeatherElement(city, &#x27;Wx&#x27;) &#125;&#125;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;🌡️ 最高溫度：&#123;&#123; getWeatherElement(city, &#x27;MaxT&#x27;) &#125;&#125;°C&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;🥶 最低溫度：&#123;&#123; getWeatherElement(city, &#x27;MinT&#x27;) &#125;&#125;°C&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;☔ 降雨機率：&#123;&#123; getWeatherElement(city, &#x27;PoP&#x27;) &#125;&#125;%&lt;/p&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">import &#123; ref, onMounted &#125; from &#x27;vue&#x27;</span><br><span class="line"></span><br><span class="line">const apiKey = &#x27;你的 API 金鑰&#x27;</span><br><span class="line">const url = `https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=$&#123;apiKey&#125;`</span><br><span class="line"></span><br><span class="line">const allCities = [&#x27;臺北市&#x27;, &#x27;臺中市&#x27;, &#x27;高雄市&#x27;]</span><br><span class="line">const weatherData = ref([])</span><br><span class="line"></span><br><span class="line">onMounted(async () =&gt; &#123;</span><br><span class="line">  try &#123;</span><br><span class="line">    const response = await fetch(url)</span><br><span class="line">    const data = await response.json()</span><br><span class="line"></span><br><span class="line">    const locations = data.records.location</span><br><span class="line"></span><br><span class="line">    weatherData.value = locations.filter(loc =&gt;</span><br><span class="line">      allCities.includes(loc.locationName)</span><br><span class="line">    )</span><br><span class="line">  &#125; catch (error) &#123;</span><br><span class="line">    console.error(&#x27;❌ 發生錯誤:&#x27;, error)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">// 取得指定欄位的第一筆預報值</span><br><span class="line">function getWeatherElement(city, elementName) &#123;</span><br><span class="line">  const element = city.weatherElement.find(el =&gt; el.elementName === elementName)</span><br><span class="line">  return element?.time[0]?.parameter?.parameterName || &#x27;N/A&#x27;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">.city-card &#123;</span><br><span class="line">  border: 1px solid #ccc;</span><br><span class="line">  padding: 1rem;</span><br><span class="line">  margin: 1rem 0;</span><br><span class="line">  border-radius: 0.5rem;</span><br><span class="line">  background: #f0f8ff;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="🔍-說明重點"><a href="#🔍-說明重點" class="headerlink" title="🔍 說明重點"></a>🔍 說明重點</h2><table>
+<thead>
+<tr>
+<th>欄位</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Wx</code></td>
+<td>天氣現象，如「晴時多雲」</td>
+</tr>
+<tr>
+<td><code>PoP</code></td>
+<td>降雨機率（百分比）</td>
+</tr>
+<tr>
+<td><code>MaxT</code></td>
+<td>最高溫度（攝氏）</td>
+</tr>
+<tr>
+<td><code>MinT</code></td>
+<td>最低溫度（攝氏）</td>
+</tr>
+<tr>
+<td><code>.time[0]</code></td>
+<td>代表第一個時間區段（通常是今晚～明晨）</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="✅-下一步可選："><a href="#✅-下一步可選：" class="headerlink" title="✅ 下一步可選："></a>✅ 下一步可選：</h2><ul>
+<li>💡 加上 <code>&lt;select&gt;</code> 選擇城市、只顯示單一城市資料</li>
+<li>💡 做出 RWD + 背景色變化</li>
+<li>💡 根據天氣現象改變 icon 或背景</li>
+</ul>
+<hr>
+<p>你可以先跑跑看這個範例，再來決定是否繼續加入 RWD 或互動選單功能，我可以帶你一步步來 💪</p>
+<p>好問題！你問的：</p>
+<blockquote>
+<p>畫面並沒有直向排列，是不是因為沒有指定 <code>border-box</code>？</p>
+</blockquote>
+<p>其實不是關鍵問題在 <code>border-box</code>，而是：</p>
+<hr>
+<h3 id="✅-【畫面沒直向排列】常見-3-個可能原因："><a href="#✅-【畫面沒直向排列】常見-3-個可能原因：" class="headerlink" title="✅ 【畫面沒直向排列】常見 3 個可能原因："></a>✅ 【畫面沒直向排列】常見 3 個可能原因：</h3><hr>
+<h4 id="✅-1-最外層容器是否有-display-flex-flex-direction-column"><a href="#✅-1-最外層容器是否有-display-flex-flex-direction-column" class="headerlink" title="✅ 1. 最外層容器是否有 display: flex; flex-direction: column;"></a>✅ 1. <strong>最外層容器是否有 <code>display: flex; flex-direction: column;</code></strong></h4><p>在 <code>&lt;style scoped&gt;</code> 裡應該這樣寫：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.weather-container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">flex-direction</span>: column; <span class="comment">/* ⬅️ 確保是垂直排列 */</span></span><br><span class="line">  <span class="attribute">gap</span>: <span class="number">1.5rem</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="✅-2-確定-weather-container-是否有套上-class？"><a href="#✅-2-確定-weather-container-是否有套上-class？" class="headerlink" title="✅ 2. 確定 .weather-container 是否有套上 class？"></a>✅ 2. <strong>確定 <code>.weather-container</code> 是否有套上 class？</strong></h4><p>你的 <code>&lt;template&gt;</code> 裡應該是：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;weather-container&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">&quot;city in weatherData&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;city.locationName&quot;</span> <span class="attr">class</span>=<span class="string">&quot;city-card&quot;</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>✅ <strong>別漏掉 <code>class=&quot;weather-container&quot;</code>！</strong><br>這是讓容器用 flex 垂直排列的關鍵。</p>
+<hr>
+<h4 id="✅-3-不是-border-box-問題（它是內容區域的計算方式）"><a href="#✅-3-不是-border-box-問題（它是內容區域的計算方式）" class="headerlink" title="✅ 3. 不是 border-box 問題（它是內容區域的計算方式）"></a>✅ 3. <strong>不是 <code>border-box</code> 問題（它是內容區域的計算方式）</strong></h4><ul>
+<li><code>box-sizing: border-box;</code> 影響的是：padding + border 是否會被算進寬度</li>
+<li>跟「排列方向」沒關係，和 <code>flex-direction</code> 不同概念</li>
+</ul>
+<hr>
+<h3 id="🔧-快速檢查步驟："><a href="#🔧-快速檢查步驟：" class="headerlink" title="🔧 快速檢查步驟："></a>🔧 快速檢查步驟：</h3><ol>
+<li>檢查 <code>weather-container</code> 是否真的有 <code>flex-direction: column</code></li>
+<li>確保有套到 class</li>
+<li>確保畫面寬度夠寬（手機版可能看不出差別）</li>
+<li>開 DevTools → 點 <code>.weather-container</code> → 看 computed style 有沒有 <code>display: flex</code></li>
+</ol>
+<hr>
+<h3 id="bonus：想強制直向排列"><a href="#bonus：想強制直向排列" class="headerlink" title="bonus：想強制直向排列"></a>bonus：想強制直向排列</h3><p>你可以加這行來幫助確認效果：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.weather-container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">flex-direction</span>: column;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">2px</span> dashed red; <span class="comment">/* 測試用框線 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/Javascript/" rel="tag"># Javascript</a>
+              <a href="/apple.lily/tags/Vue/" rel="tag"># Vue</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/09/06/OneDayOneNote/2025-03-05/" rel="prev" title="2025-03-05-天氣查詢應用程式」的第 1 步：抓取氣象局 API 中指定的三個城市的資料">
+                  <i class="fa fa-angle-left"></i> 2025-03-05-天氣查詢應用程式」的第 1 步：抓取氣象局 API 中指定的三個城市的資料
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/09/06/OneDayOneNote/2025-03-07/" rel="next" title="20250307-天氣查詢應用程式」的第 3 步：自由選擇三個城市">
+                  20250307-天氣查詢應用程式」的第 3 步：自由選擇三個城市 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

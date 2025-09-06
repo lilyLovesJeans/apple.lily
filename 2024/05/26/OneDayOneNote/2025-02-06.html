@@ -1,0 +1,58 @@
+<hr>
+<h2 id="title-2025-02-06-JavaScript-系列八：第5課-──-體重追蹤應用程式-tailwind-config-js位置date-2025-09-06-21-05-57tags-Javascript-Vue-description-2025-02-06-JavaScript-系列八：第5課-──-體重追蹤應用程式-tailwind-config-js位置"><a href="#title-2025-02-06-JavaScript-系列八：第5課-──-體重追蹤應用程式-tailwind-config-js位置date-2025-09-06-21-05-57tags-Javascript-Vue-description-2025-02-06-JavaScript-系列八：第5課-──-體重追蹤應用程式-tailwind-config-js位置" class="headerlink" title="title: 2025-02-06- JavaScript 系列八：第5課 ── 體重追蹤應用程式-tailwind.config.js位置date: 2025-09-06 21:05:57tags:  [Javascript,Vue]description:   2025-02-06- JavaScript 系列八：第5課 ── 體重追蹤應用程式-tailwind.config.js位置"></a>title: 2025-02-06- JavaScript 系列八：第5課 ── 體重追蹤應用程式-tailwind.config.js位置<br>date: 2025-09-06 21:05:57<br>tags:  [Javascript,Vue]<br>description:   2025-02-06- JavaScript 系列八：第5課 ── 體重追蹤應用程式-tailwind.config.js位置</h2><h1 id="2025-02-06-JavaScript-系列八：第5課-──-體重追蹤應用程式-tailwind-config-js位置"><a href="#2025-02-06-JavaScript-系列八：第5課-──-體重追蹤應用程式-tailwind-config-js位置" class="headerlink" title="2025-02-06- JavaScript 系列八：第5課 ── 體重追蹤應用程式-tailwind.config.js位置"></a>2025-02-06- JavaScript 系列八：第5課 ── 體重追蹤應用程式-tailwind.config.js位置</h1><hr>
+<h3 id="✅-你的專案結構說明："><a href="#✅-你的專案結構說明：" class="headerlink" title="✅ 你的專案結構說明："></a>✅ 你的專案結構說明：</h3><pre><code>AppleLilyShop/
+├── index.html               ← 入口 HTML，Vite 預設找這個
+├── vite.config.js           ← Vite 設定檔
+├── tailwind.config.js ⬅️ 建議放這裡（與 vite.config.js 同層）
+├── package.json             ← npm 套件清單
+├── node_modules/            ← 套件安裝後放這裡
+├── public/                  ← 靜態資源（圖片、favicon 等）
+├── src/                     ← 程式碼主目錄
+│   ├── main.js              ← 入口 JS
+│   ├── App.vue              ← 根元件
+│   ├── router/              ← 路由設定（如果有使用）
+│   └── lily_learning/       ← 你放練習 app 的地方 👍
+│       ├── javascript_8/    ← 可再細分
+│       └── components/      ← Vue 元件（你做的小工具）
+│           ├── weightTrackerApp.vue ← 體重追蹤器
+│           ├── ...
+</code></pre>
+<hr>
+<h3 id="✅-tailwind-config-js-擺哪裡？"><a href="#✅-tailwind-config-js-擺哪裡？" class="headerlink" title="✅ tailwind.config.js 擺哪裡？"></a>✅ <code>tailwind.config.js</code> 擺哪裡？</h3><p>👉 <strong>放在 <code>vite.config.js</code> 同一層</strong>（即專案根目錄），你這樣寫就對：</p>
+<pre><code>AppleLilyShop/
+├── tailwind.config.js ✅
+├── vite.config.js ✅
+├── index.html
+...
+</code></pre>
+<hr>
+<h3 id="✅-加入主題顏色步驟（簡版）："><a href="#✅-加入主題顏色步驟（簡版）：" class="headerlink" title="✅ 加入主題顏色步驟（簡版）："></a>✅ 加入主題顏色步驟（簡版）：</h3><ol>
+<li><p>**建立&#x2F;修改 <code>tailwind.config.js</code>**：</p>
+<pre><code class="js">// tailwind.config.js
+export default {
+  theme: {
+    extend: {
+      colors: {
+        lily: {
+          light: &#39;#ead7da&#39;,
+          dark: &#39;#d4a2a7&#39;,
+          chart: &#39;#f5e5e7&#39;,
+        },
+      },
+    },
+  },
+}
+</code></pre>
+</li>
+<li><p><strong>在程式中使用主題顏色 class</strong>：</p>
+<pre><code class="html">&lt;div class=&quot;bg-lily-light&quot;&gt;
+  &lt;button class=&quot;bg-lily-dark text-white&quot;&gt;新增&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+</li>
+<li><p><strong>重新啟動 Vite 開發伺服器</strong>（Tailwind 變更要重啟）：</p>
+<pre><code class="bash">npm run dev
+</code></pre>
+</li>
+</ol>
+<hr>

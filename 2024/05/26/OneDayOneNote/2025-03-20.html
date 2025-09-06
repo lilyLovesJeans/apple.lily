@@ -1,0 +1,80 @@
+<hr>
+<h2 id="title-2025-03-20-什麼是-nvmdate-2025-09-06-23-20-50tags-Javascript-Vue-description-2025-03-20-什麼是-nvm"><a href="#title-2025-03-20-什麼是-nvmdate-2025-09-06-23-20-50tags-Javascript-Vue-description-2025-03-20-什麼是-nvm" class="headerlink" title="title: 2025-03-20-什麼是 nvmdate: 2025-09-06 23:20:50tags:  [Javascript,Vue]description:   2025-03-20-什麼是 nvm"></a>title: 2025-03-20-什麼是 nvm<br>date: 2025-09-06 23:20:50<br>tags:  [Javascript,Vue]<br>description:   2025-03-20-什麼是 nvm</h2><h1 id="2025-03-20-什麼是-nvm"><a href="#2025-03-20-什麼是-nvm" class="headerlink" title="2025-03-20-什麼是 nvm"></a>2025-03-20-什麼是 nvm</h1><p>你目前的系統找不到 <code>nvm</code> 指令，表示你還沒安裝 Node Version Manager（nvm）。</p>
+<hr>
+<h2 id="✅-什麼是-nvm？"><a href="#✅-什麼是-nvm？" class="headerlink" title="✅ 什麼是 nvm？"></a>✅ 什麼是 nvm？</h2><ul>
+<li>nvm 是一個非常方便的工具，可以讓你在同一台電腦上輕鬆切換和管理多個 Node.js 版本。</li>
+<li>用它可以快速升級或切換到符合 Vite 要求的 Node 版本，避免版本衝突。</li>
+</ul>
+<hr>
+<h2 id="✅-macOS-安裝-nvm-步驟"><a href="#✅-macOS-安裝-nvm-步驟" class="headerlink" title="✅ macOS 安裝 nvm 步驟"></a>✅ macOS 安裝 nvm 步驟</h2><ol>
+<li>打開終端機（Terminal），執行安裝指令：</li>
+</ol>
+<pre><code class="bash">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
+</code></pre>
+<ol start="2">
+<li>安裝完成後，重新開啟終端機，或執行：</li>
+</ol>
+<pre><code class="bash">export NVM_DIR=&quot;$([ -z &quot;${XDG_CONFIG_HOME-}&quot; ] &amp;&amp; printf %s &quot;${HOME}/.nvm&quot; || printf %s &quot;${XDG_CONFIG_HOME}/nvm&quot;)&quot;
+[ -s &quot;$NVM_DIR/nvm.sh&quot; ] &amp;&amp; \. &quot;$NVM_DIR/nvm.sh&quot;
+</code></pre>
+<ol start="3">
+<li>確認安裝成功：</li>
+</ol>
+<pre><code class="bash">nvm --version
+</code></pre>
+<p>應該會看到版本號，例如 <code>0.39.5</code>。</p>
+<hr>
+<h2 id="✅-使用-nvm-安裝符合需求的-Node-js-版本"><a href="#✅-使用-nvm-安裝符合需求的-Node-js-版本" class="headerlink" title="✅ 使用 nvm 安裝符合需求的 Node.js 版本"></a>✅ 使用 nvm 安裝符合需求的 Node.js 版本</h2><pre><code class="bash">nvm install 20.19.0
+nvm use 20.19.0
+</code></pre>
+<p>切換到指定版本後，再確認：</p>
+<pre><code class="bash">node -v
+</code></pre>
+<hr>
+<h2 id="✅-之後就能正常執行你的-Vite-專案"><a href="#✅-之後就能正常執行你的-Vite-專案" class="headerlink" title="✅ 之後就能正常執行你的 Vite 專案"></a>✅ 之後就能正常執行你的 Vite 專案</h2><hr>
+<p>如果你想，我可以幫你一步一步寫出指令和操作說明！<br>或是幫你解釋如何在 macOS zsh 設定檔中加入 nvm 初始化指令。</p>
+<p>你問得非常好！來，我一步一步說明：</p>
+<hr>
+<h2 id="✅-source-zshrc-是什麼意思？"><a href="#✅-source-zshrc-是什麼意思？" class="headerlink" title="✅ source ~/.zshrc 是什麼意思？"></a>✅ <code>source ~/.zshrc</code> 是什麼意思？</h2><p>這個指令的意思是：</p>
+<blockquote>
+<p><strong>重新載入你的 shell 設定檔 <code>~/.zshrc</code>，讓剛剛安裝或修改的設定馬上生效。</strong></p>
+</blockquote>
+<hr>
+<h3 id="📁-zshrc-是什麼？"><a href="#📁-zshrc-是什麼？" class="headerlink" title="📁 ~/.zshrc 是什麼？"></a>📁 <code>~/.zshrc</code> 是什麼？</h3><ul>
+<li><p>是一個隱藏檔案，存在你使用者目錄下（<code>~</code> 就是 <code>/Users/你的名字/</code>）</p>
+</li>
+<li><p>是 macOS 預設 shell（Zsh）的<strong>啟動設定檔</strong></p>
+</li>
+<li><p>裡面會放像：</p>
+<ul>
+<li>安裝 <code>nvm</code> 需要的設定</li>
+<li>export 環境變數</li>
+<li>alias 指令別名設定</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="❓-為什麼沒有任何訊息？"><a href="#❓-為什麼沒有任何訊息？" class="headerlink" title="❓ 為什麼沒有任何訊息？"></a>❓ 為什麼沒有任何訊息？</h2><p>這是<strong>正常的</strong>！</p>
+<ul>
+<li><code>source ~/.zshrc</code> 只是重新載入設定</li>
+<li>沒有錯誤，它就不會輸出任何東西</li>
+</ul>
+<hr>
+<h2 id="✅-要如何確認-source-zshrc-有成功？"><a href="#✅-要如何確認-source-zshrc-有成功？" class="headerlink" title="✅ 要如何確認 source ~/.zshrc 有成功？"></a>✅ 要如何確認 <code>source ~/.zshrc</code> 有成功？</h2><p>你可以打這個指令來確認：</p>
+<pre><code class="bash">command -v nvm
+</code></pre>
+<p>如果有安裝成功並載入 <code>.zshrc</code>，會顯示：</p>
+<pre><code class="bash">nvm
+</code></pre>
+<hr>
+<h3 id="👇-如果沒有顯示？"><a href="#👇-如果沒有顯示？" class="headerlink" title="👇 如果沒有顯示？"></a>👇 如果沒有顯示？</h3><p>可能是 <code>.zshrc</code> 裡面還沒正確加上 <code>nvm</code> 的初始化程式碼。你可以打開 <code>.zshrc</code> 檔確認是否有：</p>
+<pre><code class="bash">export NVM_DIR=&quot;$HOME/.nvm&quot;
+[ -s &quot;$NVM_DIR/nvm.sh&quot; ] &amp;&amp; \. &quot;$NVM_DIR/nvm.sh&quot;
+</code></pre>
+<p>如果有，再打一次：</p>
+<pre><code class="bash">source ~/.zshrc
+</code></pre>
+<p>然後再測試：</p>
+<pre><code class="bash">nvm --version
+</code></pre>
+<hr>

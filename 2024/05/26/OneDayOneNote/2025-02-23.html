@@ -1,0 +1,69 @@
+<hr>
+<h2 id="title-2025-02-23-自己驗證-Promise-還沒處理完畢date-2025-09-06-22-28-06tags-Javascript-Vue-description-2025-02-23-自己驗證-Promise-還沒處理完畢"><a href="#title-2025-02-23-自己驗證-Promise-還沒處理完畢date-2025-09-06-22-28-06tags-Javascript-Vue-description-2025-02-23-自己驗證-Promise-還沒處理完畢" class="headerlink" title="title: 2025-02-23-自己驗證 Promise 還沒處理完畢date: 2025-09-06 22:28:06tags:  [Javascript,Vue]description:   2025-02-23-自己驗證 Promise 還沒處理完畢"></a>title: 2025-02-23-自己驗證 Promise 還沒處理完畢<br>date: 2025-09-06 22:28:06<br>tags:  [Javascript,Vue]<br>description:   2025-02-23-自己驗證 Promise 還沒處理完畢</h2><h1 id="2025-02-23-自己驗證-Promise-還沒處理完畢"><a href="#2025-02-23-自己驗證-Promise-還沒處理完畢" class="headerlink" title="2025-02-23-自己驗證 Promise 還沒處理完畢"></a>2025-02-23-自己驗證 Promise 還沒處理完畢</h1><p>「自己驗證 Promise 還沒處理完畢」而<strong>不依賴 Chrome DevTools 點開來看</strong>，可以用下列幾種方式：</p>
+<hr>
+<h2 id="✅-方法-1：用-setTimeout-觀察-Promise-是否完成"><a href="#✅-方法-1：用-setTimeout-觀察-Promise-是否完成" class="headerlink" title="✅ 方法 1：用 setTimeout 觀察 Promise 是否完成"></a>✅ 方法 1：用 <code>setTimeout</code> 觀察 Promise 是否完成</h2><pre><code class="js">const promise = response.json()
+console.log(&#39;馬上印出 promise：&#39;, promise)
+
+setTimeout(() =&gt; {
+  console.log(&#39;一秒後再看 promise：&#39;, promise)
+}, 1000)
+</code></pre>
+<h3 id="結果說明："><a href="#結果說明：" class="headerlink" title="結果說明："></a>結果說明：</h3><ul>
+<li><p>第一行會印出 <code>Promise {&lt;pending&gt;}</code>。</p>
+</li>
+<li><p>過一秒後，第二個 <code>console.log</code> 會印出：</p>
+<ul>
+<li><code>Promise {&lt;fulfilled&gt;: {…}}</code>（已完成）</li>
+<li>或 <code>Promise {&lt;rejected&gt;: error}</code>（錯誤）</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="✅-方法-2：用-then-來驗證"><a href="#✅-方法-2：用-then-來驗證" class="headerlink" title="✅ 方法 2：用 .then() 來驗證"></a>✅ 方法 2：用 <code>.then()</code> 來驗證</h2><p>這是最直接、最可靠的做法：</p>
+<pre><code class="js">const promise = response.json()
+console.log(&#39;馬上印出 promise：&#39;, promise)
+
+promise.then(data =&gt; {
+  console.log(&#39;✅ Promise 完成，取得資料：&#39;, data)
+})
+</code></pre>
+<h3 id="結果："><a href="#結果：" class="headerlink" title="結果："></a>結果：</h3><ul>
+<li><code>console.log</code> 會先印出 Promise。</li>
+<li>然後當資料真的回來時（非同步完成），才會印出 <code>data</code>。</li>
+</ul>
+<hr>
+<h2 id="✅-方法-3：用-Promise-prototype-finally-確認是否完成"><a href="#✅-方法-3：用-Promise-prototype-finally-確認是否完成" class="headerlink" title="✅ 方法 3：用 Promise.prototype.finally() 確認是否完成"></a>✅ 方法 3：用 <code>Promise.prototype.finally()</code> 確認是否完成</h2><pre><code class="js">const promise = response.json()
+
+promise
+  .then(data =&gt; {
+    console.log(&#39;✔️ 取得資料：&#39;, data)
+  })
+  .catch(error =&gt; {
+    console.error(&#39;❌ 發生錯誤：&#39;, error)
+  })
+  .finally(() =&gt; {
+    console.log(&#39;📦 Promise 處理完畢（不管成功或失敗）&#39;)
+  })
+</code></pre>
+<hr>
+<h2 id="總結表格："><a href="#總結表格：" class="headerlink" title="總結表格："></a>總結表格：</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>驗證方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>setTimeout</code></td>
+<td>比較「剛建立時」和「一段時間後」的 Promise 狀態</td>
+</tr>
+<tr>
+<td><code>.then()</code></td>
+<td>只有 Promise 完成時才會執行</td>
+</tr>
+<tr>
+<td><code>.finally()</code></td>
+<td>不管成功或錯誤都會執行，用來確認「處理完了」</td>
+</tr>
+</tbody></table>
+<hr>

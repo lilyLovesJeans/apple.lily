@@ -1,0 +1,62 @@
+<hr>
+<h2 id="title-2025-04-07-Vue-裡，-綁定可以同時支援-物件語法-和-陣列語法date-2025-09-06-23-53-41tags-Javascript-Vue-description-2025-04-07-Vue-裡，-綁定可以同時支援-物件語法-和-陣列語法"><a href="#title-2025-04-07-Vue-裡，-綁定可以同時支援-物件語法-和-陣列語法date-2025-09-06-23-53-41tags-Javascript-Vue-description-2025-04-07-Vue-裡，-綁定可以同時支援-物件語法-和-陣列語法" class="headerlink" title="title: 2025-04-07-Vue 裡， 綁定可以同時支援 物件語法 和 陣列語法date: 2025-09-06 23:53:41tags:  [Javascript,Vue]description:    2025-04-07-Vue 裡， 綁定可以同時支援 物件語法 和 陣列語法"></a>title: 2025-04-07-Vue 裡， 綁定可以同時支援 <strong>物件語法</strong> 和 <strong>陣列語法</strong><br>date: 2025-09-06 23:53:41<br>tags:  [Javascript,Vue]<br>description:    2025-04-07-Vue 裡， 綁定可以同時支援 <strong>物件語法</strong> 和 <strong>陣列語法</strong></h2><h1 id="2025-04-07-Vue-裡，-綁定可以同時支援-物件語法-和-陣列語法"><a href="#2025-04-07-Vue-裡，-綁定可以同時支援-物件語法-和-陣列語法" class="headerlink" title="2025-04-07-Vue 裡， 綁定可以同時支援 物件語法 和 陣列語法"></a>2025-04-07-Vue 裡， 綁定可以同時支援 <strong>物件語法</strong> 和 <strong>陣列語法</strong></h1><p>很好 👌 你已經抓到重點了！<br>在 Vue 裡，<code>:class</code> 綁定可以同時支援 <strong>物件語法</strong> 和 <strong>陣列語法</strong>。</p>
+<p>你現在的寫法是 <strong>物件語法</strong>：</p>
+<pre><code class="vue">&lt;div
+  class=&quot;my-banner&quot;
+  :class=&quot;{ rounded: rounded }&quot;
+&gt;
+</code></pre>
+<p>這表示：</p>
+<ul>
+<li>一定會有 <code>my-banner</code> class</li>
+<li>如果 <code>rounded = true</code> → 會再加上 <code>rounded</code> class</li>
+</ul>
+<hr>
+<h3 id="1️⃣-加入-type-的方式（陣列語法）"><a href="#1️⃣-加入-type-的方式（陣列語法）" class="headerlink" title="1️⃣ 加入 type 的方式（陣列語法）"></a>1️⃣ 加入 <code>type</code> 的方式（陣列語法）</h3><p>最簡單的方式是把 <code>type</code> 當成一個 class，寫成陣列：</p>
+<pre><code class="vue">&lt;div
+  class=&quot;my-banner&quot;
+  :class=&quot;[type, { rounded: rounded }]&quot;
+&gt;
+</code></pre>
+<p>這樣結果會是：</p>
+<ul>
+<li><code>type=&quot;error&quot; rounded=false</code> → <code>class=&quot;my-banner error&quot;</code></li>
+<li><code>type=&quot;success&quot; rounded=true</code> → <code>class=&quot;my-banner success rounded&quot;</code></li>
+</ul>
+<hr>
+<h3 id="2️⃣-保險一點：加上前綴"><a href="#2️⃣-保險一點：加上前綴" class="headerlink" title="2️⃣ 保險一點：加上前綴"></a>2️⃣ 保險一點：加上前綴</h3><p>有時候我們會想避免跟其他 class 撞名，可以這樣寫：</p>
+<pre><code class="vue">&lt;div
+  class=&quot;my-banner&quot;
+  :class=&quot;[`type-${type}`, { rounded }]&quot;
+&gt;
+</code></pre>
+<p>結果會是：</p>
+<ul>
+<li><code>type=&quot;error&quot;</code> → <code>class=&quot;my-banner type-error&quot;</code></li>
+<li><code>type=&quot;info&quot; rounded=true</code> → <code>class=&quot;my-banner type-info rounded&quot;</code></li>
+</ul>
+<hr>
+<h3 id="3️⃣-結合驗證（防呆）"><a href="#3️⃣-結合驗證（防呆）" class="headerlink" title="3️⃣ 結合驗證（防呆）"></a>3️⃣ 結合驗證（防呆）</h3><p>在 <code>props</code> 裡定義 type：</p>
+<pre><code class="vue">&lt;script setup&gt;
+defineProps({
+  type: {
+    type: String,
+    default: &#39;info&#39;,
+    validator: (val) =&gt; [&#39;error&#39;,&#39;warning&#39;,&#39;success&#39;,&#39;info&#39;].includes(val)
+  },
+  rounded: {
+    type: Boolean,
+    default: false
+  }
+})
+&lt;/script&gt;
+</code></pre>
+<p>這樣 <code>MyBanner</code> 會更健壯，不會被亂傳值。</p>
+<hr>
+<p>👉 總結：<br>你只要改成這樣，就能同時支援 <code>type</code> 和 <code>rounded</code>：</p>
+<pre><code class="vue">&lt;div
+  class=&quot;my-banner&quot;
+  :class=&quot;[type, { rounded }]&quot;
+&gt;
+</code></pre>
+<hr>

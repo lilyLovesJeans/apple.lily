@@ -1,0 +1,49 @@
+<hr>
+<h2 id="title-2025-02-14-javascript一般字串與樣板字串date-2025-09-06-22-10-08tags-Javascript-Vue-description-2025-02-14-javascript一般字串與樣板字串"><a href="#title-2025-02-14-javascript一般字串與樣板字串date-2025-09-06-22-10-08tags-Javascript-Vue-description-2025-02-14-javascript一般字串與樣板字串" class="headerlink" title="title: 2025-02-14- javascript一般字串與樣板字串date: 2025-09-06 22:10:08tags:  [Javascript,Vue]description:  2025-02-14- javascript一般字串與樣板字串"></a>title: 2025-02-14- javascript一般字串與樣板字串<br>date: 2025-09-06 22:10:08<br>tags:  [Javascript,Vue]<br>description:  2025-02-14- javascript一般字串與樣板字串</h2><h1 id="2025-02-14-javascript一般字串與樣板字串"><a href="#2025-02-14-javascript一般字串與樣板字串" class="headerlink" title="2025-02-14- javascript一般字串與樣板字串"></a>2025-02-14- javascript一般字串與樣板字串</h1><hr>
+<h2 id="🔍-1-單引號（-）或雙引號（-）是-一般字串"><a href="#🔍-1-單引號（-）或雙引號（-）是-一般字串" class="headerlink" title="🔍 1. 單引號（&#39;...&#39;）或雙引號（&quot;...&quot;）是 一般字串"></a>🔍 1. 單引號（<code>&#39;...&#39;</code>）或雙引號（<code>&quot;...&quot;</code>）是 <strong>一般字串</strong></h2><p>像這樣：</p>
+<pre><code class="js">const apiKey = &#39;ABC1234567&#39;;
+</code></pre>
+<p>這是<strong>普通的文字字串</strong>，不能插入變數。</p>
+<hr>
+<h2 id="🔍-2-反引號（-）是-Template-Literal（樣板字串）"><a href="#🔍-2-反引號（-）是-Template-Literal（樣板字串）" class="headerlink" title="🔍 2. 反引號（`...`）是 Template Literal（樣板字串）"></a>🔍 2. 反引號（<code>`...`</code>）是 <strong>Template Literal（樣板字串）</strong></h2><pre><code class="js">const url = `https://api.com?key=${apiKey}`
+</code></pre>
+<p>這是 JavaScript 的「樣板字串」，它有一個強大功能：</p>
+<h3 id="✅-可以用-變數-插入變數或表達式："><a href="#✅-可以用-變數-插入變數或表達式：" class="headerlink" title="✅ 可以用 ${變數} 插入變數或表達式："></a>✅ 可以用 <code>${變數}</code> 插入變數或表達式：</h3><pre><code class="js">const name = &#39;Lily&#39;
+const message = `Hello, ${name}!` // ➜ &quot;Hello, Lily!&quot;
+</code></pre>
+<hr>
+<h3 id="📌-小結對照表"><a href="#📌-小結對照表" class="headerlink" title="📌 小結對照表"></a>📌 小結對照表</h3><table>
+<thead>
+<tr>
+<th>語法</th>
+<th>名稱</th>
+<th>是否可插入變數（<code>${}</code>）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&#39;...&#39;</code></td>
+<td>單引號字串</td>
+<td>❌ 不行</td>
+</tr>
+<tr>
+<td><code>&quot;...&quot;</code></td>
+<td>雙引號字串</td>
+<td>❌ 不行</td>
+</tr>
+<tr>
+<td><code>`...`</code></td>
+<td>樣板字串（Template Literal）</td>
+<td>✅ 可以！</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="✅-實戰對照"><a href="#✅-實戰對照" class="headerlink" title="✅ 實戰對照"></a>✅ 實戰對照</h3><pre><code class="js">const apiKey = &#39;abc123&#39;
+const city = &#39;Taipei&#39;
+
+// 錯誤寫法：這樣 city 不會被插入
+const url1 = &#39;https://api.com/data?city=${city}&#39;
+
+// 正確寫法：用反引號
+const url2 = `https://api.com/data?city=${city}`
+</code></pre>
+<hr>

@@ -1,0 +1,215 @@
+<hr>
+<h2 id="title-2025-03-23-MyBadge-vue-元件的設計原理與概念date-2025-09-06-23-25-50tags-Javascript-Vue-description-2025-03-23-MyBadge-vue-元件的設計原理與概念"><a href="#title-2025-03-23-MyBadge-vue-元件的設計原理與概念date-2025-09-06-23-25-50tags-Javascript-Vue-description-2025-03-23-MyBadge-vue-元件的設計原理與概念" class="headerlink" title="title: 2025-03-23-MyBadge.vue 元件的設計原理與概念date: 2025-09-06 23:25:50tags:  [Javascript,Vue]description: 2025-03-23-MyBadge.vue 元件的設計原理與概念"></a>title: 2025-03-23-MyBadge.vue 元件的設計原理與概念<br>date: 2025-09-06 23:25:50<br>tags:  [Javascript,Vue]<br>description: 2025-03-23-MyBadge.vue 元件的設計原理與概念</h2><h1 id="2025-03-23-MyBadge-vue-元件的設計原理與概念"><a href="#2025-03-23-MyBadge-vue-元件的設計原理與概念" class="headerlink" title="2025-03-23-MyBadge.vue 元件的設計原理與概念"></a>2025-03-23-MyBadge.vue 元件的設計原理與概念</h1><p>一步步解釋這個 <code>MyBadge.vue</code> 元件的設計原理與概念**，幫你搞懂為什麼這裡用了 <code>:style</code>、<code>:class</code>，以及這整體的元件架構是怎麼思考的。</p>
+<hr>
+<h2 id="🧠-設計目的：讓-Badge-能夠「高度自訂」"><a href="#🧠-設計目的：讓-Badge-能夠「高度自訂」" class="headerlink" title="🧠 設計目的：讓 Badge 能夠「高度自訂」"></a>🧠 設計目的：讓 Badge 能夠「高度自訂」</h2><p>這個元件的目標是：</p>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>使用者能控制什麼？</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>背景顏色</td>
+<td>用 <code>color</code> props 傳入</td>
+</tr>
+<tr>
+<td>文字顏色</td>
+<td>用 <code>textColor</code> props 傳入</td>
+</tr>
+<tr>
+<td>顯示文字</td>
+<td>用 <code>label</code> props 傳入</td>
+</tr>
+<tr>
+<td>圓角外觀</td>
+<td>用 <code>rounded</code> 布林值 props 控制</td>
+</tr>
+</tbody></table>
+<p>我們希望使用者用法像這樣 👇：</p>
+<pre><code class="html">&lt;MyBadge label=&quot;Success&quot; color=&quot;green&quot; text-color=&quot;white&quot; :rounded=&quot;true&quot; /&gt;
+</code></pre>
+<p>所以元件內部需要根據這些 props 去調整樣式與內容。</p>
+<hr>
+<h2 id="🔍-為什麼使用-style？"><a href="#🔍-為什麼使用-style？" class="headerlink" title="🔍 為什麼使用 :style？"></a>🔍 為什麼使用 <code>:style</code>？</h2><p>這是因為「背景顏色與文字顏色」是變化非常多的值（可能是任意色碼），<strong>無法提前寫死在 CSS class 中</strong>。</p>
+<h3 id="✅-用-style-是最靈活的方法："><a href="#✅-用-style-是最靈活的方法：" class="headerlink" title="✅ 用 :style 是最靈活的方法："></a>✅ 用 <code>:style</code> 是最靈活的方法：</h3><pre><code class="vue">:style=&quot;badgeStyle&quot;
+</code></pre>
+<pre><code class="js">const badgeStyle = computed(() =&gt; ({
+  backgroundColor: props.color,
+  color: props.textColor,
+}))
+</code></pre>
+<p>這會動態幫你加上類似這樣的行內樣式：</p>
+<pre><code class="html">&lt;span style=&quot;background-color: green; color: white&quot;&gt;Success&lt;/span&gt;
+</code></pre>
+<p>🔁 重點是：「<strong>color 跟 textColor 是動態變化的變數</strong>」，不適合寫死在 CSS。</p>
+<hr>
+<h2 id="🔍-為什麼使用-class？"><a href="#🔍-為什麼使用-class？" class="headerlink" title="🔍 為什麼使用 :class？"></a>🔍 為什麼使用 <code>:class</code>？</h2><p>因為 <code>rounded</code> 是一個「開 &#x2F; 關」的布林選項，所以只要有 <code>true</code> 就加上一個固定的 class，樣式可以寫死。</p>
+<pre><code class="vue">:class=&quot;{ rounded }&quot;
+</code></pre>
+<p>這寫法的意思是：</p>
+<ul>
+<li>如果 <code>rounded === true</code>，就加上 class <code>&quot;rounded&quot;</code></li>
+<li>否則不加</li>
+</ul>
+<p>然後在 CSS 中你有：</p>
+<pre><code class="css">.rounded {
+  border-radius: 999px;
+}
+</code></pre>
+<p>✅ 因為這個 <code>border-radius</code> 的樣式是固定不變的，可以寫在 CSS。</p>
+<hr>
+<h2 id="🧱-小結：什麼時候用-style？什麼時候用-class？"><a href="#🧱-小結：什麼時候用-style？什麼時候用-class？" class="headerlink" title="🧱 小結：什麼時候用 :style？什麼時候用 :class？"></a>🧱 小結：什麼時候用 <code>:style</code>？什麼時候用 <code>:class</code>？</h2><table>
+<thead>
+<tr>
+<th>類型</th>
+<th>用 <code>:style</code></th>
+<th>用 <code>:class</code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>值是變化多端的（如顏色）</strong></td>
+<td>✅</td>
+<td>❌ 太多 class 不好維護</td>
+</tr>
+<tr>
+<td><strong>只有 true &#x2F; false 或少數幾種選擇</strong></td>
+<td>❌</td>
+<td>✅ class 控制清楚好維護</td>
+</tr>
+<tr>
+<td><strong>需要被覆蓋或繼承</strong>（例如 RWD）</td>
+<td>❌</td>
+<td>✅ CSS class 更適合寫媒體查詢</td>
+</tr>
+<tr>
+<td><strong>動態設計師輸入值、顏色、字體</strong></td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🧠-元件設計的整體思維"><a href="#🧠-元件設計的整體思維" class="headerlink" title="🧠 元件設計的整體思維"></a>🧠 元件設計的整體思維</h2><table>
+<thead>
+<tr>
+<th>面向</th>
+<th>設計思考</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>資料傳入</td>
+<td>用 <code>props</code> 把控制權交給父元件</td>
+</tr>
+<tr>
+<td>外觀設計</td>
+<td>能靈活指定背景、文字顏色、圓角</td>
+</tr>
+<tr>
+<td>程式可讀性</td>
+<td>讓每個 <code>props</code> 功能清楚、用途單一</td>
+</tr>
+<tr>
+<td>元件通用性</td>
+<td>把「樣式 + 組件結構」分開設計</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="✅-小總結"><a href="#✅-小總結" class="headerlink" title="✅ 小總結"></a>✅ 小總結</h2><p>你這次的元件 <code>MyBadge.vue</code> 設計非常符合 Vue 的「<strong>高內聚、低耦合</strong>」原則：</p>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>技術解法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>背景與文字顏色</td>
+<td>用 <code>:style</code> 傳入自訂色碼</td>
+</tr>
+<tr>
+<td>圓角控制</td>
+<td>用 <code>:class</code> 搭配布林值</td>
+</tr>
+<tr>
+<td>顯示文字</td>
+<td>用 <code>label</code> props</td>
+</tr>
+<tr>
+<td>簡潔的樣式範圍</td>
+<td>使用 <code>scoped</code> 保護 CSS 不外洩</td>
+</tr>
+</tbody></table>
+<hr>
+<p>如果你理解這一題，以後你就可以自信地設計像：</p>
+<ul>
+<li><code>MyButton.vue</code>（控制大小、顏色、是否 disabled）</li>
+<li><code>MyTag.vue</code>（多種主題樣式）</li>
+<li><code>MyCard.vue</code>（支援插槽與變化）</li>
+</ul>
+<hr>
+<p>這是 <strong>Vue 3 的 Composition API</strong> 中的一種寫法，搭配 JavaScript 的「箭頭函式」語法。這行的意思是建立一個 <strong><code>computed</code> 計算屬性</strong>，名稱是 <code>badgeStyle</code>，會根據 <code>props.color</code> 和 <code>props.textColor</code> 自動更新樣式。</p>
+<hr>
+<h2 id="🔍-一步步解釋"><a href="#🔍-一步步解釋" class="headerlink" title="🔍 一步步解釋"></a>🔍 一步步解釋</h2><h3 id="🔹-computed-是什麼？"><a href="#🔹-computed-是什麼？" class="headerlink" title="🔹 computed(() =&gt; (...)) 是什麼？"></a>🔹 <code>computed(() =&gt; (...))</code> 是什麼？</h3><ul>
+<li><code>computed()</code> 是 Vue 提供的函式，用來建立一個 <strong>「可自動追蹤依賴的變數」</strong>。</li>
+<li>只要裡面用到的值（像是 <code>props.color</code>）有變化，它就會重新計算。</li>
+<li>常用來做樣式、文字內容的動態處理。</li>
+</ul>
+<pre><code class="js">const badgeStyle = computed(() =&gt; ({
+  backgroundColor: props.color,
+  color: props.textColor
+}))
+</code></pre>
+<p>代表的意思是：</p>
+<blockquote>
+<p>badgeStyle 是一個物件，裡面有 <code>backgroundColor</code> 和 <code>color</code>，這兩個會隨著 <code>props.color</code> 和 <code>props.textColor</code> 自動變化。</p>
+</blockquote>
+<hr>
+<h3 id="🔹-為什麼要用-style-badgeStyle-？"><a href="#🔹-為什麼要用-style-badgeStyle-？" class="headerlink" title="🔹 為什麼要用 :style=&quot;badgeStyle&quot;？"></a>🔹 為什麼要用 <code>:style=&quot;badgeStyle&quot;</code>？</h3><p>因為 <code>badgeStyle</code> 是一個 JavaScript 物件，我們要把它當作 HTML 的 <code>style</code> 屬性來使用。</p>
+<ul>
+<li><code>:style=&quot;badgeStyle&quot;</code> 是 Vue 的語法糖，意思是：<strong>綁定一個樣式物件到這個元素上</strong></li>
+<li>最後會變成這樣的 CSS：</li>
+</ul>
+<pre><code class="html">&lt;span style=&quot;background-color: red; color: white&quot;&gt;...&lt;/span&gt;
+</code></pre>
+<hr>
+<h3 id="🔹-那-class-rounded-又是什麼意思？"><a href="#🔹-那-class-rounded-又是什麼意思？" class="headerlink" title="🔹 那 :class=&quot;{ rounded }&quot; 又是什麼意思？"></a>🔹 那 <code>:class=&quot;{ rounded }&quot;</code> 又是什麼意思？</h3><ul>
+<li><p><code>rounded</code> 是一個 <strong>布林值 prop</strong></p>
+</li>
+<li><p><code>:class=&quot;{ rounded }&quot;</code> 的意思是：</p>
+<blockquote>
+<p>如果 <code>rounded: true</code>，就加上 <code>class=&quot;rounded&quot;</code></p>
+</blockquote>
+</li>
+</ul>
+<p>這樣就能控制是否要讓這個 badge 加上圓角樣式：</p>
+<pre><code class="css">.rounded {
+  border-radius: 999px;
+}
+</code></pre>
+<hr>
+<h2 id="🧠-總結設計概念"><a href="#🧠-總結設計概念" class="headerlink" title="🧠 總結設計概念"></a>🧠 總結設計概念</h2><table>
+<thead>
+<tr>
+<th>功能</th>
+<th>使用方式</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>顏色樣式</td>
+<td><code>:style=&quot;badgeStyle&quot;</code></td>
+<td>動態產生的多組 CSS 屬性</td>
+</tr>
+<tr>
+<td>圓角切換</td>
+<td><code>:class=&quot;{ rounded }&quot;</code></td>
+<td>控制要不要加上一個 class（布林值）</td>
+</tr>
+<tr>
+<td>傳入資料</td>
+<td><code>props</code></td>
+<td>讓父元件可以決定 badge 的內容與樣式</td>
+</tr>
+</tbody></table>
+<p>這樣設計可以讓元件 <strong>通用、彈性高、可重複使用</strong>。</p>
+<hr>

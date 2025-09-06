@@ -1,0 +1,48 @@
+<hr>
+<h2 id="title-2025-03-01-當我-URL-createObjectURL-…-後，如果沒有呼叫-URL-revokeObjectURL-…-釋放記憶體，會發生什麼事？date-2025-09-06-22-51-26tags-Javascript-Vue-description-2025-03-01-當我-URL-createObjectURL-…-後，如果沒有呼叫-URL-revokeObjectURL-…-釋放記憶體，會發生什麼事？"><a href="#title-2025-03-01-當我-URL-createObjectURL-…-後，如果沒有呼叫-URL-revokeObjectURL-…-釋放記憶體，會發生什麼事？date-2025-09-06-22-51-26tags-Javascript-Vue-description-2025-03-01-當我-URL-createObjectURL-…-後，如果沒有呼叫-URL-revokeObjectURL-…-釋放記憶體，會發生什麼事？" class="headerlink" title="title:  2025-03-01-當我 URL.createObjectURL(…) 後，如果沒有呼叫 URL.revokeObjectURL(…)釋放記憶體，會發生什麼事？date: 2025-09-06 22:51:26tags:  [Javascript,Vue]description:   2025-03-01-當我 URL.createObjectURL(…) 後，如果沒有呼叫 URL.revokeObjectURL(…)  釋放記憶體，會發生什麼事？"></a>title:<br>  2025-03-01-當我 URL.createObjectURL(…) 後，如果<strong>沒有呼叫 URL.revokeObjectURL(…)釋放記憶體</strong>，會發生什麼事？<br>date: 2025-09-06 22:51:26<br>tags:  [Javascript,Vue]<br>description:   2025-03-01-當我 URL.createObjectURL(…) 後，如果<strong>沒有呼叫 URL.revokeObjectURL(…)<br>  釋放記憶體</strong>，會發生什麼事？</h2><h1 id="2025-03-01-當我-URL-createObjectURL-…-後，如果沒有呼叫-URL-revokeObjectURL-…-釋放記憶體，會發生什麼事？"><a href="#2025-03-01-當我-URL-createObjectURL-…-後，如果沒有呼叫-URL-revokeObjectURL-…-釋放記憶體，會發生什麼事？" class="headerlink" title="2025-03-01-當我 URL.createObjectURL(…) 後，如果沒有呼叫 URL.revokeObjectURL(…)釋放記憶體，會發生什麼事？"></a>2025-03-01-當我 URL.createObjectURL(…) 後，如果<strong>沒有呼叫 URL.revokeObjectURL(…)釋放記憶體</strong>，會發生什麼事？</h1><p>你問的是：</p>
+<blockquote>
+<p>當我 <code>URL.createObjectURL(...)</code> 後，如果<strong>沒有呼叫 <code>URL.revokeObjectURL(...)</code> 釋放記憶體</strong>，會發生什麼事？</p>
+</blockquote>
+<hr>
+<h3 id="🔍-答案："><a href="#🔍-答案：" class="headerlink" title="🔍 答案："></a>🔍 答案：</h3><p>如果你**沒有呼叫 <code>URL.revokeObjectURL()</code>**：</p>
+<ul>
+<li><p>✅ <strong>程式仍然能正常執行</strong>，不會立即報錯。</p>
+</li>
+<li><p>❗️<strong>這個 URL 會一直佔用記憶體中的一段暫存空間（Blob 資料）</strong>。</p>
+</li>
+<li><p>🧠 如果你 <strong>頻繁建立新的 Blob URLs 而不釋放它們</strong>，就會：</p>
+<ul>
+<li>增加記憶體使用量（memory leak）</li>
+<li>造成 <strong>瀏覽器效能變差，甚至卡頓或崩潰</strong></li>
+<li>特別在長時間執行的 SPA（如 Vue、React 應用）或遊戲中更嚴重</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="🧪-小比喻："><a href="#🧪-小比喻：" class="headerlink" title="🧪 小比喻："></a>🧪 小比喻：</h3><p>就像你拿到一瓶飲料（<code>Blob URL</code>），喝完了，但不丟垃圾桶（不呼叫 <code>revokeObjectURL()</code>），堆久了，桌上就亂七八糟，桌面越來越擠，最後你自己沒地方用。</p>
+<hr>
+<h3 id="✅-建議用法："><a href="#✅-建議用法：" class="headerlink" title="✅ 建議用法："></a>✅ 建議用法：</h3><pre><code class="js">const url = URL.createObjectURL(blob)
+
+// 用完後，例如檔案下載完，就要釋放
+URL.revokeObjectURL(url)
+</code></pre>
+<p>👉 通常你在 <code>a.click()</code> 下載後立即釋放即可。</p>
+<hr>
+<h3 id="🧠-小結："><a href="#🧠-小結：" class="headerlink" title="🧠 小結："></a>🧠 小結：</h3><table>
+<thead>
+<tr>
+<th>問題</th>
+<th>結果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>不呼叫 <code>revokeObjectURL()</code></td>
+<td>程式可跑，但記憶體可能會累積泄漏</td>
+</tr>
+<tr>
+<td>呼叫 <code>revokeObjectURL()</code></td>
+<td>釋放記憶體，最佳實務，推薦 ✅</td>
+</tr>
+</tbody></table>
+<p>如你要開發一個需要常常建立暫存檔案 URL 的應用（例如：多圖上傳預覽、CSV 下載等），<strong>一定要養成 <code>revokeObjectURL()</code> 的習慣</strong>！</p>
+<hr>

@@ -1,0 +1,94 @@
+<hr>
+<h2 id="title-2025-03-28-自行調整-MyButton-的樣式與內容date-2025-09-06-23-37-33tags-Javascript-Vue-description-2025-03-28-自行調整-MyButton-的樣式與內容"><a href="#title-2025-03-28-自行調整-MyButton-的樣式與內容date-2025-09-06-23-37-33tags-Javascript-Vue-description-2025-03-28-自行調整-MyButton-的樣式與內容" class="headerlink" title="title: 2025-03-28- 自行調整 MyButton 的樣式與內容date: 2025-09-06 23:37:33tags:  [Javascript,Vue]description: 2025-03-28- 自行調整 MyButton 的樣式與內容"></a>title: 2025-03-28- 自行調整 MyButton 的樣式與內容<br>date: 2025-09-06 23:37:33<br>tags:  [Javascript,Vue]<br>description: 2025-03-28- 自行調整 MyButton 的樣式與內容</h2><h1 id="2025-03-28-自行調整-MyButton-的樣式與內容"><a href="#2025-03-28-自行調整-MyButton-的樣式與內容" class="headerlink" title="2025-03-28- 自行調整 MyButton 的樣式與內容"></a>2025-03-28- 自行調整 MyButton 的樣式與內容</h1><p> <strong>使用者在畫面上自行調整 MyButton 的樣式與內容</strong>，就要再加上一個互動式控制區塊，讓使用者可以操作：</p>
+<ul>
+<li>下拉選單（select）選擇 <code>size</code>、<code>round</code> 或 <code>square</code></li>
+<li>輸入框（input）設定 <code>label</code>、<code>color</code>、<code>textColor</code></li>
+<li>然後按鈕會根據這些值即時更新</li>
+</ul>
+<hr>
+<h2 id="✅-修改後的-Lesson3-vue"><a href="#✅-修改後的-Lesson3-vue" class="headerlink" title="✅ 修改後的 Lesson3.vue"></a>✅ 修改後的 <code>Lesson3.vue</code></h2><pre><code class="vue">&lt;!-- Lesson3.vue --&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;h2&gt;JavaScript 系列九：第3課 ── 學習 Vue 的 events 觀念&lt;/h2&gt;
+
+    &lt;div class=&quot;control-panel&quot;&gt;
+      &lt;label&gt;
+        按鈕文字：
+        &lt;input v-model=&quot;label&quot; /&gt;
+      &lt;/label&gt;
+
+      &lt;label&gt;
+        背景顏色：
+        &lt;input type=&quot;color&quot; v-model=&quot;color&quot; /&gt;
+      &lt;/label&gt;
+
+      &lt;label&gt;
+        文字顏色：
+        &lt;input type=&quot;color&quot; v-model=&quot;textColor&quot; /&gt;
+      &lt;/label&gt;
+
+      &lt;label&gt;
+        按鈕大小：
+        &lt;select v-model=&quot;size&quot;&gt;
+          &lt;option value=&quot;small&quot;&gt;小&lt;/option&gt;
+          &lt;option value=&quot;medium&quot;&gt;中&lt;/option&gt;
+          &lt;option value=&quot;large&quot;&gt;大&lt;/option&gt;
+        &lt;/select&gt;
+      &lt;/label&gt;
+
+      &lt;label&gt;
+        圓角樣式：
+        &lt;input type=&quot;checkbox&quot; v-model=&quot;round&quot; /&gt;
+      &lt;/label&gt;
+
+      &lt;label&gt;
+        方形樣式：
+        &lt;input type=&quot;checkbox&quot; v-model=&quot;square&quot; /&gt;
+      &lt;/label&gt;
+    &lt;/div&gt;
+
+    &lt;MyButton
+      :label=&quot;label&quot;
+      :color=&quot;color&quot;
+      :textColor=&quot;textColor&quot;
+      :size=&quot;size&quot;
+      :round=&quot;round&quot;
+      :square=&quot;square&quot;
+      @click=&quot;handleClick(label)&quot;
+    /&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+import MyButton from &#39;./Lesson3_components/MyButton.vue&#39;
+
+const label = ref(&#39;自訂按鈕&#39;)
+const color = ref(&#39;#ff6347&#39;) // tomato
+const textColor = ref(&#39;#ffffff&#39;)
+const size = ref(&#39;medium&#39;)
+const round = ref(true)
+const square = ref(false)
+
+function handleClick(name) {
+  alert(`你點擊了：${name}`)
+}
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+.control-panel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  margin-bottom: 1em;
+}
+label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
+}
+&lt;/style&gt;
+</code></pre>
+<hr>
+<h2 id="✅-MyButton-vue-保持不變（你已經寫得很好）"><a href="#✅-MyButton-vue-保持不變（你已經寫得很好）" class="headerlink" title="✅ MyButton.vue 保持不變（你已經寫得很好）"></a>✅ <code>MyButton.vue</code> 保持不變（你已經寫得很好）</h2><hr>
+<h2 id="🧪-測試方式"><a href="#🧪-測試方式" class="headerlink" title="🧪 測試方式"></a>🧪 測試方式</h2><p>你可以把這段程式貼到 <a href="https://sfc.vuejs.org/">Vue SFC Playground</a>，只要在左側新增 <code>MyButton.vue</code>，右側是 <code>Lesson3.vue</code>，即可即時測試互動效果。</p>

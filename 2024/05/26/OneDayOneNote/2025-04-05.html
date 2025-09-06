@@ -1,0 +1,53 @@
+<hr>
+<h2 id="title-20250405-UI-UX-設計裡，顏色其實是有「語意」的txtdate-2025-09-06-23-49-35description-20250405-UI-UX-設計裡，顏色其實是有「語意」的txt"><a href="#title-20250405-UI-UX-設計裡，顏色其實是有「語意」的txtdate-2025-09-06-23-49-35description-20250405-UI-UX-設計裡，顏色其實是有「語意」的txt" class="headerlink" title="title: 20250405-UI&#x2F;UX 設計裡，顏色其實是有「語意」的txtdate: 2025-09-06 23:49:35description:   20250405-UI&#x2F;UX 設計裡，顏色其實是有「語意」的txt"></a>title: 20250405-UI&#x2F;UX 設計裡，<strong>顏色其實是有「語意」的txt<br>date: 2025-09-06 23:49:35<br>description:   20250405-UI&#x2F;UX 設計裡，</strong>顏色其實是有「語意」的txt</h2><h1 id="20250405-UI-UX-設計裡，-顏色其實是有「語意」的txt"><a href="#20250405-UI-UX-設計裡，-顏色其實是有「語意」的txt" class="headerlink" title="20250405-UI&#x2F;UX 設計裡，**顏色其實是有「語意」的txt"></a>20250405-UI&#x2F;UX 設計裡，**顏色其實是有「語意」的txt</h1><p>好問題 👍<br>在 UI&#x2F;UX 設計裡，<strong>顏色其實是有「語意」的</strong>，常用來代表不同的訊息狀態。</p>
+<p>以下是常見的顏色慣例（像 Quasar、Bootstrap、Vuetify 等 UI 框架也差不多）：</p>
+<table>
+<thead>
+<tr>
+<th>狀態</th>
+<th>常見顏色</th>
+<th>用途 &#x2F; 說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>錯誤 &#x2F; 警告 (Error &#x2F; Danger)</strong></td>
+<td>🔴 紅色</td>
+<td>表示嚴重錯誤、危險、需要立即注意的事情</td>
+</tr>
+<tr>
+<td><strong>警告 &#x2F; 提醒 (Warning)</strong></td>
+<td>🟠 橙色</td>
+<td>表示可能有風險，需要注意，但不是致命錯誤</td>
+</tr>
+<tr>
+<td><strong>成功 (Success)</strong></td>
+<td>🟢 綠色</td>
+<td>表示操作成功、完成、正向的狀態</td>
+</tr>
+<tr>
+<td><strong>資訊 (Info)</strong></td>
+<td>🔵 藍色</td>
+<td>提供一般資訊、提示訊息，沒有警告或錯誤性質</td>
+</tr>
+<tr>
+<td><strong>次要 &#x2F; 中性 (Secondary &#x2F; Neutral)</strong></td>
+<td>⚪ 灰色</td>
+<td>比較中性、輔助說明，不特別強調</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="舉例：訊息框顏色"><a href="#舉例：訊息框顏色" class="headerlink" title="舉例：訊息框顏色"></a>舉例：訊息框顏色</h3><ul>
+<li><strong>紅色</strong>：刪除失敗、登入錯誤、帳號被鎖定</li>
+<li><strong>橙色</strong>：密碼即將到期、磁碟快滿了</li>
+<li><strong>綠色</strong>：檔案上傳成功、設定已儲存</li>
+<li><strong>藍色</strong>：新版本資訊、提示用法</li>
+<li><strong>灰色</strong>：背景說明、非重點提醒</li>
+</ul>
+<hr>
+<p>👉 所以你在 <code>MyBanner.vue</code> 這種公告元件裡，可以用 <code>type</code> 來控制樣式，例如：</p>
+<pre><code class="vue">&lt;MyBanner type=&quot;error&quot;&gt;刪除失敗&lt;/MyBanner&gt;
+&lt;MyBanner type=&quot;success&quot;&gt;操作成功&lt;/MyBanner&gt;
+&lt;MyBanner type=&quot;info&quot;&gt;新版本已上線&lt;/MyBanner&gt;
+</code></pre>
+<p>然後在 CSS 裡定義不同顏色。</p>
+<hr>

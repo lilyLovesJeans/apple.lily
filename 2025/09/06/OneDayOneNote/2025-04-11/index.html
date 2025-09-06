@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2025-04-11-MVP &#x3D; Minimum Viable Product">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025-04-11-MVP &#x3D; Minimum Viable Product">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/09/06/OneDayOneNote/2025-04-11/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2025-04-11-MVP &#x3D; Minimum Viable Product">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-09-06T15:59:02.000Z">
+<meta property="article:modified_time" content="2025-09-06T16:00:10.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2025/09/06/OneDayOneNote/2025-04-11/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2025/09/06/OneDayOneNote/2025-04-11/","path":"2025/09/06/OneDayOneNote/2025-04-11/","title":"2025-04-11-MVP = Minimum Viable Product"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2025-04-11-MVP = Minimum Viable Product | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2025-04-11-MVP-Minimum-Viable-Product"><span class="nav-number">1.</span> <span class="nav-text">2025-04-11-MVP &#x3D; Minimum Viable Product</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MVP-%E5%9C%A8%E8%BB%9F%E9%AB%94%E9%96%8B%E7%99%BC%E8%A3%A1%E7%9A%84%E6%84%8F%E6%80%9D"><span class="nav-number">2.</span> <span class="nav-text">MVP 在軟體開發裡的意思</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E7%BE%A9"><span class="nav-number">2.1.</span> <span class="nav-text">定義</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%82%BA%E4%BB%80%E9%BA%BC%E8%A6%81%E6%9C%89-MVP%EF%BC%9F"><span class="nav-number">2.2.</span> <span class="nav-text">為什麼要有 MVP？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%88%89%E4%BE%8B%EF%BC%88%E5%A5%97%E7%94%A8%E5%88%B0%E4%BD%A0%E5%BF%83%E7%90%86%EF%BC%8B%E7%AE%97%E5%91%BD%E7%B6%B2%E7%AB%99%EF%BC%89"><span class="nav-number">2.3.</span> <span class="nav-text">舉例（套用到你心理＋算命網站）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B8%BD%E7%B5%90"><span class="nav-number">2.4.</span> <span class="nav-text">總結</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">408</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2025/09/06/OneDayOneNote/2025-04-11/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2025-04-11-MVP = Minimum Viable Product | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2025-04-11-MVP = Minimum Viable Product">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2025-04-11-MVP = Minimum Viable Product
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2025-09-06 23:59:02" itemprop="dateCreated datePublished" datetime="2025-09-06T23:59:02+08:00">2025-09-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新於</span>
+      <time title="修改時間：2025-09-07 00:00:10" itemprop="dateModified" datetime="2025-09-07T00:00:10+08:00">2025-09-07</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2025-04-11-MVP = Minimum Viable Product</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="2025-04-11-MVP-Minimum-Viable-Product"><a href="#2025-04-11-MVP-Minimum-Viable-Product" class="headerlink" title="2025-04-11-MVP &#x3D; Minimum Viable Product"></a>2025-04-11-MVP &#x3D; Minimum Viable Product</h1><p>好問題 👍 我來幫你釐清 <strong>MVP</strong> 這個詞的意思。</p>
+<hr>
+<h1 id="MVP-在軟體開發裡的意思"><a href="#MVP-在軟體開發裡的意思" class="headerlink" title="MVP 在軟體開發裡的意思"></a>MVP 在軟體開發裡的意思</h1><p><strong>MVP &#x3D; Minimum Viable Product</strong><br>👉 翻譯成中文常見是 <strong>「最小可行產品」</strong> 或 <strong>「最小可用產品」</strong>。</p>
+<hr>
+<h2 id="定義"><a href="#定義" class="headerlink" title="定義"></a>定義</h2><p>MVP 指的是：</p>
+<ul>
+<li><strong>功能最少、但仍然能解決使用者核心需求的版本</strong>。</li>
+<li>先不追求完整或華麗，而是快速做出一個「能動」的產品，讓使用者可以試用，得到回饋，再逐步改進。</li>
+</ul>
+<hr>
+<h2 id="為什麼要有-MVP？"><a href="#為什麼要有-MVP？" class="headerlink" title="為什麼要有 MVP？"></a>為什麼要有 MVP？</h2><ol>
+<li><strong>降低成本</strong>：不用一次做一個大而全的系統，避免浪費時間。</li>
+<li><strong>快速驗證</strong>：先看看市場或使用者有沒有興趣，避免白做。</li>
+<li><strong>早期學習</strong>：從使用者的反饋，修正產品方向。</li>
+<li><strong>迭代基礎</strong>：MVP 是第一塊積木，之後慢慢疊加更多功能。</li>
+</ol>
+<hr>
+<h2 id="舉例（套用到你心理＋算命網站）"><a href="#舉例（套用到你心理＋算命網站）" class="headerlink" title="舉例（套用到你心理＋算命網站）"></a>舉例（套用到你心理＋算命網站）</h2><ul>
+<li><p><strong>完整版</strong>（未來目標）：</p>
+<ul>
+<li>各種心理測驗</li>
+<li>八字、星座、塔羅功能</li>
+<li>使用者註冊、登入、存紀錄</li>
+<li>分享到社群</li>
+<li>手機版 + RWD</li>
+<li>AI 智能解讀</li>
+</ul>
+</li>
+<li><p><strong>MVP（第一版最小可行）</strong>：</p>
+<ul>
+<li>一個簡單的心理測驗頁面（例如「選一個顏色測個性」）</li>
+<li>使用 Vue 做到 <strong>輸入 ➝ 按送出 ➝ 顯示結果</strong></li>
+<li>沒有登入，沒有資料庫，只在前端跑</li>
+</ul>
+</li>
+</ul>
+<p>這樣你就能很快上線，讓朋友試用，收集意見，再慢慢加功能。</p>
+<hr>
+<h2 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h2><p>MVP 的精神就是：<br><strong>「先做一個能動的簡單版本 → 拿到使用者回饋 → 再迭代優化」</strong>。</p>
+<hr>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/Javascript/" rel="tag"># Javascript</a>
+              <a href="/apple.lily/tags/Vue/" rel="tag"># Vue</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/09/06/OneDayOneNote/2025-04-10/" rel="prev" title="2025-04-10-規劃心理測試網站">
+                  <i class="fa fa-angle-left"></i> 2025-04-10-規劃心理測試網站
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/09/07/OneDayOneNote/2025-04-12/" rel="next" title="2025-04-12-Tailwind CSS 簡短複習">
+                  2025-04-12-Tailwind CSS 簡短複習 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

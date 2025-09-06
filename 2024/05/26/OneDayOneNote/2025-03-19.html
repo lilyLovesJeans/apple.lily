@@ -1,0 +1,177 @@
+<hr>
+<h2 id="title-2025-03-19-建立-「JavaScript-系列九」的-Vue-專案date-2025-09-06-23-19-19tags-Javascript-Vue-description-2025-03-19-建立-「JavaScript-系列九」的-Vue-專案"><a href="#title-2025-03-19-建立-「JavaScript-系列九」的-Vue-專案date-2025-09-06-23-19-19tags-Javascript-Vue-description-2025-03-19-建立-「JavaScript-系列九」的-Vue-專案" class="headerlink" title="title: 2025-03-19-建立 **「JavaScript 系列九」的 Vue 專案date: 2025-09-06 23:19:19tags:  [Javascript,Vue]description:    2025-03-19-建立 **「JavaScript 系列九」的 Vue 專案"></a>title: 2025-03-19-建立 **「JavaScript 系列九」的 Vue 專案<br>date: 2025-09-06 23:19:19<br>tags:  [Javascript,Vue]<br>description:    2025-03-19-建立 **「JavaScript 系列九」的 Vue 專案</h2><h1 id="2025-03-19-建立-「JavaScript-系列九」的-Vue-專案"><a href="#2025-03-19-建立-「JavaScript-系列九」的-Vue-專案" class="headerlink" title="2025-03-19-建立 **「JavaScript 系列九」的 Vue 專案"></a>2025-03-19-建立 **「JavaScript 系列九」的 Vue 專案</h1><p>我們現在就一起來建立 <strong>「JavaScript 系列九」的 Vue 專案</strong>，步驟如下：</p>
+<hr>
+<h2 id="✅-1-在-VueProjects-資料夾中建立新專案"><a href="#✅-1-在-VueProjects-資料夾中建立新專案" class="headerlink" title="✅ 1. 在 VueProjects 資料夾中建立新專案"></a>✅ 1. 在 <code>VueProjects</code> 資料夾中建立新專案</h2><p>請在終端機（Terminal）中輸入以下指令（建議用 Vite 建 Vue 3 專案）：</p>
+<pre><code class="bash">npm create vite@latest js9-cool-components -- --template vue
+</code></pre>
+<p>這會建立一個叫做 <code>js9-cool-components</code> 的 Vue 專案資料夾。</p>
+<hr>
+<h2 id="✅-2-進入該專案資料夾"><a href="#✅-2-進入該專案資料夾" class="headerlink" title="✅ 2. 進入該專案資料夾"></a>✅ 2. 進入該專案資料夾</h2><pre><code class="bash">cd js9-cool-components
+</code></pre>
+<hr>
+<h2 id="✅-3-安裝所有依賴套件（第一次要做）"><a href="#✅-3-安裝所有依賴套件（第一次要做）" class="headerlink" title="✅ 3. 安裝所有依賴套件（第一次要做）"></a>✅ 3. 安裝所有依賴套件（第一次要做）</h2><pre><code class="bash">npm install
+</code></pre>
+<hr>
+<h2 id="✅-4-啟動開發伺服器（開始寫程式啦！）"><a href="#✅-4-啟動開發伺服器（開始寫程式啦！）" class="headerlink" title="✅ 4. 啟動開發伺服器（開始寫程式啦！）"></a>✅ 4. 啟動開發伺服器（開始寫程式啦！）</h2><pre><code class="bash">npm run dev
+</code></pre>
+<p>執行後你會看到：</p>
+<pre><code>  VITE v4.x  ready in 300ms
+  ➜  Local:   http://localhost:5173/
+</code></pre>
+<p>打開瀏覽器輸入 <code>http://localhost:5173/</code> 就能看到 Vue App 畫面！</p>
+<hr>
+<h2 id="✅-5-開始你的「系列九」開發"><a href="#✅-5-開始你的「系列九」開發" class="headerlink" title="✅ 5. 開始你的「系列九」開發"></a>✅ 5. 開始你的「系列九」開發</h2><p>你可以把你的元件放到：</p>
+<pre><code>src/components/
+</code></pre>
+<p>例如：</p>
+<table>
+<thead>
+<tr>
+<th>檔案</th>
+<th>內容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Header.vue</code></td>
+<td>顯示 I am header!</td>
+</tr>
+<tr>
+<td><code>Main.vue</code></td>
+<td>顯示 I am main!</td>
+</tr>
+<tr>
+<td><code>Footer.vue</code></td>
+<td>顯示 I am footer!</td>
+</tr>
+<tr>
+<td><code>MyBadge.vue</code></td>
+<td>仿 Quasar Badge 元件</td>
+</tr>
+</tbody></table>
+<p>然後在 <code>App.vue</code> 中匯入並使用它們。</p>
+<hr>
+<h2 id="🧼-小提醒：如果之前沒裝過-Vite-CLI"><a href="#🧼-小提醒：如果之前沒裝過-Vite-CLI" class="headerlink" title="🧼 小提醒：如果之前沒裝過 Vite CLI"></a>🧼 小提醒：如果之前沒裝過 Vite CLI</h2><p>請先安裝一次 <code>npm create vite@latest</code> 所需指令（如果終端機出錯）：</p>
+<pre><code class="bash">npm install -g create-vite
+</code></pre>
+<hr>
+<h2 id="✅-成功後你會看到的檔案結構如下："><a href="#✅-成功後你會看到的檔案結構如下：" class="headerlink" title="✅ 成功後你會看到的檔案結構如下："></a>✅ 成功後你會看到的檔案結構如下：</h2><pre><code>VueProjects/
+└── js9-cool-components/
+    ├── index.html
+    ├── package.json
+    ├── vite.config.js
+    └── src/
+        ├── App.vue
+        ├── main.js
+        └── components/
+            ├── Header.vue
+            ├── Main.vue
+            ├── Footer.vue
+            └── MyBadge.vue
+</code></pre>
+<hr>
+<p>很好奇心 👏 問得非常到位！</p>
+<hr>
+<h2 id="✅-template-vue-是什麼意思？"><a href="#✅-template-vue-是什麼意思？" class="headerlink" title="✅ --template vue 是什麼意思？"></a>✅ <code>--template vue</code> 是什麼意思？</h2><p>這是給 <code>npm create vite@latest</code> 的 <strong>參數（Arguments）</strong>，指定你要用哪一種模板（template）來建立你的新專案。</p>
+<hr>
+<h3 id="🔍-說明拆解："><a href="#🔍-說明拆解：" class="headerlink" title="🔍 說明拆解："></a>🔍 說明拆解：</h3><pre><code class="bash">npm create vite@latest js9-cool-components -- --template vue
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>部分</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>npm create vite@latest</code></td>
+<td>呼叫最新版的 Vite 專案產生器</td>
+</tr>
+<tr>
+<td><code>js9-cool-components</code></td>
+<td>要建立的資料夾名稱</td>
+</tr>
+<tr>
+<td><code>--</code></td>
+<td>告訴 npm：<strong>接下來的參數是要傳給 Vite CLI 的，不是 npm 自己的</strong></td>
+</tr>
+<tr>
+<td><code>--template vue</code></td>
+<td>指定要用 <code>vue</code> 模板建立專案（也可以換成其他模板）</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="✅-有哪些可用的-template-選項？"><a href="#✅-有哪些可用的-template-選項？" class="headerlink" title="✅ 有哪些可用的 --template 選項？"></a>✅ 有哪些可用的 <code>--template</code> 選項？</h2><table>
+<thead>
+<tr>
+<th>模板名稱</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>vanilla</code></td>
+<td>純 JavaScript 專案</td>
+</tr>
+<tr>
+<td><code>vue</code></td>
+<td>Vue 3 + Vite 基礎專案（你現在用的）</td>
+</tr>
+<tr>
+<td><code>vue-ts</code></td>
+<td>Vue 3 + TypeScript</td>
+</tr>
+<tr>
+<td><code>react</code></td>
+<td>React + Vite 專案</td>
+</tr>
+<tr>
+<td><code>react-ts</code></td>
+<td>React + TypeScript</td>
+</tr>
+<tr>
+<td><code>preact</code></td>
+<td>Preact 專案</td>
+</tr>
+<tr>
+<td><code>lit</code></td>
+<td>Lit 元件專案</td>
+</tr>
+<tr>
+<td><code>svelte</code></td>
+<td>Svelte 專案</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="✅-如果你省略-template-vue-會怎樣？"><a href="#✅-如果你省略-template-vue-會怎樣？" class="headerlink" title="✅ 如果你省略 --template vue 會怎樣？"></a>✅ 如果你省略 <code>--template vue</code> 會怎樣？</h2><p>如果你打：</p>
+<pre><code class="bash">npm create vite@latest
+</code></pre>
+<p>它會進入互動模式，問你：</p>
+<pre><code>✔ Project name: … 
+✔ Select a framework: › - Use arrow-keys. Return to submit.
+    Vanilla
+    Vue
+    React
+    ...
+</code></pre>
+<p>你就要用方向鍵自己選 <code>Vue</code>。<br>而加上 <code>--template vue</code> 就是<strong>直接跳過選單</strong>，自動建立 Vue 專案。</p>
+<hr>
+<h2 id="✅-結論："><a href="#✅-結論：" class="headerlink" title="✅ 結論："></a>✅ 結論：</h2><table>
+<thead>
+<tr>
+<th>問題</th>
+<th>解答</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>--template vue</code> 是什麼？</td>
+<td>是告訴 Vite：「我要建立 Vue 專案」</td>
+</tr>
+<tr>
+<td>可以不加嗎？</td>
+<td>可以，加了是自動化；不加會進入互動選單</td>
+</tr>
+<tr>
+<td>可以換別的模板嗎？</td>
+<td>可以！像 <code>--template react</code>、<code>--template vue-ts</code> 等</td>
+</tr>
+</tbody></table>
+<hr>

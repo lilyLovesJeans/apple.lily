@@ -1,0 +1,40 @@
+<hr>
+<h2 id="title-2025-02-15-目錄分曾及模組化date-2025-09-06-22-11-28tags-Javascript-Vue-description-2025-02-15-目錄分曾及模組化"><a href="#title-2025-02-15-目錄分曾及模組化date-2025-09-06-22-11-28tags-Javascript-Vue-description-2025-02-15-目錄分曾及模組化" class="headerlink" title="title: 2025-02-15-目錄分曾及模組化date: 2025-09-06 22:11:28tags:  [Javascript,Vue]description:  2025-02-15-目錄分曾及模組化"></a>title: 2025-02-15-目錄分曾及模組化<br>date: 2025-09-06 22:11:28<br>tags:  [Javascript,Vue]<br>description:  2025-02-15-目錄分曾及模組化</h2><h1 id="2025-02-15-目錄分曾及模組化"><a href="#2025-02-15-目錄分曾及模組化" class="headerlink" title="2025-02-15-目錄分曾及模組化"></a>2025-02-15-目錄分曾及模組化</h1><p>專業開發的「模組化」與「目錄分層」習慣。你可以這樣整理你的目錄：</p>
+<pre><code>├── javascript_8
+│   └── components
+│       ├── Calendar.vue
+│       ├── CountryInfo.vue
+│       ├── Notes.vue
+│       ├── SplitBill.vue
+│       ├── Stopwatch.vue
+│       ├── WeatherQuery.vue
+│       ├── weightTrackerApp.vue
+│       └── utils
+│           └── weatherApi.js
+</code></pre>
+<hr>
+<h3 id="✅-優點："><a href="#✅-優點：" class="headerlink" title="✅ 優點："></a>✅ 優點：</h3><ol>
+<li><p><strong>清楚分工</strong>：<br><code>components/</code> 放畫面元件，<code>components/utils/</code> 放邏輯模組或工具函式（像 API 封裝、資料轉換等）。</p>
+</li>
+<li><p><strong>未來可擴充</strong>：<br>若你之後有更多 API、轉換工具（如金額格式、日期處理），都能集中放在 <code>utils</code>。</p>
+</li>
+<li><p><strong>容易導入測試或重用</strong>：<br><code>utils/weatherApi.js</code> 這種純 JavaScript 函式，也容易做單元測試，或其他元件使用。</p>
+</li>
+</ol>
+<hr>
+<h3 id="🔧-接下來的步驟建議："><a href="#🔧-接下來的步驟建議：" class="headerlink" title="🔧 接下來的步驟建議："></a>🔧 接下來的步驟建議：</h3><ol>
+<li><p>建立檔案：<br><code>src/lily_learning/javascript_8/components/utils/weatherApi.js</code></p>
+</li>
+<li><p>寫一個封裝好的函式（稍後我可以幫你一步步寫）</p>
+</li>
+<li><p>在 <code>WeatherQuery.vue</code> 中這樣引入：</p>
+<pre><code class="js">import { fetchWeatherData } from &#39;./utils/weatherApi.js&#39;
+</code></pre>
+</li>
+</ol>
+<hr>
+<h3 id="❓補充：為什麼放在-components-裡面？"><a href="#❓補充：為什麼放在-components-裡面？" class="headerlink" title="❓補充：為什麼放在 components 裡面？"></a>❓補充：為什麼放在 components 裡面？</h3><p>因為你的學習專案目前是放在：</p>
+<pre><code>src/lily_learning/javascript_8/components/
+</code></pre>
+<p>為了不要跨太多層目錄（避免 <code>../../../utils</code> 這種麻煩的引入），把 <code>utils</code> 放在這一層是很實用、易管理的選擇。<br>等你未來做更大型的專案，再把共用的工具抽到 <code>src/utils/</code> 或 <code>src/composables/</code> 等全局目錄。</p>
+<hr>

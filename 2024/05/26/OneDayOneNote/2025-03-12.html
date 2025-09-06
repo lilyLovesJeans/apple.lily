@@ -1,0 +1,184 @@
+<hr>
+<h2 id="title-2025-03-12-國家資訊與地圖應用程式-第二步date-2025-09-06-23-08-42tags-Javascript-Vue-description-2025-03-12-國家資訊與地圖應用程式-第二步"><a href="#title-2025-03-12-國家資訊與地圖應用程式-第二步date-2025-09-06-23-08-42tags-Javascript-Vue-description-2025-03-12-國家資訊與地圖應用程式-第二步" class="headerlink" title="title: 2025-03-12-國家資訊與地圖應用程式 -第二步date: 2025-09-06 23:08:42tags:  [Javascript,Vue]description:  2025-03-12-國家資訊與地圖應用程式 -第二步"></a>title: 2025-03-12-國家資訊與地圖應用程式 -第二步<br>date: 2025-09-06 23:08:42<br>tags:  [Javascript,Vue]<br>description:  2025-03-12-國家資訊與地圖應用程式 -第二步</h2><h1 id="2025-03-12-國家資訊與地圖應用程式-第二步"><a href="#2025-03-12-國家資訊與地圖應用程式-第二步" class="headerlink" title="2025-03-12-國家資訊與地圖應用程式 -第二步"></a>2025-03-12-國家資訊與地圖應用程式 -第二步</h1><p>當然可以，下面是你這份 <code>CountryInfo.vue</code> 的程式碼逐行解釋，幫你了解每個區塊的 <strong>用途與原理</strong>。這會幫助你未來自己維護或擴充功能 🧠💡</p>
+<hr>
+<h2 id="🔷-區塊：畫面結構"><a href="#🔷-區塊：畫面結構" class="headerlink" title="🔷 &lt;template&gt; 區塊：畫面結構"></a>🔷 <code>&lt;template&gt;</code> 區塊：畫面結構</h2><pre><code class="vue">&lt;template&gt;
+  &lt;div&gt;
+    &lt;h2&gt;🌍 國家資訊與地圖應用程式&lt;/h2&gt;
+    &lt;div id=&quot;map&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+</code></pre>
+<h3 id="說明："><a href="#說明：" class="headerlink" title="說明："></a>說明：</h3><ul>
+<li><p><code>h2</code> 是標題，讓使用者知道這是什麼應用。</p>
+</li>
+<li><p><code>#map</code> 是 Leaflet 地圖要掛載的位置（<strong>很重要！</strong>）</p>
+<ul>
+<li>Leaflet 會用 JavaScript 把地圖「插入」這個 DOM 元素中。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="🔷-區塊：邏輯程式"><a href="#🔷-區塊：邏輯程式" class="headerlink" title="🔷 &lt;script setup&gt; 區塊：邏輯程式"></a>🔷 <code>&lt;script setup&gt;</code> 區塊：邏輯程式</h2><pre><code class="js">import { onMounted } from &#39;vue&#39;
+</code></pre>
+<p>✅ 匯入 <code>onMounted()</code>：Vue 組件掛載到畫面時會執行的生命週期函式。</p>
+<hr>
+<pre><code class="js">onMounted(async () =&gt; {
+</code></pre>
+<p>當地圖畫面 <code>#map</code> 被 Vue 渲染到畫面上後，這段程式碼就會開始執行。</p>
+<hr>
+<h3 id="🧱-地圖初始化-錯誤偵測"><a href="#🧱-地圖初始化-錯誤偵測" class="headerlink" title="🧱 地圖初始化 &amp; 錯誤偵測"></a>🧱 地圖初始化 &amp; 錯誤偵測</h3><pre><code class="js">  try {
+    if (!window.L) {
+      throw new Error(&#39;Leaflet (L) 尚未載入&#39;)
+    }
+</code></pre>
+<p>✅ 確保全域變數 <code>L</code> 存在，這是 Leaflet 的主函式（因為你是用 CDN，不是用 <code>import</code>）</p>
+<hr>
+<h3 id="🗺️-建立地圖"><a href="#🗺️-建立地圖" class="headerlink" title="🗺️ 建立地圖"></a>🗺️ 建立地圖</h3><pre><code class="js">    const map = L.map(&#39;map&#39;).setView([20, 0], 2)
+</code></pre>
+<p>✅ 建立 Leaflet 地圖，並設定初始視角：</p>
+<ul>
+<li><code>#map</code>：地圖插入的容器 ID</li>
+<li><code>[20, 0]</code>：緯度 20、經度 0 → 大致上是非洲中間</li>
+<li><code>2</code>：放大倍率，小數字表示縮得很遠（看整個世界）</li>
+</ul>
+<hr>
+<h3 id="🧱-加入底圖（OpenStreetMap）"><a href="#🧱-加入底圖（OpenStreetMap）" class="headerlink" title="🧱 加入底圖（OpenStreetMap）"></a>🧱 加入底圖（OpenStreetMap）</h3><pre><code class="js">    L.tileLayer(&#39;https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png&#39;, {
+      attribution: &#39;© OpenStreetMap contributors&#39;
+    }).addTo(map)
+</code></pre>
+<p>✅ 這是 Leaflet 的底圖來源，使用 OpenStreetMap 的免費圖資。</p>
+<ul>
+<li><code>{s}</code>、<code>{z}</code>、<code>{x}</code>、<code>{y}</code> 是地圖瓦片系統的變數。</li>
+</ul>
+<hr>
+<h3 id="🧩-設定-marker-圖示（避免顯示不出來）"><a href="#🧩-設定-marker-圖示（避免顯示不出來）" class="headerlink" title="🧩 設定 marker 圖示（避免顯示不出來）"></a>🧩 設定 marker 圖示（避免顯示不出來）</h3><pre><code class="js">    const iconUrl = &#39;https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png&#39;
+    const shadowUrl = &#39;https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png&#39;
+
+    const DefaultIcon = L.icon({
+      iconUrl,
+      shadowUrl,
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+      popupAnchor: [1, -34],
+      shadowSize: [41, 41]
+    })
+    L.Marker.prototype.options.icon = DefaultIcon
+</code></pre>
+<p>✅ Leaflet 使用自己的 marker 圖示，但在 CDN 環境下常常「找不到圖示」。<br>這段程式明確指定圖示網址，並設定為預設圖示，解決圖示不見的問題。</p>
+<hr>
+<h3 id="🌍-抓國家資料（REST-Countries-API）"><a href="#🌍-抓國家資料（REST-Countries-API）" class="headerlink" title="🌍 抓國家資料（REST Countries API）"></a>🌍 抓國家資料（REST Countries API）</h3><pre><code class="js">    const res = await fetch(&#39;https://restcountries.com/v3.1/all?fields=name,capital,latlng,flags,currencies&#39;)
+    const countries = await res.json()
+</code></pre>
+<p>✅ 向 REST Countries API 請求所有國家資料，但<strong>只取需要的欄位</strong>，減少資料量：</p>
+<ul>
+<li><code>name</code>：國家名稱</li>
+<li><code>capital</code>：首都</li>
+<li><code>latlng</code>：經緯度</li>
+<li><code>flags</code>：國旗圖</li>
+<li><code>currencies</code>：貨幣資料</li>
+</ul>
+<hr>
+<h3 id="🛡️-防呆：API-回傳不是陣列"><a href="#🛡️-防呆：API-回傳不是陣列" class="headerlink" title="🛡️ 防呆：API 回傳不是陣列"></a>🛡️ 防呆：API 回傳不是陣列</h3><pre><code class="js">    if (!Array.isArray(countries)) {
+      console.error(&#39;API 傳回的資料不是陣列：&#39;, countries)
+      return
+    }
+</code></pre>
+<p>✅ 確保 <code>countries</code> 是一個陣列，如果不是就跳出，避免 <code>.forEach</code> 出錯。</p>
+<hr>
+<h3 id="📌-加入每個國家的-marker"><a href="#📌-加入每個國家的-marker" class="headerlink" title="📌 加入每個國家的 marker"></a>📌 加入每個國家的 marker</h3><pre><code class="js">    countries.forEach((country) =&gt; {
+      const latlng = country.latlng
+      const name = country.name?.common || &#39;未知&#39;
+      const capital = country.capital?.[0] || &#39;未知&#39;
+      const flag = country.flags?.png || &#39;&#39;
+      const currency = country.currencies
+        ? Object.values(country.currencies)[0]?.symbol || &#39;未知&#39;
+        : &#39;未知&#39;
+
+      if (latlng?.length === 2) {
+        const marker = L.marker(latlng).addTo(map)
+        marker.bindPopup(`
+          &lt;div style=&quot;text-align: center;&quot;&gt;
+            &lt;img src=&quot;${flag}&quot; width=&quot;80&quot;&gt;&lt;br&gt;
+            &lt;strong&gt;${name}&lt;/strong&gt;&lt;br&gt;
+            首都：${capital}&lt;br&gt;
+            貨幣：${currency}
+          &lt;/div&gt;
+        `)
+      }
+    })
+</code></pre>
+<h3 id="說明：-1"><a href="#說明：-1" class="headerlink" title="說明："></a>說明：</h3><ul>
+<li>✅ <code>country.latlng</code>：marker 座標</li>
+<li>✅ <code>country.name.common</code>：常用名稱，例如「Taiwan」</li>
+<li>✅ <code>country.capital[0]</code>：首都</li>
+<li>✅ <code>country.flags.png</code>：國旗圖片</li>
+<li>✅ <code>currencies</code>：貨幣資訊是物件，先轉成陣列後取第 1 筆</li>
+<li>✅ <code>L.marker(latlng)</code>：建立 marker</li>
+<li>✅ <code>.bindPopup(...)</code>：點 marker 時會跳出 popup</li>
+</ul>
+<hr>
+<h3 id="🧯-捕捉錯誤"><a href="#🧯-捕捉錯誤" class="headerlink" title="🧯 捕捉錯誤"></a>🧯 捕捉錯誤</h3><pre><code class="js">  } catch (err) {
+    console.error(&#39;地圖初始化錯誤：&#39;, err)
+  }
+</code></pre>
+<p>✅ 如果以上任何一段出錯，會把錯誤資訊顯示在開發者工具中，不會整個壞掉。</p>
+<hr>
+<h2 id="🎨-區塊：樣式"><a href="#🎨-區塊：樣式" class="headerlink" title="🎨 &lt;style scoped&gt; 區塊：樣式"></a>🎨 <code>&lt;style scoped&gt;</code> 區塊：樣式</h2><pre><code class="css">h2 {
+  font-size: 30px;
+  margin-bottom: 15px;
+}
+
+#map {
+  height: 90vh;
+  width: 100%;
+}
+</code></pre>
+<ul>
+<li><p><code>h2</code>：讓標題看起來更大、漂亮</p>
+</li>
+<li><p><code>#map</code>：</p>
+<ul>
+<li>高度設為 90vh（瀏覽器視窗 90% 高）</li>
+<li>地圖才會顯示出來（Leaflet 需要容器高度）</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="✅-總結"><a href="#✅-總結" class="headerlink" title="✅ 總結"></a>✅ 總結</h2><p>這個 <code>CountryInfo.vue</code>：</p>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>是否完成</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>世界地圖初始化</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>使用 OpenStreetMap 當底圖</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>使用 REST API 取得各國資料</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>使用 CDN 版本的 Leaflet</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>在每個國家經緯度加 marker</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>點 marker 顯示國旗+首都+貨幣</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>錯誤處理與防呆</td>
+<td>✅</td>
+</tr>
+</tbody></table>
+<hr>

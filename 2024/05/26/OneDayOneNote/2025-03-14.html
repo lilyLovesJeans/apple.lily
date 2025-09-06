@@ -1,0 +1,154 @@
+<hr>
+<h2 id="title-2025-03-14-Leaflet-的L在那裡被宣告date-2025-09-06-23-11-36tags-Javascript-Vue-description-2025-03-14-Leaflet-的L在那裡被宣告"><a href="#title-2025-03-14-Leaflet-的L在那裡被宣告date-2025-09-06-23-11-36tags-Javascript-Vue-description-2025-03-14-Leaflet-的L在那裡被宣告" class="headerlink" title="title: 2025-03-14-Leaflet 的L在那裡被宣告date: 2025-09-06 23:11:36tags:  [Javascript,Vue]description:  2025-03-14-Leaflet 的L在那裡被宣告"></a>title: 2025-03-14-Leaflet 的L在那裡被宣告<br>date: 2025-09-06 23:11:36<br>tags:  [Javascript,Vue]<br>description:  2025-03-14-Leaflet 的L在那裡被宣告</h2><h1 id="2025-03-14-Leaflet-的L在那裡被宣告"><a href="#2025-03-14-Leaflet-的L在那裡被宣告" class="headerlink" title="2025-03-14-Leaflet 的L在那裡被宣告"></a>2025-03-14-Leaflet 的L在那裡被宣告</h1><hr>
+<h2 id="✅-L-是在哪裡被宣告的？"><a href="#✅-L-是在哪裡被宣告的？" class="headerlink" title="✅ L 是在哪裡被宣告的？"></a>✅ <code>L</code> 是在哪裡被宣告的？</h2><p><code>L</code> 是在你用的這一行裡被「<strong>宣告並定義為全域變數</strong>」的：</p>
+<pre><code class="html">&lt;script src=&quot;https://unpkg.com/leaflet@1.9.4/dist/leaflet.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<hr>
+<h3 id="🔍-解釋：「這行-script-裡面做了什麼？」"><a href="#🔍-解釋：「這行-script-裡面做了什麼？」" class="headerlink" title="🔍 解釋：「這行 script 裡面做了什麼？」"></a>🔍 解釋：「這行 script 裡面做了什麼？」</h3><p>你看不到它的原始碼，但其實這支 CDN 的 <code>leaflet.js</code> 做了類似這樣的事：</p>
+<pre><code class="js">// leaflet.js 裡的開頭（簡化示意）
+(function(global) {
+  var L = {}; // 🟢 宣告變數 L
+
+  // 加入很多功能：
+  L.map = function (...) { ... }
+  L.marker = function (...) { ... }
+  L.tileLayer = function (...) { ... }
+  L.icon = function (...) { ... }
+  // 等等...
+
+  // 最後把 L 掛到全域變數上（在瀏覽器就是 window）
+  global.L = L;
+})(this); // this 指的是 window
+</code></pre>
+<p>所以當這個 <code>&lt;script&gt;</code> 被執行之後，就會自動讓你在程式碼裡用 <code>L</code>：</p>
+<pre><code class="js">console.log(L.map) // ✅ 成功顯示 Leaflet 的函式
+</code></pre>
+<hr>
+<h3 id="🔵-小結："><a href="#🔵-小結：" class="headerlink" title="🔵 小結："></a>🔵 小結：</h3><table>
+<thead>
+<tr>
+<th>問題</th>
+<th>答案</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>L</code> 是誰宣告的？</td>
+<td>Leaflet 的原始碼自己宣告的。</td>
+</tr>
+<tr>
+<td>哪一行讓它出現的？</td>
+<td><code>&lt;script src=&quot;...leaflet.js&quot;&gt;</code></td>
+</tr>
+<tr>
+<td>為什麼我們可以直接用 <code>L</code>？</td>
+<td>因為 Leaflet 把它掛在了全域變數 <code>window</code> 上（即 <code>window.L = L</code>）</td>
+</tr>
+<tr>
+<td>這是不是 Vue 提供的？</td>
+<td>❌ 不是。Vue 完全不知道 <code>L</code> 是什麼，這是 Leaflet 自己註冊的變數。</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="💡-額外補充：怎麼知道一個變數是不是全域的？"><a href="#💡-額外補充：怎麼知道一個變數是不是全域的？" class="headerlink" title="💡 額外補充：怎麼知道一個變數是不是全域的？"></a>💡 額外補充：怎麼知道一個變數是不是全域的？</h2><p>你可以這樣試：</p>
+<pre><code class="js">console.log(window.L);  // ✅ 有的話就是全域變數
+console.log(typeof L);  // 應該會印出 &#39;object&#39;
+</code></pre>
+<hr>
+<p>如果你日後改用 npm 安裝 Leaflet，而不是用 CDN，就不能直接用 <code>L</code>，而要這樣寫：</p>
+<pre><code class="js">import L from &#39;leaflet&#39;
+</code></pre>
+<p>這是模組化（module）的寫法。</p>
+<hr>
+<p>如果你有興趣，我也可以：</p>
+<ul>
+<li>解釋 Leaflet 整個架構是怎麼設計的（plugin, layer, pane, control）</li>
+<li>教你怎麼把 <code>L</code> 包裝成 Vue plugin 用法</li>
+</ul>
+<p>是否想深入哪個方向？🌱</p>
+<p>這個問題問得超關鍵，代表你正在從「使用者」變成「開發者」思維了 💪<br>來，我會教你三種方法去<strong>確認某個 CDN 或第三方庫到底定義了哪些全域變數</strong>，而不是「只靠記憶」或「去看文件」。</p>
+<hr>
+<h2 id="✅-方法-1：開發者工具-→-Sources-→-搜尋全域註冊"><a href="#✅-方法-1：開發者工具-→-Sources-→-搜尋全域註冊" class="headerlink" title="✅ 方法 1：開發者工具 → Sources → 搜尋全域註冊"></a>✅ 方法 1：<strong>開發者工具 → Sources → 搜尋全域註冊</strong></h2><h3 id="步驟："><a href="#步驟：" class="headerlink" title="步驟："></a>步驟：</h3><ol>
+<li><p>打開你的網頁（已載入 Leaflet CDN）</p>
+</li>
+<li><p>開啟瀏覽器 DevTools（Chrome: F12 &#x2F; 右鍵檢查）</p>
+</li>
+<li><p>點選 <strong>Sources</strong></p>
+</li>
+<li><p>找到 Leaflet 來源檔（通常是：<br><code>https://unpkg.com/leaflet@.../leaflet.js</code>）</p>
+</li>
+<li><p>按下 <code>Ctrl+F</code> 搜尋：</p>
+<pre><code class="js">window.
+</code></pre>
+<p>或</p>
+<pre><code class="js">global.
+</code></pre>
+</li>
+<li><p>你會看到類似這段：</p>
+<pre><code class="js">global.L = L;
+</code></pre>
+</li>
+</ol>
+<h3 id="✅-結論：這支-library-自己註冊了全域變數-L-。"><a href="#✅-結論：這支-library-自己註冊了全域變數-L-。" class="headerlink" title="✅ 結論：這支 library **自己註冊了全域變數 L**。"></a>✅ 結論：這支 library **自己註冊了全域變數 <code>L</code>**。</h3><hr>
+<h2 id="✅-方法-2：載入前後比較-window-上多了什麼變數"><a href="#✅-方法-2：載入前後比較-window-上多了什麼變數" class="headerlink" title="✅ 方法 2：載入前後比較 window 上多了什麼變數"></a>✅ 方法 2：載入前後比較 <code>window</code> 上多了什麼變數</h2><p>這是<strong>黑科技觀察法</strong>（超好用）！</p>
+<h3 id="操作方式："><a href="#操作方式：" class="headerlink" title="操作方式："></a>操作方式：</h3><p>打開瀏覽器 Console，貼入下面這段程式碼：</p>
+<pre><code class="js">// 載入 Leaflet 前：
+const before = Object.keys(window);
+
+// 人工或程式加載 Leaflet
+await new Promise((resolve) =&gt; {
+  const script = document.createElement(&#39;script&#39;);
+  script.src = &#39;https://unpkg.com/leaflet@1.9.4/dist/leaflet.js&#39;;
+  script.onload = resolve;
+  document.body.appendChild(script);
+});
+
+// 載入 Leaflet 後：
+const after = Object.keys(window);
+
+// 比較差異
+const diff = after.filter(k =&gt; !before.includes(k));
+console.log(&#39;新增的全域變數：&#39;, diff);
+</code></pre>
+<p>👉 執行完會印出：</p>
+<pre><code class="js">新增的全域變數：[&#39;L&#39;]
+</code></pre>
+<h3 id="✅-結論：Leaflet-載入後確實在-window-上增加了-L。"><a href="#✅-結論：Leaflet-載入後確實在-window-上增加了-L。" class="headerlink" title="✅ 結論：Leaflet 載入後確實在 window 上增加了 L。"></a>✅ 結論：Leaflet 載入後確實在 <code>window</code> 上增加了 <code>L</code>。</h3><hr>
+<h2 id="✅-方法-3：看官方文件或-CDN-網站說明"><a href="#✅-方法-3：看官方文件或-CDN-網站說明" class="headerlink" title="✅ 方法 3：看官方文件或 CDN 網站說明"></a>✅ 方法 3：看官方文件或 CDN 網站說明</h2><p>Leaflet 官方網站也會寫清楚：「用法是 <code>L.map(...)</code>」：</p>
+<ul>
+<li><p>Leaflet 官網：<a href="https://leafletjs.com/">https://leafletjs.com</a></p>
+</li>
+<li><p>Quick Start 教學會出現：</p>
+<pre><code class="js">var map = L.map(&#39;map&#39;)
+</code></pre>
+</li>
+</ul>
+<p>這也是一種印證，但比起實際驗證更偏向參考。</p>
+<hr>
+<h2 id="🧠-延伸思考：為什麼很多-JS-library-都用單字母當全域變數？"><a href="#🧠-延伸思考：為什麼很多-JS-library-都用單字母當全域變數？" class="headerlink" title="🧠 延伸思考：為什麼很多 JS library 都用單字母當全域變數？"></a>🧠 延伸思考：為什麼很多 JS library 都用單字母當全域變數？</h2><p>因為：</p>
+<ul>
+<li>不想污染太多變數</li>
+<li>容易記（像：<code>L</code> for Leaflet，<code>$</code> for jQuery, <code>_</code> for Lodash）</li>
+<li>舊時代的習慣（模組化還沒普及）</li>
+</ul>
+<hr>
+<h2 id="✅-小結"><a href="#✅-小結" class="headerlink" title="✅ 小結"></a>✅ 小結</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>🔍 Sources 搜尋</td>
+<td>最直接看原始碼是否有 <code>window.L = ...</code></td>
+</tr>
+<tr>
+<td>🔬 載入前後比對 <code>window</code></td>
+<td>超準！可以找出所有新增的變數</td>
+</tr>
+<tr>
+<td>📚 官方文件</td>
+<td>快速查閱用法，但不能保證真實載入成功</td>
+</tr>
+</tbody></table>
+<hr>

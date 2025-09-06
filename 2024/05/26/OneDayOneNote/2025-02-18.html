@@ -1,0 +1,75 @@
+<hr>
+<h2 id="title-2025-02-18-callback-生活化例子date-2025-09-06-22-18-48tags-Javascript-Vue-description-2025-02-18-callback-生活化例子"><a href="#title-2025-02-18-callback-生活化例子date-2025-09-06-22-18-48tags-Javascript-Vue-description-2025-02-18-callback-生活化例子" class="headerlink" title="title: 2025-02-18-callback_生活化例子date: 2025-09-06 22:18:48tags:  [Javascript,Vue]description:  2025-02-18-callback_生活化例子"></a>title: 2025-02-18-callback_生活化例子<br>date: 2025-09-06 22:18:48<br>tags:  [Javascript,Vue]<br>description:  2025-02-18-callback_生活化例子</h2><h1 id="2025-02-18-callback-生活化例子"><a href="#2025-02-18-callback-生活化例子" class="headerlink" title="2025-02-18-callback_生活化例子"></a>2025-02-18-callback_生活化例子</h1><p>以下是 <strong>一個生活化又簡單的例子</strong>，幫助你理解什麼是 callback，還有什麼叫 callback hell（回呼地獄）。</p>
+<hr>
+<h2 id="🧁-情境例子：媽媽叫你幫忙做蛋糕"><a href="#🧁-情境例子：媽媽叫你幫忙做蛋糕" class="headerlink" title="🧁 情境例子：媽媽叫你幫忙做蛋糕"></a>🧁 情境例子：媽媽叫你幫忙做蛋糕</h2><p>你幫媽媽做蛋糕要經過三個步驟：</p>
+<ol>
+<li>買材料</li>
+<li>打蛋混合</li>
+<li>放進烤箱</li>
+</ol>
+<p>這些步驟都不能同時做，必須一個做完再做下一個。</p>
+<hr>
+<h3 id="✅-使用-callback-的寫法"><a href="#✅-使用-callback-的寫法" class="headerlink" title="✅ 使用 callback 的寫法"></a>✅ 使用 callback 的寫法</h3><pre><code class="js">function buyIngredients(callback) {
+  setTimeout(() =&gt; {
+    console.log(&#39;🛒 材料買好了！&#39;)
+    callback()
+  }, 1000)
+}
+
+function mixIngredients(callback) {
+  setTimeout(() =&gt; {
+    console.log(&#39;🥣 材料攪拌好了！&#39;)
+    callback()
+  }, 1000)
+}
+
+function bake(callback) {
+  setTimeout(() =&gt; {
+    console.log(&#39;🔥 蛋糕烤好了！&#39;)
+    callback()
+  }, 1000)
+}
+
+buyIngredients(() =&gt; {
+  mixIngredients(() =&gt; {
+    bake(() =&gt; {
+      console.log(&#39;🎉 蛋糕完成，可以吃了！&#39;)
+    })
+  })
+})
+</code></pre>
+<hr>
+<h3 id="📌-說明"><a href="#📌-說明" class="headerlink" title="📌 說明"></a>📌 說明</h3><ul>
+<li>每一個步驟都透過 callback 告訴下一個步驟「我好了，換你」。</li>
+<li>但 callback 一層又一層，就會像這樣：</li>
+</ul>
+<pre><code class="js">買材料(() =&gt; {
+  攪拌(() =&gt; {
+    烘烤(() =&gt; {
+      完成()
+    })
+  })
+})
+</code></pre>
+<p>這看起來已經有點複雜了，如果還要再加「切蛋糕、包裝、送人」… 會變成這樣：</p>
+<pre><code class="js">買材料(() =&gt; {
+  攪拌(() =&gt; {
+    烘烤(() =&gt; {
+      切蛋糕(() =&gt; {
+        包裝(() =&gt; {
+          送人(() =&gt; {
+            console.log(&#39;完成所有任務&#39;)
+          })
+        })
+      })
+    })
+  })
+})
+</code></pre>
+<p>😵 看起來是不是有點像「無限 callback」？這就是我們說的 <strong>callback hell</strong>。</p>
+<hr>
+<h3 id="🧠-重點總結"><a href="#🧠-重點總結" class="headerlink" title="🧠 重點總結"></a>🧠 重點總結</h3><ul>
+<li><strong>callback</strong>：就是「做完某件事，通知我去做下一件事」的函式。</li>
+<li><strong>callback hell</strong>：就是「太多 callback 巢狀在一起」，程式越寫越難讀。</li>
+</ul>
+<hr>

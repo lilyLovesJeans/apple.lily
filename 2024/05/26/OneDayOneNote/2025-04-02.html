@@ -1,0 +1,102 @@
+<hr>
+<h2 id="title-2025-04-02-Vue-情境化-解釋-v-modeldate-2025-09-06-23-45-59tags-Javascript-Vue-description-2025-04-02-Vue-情境化-解釋-v-model"><a href="#title-2025-04-02-Vue-情境化-解釋-v-modeldate-2025-09-06-23-45-59tags-Javascript-Vue-description-2025-04-02-Vue-情境化-解釋-v-model" class="headerlink" title="title: 2025-04-02- Vue *情境化**解釋 v-modeldate: 2025-09-06 23:45:59tags:  [Javascript,Vue]description:  2025-04-02- Vue *情境化**解釋 v-model"></a>title: 2025-04-02- Vue *情境化**解釋 v-model<br>date: 2025-09-06 23:45:59<br>tags:  [Javascript,Vue]<br>description:  2025-04-02- Vue *情境化**解釋 v-model</h2><h1 id="2025-04-02-Vue-情境化-解釋-v-model"><a href="#2025-04-02-Vue-情境化-解釋-v-model" class="headerlink" title="2025-04-02- Vue *情境化**解釋 v-model"></a>2025-04-02- Vue *情境化**解釋 v-model</h1><p>我懂了，你的意思是要用<strong>情境化</strong>的方式，把為什麼有<br><code>:modelValue</code> + <code>@update:modelValue</code>（也就是 v-model）這種父子元件互傳資料的語法，講得更貼近開發需求對吧？</p>
+<hr>
+<h3 id="情境說明"><a href="#情境說明" class="headerlink" title="情境說明"></a><strong>情境說明</strong></h3><p>假設我們有一個頁面 <code>A.vue</code>（父元件），上面有一個變數：</p>
+<pre><code class="js">let vMy123 = &quot;小明&quot;
+</code></pre>
+<p>原本這個變數是直接在 <code>A.vue</code> 中用 <code>&lt;input&gt;</code> 綁定的，很單純。<br>但後來我們覺得——這個輸入框需要<strong>包裝成一個好看又可重用的元件</strong>（方便其他地方也用），<br>所以我們拆成兩個檔案：</p>
+<ul>
+<li><strong>父元件 <code>A.vue</code></strong> → 管理資料與邏輯</li>
+<li><strong>子元件 <code>MyInput.vue</code></strong> → 專門負責顯示與處理輸入</li>
+</ul>
+<hr>
+<h3 id="問題出現"><a href="#問題出現" class="headerlink" title="問題出現"></a><strong>問題出現</strong></h3><p>一旦拆成父子元件，<code>vMy123</code> 這個變數就<strong>不在子元件裡了</strong>，<br>但子元件需要顯示它（父 → 子傳值），<br>而且使用者輸入新內容時，子元件也要告訴父元件更新 <code>vMy123</code>（子 → 父回傳）。</p>
+<hr>
+<h3 id="解決方式"><a href="#解決方式" class="headerlink" title="解決方式"></a><strong>解決方式</strong></h3><p>Vue 提供了<strong>資料單向流</strong> + <strong>事件回傳</strong>的做法：</p>
+<ol>
+<li><p><strong>父 → 子：</strong></p>
+<pre><code class="vue">:modelValue=&quot;vMy123&quot;
+</code></pre>
+<p>把父元件的 <code>vMy123</code> 傳給子元件的 <code>props.modelValue</code>。</p>
+</li>
+<li><p><strong>子 → 父：</strong></p>
+<pre><code class="vue">@update:modelValue=&quot;vMy123 = $event&quot;
+</code></pre>
+<p>當子元件輸入框變更時，觸發 <code>update:modelValue</code> 事件，把新值傳回給父元件。</p>
+</li>
+</ol>
+<hr>
+<h3 id="v-model-的好處"><a href="#v-model-的好處" class="headerlink" title="v-model 的好處"></a><strong>v-model 的好處</strong></h3><p>這兩段寫在一起很囉嗦，所以 Vue 給你糖衣版本：</p>
+<pre><code class="vue">&lt;MyInput v-model=&quot;vMy123&quot; /&gt;
+</code></pre>
+<p>它等於：</p>
+<pre><code class="vue">&lt;MyInput :modelValue=&quot;vMy123&quot; @update:modelValue=&quot;vMy123 = $event&quot; /&gt;
+</code></pre>
+<hr>
+<p>✅ <strong>簡單總結</strong><br>你理解的對：這就是在父子元件分工的情況下，<br>為了讓資料雙向同步（父傳給子、子回傳給父）而設計的語法。<br>事件的觸發，通常是因為<strong>使用者操作了子元件</strong>（輸入、點擊等），<br>而父元件需要根據這個新資料做後續的邏輯。</p>
+<hr>
+<p>如果你願意，我可以用「父元件輸入名字，子元件顯示輸入框」的最小範例讓你馬上看到雙向傳遞的效果。<br>這樣你會瞬間抓到它的運作方式。</p>
+<p>好，那我們做一個超精簡的範例，變數就叫 **<code>vMyGod</code>**，讓你直接看到 <strong>父 → 子</strong> 與 <strong>子 → 父</strong> 資料同步的效果。</p>
+<hr>
+<h3 id="父元件-A-vue"><a href="#父元件-A-vue" class="headerlink" title="父元件 A.vue"></a><strong>父元件 A.vue</strong></h3><pre><code class="vue">&lt;template&gt;
+  &lt;div&gt;
+    &lt;h2&gt;父元件&lt;/h2&gt;
+    &lt;p&gt;父元件的 vMyGod：{{ vMyGod }}&lt;/p&gt;
+
+    &lt;!-- 用 v-model 綁定子元件 --&gt;
+    &lt;MyInput v-model=&quot;vMyGod&quot; /&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+import MyInput from &#39;./MyInput.vue&#39;
+
+// 父元件變數
+const vMyGod = ref(&quot;初始值：Hello World&quot;)
+&lt;/script&gt;
+</code></pre>
+<hr>
+<h3 id="子元件-MyInput-vue"><a href="#子元件-MyInput-vue" class="headerlink" title="子元件 MyInput.vue"></a><strong>子元件 MyInput.vue</strong></h3><pre><code class="vue">&lt;template&gt;
+  &lt;div&gt;
+    &lt;h3&gt;子元件&lt;/h3&gt;
+    &lt;input
+      type=&quot;text&quot;
+      :value=&quot;modelValue&quot;
+      @input=&quot;$emit(&#39;update:modelValue&#39;, $event.target.value)&quot;
+    /&gt;
+    &lt;p&gt;子元件接到的值：{{ modelValue }}&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+// 接收父元件傳來的值
+const props = defineProps({
+  modelValue: String
+})
+
+// 定義可以發射事件
+const emit = defineEmits([&#39;update:modelValue&#39;])
+&lt;/script&gt;
+</code></pre>
+<hr>
+<h3 id="運作流程"><a href="#運作流程" class="headerlink" title="運作流程"></a><strong>運作流程</strong></h3><ol>
+<li><p><strong>父元件啟動</strong> → <code>vMyGod = &quot;初始值：Hello World&quot;</code></p>
+</li>
+<li><p>父元件透過 <code>v-model</code> 把值傳給 <code>MyInput.vue</code> 的 <code>modelValue</code></p>
+</li>
+<li><p><strong>子元件顯示輸入框</strong>，內容是 <code>&quot;初始值：Hello World&quot;</code></p>
+</li>
+<li><p>你在輸入框改文字 → 子元件用</p>
+<pre><code class="js">$emit(&#39;update:modelValue&#39;, 新的值)
+</code></pre>
+<p>把資料回傳給父元件，父元件的 <code>vMyGod</code> 也會即時更新。</p>
+</li>
+</ol>
+<hr>
+<p>這個範例跑起來，你會看到：</p>
+<ul>
+<li>父元件的 <code>&lt;p&gt;</code> 和子元件的 <code>&lt;p&gt;</code> 永遠同步</li>
+<li>改父元件變數或子元件輸入框，都會互相影響</li>
+</ul>
+<hr>

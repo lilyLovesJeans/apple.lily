@@ -1,0 +1,21 @@
+<hr>
+<h2 id="title-2025-01-30-JavaScript-系列八：第5課-──-體重追蹤應用程式-步驟04date-2025-09-06-20-45-22tags-Javascript-Vue-description-2025-01-30-JavaScript-系列八：第5課-──-體重追蹤應用程式-步驟04"><a href="#title-2025-01-30-JavaScript-系列八：第5課-──-體重追蹤應用程式-步驟04date-2025-09-06-20-45-22tags-Javascript-Vue-description-2025-01-30-JavaScript-系列八：第5課-──-體重追蹤應用程式-步驟04" class="headerlink" title="title: 2025-01-30- JavaScript 系列八：第5課 ── 體重追蹤應用程式-步驟04date: 2025-09-06 20:45:22tags:  [Javascript,Vue]description:   2025-01-30- JavaScript 系列八：第5課 ── 體重追蹤應用程式-步驟04"></a>title: 2025-01-30- JavaScript 系列八：第5課 ── 體重追蹤應用程式-步驟04<br>date: 2025-09-06 20:45:22<br>tags:  [Javascript,Vue]<br>description:   2025-01-30- JavaScript 系列八：第5課 ── 體重追蹤應用程式-步驟04</h2><h1 id="2025-01-30-JavaScript-系列八：第5課-──-體重追蹤應用程式-步驟04"><a href="#2025-01-30-JavaScript-系列八：第5課-──-體重追蹤應用程式-步驟04" class="headerlink" title="2025-01-30- JavaScript 系列八：第5課 ── 體重追蹤應用程式-步驟04"></a>2025-01-30- JavaScript 系列八：第5課 ── 體重追蹤應用程式-步驟04</h1><p>繼續完成你的 <strong>體重追蹤應用程式</strong>！你目前的程式已經有表單、新增功能、localStorage 儲存、排序，現在我們來補上幾個關鍵部分，依順序做：</p>
+<hr>
+<h3 id="✅-1-修正刪除功能"><a href="#✅-1-修正刪除功能" class="headerlink" title="✅ 1. 修正刪除功能"></a>✅ 1. 修正刪除功能</h3><p>你原本的刪除邏輯：</p>
+<pre><code class="js">records.value = records.value.filter(r=&gt; r.id)
+</code></pre>
+<p>這段不對，因為它只是留下 <code>r.id 為真</code> 的項目，沒有過濾掉特定 ID。</p>
+<p><strong>請改成這樣：</strong></p>
+<pre><code class="js">const deleteRecord = (id) =&gt; {
+  records.value = records.value.filter(r =&gt; r.id !== id)
+}
+</code></pre>
+<hr>
+<h3 id="✅-2-加上刪除按鈕內容"><a href="#✅-2-加上刪除按鈕內容" class="headerlink" title="✅ 2. 加上刪除按鈕內容"></a>✅ 2. 加上刪除按鈕內容</h3><p>你這裡原本是空的：</p>
+<pre><code class="html">&lt;button @click=&quot;deleteRecord(record.id)&quot;&gt;&lt;/button&gt;
+</code></pre>
+<p><strong>請補上文字或圖示，例如：</strong></p>
+<pre><code class="html">&lt;button @click=&quot;deleteRecord(record.id)&quot; class=&quot;text-red-500&quot;&gt;刪除&lt;/button&gt;
+</code></pre>
+<hr>
+<h3 id="✅-3-顯示圖表（Chart-js）"><a href="#✅-3-顯示圖表（Chart-js）" class="headerlink" title="✅ 3. 顯示圖表（Chart.js）"></a>✅ 3. 顯示圖表（Chart.js）</h3><p>這是我們下一步目標：用 Chart.js 畫出體重變化的折線圖。</p>

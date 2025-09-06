@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2025-04-08-JavaScript 系列九：第7課 ── 學習開發狀態複雜的 vue 元件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025-04-08-JavaScript 系列九：第7課 ── 學習開發狀態複雜的 vue 元件">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/09/06/OneDayOneNote/2025-04-08/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2025-04-08-JavaScript 系列九：第7課 ── 學習開發狀態複雜的 vue 元件">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-09-06T15:55:11.000Z">
+<meta property="article:modified_time" content="2025-09-06T15:55:48.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2025/09/06/OneDayOneNote/2025-04-08/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2025/09/06/OneDayOneNote/2025-04-08/","path":"2025/09/06/OneDayOneNote/2025-04-08/","title":"2025-04-08-JavaScript 系列九：第7課 ── 學習開發狀態複雜的 vue 元件"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2025-04-08-JavaScript 系列九：第7課 ── 學習開發狀態複雜的 vue 元件 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2025-04-08-JavaScript-%E7%B3%BB%E5%88%97%E4%B9%9D%EF%BC%9A%E7%AC%AC7%E8%AA%B2-%E2%94%80%E2%94%80-%E5%AD%B8%E7%BF%92%E9%96%8B%E7%99%BC%E7%8B%80%E6%85%8B%E8%A4%87%E9%9B%9C%E7%9A%84-vue-%E5%85%83%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">2025-04-08-JavaScript 系列九：第7課 ── 學習開發狀態複雜的 vue 元件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%EF%B8%8F%E2%83%A3-%E5%8A%9F%E8%83%BD%E9%9C%80%E6%B1%82%E6%95%B4%E7%90%86"><span class="nav-number">1.1.</span> <span class="nav-text">1️⃣ 功能需求整理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%EF%B8%8F%E2%83%A3-HEX-%E2%86%94-RGB-%E8%BD%89%E6%8F%9B%E5%B7%A5%E5%85%B7%E5%87%BD%E5%BC%8F"><span class="nav-number">1.2.</span> <span class="nav-text">2️⃣ HEX ↔ RGB 轉換工具函式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%EF%B8%8F%E2%83%A3-MyColor-vue"><span class="nav-number">1.3.</span> <span class="nav-text">3️⃣ MyColor.vue</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4%EF%B8%8F%E2%83%A3-App-vue-%E6%B8%AC%E8%A9%A6%E7%AF%84%E4%BE%8B"><span class="nav-number">1.4.</span> <span class="nav-text">4️⃣ App.vue 測試範例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%9C%85-%E6%96%B0%E5%A2%9E%E5%8A%9F%E8%83%BD"><span class="nav-number">1.4.1.</span> <span class="nav-text">✅ 新增功能</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.5.</span> <span class="nav-text">測試 MyColor.vue（含動畫效果）</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">408</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2025/09/06/OneDayOneNote/2025-04-08/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2025-04-08-JavaScript 系列九：第7課 ── 學習開發狀態複雜的 vue 元件 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2025-04-08-JavaScript 系列九：第7課 ── 學習開發狀態複雜的 vue 元件">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2025-04-08-JavaScript 系列九：第7課 ── 學習開發狀態複雜的 vue 元件
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2025-09-06 23:55:11 / 修改時間：23:55:48" itemprop="dateCreated datePublished" datetime="2025-09-06T23:55:11+08:00">2025-09-06</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2025-04-08-JavaScript 系列九：第7課 ── 學習開發狀態複雜的 vue 元件</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="2025-04-08-JavaScript-系列九：第7課-──-學習開發狀態複雜的-vue-元件"><a href="#2025-04-08-JavaScript-系列九：第7課-──-學習開發狀態複雜的-vue-元件" class="headerlink" title="2025-04-08-JavaScript 系列九：第7課 ── 學習開發狀態複雜的 vue 元件"></a>2025-04-08-JavaScript 系列九：第7課 ── 學習開發狀態複雜的 vue 元件</h1><p>JavaScript 系列九：第7課 ── 學習開發狀態複雜的 vue 元件<br>課程目標<br>學習開發狀態複雜的 vue 元件<br>課程內容<br>前面的課程中，元件的狀態很單純，數量也很少</p>
+<p>但是有些元件，雖然對外溝通的狀態很少</p>
+<p>但是在元件內部，其實需要維持額外的多個狀態，才能使用</p>
+<p>比方說「顏色選擇器」類型的元件：雖然對外就一個代表色碼的字串而已，但在內部需要不少狀態來維持</p>
+<p>課後作業<br>這一課作業，請先看一下 Color Picker 元件的用法</p>
+<p><a target="_blank" rel="noopener" href="https://quasar.dev/vue-components/color-picker">https://quasar.dev/vue-components/color-picker</a></p>
+<p>請使用官方的元件試玩工具：Vue SFC Playground</p>
+<p><a target="_blank" rel="noopener" href="https://sfc.vuejs.org/">https://sfc.vuejs.org/</a></p>
+<p>請建立 MyColor.vue 元件，並支援下列功能<br>v-model 能夠設定色碼、取得色碼，格式支援 HEX 即可，例如：經典藍 #34568b<br>不用支援各種花俏的顏色選擇面板，就做 RGB 三捲軸就好了：使用 <input type="range"> 製作三個可以拉動的捲軸，分別代表紅色、綠色、藍色的比例<br>請自行搜尋 hex to rgb javascript rgb to hex javascript 研究 hex 色碼與 rgb 色碼如何轉換<br>完成之後，請在 App.vue 之中匯入此元件，並用多個範例證明，有完成上述規格</p>
+<p>做出以上功能，你就完成這次的課程目標了！<br>明白了！我們這一課是要做一個 <strong>狀態較複雜的 Vue 元件</strong>——一個 <strong>RGB 三捲軸的色彩選擇器（MyColor.vue）</strong>，並用 <code>v-model</code> 對外提供 HEX 色碼。下面我幫你整理 <strong>完整的實作思路和範例程式碼</strong>，一步步說明：</p>
+<hr>
+<h2 id="1️⃣-功能需求整理"><a href="#1️⃣-功能需求整理" class="headerlink" title="1️⃣ 功能需求整理"></a>1️⃣ 功能需求整理</h2><ol>
+<li><p><strong>對外 v-model</strong>：</p>
+<ul>
+<li>允許傳入初始 HEX 色碼，也可以取得目前選的 HEX 色碼。</li>
+</ul>
+</li>
+<li><p><strong>內部狀態</strong>：</p>
+<ul>
+<li>三個數字值分別代表 R &#x2F; G &#x2F; B（0~255）。</li>
+<li>這三個數值會互相影響最終的 HEX 值。</li>
+</ul>
+</li>
+<li><p><strong>UI</strong>：</p>
+<ul>
+<li>三個 <code>&lt;input type=&quot;range&quot;&gt;</code>，分別控制 R &#x2F; G &#x2F; B。</li>
+<li>顯示目前選的色塊與 HEX 值。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="2️⃣-HEX-↔-RGB-轉換工具函式"><a href="#2️⃣-HEX-↔-RGB-轉換工具函式" class="headerlink" title="2️⃣ HEX ↔ RGB 轉換工具函式"></a>2️⃣ HEX ↔ RGB 轉換工具函式</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// HEX -&gt; RGB</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">hexToRgb</span>(<span class="params">hex</span>) &#123;</span><br><span class="line">  hex = hex.<span class="title function_">replace</span>(<span class="string">&#x27;#&#x27;</span>, <span class="string">&#x27;&#x27;</span>);</span><br><span class="line">  <span class="keyword">const</span> bigint = <span class="built_in">parseInt</span>(hex, <span class="number">16</span>);</span><br><span class="line">  <span class="keyword">const</span> r = (bigint &gt;&gt; <span class="number">16</span>) &amp; <span class="number">255</span>;</span><br><span class="line">  <span class="keyword">const</span> g = (bigint &gt;&gt; <span class="number">8</span>) &amp; <span class="number">255</span>;</span><br><span class="line">  <span class="keyword">const</span> b = bigint &amp; <span class="number">255</span>;</span><br><span class="line">  <span class="keyword">return</span> &#123; r, g, b &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// RGB -&gt; HEX</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">rgbToHex</span>(<span class="params">r, g, b</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="string">&#x27;#&#x27;</span> +</span><br><span class="line">    [r, g, b]</span><br><span class="line">      .<span class="title function_">map</span>(<span class="function"><span class="params">x</span> =&gt;</span> x.<span class="title function_">toString</span>(<span class="number">16</span>).<span class="title function_">padStart</span>(<span class="number">2</span>, <span class="string">&#x27;0&#x27;</span>))</span><br><span class="line">      .<span class="title function_">join</span>(<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="3️⃣-MyColor-vue"><a href="#3️⃣-MyColor-vue" class="headerlink" title="3️⃣ MyColor.vue"></a>3️⃣ MyColor.vue</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;my-color-picker&quot;&gt;</span><br><span class="line">    &lt;div</span><br><span class="line">      class=&quot;color-preview&quot;</span><br><span class="line">      :style=&quot;&#123; backgroundColor: currentHex &#125;&quot;</span><br><span class="line">    &gt;&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;sliders&quot;&gt;</span><br><span class="line">      &lt;label&gt;R: &#123;&#123; r &#125;&#125;</span><br><span class="line">        &lt;input type=&quot;range&quot; min=&quot;0&quot; max=&quot;255&quot; v-model.number=&quot;r&quot; /&gt;</span><br><span class="line">      &lt;/label&gt;</span><br><span class="line">      &lt;label&gt;G: &#123;&#123; g &#125;&#125;</span><br><span class="line">        &lt;input type=&quot;range&quot; min=&quot;0&quot; max=&quot;255&quot; v-model.number=&quot;g&quot; /&gt;</span><br><span class="line">      &lt;/label&gt;</span><br><span class="line">      &lt;label&gt;B: &#123;&#123; b &#125;&#125;</span><br><span class="line">        &lt;input type=&quot;range&quot; min=&quot;0&quot; max=&quot;255&quot; v-model.number=&quot;b&quot; /&gt;</span><br><span class="line">      &lt;/label&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;p&gt;HEX: &#123;&#123; currentHex &#125;&#125;&lt;/p&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">import &#123; ref, watch, computed &#125; from &#x27;vue&#x27;;</span><br><span class="line"></span><br><span class="line">// props for v-model</span><br><span class="line">defineProps(&#123;</span><br><span class="line">  modelValue: &#123; type: String, default: &#x27;#000000&#x27; &#125;</span><br><span class="line">&#125;);</span><br><span class="line">const emit = defineEmits([&#x27;update:modelValue&#x27;]);</span><br><span class="line"></span><br><span class="line">// 工具函式</span><br><span class="line">function hexToRgb(hex) &#123;</span><br><span class="line">  hex = hex.replace(&#x27;#&#x27;, &#x27;&#x27;);</span><br><span class="line">  const bigint = parseInt(hex, 16);</span><br><span class="line">  const r = (bigint &gt;&gt; 16) &amp; 255;</span><br><span class="line">  const g = (bigint &gt;&gt; 8) &amp; 255;</span><br><span class="line">  const b = bigint &amp; 255;</span><br><span class="line">  return &#123; r, g, b &#125;;</span><br><span class="line">&#125;</span><br><span class="line">function rgbToHex(r, g, b) &#123;</span><br><span class="line">  return (</span><br><span class="line">    &#x27;#&#x27; +</span><br><span class="line">    [r, g, b]</span><br><span class="line">      .map(x =&gt; x.toString(16).padStart(2, &#x27;0&#x27;))</span><br><span class="line">      .join(&#x27;&#x27;)</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 內部狀態</span><br><span class="line">const r = ref(0);</span><br><span class="line">const g = ref(0);</span><br><span class="line">const b = ref(0);</span><br><span class="line"></span><br><span class="line">// 初始化 r/g/b</span><br><span class="line">const init = hexToRgb(defineProps().modelValue);</span><br><span class="line">r.value = init.r;</span><br><span class="line">g.value = init.g;</span><br><span class="line">b.value = init.b;</span><br><span class="line"></span><br><span class="line">// 計算 HEX</span><br><span class="line">const currentHex = computed(() =&gt; rgbToHex(r.value, g.value, b.value));</span><br><span class="line"></span><br><span class="line">// 當 r/g/b 改變時，發送 update:modelValue</span><br><span class="line">watch([r, g, b], () =&gt; &#123;</span><br><span class="line">  emit(&#x27;update:modelValue&#x27;, currentHex.value);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// 當外部 modelValue 改變時，也更新內部狀態</span><br><span class="line">watch(</span><br><span class="line">  () =&gt; defineProps().modelValue,</span><br><span class="line">  (newVal) =&gt; &#123;</span><br><span class="line">    const rgb = hexToRgb(newVal);</span><br><span class="line">    r.value = rgb.r;</span><br><span class="line">    g.value = rgb.g;</span><br><span class="line">    b.value = rgb.b;</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">.my-color-picker &#123;</span><br><span class="line">  width: 250px;</span><br><span class="line">  padding: 10px;</span><br><span class="line">  border: 1px solid #ccc;</span><br><span class="line">  border-radius: 8px;</span><br><span class="line">&#125;</span><br><span class="line">.color-preview &#123;</span><br><span class="line">  width: 100%;</span><br><span class="line">  height: 50px;</span><br><span class="line">  margin-bottom: 10px;</span><br><span class="line">  border: 1px solid #aaa;</span><br><span class="line">  border-radius: 4px;</span><br><span class="line">&#125;</span><br><span class="line">.sliders label &#123;</span><br><span class="line">  display: block;</span><br><span class="line">  margin-bottom: 5px;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="4️⃣-App-vue-測試範例"><a href="#4️⃣-App-vue-測試範例" class="headerlink" title="4️⃣ App.vue 測試範例"></a>4️⃣ App.vue 測試範例</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;h2&gt;測試 MyColor.vue&lt;/h2&gt;</span><br><span class="line">    &lt;MyColor v-model=&quot;color1&quot; /&gt;</span><br><span class="line">    &lt;p&gt;選擇的顏色: &#123;&#123; color1 &#125;&#125;&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">    &lt;MyColor v-model=&quot;color2&quot; /&gt;</span><br><span class="line">    &lt;p&gt;選擇的顏色: &#123;&#123; color2 &#125;&#125;&lt;/p&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">import &#123; ref &#125; from &#x27;vue&#x27;;</span><br><span class="line">import MyColor from &#x27;./components/MyColor.vue&#x27;;</span><br><span class="line"></span><br><span class="line">const color1 = ref(&#x27;#34568b&#x27;); // 初始經典藍</span><br><span class="line">const color2 = ref(&#x27;#ff0000&#x27;); // 初始紅色</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>✅ 功能檢查：</p>
+<ol>
+<li>三個捲軸可拉動 R&#x2F;G&#x2F;B，HEX 值同步更新。</li>
+<li>對外 <code>v-model</code> 可取得目前 HEX 色碼。</li>
+<li>外部修改 <code>v-model</code> 的值，元件內部也會自動更新。</li>
+</ol>
+<hr>
+<p>加上 <strong>動態動畫效果</strong>：當滑桿改變時，顏色預覽會平滑過渡，而不是瞬間跳變，使用 <strong>CSS transition</strong> 配合 Vue 的 reactivity 就能做到。</p>
+<template>
+  <div class="my-color-picker">
+    <div
+      class="color-preview"
+      :style="{ backgroundColor: currentHex }"
+    ></div>
+
+<pre><code>&lt;div class=&quot;sliders&quot;&gt;
+  &lt;label&gt;R: &#123;&#123; r &#125;&#125;
+    &lt;input type=&quot;range&quot; min=&quot;0&quot; max=&quot;255&quot; v-model.number=&quot;r&quot; /&gt;
+  &lt;/label&gt;
+  &lt;label&gt;G: &#123;&#123; g &#125;&#125;
+    &lt;input type=&quot;range&quot; min=&quot;0&quot; max=&quot;255&quot; v-model.number=&quot;g&quot; /&gt;
+  &lt;/label&gt;
+  &lt;label&gt;B: &#123;&#123; b &#125;&#125;
+    &lt;input type=&quot;range&quot; min=&quot;0&quot; max=&quot;255&quot; v-model.number=&quot;b&quot; /&gt;
+  &lt;/label&gt;
+&lt;/div&gt;
+
+&lt;p&gt;HEX: &#123;&#123; currentHex &#125;&#125;&lt;/p&gt;
+</code></pre>
+  </div>
+</template>
+
+<script setup>
+import { ref, watch, computed } from 'vue'
+
+// ✅ 正確取得 props
+const props = defineProps({
+  modelValue: { type: String, default: '#000000' }
+})
+const emit = defineEmits(['update:modelValue'])
+
+// HEX ↔ RGB 工具函式
+function hexToRgb(hex) {
+  hex = hex.replace('#', '')
+  const bigint = parseInt(hex, 16)
+  const r = (bigint >> 16) & 255
+  const g = (bigint >> 8) & 255
+  const b = bigint & 255
+  return { r, g, b }
+}
+function rgbToHex(r, g, b) {
+  return (
+    '#' +
+    [r, g, b]
+      .map(x => x.toString(16).padStart(2, '0'))
+      .join('')
+  )
+}
+
+// 內部狀態
+const r = ref(0)
+const g = ref(0)
+const b = ref(0)
+
+// 初始化 r/g/b
+const init = hexToRgb(props.modelValue)
+r.value = init.r
+g.value = init.g
+b.value = init.b
+
+// 計算 HEX
+const currentHex = computed(() => rgbToHex(r.value, g.value, b.value))
+
+// 當 r/g/b 改變時，發送 update:modelValue
+watch([r, g, b], () => {
+  emit('update:modelValue', currentHex.value)
+})
+
+// 當外部 modelValue 改變時，也更新內部狀態
+watch(
+  () => props.modelValue,
+  newVal => {
+    const rgb = hexToRgb(newVal)
+    r.value = rgb.r
+    g.value = rgb.g
+    b.value = rgb.b
+  }
+)
+</script>
+
+<style scoped>
+.my-color-picker {
+  width: 250px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: Arial, sans-serif;
+}
+.color-preview {
+  width: 100%;
+  height: 50px;
+  margin-bottom: 10px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+.sliders label {
+  display: block;
+  margin-bottom: 5px;
+}
+input[type='range'] {
+  width: 100%;
+}
+</style>
+
+<hr>
+<h3 id="✅-新增功能"><a href="#✅-新增功能" class="headerlink" title="✅ 新增功能"></a>✅ 新增功能</h3><ol>
+<li><p><strong>顏色過渡動畫</strong>：</p>
+<ul>
+<li>CSS <code>transition: background-color 0.3s ease;</code> 讓顏色改變時平滑漸變。</li>
+</ul>
+</li>
+<li><p><strong>滑桿同步 HEX</strong>：</p>
+<ul>
+<li>調整滑桿時，預覽區顏色和 HEX 都會立即更新，但有動畫過渡。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<p>&#x2F;&#x2F; app.vue</p>
+<template>
+  <div style="padding: 20px;">
+    <h2>測試 MyColor.vue（含動畫效果）</h2>
+
+<pre><code>&lt;div style=&quot;margin-bottom: 30px;&quot;&gt;
+  &lt;h3&gt;範例 1&lt;/h3&gt;
+  &lt;MyColor v-model=&quot;color1&quot; /&gt;
+  &lt;p&gt;選擇的顏色: &lt;span :style=&quot;&#123; color: color1 &#125;&quot;&gt;&#123;&#123; color1 &#125;&#125;&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div style=&quot;margin-bottom: 30px;&quot;&gt;
+  &lt;h3&gt;範例 2&lt;/h3&gt;
+  &lt;MyColor v-model=&quot;color2&quot; /&gt;
+  &lt;p&gt;選擇的顏色: &lt;span :style=&quot;&#123; color: color2 &#125;&quot;&gt;&#123;&#123; color2 &#125;&#125;&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div style=&quot;margin-bottom: 30px;&quot;&gt;
+  &lt;h3&gt;範例 3（初始經典藍）&lt;/h3&gt;
+  &lt;MyColor v-model=&quot;color3&quot; /&gt;
+  &lt;p&gt;選擇的顏色: &lt;span :style=&quot;&#123; color: color3 &#125;&quot;&gt;&#123;&#123; color3 &#125;&#125;&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import MyColor from './components/MyColor.vue';
+
+// 初始化範例顏色
+const color1 = ref('#ff0000'); // 紅色
+const color2 = ref('#00ff00'); // 綠色
+const color3 = ref('#34568b'); // 經典藍
+</script>
+
+
+
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/Javascript/" rel="tag"># Javascript</a>
+              <a href="/apple.lily/tags/Vue/" rel="tag"># Vue</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/09/06/OneDayOneNote/2025-04-07/" rel="prev" title="2025-04-07-Vue 裡， 綁定可以同時支援 **物件語法** 和 **陣列語法**">
+                  <i class="fa fa-angle-left"></i> 2025-04-07-Vue 裡， 綁定可以同時支援 **物件語法** 和 **陣列語法**
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/09/06/OneDayOneNote/2025-04-09/" rel="next" title="2025-04-09-JavaScript 系列九：第6課 ── 學習用外部狀態管理 vue 元件">
+                  2025-04-09-JavaScript 系列九：第6課 ── 學習用外部狀態管理 vue 元件 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

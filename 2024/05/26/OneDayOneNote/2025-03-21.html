@@ -1,0 +1,142 @@
+<hr>
+<h2 id="title-2025-03-21-練習「元件設計-路由規劃-Vue-思維」date-2025-09-06-23-22-04tags-Javascript-Vue-description-2025-03-21-練習「元件設計-路由規劃-Vue-思維」"><a href="#title-2025-03-21-練習「元件設計-路由規劃-Vue-思維」date-2025-09-06-23-22-04tags-Javascript-Vue-description-2025-03-21-練習「元件設計-路由規劃-Vue-思維」" class="headerlink" title="title: 2025-03-21-練習「元件設計 + 路由規劃 + Vue 思維」date: 2025-09-06 23:22:04tags:  [Javascript,Vue]description:   2025-03-21-練習「元件設計 + 路由規劃 + Vue 思維」"></a>title: 2025-03-21-練習「元件設計 + 路由規劃 + Vue 思維」<br>date: 2025-09-06 23:22:04<br>tags:  [Javascript,Vue]<br>description:   2025-03-21-練習「元件設計 + 路由規劃 + Vue 思維」</h2><h1 id="2025-03-21-練習「元件設計-路由規劃-Vue-思維」"><a href="#2025-03-21-練習「元件設計-路由規劃-Vue-思維」" class="headerlink" title="2025-03-21-練習「元件設計 + 路由規劃 + Vue 思維」"></a>2025-03-21-練習「元件設計 + 路由規劃 + Vue 思維」</h1><p>這會是一個 <strong>整合式 Vue 小專案</strong>，你可以用它來練習「元件設計 + 路由規劃 + Vue 思維」，非常適合放在作品集裡 👩‍💻✨</p>
+<hr>
+<h2 id="✅-你的目標"><a href="#✅-你的目標" class="headerlink" title="✅ 你的目標"></a>✅ 你的目標</h2><p>建立一個 Vue 專案，包含：</p>
+<ul>
+<li><p>一個共同的導航列 <code>&lt;NavBar /&gt;</code>（出現在每頁）</p>
+</li>
+<li><p>使用 <strong>Vue Router</strong> 管理 7 個頁面，每頁對應 1 個課程主題：</p>
+<ul>
+<li><code>/lesson1</code> → 第1課：元件基本觀念</li>
+<li><code>/lesson2</code> → 第2課：props</li>
+<li><code>/lesson3</code> → 第3課：events</li>
+<li>…</li>
+<li><code>/lesson7</code> → 第7課：複雜元件</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="🧩-專案結構規劃建議"><a href="#🧩-專案結構規劃建議" class="headerlink" title="🧩 專案結構規劃建議"></a>🧩 專案結構規劃建議</h2><pre><code>js9-cool-components/
+├── src/
+│   ├── components/
+│   │   └── NavBar.vue
+│   ├── lessons/
+│   │   ├── Lesson1.vue
+│   │   ├── Lesson2.vue
+│   │   ├── Lesson3.vue
+│   │   └── ...Lesson7.vue
+│   ├── App.vue
+│   ├── main.js
+│   └── router/
+│       └── index.js   👈 建立 Vue Router 設定
+├── vite.config.js
+├── package.json
+└── ...
+</code></pre>
+<hr>
+<h2 id="✅-第一步：建立專案並安裝-Vue-Router"><a href="#✅-第一步：建立專案並安裝-Vue-Router" class="headerlink" title="✅ 第一步：建立專案並安裝 Vue Router"></a>✅ 第一步：建立專案並安裝 Vue Router</h2><p>請打開 macOS 終端機，在你的資料夾下執行：</p>
+<pre><code class="bash">npm create vite@latest js9-cool-components -- --template vue
+cd js9-cool-components
+npm install
+npm install vue-router@4
+</code></pre>
+<hr>
+<h2 id="✅-第二步：設定-router（src-router-index-js）"><a href="#✅-第二步：設定-router（src-router-index-js）" class="headerlink" title="✅ 第二步：設定 router（src&#x2F;router&#x2F;index.js）"></a>✅ 第二步：設定 router（src&#x2F;router&#x2F;index.js）</h2><p>建立檔案：<code>src/router/index.js</code>，內容如下：</p>
+<pre><code class="js">import { createRouter, createWebHistory } from &#39;vue-router&#39;
+import Lesson1 from &#39;../lessons/Lesson1.vue&#39;
+import Lesson2 from &#39;../lessons/Lesson2.vue&#39;
+import Lesson3 from &#39;../lessons/Lesson3.vue&#39;
+import Lesson4 from &#39;../lessons/Lesson4.vue&#39;
+import Lesson5 from &#39;../lessons/Lesson5.vue&#39;
+import Lesson6 from &#39;../lessons/Lesson6.vue&#39;
+import Lesson7 from &#39;../lessons/Lesson7.vue&#39;
+
+const routes = [
+  { path: &#39;/lesson1&#39;, component: Lesson1 },
+  { path: &#39;/lesson2&#39;, component: Lesson2 },
+  { path: &#39;/lesson3&#39;, component: Lesson3 },
+  { path: &#39;/lesson4&#39;, component: Lesson4 },
+  { path: &#39;/lesson5&#39;, component: Lesson5 },
+  { path: &#39;/lesson6&#39;, component: Lesson6 },
+  { path: &#39;/lesson7&#39;, component: Lesson7 },
+]
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes,
+})
+
+export default router
+</code></pre>
+<hr>
+<h2 id="✅-第三步：設定-main-js"><a href="#✅-第三步：設定-main-js" class="headerlink" title="✅ 第三步：設定 main.js"></a>✅ 第三步：設定 <code>main.js</code></h2><p>打開 <code>src/main.js</code>，加上 router：</p>
+<pre><code class="js">import { createApp } from &#39;vue&#39;
+import App from &#39;./App.vue&#39;
+import router from &#39;./router&#39;
+
+const app = createApp(App)
+app.use(router)
+app.mount(&#39;#app&#39;)
+</code></pre>
+<hr>
+<h2 id="✅-第四步：建立-NavBar-元件"><a href="#✅-第四步：建立-NavBar-元件" class="headerlink" title="✅ 第四步：建立 NavBar 元件"></a>✅ 第四步：建立 NavBar 元件</h2><p><code>src/components/NavBar.vue</code></p>
+<pre><code class="vue">&lt;template&gt;
+  &lt;nav&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;router-link to=&quot;/lesson1&quot;&gt;第1課&lt;/router-link&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;router-link to=&quot;/lesson2&quot;&gt;第2課&lt;/router-link&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;router-link to=&quot;/lesson3&quot;&gt;第3課&lt;/router-link&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;router-link to=&quot;/lesson4&quot;&gt;第4課&lt;/router-link&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;router-link to=&quot;/lesson5&quot;&gt;第5課&lt;/router-link&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;router-link to=&quot;/lesson6&quot;&gt;第6課&lt;/router-link&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;router-link to=&quot;/lesson7&quot;&gt;第7課&lt;/router-link&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/nav&gt;
+&lt;/template&gt;
+
+&lt;style scoped&gt;
+nav {
+  background: #f5f5f5;
+  padding: 1rem;
+}
+ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+a.router-link-exact-active {
+  font-weight: bold;
+  color: blue;
+}
+&lt;/style&gt;
+</code></pre>
+<hr>
+<h2 id="✅-第五步：修改-App-vue"><a href="#✅-第五步：修改-App-vue" class="headerlink" title="✅ 第五步：修改 App.vue"></a>✅ 第五步：修改 App.vue</h2><p><code>src/App.vue</code></p>
+<pre><code class="vue">&lt;template&gt;
+  &lt;div&gt;
+    &lt;NavBar /&gt;
+    &lt;router-view /&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import NavBar from &#39;./components/NavBar.vue&#39;
+&lt;/script&gt;
+</code></pre>
+<hr>
+<h2 id="✅-第六步：建立-7-個-lesson-vue-元件"><a href="#✅-第六步：建立-7-個-lesson-vue-元件" class="headerlink" title="✅ 第六步：建立 7 個 lesson vue 元件"></a>✅ 第六步：建立 7 個 lesson vue 元件</h2><p>你可以在 <code>src/lessons/</code> 目錄下建立這些檔案：</p>
+<ul>
+<li><code>Lesson1.vue</code></li>
+</ul>
+<pre><code class="vue">&lt;template&gt;
+  &lt;h2&gt;🎓 Lesson 1: 元件基本觀念&lt;/h2&gt;
+&lt;/template&gt;
+</code></pre>
+<ul>
+<li><code>Lesson2.vue</code> ~ <code>Lesson7.vue</code> 依此類推，只要把文字換掉即可。</li>
+</ul>
+<hr>
+<h2 id="✅-第七步：執行看看！"><a href="#✅-第七步：執行看看！" class="headerlink" title="✅ 第七步：執行看看！"></a>✅ 第七步：執行看看！</h2><pre><code class="bash">npm run dev
+</code></pre>
+<p>打開瀏覽器，看是不是可以點選上方選單，切換到不同課程頁面 🎉</p>
+<hr>

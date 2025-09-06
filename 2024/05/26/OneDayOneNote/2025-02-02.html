@@ -1,0 +1,110 @@
+<hr>
+<h2 id="title-2025-02-02-設計與部署的建議方向date-2025-09-06-20-55-33tags-Javascript-Vue-description-2025-02-02-設計與部署的建議方向"><a href="#title-2025-02-02-設計與部署的建議方向date-2025-09-06-20-55-33tags-Javascript-Vue-description-2025-02-02-設計與部署的建議方向" class="headerlink" title="title: 2025-02-02 - 設計與部署的建議方向date: 2025-09-06 20:55:33tags:  [Javascript,Vue]description:   2025-02-02 - 設計與部署的建議方向"></a>title: 2025-02-02 - 設計與部署的建議方向<br>date: 2025-09-06 20:55:33<br>tags:  [Javascript,Vue]<br>description:   2025-02-02 - 設計與部署的建議方向</h2><h1 id="2025-02-02-設計與部署的建議方向"><a href="#2025-02-02-設計與部署的建議方向" class="headerlink" title="2025-02-02 - 設計與部署的建議方向"></a>2025-02-02 - 設計與部署的建議方向</h1><p>這個體重追蹤器程式功能簡單、前端運作，不需登入、也不連接資料庫，非常適合做為「靜態網站」部署。這類小工具若要架設到外部網站，以下是設計與部署的建議方向：</p>
+<hr>
+<h2 id="✅-一、設計上的建議（適合部署的架構）"><a href="#✅-一、設計上的建議（適合部署的架構）" class="headerlink" title="✅ 一、設計上的建議（適合部署的架構）"></a>✅ 一、設計上的建議（適合部署的架構）</h2><h3 id="1-保持「純前端」設計"><a href="#1-保持「純前端」設計" class="headerlink" title="1. 保持「純前端」設計"></a>1. 保持「純前端」設計</h3><p>程式現在就是純前端（Vue + localStorage），不依賴後端或資料庫，這種設計對部署最友善。</p>
+<h3 id="2-打包成靜態網站"><a href="#2-打包成靜態網站" class="headerlink" title="2. 打包成靜態網站"></a>2. 打包成靜態網站</h3><p>使用 Vite、Vue CLI 或其他工具把 Vue 專案打包成靜態 HTML + JS + CSS。這樣才能部署到：</p>
+<ul>
+<li>GitHub Pages</li>
+<li>Netlify</li>
+<li>Vercel</li>
+<li>Cloudflare Pages</li>
+<li>Firebase Hosting</li>
+<li>或一般 Web 主機（cPanel、FTP 空間）</li>
+</ul>
+<hr>
+<h2 id="✅-二、打包與部署步驟（以-Vite-為例）"><a href="#✅-二、打包與部署步驟（以-Vite-為例）" class="headerlink" title="✅ 二、打包與部署步驟（以 Vite 為例）"></a>✅ 二、打包與部署步驟（以 Vite 為例）</h2><h3 id="🔧-第一步：打包"><a href="#🔧-第一步：打包" class="headerlink" title="🔧 第一步：打包"></a>🔧 第一步：打包</h3><p>在你的 Vite 專案根目錄執行：</p>
+<pre><code class="bash">npm run build
+</code></pre>
+<p>會產生 <code>dist/</code> 資料夾，裡面就是可以部署的靜態網站。</p>
+<hr>
+<h3 id="🌐-第二步：選擇部署平台"><a href="#🌐-第二步：選擇部署平台" class="headerlink" title="🌐 第二步：選擇部署平台"></a>🌐 第二步：選擇部署平台</h3><h4 id="⭐-方法一：GitHub-Pages（免費、穩定）"><a href="#⭐-方法一：GitHub-Pages（免費、穩定）" class="headerlink" title="⭐ 方法一：GitHub Pages（免費、穩定）"></a>⭐ 方法一：GitHub Pages（免費、穩定）</h4><ol>
+<li>建立 GitHub repo，push 你的專案</li>
+<li>安裝套件：</li>
+</ol>
+<pre><code class="bash">npm install --save-dev gh-pages
+</code></pre>
+<ol start="3">
+<li>在 <code>vite.config.js</code> 中加上：</li>
+</ol>
+<pre><code class="js">export default defineConfig({
+  base: &#39;/你的-repo名稱/&#39;,
+})
+</code></pre>
+<ol start="4">
+<li>package.json 補上：</li>
+</ol>
+<pre><code class="json">&quot;scripts&quot;: {
+  &quot;deploy&quot;: &quot;gh-pages -d dist&quot;
+}
+</code></pre>
+<ol start="5">
+<li>然後：</li>
+</ol>
+<pre><code class="bash">npm run build
+npm run deploy
+</code></pre>
+<blockquote>
+<p>頁面網址將會是：<code>https://你的帳號.github.io/你的-repo名稱/</code></p>
+</blockquote>
+<hr>
+<h4 id="⭐-方法二：Netlify（自動部署、支援自訂網域）"><a href="#⭐-方法二：Netlify（自動部署、支援自訂網域）" class="headerlink" title="⭐ 方法二：Netlify（自動部署、支援自訂網域）"></a>⭐ 方法二：Netlify（自動部署、支援自訂網域）</h4><ol>
+<li><p>建立帳號（可用 GitHub 直接登入）</p>
+</li>
+<li><p>選擇你的 GitHub 專案</p>
+</li>
+<li><p>建立時填入：</p>
+<ul>
+<li>Build command: <code>npm run build</code></li>
+<li>Publish directory: <code>dist</code></li>
+</ul>
+</li>
+<li><p>Netlify 會自動部署，並給你一個 <code>.netlify.app</code> 網址</p>
+</li>
+</ol>
+<hr>
+<h2 id="✅-三、安全與擴充設計建議"><a href="#✅-三、安全與擴充設計建議" class="headerlink" title="✅ 三、安全與擴充設計建議"></a>✅ 三、安全與擴充設計建議</h2><table>
+<thead>
+<tr>
+<th>目標</th>
+<th>建議做法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>使用者多帳號登入</td>
+<td>加 Firebase Auth 或其他 OAuth</td>
+</tr>
+<tr>
+<td>存資料在雲端</td>
+<td>Firebase Firestore、Supabase、或你自己的後端</td>
+</tr>
+<tr>
+<td>手機適應設計（RWD）</td>
+<td>加強 Tailwind 的 <code>sm:</code>、<code>md:</code> class</td>
+</tr>
+<tr>
+<td>PWA（可加到桌面）</td>
+<td>配置 <code>vite-plugin-pwa</code>，可變成像 App 一樣使用</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="✅-四、總結"><a href="#✅-四、總結" class="headerlink" title="✅ 四、總結"></a>✅ 四、總結</h2><table>
+<thead>
+<tr>
+<th>條件</th>
+<th>結論</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>無後端、單一功能</td>
+<td>打包成靜態網頁即可（HTML + JS）</td>
+</tr>
+<tr>
+<td>想讓他人使用</td>
+<td>推薦使用 GitHub Pages &#x2F; Netlify &#x2F; Vercel</td>
+</tr>
+<tr>
+<td>想擴充功能（登入、雲端）</td>
+<td>使用 Firebase 或自行開發簡易 API</td>
+</tr>
+</tbody></table>
+<hr>

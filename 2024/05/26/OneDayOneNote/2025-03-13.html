@@ -1,0 +1,96 @@
+<hr>
+<h2 id="title-2025-03-13-Leaflet-是如何「插入地圖」的date-2025-09-06-23-10-12tags-Javascript-Vue-description-2025-03-13-Leaflet-是如何「插入地圖」的"><a href="#title-2025-03-13-Leaflet-是如何「插入地圖」的date-2025-09-06-23-10-12tags-Javascript-Vue-description-2025-03-13-Leaflet-是如何「插入地圖」的" class="headerlink" title="title: 2025-03-13-Leaflet 是如何「插入地圖」的date: 2025-09-06 23:10:12tags:  [Javascript,Vue]description:  2025-03-13-Leaflet 是如何「插入地圖」的"></a>title: 2025-03-13-Leaflet 是如何「插入地圖」的<br>date: 2025-09-06 23:10:12<br>tags:  [Javascript,Vue]<br>description:  2025-03-13-Leaflet 是如何「插入地圖」的</h2><h1 id="2025-03-13-Leaflet-是如何「插入地圖」的"><a href="#2025-03-13-Leaflet-是如何「插入地圖」的" class="headerlink" title="2025-03-13-Leaflet 是如何「插入地圖」的"></a>2025-03-13-Leaflet 是如何「插入地圖」的</h1><p>這兩個問題問得非常好！我們來一個一個解釋，保證你從底層原理完全理解：</p>
+<hr>
+<h2 id="✅-1-map-是-Leaflet-地圖要掛載的位置-—-什麼叫「插入-DOM」？插入後長怎樣？"><a href="#✅-1-map-是-Leaflet-地圖要掛載的位置-—-什麼叫「插入-DOM」？插入後長怎樣？" class="headerlink" title="✅ 1. #map 是 Leaflet 地圖要掛載的位置 — 什麼叫「插入 DOM」？插入後長怎樣？"></a>✅ 1. <code>#map</code> 是 Leaflet 地圖要掛載的位置 — 什麼叫「插入 DOM」？插入後長怎樣？</h2><h3 id="🔍-Leaflet-是如何「插入地圖」的？"><a href="#🔍-Leaflet-是如何「插入地圖」的？" class="headerlink" title="🔍 Leaflet 是如何「插入地圖」的？"></a>🔍 Leaflet 是如何「插入地圖」的？</h3><p>當你執行這段：</p>
+<pre><code class="js">const map = L.map(&#39;map&#39;).setView([20, 0], 2)
+</code></pre>
+<p>Leaflet 會去 <strong>尋找這個 DOM 元素：</strong></p>
+<pre><code class="html">&lt;div id=&quot;map&quot;&gt;&lt;/div&gt;
+</code></pre>
+<p>然後它就會用 JavaScript <strong>動態地改寫這個 <code>&lt;div&gt;</code>，在裡面插入一堆 HTML 元素（還會加上樣式、影像、圖層等）來顯示地圖。</strong></p>
+<hr>
+<h3 id="🔎-插入之後，-map-裡面長怎樣？"><a href="#🔎-插入之後，-map-裡面長怎樣？" class="headerlink" title="🔎 插入之後，#map 裡面長怎樣？"></a>🔎 插入之後，<code>#map</code> 裡面長怎樣？</h3><p>例如原本是：</p>
+<pre><code class="html">&lt;div id=&quot;map&quot;&gt;&lt;/div&gt;
+</code></pre>
+<p>執行後會變成這樣：</p>
+<pre><code class="html">&lt;div id=&quot;map&quot; class=&quot;leaflet-container leaflet-touch leaflet-fade-anim ...&quot; style=&quot;position: relative;&quot;&gt;
+  &lt;div class=&quot;leaflet-pane leaflet-map-pane&quot;&gt;
+    &lt;div class=&quot;leaflet-pane leaflet-tile-pane&quot;&gt;
+      &lt;div class=&quot;leaflet-layer&quot;&gt;
+        &lt;div class=&quot;leaflet-tile-container leaflet-zoom-animated&quot;&gt;
+          &lt;img src=&quot;https://tile.openstreetmap.org/2/1/1.png&quot; ...&gt;
+          &lt;img src=&quot;https://tile.openstreetmap.org/2/2/1.png&quot; ...&gt;
+          ...
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;leaflet-pane leaflet-overlay-pane&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;leaflet-pane leaflet-shadow-pane&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;leaflet-pane leaflet-marker-pane&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;leaflet-pane leaflet-tooltip-pane&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;leaflet-pane leaflet-popup-pane&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;!-- 控制列、縮放按鈕等等 --&gt;
+  &lt;div class=&quot;leaflet-control-container&quot;&gt;
+    ...
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p>Leaflet 幫你做了非常多事：</p>
+<ul>
+<li>加 tile 圖片（地圖切片）</li>
+<li>加 marker 圖層</li>
+<li>加縮放按鈕</li>
+<li>加動畫效果</li>
+<li>加事件處理（滑鼠拖拉、滾輪放大）</li>
+</ul>
+<p>這就是所謂的「地圖被插入到這個 DOM 裡面」。</p>
+<hr>
+<h2 id="✅-2-window-L-為什麼代表-Leaflet-沒載入？"><a href="#✅-2-window-L-為什麼代表-Leaflet-沒載入？" class="headerlink" title="✅ 2. !window.L 為什麼代表 Leaflet 沒載入？"></a>✅ 2. <code>!window.L</code> 為什麼代表 Leaflet 沒載入？</h2><h3 id="🔍-L-是什麼？為什麼是-Leaflet？"><a href="#🔍-L-是什麼？為什麼是-Leaflet？" class="headerlink" title="🔍 L 是什麼？為什麼是 Leaflet？"></a>🔍 <code>L</code> 是什麼？為什麼是 Leaflet？</h3><p>當你用 <strong>CDN 引入 Leaflet 時</strong>：</p>
+<pre><code class="html">&lt;script src=&quot;https://unpkg.com/leaflet@1.9.4/dist/leaflet.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>這支 JS 裡面會自動把 <strong><code>L</code> 註冊成全域變數</strong>，並把所有 Leaflet 的功能放進這個物件裡面。</p>
+<p>例如：</p>
+<pre><code class="js">console.log(window.L) // =&gt; Leaflet 物件
+</code></pre>
+<p>你可以試著列印出來看看：</p>
+<pre><code class="js">console.log(L)
+</code></pre>
+<p>你會看到像這樣：</p>
+<pre><code class="js">{
+  map: ƒ,         // L.map(...)
+  marker: ƒ,      // L.marker(...)
+  tileLayer: ƒ,   // L.tileLayer(...)
+  icon: ƒ,        // L.icon(...)
+  ...
+}
+</code></pre>
+<hr>
+<h3 id="✅-所以-window-L-的意思是："><a href="#✅-所以-window-L-的意思是：" class="headerlink" title="✅ 所以 !window.L 的意思是："></a>✅ 所以 <code>!window.L</code> 的意思是：</h3><ul>
+<li>「如果 <code>window.L</code> 不存在」（也就是 Leaflet 沒有正確載入）</li>
+<li>就顯示錯誤或中止程式</li>
+</ul>
+<pre><code class="js">if (!window.L) {
+  throw new Error(&#39;Leaflet 尚未載入&#39;)
+}
+</code></pre>
+<p>這樣做的目的是避免後面用 <code>L.map(...)</code> 時報錯 <code>L is not defined</code>。</p>
+<hr>
+<h2 id="✅-補充：為什麼我們不用-import-L-from-leaflet-？"><a href="#✅-補充：為什麼我們不用-import-L-from-leaflet-？" class="headerlink" title="✅ 補充：為什麼我們不用 import L from &#39;leaflet&#39;？"></a>✅ 補充：為什麼我們不用 <code>import L from &#39;leaflet&#39;</code>？</h2><p>因為你選擇了 <strong>CDN 模式（不用 npm 安裝）</strong>，所以：</p>
+<ul>
+<li>我們不寫 <code>import</code></li>
+<li>而是用 <code>&lt;script src=&quot;...&quot;&gt;</code> 載入 Leaflet</li>
+<li>這會在全域自動建立 <code>window.L</code></li>
+</ul>
+<p>這種做法常見於：</p>
+<ul>
+<li>練習、教學</li>
+<li>無需打包的專案（例如 Replit、CodePen）</li>
+</ul>
+<hr>
+<h3 id="想要自己試看看？"><a href="#想要自己試看看？" class="headerlink" title="想要自己試看看？"></a>想要自己試看看？</h3><p>你可以打開開發者工具，在 <code>map</code> 載入後打：</p>
+<pre><code class="js">console.log(document.getElementById(&#39;map&#39;).innerHTML)
+</code></pre>
+<p>就可以看到 Leaflet 注入的 HTML 結構。</p>
+<hr>

@@ -1,0 +1,37 @@
+<hr>
+<h2 id="title-2025-02-11-JavaScript-系列八：第6課-──-天氣查詢應用程式-步驟05date-2025-09-06-22-03-55tags-Javascript-Vue-description-2025-02-11-JavaScript-系列八：第6課-──-天氣查詢應用程式-步驟05"><a href="#title-2025-02-11-JavaScript-系列八：第6課-──-天氣查詢應用程式-步驟05date-2025-09-06-22-03-55tags-Javascript-Vue-description-2025-02-11-JavaScript-系列八：第6課-──-天氣查詢應用程式-步驟05" class="headerlink" title="title: 2025-02-11- JavaScript 系列八：第6課 ── 天氣查詢應用程式-步驟05date: 2025-09-06 22:03:55tags:  [Javascript,Vue]description:  2025-02-11- JavaScript 系列八：第6課 ── 天氣查詢應用程式-步驟05"></a>title: 2025-02-11- JavaScript 系列八：第6課 ── 天氣查詢應用程式-步驟05<br>date: 2025-09-06 22:03:55<br>tags:  [Javascript,Vue]<br>description:  2025-02-11- JavaScript 系列八：第6課 ── 天氣查詢應用程式-步驟05</h2><h1 id="2025-02-11-JavaScript-系列八：第6課-──-天氣查詢應用程式-步驟05"><a href="#2025-02-11-JavaScript-系列八：第6課-──-天氣查詢應用程式-步驟05" class="headerlink" title="2025-02-11- JavaScript 系列八：第6課 ── 天氣查詢應用程式-步驟05"></a>2025-02-11- JavaScript 系列八：第6課 ── 天氣查詢應用程式-步驟05</h1><p>中央氣象署（CWA）的 <strong>F-C0032-001 短期天氣預報 API</strong> 支援全台 22 個縣市（locationName）。你可以從 API 回傳的 JSON 中取得 <strong>所有支援的城市清單</strong>，而不需要手動寫死城市名稱！</p>
+<hr>
+<h3 id="✅-如何動態取得所有縣市名稱？"><a href="#✅-如何動態取得所有縣市名稱？" class="headerlink" title="✅ 如何動態取得所有縣市名稱？"></a>✅ 如何動態取得所有縣市名稱？</h3><p>你可以這樣做：</p>
+<pre><code class="js">const cities = ref([])
+
+const fetchCities = async () =&gt; {
+  const apiKey = &#39;你的 API KEY&#39;
+  const url = `https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=${apiKey}`
+
+  const res = await fetch(url)
+  const data = await res.json()
+  cities.value = data.records.location.map(loc =&gt; loc.locationName)
+
+  // 預設第一個縣市選擇
+  if (cities.value.length &gt; 0 &amp;&amp; !selectedCity.value) {
+    selectedCity.value = cities.value[0]
+  }
+}
+</code></pre>
+<p>然後在 <code>onMounted</code> 呼叫：</p>
+<pre><code class="js">import { onMounted } from &#39;vue&#39;
+onMounted(() =&gt; {
+  fetchCities()
+})
+</code></pre>
+<p>並將 <code>&lt;select&gt;</code> 的選項改為：</p>
+<pre><code class="html">&lt;select v-model=&quot;selectedCity&quot;&gt;
+  &lt;option v-for=&quot;city in cities&quot; :key=&quot;city&quot; :value=&quot;city&quot;&gt;{{ city }}&lt;/option&gt;
+&lt;/select&gt;
+</code></pre>
+<hr>
+<h3 id="💡-優點："><a href="#💡-優點：" class="headerlink" title="💡 優點："></a>💡 優點：</h3><ul>
+<li><strong>動態載入</strong> → 不怕未來新增縣市或更名</li>
+<li><strong>更乾淨的程式碼</strong> → 不需手動列出城市清單</li>
+</ul>
+<hr>

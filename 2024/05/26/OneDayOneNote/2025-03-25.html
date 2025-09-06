@@ -1,0 +1,67 @@
+<hr>
+<h2 id="title-2025-03-25-「：」-的意思是「綁定-JavaScript-表達式」date-2025-09-06-23-27-35tags-Javascript-Vue-description-「：」-的意思是「綁定-JavaScript-表達式」"><a href="#title-2025-03-25-「：」-的意思是「綁定-JavaScript-表達式」date-2025-09-06-23-27-35tags-Javascript-Vue-description-「：」-的意思是「綁定-JavaScript-表達式」" class="headerlink" title="title: 2025-03-25- 「：」 的意思是「綁定 JavaScript 表達式」date: 2025-09-06 23:27:35tags:  [Javascript,Vue]description: 「：」 的意思是「綁定 JavaScript 表達式」"></a>title: 2025-03-25- 「：」 的意思是「綁定 JavaScript 表達式」<br>date: 2025-09-06 23:27:35<br>tags:  [Javascript,Vue]<br>description: 「：」 的意思是「綁定 JavaScript 表達式」</h2><h1 id="「：」-的意思是「綁定-JavaScript-表達式」"><a href="#「：」-的意思是「綁定-JavaScript-表達式」" class="headerlink" title="「：」 的意思是「綁定 JavaScript 表達式」"></a>「：」 的意思是「綁定 JavaScript 表達式」</h1><p> : 的意思是「綁定 JavaScript 表達式」</p>
+<p>好問題！這其實跟 Vue 中 <strong>props 的值資料型別</strong> 有關。來一點點細緻但超實用的解釋：</p>
+<hr>
+<h3 id="✅-的意思是「綁定-JavaScript-表達式」"><a href="#✅-的意思是「綁定-JavaScript-表達式」" class="headerlink" title="✅ : 的意思是「綁定 JavaScript 表達式」"></a>✅ <code>:</code> 的意思是「綁定 JavaScript 表達式」</h3><p>在 Vue 中：</p>
+<pre><code class="vue">&lt;MyComponent :prop=&quot;someValue&quot; /&gt;
+</code></pre>
+<p>冒號 <code>:</code> 表示這個 <code>prop</code> 是要「綁定一個 JavaScript 表達式」，而不是純文字。</p>
+<hr>
+<h3 id="🔍-分析你的例子："><a href="#🔍-分析你的例子：" class="headerlink" title="🔍 分析你的例子："></a>🔍 分析你的例子：</h3><pre><code class="vue">&lt;MyBadge
+  label=&quot;重要&quot;         ← 傳的是「字串」&quot;重要&quot;
+  color=&quot;red&quot;          ← 傳的是「字串」&quot;red&quot;
+  text-color=&quot;white&quot;   ← 傳的是「字串」&quot;white&quot;
+  :rounded=&quot;true&quot;      ← 傳的是「布林值」true
+/&gt;
+</code></pre>
+<ul>
+<li><code>label=&quot;重要&quot;</code> 是純文字 → Vue 自動當作 <code>&quot;重要&quot;</code> 這個 <strong>字串</strong></li>
+<li><code>color=&quot;red&quot;</code> 同理，也是字串</li>
+<li><code>text-color=&quot;white&quot;</code> 也是字串</li>
+</ul>
+<p>但：</p>
+<ul>
+<li><code>:rounded=&quot;true&quot;</code> 前面有冒號，表示這裡的 <code>true</code> 是 <strong>JavaScript 的布林值</strong>（不是字串 “true”）</li>
+</ul>
+<hr>
+<h3 id="🧪-如果你寫成："><a href="#🧪-如果你寫成：" class="headerlink" title="🧪 如果你寫成："></a>🧪 如果你寫成：</h3><pre><code class="vue">&lt;MyBadge rounded=&quot;true&quot; /&gt;
+</code></pre>
+<blockquote>
+<p>❌ <code>rounded</code> 接收到的是字串 <code>&quot;true&quot;</code>，不是布林值 <code>true</code><br>所以會變成 <code>Boolean(&quot;true&quot;) → true</code>，但這不是 Vue 建議的寫法</p>
+</blockquote>
+<hr>
+<h3 id="🔑-記法整理："><a href="#🔑-記法整理：" class="headerlink" title="🔑 記法整理："></a>🔑 記法整理：</h3><table>
+<thead>
+<tr>
+<th>寫法</th>
+<th>傳給子元件的型別</th>
+<th>備註</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>prop=&quot;abc&quot;</code></td>
+<td>字串 <code>&quot;abc&quot;</code></td>
+<td>當作字串</td>
+</tr>
+<tr>
+<td><code>:prop=&quot;abc&quot;</code></td>
+<td>表達式 <code>abc</code></td>
+<td>JavaScript 變數、值或運算式</td>
+</tr>
+<tr>
+<td><code>:prop=&quot;true&quot;</code></td>
+<td>布林值 <code>true</code></td>
+<td>✔ 正確布林值傳遞</td>
+</tr>
+<tr>
+<td><code>prop=&quot;true&quot;</code></td>
+<td>字串 <code>&quot;true&quot;</code></td>
+<td>⚠ 非預期的布林值傳遞</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="✅-建議："><a href="#✅-建議：" class="headerlink" title="✅ 建議："></a>✅ 建議：</h3><ul>
+<li>如果你傳的是 <strong>文字</strong>，可以不加冒號 → <code>&quot;文字&quot;</code> 字串自動處理。</li>
+<li>如果你傳的是 <strong>布林值、數字、變數、運算式</strong> → 一定要加冒號 <code>:</code></li>
+</ul>
+<hr>

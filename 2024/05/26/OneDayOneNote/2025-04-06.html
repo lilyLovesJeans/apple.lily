@@ -1,0 +1,53 @@
+<hr>
+<h2 id="title-2025-04-06-為什麼不在-MyBanner-vue-裡直接寫死-class？為什麼要透過-props（像-type）去控制？date-2025-09-06-23-51-56tags-Javascript-Vue-description-2025-04-06-為什麼不在-MyBanner-vue-裡直接寫死-class？為什麼要透過-props（像-type）去控制？"><a href="#title-2025-04-06-為什麼不在-MyBanner-vue-裡直接寫死-class？為什麼要透過-props（像-type）去控制？date-2025-09-06-23-51-56tags-Javascript-Vue-description-2025-04-06-為什麼不在-MyBanner-vue-裡直接寫死-class？為什麼要透過-props（像-type）去控制？" class="headerlink" title="title: 2025-04-06-為什麼不在 MyBanner.vue 裡直接寫死 class？為什麼要透過 props（像 type）去控制？date: 2025-09-06 23:51:56tags:  [Javascript,Vue]description:   2025-04-06-為什麼不在 MyBanner.vue 裡直接寫死 class？為什麼要透過 props（像 type）去控制？"></a>title: 2025-04-06-為什麼不在 MyBanner.vue 裡直接寫死 class？為什麼要透過 props（像 type）去控制？<br>date: 2025-09-06 23:51:56<br>tags:  [Javascript,Vue]<br>description:   2025-04-06-為什麼不在 MyBanner.vue 裡直接寫死 class？為什麼要透過 props（像 type）去控制？</h2><h1 id="2025-04-06-為什麼不在-MyBanner-vue-裡直接寫死-class？為什麼要透過-props（像-type）去控制？"><a href="#2025-04-06-為什麼不在-MyBanner-vue-裡直接寫死-class？為什麼要透過-props（像-type）去控制？" class="headerlink" title="2025-04-06-為什麼不在 MyBanner.vue 裡直接寫死 class？為什麼要透過 props（像 type）去控制？"></a>2025-04-06-為什麼不在 MyBanner.vue 裡直接寫死 class？為什麼要透過 props（像 type）去控制？</h1><p>這個問題問得非常好 👍<br>「為什麼不在 <code>MyBanner.vue</code> 裡直接寫死 class？為什麼要透過 <code>props</code>（像 <code>type</code>）去控制？」<br>這跟 <strong>元件設計的彈性</strong> 有關。</p>
+<hr>
+<h3 id="1-如果直接寫-class"><a href="#1-如果直接寫-class" class="headerlink" title="1. 如果直接寫 class"></a>1. 如果直接寫 class</h3><p>例如你這樣做：</p>
+<pre><code class="vue">&lt;div class=&quot;my-banner error&quot;&gt;
+  &lt;slot&gt;&lt;/slot&gt;
+&lt;/div&gt;
+</code></pre>
+<ul>
+<li>優點：簡單，馬上就有紅色的錯誤樣式。</li>
+<li>缺點：這個元件<strong>只能用錯誤紅色樣式</strong>，想要變成 success&#x2F;info 就要 <strong>複製一個新的元件</strong> 或去修改原始檔案。</li>
+<li>等於「死板的 UI」，重複性很高。</li>
+</ul>
+<hr>
+<h3 id="2-如果用-props-動態-class"><a href="#2-如果用-props-動態-class" class="headerlink" title="2. 如果用 props + 動態 class"></a>2. 如果用 props + 動態 class</h3><pre><code class="vue">&lt;template&gt;
+  &lt;div class=&quot;my-banner&quot; :class=&quot;type&quot;&gt;
+    &lt;slot&gt;&lt;/slot&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+defineProps({
+  type: {
+    type: String,
+    default: &#39;info&#39;, // 預設是藍色
+    validator: (val) =&gt; [&#39;error&#39;,&#39;warning&#39;,&#39;success&#39;,&#39;info&#39;].includes(val)
+  }
+})
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+.my-banner.error { background: #fdd; border: 1px solid red; }
+.my-banner.warning { background: #ffe5b4; border: 1px solid orange; }
+.my-banner.success { background: #dfffd6; border: 1px solid green; }
+.my-banner.info { background: #e0f0ff; border: 1px solid blue; }
+&lt;/style&gt;
+</code></pre>
+<p>使用的時候：</p>
+<pre><code class="vue">&lt;MyBanner type=&quot;error&quot;&gt;❌ 刪除失敗&lt;/MyBanner&gt;
+&lt;MyBanner type=&quot;success&quot;&gt;✅ 操作成功&lt;/MyBanner&gt;
+&lt;MyBanner type=&quot;info&quot;&gt;ℹ️ 新版本已上線&lt;/MyBanner&gt;
+</code></pre>
+<ul>
+<li>優點：一個元件就能處理多種情境。</li>
+<li>更符合 <strong>元件的設計精神：可重用、可組合</strong>。</li>
+<li>如果將來要新增 <code>type=&quot;neutral&quot;</code>，只要加一行 CSS 即可，不需要改 Vue 模板。</li>
+</ul>
+<hr>
+<h3 id="3-總結"><a href="#3-總結" class="headerlink" title="3. 總結"></a>3. 總結</h3><ul>
+<li><strong>直接用 class</strong> → 簡單，但死板，不好擴充。</li>
+<li><strong>用 props + class</strong> → 稍微多一點程式，但能讓元件在不同地方重複使用，維護性強。</li>
+</ul>
+<hr>

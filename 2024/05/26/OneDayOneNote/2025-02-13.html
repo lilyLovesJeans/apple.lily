@@ -1,0 +1,56 @@
+<hr>
+<h2 id="title-2025-02-13-Vue-3-Composition-API-語法糖-script-setupdate-2025-09-06-22-08-16tags-Javascript-Vue-description-2025-02-13-Vue-3-Composition-API-語法糖-script-setup"><a href="#title-2025-02-13-Vue-3-Composition-API-語法糖-script-setupdate-2025-09-06-22-08-16tags-Javascript-Vue-description-2025-02-13-Vue-3-Composition-API-語法糖-script-setup" class="headerlink" title="title: 2025-02-13-  Vue 3 Composition API 語法糖_script_setupdate: 2025-09-06 22:08:16tags:  [Javascript,Vue]description:  2025-02-13-  Vue 3 Composition API 語法糖_script_setup"></a>title: 2025-02-13-  Vue 3 Composition API 語法糖_script_setup<br>date: 2025-09-06 22:08:16<br>tags:  [Javascript,Vue]<br>description:  2025-02-13-  Vue 3 Composition API 語法糖_script_setup</h2><h1 id="2025-02-13-Vue-3-Composition-API-語法糖-script-setup"><a href="#2025-02-13-Vue-3-Composition-API-語法糖-script-setup" class="headerlink" title="2025-02-13-  Vue 3 Composition API 語法糖_script_setup"></a>2025-02-13-  Vue 3 Composition API 語法糖_script_setup</h1><p>Vue 3 提供了兩種寫法來撰寫 <code>&lt;script&gt;</code>：</p>
+<hr>
+<h2 id="🧠-為什麼要用-setup？"><a href="#🧠-為什麼要用-setup？" class="headerlink" title="🧠 為什麼要用 setup？"></a>🧠 為什麼要用 <code>setup</code>？</h2><h3 id="✅-script-setup-是-Vue-3-Composition-API-的語法糖（Syntactic-Sugar）"><a href="#✅-script-setup-是-Vue-3-Composition-API-的語法糖（Syntactic-Sugar）" class="headerlink" title="✅ script setup 是 Vue 3 Composition API 的語法糖（Syntactic Sugar）"></a>✅ <code>script setup</code> 是 Vue 3 Composition API 的<strong>語法糖（Syntactic Sugar）</strong></h3><p>它讓你寫 Composition API 更簡潔、直覺，不需要手動定義 <code>setup()</code> 函數，也不需要 <code>return</code>。</p>
+<hr>
+<h2 id="🔍-比較：傳統-Composition-API-vs-script-setup"><a href="#🔍-比較：傳統-Composition-API-vs-script-setup" class="headerlink" title="🔍 比較：傳統 Composition API vs script setup"></a>🔍 比較：傳統 Composition API vs <code>script setup</code></h2><h3 id="👴-傳統寫法（需要-return）"><a href="#👴-傳統寫法（需要-return）" class="headerlink" title="👴 傳統寫法（需要 return）"></a>👴 傳統寫法（需要 return）</h3><pre><code class="vue">&lt;script&gt;
+import { ref } from &#39;vue&#39;
+
+export default {
+  setup() {
+    const message = ref(&#39;Hello Vue!&#39;)
+    return { message } // ⬅️ 一定要 return 出來，才能在 template 用
+  }
+}
+&lt;/script&gt;
+</code></pre>
+<hr>
+<h3 id="🚀-script-setup-寫法（不需要-return）"><a href="#🚀-script-setup-寫法（不需要-return）" class="headerlink" title="🚀 script setup 寫法（不需要 return）"></a>🚀 <code>script setup</code> 寫法（不需要 return）</h3><pre><code class="vue">&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+
+const message = ref(&#39;Hello Vue!&#39;) // ⬅️ 直接寫，不需要 return
+&lt;/script&gt;
+</code></pre>
+<hr>
+<h2 id="✨-優點總結"><a href="#✨-優點總結" class="headerlink" title="✨ 優點總結"></a>✨ 優點總結</h2><table>
+<thead>
+<tr>
+<th>項目</th>
+<th>傳統 <code>setup()</code></th>
+<th><code>script setup</code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>是否要手動 <code>return</code>？</td>
+<td>✅ 要</td>
+<td>❌ 不用</td>
+</tr>
+<tr>
+<td>語法長度</td>
+<td>比較多</td>
+<td>更簡潔</td>
+</tr>
+<tr>
+<td>開發體驗</td>
+<td>普通</td>
+<td>更快、更直觀（特別適合小型元件）</td>
+</tr>
+<tr>
+<td>支援自動引入名稱</td>
+<td>❌</td>
+<td>✅ Volar &#x2F; IDE 支援更好</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="✅-建議"><a href="#✅-建議" class="headerlink" title="✅ 建議"></a>✅ 建議</h2><p>你現在用的是 Vue 3 + Vite → 官方建議直接用 <code>script setup</code> ✅</p>
+<hr>

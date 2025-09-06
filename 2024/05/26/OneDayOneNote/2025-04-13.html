@@ -1,0 +1,147 @@
+<hr>
+<h2 id="title-2025-04-13-Tailwind-CSS-使用規則-範例解說date-2025-09-07-00-02-02tags-Javascript-Vue-description-2025-04-13-Tailwind-CSS-使用規則-範例解說"><a href="#title-2025-04-13-Tailwind-CSS-使用規則-範例解說date-2025-09-07-00-02-02tags-Javascript-Vue-description-2025-04-13-Tailwind-CSS-使用規則-範例解說" class="headerlink" title="title: 2025-04-13-Tailwind CSS 使用規則 + 範例解說date: 2025-09-07 00:02:02tags:  [Javascript,Vue]description:  2025-04-13-Tailwind CSS 使用規則 + 範例解說"></a>title: 2025-04-13-Tailwind CSS 使用規則 + 範例解說<br>date: 2025-09-07 00:02:02<br>tags:  [Javascript,Vue]<br>description:  2025-04-13-Tailwind CSS 使用規則 + 範例解說</h2><h1 id="2025-04-13-Tailwind-CSS-使用規則-範例解說"><a href="#2025-04-13-Tailwind-CSS-使用規則-範例解說" class="headerlink" title="2025-04-13-Tailwind CSS 使用規則 + 範例解說"></a>2025-04-13-Tailwind CSS 使用規則 + 範例解說</h1><h1 id="Tailwind-CSS-使用規則-範例解說"><a href="#Tailwind-CSS-使用規則-範例解說" class="headerlink" title="Tailwind CSS 使用規則 + 範例解說"></a>Tailwind CSS 使用規則 + 範例解說</h1><p>下面用清楚、分段的方式說明 Tailwind 的核心規則與常見用法，每個重點都附上簡短範例與說明，方便你立刻上手。</p>
+<hr>
+<h2 id="1-Tailwind-是什麼（一句話）"><a href="#1-Tailwind-是什麼（一句話）" class="headerlink" title="1) Tailwind 是什麼（一句話）"></a>1) Tailwind 是什麼（一句話）</h2><p>Tailwind 是 <strong>utility-first</strong> 的 CSS 框架：不寫大量自訂 CSS，而是把小功能（例如 <code>p-4</code>、<code>text-sm</code>、<code>bg-blue-500</code>）直接放在 HTML class。這讓樣式具可組合性且開發速度快。</p>
+<hr>
+<h2 id="2-基本使用規則（必讀）"><a href="#2-基本使用規則（必讀）" class="headerlink" title="2) 基本使用規則（必讀）"></a>2) 基本使用規則（必讀）</h2><h3 id="1-類別為「功能導向」（utility-first）"><a href="#1-類別為「功能導向」（utility-first）" class="headerlink" title="1. 類別為「功能導向」（utility-first）"></a>1. 類別為「功能導向」（utility-first）</h3><p>在標籤上直接組合多個 class：</p>
+<pre><code class="html">&lt;button class=&quot;px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600&quot;&gt;
+  按我
+&lt;/button&gt;
+</code></pre>
+<p>說明：<code>px-4</code>（左右 padding）、<code>py-2</code>（上下 padding）、<code>bg-blue-500</code>（背景色）、<code>rounded</code>（圓角）、<code>hover:bg-blue-600</code>（滑鼠懸停變色）。</p>
+<hr>
+<h3 id="2-行動優先（mobile-first）與響應式前綴"><a href="#2-行動優先（mobile-first）與響應式前綴" class="headerlink" title="2. 行動優先（mobile-first）與響應式前綴"></a>2. 行動優先（mobile-first）與響應式前綴</h3><p>預設生效於所有尺寸，用 <code>sm:</code>, <code>md:</code>, <code>lg:</code>, <code>xl:</code> 等在特定斷點以上啟用：</p>
+<pre><code class="html">&lt;div class=&quot;p-4 bg-gray-100 md:flex md:gap-4&quot;&gt;
+  &lt;div class=&quot;w-full md:w-1/3&quot;&gt;欄位 A&lt;/div&gt;
+  &lt;div class=&quot;w-full md:w-2/3&quot;&gt;欄位 B&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p>說明：<code>md:flex</code> 代表在 <code>md</code>（中等）以上才變成 flex。</p>
+<p>默認斷點（Tailwind）：</p>
+<ul>
+<li><code>sm</code> ≈ 640px</li>
+<li><code>md</code> ≈ 768px</li>
+<li><code>lg</code> ≈ 1024px</li>
+<li><code>xl</code> ≈ 1280px<br>（可在 <code>tailwind.config.js</code> 自訂）</li>
+</ul>
+<hr>
+<h3 id="3-狀態與偽類前綴"><a href="#3-狀態與偽類前綴" class="headerlink" title="3. 狀態與偽類前綴"></a>3. 狀態與偽類前綴</h3><p>支援 <code>hover:</code>, <code>focus:</code>, <code>active:</code>, <code>visited:</code>, <code>focus-visible:</code>, <code>disabled:</code> 等：</p>
+<pre><code class="html">&lt;a class=&quot;text-blue-600 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-300&quot;&gt;連結&lt;/a&gt;
+</code></pre>
+<hr>
+<h3 id="4-dark-mode"><a href="#4-dark-mode" class="headerlink" title="4. dark mode"></a>4. dark mode</h3><p>兩種常見設定：<code>media</code>（跟隨系統）或 <code>class</code>（用 <code>.dark</code> 切換）：</p>
+<pre><code class="js">// tailwind.config.js 範例
+module.exports = {
+  darkMode: &#39;class&#39;, // 或 &#39;media&#39;
+  // ...
+}
+</code></pre>
+<p>HTML：</p>
+<pre><code class="html">&lt;html class=&quot;dark&quot;&gt;
+  &lt;body class=&quot;bg-white dark:bg-gray-900 text-black dark:text-white&quot;&gt;
+    ...
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<hr>
+<h3 id="5-優先順序（如何覆蓋）"><a href="#5-優先順序（如何覆蓋）" class="headerlink" title="5. 優先順序（如何覆蓋）"></a>5. 優先順序（如何覆蓋）</h3><ul>
+<li>Tailwind 的每個實用類別會產生規則；最後在 CSS 中出現者會勝出（CSS cascade）。</li>
+<li>使用響應式或偽類前綴時，該變體的規則會在相對的媒體查詢&#x2F;偽類下生效，因此可以用 <code>md:</code> 等覆蓋。</li>
+<li>若需要強制覆蓋，可使用 <code>!</code> 前綴（Tailwind v3 支援）：<code>!text-red-500</code>（會加入 <code>!important</code>）。</li>
+</ul>
+<hr>
+<h3 id="6-任意值（arbitrary-values）"><a href="#6-任意值（arbitrary-values）" class="headerlink" title="6. 任意值（arbitrary values）"></a>6. 任意值（arbitrary values）</h3><p>要使用框架外的特定值可用方括號：</p>
+<pre><code class="html">&lt;div class=&quot;w-[37px] h-[37px] bg-[#1da1f2]&quot;&gt;...&lt;/div&gt;
+</code></pre>
+<hr>
+<h3 id="7-將-utility-組成-component（-apply）"><a href="#7-將-utility-組成-component（-apply）" class="headerlink" title="7. 將 utility 組成 component（@apply）"></a>7. 將 utility 組成 component（@apply）</h3><p>在自訂 CSS&#x2F;樣式檔把一組 classes 抽成可重用的 class：</p>
+<pre><code class="css">/* styles.css */
+.btn {
+  @apply px-4 py-2 rounded bg-indigo-600 text-white hover:bg-indigo-700;
+}
+</code></pre>
+<p>然後 HTML 用 <code>&lt;button class=&quot;btn&quot;&gt;</code>。</p>
+<hr>
+<h3 id="8-生產環境清理（content-purge）"><a href="#8-生產環境清理（content-purge）" class="headerlink" title="8. 生產環境清理（content &#x2F; purge）"></a>8. 生產環境清理（content &#x2F; purge）</h3><p>在 <code>tailwind.config.js</code> 設定要掃描的檔案，避免輸出巨量 CSS：</p>
+<pre><code class="js">module.exports = {
+  content: [&#39;./src/**/*.{html,js,vue,jsx,tsx}&#39;],
+  // ...
+}
+</code></pre>
+<hr>
+<h2 id="3-常見範例（實務示例-說明）"><a href="#3-常見範例（實務示例-說明）" class="headerlink" title="3) 常見範例（實務示例 + 說明）"></a>3) 常見範例（實務示例 + 說明）</h2><h3 id="範例-A-—-按鈕（含狀態）"><a href="#範例-A-—-按鈕（含狀態）" class="headerlink" title="範例 A — 按鈕（含狀態）"></a>範例 A — 按鈕（含狀態）</h3><pre><code class="html">&lt;button class=&quot;inline-block px-4 py-2 rounded shadow-sm bg-blue-500 text-white 
+  hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 active:scale-95&quot;&gt;
+  送出
+&lt;/button&gt;
+</code></pre>
+<p>說明：</p>
+<ul>
+<li><code>inline-block</code>：讓 padding 生效並可有寬高</li>
+<li><code>shadow-sm</code>：小陰影</li>
+<li><code>focus:ring-2</code>：聚焦時的外圈光暈</li>
+<li><code>active:scale-95</code>：按下時微縮（互動感）</li>
+</ul>
+<hr>
+<h3 id="範例-B-—-響應式-Grid-佈局"><a href="#範例-B-—-響應式-Grid-佈局" class="headerlink" title="範例 B — 響應式 Grid 佈局"></a>範例 B — 響應式 Grid 佈局</h3><pre><code class="html">&lt;div class=&quot;grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4&quot;&gt;
+  &lt;div class=&quot;p-4 bg-white rounded&quot;&gt;卡片 1&lt;/div&gt;
+  &lt;div class=&quot;p-4 bg-white rounded&quot;&gt;卡片 2&lt;/div&gt;
+  &lt;div class=&quot;p-4 bg-white rounded&quot;&gt;卡片 3&lt;/div&gt;
+  &lt;div class=&quot;p-4 bg-white rounded&quot;&gt;卡片 4&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p>說明：一欄（手機），<code>sm</code> 變兩欄，<code>lg</code> 變四欄。</p>
+<hr>
+<h3 id="範例-C-—-表單驗證（與框架條件-class-共用）"><a href="#範例-C-—-表單驗證（與框架條件-class-共用）" class="headerlink" title="範例 C — 表單驗證（與框架條件 class 共用）"></a>範例 C — 表單驗證（與框架條件 class 共用）</h3><p>假設用 Vue，條件套用 class：</p>
+<pre><code class="html">&lt;input
+  type=&quot;text&quot;
+  :class=&quot;[
+    &#39;w-full p-2 rounded border&#39;,
+    hasError ? &#39;border-red-500 bg-red-50&#39; : &#39;border-gray-300&#39;
+  ]&quot;
+/&gt;
+</code></pre>
+<p>說明：用 JS 判斷決定哪個 Tailwind class 被套用，無需寫 CSS。</p>
+<hr>
+<h2 id="4-tailwind-config-js-常見設定範例"><a href="#4-tailwind-config-js-常見設定範例" class="headerlink" title="4) tailwind.config.js 常見設定範例"></a>4) tailwind.config.js 常見設定範例</h2><pre><code class="js">module.exports = {
+  content: [&#39;./src/**/*.{html,js,vue}&#39;],
+  darkMode: &#39;class&#39;,
+  theme: {
+    extend: {
+      colors: {
+        primary: &#39;#0ea5e9&#39;, // 自訂顏色
+      },
+      spacing: {
+        &#39;72&#39;: &#39;18rem&#39;,
+      }
+    }
+  },
+  plugins: [
+    require(&#39;@tailwindcss/forms&#39;),
+  ]
+}
+</code></pre>
+<ul>
+<li><code>extend</code> 用來擴展預設 scale（不覆蓋）</li>
+<li><code>plugins</code> 常用 <code>@tailwindcss/forms</code>, <code>typography</code>, <code>line-clamp</code> 等</li>
+</ul>
+<hr>
+<h2 id="5-快速-Cheat-sheet（常用-class）"><a href="#5-快速-Cheat-sheet（常用-class）" class="headerlink" title="5) 快速 Cheat-sheet（常用 class）"></a>5) 快速 Cheat-sheet（常用 class）</h2><ul>
+<li>佈局：<code>flex</code>, <code>grid</code>, <code>justify-between</code>, <code>items-center</code></li>
+<li>大小&#x2F;間距：<code>p-4</code>, <code>px-2</code>, <code>py-1</code>, <code>m-4</code>, <code>w-full</code>, <code>h-12</code>, <code>max-w-lg</code></li>
+<li>字體：<code>text-sm</code>, <code>text-lg</code>, <code>font-medium</code>, <code>truncate</code></li>
+<li>邊框&#x2F;陰影：<code>border</code>, <code>border-gray-300</code>, <code>rounded</code>, <code>shadow</code></li>
+<li>背景&#x2F;色彩：<code>bg-white</code>, <code>bg-gray-100</code>, <code>text-white</code>, <code>bg-blue-500</code></li>
+<li>互動：<code>hover:</code>, <code>focus:</code>, <code>active:</code>, <code>disabled:</code></li>
+<li>響應式：<code>sm:</code>, <code>md:</code>, <code>lg:</code>, <code>xl:</code></li>
+<li>dark mode：<code>dark:bg-gray-900</code>, <code>dark:text-white</code></li>
+<li>任意值：<code>w-[250px]</code>, <code>bg-[#ff00aa]</code></li>
+</ul>
+<hr>
+<h2 id="6-小技巧與注意事項"><a href="#6-小技巧與注意事項" class="headerlink" title="6) 小技巧與注意事項"></a>6) 小技巧與注意事項</h2><ul>
+<li><strong>別把大量邏輯放到 HTML 上</strong>：條件套 class（例如 Vue&#x2F;React）時，維持可讀性，用變數或小 helper。</li>
+<li><strong>使用 <code>@apply</code> 小心 specificity</strong>：不要嘗試把互動變體（<code>hover:</code>）放到 <code>@apply</code>，某些情況會失效或較難維護。</li>
+<li><strong>生產環境一定要設定 <code>content</code></strong> 否則輸出的 CSS 會很大。</li>
+<li><strong>使用 arbitrary value 時注意合法格式</strong>：例如 <code>min-h-[32px]</code>、<code>grid-cols-[200px_1fr]</code>。</li>
+<li><strong>版本差異</strong>：Tailwind v3 引入 JIT、<code>!important</code> 前綴 (<code>!</code>)，請確認你專案使用的版本文件或 changelog（如果需要我可以幫你比對版本差異）。</li>
+</ul>
+<hr>

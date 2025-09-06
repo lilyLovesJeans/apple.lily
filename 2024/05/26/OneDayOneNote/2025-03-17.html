@@ -1,0 +1,195 @@
+<hr>
+<h2 id="title-2025-03-17-JavaScript-系列九：第2課-──-學習-Vue-的-props-觀念date-2025-09-06-23-16-01tags-Javascript-Vue-description-2025-03-17-JavaScript-系列九：第2課-──-學習-Vue-的-props-觀念"><a href="#title-2025-03-17-JavaScript-系列九：第2課-──-學習-Vue-的-props-觀念date-2025-09-06-23-16-01tags-Javascript-Vue-description-2025-03-17-JavaScript-系列九：第2課-──-學習-Vue-的-props-觀念" class="headerlink" title="title: 2025-03-17-JavaScript 系列九：第2課 ── 學習 Vue 的 props 觀念date: 2025-09-06 23:16:01tags:  [Javascript,Vue]description:   2025-03-17-JavaScript 系列九：第2課 ── 學習 Vue 的 props 觀念"></a>title: 2025-03-17-JavaScript 系列九：第2課 ── 學習 Vue 的 props 觀念<br>date: 2025-09-06 23:16:01<br>tags:  [Javascript,Vue]<br>description:   2025-03-17-JavaScript 系列九：第2課 ── 學習 Vue 的 props 觀念</h2><h1 id="2025-03-17-JavaScript-系列九：第2課-──-學習-Vue-的-props-觀念"><a href="#2025-03-17-JavaScript-系列九：第2課-──-學習-Vue-的-props-觀念" class="headerlink" title="2025-03-17-JavaScript 系列九：第2課 ── 學習 Vue 的 props 觀念"></a>2025-03-17-JavaScript 系列九：第2課 ── 學習 Vue 的 props 觀念</h1><p>JavaScript 系列九：第2課 ── 學習 Vue 的 props 觀念<br>課程目標<br>學習 vue 的 props<br>課程內容<br>來學一下怎麼傳參數到元件裡面</p>
+<p><a href="https://vuejs.org/guide/components/props.html">https://vuejs.org/guide/components/props.html</a><br>順帶一提，在實務中，我個人是從來不寫 Prop Validation 的</p>
+<p>我不去寫 Runtime Type Checks 那些，因為我覺得很麻煩、很花時間</p>
+<p>當然，在很多人眼裡，我這種習慣很糟糕</p>
+<p>我有我的理由，不過嚴重超出本課程度，未來有機會再談吧</p>
+<p>課後作業<br>在第二課～第七課的作業，我們要研習一款叫做 Quasar Framework 的工具</p>
+<p>這是一個極度強大的 vue 元件工具，功能非常豐富、好用</p>
+<p>我們每一課的作業，都要試著親自做出類似 Quasar 中的元件</p>
+<p>（沒辦法做到像 Quasar 那麼強大，我們只要實作部分功能就好）</p>
+<p>這一課作業，請先看一下 Badge 徽章元件的用法</p>
+<p><a href="https://quasar.dev/vue-components/badge">https://quasar.dev/vue-components/badge</a></p>
+<p>請使用官方的元件試玩工具：Vue SFC Playground</p>
+<p><a href="https://sfc.vuejs.org/">https://sfc.vuejs.org/</a></p>
+<p>請建立 MyBadge.vue 元件，並支援下列功能<br>color 能夠設定背景顏色<br>text-color 能夠設定文字顏色<br>label 能夠設定文字內容<br>rounded 樣式<br>完成之後，請在 App.vue 之中匯入此元件，並用多個範例證明，有完成上述規格</p>
+<p>做出以上功能，你就完成這次的課程目標了！</p>
+<p>很好！這次作業的目標是模仿 Quasar 的 <code>&lt;q-badge&gt;</code> 元件，自己實作一個簡單版的 <code>MyBadge.vue</code>，並練習以下功能：</p>
+<hr>
+<h2 id="🎯-功能需求（你的元件要能支援）："><a href="#🎯-功能需求（你的元件要能支援）：" class="headerlink" title="🎯 功能需求（你的元件要能支援）："></a>🎯 功能需求（你的元件要能支援）：</h2><table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>color</code></td>
+<td>設定背景顏色</td>
+</tr>
+<tr>
+<td><code>textColor</code></td>
+<td>設定文字顏色</td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td>顯示的文字內容</td>
+</tr>
+<tr>
+<td><code>rounded</code></td>
+<td>若為 <code>true</code>，則讓角落變圓</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="✅-MyBadge-vue-範例程式碼"><a href="#✅-MyBadge-vue-範例程式碼" class="headerlink" title="✅ MyBadge.vue 範例程式碼"></a>✅ MyBadge.vue 範例程式碼</h2><p>在 Vue SFC Playground 中新增一個檔案：<code>MyBadge.vue</code>，並輸入以下內容：</p>
+<pre><code class="vue">&lt;template&gt;
+  &lt;span
+    :class=&quot;[
+      &#39;badge&#39;,
+      { &#39;rounded&#39;: rounded }
+    ]&quot;
+    :style=&quot;{
+      backgroundColor: color,
+      color: textColor
+    }&quot;
+  &gt;
+    {{ label }}
+  &lt;/span&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+defineProps({
+  color: { type: String, default: &#39;#eee&#39; },
+  textColor: { type: String, default: &#39;#000&#39; },
+  label: { type: String, default: &#39;Badge&#39; },
+  rounded: { type: Boolean, default: false }
+})
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+.badge {
+  display: inline-block;
+  padding: 4px 8px;
+  font-size: 14px;
+  font-weight: bold;
+  border: 1px solid #ccc;
+  margin: 5px;
+}
+
+.rounded {
+  border-radius: 999px;
+}
+&lt;/style&gt;
+</code></pre>
+<hr>
+<h2 id="✅-App-vue-中匯入並測試"><a href="#✅-App-vue-中匯入並測試" class="headerlink" title="✅ App.vue 中匯入並測試"></a>✅ App.vue 中匯入並測試</h2><p>修改 <code>App.vue</code> 來測試這個元件的各種效果：</p>
+<pre><code class="vue">&lt;template&gt;
+  &lt;div style=&quot;padding: 20px&quot;&gt;
+    &lt;MyBadge label=&quot;Primary&quot; color=&quot;blue&quot; textColor=&quot;white&quot; /&gt;
+    &lt;MyBadge label=&quot;Success&quot; color=&quot;green&quot; textColor=&quot;white&quot; rounded /&gt;
+    &lt;MyBadge label=&quot;Danger&quot; color=&quot;red&quot; textColor=&quot;white&quot; /&gt;
+    &lt;MyBadge label=&quot;Info&quot; color=&quot;#00bcd4&quot; textColor=&quot;#fff&quot; rounded /&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import MyBadge from &#39;./MyBadge.vue&#39;
+&lt;/script&gt;
+</code></pre>
+<hr>
+<h2 id="✅-成果畫面"><a href="#✅-成果畫面" class="headerlink" title="✅ 成果畫面"></a>✅ 成果畫面</h2><p>你應該會看到幾個彩色徽章，顯示不同的文字與顏色，部分有圓角效果。</p>
+<hr>
+<h2 id="🔧-可以挑戰的進階功能（選做）"><a href="#🔧-可以挑戰的進階功能（選做）" class="headerlink" title="🔧 可以挑戰的進階功能（選做）"></a>🔧 可以挑戰的進階功能（選做）</h2><ul>
+<li>增加 <code>size</code> prop：支援 small &#x2F; medium &#x2F; large 字型大小。</li>
+<li>增加 <code>icon</code> 插槽（slot）：允許使用者放圖示。</li>
+<li>增加可點擊的效果（用 <code>@click</code> 和 <code>cursor: pointer</code>）。</li>
+</ul>
+<hr>
+<p>很好的提問！讓我們來深入解釋一下：</p>
+<hr>
+<h2 id="✅-一、什麼是-元件？"><a href="#✅-一、什麼是-元件？" class="headerlink" title="✅ 一、什麼是 &lt;q-badge&gt; 元件？"></a>✅ 一、什麼是 <code>&lt;q-badge&gt;</code> 元件？</h2><p><code>&lt;q-badge&gt;</code> 是 Quasar Framework 中提供的一個<strong>小型視覺標記元件（Badge Component）</strong>，主要用途是：</p>
+<h3 id="🎯-功能與用途："><a href="#🎯-功能與用途：" class="headerlink" title="🎯 功能與用途："></a>🎯 功能與用途：</h3><table>
+<thead>
+<tr>
+<th>功能類別</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>📍 <strong>標示數字或狀態</strong></td>
+<td>顯示通知數、訊息數，例如訊息旁邊有「3」</td>
+</tr>
+<tr>
+<td>🎨 <strong>裝飾或分類標籤</strong></td>
+<td>用顏色區分項目狀態，如「進行中」、「已完成」、「錯誤」</td>
+</tr>
+<tr>
+<td>✅ <strong>小而明顯的 UI 元素</strong></td>
+<td>通常與按鈕、圖示等一起使用，不會搶版面但又能吸睛</td>
+</tr>
+</tbody></table>
+<h3 id="🧩-常見用途範例："><a href="#🧩-常見用途範例：" class="headerlink" title="🧩 常見用途範例："></a>🧩 常見用途範例：</h3><ul>
+<li>購物車上顯示「5」個商品</li>
+<li>按鈕旁邊顯示「New」</li>
+<li>聊天列表顯示未讀訊息數</li>
+</ul>
+<hr>
+<h2 id="✅-二、Quasar-是什麼？"><a href="#✅-二、Quasar-是什麼？" class="headerlink" title="✅ 二、Quasar 是什麼？"></a>✅ 二、Quasar 是什麼？</h2><p><strong>Quasar Framework</strong> 是一套基於 Vue.js 的全功能前端框架，目的是讓開發者<strong>一次撰寫，部署到多平台</strong>（網頁、手機 App、桌面 App）。</p>
+<h3 id="🎯-Quasar-的核心特點："><a href="#🎯-Quasar-的核心特點：" class="headerlink" title="🎯 Quasar 的核心特點："></a>🎯 Quasar 的核心特點：</h3><table>
+<thead>
+<tr>
+<th>功能</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>💡 基於 Vue.js</td>
+<td>使用 Vue 的語法與架構，非常適合 Vue 使用者</td>
+</tr>
+<tr>
+<td>🧱 提供大量 UI 元件</td>
+<td>像是 <code>&lt;q-btn&gt;</code>, <code>&lt;q-card&gt;</code>, <code>&lt;q-badge&gt;</code>, <code>&lt;q-dialog&gt;</code>… 等</td>
+</tr>
+<tr>
+<td>📱 支援多平台</td>
+<td>可以快速建構 Web App、Mobile App（透過 Cordova &#x2F; Capacitor）、Desktop App（透過 Electron）</td>
+</tr>
+<tr>
+<td>🧰 還包含工具</td>
+<td>CLI、主題系統、i18n、RTL、dark mode… 功能豐富</td>
+</tr>
+</tbody></table>
+<p>你可以把它想成是「Vue 世界裡的 Bootstrap + Material UI + CLI 打包工具整合包」。</p>
+<hr>
+<h2 id="✅-三、為什麼要做-這種元件？"><a href="#✅-三、為什麼要做-這種元件？" class="headerlink" title="✅ 三、為什麼要做 &lt;q-badge&gt; 這種元件？"></a>✅ 三、為什麼要做 <code>&lt;q-badge&gt;</code> 這種元件？</h2><p>這堂課讓你模仿 <code>&lt;q-badge&gt;</code> 的目標是：</p>
+<h3 id="🎯-學習重點"><a href="#🎯-學習重點" class="headerlink" title="🎯 學習重點"></a>🎯 學習重點</h3><table>
+<thead>
+<tr>
+<th>學習面向</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>✅ <strong>Props 傳值</strong></td>
+<td>學會設計元件的屬性（如：color, textColor, label）</td>
+</tr>
+<tr>
+<td>🎨 <strong>樣式控制</strong></td>
+<td>透過 props 控制顏色、圓角、顯示內容</td>
+</tr>
+<tr>
+<td>🧩 <strong>元件封裝概念</strong></td>
+<td>學會把一個小功能獨立出來、可重複使用</td>
+</tr>
+<tr>
+<td>🧠 <strong>從模仿中學習</strong></td>
+<td>仿造 Quasar 是一種反向學習法，理解一個專業元件是怎麼設計出來的</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="✅-總結：這一課的意義是什麼？"><a href="#✅-總結：這一課的意義是什麼？" class="headerlink" title="✅ 總結：這一課的意義是什麼？"></a>✅ 總結：這一課的意義是什麼？</h2><p>這一課不是要你「發明」一個新元件，而是：</p>
+<blockquote>
+<p>🛠️ <strong>從模仿做中學，掌握元件開發的基礎技能</strong></p>
+</blockquote>
+<p>這些基礎技能日後可以延伸用來開發自己的 UI Library，或在工作上參與實際專案。</p>
+<hr>

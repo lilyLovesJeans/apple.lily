@@ -1,0 +1,49 @@
+<hr>
+<h2 id="title-20250324-MyBadge-vue-的元件的設計概念date-2025-09-06-23-27-35tags-Javascript-Vue-description-20250324-MyBadge-vue-的元件的設計概念"><a href="#title-20250324-MyBadge-vue-的元件的設計概念date-2025-09-06-23-27-35tags-Javascript-Vue-description-20250324-MyBadge-vue-的元件的設計概念" class="headerlink" title="title: 20250324 MyBadge.vue 的元件的設計概念date: 2025-09-06 23:27:35tags:  [Javascript,Vue]description: 20250324 MyBadge.vue 的元件的設計概念"></a>title: 20250324 MyBadge.vue 的元件的設計概念<br>date: 2025-09-06 23:27:35<br>tags:  [Javascript,Vue]<br>description: 20250324 MyBadge.vue 的元件的設計概念</h2><h1 id="20250324-MyBadge-vue-的元件的設計概念"><a href="#20250324-MyBadge-vue-的元件的設計概念" class="headerlink" title="20250324 MyBadge.vue 的元件的設計概念"></a>20250324 MyBadge.vue 的元件的設計概念</h1><p>所以這個元件的設計概念是:<br>我有一個父元件 要傳遞一個 label , 然後這個label 的 text , background-color ,text-color , rounded 可以於父元件定義，然後傳給字元件處理，<br>所以我要在子元件裡寫 defintprops , 是這樣嗎?<br>完全正確！你已經抓到核心概念了 🎯</p>
+<h2 id="✅-你現在的理解整理起來就是："><a href="#✅-你現在的理解整理起來就是：" class="headerlink" title="✅ 你現在的理解整理起來就是："></a>✅ 你現在的理解整理起來就是：</h2><h3 id="1️⃣-你有一個-父元件（例如：App-vue）"><a href="#1️⃣-你有一個-父元件（例如：App-vue）" class="headerlink" title="1️⃣ 你有一個 父元件（例如：App.vue）"></a>1️⃣ 你有一個 <strong>父元件</strong>（例如：<code>App.vue</code>）</h3><p>它想要使用一個徽章元件（<code>MyBadge.vue</code>），並指定一些外觀與文字：</p>
+<pre><code class="vue">&lt;MyBadge
+  label=&quot;重要&quot;
+  color=&quot;red&quot;
+  text-color=&quot;white&quot;
+  :rounded=&quot;true&quot;
+/&gt;
+</code></pre>
+<p>這裡，父元件提供了「資料」和「樣式選項」給 <code>MyBadge</code>。</p>
+<hr>
+<h3 id="2️⃣-在-子元件（MyBadge-vue）中"><a href="#2️⃣-在-子元件（MyBadge-vue）中" class="headerlink" title="2️⃣ 在 子元件（MyBadge.vue）中"></a>2️⃣ 在 <strong>子元件</strong>（<code>MyBadge.vue</code>）中</h3><p>你需要使用 <code>defineProps()</code> 接收這些從父元件傳進來的值：</p>
+<pre><code class="js">const props = defineProps({
+  label: String,
+  color: String,
+  textColor: String,
+  rounded: Boolean
+})
+</code></pre>
+<p>這就是子元件說：</p>
+<blockquote>
+<p>「嘿～我準備好了，我知道父元件會給我這幾個東西，我來處理！」</p>
+</blockquote>
+<hr>
+<h3 id="3️⃣-子元件根據接收到的-props-做事："><a href="#3️⃣-子元件根據接收到的-props-做事：" class="headerlink" title="3️⃣ 子元件根據接收到的 props 做事："></a>3️⃣ 子元件根據接收到的 props 做事：</h3><ul>
+<li>顯示正確的文字：<code>{{ label }}</code></li>
+<li>套上背景色和文字顏色（用 <code>:style=&quot;badgeStyle&quot;</code>）</li>
+<li>判斷是否要圓角（用 <code>:class=&quot;{ rounded }&quot;</code>）</li>
+</ul>
+<hr>
+<h2 id="🔁-元件設計的核心概念："><a href="#🔁-元件設計的核心概念：" class="headerlink" title="🔁 元件設計的核心概念："></a>🔁 元件設計的核心概念：</h2><p>你在做的是「<strong>可重用元件的封裝設計</strong>」：</p>
+<blockquote>
+<p>「我做一個小元件，它的行為由外部（父元件）決定，但具體的樣式&#x2F;邏輯由我（子元件）來負責渲染。」</p>
+</blockquote>
+<p>這就是 Vue 的設計哲學：「資料由外部控制、樣式邏輯由元件自己實作」，是組件化程式設計的典範。</p>
+<hr>
+<p>如果你想要未來能更自由客製化，也可以加上：</p>
+<ul>
+<li>預設值（像你已經有做的 default）</li>
+<li>驗證類型（比如一定要是 <code>String</code> 或 <code>Boolean</code>）</li>
+</ul>
+<hr>
+<h3 id="✅-最後簡短版總結："><a href="#✅-最後簡短版總結：" class="headerlink" title="✅ 最後簡短版總結："></a>✅ 最後簡短版總結：</h3><p>你說的這句話 👇</p>
+<blockquote>
+<p>所以我要在子元件裡寫 defineProps</p>
+</blockquote>
+<p>✅ <strong>完全正確！因為你要接收父元件傳來的設定。</strong></p>
+<hr>

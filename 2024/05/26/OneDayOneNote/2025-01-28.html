@@ -1,0 +1,60 @@
+<hr>
+<h2 id="title-2025-01-28-vue3-ref-是什麼date-2025-09-06-20-38-26tags-Javascript-Vue-description-2024-01-25-JavaScript-系列八：第5課-──-體重追蹤應用程式-步驟01"><a href="#title-2025-01-28-vue3-ref-是什麼date-2025-09-06-20-38-26tags-Javascript-Vue-description-2024-01-25-JavaScript-系列八：第5課-──-體重追蹤應用程式-步驟01" class="headerlink" title="title: 2025-01-28-vue3_ref 是什麼date: 2025-09-06 20:38:26tags:  [Javascript,Vue]description:  2024-01-25 - JavaScript 系列八：第5課 ── 體重追蹤應用程式-步驟01"></a>title: 2025-01-28-vue3_ref 是什麼<br>date: 2025-09-06 20:38:26<br>tags:  [Javascript,Vue]<br>description:  2024-01-25 - JavaScript 系列八：第5課 ── 體重追蹤應用程式-步驟01</h2><p>#2025-01-28-vue3_ref 是什麼</p>
+<p>ref 是什麼</p>
+<p>很好！這是學 Vue 3 Composition API 的關鍵核心問題之一。</p>
+<hr>
+<h2 id="🔧-ref-是什麼？"><a href="#🔧-ref-是什麼？" class="headerlink" title="🔧 ref 是什麼？"></a>🔧 <code>ref</code> 是什麼？</h2><p>在 Vue 3 中，<code>ref</code> 是一個 <strong>用來創建「響應式變數」的函式</strong>。</p>
+<h3 id="換句話說："><a href="#換句話說：" class="headerlink" title="換句話說："></a>換句話說：</h3><p>當你希望 Vue 追蹤某個值的變化（讓它在畫面上即時更新），你就應該用 <code>ref</code>。</p>
+<hr>
+<h2 id="✅-基本用法："><a href="#✅-基本用法：" class="headerlink" title="✅ 基本用法："></a>✅ 基本用法：</h2><pre><code class="js">import { ref } from &#39;vue&#39;
+
+const count = ref(0)
+</code></pre>
+<ul>
+<li>這裡的 <code>count</code> 是一個「特殊物件」。</li>
+<li>它的值放在 <code>count.value</code> 裡面。</li>
+<li>Vue 會自動幫你追蹤這個值，並在畫面上自動更新。</li>
+</ul>
+<hr>
+<h2 id="💡-在模板裡怎麼用？"><a href="#💡-在模板裡怎麼用？" class="headerlink" title="💡 在模板裡怎麼用？"></a>💡 在模板裡怎麼用？</h2><pre><code class="vue">&lt;template&gt;
+  &lt;div&gt;
+    &lt;p&gt;目前數字：{{ count }}&lt;/p&gt;
+    &lt;button @click=&quot;count++&quot;&gt;增加&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+
+const count = ref(0)
+&lt;/script&gt;
+</code></pre>
+<h3 id="🔍-注意："><a href="#🔍-注意：" class="headerlink" title="🔍 注意："></a>🔍 注意：</h3><ul>
+<li>在 JS 裡你要寫 <code>count.value</code></li>
+<li>在 HTML 模板中（<code>&lt;template&gt;</code> 區塊）可以直接寫 <code>{{ count }}</code>，Vue 會自動解開 <code>.value</code></li>
+</ul>
+<hr>
+<h2 id="🤔-為什麼不用-let-count-0-就好？"><a href="#🤔-為什麼不用-let-count-0-就好？" class="headerlink" title="🤔 為什麼不用 let count = 0 就好？"></a>🤔 為什麼不用 <code>let count = 0</code> 就好？</h2><p>因為普通變數不是「響應式」的，Vue 不會追蹤它的變化，不會幫你更新畫面。</p>
+<table>
+<thead>
+<tr>
+<th>方式</th>
+<th>是否能讓畫面自動更新？</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>let count = 0</code></td>
+<td>❌ 不會</td>
+</tr>
+<tr>
+<td><code>const count = ref(0)</code></td>
+<td>✅ 會自動更新</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="📌-總結一分鐘："><a href="#📌-總結一分鐘：" class="headerlink" title="📌 總結一分鐘："></a>📌 總結一分鐘：</h2><ul>
+<li><code>ref(初始值)</code>：創建一個響應式的值</li>
+<li>在 JS 裡用 <code>.value</code> 存取它</li>
+<li>在 <code>&lt;template&gt;</code> 中可以直接使用（會自動解開）</li>
+</ul>
+<hr>

@@ -1,0 +1,98 @@
+<hr>
+<h2 id="title-20250308-天氣查詢應用程式」的第-4-步：自由選擇多個城市date-2025-09-06-23-03-37tags-Javascript-Vue-description-20250308-天氣查詢應用程式」的第-4-步：自由選擇多個城市"><a href="#title-20250308-天氣查詢應用程式」的第-4-步：自由選擇多個城市date-2025-09-06-23-03-37tags-Javascript-Vue-description-20250308-天氣查詢應用程式」的第-4-步：自由選擇多個城市" class="headerlink" title="title: 20250308-天氣查詢應用程式」的第 4 步：自由選擇多個城市date: 2025-09-06 23:03:37tags:  [Javascript,Vue]description: 20250308-天氣查詢應用程式」的第 4 步：自由選擇多個城市"></a>title: 20250308-天氣查詢應用程式」的第 4 步：自由選擇多個城市<br>date: 2025-09-06 23:03:37<br>tags:  [Javascript,Vue]<br>description: 20250308-天氣查詢應用程式」的第 4 步：自由選擇多個城市</h2><h1 id="20250308-天氣查詢應用程式」的第-4-步：自由選擇多個城市"><a href="#20250308-天氣查詢應用程式」的第-4-步：自由選擇多個城市" class="headerlink" title="20250308-天氣查詢應用程式」的第 4 步：自由選擇多個城市"></a>20250308-天氣查詢應用程式」的第 4 步：自由選擇多個城市</h1><pre><code class="html">&lt;template&gt;
+  &lt;h2&gt;🌦️ 自選三個城市天氣概況&lt;/h2&gt;
+
+  &lt;!-- 多選城市 --&gt;
+  &lt;label&gt;請選擇最多三個城市：&lt;/label&gt;
+  &lt;!-- &lt;select multiple v-model=&quot;selectedCities&quot; @change=&quot;checkLimit&quot;&gt; --&gt;
+    &lt;select multiple v-model=&quot;selectedCities&quot; &gt;
+    &lt;option v-for=&quot;city in allCityNames&quot; :key=&quot;city&quot;&gt;{{ city }}&lt;/option&gt;
+  &lt;/select&gt;
+  &lt;p&gt;目前選擇：{{ selectedCities.join(&#39;, &#39;) }}&lt;/p&gt;
+  &lt;!-- &lt;p v-if=&quot;limitReached&quot; style=&quot;color: red;&quot;&gt;⚠️ 最多只能選三個城市&lt;/p&gt; --&gt;
+
+  &lt;div class=&quot;weather-container&quot;&gt;
+    &lt;div v-for=&quot;city in filteredWeatherData&quot; :key=&quot;city.locationName&quot; class=&quot;city-card&quot;&gt;
+      &lt;h3&gt;🌆 {{ city.locationName }}&lt;/h3&gt;
+      &lt;p&gt;☀️ 天氣：{{ getWeatherElement(city, &#39;Wx&#39;) }}&lt;/p&gt;
+      &lt;p&gt;🔥 最高溫：{{ getWeatherElement(city, &#39;MaxT&#39;) }}°C&lt;/p&gt;
+      &lt;p&gt;❄️ 最低溫：{{ getWeatherElement(city, &#39;MinT&#39;) }}°C&lt;/p&gt;
+      &lt;p&gt;🌧️ 降雨機率：{{ getWeatherElement(city, &#39;PoP&#39;) }}%&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { ref, computed, onMounted } from &#39;vue&#39;
+
+const apiKey = &#39;CWA-290D12F1-3FA3-4A61-B613-623327DD04C2&#39; // &lt;&lt;--- 請替換為你註冊的 CWA API Key
+
+const url = `https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=${apiKey}`
+
+const weatherData = ref([])
+const allCityNames = ref([])
+const selectedCities = ref([])
+const limitReached = ref(false)
+
+onMounted(async () =&gt; {
+  try {
+    const response = await fetch(url)
+    const data = await response.json()
+    const locations = data.records.location
+
+    weatherData.value = locations
+    allCityNames.value = locations.map(loc =&gt; loc.locationName)
+
+    // 預設三個城市
+    selectedCities.value = [&#39;臺北市&#39;, &#39;臺中市&#39;, &#39;高雄市&#39;]
+  } catch (error) {
+    console.error(&#39;❌ 發生錯誤:&#39;, error)
+  }
+})
+
+// ✅ 限制最多三個城市
+function checkLimit() {
+  if (selectedCities.value.length &gt; 3) {
+    selectedCities.value.pop() // 移除最後選的
+    limitReached.value = true
+    setTimeout(() =&gt; {
+      limitReached.value = false
+    }, 2000)
+  }
+}
+
+const filteredWeatherData = computed(() =&gt;
+  weatherData.value.filter(city =&gt; selectedCities.value.includes(city.locationName))
+)
+
+function getWeatherElement(city, elementName) {
+  const element = city.weatherElement.find(el =&gt; el.elementName === elementName)
+  return element?.time[0]?.parameter?.parameterName || &#39;N/A&#39;
+}
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+select {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.weather-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.city-card {
+  flex: 1 1 300px;
+  max-width: 300px;
+  background: #f0f8ff;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  border-left: 6px solid #3498db;
+}
+&lt;/style&gt;
+</code></pre>

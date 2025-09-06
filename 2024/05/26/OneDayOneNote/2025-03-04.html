@@ -1,0 +1,95 @@
+<hr>
+<h2 id="title-2025-03-04-天氣查詢應用程式」的-功能規格與開發目標date-2025-09-06-22-57-46tags-Javascript-Vue-description-2025-03-04-天氣查詢應用程式」的-功能規格與開發目標"><a href="#title-2025-03-04-天氣查詢應用程式」的-功能規格與開發目標date-2025-09-06-22-57-46tags-Javascript-Vue-description-2025-03-04-天氣查詢應用程式」的-功能規格與開發目標" class="headerlink" title="title: 2025-03-04-天氣查詢應用程式」的 **功能規格與開發目標date: 2025-09-06 22:57:46tags:  [Javascript,Vue]description:  2025-03-04-天氣查詢應用程式」的 **功能規格與開發目標"></a>title: 2025-03-04-天氣查詢應用程式」的 **功能規格與開發目標<br>date: 2025-09-06 22:57:46<br>tags:  [Javascript,Vue]<br>description:  2025-03-04-天氣查詢應用程式」的 **功能規格與開發目標</h2><h1 id="2025-03-04-天氣查詢應用程式」的-功能規格與開發目標"><a href="#2025-03-04-天氣查詢應用程式」的-功能規格與開發目標" class="headerlink" title="2025-03-04-天氣查詢應用程式」的 **功能規格與開發目標"></a>2025-03-04-天氣查詢應用程式」的 **功能規格與開發目標</h1><p> 我們來重新整理你這次的「天氣查詢應用程式」的 <strong>功能規格與開發目標</strong>，並一步步協助你完成（使用 Vue 3 + Composition API）：</p>
+<hr>
+<h2 id="✅【最終功能規格】"><a href="#✅【最終功能規格】" class="headerlink" title="✅【最終功能規格】"></a>✅【最終功能規格】</h2><p>畫面必須包含以下：</p>
+<h3 id="1️⃣-頁面元件"><a href="#1️⃣-頁面元件" class="headerlink" title="1️⃣ 頁面元件"></a>1️⃣ 頁面元件</h3><ul>
+<li><p><code>&lt;select&gt;</code> 下拉式選單（可選擇城市）</p>
+</li>
+<li><p>預設顯示三個縣市（例如：臺北市、臺中市、高雄市）</p>
+</li>
+<li><p>顯示下列天氣資訊：</p>
+<ul>
+<li>☁️ 天氣現象（Wx）</li>
+<li>🌧️ 降雨機率（PoP）</li>
+<li>🔥 最高溫度（MaxT）</li>
+<li>❄️ 最低溫度（MinT）</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="✅【實作重點】"><a href="#✅【實作重點】" class="headerlink" title="✅【實作重點】"></a>✅【實作重點】</h2><p>你會學到以下技術：</p>
+<ul>
+<li><code>fetch()</code> 串接中央氣象局 API（F-C0032-001）</li>
+<li>使用 <code>ref()</code> 管理狀態</li>
+<li><code>onMounted()</code> 時預先抓資料</li>
+<li>利用 <code>computed()</code> 或篩選方法取得城市資料</li>
+<li>使用 <code>v-for</code> 渲染 <code>&lt;option&gt;</code></li>
+<li>使用 <code>v-model</code> 綁定選擇的城市</li>
+<li>使用 <code>v-if</code> 顯示查詢結果</li>
+</ul>
+<hr>
+<h2 id="🧠-開發步驟建議（分階段）"><a href="#🧠-開發步驟建議（分階段）" class="headerlink" title="🧠 開發步驟建議（分階段）"></a>🧠 開發步驟建議（分階段）</h2><table>
+<thead>
+<tr>
+<th>步驟</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>第 1 步</td>
+<td>成功連線 API（用 fetch()），印出 <code>data.records.location</code></td>
+</tr>
+<tr>
+<td>第 2 步</td>
+<td>過濾出三個指定城市（用 <code>.find()</code>）</td>
+</tr>
+<tr>
+<td>第 3 步</td>
+<td>將城市顯示成下拉選單 <code>&lt;select&gt;</code>（用 v-for）</td>
+</tr>
+<tr>
+<td>第 4 步</td>
+<td>根據選擇的城市，顯示 Wx、PoP、MinT、MaxT</td>
+</tr>
+<tr>
+<td>第 5 步</td>
+<td>完善畫面樣式（漸層背景、天氣圖示） ←（可之後補）</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🔧-接下來怎麼做？"><a href="#🔧-接下來怎麼做？" class="headerlink" title="🔧 接下來怎麼做？"></a>🔧 接下來怎麼做？</h2><p>你已經具備 API 串接與分析 JSON 結構的能力，<br>我們現在要從「<strong>第 1 步：成功連線 + 顯示三個城市</strong>」開始。</p>
+<h3 id="✅-任務第-1-步：成功取出三個城市的資料（只抓這三個）"><a href="#✅-任務第-1-步：成功取出三個城市的資料（只抓這三個）" class="headerlink" title="✅ 任務第 1 步：成功取出三個城市的資料（只抓這三個）"></a>✅ 任務第 1 步：成功取出三個城市的資料（只抓這三個）</h3><p>你可以先這樣寫（<code>WeatherQuery.vue</code>）：</p>
+<pre><code class="vue">&lt;script setup&gt;
+import { ref, onMounted } from &#39;vue&#39;
+
+const apiKey = &#39;你的 API Key&#39;
+const url = `https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=${apiKey}`
+
+const allCities = [&#39;臺北市&#39;, &#39;臺中市&#39;, &#39;高雄市&#39;]
+const weatherData = ref([]) // 存放三個城市的天氣資料
+const selectedCity = ref(&#39;臺北市&#39;) // 預設選第一個
+
+onMounted(async () =&gt; {
+  try {
+    const response = await fetch(url)
+    const data = await response.json()
+    const locations = data.records.location
+
+    // 只保留三個指定城市的資料
+    weatherData.value = locations.filter(loc =&gt;
+      allCities.includes(loc.locationName)
+    )
+  } catch (err) {
+    console.error(&#39;❌ 發生錯誤&#39;, err)
+  }
+})
+&lt;/script&gt;
+</code></pre>
+<p>你可以加個 <code>&lt;pre&gt;{{ weatherData }}&lt;/pre&gt;</code> 先看資料是否抓到三個城市。</p>
+<hr>
+<p>📌 <strong>接下來要做的：</strong></p>
+<ul>
+<li>✅ 用 <code>&lt;select&gt;</code> 做城市選單（v-model 綁定）</li>
+<li>✅ 顯示對應城市的 Wx、PoP、MinT、MaxT</li>
+<li>✅ 美化畫面（背景、圖示）</li>
+</ul>

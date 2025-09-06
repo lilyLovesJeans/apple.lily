@@ -1,0 +1,607 @@
+<hr>
+<h2 id="title-2025-04-09-JavaScript-系列九：第6課-──-學習用外部狀態管理-vue-元件date-2025-09-06-23-56-29tags-Javascript-Vue-description-2025-04-09-JavaScript-系列九：第6課-──-學習用外部狀態管理-vue-元件"><a href="#title-2025-04-09-JavaScript-系列九：第6課-──-學習用外部狀態管理-vue-元件date-2025-09-06-23-56-29tags-Javascript-Vue-description-2025-04-09-JavaScript-系列九：第6課-──-學習用外部狀態管理-vue-元件" class="headerlink" title="title: 2025-04-09-JavaScript 系列九：第6課 ── 學習用外部狀態管理 vue 元件date: 2025-09-06 23:56:29tags:  [Javascript,Vue]description:      2025-04-09-JavaScript 系列九：第6課 ── 學習用外部狀態管理 vue 元件"></a>title: 2025-04-09-JavaScript 系列九：第6課 ── 學習用外部狀態管理 vue 元件<br>date: 2025-09-06 23:56:29<br>tags:  [Javascript,Vue]<br>description:      2025-04-09-JavaScript 系列九：第6課 ── 學習用外部狀態管理 vue 元件</h2><h1 id="2025-04-09-JavaScript-系列九：第6課-──-學習用外部狀態管理-vue-元件"><a href="#2025-04-09-JavaScript-系列九：第6課-──-學習用外部狀態管理-vue-元件" class="headerlink" title="2025-04-09-JavaScript 系列九：第6課 ── 學習用外部狀態管理 vue 元件"></a>2025-04-09-JavaScript 系列九：第6課 ── 學習用外部狀態管理 vue 元件</h1><p>JavaScript 系列九：第6課 ── 學習用外部狀態管理 vue 元件<br>課程目標<br>學習用外部狀態管理 vue 元件<br>課程內容<br>前面的課程中，元件的狀態很單純，都是匯入之後直接使用</p>
+<p>但是有些元件匯入之後，一開始在畫面上是不顯示的</p>
+<p>比方說視窗類型的元件：這種元件需要額外有一個狀態，來管理它是否顯示</p>
+<p>課後作業<br>這一課作業，請先看一下 Dialog 視窗元件的用法</p>
+<p><a href="https://quasar.dev/vue-components/dialog">https://quasar.dev/vue-components/dialog</a></p>
+<p>請使用官方的元件試玩工具：Vue SFC Playground</p>
+<p><a href="https://sfc.vuejs.org/">https://sfc.vuejs.org/</a></p>
+<p>請建立 MyDialog.vue 元件，並支援下列功能<br>v-model 能夠管理視窗是否顯示<br>預設的 slot 能夠放入視窗內容<br>完成之後，請在 App.vue 之中匯入此元件，並用多個範例證明，有完成上述規格</p>
+<p>做出以上功能，你就完成這次的課程目標了！</p>
+<p>好的 👍 我幫你把這一課的作業拆解成「小步驟」來完成，並給你完整範例程式碼。</p>
+<hr>
+<h2 id="🎯-學習目標"><a href="#🎯-學習目標" class="headerlink" title="🎯 學習目標"></a>🎯 學習目標</h2><ul>
+<li>建立一個 <strong>MyDialog.vue</strong> 元件</li>
+<li>讓它支援 <code>v-model</code> 控制「顯示&#x2F;隱藏」</li>
+<li>允許在 <strong>default slot</strong> 放入任意內容</li>
+<li>在 <code>App.vue</code> 中測試多個 MyDialog</li>
+</ul>
+<hr>
+<h2 id="🛠️-Step-1：建立-MyDialog-vue"><a href="#🛠️-Step-1：建立-MyDialog-vue" class="headerlink" title="🛠️ Step 1：建立 MyDialog.vue"></a>🛠️ Step 1：建立 MyDialog.vue</h2><p>這個元件要支援 <code>v-model</code>，所以我們要使用 <code>defineProps</code> + <code>defineEmits</code> 搭配 <strong>雙向綁定語法</strong>。</p>
+<p>📂 MyDialog.vue</p>
+<pre><code class="vue">&lt;template&gt;
+  &lt;div v-if=&quot;modelValue&quot; class=&quot;dialog-backdrop&quot;&gt;
+    &lt;div class=&quot;dialog&quot;&gt;
+      &lt;!-- slot：顯示外部傳入的內容 --&gt;
+      &lt;slot&gt;&lt;/slot&gt;
+      &lt;div class=&quot;actions&quot;&gt;
+        &lt;button @click=&quot;closeDialog&quot;&gt;關閉&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+const props = defineProps({
+  modelValue: {
+    type: Boolean,
+    default: false
+  }
+})
+
+const emit = defineEmits([&#39;update:modelValue&#39;])
+
+// 關閉對話框
+function closeDialog() {
+  emit(&#39;update:modelValue&#39;, false)
+}
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+.dialog-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dialog {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  min-width: 300px;
+  max-width: 500px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.actions {
+  margin-top: 20px;
+  text-align: right;
+}
+&lt;/style&gt;
+</code></pre>
+<hr>
+<h2 id="🛠️-Step-2：在-App-vue-測試"><a href="#🛠️-Step-2：在-App-vue-測試" class="headerlink" title="🛠️ Step 2：在 App.vue 測試"></a>🛠️ Step 2：在 App.vue 測試</h2><p>建立多個 MyDialog，並用不同內容確認 slot 與 v-model 功能。</p>
+<p>📂 App.vue</p>
+<pre><code class="vue">&lt;template&gt;
+  &lt;h2&gt;🎯 MyDialog 測試&lt;/h2&gt;
+
+  &lt;button @click=&quot;showDialog1 = true&quot;&gt;開啟對話框1&lt;/button&gt;
+  &lt;button @click=&quot;showDialog2 = true&quot;&gt;開啟對話框2&lt;/button&gt;
+
+  &lt;!-- 測試 Dialog 1 --&gt;
+  &lt;MyDialog v-model=&quot;showDialog1&quot;&gt;
+    &lt;h3&gt;對話框 1&lt;/h3&gt;
+    &lt;p&gt;這是第一個對話框的內容。&lt;/p&gt;
+  &lt;/MyDialog&gt;
+
+  &lt;!-- 測試 Dialog 2 --&gt;
+  &lt;MyDialog v-model=&quot;showDialog2&quot;&gt;
+    &lt;h3&gt;對話框 2&lt;/h3&gt;
+    &lt;p&gt;這裡放的是另一個內容。&lt;/p&gt;
+    &lt;p&gt;slot 讓我們能自由放入 HTML！&lt;/p&gt;
+  &lt;/MyDialog&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+import MyDialog from &#39;./MyDialog.vue&#39;
+
+const showDialog1 = ref(false)
+const showDialog2 = ref(false)
+&lt;/script&gt;
+</code></pre>
+<hr>
+<h2 id="✅-功能驗證"><a href="#✅-功能驗證" class="headerlink" title="✅ 功能驗證"></a>✅ 功能驗證</h2><ol>
+<li>預設不顯示</li>
+<li>點擊按鈕 → 打開對話框</li>
+<li>點擊「關閉」 → <code>v-model</code> 更新，對話框隱藏</li>
+<li>slot 的內容可以不同</li>
+</ol>
+<p>這樣就完成了 <strong>「用外部狀態管理元件」</strong> 的作業 🎉</p>
+<hr>
+<p>懂了 👍<br>你不要「測試用的例子」，而是想要一些 <strong>實際日常會用到的對話框場景</strong>。<br>我幫你設計幾個常見的對話框情境，全部用 <code>MyDialog</code> 來示範：</p>
+<hr>
+<h2 id="📂-App-vue（實際範例）"><a href="#📂-App-vue（實際範例）" class="headerlink" title="📂 App.vue（實際範例）"></a>📂 App.vue（實際範例）</h2><pre><code class="vue">&lt;template&gt;
+  &lt;h2&gt;📌 常見的對話框範例&lt;/h2&gt;
+
+  &lt;!-- 登入對話框 --&gt;
+  &lt;button @click=&quot;showLogin = true&quot;&gt;登入&lt;/button&gt;
+  &lt;MyDialog v-model=&quot;showLogin&quot;&gt;
+    &lt;h3&gt;🔑 使用者登入&lt;/h3&gt;
+    &lt;label&gt;
+      帳號：
+      &lt;input type=&quot;text&quot; placeholder=&quot;輸入帳號&quot; /&gt;
+    &lt;/label&gt;
+    &lt;br /&gt;
+    &lt;label&gt;
+      密碼：
+      &lt;input type=&quot;password&quot; placeholder=&quot;輸入密碼&quot; /&gt;
+    &lt;/label&gt;
+    &lt;div class=&quot;actions&quot;&gt;
+      &lt;button @click=&quot;showLogin = false&quot;&gt;取消&lt;/button&gt;
+      &lt;button @click=&quot;handleLogin&quot;&gt;登入&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/MyDialog&gt;
+
+  &lt;!-- 確認刪除對話框 --&gt;
+  &lt;button @click=&quot;showDelete = true&quot;&gt;刪除資料&lt;/button&gt;
+  &lt;MyDialog v-model=&quot;showDelete&quot;&gt;
+    &lt;h3&gt;⚠️ 確認刪除&lt;/h3&gt;
+    &lt;p&gt;你確定要刪除這筆資料嗎？此動作無法復原。&lt;/p&gt;
+    &lt;div class=&quot;actions&quot;&gt;
+      &lt;button @click=&quot;showDelete = false&quot;&gt;取消&lt;/button&gt;
+      &lt;button class=&quot;danger&quot; @click=&quot;confirmDelete&quot;&gt;確定刪除&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/MyDialog&gt;
+
+  &lt;!-- 表單輸入對話框 --&gt;
+  &lt;button @click=&quot;showForm = true&quot;&gt;新增聯絡人&lt;/button&gt;
+  &lt;MyDialog v-model=&quot;showForm&quot;&gt;
+    &lt;h3&gt;👤 新增聯絡人&lt;/h3&gt;
+    &lt;label&gt;
+      姓名：
+      &lt;input type=&quot;text&quot; v-model=&quot;newContact.name&quot; /&gt;
+    &lt;/label&gt;
+    &lt;br /&gt;
+    &lt;label&gt;
+      電話：
+      &lt;input type=&quot;text&quot; v-model=&quot;newContact.phone&quot; /&gt;
+    &lt;/label&gt;
+    &lt;div class=&quot;actions&quot;&gt;
+      &lt;button @click=&quot;showForm = false&quot;&gt;取消&lt;/button&gt;
+      &lt;button @click=&quot;saveContact&quot;&gt;儲存&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/MyDialog&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+import MyDialog from &#39;./MyDialog.vue&#39;
+
+const showLogin = ref(false)
+const showDelete = ref(false)
+const showForm = ref(false)
+
+const newContact = ref({ name: &#39;&#39;, phone: &#39;&#39; })
+
+function handleLogin() {
+  alert(&#39;登入成功！（這裡可以改成實際 API 呼叫）&#39;)
+  showLogin.value = false
+}
+
+function confirmDelete() {
+  alert(&#39;資料已刪除！&#39;)
+  showDelete.value = false
+}
+
+function saveContact() {
+  alert(`已新增聯絡人：${newContact.value.name} / ${newContact.value.phone}`)
+  newContact.value = { name: &#39;&#39;, phone: &#39;&#39; }
+  showForm.value = false
+}
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+.actions {
+  margin-top: 20px;
+  text-align: right;
+}
+
+button {
+  margin: 4px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+button.danger {
+  background: #e74c3c;
+  color: white;
+  border: none;
+}
+&lt;/style&gt;
+</code></pre>
+<hr>
+<h2 id="✨-提供的例子"><a href="#✨-提供的例子" class="headerlink" title="✨ 提供的例子"></a>✨ 提供的例子</h2><ol>
+<li><strong>登入對話框</strong>：帳號 + 密碼輸入</li>
+<li><strong>確認刪除對話框</strong>：刪除前提醒</li>
+<li><strong>表單輸入對話框</strong>：新增聯絡人</li>
+</ol>
+<p>這三種是日常開發中最常用的對話框場景。</p>
+<hr>
+<p>好問題 👌<br>我們之前有把 <strong>MyDialog.vue</strong> 寫好，但我剛剛只放了 <strong>App.vue 的日常例子</strong>，沒有再把 <code>MyDialog.vue</code> 重複給你。<br>我幫你整理完整專案結構，這樣你就清楚知道 MyDialog.vue 要放在哪裡。</p>
+<hr>
+<h2 id="📂-專案結構"><a href="#📂-專案結構" class="headerlink" title="📂 專案結構"></a>📂 專案結構</h2><pre><code>src/
+ ├─ App.vue          ← 使用 MyDialog 的地方
+ └─ MyDialog.vue     ← 對話框元件
+</code></pre>
+<hr>
+<h2 id="📄-MyDialog-vue"><a href="#📄-MyDialog-vue" class="headerlink" title="📄 MyDialog.vue"></a>📄 MyDialog.vue</h2><pre><code class="vue">&lt;template&gt;
+  &lt;div v-if=&quot;modelValue&quot; class=&quot;dialog-backdrop&quot;&gt;
+    &lt;div class=&quot;dialog&quot;&gt;
+      &lt;!-- slot：顯示外部傳入的內容 --&gt;
+      &lt;slot&gt;&lt;/slot&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+const props = defineProps({
+  modelValue: {
+    type: Boolean,
+    default: false
+  }
+})
+
+const emit = defineEmits([&#39;update:modelValue&#39;])
+
+// 讓外部可以呼叫：&lt;MyDialog v-model=&quot;xxx&quot;&gt; 來控制顯示
+function closeDialog() {
+  emit(&#39;update:modelValue&#39;, false)
+}
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+.dialog-backdrop {
+  position: fixed;
+  inset: 0; /* top, right, bottom, left = 0 */
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dialog {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  min-width: 300px;
+  max-width: 500px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+&lt;/style&gt;
+</code></pre>
+<hr>
+<h2 id="📄-App-vue"><a href="#📄-App-vue" class="headerlink" title="📄 App.vue"></a>📄 App.vue</h2><p>（這就是我剛剛給的登入、刪除、表單三個範例）</p>
+<pre><code class="vue">&lt;template&gt;
+  &lt;h2&gt;📌 常見的對話框範例&lt;/h2&gt;
+
+  &lt;!-- 登入對話框 --&gt;
+  &lt;button @click=&quot;showLogin = true&quot;&gt;登入&lt;/button&gt;
+  &lt;MyDialog v-model=&quot;showLogin&quot;&gt;
+    &lt;h3&gt;🔑 使用者登入&lt;/h3&gt;
+    &lt;label&gt;
+      帳號：
+      &lt;input type=&quot;text&quot; placeholder=&quot;輸入帳號&quot; /&gt;
+    &lt;/label&gt;
+    &lt;br /&gt;
+    &lt;label&gt;
+      密碼：
+      &lt;input type=&quot;password&quot; placeholder=&quot;輸入密碼&quot; /&gt;
+    &lt;/label&gt;
+    &lt;div class=&quot;actions&quot;&gt;
+      &lt;button @click=&quot;showLogin = false&quot;&gt;取消&lt;/button&gt;
+      &lt;button @click=&quot;handleLogin&quot;&gt;登入&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/MyDialog&gt;
+
+  &lt;!-- 確認刪除對話框 --&gt;
+  &lt;button @click=&quot;showDelete = true&quot;&gt;刪除資料&lt;/button&gt;
+  &lt;MyDialog v-model=&quot;showDelete&quot;&gt;
+    &lt;h3&gt;⚠️ 確認刪除&lt;/h3&gt;
+    &lt;p&gt;你確定要刪除這筆資料嗎？此動作無法復原。&lt;/p&gt;
+    &lt;div class=&quot;actions&quot;&gt;
+      &lt;button @click=&quot;showDelete = false&quot;&gt;取消&lt;/button&gt;
+      &lt;button class=&quot;danger&quot; @click=&quot;confirmDelete&quot;&gt;確定刪除&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/MyDialog&gt;
+
+  &lt;!-- 表單輸入對話框 --&gt;
+  &lt;button @click=&quot;showForm = true&quot;&gt;新增聯絡人&lt;/button&gt;
+  &lt;MyDialog v-model=&quot;showForm&quot;&gt;
+    &lt;h3&gt;👤 新增聯絡人&lt;/h3&gt;
+    &lt;label&gt;
+      姓名：
+      &lt;input type=&quot;text&quot; v-model=&quot;newContact.name&quot; /&gt;
+    &lt;/label&gt;
+    &lt;br /&gt;
+    &lt;label&gt;
+      電話：
+      &lt;input type=&quot;text&quot; v-model=&quot;newContact.phone&quot; /&gt;
+    &lt;/label&gt;
+    &lt;div class=&quot;actions&quot;&gt;
+      &lt;button @click=&quot;showForm = false&quot;&gt;取消&lt;/button&gt;
+      &lt;button @click=&quot;saveContact&quot;&gt;儲存&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/MyDialog&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+import MyDialog from &#39;./MyDialog.vue&#39;
+
+const showLogin = ref(false)
+const showDelete = ref(false)
+const showForm = ref(false)
+
+const newContact = ref({ name: &#39;&#39;, phone: &#39;&#39; })
+
+function handleLogin() {
+  alert(&#39;登入成功！（這裡可以改成實際 API 呼叫）&#39;)
+  showLogin.value = false
+}
+
+function confirmDelete() {
+  alert(&#39;資料已刪除！&#39;)
+  showDelete.value = false
+}
+
+function saveContact() {
+  alert(`已新增聯絡人：${newContact.value.name} / ${newContact.value.phone}`)
+  newContact.value = { name: &#39;&#39;, phone: &#39;&#39; }
+  showForm.value = false
+}
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+.actions {
+  margin-top: 20px;
+  text-align: right;
+}
+
+button {
+  margin: 4px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+button.danger {
+  background: #e74c3c;
+  color: white;
+  border: none;
+}
+&lt;/style&gt;
+</code></pre>
+<hr>
+<p>👉 這樣你有 <strong>MyDialog.vue（元件本體）</strong> ＋ <strong>App.vue（日常例子）</strong>。</p>
+<p>要不要我再幫你把 <code>MyDialog.vue</code> 加上「右上角關閉按鈕 (X)」？這樣會更像實際專案常用的 Dialog。<br>這個問題問得很好 👍<br>按鈕顏色沒有「絕對規定」，但大部分 UI 設計（像 <strong>Material Design</strong>、<strong>Bootstrap</strong>、<strong>Ant Design</strong>、<strong>Quasar</strong> 等框架）都有一些「常見的配色習慣」：</p>
+<hr>
+<h2 id="🔑-常見按鈕顏色建議"><a href="#🔑-常見按鈕顏色建議" class="headerlink" title="🔑 常見按鈕顏色建議"></a>🔑 常見按鈕顏色建議</h2><h3 id="1-登入-確認-儲存"><a href="#1-登入-確認-儲存" class="headerlink" title="1. 登入 &#x2F; 確認 &#x2F; 儲存"></a>1. <strong>登入 &#x2F; 確認 &#x2F; 儲存</strong></h3><ul>
+<li><p>✅ <strong>主要動作（Primary Action）</strong></p>
+</li>
+<li><p>常見顏色：<strong>藍色 (Blue)</strong> 或 <strong>綠色 (Green)</strong></p>
+</li>
+<li><p>例子：</p>
+<ul>
+<li>藍色：#1976d2、#409eff（Element UI）、Bootstrap 的 <code>.btn-primary</code></li>
+<li>綠色：#28a745（Bootstrap Success）</li>
+</ul>
+</li>
+</ul>
+<p>👉 因為「藍色」給人穩定、信任的感覺，<br>👉 「綠色」則表示成功、完成。</p>
+<hr>
+<h3 id="2-刪除-危險動作"><a href="#2-刪除-危險動作" class="headerlink" title="2. 刪除 &#x2F; 危險動作"></a>2. <strong>刪除 &#x2F; 危險動作</strong></h3><ul>
+<li><p>⚠️ <strong>Danger &#x2F; Destructive Action</strong></p>
+</li>
+<li><p>常見顏色：<strong>紅色 (Red)</strong></p>
+</li>
+<li><p>例子：</p>
+<ul>
+<li>#e74c3c（常見 danger 紅色）</li>
+<li>Bootstrap <code>.btn-danger</code></li>
+<li>Quasar <code>color=&quot;negative&quot;</code></li>
+</ul>
+</li>
+</ul>
+<p>👉 紅色能立即讓使用者警覺「這個動作不可逆」。</p>
+<hr>
+<h3 id="3-新增-建立"><a href="#3-新增-建立" class="headerlink" title="3. 新增 &#x2F; 建立"></a>3. <strong>新增 &#x2F; 建立</strong></h3><ul>
+<li><p>➕ <strong>Add &#x2F; Create</strong></p>
+</li>
+<li><p>常見顏色：<strong>綠色 (Green)</strong></p>
+</li>
+<li><p>例子：</p>
+<ul>
+<li>#4caf50（Material Design Green 500）</li>
+<li>Bootstrap <code>.btn-success</code></li>
+</ul>
+</li>
+</ul>
+<p>👉 綠色象徵「新增、成長、正向」。</p>
+<hr>
+<h3 id="4-取消-關閉"><a href="#4-取消-關閉" class="headerlink" title="4. 取消 &#x2F; 關閉"></a>4. <strong>取消 &#x2F; 關閉</strong></h3><ul>
+<li><p>❌ <strong>Secondary &#x2F; Neutral</strong></p>
+</li>
+<li><p>常見顏色：<strong>灰色 (Gray)</strong></p>
+</li>
+<li><p>例子：</p>
+<ul>
+<li>#6c757d（Bootstrap <code>.btn-secondary</code>）</li>
+<li>Material Design「Cancel」多用灰色文字 + 輕量按鈕</li>
+</ul>
+</li>
+</ul>
+<p>👉 灰色代表「不強調、不會造成危險」。</p>
+<hr>
+<h2 id="🎨-小總結表"><a href="#🎨-小總結表" class="headerlink" title="🎨 小總結表"></a>🎨 小總結表</h2><table>
+<thead>
+<tr>
+<th>動作</th>
+<th>常見顏色</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>登入 &#x2F; 確認 &#x2F; 儲存</td>
+<td>藍色 &#x2F; 綠色</td>
+</tr>
+<tr>
+<td>刪除</td>
+<td>紅色</td>
+</tr>
+<tr>
+<td>新增</td>
+<td>綠色</td>
+</tr>
+<tr>
+<td>取消 &#x2F; 關閉</td>
+<td>灰色</td>
+</tr>
+</tbody></table>
+<hr>
+<p>要不要我幫你把 <strong>App.vue</strong> 的範例按鈕，套上這些「符合業界習慣的顏色」？</p>
+<p>好的 👍 我幫你把你的 <code>Lesson6.vue</code> 中按鈕顏色修改成 <strong>符合業界習慣的配色</strong>，並標註用途：</p>
+<hr>
+<h2 id="修改後的-Lesson6-vue"><a href="#修改後的-Lesson6-vue" class="headerlink" title="修改後的 Lesson6.vue"></a>修改後的 Lesson6.vue</h2><pre><code class="vue">&lt;template&gt;
+  &lt;h2&gt;JavaScript 系列九：第6課 ── 學習用外部狀態管理 vue 元件&lt;/h2&gt;
+
+  &lt;!-- 登入對話框 --&gt;
+  &lt;button class=&quot;primary&quot; @click=&quot;showLogin = true&quot;&gt;登入&lt;/button&gt;
+  &lt;MyDialog v-model=&quot;showLogin&quot;&gt;
+    &lt;h3&gt;🔑 使用者登入&lt;/h3&gt;
+    &lt;label&gt;
+      帳號：
+      &lt;input type=&quot;text&quot; placeholder=&quot;輸入帳號&quot; /&gt;
+    &lt;/label&gt;
+    &lt;br /&gt;
+    &lt;label&gt;
+      密碼：
+      &lt;input type=&quot;password&quot; placeholder=&quot;輸入密碼&quot; /&gt;
+    &lt;/label&gt;
+    &lt;div class=&quot;actions&quot;&gt;
+      &lt;button class=&quot;secondary&quot; @click=&quot;showLogin = false&quot;&gt;取消&lt;/button&gt;
+      &lt;button class=&quot;primary&quot; @click=&quot;handleLogin&quot;&gt;登入&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/MyDialog&gt;
+
+  &lt;!-- 確認刪除對話框 --&gt;
+  &lt;button class=&quot;danger&quot; @click=&quot;showDelete = true&quot;&gt;刪除資料&lt;/button&gt;
+  &lt;MyDialog v-model=&quot;showDelete&quot;&gt;
+    &lt;h3&gt;⚠️ 確認刪除&lt;/h3&gt;
+    &lt;p&gt;你確定要刪除這筆資料嗎？此動作無法復原。&lt;/p&gt;
+    &lt;div class=&quot;actions&quot;&gt;
+      &lt;button class=&quot;secondary&quot; @click=&quot;showDelete = false&quot;&gt;取消&lt;/button&gt;
+      &lt;button class=&quot;danger&quot; @click=&quot;confirmDelete&quot;&gt;確定刪除&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/MyDialog&gt;
+
+  &lt;!-- 表單輸入對話框 --&gt;
+  &lt;button class=&quot;success&quot; @click=&quot;showForm = true&quot;&gt;新增聯絡人&lt;/button&gt;
+  &lt;MyDialog v-model=&quot;showForm&quot;&gt;
+    &lt;h3&gt;👤 新增聯絡人&lt;/h3&gt;
+    &lt;label&gt;
+      姓名：
+      &lt;input type=&quot;text&quot; v-model=&quot;newContact.name&quot; /&gt;
+    &lt;/label&gt;
+    &lt;br /&gt;
+    &lt;label&gt;
+      電話：
+      &lt;input type=&quot;text&quot; v-model=&quot;newContact.phone&quot; /&gt;
+    &lt;/label&gt;
+    &lt;div class=&quot;actions&quot;&gt;
+      &lt;button class=&quot;secondary&quot; @click=&quot;showForm = false&quot;&gt;取消&lt;/button&gt;
+      &lt;button class=&quot;success&quot; @click=&quot;saveContact&quot;&gt;儲存&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/MyDialog&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+import MyDialog from &#39;./Lesson6_components/MyDialog.vue&#39;
+
+const showLogin = ref(false)
+const showDelete = ref(false)
+const showForm = ref(false)
+
+const newContact = ref({ name: &#39;&#39;, phone: &#39;&#39; })
+
+function handleLogin() {
+  alert(&#39;登入成功！（這裡可以改成實際 API 呼叫）&#39;)
+  showLogin.value = false
+}
+
+function confirmDelete() {
+  alert(&#39;資料已刪除！&#39;)
+  showDelete.value = false
+}
+
+function saveContact() {
+  alert(`已新增聯絡人：${newContact.value.name} / ${newContact.value.phone}`)
+  newContact.value = { name: &#39;&#39;, phone: &#39;&#39; }
+  showForm.value = false
+}
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+.actions {
+  margin-top: 20px;
+  text-align: right;
+}
+
+button {
+  margin: 4px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+/* 主要動作：登入 / 儲存 */
+button.primary {
+  background-color: #1976d2; /* 藍色 */
+  color: white;
+  border: none;
+}
+
+/* 成功 / 新增 */
+button.success {
+  background-color: #28a745; /* 綠色 */
+  color: white;
+  border: none;
+}
+
+/* 危險 / 刪除 */
+button.danger {
+  background-color: #e74c3c; /* 紅色 */
+  color: white;
+  border: none;
+}
+
+/* 次要 / 取消 */
+button.secondary {
+  background-color: #6c757d; /* 灰色 */
+  color: white;
+  border: none;
+}
+
+h2 {
+  color: rgb(149, 44, 95);
+}
+&lt;/style&gt;
+</code></pre>
+<hr>
+<h3 id="🎨-套用規則說明"><a href="#🎨-套用規則說明" class="headerlink" title="🎨 套用規則說明"></a>🎨 套用規則說明</h3><ul>
+<li><strong>primary</strong> → 藍色：登入 &#x2F; 確認</li>
+<li><strong>success</strong> → 綠色：新增 &#x2F; 儲存</li>
+<li><strong>danger</strong> → 紅色：刪除</li>
+<li><strong>secondary</strong> → 灰色：取消</li>
+</ul>
+<hr>

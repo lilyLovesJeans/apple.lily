@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2025-03-27- Vue 的事件課程作業">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025-03-27- Vue 的事件課程作業">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/09/06/OneDayOneNote/2025-03-27/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2025-03-27- Vue 的事件課程作業">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-09-06T15:35:21.000Z">
+<meta property="article:modified_time" content="2025-09-06T15:36:51.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2025/09/06/OneDayOneNote/2025-03-27/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2025/09/06/OneDayOneNote/2025-03-27/","path":"2025/09/06/OneDayOneNote/2025-03-27/","title":"2025-03-27- Vue 的事件課程作業"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2025-03-27- Vue 的事件課程作業 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2025-03-27-Vue-%E7%9A%84%E4%BA%8B%E4%BB%B6%E8%AA%B2%E7%A8%8B%E4%BD%9C%E6%A5%AD"><span class="nav-number">1.</span> <span class="nav-text">2025-03-27- Vue 的事件課程作業</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%85-%E8%AA%B2%E7%A8%8B%E7%9B%AE%E6%A8%99"><span class="nav-number">1.1.</span> <span class="nav-text">✅ 課程目標</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%A7%B1-%E4%BD%9C%E6%A5%AD%E9%9C%80%E6%B1%82%E7%B8%BD%E7%B5%90"><span class="nav-number">1.2.</span> <span class="nav-text">🧱 作業需求總結</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%A8-1-%E5%BB%BA%E7%AB%8B-MyButton-vue-%E5%85%83%E4%BB%B6"><span class="nav-number">1.3.</span> <span class="nav-text">✨ 1. 建立 MyButton.vue 元件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%A1-2-App-vue-%E4%BD%BF%E7%94%A8%E7%AF%84%E4%BE%8B"><span class="nav-number">1.4.</span> <span class="nav-text">💡 2. App.vue 使用範例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%9B%A0%EF%B8%8F-%E6%B8%AC%E8%A9%A6%E6%96%B9%E5%BC%8F"><span class="nav-number">1.5.</span> <span class="nav-text">🛠️ 測試方式</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">408</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2025/09/06/OneDayOneNote/2025-03-27/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2025-03-27- Vue 的事件課程作業 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2025-03-27- Vue 的事件課程作業">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2025-03-27- Vue 的事件課程作業
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2025-09-06 23:35:21 / 修改時間：23:36:51" itemprop="dateCreated datePublished" datetime="2025-09-06T23:35:21+08:00">2025-09-06</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2025-03-27- Vue 的事件課程作業</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="2025-03-27-Vue-的事件課程作業"><a href="#2025-03-27-Vue-的事件課程作業" class="headerlink" title="2025-03-27- Vue 的事件課程作業"></a>2025-03-27- Vue 的事件課程作業</h1><p> Vue 的事件課程作業 👍<br>我們會分成兩部分：</p>
+<hr>
+<h2 id="✅-課程目標"><a href="#✅-課程目標" class="headerlink" title="✅ 課程目標"></a>✅ 課程目標</h2><p>學習怎麼 <strong>設計元件事件（如 @click）</strong>，並且可以設定多個屬性來自訂元件外觀與行為。</p>
+<hr>
+<h2 id="🧱-作業需求總結"><a href="#🧱-作業需求總結" class="headerlink" title="🧱 作業需求總結"></a>🧱 作業需求總結</h2><p>請建立一個 <code>MyButton.vue</code> 元件，支援以下 props 和功能：</p>
+<table>
+<thead>
+<tr>
+<th>Prop &#x2F; Event</th>
+<th>功能說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>color</code></td>
+<td>背景色</td>
+</tr>
+<tr>
+<td><code>textColor</code></td>
+<td>文字顏色</td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td>按鈕文字內容</td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td>按鈕大小（如 small、medium、large）</td>
+</tr>
+<tr>
+<td><code>round</code></td>
+<td>是否圓角</td>
+</tr>
+<tr>
+<td><code>square</code></td>
+<td>是否方形</td>
+</tr>
+<tr>
+<td><code>@click</code></td>
+<td>點擊事件</td>
+</tr>
+</tbody></table>
+<p>並且在 <code>App.vue</code> 中引入這個元件，做多個使用示範。</p>
+<hr>
+<h2 id="✨-1-建立-MyButton-vue-元件"><a href="#✨-1-建立-MyButton-vue-元件" class="headerlink" title="✨ 1. 建立 MyButton.vue 元件"></a>✨ 1. 建立 <code>MyButton.vue</code> 元件</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- MyButton.vue --&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;button</span><br><span class="line">    :class=&quot;[</span><br><span class="line">      &#x27;my-button&#x27;,</span><br><span class="line">      sizeClass,</span><br><span class="line">      &#123; round, square &#125;</span><br><span class="line">    ]&quot;</span><br><span class="line">    :style=&quot;buttonStyle&quot;</span><br><span class="line">    @click=&quot;$emit(&#x27;click&#x27;)&quot;</span><br><span class="line">  &gt;</span><br><span class="line">    &#123;&#123; label &#125;&#125;</span><br><span class="line">  &lt;/button&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">import &#123; computed &#125; from &#x27;vue&#x27;</span><br><span class="line"></span><br><span class="line">defineProps(&#123;</span><br><span class="line">  color: &#123; type: String, default: &#x27;#1976d2&#x27; &#125;,</span><br><span class="line">  textColor: &#123; type: String, default: &#x27;#ffffff&#x27; &#125;,</span><br><span class="line">  label: &#123; type: String, default: &#x27;Click Me&#x27; &#125;,</span><br><span class="line">  size: &#123; type: String, default: &#x27;medium&#x27; &#125;, // &#x27;small&#x27; | &#x27;medium&#x27; | &#x27;large&#x27;</span><br><span class="line">  round: &#123; type: Boolean, default: false &#125;,</span><br><span class="line">  square: &#123; type: Boolean, default: false &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">const props = defineProps()</span><br><span class="line"></span><br><span class="line">const sizeClass = computed(() =&gt; &#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    small: &#x27;btn-sm&#x27;,</span><br><span class="line">    medium: &#x27;btn-md&#x27;,</span><br><span class="line">    large: &#x27;btn-lg&#x27;</span><br><span class="line">  &#125;[props.size] || &#x27;btn-md&#x27;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">const buttonStyle = computed(() =&gt; (&#123;</span><br><span class="line">  backgroundColor: props.color,</span><br><span class="line">  color: props.textColor,</span><br><span class="line">&#125;))</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">.my-button &#123;</span><br><span class="line">  border: none;</span><br><span class="line">  cursor: pointer;</span><br><span class="line">  padding: 0.5em 1em;</span><br><span class="line">  font-size: 1rem;</span><br><span class="line">  transition: 0.2s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.btn-sm &#123;</span><br><span class="line">  padding: 0.3em 0.6em;</span><br><span class="line">  font-size: 0.8rem;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.btn-md &#123;</span><br><span class="line">  padding: 0.5em 1em;</span><br><span class="line">  font-size: 1rem;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.btn-lg &#123;</span><br><span class="line">  padding: 0.75em 1.5em;</span><br><span class="line">  font-size: 1.2rem;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.round &#123;</span><br><span class="line">  border-radius: 999px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.square &#123;</span><br><span class="line">  border-radius: 0;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="💡-2-App-vue-使用範例"><a href="#💡-2-App-vue-使用範例" class="headerlink" title="💡 2. App.vue 使用範例"></a>💡 2. App.vue 使用範例</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- App.vue --&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;h2&gt;🧪 MyButton.vue 測試&lt;/h2&gt;</span><br><span class="line"></span><br><span class="line">    &lt;MyButton</span><br><span class="line">      label=&quot;紅色圓角大按鈕&quot;</span><br><span class="line">      color=&quot;red&quot;</span><br><span class="line">      textColor=&quot;white&quot;</span><br><span class="line">      size=&quot;large&quot;</span><br><span class="line">      :round=&quot;true&quot;</span><br><span class="line">      @click=&quot;handleClick(&#x27;紅色按鈕&#x27;)&quot;</span><br><span class="line">    /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;MyButton</span><br><span class="line">      label=&quot;藍色方形中按鈕&quot;</span><br><span class="line">      color=&quot;blue&quot;</span><br><span class="line">      textColor=&quot;white&quot;</span><br><span class="line">      size=&quot;medium&quot;</span><br><span class="line">      :square=&quot;true&quot;</span><br><span class="line">      @click=&quot;handleClick(&#x27;藍色按鈕&#x27;)&quot;</span><br><span class="line">    /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;MyButton</span><br><span class="line">      label=&quot;小按鈕&quot;</span><br><span class="line">      color=&quot;green&quot;</span><br><span class="line">      textColor=&quot;black&quot;</span><br><span class="line">      size=&quot;small&quot;</span><br><span class="line">      @click=&quot;handleClick(&#x27;綠色小按鈕&#x27;)&quot;</span><br><span class="line">    /&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">import MyButton from &#x27;./MyButton.vue&#x27;</span><br><span class="line"></span><br><span class="line">function handleClick(name) &#123;</span><br><span class="line">  alert(`你點擊了 $&#123;name&#125;`)</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="🛠️-測試方式"><a href="#🛠️-測試方式" class="headerlink" title="🛠️ 測試方式"></a>🛠️ 測試方式</h2><p>你可以在 <a target="_blank" rel="noopener" href="https://sfc.vuejs.org/">Vue SFC Playground</a> 貼上這兩段程式碼（分別放在 <code>App.vue</code> 和 <code>MyButton.vue</code>），就可以看到效果。</p>
+<hr>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/Javascript/" rel="tag"># Javascript</a>
+              <a href="/apple.lily/tags/Vue/" rel="tag"># Vue</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/09/06/OneDayOneNote/2025-03-26/" rel="prev" title="2025-03-26- VUE響應式變化">
+                  <i class="fa fa-angle-left"></i> 2025-03-26- VUE響應式變化
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/09/06/OneDayOneNote/2025-03-28/" rel="next" title="2025-03-28- 自行調整 MyButton 的樣式與內容">
+                  2025-03-28- 自行調整 MyButton 的樣式與內容 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,90 @@
+<hr>
+<h2 id="title-2025-01-26-JavaScript-系列八：第5課-──-體重追蹤應用程式-步驟02date-2025-09-06-20-33-49tags-Javascript-Vue-description-2024-01-25-JavaScript-系列八：第5課-──-體重追蹤應用程式-步驟01"><a href="#title-2025-01-26-JavaScript-系列八：第5課-──-體重追蹤應用程式-步驟02date-2025-09-06-20-33-49tags-Javascript-Vue-description-2024-01-25-JavaScript-系列八：第5課-──-體重追蹤應用程式-步驟01" class="headerlink" title="title: 2025-01-26- JavaScript 系列八：第5課 ── 體重追蹤應用程式-步驟02date: 2025-09-06 20:33:49tags:  [Javascript,Vue]description:  2024-01-25 - JavaScript 系列八：第5課 ── 體重追蹤應用程式-步驟01"></a>title: 2025-01-26- JavaScript 系列八：第5課 ── 體重追蹤應用程式-步驟02<br>date: 2025-09-06 20:33:49<br>tags:  [Javascript,Vue]<br>description:  2024-01-25 - JavaScript 系列八：第5課 ── 體重追蹤應用程式-步驟01</h2><h1 id="2025-01-26-JavaScript-系列八：第5課-──-體重追蹤應用程式-步驟02"><a href="#2025-01-26-JavaScript-系列八：第5課-──-體重追蹤應用程式-步驟02" class="headerlink" title="2025-01-26- JavaScript 系列八：第5課 ── 體重追蹤應用程式-步驟02"></a>2025-01-26- JavaScript 系列八：第5課 ── 體重追蹤應用程式-步驟02</h1><p>「體重追蹤應用程式」基本架構。</p>
+<hr>
+<h3 id="✅-第一步：設定基本架構與資料儲存（localStorage）"><a href="#✅-第一步：設定基本架構與資料儲存（localStorage）" class="headerlink" title="✅ 第一步：設定基本架構與資料儲存（localStorage）"></a>✅ 第一步：設定基本架構與資料儲存（localStorage）</h3><p>先做以下幾件事：</p>
+<ol>
+<li>建立表單輸入體重與日期。</li>
+<li>把資料儲存到 localStorage。</li>
+<li>顯示已儲存的資料清單。</li>
+<li>可以刪除清單中的資料。</li>
+</ol>
+<hr>
+<h3 id="📁-WeightTrackerApp-vue-架構草稿："><a href="#📁-WeightTrackerApp-vue-架構草稿：" class="headerlink" title="📁 WeightTrackerApp.vue 架構草稿："></a>📁 <code>WeightTrackerApp.vue</code> 架構草稿：</h3><p>請在你的 <code>WeightTrackerApp.vue</code> 中輸入以下內容：</p>
+<pre><code class="vue">&lt;template&gt;
+  &lt;div class=&quot;p-4 max-w-md mx-auto&quot;&gt;
+    &lt;h1 class=&quot;text-2xl font-bold mb-4&quot;&gt;體重追蹤器&lt;/h1&gt;
+
+    &lt;!-- 輸入表單 --&gt;
+    &lt;form @submit.prevent=&quot;addRecord&quot; class=&quot;space-y-2 mb-4&quot;&gt;
+      &lt;div&gt;
+        &lt;label&gt;日期：&lt;/label&gt;
+        &lt;input type=&quot;date&quot; v-model=&quot;newRecord.date&quot; class=&quot;border px-2 py-1&quot; required /&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;label&gt;體重（kg）：&lt;/label&gt;
+        &lt;input type=&quot;number&quot; v-model.number=&quot;newRecord.weight&quot; class=&quot;border px-2 py-1&quot; required /&gt;
+      &lt;/div&gt;
+      &lt;button type=&quot;submit&quot; class=&quot;bg-blue-500 text-white px-4 py-1 rounded&quot;&gt;新增&lt;/button&gt;
+    &lt;/form&gt;
+
+    &lt;!-- 清單 --&gt;
+    &lt;ul class=&quot;space-y-2&quot;&gt;
+      &lt;li v-for=&quot;(record, index) in sortedRecords&quot; :key=&quot;record.id&quot; class=&quot;flex justify-between items-center border p-2&quot;&gt;
+        &lt;span&gt;{{ record.date }} - {{ record.weight }} kg&lt;/span&gt;
+        &lt;button @click=&quot;deleteRecord(record.id)&quot; class=&quot;text-red-500&quot;&gt;刪除&lt;/button&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { ref, computed, onMounted, watch } from &#39;vue&#39;
+
+const newRecord = ref({
+  date: &#39;&#39;,
+  weight: null,
+})
+
+const records = ref([])
+
+// 初始化資料
+onMounted(() =&gt; {
+  const saved = localStorage.getItem(&#39;weight-records&#39;)
+  if (saved) {
+    records.value = JSON.parse(saved)
+  }
+})
+
+// 監看資料變化自動存入 localStorage
+watch(records, (newVal) =&gt; {
+  localStorage.setItem(&#39;weight-records&#39;, JSON.stringify(newVal))
+}, { deep: true })
+
+const addRecord = () =&gt; {
+  if (!newRecord.value.date || !newRecord.value.weight) return
+
+  records.value.push({
+    id: Date.now(),
+    date: newRecord.value.date,
+    weight: newRecord.value.weight,
+  })
+
+  newRecord.value = { date: &#39;&#39;, weight: null }
+}
+
+const deleteRecord = (id) =&gt; {
+  records.value = records.value.filter(r =&gt; r.id !== id)
+}
+
+const sortedRecords = computed(() =&gt; {
+  return [...records.value].sort((a, b) =&gt; new Date(a.date) - new Date(b.date))
+})
+&lt;/script&gt;
+</code></pre>
+<hr>
+<h3 id="✅-這一步完成後，你會有什麼功能？"><a href="#✅-這一步完成後，你會有什麼功能？" class="headerlink" title="✅ 這一步完成後，你會有什麼功能？"></a>✅ 這一步完成後，你會有什麼功能？</h3><ul>
+<li>使用者可以輸入日期和體重</li>
+<li>可以新增資料、顯示清單、刪除資料</li>
+<li>所有資料都會存在 <code>localStorage</code> 裡，不會遺失</li>
+</ul>
+<hr>

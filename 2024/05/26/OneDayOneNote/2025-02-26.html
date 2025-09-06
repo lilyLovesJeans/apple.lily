@@ -1,0 +1,42 @@
+<hr>
+<h2 id="title-2025-02-26-常見的-4-種方式來「查看-JSON-結構」date-2025-09-06-22-45-53tags-Javascript-Vue-description-2025-02-26-常見的-4-種方式來「查看-JSON-結構」"><a href="#title-2025-02-26-常見的-4-種方式來「查看-JSON-結構」date-2025-09-06-22-45-53tags-Javascript-Vue-description-2025-02-26-常見的-4-種方式來「查看-JSON-結構」" class="headerlink" title="title: 2025-02-26-常見的 4 種方式來「查看 JSON 結構」date: 2025-09-06 22:45:53tags:  [Javascript,Vue]description:    2025-02-26-常見的 4 種方式來「查看 JSON 結構」"></a>title: 2025-02-26-常見的 4 種方式來「查看 JSON 結構」<br>date: 2025-09-06 22:45:53<br>tags:  [Javascript,Vue]<br>description:    2025-02-26-常見的 4 種方式來「查看 JSON 結構」</h2><h1 id="2025-02-26-常見的-4-種方式來「查看-JSON-結構」"><a href="#2025-02-26-常見的-4-種方式來「查看-JSON-結構」" class="headerlink" title="2025-02-26-常見的 4 種方式來「查看 JSON 結構」"></a>2025-02-26-常見的 4 種方式來「查看 JSON 結構」</h1><p>通常我們會「看 API 的文件」來了解資料結構，但除了這個方法，其實還有很多<strong>實用方式</strong>可以快速看懂或驗證 JSON 資料的結構，尤其是你在寫前端程式時。</p>
+<hr>
+<h2 id="✅-常見的-4-種方式來「查看-JSON-結構」"><a href="#✅-常見的-4-種方式來「查看-JSON-結構」" class="headerlink" title="✅ 常見的 4 種方式來「查看 JSON 結構」"></a>✅ 常見的 4 種方式來「查看 JSON 結構」</h2><hr>
+<h3 id="①-用-console-log-搭配-DevTools-手動展開"><a href="#①-用-console-log-搭配-DevTools-手動展開" class="headerlink" title="① 用 console.log() 搭配 DevTools 手動展開"></a>① 用 <code>console.log()</code> 搭配 DevTools 手動展開</h3><pre><code class="js">fetch(url)
+  .then(response =&gt; response.json())
+  .then(data =&gt; {
+    console.log(data) // 展開來看 JSON 結構
+  })
+</code></pre>
+<p>📌 <strong>優點</strong>：最直觀、直接點開每一層<br>📌 <strong>缺點</strong>：要自己展開、適合資料量不太大的情況</p>
+<hr>
+<h3 id="②-使用-console-dir-可以更好展開物件樹"><a href="#②-使用-console-dir-可以更好展開物件樹" class="headerlink" title="② 使用 console.dir() 可以更好展開物件樹"></a>② 使用 <code>console.dir()</code> 可以更好展開物件樹</h3><pre><code class="js">console.dir(data, { depth: null })
+</code></pre>
+<p>📌 類似 <code>console.log</code>，但對於巢狀物件會展開得更清楚</p>
+<hr>
+<h3 id="③-用-JSON-stringify-印出完整結構"><a href="#③-用-JSON-stringify-印出完整結構" class="headerlink" title="③ 用 JSON.stringify() 印出完整結構"></a>③ 用 <code>JSON.stringify()</code> 印出完整結構</h3><pre><code class="js">console.log(JSON.stringify(data, null, 2))
+</code></pre>
+<p>📌 會印出「整包 JSON 字串」，好複製、好貼<br>📌 可以貼進 JSON formatter 工具裡看（如下）</p>
+<hr>
+<h3 id="④-貼到「JSON-結構檢視工具」中"><a href="#④-貼到「JSON-結構檢視工具」中" class="headerlink" title="④ 貼到「JSON 結構檢視工具」中"></a>④ 貼到「JSON 結構檢視工具」中</h3><p>🔧 推薦免費線上工具：</p>
+<ul>
+<li><a href="https://jsonviewer.stack.hu/">https://jsonviewer.stack.hu/</a></li>
+<li><a href="https://jsonformatter.org/">https://jsonformatter.org/</a></li>
+<li><a href="https://codebeautify.org/jsonviewer">https://codebeautify.org/jsonviewer</a></li>
+</ul>
+<p>只要把 <code>JSON.stringify(data)</code> 貼進去，就能像樹狀圖一樣展開來看。</p>
+<hr>
+<h3 id="補充：查看-API-文件"><a href="#補充：查看-API-文件" class="headerlink" title="補充：查看 API 文件"></a>補充：查看 API 文件</h3><p>如果是政府或大型平台提供的 API，通常都會有：</p>
+<ul>
+<li>欄位說明（field name）</li>
+<li>資料結構示範（JSON schema 或 sample JSON）</li>
+<li>文件範例（Swagger 或 Postman）</li>
+</ul>
+<p>例如：<br>中央氣象局 API 文件就寫得很清楚 →<br><a href="https://opendata.cwa.gov.tw/opendatadoc/MFC/F-C0032-001.pdf">氣象開放資料平台 API 文件</a></p>
+<hr>
+<h3 id="🧠-建議初學者這樣做："><a href="#🧠-建議初學者這樣做：" class="headerlink" title="🧠 建議初學者這樣做："></a>🧠 建議初學者這樣做：</h3><ol>
+<li>先用 <code>console.log(data)</code> 看整體有幾層</li>
+<li>再用 <code>console.log(data.records)</code> 或 <code>console.log(data.records.location)</code> 一層層拆</li>
+<li>如果不確定陣列還是物件，可用 <code>Array.isArray(x)</code>、或 <code>typeof x</code> 確認</li>
+</ol>
+<hr>

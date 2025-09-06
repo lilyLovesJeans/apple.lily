@@ -1,0 +1,59 @@
+<hr>
+<h2 id="title-2025-02-19-Callback-Hell-回呼地獄-date-2025-09-06-22-20-20tags-Javascript-Vue-description-2025-02-19-Callback-Hell-回呼地獄"><a href="#title-2025-02-19-Callback-Hell-回呼地獄-date-2025-09-06-22-20-20tags-Javascript-Vue-description-2025-02-19-Callback-Hell-回呼地獄" class="headerlink" title="title: 2025-02-19-Callback Hell(回呼地獄)date: 2025-09-06 22:20:20tags:  [Javascript,Vue]description:   2025-02-19-Callback Hell(回呼地獄)"></a>title: 2025-02-19-Callback Hell(回呼地獄)<br>date: 2025-09-06 22:20:20<br>tags:  [Javascript,Vue]<br>description:   2025-02-19-Callback Hell(回呼地獄)</h2><h1 id="2025-02-19-Callback-Hell-回呼地獄"><a href="#2025-02-19-Callback-Hell-回呼地獄" class="headerlink" title="2025-02-19-Callback Hell(回呼地獄)"></a>2025-02-19-Callback Hell(回呼地獄)</h1><p>你現在理解「什麼是 callback」的概念已經沒問題，接下來我們來說「<strong>無限 callback</strong>」這個說法，其實它通常不是指「真的無限次數」，而是指：</p>
+<hr>
+<h3 id="🔁-過度巢狀、層層相依的-callback-函式結構"><a href="#🔁-過度巢狀、層層相依的-callback-函式結構" class="headerlink" title="🔁 過度巢狀、層層相依的 callback 函式結構"></a>🔁 <strong>過度巢狀、層層相依的 callback 函式結構</strong></h3><p>這種情況被稱為：</p>
+<blockquote>
+<p><strong>Callback Hell（回呼地獄）</strong><br>中文常說「巢狀過深的 callback」，程式碼會一層包一層，很難閱讀與維護。</p>
+</blockquote>
+<hr>
+<h2 id="📦-範例：層層相依的-callback（模擬查天氣-→-查空氣-→-查穿搭建議）"><a href="#📦-範例：層層相依的-callback（模擬查天氣-→-查空氣-→-查穿搭建議）" class="headerlink" title="📦 範例：層層相依的 callback（模擬查天氣 → 查空氣 → 查穿搭建議）"></a>📦 範例：層層相依的 callback（模擬查天氣 → 查空氣 → 查穿搭建議）</h2><pre><code class="js">function getWeather(callback) {
+  setTimeout(() =&gt; {
+    console.log(&#39;☁️ 查到天氣：陰天&#39;)
+    callback(&#39;陰天&#39;)
+  }, 1000)
+}
+
+function getAirQuality(weather, callback) {
+  setTimeout(() =&gt; {
+    console.log(&#39;🌫️ 查到空氣品質：普通&#39;)
+    callback(weather, &#39;普通&#39;)
+  }, 1000)
+}
+
+function getSuggestion(weather, airQuality, callback) {
+  setTimeout(() =&gt; {
+    console.log(&#39;👕 根據天氣和空氣品質，建議穿薄外套&#39;)
+    callback()
+  }, 1000)
+}
+
+// 🧨 callback 一層又一層
+getWeather((weather) =&gt; {
+  getAirQuality(weather, (weather, airQuality) =&gt; {
+    getSuggestion(weather, airQuality, () =&gt; {
+      console.log(&#39;✅ 所有資料都查完了&#39;)
+    })
+  })
+})
+</code></pre>
+<hr>
+<h3 id="😵-問題在哪？"><a href="#😵-問題在哪？" class="headerlink" title="😵 問題在哪？"></a>😵 問題在哪？</h3><p>這樣的寫法問題是：</p>
+<ul>
+<li>每加一個功能就要多縮排一層（維護困難）</li>
+<li>越來越亂，看不出邏輯結構</li>
+<li>錯誤處理變得非常複雜（哪裡出錯都不好找）</li>
+</ul>
+<hr>
+<h3 id="✅-解法：用-Promise-或-async-await-改寫"><a href="#✅-解法：用-Promise-或-async-await-改寫" class="headerlink" title="✅ 解法：用 Promise 或 async/await 改寫"></a>✅ 解法：用 <code>Promise</code> 或 <code>async/await</code> 改寫</h3><p>這就是為什麼現代 JS 推薦用 <code>Promise</code> 或 <code>async/await</code>，你只要寫成這樣：</p>
+<pre><code class="js">async function main() {
+  const weather = await getWeatherAsync()
+  const air = await getAirQualityAsync(weather)
+  await getSuggestionAsync(weather, air)
+  console.log(&#39;✅ 所有資料都查完了&#39;)
+}
+main()
+</code></pre>
+<p>是不是整齊超多？😊</p>
+<hr>
+<h3 id="總結：你問的「無限-callback」是什麼？"><a href="#總結：你問的「無限-callback」是什麼？" class="headerlink" title="總結：你問的「無限 callback」是什麼？"></a>總結：你問的「無限 callback」是什麼？</h3><p>➡️ 其實是指 <strong>callback 一層套一層、層層相依、難以閱讀的地獄式寫法</strong>，俗稱 <strong>callback hell</strong>，不是「真的無限次數」。</p>
+<hr>

@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2025-03-17-JavaScript 系列九：第2課 ── 學習 Vue 的 props 觀念">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025-03-17-JavaScript 系列九：第2課 ── 學習 Vue 的 props 觀念">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/09/06/OneDayOneNote/2025-03-17/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2025-03-17-JavaScript 系列九：第2課 ── 學習 Vue 的 props 觀念">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-09-06T15:16:01.000Z">
+<meta property="article:modified_time" content="2025-09-06T15:16:55.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2025/09/06/OneDayOneNote/2025-03-17/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2025/09/06/OneDayOneNote/2025-03-17/","path":"2025/09/06/OneDayOneNote/2025-03-17/","title":"2025-03-17-JavaScript 系列九：第2課 ── 學習 Vue 的 props 觀念"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2025-03-17-JavaScript 系列九：第2課 ── 學習 Vue 的 props 觀念 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2025-03-17-JavaScript-%E7%B3%BB%E5%88%97%E4%B9%9D%EF%BC%9A%E7%AC%AC2%E8%AA%B2-%E2%94%80%E2%94%80-%E5%AD%B8%E7%BF%92-Vue-%E7%9A%84-props-%E8%A7%80%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">2025-03-17-JavaScript 系列九：第2課 ── 學習 Vue 的 props 觀念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%8E%AF-%E5%8A%9F%E8%83%BD%E9%9C%80%E6%B1%82%EF%BC%88%E4%BD%A0%E7%9A%84%E5%85%83%E4%BB%B6%E8%A6%81%E8%83%BD%E6%94%AF%E6%8F%B4%EF%BC%89%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">🎯 功能需求（你的元件要能支援）：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%85-MyBadge-vue-%E7%AF%84%E4%BE%8B%E7%A8%8B%E5%BC%8F%E7%A2%BC"><span class="nav-number">1.2.</span> <span class="nav-text">✅ MyBadge.vue 範例程式碼</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%85-App-vue-%E4%B8%AD%E5%8C%AF%E5%85%A5%E4%B8%A6%E6%B8%AC%E8%A9%A6"><span class="nav-number">1.3.</span> <span class="nav-text">✅ App.vue 中匯入並測試</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%85-%E6%88%90%E6%9E%9C%E7%95%AB%E9%9D%A2"><span class="nav-number">1.4.</span> <span class="nav-text">✅ 成果畫面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%94%A7-%E5%8F%AF%E4%BB%A5%E6%8C%91%E6%88%B0%E7%9A%84%E9%80%B2%E9%9A%8E%E5%8A%9F%E8%83%BD%EF%BC%88%E9%81%B8%E5%81%9A%EF%BC%89"><span class="nav-number">1.5.</span> <span class="nav-text">🔧 可以挑戰的進階功能（選做）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%85-%E4%B8%80%E3%80%81%E4%BB%80%E9%BA%BC%E6%98%AF-%E5%85%83%E4%BB%B6%EF%BC%9F"><span class="nav-number">1.6.</span> <span class="nav-text">✅ 一、什麼是 &lt;q-badge&gt; 元件？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%8E%AF-%E5%8A%9F%E8%83%BD%E8%88%87%E7%94%A8%E9%80%94%EF%BC%9A"><span class="nav-number">1.6.1.</span> <span class="nav-text">🎯 功能與用途：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%A7%A9-%E5%B8%B8%E8%A6%8B%E7%94%A8%E9%80%94%E7%AF%84%E4%BE%8B%EF%BC%9A"><span class="nav-number">1.6.2.</span> <span class="nav-text">🧩 常見用途範例：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%85-%E4%BA%8C%E3%80%81Quasar-%E6%98%AF%E4%BB%80%E9%BA%BC%EF%BC%9F"><span class="nav-number">1.7.</span> <span class="nav-text">✅ 二、Quasar 是什麼？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%8E%AF-Quasar-%E7%9A%84%E6%A0%B8%E5%BF%83%E7%89%B9%E9%BB%9E%EF%BC%9A"><span class="nav-number">1.7.1.</span> <span class="nav-text">🎯 Quasar 的核心特點：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%85-%E4%B8%89%E3%80%81%E7%82%BA%E4%BB%80%E9%BA%BC%E8%A6%81%E5%81%9A-%E9%80%99%E7%A8%AE%E5%85%83%E4%BB%B6%EF%BC%9F"><span class="nav-number">1.8.</span> <span class="nav-text">✅ 三、為什麼要做 &lt;q-badge&gt; 這種元件？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%8E%AF-%E5%AD%B8%E7%BF%92%E9%87%8D%E9%BB%9E"><span class="nav-number">1.8.1.</span> <span class="nav-text">🎯 學習重點</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%85-%E7%B8%BD%E7%B5%90%EF%BC%9A%E9%80%99%E4%B8%80%E8%AA%B2%E7%9A%84%E6%84%8F%E7%BE%A9%E6%98%AF%E4%BB%80%E9%BA%BC%EF%BC%9F"><span class="nav-number">1.9.</span> <span class="nav-text">✅ 總結：這一課的意義是什麼？</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">408</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2025/09/06/OneDayOneNote/2025-03-17/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2025-03-17-JavaScript 系列九：第2課 ── 學習 Vue 的 props 觀念 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2025-03-17-JavaScript 系列九：第2課 ── 學習 Vue 的 props 觀念">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2025-03-17-JavaScript 系列九：第2課 ── 學習 Vue 的 props 觀念
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2025-09-06 23:16:01 / 修改時間：23:16:55" itemprop="dateCreated datePublished" datetime="2025-09-06T23:16:01+08:00">2025-09-06</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2025-03-17-JavaScript 系列九：第2課 ── 學習 Vue 的 props 觀念</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="2025-03-17-JavaScript-系列九：第2課-──-學習-Vue-的-props-觀念"><a href="#2025-03-17-JavaScript-系列九：第2課-──-學習-Vue-的-props-觀念" class="headerlink" title="2025-03-17-JavaScript 系列九：第2課 ── 學習 Vue 的 props 觀念"></a>2025-03-17-JavaScript 系列九：第2課 ── 學習 Vue 的 props 觀念</h1><p>JavaScript 系列九：第2課 ── 學習 Vue 的 props 觀念<br>課程目標<br>學習 vue 的 props<br>課程內容<br>來學一下怎麼傳參數到元件裡面</p>
+<p><a target="_blank" rel="noopener" href="https://vuejs.org/guide/components/props.html">https://vuejs.org/guide/components/props.html</a><br>順帶一提，在實務中，我個人是從來不寫 Prop Validation 的</p>
+<p>我不去寫 Runtime Type Checks 那些，因為我覺得很麻煩、很花時間</p>
+<p>當然，在很多人眼裡，我這種習慣很糟糕</p>
+<p>我有我的理由，不過嚴重超出本課程度，未來有機會再談吧</p>
+<p>課後作業<br>在第二課～第七課的作業，我們要研習一款叫做 Quasar Framework 的工具</p>
+<p>這是一個極度強大的 vue 元件工具，功能非常豐富、好用</p>
+<p>我們每一課的作業，都要試著親自做出類似 Quasar 中的元件</p>
+<p>（沒辦法做到像 Quasar 那麼強大，我們只要實作部分功能就好）</p>
+<p>這一課作業，請先看一下 Badge 徽章元件的用法</p>
+<p><a target="_blank" rel="noopener" href="https://quasar.dev/vue-components/badge">https://quasar.dev/vue-components/badge</a></p>
+<p>請使用官方的元件試玩工具：Vue SFC Playground</p>
+<p><a target="_blank" rel="noopener" href="https://sfc.vuejs.org/">https://sfc.vuejs.org/</a></p>
+<p>請建立 MyBadge.vue 元件，並支援下列功能<br>color 能夠設定背景顏色<br>text-color 能夠設定文字顏色<br>label 能夠設定文字內容<br>rounded 樣式<br>完成之後，請在 App.vue 之中匯入此元件，並用多個範例證明，有完成上述規格</p>
+<p>做出以上功能，你就完成這次的課程目標了！</p>
+<p>很好！這次作業的目標是模仿 Quasar 的 <code>&lt;q-badge&gt;</code> 元件，自己實作一個簡單版的 <code>MyBadge.vue</code>，並練習以下功能：</p>
+<hr>
+<h2 id="🎯-功能需求（你的元件要能支援）："><a href="#🎯-功能需求（你的元件要能支援）：" class="headerlink" title="🎯 功能需求（你的元件要能支援）："></a>🎯 功能需求（你的元件要能支援）：</h2><table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>color</code></td>
+<td>設定背景顏色</td>
+</tr>
+<tr>
+<td><code>textColor</code></td>
+<td>設定文字顏色</td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td>顯示的文字內容</td>
+</tr>
+<tr>
+<td><code>rounded</code></td>
+<td>若為 <code>true</code>，則讓角落變圓</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="✅-MyBadge-vue-範例程式碼"><a href="#✅-MyBadge-vue-範例程式碼" class="headerlink" title="✅ MyBadge.vue 範例程式碼"></a>✅ MyBadge.vue 範例程式碼</h2><p>在 Vue SFC Playground 中新增一個檔案：<code>MyBadge.vue</code>，並輸入以下內容：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;span</span><br><span class="line">    :class=&quot;[</span><br><span class="line">      &#x27;badge&#x27;,</span><br><span class="line">      &#123; &#x27;rounded&#x27;: rounded &#125;</span><br><span class="line">    ]&quot;</span><br><span class="line">    :style=&quot;&#123;</span><br><span class="line">      backgroundColor: color,</span><br><span class="line">      color: textColor</span><br><span class="line">    &#125;&quot;</span><br><span class="line">  &gt;</span><br><span class="line">    &#123;&#123; label &#125;&#125;</span><br><span class="line">  &lt;/span&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">defineProps(&#123;</span><br><span class="line">  color: &#123; type: String, default: &#x27;#eee&#x27; &#125;,</span><br><span class="line">  textColor: &#123; type: String, default: &#x27;#000&#x27; &#125;,</span><br><span class="line">  label: &#123; type: String, default: &#x27;Badge&#x27; &#125;,</span><br><span class="line">  rounded: &#123; type: Boolean, default: false &#125;</span><br><span class="line">&#125;)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">.badge &#123;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  padding: 4px 8px;</span><br><span class="line">  font-size: 14px;</span><br><span class="line">  font-weight: bold;</span><br><span class="line">  border: 1px solid #ccc;</span><br><span class="line">  margin: 5px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.rounded &#123;</span><br><span class="line">  border-radius: 999px;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="✅-App-vue-中匯入並測試"><a href="#✅-App-vue-中匯入並測試" class="headerlink" title="✅ App.vue 中匯入並測試"></a>✅ App.vue 中匯入並測試</h2><p>修改 <code>App.vue</code> 來測試這個元件的各種效果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div style=&quot;padding: 20px&quot;&gt;</span><br><span class="line">    &lt;MyBadge label=&quot;Primary&quot; color=&quot;blue&quot; textColor=&quot;white&quot; /&gt;</span><br><span class="line">    &lt;MyBadge label=&quot;Success&quot; color=&quot;green&quot; textColor=&quot;white&quot; rounded /&gt;</span><br><span class="line">    &lt;MyBadge label=&quot;Danger&quot; color=&quot;red&quot; textColor=&quot;white&quot; /&gt;</span><br><span class="line">    &lt;MyBadge label=&quot;Info&quot; color=&quot;#00bcd4&quot; textColor=&quot;#fff&quot; rounded /&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">import MyBadge from &#x27;./MyBadge.vue&#x27;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="✅-成果畫面"><a href="#✅-成果畫面" class="headerlink" title="✅ 成果畫面"></a>✅ 成果畫面</h2><p>你應該會看到幾個彩色徽章，顯示不同的文字與顏色，部分有圓角效果。</p>
+<hr>
+<h2 id="🔧-可以挑戰的進階功能（選做）"><a href="#🔧-可以挑戰的進階功能（選做）" class="headerlink" title="🔧 可以挑戰的進階功能（選做）"></a>🔧 可以挑戰的進階功能（選做）</h2><ul>
+<li>增加 <code>size</code> prop：支援 small &#x2F; medium &#x2F; large 字型大小。</li>
+<li>增加 <code>icon</code> 插槽（slot）：允許使用者放圖示。</li>
+<li>增加可點擊的效果（用 <code>@click</code> 和 <code>cursor: pointer</code>）。</li>
+</ul>
+<hr>
+<p>很好的提問！讓我們來深入解釋一下：</p>
+<hr>
+<h2 id="✅-一、什麼是-元件？"><a href="#✅-一、什麼是-元件？" class="headerlink" title="✅ 一、什麼是 &lt;q-badge&gt; 元件？"></a>✅ 一、什麼是 <code>&lt;q-badge&gt;</code> 元件？</h2><p><code>&lt;q-badge&gt;</code> 是 Quasar Framework 中提供的一個<strong>小型視覺標記元件（Badge Component）</strong>，主要用途是：</p>
+<h3 id="🎯-功能與用途："><a href="#🎯-功能與用途：" class="headerlink" title="🎯 功能與用途："></a>🎯 功能與用途：</h3><table>
+<thead>
+<tr>
+<th>功能類別</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>📍 <strong>標示數字或狀態</strong></td>
+<td>顯示通知數、訊息數，例如訊息旁邊有「3」</td>
+</tr>
+<tr>
+<td>🎨 <strong>裝飾或分類標籤</strong></td>
+<td>用顏色區分項目狀態，如「進行中」、「已完成」、「錯誤」</td>
+</tr>
+<tr>
+<td>✅ <strong>小而明顯的 UI 元素</strong></td>
+<td>通常與按鈕、圖示等一起使用，不會搶版面但又能吸睛</td>
+</tr>
+</tbody></table>
+<h3 id="🧩-常見用途範例："><a href="#🧩-常見用途範例：" class="headerlink" title="🧩 常見用途範例："></a>🧩 常見用途範例：</h3><ul>
+<li>購物車上顯示「5」個商品</li>
+<li>按鈕旁邊顯示「New」</li>
+<li>聊天列表顯示未讀訊息數</li>
+</ul>
+<hr>
+<h2 id="✅-二、Quasar-是什麼？"><a href="#✅-二、Quasar-是什麼？" class="headerlink" title="✅ 二、Quasar 是什麼？"></a>✅ 二、Quasar 是什麼？</h2><p><strong>Quasar Framework</strong> 是一套基於 Vue.js 的全功能前端框架，目的是讓開發者<strong>一次撰寫，部署到多平台</strong>（網頁、手機 App、桌面 App）。</p>
+<h3 id="🎯-Quasar-的核心特點："><a href="#🎯-Quasar-的核心特點：" class="headerlink" title="🎯 Quasar 的核心特點："></a>🎯 Quasar 的核心特點：</h3><table>
+<thead>
+<tr>
+<th>功能</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>💡 基於 Vue.js</td>
+<td>使用 Vue 的語法與架構，非常適合 Vue 使用者</td>
+</tr>
+<tr>
+<td>🧱 提供大量 UI 元件</td>
+<td>像是 <code>&lt;q-btn&gt;</code>, <code>&lt;q-card&gt;</code>, <code>&lt;q-badge&gt;</code>, <code>&lt;q-dialog&gt;</code>… 等</td>
+</tr>
+<tr>
+<td>📱 支援多平台</td>
+<td>可以快速建構 Web App、Mobile App（透過 Cordova &#x2F; Capacitor）、Desktop App（透過 Electron）</td>
+</tr>
+<tr>
+<td>🧰 還包含工具</td>
+<td>CLI、主題系統、i18n、RTL、dark mode… 功能豐富</td>
+</tr>
+</tbody></table>
+<p>你可以把它想成是「Vue 世界裡的 Bootstrap + Material UI + CLI 打包工具整合包」。</p>
+<hr>
+<h2 id="✅-三、為什麼要做-這種元件？"><a href="#✅-三、為什麼要做-這種元件？" class="headerlink" title="✅ 三、為什麼要做 &lt;q-badge&gt; 這種元件？"></a>✅ 三、為什麼要做 <code>&lt;q-badge&gt;</code> 這種元件？</h2><p>這堂課讓你模仿 <code>&lt;q-badge&gt;</code> 的目標是：</p>
+<h3 id="🎯-學習重點"><a href="#🎯-學習重點" class="headerlink" title="🎯 學習重點"></a>🎯 學習重點</h3><table>
+<thead>
+<tr>
+<th>學習面向</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>✅ <strong>Props 傳值</strong></td>
+<td>學會設計元件的屬性（如：color, textColor, label）</td>
+</tr>
+<tr>
+<td>🎨 <strong>樣式控制</strong></td>
+<td>透過 props 控制顏色、圓角、顯示內容</td>
+</tr>
+<tr>
+<td>🧩 <strong>元件封裝概念</strong></td>
+<td>學會把一個小功能獨立出來、可重複使用</td>
+</tr>
+<tr>
+<td>🧠 <strong>從模仿中學習</strong></td>
+<td>仿造 Quasar 是一種反向學習法，理解一個專業元件是怎麼設計出來的</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="✅-總結：這一課的意義是什麼？"><a href="#✅-總結：這一課的意義是什麼？" class="headerlink" title="✅ 總結：這一課的意義是什麼？"></a>✅ 總結：這一課的意義是什麼？</h2><p>這一課不是要你「發明」一個新元件，而是：</p>
+<blockquote>
+<p>🛠️ <strong>從模仿做中學，掌握元件開發的基礎技能</strong></p>
+</blockquote>
+<p>這些基礎技能日後可以延伸用來開發自己的 UI Library，或在工作上參與實際專案。</p>
+<hr>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/Javascript/" rel="tag"># Javascript</a>
+              <a href="/apple.lily/tags/Vue/" rel="tag"># Vue</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/09/06/OneDayOneNote/2025-03-16/" rel="prev" title="2025-03-16-JavaScript（九）—— 不想教你 Vue，只想讓你做酷炫元件 這一課我們來試著匯入元件就好">
+                  <i class="fa fa-angle-left"></i> 2025-03-16-JavaScript（九）—— 不想教你 Vue，只想讓你做酷炫元件 這一課我們來試著匯入元件就好
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/09/06/OneDayOneNote/2025-03-18/" rel="next" title="2025-03-18-PWA（Progressive Web App）是一種介於網站與原生 App 之間的應用程式形式">
+                  2025-03-18-PWA（Progressive Web App）是一種介於網站與原生 App 之間的應用程式形式 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

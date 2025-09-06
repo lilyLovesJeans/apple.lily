@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2025-04-13-Tailwind CSS 使用規則 + 範例解說">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025-04-13-Tailwind CSS 使用規則 + 範例解說">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/09/07/OneDayOneNote/2025-04-13/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2025-04-13-Tailwind CSS 使用規則 + 範例解說">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-09-06T16:02:02.000Z">
+<meta property="article:modified_time" content="2025-09-06T16:02:42.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2025/09/07/OneDayOneNote/2025-04-13/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2025/09/07/OneDayOneNote/2025-04-13/","path":"2025/09/07/OneDayOneNote/2025-04-13/","title":"2025-04-13-Tailwind CSS 使用規則 + 範例解說"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2025-04-13-Tailwind CSS 使用規則 + 範例解說 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2025-04-13-Tailwind-CSS-%E4%BD%BF%E7%94%A8%E8%A6%8F%E5%89%87-%E7%AF%84%E4%BE%8B%E8%A7%A3%E8%AA%AA"><span class="nav-number">1.</span> <span class="nav-text">2025-04-13-Tailwind CSS 使用規則 + 範例解說</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Tailwind-CSS-%E4%BD%BF%E7%94%A8%E8%A6%8F%E5%89%87-%E7%AF%84%E4%BE%8B%E8%A7%A3%E8%AA%AA"><span class="nav-number">2.</span> <span class="nav-text">Tailwind CSS 使用規則 + 範例解說</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Tailwind-%E6%98%AF%E4%BB%80%E9%BA%BC%EF%BC%88%E4%B8%80%E5%8F%A5%E8%A9%B1%EF%BC%89"><span class="nav-number">2.1.</span> <span class="nav-text">1) Tailwind 是什麼（一句話）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E8%A6%8F%E5%89%87%EF%BC%88%E5%BF%85%E8%AE%80%EF%BC%89"><span class="nav-number">2.2.</span> <span class="nav-text">2) 基本使用規則（必讀）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E9%A1%9E%E5%88%A5%E7%82%BA%E3%80%8C%E5%8A%9F%E8%83%BD%E5%B0%8E%E5%90%91%E3%80%8D%EF%BC%88utility-first%EF%BC%89"><span class="nav-number">2.2.1.</span> <span class="nav-text">1. 類別為「功能導向」（utility-first）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E8%A1%8C%E5%8B%95%E5%84%AA%E5%85%88%EF%BC%88mobile-first%EF%BC%89%E8%88%87%E9%9F%BF%E6%87%89%E5%BC%8F%E5%89%8D%E7%B6%B4"><span class="nav-number">2.2.2.</span> <span class="nav-text">2. 行動優先（mobile-first）與響應式前綴</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E7%8B%80%E6%85%8B%E8%88%87%E5%81%BD%E9%A1%9E%E5%89%8D%E7%B6%B4"><span class="nav-number">2.2.3.</span> <span class="nav-text">3. 狀態與偽類前綴</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-dark-mode"><span class="nav-number">2.2.4.</span> <span class="nav-text">4. dark mode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%84%AA%E5%85%88%E9%A0%86%E5%BA%8F%EF%BC%88%E5%A6%82%E4%BD%95%E8%A6%86%E8%93%8B%EF%BC%89"><span class="nav-number">2.2.5.</span> <span class="nav-text">5. 優先順序（如何覆蓋）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E4%BB%BB%E6%84%8F%E5%80%BC%EF%BC%88arbitrary-values%EF%BC%89"><span class="nav-number">2.2.6.</span> <span class="nav-text">6. 任意值（arbitrary values）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E5%B0%87-utility-%E7%B5%84%E6%88%90-component%EF%BC%88-apply%EF%BC%89"><span class="nav-number">2.2.7.</span> <span class="nav-text">7. 將 utility 組成 component（@apply）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-%E7%94%9F%E7%94%A2%E7%92%B0%E5%A2%83%E6%B8%85%E7%90%86%EF%BC%88content-purge%EF%BC%89"><span class="nav-number">2.2.8.</span> <span class="nav-text">8. 生產環境清理（content &#x2F; purge）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%B8%B8%E8%A6%8B%E7%AF%84%E4%BE%8B%EF%BC%88%E5%AF%A6%E5%8B%99%E7%A4%BA%E4%BE%8B-%E8%AA%AA%E6%98%8E%EF%BC%89"><span class="nav-number">2.3.</span> <span class="nav-text">3) 常見範例（實務示例 + 說明）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AF%84%E4%BE%8B-A-%E2%80%94-%E6%8C%89%E9%88%95%EF%BC%88%E5%90%AB%E7%8B%80%E6%85%8B%EF%BC%89"><span class="nav-number">2.3.1.</span> <span class="nav-text">範例 A — 按鈕（含狀態）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AF%84%E4%BE%8B-B-%E2%80%94-%E9%9F%BF%E6%87%89%E5%BC%8F-Grid-%E4%BD%88%E5%B1%80"><span class="nav-number">2.3.2.</span> <span class="nav-text">範例 B — 響應式 Grid 佈局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AF%84%E4%BE%8B-C-%E2%80%94-%E8%A1%A8%E5%96%AE%E9%A9%97%E8%AD%89%EF%BC%88%E8%88%87%E6%A1%86%E6%9E%B6%E6%A2%9D%E4%BB%B6-class-%E5%85%B1%E7%94%A8%EF%BC%89"><span class="nav-number">2.3.3.</span> <span class="nav-text">範例 C — 表單驗證（與框架條件 class 共用）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-tailwind-config-js-%E5%B8%B8%E8%A6%8B%E8%A8%AD%E5%AE%9A%E7%AF%84%E4%BE%8B"><span class="nav-number">2.4.</span> <span class="nav-text">4) tailwind.config.js 常見設定範例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%BF%AB%E9%80%9F-Cheat-sheet%EF%BC%88%E5%B8%B8%E7%94%A8-class%EF%BC%89"><span class="nav-number">2.5.</span> <span class="nav-text">5) 快速 Cheat-sheet（常用 class）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E5%B0%8F%E6%8A%80%E5%B7%A7%E8%88%87%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A0%85"><span class="nav-number">2.6.</span> <span class="nav-text">6) 小技巧與注意事項</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">408</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2025/09/07/OneDayOneNote/2025-04-13/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2025-04-13-Tailwind CSS 使用規則 + 範例解說 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2025-04-13-Tailwind CSS 使用規則 + 範例解說">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2025-04-13-Tailwind CSS 使用規則 + 範例解說
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2025-09-07 00:02:02 / 修改時間：00:02:42" itemprop="dateCreated datePublished" datetime="2025-09-07T00:02:02+08:00">2025-09-07</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2025-04-13-Tailwind CSS 使用規則 + 範例解說</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="2025-04-13-Tailwind-CSS-使用規則-範例解說"><a href="#2025-04-13-Tailwind-CSS-使用規則-範例解說" class="headerlink" title="2025-04-13-Tailwind CSS 使用規則 + 範例解說"></a>2025-04-13-Tailwind CSS 使用規則 + 範例解說</h1><h1 id="Tailwind-CSS-使用規則-範例解說"><a href="#Tailwind-CSS-使用規則-範例解說" class="headerlink" title="Tailwind CSS 使用規則 + 範例解說"></a>Tailwind CSS 使用規則 + 範例解說</h1><p>下面用清楚、分段的方式說明 Tailwind 的核心規則與常見用法，每個重點都附上簡短範例與說明，方便你立刻上手。</p>
+<hr>
+<h2 id="1-Tailwind-是什麼（一句話）"><a href="#1-Tailwind-是什麼（一句話）" class="headerlink" title="1) Tailwind 是什麼（一句話）"></a>1) Tailwind 是什麼（一句話）</h2><p>Tailwind 是 <strong>utility-first</strong> 的 CSS 框架：不寫大量自訂 CSS，而是把小功能（例如 <code>p-4</code>、<code>text-sm</code>、<code>bg-blue-500</code>）直接放在 HTML class。這讓樣式具可組合性且開發速度快。</p>
+<hr>
+<h2 id="2-基本使用規則（必讀）"><a href="#2-基本使用規則（必讀）" class="headerlink" title="2) 基本使用規則（必讀）"></a>2) 基本使用規則（必讀）</h2><h3 id="1-類別為「功能導向」（utility-first）"><a href="#1-類別為「功能導向」（utility-first）" class="headerlink" title="1. 類別為「功能導向」（utility-first）"></a>1. 類別為「功能導向」（utility-first）</h3><p>在標籤上直接組合多個 class：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600&quot;</span>&gt;</span></span><br><span class="line">  按我</span><br><span class="line"><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>說明：<code>px-4</code>（左右 padding）、<code>py-2</code>（上下 padding）、<code>bg-blue-500</code>（背景色）、<code>rounded</code>（圓角）、<code>hover:bg-blue-600</code>（滑鼠懸停變色）。</p>
+<hr>
+<h3 id="2-行動優先（mobile-first）與響應式前綴"><a href="#2-行動優先（mobile-first）與響應式前綴" class="headerlink" title="2. 行動優先（mobile-first）與響應式前綴"></a>2. 行動優先（mobile-first）與響應式前綴</h3><p>預設生效於所有尺寸，用 <code>sm:</code>, <code>md:</code>, <code>lg:</code>, <code>xl:</code> 等在特定斷點以上啟用：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;p-4 bg-gray-100 md:flex md:gap-4&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;w-full md:w-1/3&quot;</span>&gt;</span>欄位 A<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;w-full md:w-2/3&quot;</span>&gt;</span>欄位 B<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>說明：<code>md:flex</code> 代表在 <code>md</code>（中等）以上才變成 flex。</p>
+<p>默認斷點（Tailwind）：</p>
+<ul>
+<li><code>sm</code> ≈ 640px</li>
+<li><code>md</code> ≈ 768px</li>
+<li><code>lg</code> ≈ 1024px</li>
+<li><code>xl</code> ≈ 1280px<br>（可在 <code>tailwind.config.js</code> 自訂）</li>
+</ul>
+<hr>
+<h3 id="3-狀態與偽類前綴"><a href="#3-狀態與偽類前綴" class="headerlink" title="3. 狀態與偽類前綴"></a>3. 狀態與偽類前綴</h3><p>支援 <code>hover:</code>, <code>focus:</code>, <code>active:</code>, <code>visited:</code>, <code>focus-visible:</code>, <code>disabled:</code> 等：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;text-blue-600 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-300&quot;</span>&gt;</span>連結<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="4-dark-mode"><a href="#4-dark-mode" class="headerlink" title="4. dark mode"></a>4. dark mode</h3><p>兩種常見設定：<code>media</code>（跟隨系統）或 <code>class</code>（用 <code>.dark</code> 切換）：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// tailwind.config.js 範例</span></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">darkMode</span>: <span class="string">&#x27;class&#x27;</span>, <span class="comment">// 或 &#x27;media&#x27;</span></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>HTML：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">class</span>=<span class="string">&quot;dark&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span> <span class="attr">class</span>=<span class="string">&quot;bg-white dark:bg-gray-900 text-black dark:text-white&quot;</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="5-優先順序（如何覆蓋）"><a href="#5-優先順序（如何覆蓋）" class="headerlink" title="5. 優先順序（如何覆蓋）"></a>5. 優先順序（如何覆蓋）</h3><ul>
+<li>Tailwind 的每個實用類別會產生規則；最後在 CSS 中出現者會勝出（CSS cascade）。</li>
+<li>使用響應式或偽類前綴時，該變體的規則會在相對的媒體查詢&#x2F;偽類下生效，因此可以用 <code>md:</code> 等覆蓋。</li>
+<li>若需要強制覆蓋，可使用 <code>!</code> 前綴（Tailwind v3 支援）：<code>!text-red-500</code>（會加入 <code>!important</code>）。</li>
+</ul>
+<hr>
+<h3 id="6-任意值（arbitrary-values）"><a href="#6-任意值（arbitrary-values）" class="headerlink" title="6. 任意值（arbitrary values）"></a>6. 任意值（arbitrary values）</h3><p>要使用框架外的特定值可用方括號：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;w-[37px] h-[37px] bg-[#1da1f2]&quot;</span>&gt;</span>...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="7-將-utility-組成-component（-apply）"><a href="#7-將-utility-組成-component（-apply）" class="headerlink" title="7. 將 utility 組成 component（@apply）"></a>7. 將 utility 組成 component（@apply）</h3><p>在自訂 CSS&#x2F;樣式檔把一組 classes 抽成可重用的 class：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* styles.css */</span></span><br><span class="line"><span class="selector-class">.btn</span> &#123;</span><br><span class="line">  <span class="keyword">@apply</span> px-<span class="number">4</span> py-<span class="number">2</span> rounded bg-indigo-<span class="number">600</span> text-white <span class="attribute">hover</span>:bg-indigo-<span class="number">700</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然後 HTML 用 <code>&lt;button class=&quot;btn&quot;&gt;</code>。</p>
+<hr>
+<h3 id="8-生產環境清理（content-purge）"><a href="#8-生產環境清理（content-purge）" class="headerlink" title="8. 生產環境清理（content &#x2F; purge）"></a>8. 生產環境清理（content &#x2F; purge）</h3><p>在 <code>tailwind.config.js</code> 設定要掃描的檔案，避免輸出巨量 CSS：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">content</span>: [<span class="string">&#x27;./src/**/*.&#123;html,js,vue,jsx,tsx&#125;&#x27;</span>],</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="3-常見範例（實務示例-說明）"><a href="#3-常見範例（實務示例-說明）" class="headerlink" title="3) 常見範例（實務示例 + 說明）"></a>3) 常見範例（實務示例 + 說明）</h2><h3 id="範例-A-—-按鈕（含狀態）"><a href="#範例-A-—-按鈕（含狀態）" class="headerlink" title="範例 A — 按鈕（含狀態）"></a>範例 A — 按鈕（含狀態）</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;inline-block px-4 py-2 rounded shadow-sm bg-blue-500 text-white </span></span></span><br><span class="line"><span class="string"><span class="tag">  hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 active:scale-95&quot;</span>&gt;</span></span><br><span class="line">  送出</span><br><span class="line"><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>說明：</p>
+<ul>
+<li><code>inline-block</code>：讓 padding 生效並可有寬高</li>
+<li><code>shadow-sm</code>：小陰影</li>
+<li><code>focus:ring-2</code>：聚焦時的外圈光暈</li>
+<li><code>active:scale-95</code>：按下時微縮（互動感）</li>
+</ul>
+<hr>
+<h3 id="範例-B-—-響應式-Grid-佈局"><a href="#範例-B-—-響應式-Grid-佈局" class="headerlink" title="範例 B — 響應式 Grid 佈局"></a>範例 B — 響應式 Grid 佈局</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;p-4 bg-white rounded&quot;</span>&gt;</span>卡片 1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;p-4 bg-white rounded&quot;</span>&gt;</span>卡片 2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;p-4 bg-white rounded&quot;</span>&gt;</span>卡片 3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;p-4 bg-white rounded&quot;</span>&gt;</span>卡片 4<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>說明：一欄（手機），<code>sm</code> 變兩欄，<code>lg</code> 變四欄。</p>
+<hr>
+<h3 id="範例-C-—-表單驗證（與框架條件-class-共用）"><a href="#範例-C-—-表單驗證（與框架條件-class-共用）" class="headerlink" title="範例 C — 表單驗證（與框架條件 class 共用）"></a>範例 C — 表單驗證（與框架條件 class 共用）</h3><p>假設用 Vue，條件套用 class：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span></span></span><br><span class="line"><span class="tag">  <span class="attr">type</span>=<span class="string">&quot;text&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:class</span>=<span class="string">&quot;[</span></span></span><br><span class="line"><span class="string"><span class="tag">    &#x27;w-full p-2 rounded border&#x27;,</span></span></span><br><span class="line"><span class="string"><span class="tag">    hasError ? &#x27;border-red-500 bg-red-50&#x27; : &#x27;border-gray-300&#x27;</span></span></span><br><span class="line"><span class="string"><span class="tag">  ]&quot;</span></span></span><br><span class="line"><span class="tag">/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>說明：用 JS 判斷決定哪個 Tailwind class 被套用，無需寫 CSS。</p>
+<hr>
+<h2 id="4-tailwind-config-js-常見設定範例"><a href="#4-tailwind-config-js-常見設定範例" class="headerlink" title="4) tailwind.config.js 常見設定範例"></a>4) tailwind.config.js 常見設定範例</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">content</span>: [<span class="string">&#x27;./src/**/*.&#123;html,js,vue&#125;&#x27;</span>],</span><br><span class="line">  <span class="attr">darkMode</span>: <span class="string">&#x27;class&#x27;</span>,</span><br><span class="line">  <span class="attr">theme</span>: &#123;</span><br><span class="line">    <span class="attr">extend</span>: &#123;</span><br><span class="line">      <span class="attr">colors</span>: &#123;</span><br><span class="line">        <span class="attr">primary</span>: <span class="string">&#x27;#0ea5e9&#x27;</span>, <span class="comment">// 自訂顏色</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">spacing</span>: &#123;</span><br><span class="line">        <span class="string">&#x27;72&#x27;</span>: <span class="string">&#x27;18rem&#x27;</span>,</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    <span class="built_in">require</span>(<span class="string">&#x27;@tailwindcss/forms&#x27;</span>),</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>extend</code> 用來擴展預設 scale（不覆蓋）</li>
+<li><code>plugins</code> 常用 <code>@tailwindcss/forms</code>, <code>typography</code>, <code>line-clamp</code> 等</li>
+</ul>
+<hr>
+<h2 id="5-快速-Cheat-sheet（常用-class）"><a href="#5-快速-Cheat-sheet（常用-class）" class="headerlink" title="5) 快速 Cheat-sheet（常用 class）"></a>5) 快速 Cheat-sheet（常用 class）</h2><ul>
+<li>佈局：<code>flex</code>, <code>grid</code>, <code>justify-between</code>, <code>items-center</code></li>
+<li>大小&#x2F;間距：<code>p-4</code>, <code>px-2</code>, <code>py-1</code>, <code>m-4</code>, <code>w-full</code>, <code>h-12</code>, <code>max-w-lg</code></li>
+<li>字體：<code>text-sm</code>, <code>text-lg</code>, <code>font-medium</code>, <code>truncate</code></li>
+<li>邊框&#x2F;陰影：<code>border</code>, <code>border-gray-300</code>, <code>rounded</code>, <code>shadow</code></li>
+<li>背景&#x2F;色彩：<code>bg-white</code>, <code>bg-gray-100</code>, <code>text-white</code>, <code>bg-blue-500</code></li>
+<li>互動：<code>hover:</code>, <code>focus:</code>, <code>active:</code>, <code>disabled:</code></li>
+<li>響應式：<code>sm:</code>, <code>md:</code>, <code>lg:</code>, <code>xl:</code></li>
+<li>dark mode：<code>dark:bg-gray-900</code>, <code>dark:text-white</code></li>
+<li>任意值：<code>w-[250px]</code>, <code>bg-[#ff00aa]</code></li>
+</ul>
+<hr>
+<h2 id="6-小技巧與注意事項"><a href="#6-小技巧與注意事項" class="headerlink" title="6) 小技巧與注意事項"></a>6) 小技巧與注意事項</h2><ul>
+<li><strong>別把大量邏輯放到 HTML 上</strong>：條件套 class（例如 Vue&#x2F;React）時，維持可讀性，用變數或小 helper。</li>
+<li><strong>使用 <code>@apply</code> 小心 specificity</strong>：不要嘗試把互動變體（<code>hover:</code>）放到 <code>@apply</code>，某些情況會失效或較難維護。</li>
+<li><strong>生產環境一定要設定 <code>content</code></strong> 否則輸出的 CSS 會很大。</li>
+<li><strong>使用 arbitrary value 時注意合法格式</strong>：例如 <code>min-h-[32px]</code>、<code>grid-cols-[200px_1fr]</code>。</li>
+<li><strong>版本差異</strong>：Tailwind v3 引入 JIT、<code>!important</code> 前綴 (<code>!</code>)，請確認你專案使用的版本文件或 changelog（如果需要我可以幫你比對版本差異）。</li>
+</ul>
+<hr>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/Javascript/" rel="tag"># Javascript</a>
+              <a href="/apple.lily/tags/Vue/" rel="tag"># Vue</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/09/07/OneDayOneNote/2025-04-12/" rel="prev" title="2025-04-12-Tailwind CSS 簡短複習">
+                  <i class="fa fa-angle-left"></i> 2025-04-12-Tailwind CSS 簡短複習
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/09/07/OneDayOneNote/2025-04-14/" rel="next" title="2025-04-14-Tailwind 的顏色系統有幾個重要概念">
+                  2025-04-14-Tailwind 的顏色系統有幾個重要概念 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

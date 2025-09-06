@@ -1,0 +1,173 @@
+<hr>
+<h2 id="title-2025-04-03-學習-Vue-的-slots-觀念date-2025-09-06-23-47-09tags-Javascript-Vue-description-2025-04-03-學習-Vue-的-slots-觀念"><a href="#title-2025-04-03-學習-Vue-的-slots-觀念date-2025-09-06-23-47-09tags-Javascript-Vue-description-2025-04-03-學習-Vue-的-slots-觀念" class="headerlink" title="title: 2025-04-03- 學習 Vue 的 slots 觀念date: 2025-09-06 23:47:09tags:  [Javascript,Vue]description:   2025-04-03- 學習 Vue 的 slots 觀念"></a>title: 2025-04-03- 學習 Vue 的 slots 觀念<br>date: 2025-09-06 23:47:09<br>tags:  [Javascript,Vue]<br>description:   2025-04-03- 學習 Vue 的 slots 觀念</h2><h1 id="2025-04-03-學習-Vue-的-slots-觀念"><a href="#2025-04-03-學習-Vue-的-slots-觀念" class="headerlink" title="2025-04-03- 學習 Vue 的 slots 觀念"></a>2025-04-03- 學習 Vue 的 slots 觀念</h1><p>JavaScript 系列九：第5課 ── 學習 Vue 的 slots 觀念<br>課程目標<br>學習 vue 的 slots<br>課程內容<br>來學一下 slots 的用法</p>
+<p><a href="https://vuejs.org/guide/components/slots.html">https://vuejs.org/guide/components/slots.html</a><br>課後作業<br>這一課作業，請先看一下 Banner 公告元件的用法</p>
+<p><a href="https://quasar.dev/vue-components/banner">https://quasar.dev/vue-components/banner</a></p>
+<p>請使用官方的元件試玩工具：Vue SFC Playground</p>
+<p><a href="https://sfc.vuejs.org/">https://sfc.vuejs.org/</a></p>
+<p>請建立 MyBanner.vue 元件，並支援下列功能<br>預設的 slot 能夠放入公告內容<br>action slot 能夠在下一排最右側放入額外內容<br>rounded 樣式<br>完成之後，請在 App.vue 之中匯入此元件，並用多個範例證明，有完成上述規格</p>
+<p>做出以上功能，你就完成這次的課程目標了！</p>
+<p>好的 👍 我來幫你把「Vue 系列九：第5課 ── 學習 Vue 的 slots 觀念」的課程內容與作業完整設計出來。<br>這一課的目標是理解 <strong>slot 的用途</strong>，並實際用一個公告元件 (<code>MyBanner.vue</code>) 來體驗。</p>
+<hr>
+<h2 id="1-課程目標"><a href="#1-課程目標" class="headerlink" title="1. 課程目標"></a>1. 課程目標</h2><ul>
+<li>學會 <strong>Vue slot 的基本用法</strong>（default slot &amp; named slot）</li>
+<li>建立可自訂樣式的公告元件 <code>MyBanner.vue</code></li>
+<li>熟悉如何在 <code>App.vue</code> 中匯入並使用 slot</li>
+</ul>
+<hr>
+<h2 id="2-MyBanner-vue-範例程式碼"><a href="#2-MyBanner-vue-範例程式碼" class="headerlink" title="2. MyBanner.vue 範例程式碼"></a>2. <code>MyBanner.vue</code> 範例程式碼</h2><pre><code class="vue">&lt;!-- MyBanner.vue --&gt;
+&lt;template&gt;
+  &lt;div
+    class=&quot;my-banner&quot;
+    :class=&quot;{ rounded: rounded }&quot;
+  &gt;
+    &lt;!-- 預設 slot：公告內容 --&gt;
+    &lt;div class=&quot;banner-content&quot;&gt;
+      &lt;slot&gt;這裡是預設公告內容&lt;/slot&gt;
+    &lt;/div&gt;
+
+    &lt;!-- action slot：額外動作 --&gt;
+    &lt;div class=&quot;banner-action&quot;&gt;
+      &lt;slot name=&quot;action&quot;&gt;&lt;/slot&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+defineProps({
+  rounded: {
+    type: Boolean,
+    default: false
+  }
+})
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+.my-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f5f5f5;
+  padding: 12px 16px;
+  margin: 8px 0;
+  border: 1px solid #ddd;
+}
+
+.my-banner.rounded {
+  border-radius: 12px;
+}
+
+.banner-content {
+  flex: 1;
+}
+
+.banner-action {
+  margin-left: auto;
+}
+&lt;/style&gt;
+</code></pre>
+<hr>
+<h2 id="3-App-vue-測試範例"><a href="#3-App-vue-測試範例" class="headerlink" title="3. App.vue 測試範例"></a>3. <code>App.vue</code> 測試範例</h2><pre><code class="vue">&lt;!-- App.vue --&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;h2&gt;🎯 Vue slots 練習 ── MyBanner 範例&lt;/h2&gt;
+
+    &lt;!-- 範例1：只放公告內容 --&gt;
+    &lt;MyBanner&gt;
+      🚨 系統將於今晚 12 點維護！
+    &lt;/MyBanner&gt;
+
+    &lt;!-- 範例2：放公告內容 + action slot --&gt;
+    &lt;MyBanner&gt;
+      📢 新版本已上線，快來體驗！
+      &lt;template #action&gt;
+        &lt;button @click=&quot;handleClick&quot;&gt;詳細資訊&lt;/button&gt;
+      &lt;/template&gt;
+    &lt;/MyBanner&gt;
+
+    &lt;!-- 範例3：加上 rounded 樣式 --&gt;
+    &lt;MyBanner rounded&gt;
+      ✅ 已成功完成操作
+      &lt;template #action&gt;
+        &lt;a href=&quot;#&quot;&gt;查看紀錄&lt;/a&gt;
+      &lt;/template&gt;
+    &lt;/MyBanner&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import MyBanner from &#39;./MyBanner.vue&#39;
+
+function handleClick() {
+  alert(&#39;前往詳細資訊頁面&#39;)
+}
+&lt;/script&gt;
+</code></pre>
+<hr>
+<h2 id="4-課後作業驗收條件-✅"><a href="#4-課後作業驗收條件-✅" class="headerlink" title="4. 課後作業驗收條件 ✅"></a>4. 課後作業驗收條件 ✅</h2><ul>
+<li><input checked="" disabled="" type="checkbox"> 預設 slot 可以放公告文字</li>
+<li><input checked="" disabled="" type="checkbox"> action slot 可以在右側放入按鈕或連結</li>
+<li><input checked="" disabled="" type="checkbox"> 支援 <code>rounded</code> 樣式</li>
+<li><input checked="" disabled="" type="checkbox"> 在 <code>App.vue</code> 裡用多個範例測試</li>
+</ul>
+<hr>
+<p>要不要我幫你先把這份程式碼丟到 <strong>Vue SFC Playground</strong> 的完整範例連結，讓你可以直接打開就看到效果？</p>
+<p>我們這一課就是在學習 <strong>slot</strong>，而 <code>&lt;template #action&gt;</code> 正是 <strong>命名插槽 (named slot)</strong> 的用法。</p>
+<hr>
+<h3 id="1-slot-的基本觀念"><a href="#1-slot-的基本觀念" class="headerlink" title="1. slot 的基本觀念"></a>1. slot 的基本觀念</h3><ul>
+<li><strong>slot</strong> 就像元件裡的「預留位置」。</li>
+<li>父元件可以決定要在這個位置放什麼內容。</li>
+</ul>
+<p>舉例：</p>
+<pre><code class="vue">&lt;!-- MyBanner.vue --&gt;
+&lt;slot&gt;&lt;/slot&gt;   &lt;!-- 預設 slot --&gt;
+&lt;slot name=&quot;action&quot;&gt;&lt;/slot&gt; &lt;!-- 命名 slot --&gt;
+</code></pre>
+<p>這代表 <code>MyBanner</code> 有兩個插槽：</p>
+<ul>
+<li>預設插槽：放公告文字</li>
+<li>名為 <code>action</code> 的插槽：放按鈕、連結或其他東西</li>
+</ul>
+<hr>
+<h3 id="2-的意思"><a href="#2-的意思" class="headerlink" title="2. &lt;template #action&gt; 的意思"></a>2. <code>&lt;template #action&gt;</code> 的意思</h3><p>在 Vue 3 中：</p>
+<ul>
+<li><code>#action</code> 是 <strong>語法糖 (shorthand)</strong></li>
+<li>等同於 <code>v-slot:action</code></li>
+</ul>
+<p>所以這兩個寫法一樣：</p>
+<pre><code class="vue">&lt;MyBanner&gt;
+  &lt;template #action&gt;
+    &lt;button&gt;查看&lt;/button&gt;
+  &lt;/template&gt;
+&lt;/MyBanner&gt;
+
+&lt;!-- 等同於 --&gt;
+&lt;MyBanner&gt;
+  &lt;template v-slot:action&gt;
+    &lt;button&gt;查看&lt;/button&gt;
+  &lt;/template&gt;
+&lt;/MyBanner&gt;
+</code></pre>
+<hr>
+<h3 id="3-為什麼要用-？"><a href="#3-為什麼要用-？" class="headerlink" title="3. 為什麼要用 &lt;template&gt;？"></a>3. 為什麼要用 <code>&lt;template&gt;</code>？</h3><p>因為一個 <strong>slot</strong> 可能會包含多個元素。<br>如果不用 <code>&lt;template&gt;</code>，Vue 會不知道「哪些東西是要給 slot 的」。</p>
+<p>✅ 正確寫法：</p>
+<pre><code class="vue">&lt;MyBanner&gt;
+  &lt;template #action&gt;
+    &lt;button&gt;確定&lt;/button&gt;
+    &lt;button&gt;取消&lt;/button&gt;
+  &lt;/template&gt;
+&lt;/MyBanner&gt;
+</code></pre>
+<p>❌ 錯誤寫法：</p>
+<pre><code class="vue">&lt;MyBanner&gt;
+  &lt;button&gt;確定&lt;/button&gt;
+  &lt;button&gt;取消&lt;/button&gt;
+&lt;/MyBanner&gt;
+</code></pre>
+<p>這樣 Vue 會把它們都放到 <strong>default slot</strong>，而不是 <code>action slot</code>。</p>
+<hr>
+<p>👉 總結：</p>
+<ul>
+<li><code>&lt;template #action&gt;</code> &#x3D; <code>&lt;template v-slot:action&gt;</code></li>
+<li>它的作用是把 <strong>內容傳給 MyBanner 裡的 <code>&lt;slot name=&quot;action&quot;&gt;</code></strong></li>
+</ul>
+<hr>

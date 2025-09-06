@@ -1,0 +1,127 @@
+<hr>
+<h2 id="title-2025-01-31-JavaScript-系列八：第5課-──-體重追蹤應用程式-步驟05date-2025-09-06-20-47-49tags-Javascript-Vue-description-2025-01-31-JavaScript-系列八：第5課-──-體重追蹤應用程式-步驟05"><a href="#title-2025-01-31-JavaScript-系列八：第5課-──-體重追蹤應用程式-步驟05date-2025-09-06-20-47-49tags-Javascript-Vue-description-2025-01-31-JavaScript-系列八：第5課-──-體重追蹤應用程式-步驟05" class="headerlink" title="title: 2025-01-31- JavaScript 系列八：第5課 ── 體重追蹤應用程式-步驟05date: 2025-09-06 20:47:49tags:  [Javascript,Vue]description:   2025-01-31- JavaScript 系列八：第5課 ── 體重追蹤應用程式-步驟05"></a>title: 2025-01-31- JavaScript 系列八：第5課 ── 體重追蹤應用程式-步驟05<br>date: 2025-09-06 20:47:49<br>tags:  [Javascript,Vue]<br>description:   2025-01-31- JavaScript 系列八：第5課 ── 體重追蹤應用程式-步驟05</h2><h1 id="2025-01-31-JavaScript-系列八：第5課-──-體重追蹤應用程式-步驟05"><a href="#2025-01-31-JavaScript-系列八：第5課-──-體重追蹤應用程式-步驟05" class="headerlink" title="2025-01-31- JavaScript 系列八：第5課 ── 體重追蹤應用程式-步驟05"></a>2025-01-31- JavaScript 系列八：第5課 ── 體重追蹤應用程式-步驟05</h1><p>下面是 **整合 Chart.js（CDN 版本）圖表功能的完整 <code>weightTrackerApp.vue</code>**。你只需要：</p>
+<h3 id="✅-第一步：在-public-index-html-加入-CDN"><a href="#✅-第一步：在-public-index-html-加入-CDN" class="headerlink" title="✅ 第一步：在 public/index.html 加入 CDN"></a>✅ 第一步：在 <code>public/index.html</code> 加入 CDN</h3><p>請在你的專案 <code>public/index.html</code> 中加入 Chart.js 的 CDN：</p>
+<pre><code class="html">&lt;script src=&quot;https://cdn.jsdelivr.net/npm/chart.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<hr>
+<h3 id="✅-第二步：使用以下整合好的-weightTrackerApp-vue-程式碼"><a href="#✅-第二步：使用以下整合好的-weightTrackerApp-vue-程式碼" class="headerlink" title="✅ 第二步：使用以下整合好的 weightTrackerApp.vue 程式碼"></a>✅ 第二步：使用以下整合好的 <code>weightTrackerApp.vue</code> 程式碼</h3><pre><code class="vue">&lt;!-- weightTrackerApp.vue --&gt;
+&lt;template&gt;
+  &lt;div class=&quot;p-4 max-w-md mx-auto&quot;&gt;
+    &lt;h1 class=&quot;text-2xl font-bold mb-4&quot;&gt;體重追蹤器&lt;/h1&gt;
+
+    &lt;!-- 輸入表單--&gt;
+    &lt;form @submit.prevent=&quot;addRecord&quot; class=&quot;space-y-2 mb-4&quot;&gt;
+      &lt;div&gt;
+        &lt;label&gt;日期：&lt;/label&gt;
+        &lt;input type=&quot;date&quot; v-model=&quot;newRecord.date&quot; /&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;label&gt;體重(kg):&lt;/label&gt;
+        &lt;input type=&quot;number&quot; v-model.number=&quot;newRecord.weight&quot; class=&quot;border px-2 py-1&quot; required /&gt;
+      &lt;/div&gt;
+      &lt;button type=&quot;submit&quot; class=&quot;bg-blue-500 text-white px-4 py-1 rounded&quot;&gt;新增&lt;/button&gt;
+    &lt;/form&gt;
+
+    &lt;!-- 清單--&gt;
+    &lt;ul class=&quot;space-y-2 mb-6&quot;&gt;
+      &lt;li v-for=&quot;(record, index) in sortedRecords&quot; :key=&quot;record.id&quot; class=&quot;flex justify-between items-center border p-2&quot;&gt;
+        &lt;span&gt;{{ record.date }} - {{ record.weight }}kg&lt;/span&gt;
+        &lt;button @click=&quot;deleteRecord(record.id)&quot; class=&quot;text-red-500&quot;&gt;刪除&lt;/button&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;!-- 圖表 --&gt;
+    &lt;canvas ref=&quot;chartCanvas&quot; class=&quot;w-full h-64&quot;&gt;&lt;/canvas&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { ref, computed, onMounted, watch, nextTick } from &#39;vue&#39;
+
+const newRecord = ref({
+  date: &#39;&#39;,
+  weight: null,
+})
+
+const records = ref([])
+
+// 取得 chart DOM 元素
+const chartCanvas = ref(null)
+let weightChart = null
+
+// 初始化資料
+onMounted(() =&gt; {
+  const saved = localStorage.getItem(&#39;weight-records&#39;)
+  if (saved) {
+    records.value = JSON.parse(saved)
+  }
+  renderChart()
+})
+
+// 監看資料變化自動存入 localStorage 並更新圖表
+watch(records, (newVal) =&gt; {
+  localStorage.setItem(&#39;weight-records&#39;, JSON.stringify(newVal))
+  nextTick(() =&gt; renderChart())
+}, { deep: true })
+
+const addRecord = () =&gt; {
+  if (!newRecord.value.date || !newRecord.value.weight) return
+  records.value.push({
+    id: Date.now(),
+    date: newRecord.value.date,
+    weight: newRecord.value.weight,
+  })
+  newRecord.value = { date: &#39;&#39;, weight: null }
+}
+
+const deleteRecord = (id) =&gt; {
+  records.value = records.value.filter(r =&gt; r.id !== id)
+}
+
+const sortedRecords = computed(() =&gt; {
+  return [...records.value].sort((a, b) =&gt; new Date(a.date) - new Date(b.date))
+})
+
+const renderChart = () =&gt; {
+  if (!chartCanvas.value) return
+
+  // 銷毀舊圖表
+  if (weightChart) {
+    weightChart.destroy()
+  }
+
+  const data = sortedRecords.value
+  weightChart = new Chart(chartCanvas.value, {
+    type: &#39;line&#39;,
+    data: {
+      labels: data.map(r =&gt; r.date),
+      datasets: [{
+        label: &#39;體重 (kg)&#39;,
+        data: data.map(r =&gt; r.weight),
+        borderColor: &#39;rgba(59,130,246,1)&#39;,
+        backgroundColor: &#39;rgba(59,130,246,0.2)&#39;,
+        fill: true,
+        tension: 0.2
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        title: {
+          display: true,
+          text: &#39;體重變化圖&#39;
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: false
+        }
+      }
+    }
+  })
+}
+&lt;/script&gt;
+</code></pre>
+<hr>
+<p>這樣就完成整合了！</p>
+<p>✅ 圖表會根據輸入資料自動更新<br>✅ 使用 Chart.js CDN，不需安裝<br>✅ 排序、刪除、儲存都保留原有功能</p>

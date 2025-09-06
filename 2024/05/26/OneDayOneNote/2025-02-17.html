@@ -1,0 +1,55 @@
+<hr>
+<h2 id="title-2025-02-17-非同步程式的執行順序date-2025-09-06-22-17-14tags-Javascript-Vue-description-2025-02-17-非同步程式的執行順序"><a href="#title-2025-02-17-非同步程式的執行順序date-2025-09-06-22-17-14tags-Javascript-Vue-description-2025-02-17-非同步程式的執行順序" class="headerlink" title="title: 2025-02-17-非同步程式的執行順序date: 2025-09-06 22:17:14tags:  [Javascript,Vue]description:  2025-02-17-非同步程式的執行順序"></a>title: 2025-02-17-非同步程式的執行順序<br>date: 2025-09-06 22:17:14<br>tags:  [Javascript,Vue]<br>description:  2025-02-17-非同步程式的執行順序</h2><h1 id="2025-02-17-非同步程式的執行順序"><a href="#2025-02-17-非同步程式的執行順序" class="headerlink" title="2025-02-17-非同步程式的執行順序"></a>2025-02-17-非同步程式的執行順序</h1><p>這個核心觀念，其實關係到 <strong>非同步程式的執行順序</strong> ——也就是「<strong>事情不是馬上完成，要等做完再做下一件</strong>」，這正是 callback、async&#x2F;await 要解決的問題。</p>
+<hr>
+<h2 id="🎯-你的問題：「為什麼不是從裡到外-call？」"><a href="#🎯-你的問題：「為什麼不是從裡到外-call？」" class="headerlink" title="🎯 你的問題：「為什麼不是從裡到外 call？」"></a>🎯 你的問題：「為什麼不是從裡到外 call？」</h2><p>你可能想像的是這樣寫：</p>
+<pre><code class="js">完成(() =&gt; {
+  送人(() =&gt; {
+    包裝(() =&gt; {
+      切蛋糕(() =&gt; {
+        烘烤(() =&gt; {
+          攪拌(() =&gt; {
+            買材料()
+          })
+        })
+      })
+    })
+  })
+})
+</code></pre>
+<p>這樣是「<strong>先寫最後一步，從裡面往外包</strong>」，但這樣其實會 <strong>先執行最外層</strong>，也就是「完成()」，但那時前面步驟根本還沒做！</p>
+<hr>
+<h2 id="💡-原因：JavaScript-的非同步邏輯是「事件驅動」"><a href="#💡-原因：JavaScript-的非同步邏輯是「事件驅動」" class="headerlink" title="💡 原因：JavaScript 的非同步邏輯是「事件驅動」"></a>💡 原因：JavaScript 的非同步邏輯是「事件驅動」</h2><p>JavaScript 不會等事情做完才繼續跑下一行，<strong>它會先繼續往下跑</strong>，等到某個動作完成後，再「呼叫 callback」。</p>
+<p>所以程式碼的寫法要跟「<strong>事情發生的順序</strong>」一樣：</p>
+<pre><code class="js">買材料(() =&gt; {
+  攪拌(() =&gt; {
+    烘烤(() =&gt; {
+      切蛋糕(() =&gt; {
+        包裝(() =&gt; {
+          送人(() =&gt; {
+            完成()
+          })
+        })
+      })
+    })
+  })
+})
+</code></pre>
+<p>因為你得 <strong>先做完前面，才會進行下一步</strong>。</p>
+<hr>
+<h2 id="🧁-用生活比喻更好懂"><a href="#🧁-用生活比喻更好懂" class="headerlink" title="🧁 用生活比喻更好懂"></a>🧁 用生活比喻更好懂</h2><p>假設你是蛋糕助手：</p>
+<ol>
+<li><strong>你先去買材料</strong>，買完了你就打電話通知「下一個人」。</li>
+<li>「下一個人」接到電話後，開始攪拌，完了又通知「下一個人」。</li>
+<li>然後才烤、切、包裝……</li>
+</ol>
+<p>如果你一開始就打電話給「送蛋糕的人」，他會說：</p>
+<blockquote>
+<p>❗️「欸我等你們做完蛋糕再通知我啦，我現在不能開始啦！」</p>
+</blockquote>
+<hr>
+<h2 id="✅-總結"><a href="#✅-總結" class="headerlink" title="✅ 總結"></a>✅ 總結</h2><ul>
+<li>callback 是照「<strong>完成順序</strong>」來寫的。</li>
+<li><strong>從外到內</strong>是因為「前面的事做完，才通知後面可以做」。</li>
+<li>如果你寫從裡到外，會導致「還沒開始就想完成」，邏輯上不通。</li>
+</ul>
+<hr>

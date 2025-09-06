@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2025-03-19-建立 **「JavaScript 系列九」的 Vue 專案">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025-03-19-建立 **「JavaScript 系列九」的 Vue 專案">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/09/06/OneDayOneNote/2025-03-19/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2025-03-19-建立 **「JavaScript 系列九」的 Vue 專案">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-09-06T15:19:19.000Z">
+<meta property="article:modified_time" content="2025-09-06T15:20:26.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2025/09/06/OneDayOneNote/2025-03-19/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2025/09/06/OneDayOneNote/2025-03-19/","path":"2025/09/06/OneDayOneNote/2025-03-19/","title":"2025-03-19-建立 **「JavaScript 系列九」的 Vue 專案"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2025-03-19-建立 **「JavaScript 系列九」的 Vue 專案 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2025-03-19-%E5%BB%BA%E7%AB%8B-%E3%80%8CJavaScript-%E7%B3%BB%E5%88%97%E4%B9%9D%E3%80%8D%E7%9A%84-Vue-%E5%B0%88%E6%A1%88"><span class="nav-number">1.</span> <span class="nav-text">2025-03-19-建立 **「JavaScript 系列九」的 Vue 專案</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%85-1-%E5%9C%A8-VueProjects-%E8%B3%87%E6%96%99%E5%A4%BE%E4%B8%AD%E5%BB%BA%E7%AB%8B%E6%96%B0%E5%B0%88%E6%A1%88"><span class="nav-number">1.1.</span> <span class="nav-text">✅ 1. 在 VueProjects 資料夾中建立新專案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%85-2-%E9%80%B2%E5%85%A5%E8%A9%B2%E5%B0%88%E6%A1%88%E8%B3%87%E6%96%99%E5%A4%BE"><span class="nav-number">1.2.</span> <span class="nav-text">✅ 2. 進入該專案資料夾</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%85-3-%E5%AE%89%E8%A3%9D%E6%89%80%E6%9C%89%E4%BE%9D%E8%B3%B4%E5%A5%97%E4%BB%B6%EF%BC%88%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%A6%81%E5%81%9A%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">✅ 3. 安裝所有依賴套件（第一次要做）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%85-4-%E5%95%9F%E5%8B%95%E9%96%8B%E7%99%BC%E4%BC%BA%E6%9C%8D%E5%99%A8%EF%BC%88%E9%96%8B%E5%A7%8B%E5%AF%AB%E7%A8%8B%E5%BC%8F%E5%95%A6%EF%BC%81%EF%BC%89"><span class="nav-number">1.4.</span> <span class="nav-text">✅ 4. 啟動開發伺服器（開始寫程式啦！）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%85-5-%E9%96%8B%E5%A7%8B%E4%BD%A0%E7%9A%84%E3%80%8C%E7%B3%BB%E5%88%97%E4%B9%9D%E3%80%8D%E9%96%8B%E7%99%BC"><span class="nav-number">1.5.</span> <span class="nav-text">✅ 5. 開始你的「系列九」開發</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%A7%BC-%E5%B0%8F%E6%8F%90%E9%86%92%EF%BC%9A%E5%A6%82%E6%9E%9C%E4%B9%8B%E5%89%8D%E6%B2%92%E8%A3%9D%E9%81%8E-Vite-CLI"><span class="nav-number">1.6.</span> <span class="nav-text">🧼 小提醒：如果之前沒裝過 Vite CLI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%85-%E6%88%90%E5%8A%9F%E5%BE%8C%E4%BD%A0%E6%9C%83%E7%9C%8B%E5%88%B0%E7%9A%84%E6%AA%94%E6%A1%88%E7%B5%90%E6%A7%8B%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="nav-number">1.7.</span> <span class="nav-text">✅ 成功後你會看到的檔案結構如下：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%85-template-vue-%E6%98%AF%E4%BB%80%E9%BA%BC%E6%84%8F%E6%80%9D%EF%BC%9F"><span class="nav-number">1.8.</span> <span class="nav-text">✅ --template vue 是什麼意思？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%8D-%E8%AA%AA%E6%98%8E%E6%8B%86%E8%A7%A3%EF%BC%9A"><span class="nav-number">1.8.1.</span> <span class="nav-text">🔍 說明拆解：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%85-%E6%9C%89%E5%93%AA%E4%BA%9B%E5%8F%AF%E7%94%A8%E7%9A%84-template-%E9%81%B8%E9%A0%85%EF%BC%9F"><span class="nav-number">1.9.</span> <span class="nav-text">✅ 有哪些可用的 --template 選項？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%85-%E5%A6%82%E6%9E%9C%E4%BD%A0%E7%9C%81%E7%95%A5-template-vue-%E6%9C%83%E6%80%8E%E6%A8%A3%EF%BC%9F"><span class="nav-number">1.10.</span> <span class="nav-text">✅ 如果你省略 --template vue 會怎樣？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%85-%E7%B5%90%E8%AB%96%EF%BC%9A"><span class="nav-number">1.11.</span> <span class="nav-text">✅ 結論：</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">408</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2025/09/06/OneDayOneNote/2025-03-19/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2025-03-19-建立 **「JavaScript 系列九」的 Vue 專案 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2025-03-19-建立 **「JavaScript 系列九」的 Vue 專案">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2025-03-19-建立 **「JavaScript 系列九」的 Vue 專案
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2025-09-06 23:19:19 / 修改時間：23:20:26" itemprop="dateCreated datePublished" datetime="2025-09-06T23:19:19+08:00">2025-09-06</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2025-03-19-建立 **「JavaScript 系列九」的 Vue 專案</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="2025-03-19-建立-「JavaScript-系列九」的-Vue-專案"><a href="#2025-03-19-建立-「JavaScript-系列九」的-Vue-專案" class="headerlink" title="2025-03-19-建立 **「JavaScript 系列九」的 Vue 專案"></a>2025-03-19-建立 **「JavaScript 系列九」的 Vue 專案</h1><p>我們現在就一起來建立 <strong>「JavaScript 系列九」的 Vue 專案</strong>，步驟如下：</p>
+<hr>
+<h2 id="✅-1-在-VueProjects-資料夾中建立新專案"><a href="#✅-1-在-VueProjects-資料夾中建立新專案" class="headerlink" title="✅ 1. 在 VueProjects 資料夾中建立新專案"></a>✅ 1. 在 <code>VueProjects</code> 資料夾中建立新專案</h2><p>請在終端機（Terminal）中輸入以下指令（建議用 Vite 建 Vue 3 專案）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm create vite@latest js9-cool-components -- --template vue</span><br></pre></td></tr></table></figure>
+
+<p>這會建立一個叫做 <code>js9-cool-components</code> 的 Vue 專案資料夾。</p>
+<hr>
+<h2 id="✅-2-進入該專案資料夾"><a href="#✅-2-進入該專案資料夾" class="headerlink" title="✅ 2. 進入該專案資料夾"></a>✅ 2. 進入該專案資料夾</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> js9-cool-components</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="✅-3-安裝所有依賴套件（第一次要做）"><a href="#✅-3-安裝所有依賴套件（第一次要做）" class="headerlink" title="✅ 3. 安裝所有依賴套件（第一次要做）"></a>✅ 3. 安裝所有依賴套件（第一次要做）</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="✅-4-啟動開發伺服器（開始寫程式啦！）"><a href="#✅-4-啟動開發伺服器（開始寫程式啦！）" class="headerlink" title="✅ 4. 啟動開發伺服器（開始寫程式啦！）"></a>✅ 4. 啟動開發伺服器（開始寫程式啦！）</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
+
+<p>執行後你會看到：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">VITE v4.x  ready in 300ms</span><br><span class="line">➜  Local:   http://localhost:5173/</span><br></pre></td></tr></table></figure>
+
+<p>打開瀏覽器輸入 <code>http://localhost:5173/</code> 就能看到 Vue App 畫面！</p>
+<hr>
+<h2 id="✅-5-開始你的「系列九」開發"><a href="#✅-5-開始你的「系列九」開發" class="headerlink" title="✅ 5. 開始你的「系列九」開發"></a>✅ 5. 開始你的「系列九」開發</h2><p>你可以把你的元件放到：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">src/components/</span><br></pre></td></tr></table></figure>
+
+<p>例如：</p>
+<table>
+<thead>
+<tr>
+<th>檔案</th>
+<th>內容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Header.vue</code></td>
+<td>顯示 I am header!</td>
+</tr>
+<tr>
+<td><code>Main.vue</code></td>
+<td>顯示 I am main!</td>
+</tr>
+<tr>
+<td><code>Footer.vue</code></td>
+<td>顯示 I am footer!</td>
+</tr>
+<tr>
+<td><code>MyBadge.vue</code></td>
+<td>仿 Quasar Badge 元件</td>
+</tr>
+</tbody></table>
+<p>然後在 <code>App.vue</code> 中匯入並使用它們。</p>
+<hr>
+<h2 id="🧼-小提醒：如果之前沒裝過-Vite-CLI"><a href="#🧼-小提醒：如果之前沒裝過-Vite-CLI" class="headerlink" title="🧼 小提醒：如果之前沒裝過 Vite CLI"></a>🧼 小提醒：如果之前沒裝過 Vite CLI</h2><p>請先安裝一次 <code>npm create vite@latest</code> 所需指令（如果終端機出錯）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g create-vite</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="✅-成功後你會看到的檔案結構如下："><a href="#✅-成功後你會看到的檔案結構如下：" class="headerlink" title="✅ 成功後你會看到的檔案結構如下："></a>✅ 成功後你會看到的檔案結構如下：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">VueProjects/</span><br><span class="line">└── js9-cool-components/</span><br><span class="line">    ├── index.html</span><br><span class="line">    ├── package.json</span><br><span class="line">    ├── vite.config.js</span><br><span class="line">    └── src/</span><br><span class="line">        ├── App.vue</span><br><span class="line">        ├── main.js</span><br><span class="line">        └── components/</span><br><span class="line">            ├── Header.vue</span><br><span class="line">            ├── Main.vue</span><br><span class="line">            ├── Footer.vue</span><br><span class="line">            └── MyBadge.vue</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>很好奇心 👏 問得非常到位！</p>
+<hr>
+<h2 id="✅-template-vue-是什麼意思？"><a href="#✅-template-vue-是什麼意思？" class="headerlink" title="✅ --template vue 是什麼意思？"></a>✅ <code>--template vue</code> 是什麼意思？</h2><p>這是給 <code>npm create vite@latest</code> 的 <strong>參數（Arguments）</strong>，指定你要用哪一種模板（template）來建立你的新專案。</p>
+<hr>
+<h3 id="🔍-說明拆解："><a href="#🔍-說明拆解：" class="headerlink" title="🔍 說明拆解："></a>🔍 說明拆解：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm create vite@latest js9-cool-components -- --template vue</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>部分</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>npm create vite@latest</code></td>
+<td>呼叫最新版的 Vite 專案產生器</td>
+</tr>
+<tr>
+<td><code>js9-cool-components</code></td>
+<td>要建立的資料夾名稱</td>
+</tr>
+<tr>
+<td><code>--</code></td>
+<td>告訴 npm：<strong>接下來的參數是要傳給 Vite CLI 的，不是 npm 自己的</strong></td>
+</tr>
+<tr>
+<td><code>--template vue</code></td>
+<td>指定要用 <code>vue</code> 模板建立專案（也可以換成其他模板）</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="✅-有哪些可用的-template-選項？"><a href="#✅-有哪些可用的-template-選項？" class="headerlink" title="✅ 有哪些可用的 --template 選項？"></a>✅ 有哪些可用的 <code>--template</code> 選項？</h2><table>
+<thead>
+<tr>
+<th>模板名稱</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>vanilla</code></td>
+<td>純 JavaScript 專案</td>
+</tr>
+<tr>
+<td><code>vue</code></td>
+<td>Vue 3 + Vite 基礎專案（你現在用的）</td>
+</tr>
+<tr>
+<td><code>vue-ts</code></td>
+<td>Vue 3 + TypeScript</td>
+</tr>
+<tr>
+<td><code>react</code></td>
+<td>React + Vite 專案</td>
+</tr>
+<tr>
+<td><code>react-ts</code></td>
+<td>React + TypeScript</td>
+</tr>
+<tr>
+<td><code>preact</code></td>
+<td>Preact 專案</td>
+</tr>
+<tr>
+<td><code>lit</code></td>
+<td>Lit 元件專案</td>
+</tr>
+<tr>
+<td><code>svelte</code></td>
+<td>Svelte 專案</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="✅-如果你省略-template-vue-會怎樣？"><a href="#✅-如果你省略-template-vue-會怎樣？" class="headerlink" title="✅ 如果你省略 --template vue 會怎樣？"></a>✅ 如果你省略 <code>--template vue</code> 會怎樣？</h2><p>如果你打：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm create vite@latest</span><br></pre></td></tr></table></figure>
+
+<p>它會進入互動模式，問你：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">✔ Project name: … </span><br><span class="line">✔ Select a framework: › - Use arrow-keys. Return to submit.</span><br><span class="line">    Vanilla</span><br><span class="line">    Vue</span><br><span class="line">    React</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+
+<p>你就要用方向鍵自己選 <code>Vue</code>。<br>而加上 <code>--template vue</code> 就是<strong>直接跳過選單</strong>，自動建立 Vue 專案。</p>
+<hr>
+<h2 id="✅-結論："><a href="#✅-結論：" class="headerlink" title="✅ 結論："></a>✅ 結論：</h2><table>
+<thead>
+<tr>
+<th>問題</th>
+<th>解答</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>--template vue</code> 是什麼？</td>
+<td>是告訴 Vite：「我要建立 Vue 專案」</td>
+</tr>
+<tr>
+<td>可以不加嗎？</td>
+<td>可以，加了是自動化；不加會進入互動選單</td>
+</tr>
+<tr>
+<td>可以換別的模板嗎？</td>
+<td>可以！像 <code>--template react</code>、<code>--template vue-ts</code> 等</td>
+</tr>
+</tbody></table>
+<hr>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/Javascript/" rel="tag"># Javascript</a>
+              <a href="/apple.lily/tags/Vue/" rel="tag"># Vue</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/09/06/OneDayOneNote/2025-03-18/" rel="prev" title="2025-03-18-PWA（Progressive Web App）是一種介於網站與原生 App 之間的應用程式形式">
+                  <i class="fa fa-angle-left"></i> 2025-03-18-PWA（Progressive Web App）是一種介於網站與原生 App 之間的應用程式形式
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/09/06/OneDayOneNote/2025-03-20/" rel="next" title="2025-03-20-什麼是 nvm">
+                  2025-03-20-什麼是 nvm <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

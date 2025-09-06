@@ -1,0 +1,80 @@
+<hr>
+<h2 id="title-2025-02-25-prototype是什麼？為什麼要看date-2025-09-06-22-43-32tags-Javascript-Vue-description-2025-02-25-prototype是什麼？為什麼要看"><a href="#title-2025-02-25-prototype是什麼？為什麼要看date-2025-09-06-22-43-32tags-Javascript-Vue-description-2025-02-25-prototype是什麼？為什麼要看" class="headerlink" title="title:  2025-02-25-prototype是什麼？為什麼要看date: 2025-09-06 22:43:32tags:  [Javascript,Vue]description:    2025-02-25-prototype是什麼？為什麼要看"></a>title:  2025-02-25-prototype是什麼？為什麼要看<br>date: 2025-09-06 22:43:32<br>tags:  [Javascript,Vue]<br>description:    2025-02-25-prototype是什麼？為什麼要看</h2><h1 id="2025-02-25-prototype是什麼？為什麼要看"><a href="#2025-02-25-prototype是什麼？為什麼要看" class="headerlink" title="2025-02-25-prototype是什麼？為什麼要看"></a>2025-02-25-prototype是什麼？為什麼要看</h1><hr>
+<h2 id="🔍-prototype-是什麼？為什麼要看？"><a href="#🔍-prototype-是什麼？為什麼要看？" class="headerlink" title="🔍 prototype 是什麼？為什麼要看？"></a>🔍 <code>prototype</code> 是什麼？為什麼要看？</h2><p>在 JavaScript 中，<strong>所有物件都有原型（prototype）</strong>。這個「原型」是物件的隱藏屬性，用來繼承其他物件的屬性與方法。</p>
+<p>簡單來說：</p>
+<blockquote>
+<p><strong>prototype 是 JavaScript 的繼承機制，是「物件的爸爸」或「模板」</strong>。</p>
+</blockquote>
+<hr>
+<h2 id="🧠-為什麼看-Prototype-有用？"><a href="#🧠-為什麼看-Prototype-有用？" class="headerlink" title="🧠 為什麼看 [[Prototype]] 有用？"></a>🧠 為什麼看 <code>[[Prototype]]</code> 有用？</h2><h3 id="✅-1-知道物件的本質與繼承來源"><a href="#✅-1-知道物件的本質與繼承來源" class="headerlink" title="✅ 1. 知道物件的本質與繼承來源"></a>✅ 1. <strong>知道物件的本質與繼承來源</strong></h3><p>範例：</p>
+<pre><code class="js">const arr = [1, 2, 3]
+console.log(arr)
+</code></pre>
+<p>在 Chrome DevTools 點開這個陣列 → 可以看到：</p>
+<pre><code>[[Prototype]]: Array(0)
+</code></pre>
+<p>你會發現：</p>
+<pre><code class="js">arr.map()
+arr.filter()
+arr.forEach()
+</code></pre>
+<p>這些方法不是你自己寫的，是「繼承自 Array.prototype」！</p>
+<hr>
+<h3 id="✅-2-除錯時辨別是什麼類型的物件"><a href="#✅-2-除錯時辨別是什麼類型的物件" class="headerlink" title="✅ 2. 除錯時辨別是什麼類型的物件"></a>✅ 2. <strong>除錯時辨別是什麼類型的物件</strong></h3><p>有時候你拿到一個 <code>object</code>，但你不確定它是：</p>
+<ul>
+<li>真正的 plain object？</li>
+<li>還是從某個 class new 出來的？</li>
+<li>或是 JSON 格式物件？</li>
+</ul>
+<p>你可以：</p>
+<pre><code class="js">console.log(Object.getPrototypeOf(obj))
+</code></pre>
+<p>或直接在 Chrome 點開 <code>[[Prototype]]</code>，就能看出來是：</p>
+<ul>
+<li><code>Object</code></li>
+<li><code>Array</code></li>
+<li><code>Date</code></li>
+<li>自訂 class（例如：<code>WeatherData</code>）</li>
+</ul>
+<hr>
+<h3 id="✅-3-了解自訂物件或第三方物件的能力"><a href="#✅-3-了解自訂物件或第三方物件的能力" class="headerlink" title="✅ 3. 了解自訂物件或第三方物件的能力"></a>✅ 3. <strong>了解自訂物件或第三方物件的能力</strong></h3><p>如果你用了第三方函式庫（例如 Vue、Axios），<br>你可以：</p>
+<pre><code class="js">console.dir(instance)
+</code></pre>
+<p>或：</p>
+<pre><code class="js">console.log(Object.getPrototypeOf(instance))
+</code></pre>
+<p>然後你會看到：</p>
+<ul>
+<li>這個物件有哪些方法</li>
+<li>有沒有內建的特殊函數（如 <code>.on()</code>, <code>.emit()</code>）</li>
+</ul>
+<hr>
+<h2 id="💡-初學者常見誤區"><a href="#💡-初學者常見誤區" class="headerlink" title="💡 初學者常見誤區"></a>💡 初學者常見誤區</h2><table>
+<thead>
+<tr>
+<th>錯誤觀念</th>
+<th>正確說法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>object</code> 裡看到的方法是「自己寫的」</td>
+<td>其實是從 <code>prototype</code> 繼承來的</td>
+</tr>
+<tr>
+<td><code>array</code> 可以用 <code>.map()</code> 是因為陣列特別</td>
+<td>是因為繼承了 <code>Array.prototype</code></td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🧪-小測驗題：你知道嗎？"><a href="#🧪-小測驗題：你知道嗎？" class="headerlink" title="🧪 小測驗題：你知道嗎？"></a>🧪 小測驗題：你知道嗎？</h2><pre><code class="js">const obj = {}
+console.log(obj.toString) // 這是哪來的？
+</code></pre>
+<p>答：這是從 <code>Object.prototype.toString</code> 繼承來的。</p>
+<hr>
+<h2 id="✅-結論：高階除錯、理解繼承、搞懂底層運作"><a href="#✅-結論：高階除錯、理解繼承、搞懂底層運作" class="headerlink" title="✅ 結論：高階除錯、理解繼承、搞懂底層運作"></a>✅ 結論：高階除錯、理解繼承、搞懂底層運作</h2><p>所以，看 <code>[[Prototype]]</code> 對高階開發者來說是非常重要的技巧，可以幫助你：</p>
+<ul>
+<li>除錯與分析物件</li>
+<li>理解資料來源與方法繼承</li>
+<li>寫出更有結構的程式碼</li>
+</ul>
+<hr>

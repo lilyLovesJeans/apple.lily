@@ -1,0 +1,108 @@
+<hr>
+<h2 id="title-2025-02-27-Blob-是-Binary-Large-Object-的縮寫date-2025-09-06-22-47-48tags-Javascript-Vue-description-2025-02-27-Blob-是-Binary-Large-Object-的縮寫"><a href="#title-2025-02-27-Blob-是-Binary-Large-Object-的縮寫date-2025-09-06-22-47-48tags-Javascript-Vue-description-2025-02-27-Blob-是-Binary-Large-Object-的縮寫" class="headerlink" title="title: 2025-02-27-Blob 是 Binary Large Object 的縮寫date: 2025-09-06 22:47:48tags:  [Javascript,Vue]description:   2025-02-27-Blob 是 Binary Large Object 的縮寫"></a>title: 2025-02-27-Blob 是 <strong>Binary Large Object</strong> 的縮寫<br>date: 2025-09-06 22:47:48<br>tags:  [Javascript,Vue]<br>description:   2025-02-27-Blob 是 <strong>Binary Large Object</strong> 的縮寫</h2><h1 id="2025-02-27-Blob-是-Binary-Large-Object-的縮寫"><a href="#2025-02-27-Blob-是-Binary-Large-Object-的縮寫" class="headerlink" title="2025-02-27-Blob 是 Binary Large Object 的縮寫"></a>2025-02-27-Blob 是 <strong>Binary Large Object</strong> 的縮寫</h1><p>當你寫下這行：</p>
+<pre><code class="js">const blob = new Blob([jsonString], { type: &#39;application/json&#39; })
+</code></pre>
+<p>它的作用是：<br>🔧 <strong>將 JavaScript 文字（JSON 字串）打包成一個可以下載或處理的檔案物件</strong>。</p>
+<hr>
+<h3 id="✅-詳細解釋："><a href="#✅-詳細解釋：" class="headerlink" title="✅ 詳細解釋："></a>✅ 詳細解釋：</h3><h4 id="🔸-Blob-是什麼？"><a href="#🔸-Blob-是什麼？" class="headerlink" title="🔸 Blob 是什麼？"></a>🔸 <code>Blob</code> 是什麼？</h4><p><code>Blob</code> 是 <strong>Binary Large Object</strong> 的縮寫，它是 JavaScript 中用來表示 <strong>不可變的原始資料（二進位、大塊資料）</strong> 的一種物件。</p>
+<p>它可以包含：</p>
+<ul>
+<li>純文字</li>
+<li>圖片</li>
+<li>JSON</li>
+<li>影片</li>
+<li>任意檔案內容</li>
+</ul>
+<hr>
+<h3 id="🔹-語法解析："><a href="#🔹-語法解析：" class="headerlink" title="🔹 語法解析："></a>🔹 語法解析：</h3><pre><code class="js">new Blob([內容], { type: &#39;MIME 類型&#39; })
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>部分</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>[jsonString]</code></td>
+<td>要寫進檔案的內容（這裡是你的 JSON 字串）</td>
+</tr>
+<tr>
+<td><code>{ type: &#39;application/json&#39; }</code></td>
+<td>檔案的 MIME 類型，讓系統知道這是 JSON 格式</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>💡 這樣做是為了「模擬」一個下載用的 <code>.json</code> 檔案。</p>
+</blockquote>
+<hr>
+<h3 id="🧪-範例："><a href="#🧪-範例：" class="headerlink" title="🧪 範例："></a>🧪 範例：</h3><p>假設你有個 JSON 字串：</p>
+<pre><code class="js">const jsonString = &#39;{&quot;name&quot;: &quot;Lily&quot;, &quot;age&quot;: 25}&#39;
+const blob = new Blob([jsonString], { type: &#39;application/json&#39; })
+</code></pre>
+<p>這個 <code>blob</code> 物件裡面就會包含你的 JSON 檔案內容了。</p>
+<hr>
+<h3 id="📥-接下來你可以用這個-Blob："><a href="#📥-接下來你可以用這個-Blob：" class="headerlink" title="📥 接下來你可以用這個 Blob："></a>📥 接下來你可以用這個 Blob：</h3><ol>
+<li>建立下載連結（<code>&lt;a&gt;</code> 標籤）</li>
+<li>顯示在頁面上供人下載</li>
+<li>傳送給伺服器上傳等</li>
+</ol>
+<hr>
+<h3 id="👇-搭配下載功能就是："><a href="#👇-搭配下載功能就是：" class="headerlink" title="👇 搭配下載功能就是："></a>👇 搭配下載功能就是：</h3><pre><code class="js">const url = URL.createObjectURL(blob)
+const a = document.createElement(&#39;a&#39;)
+a.href = url
+a.download = &#39;data.json&#39;
+a.click()
+URL.revokeObjectURL(url)
+</code></pre>
+<hr>
+<p>這段程式碼的功能是：<br>✅ <strong>把你用 JavaScript 產生的資料，透過瀏覽器下載成一個檔案</strong>。</p>
+<hr>
+<h2 id="🔍-詳細語法解析"><a href="#🔍-詳細語法解析" class="headerlink" title="🔍 詳細語法解析"></a>🔍 詳細語法解析</h2><pre><code class="js">const url = URL.createObjectURL(blob)
+</code></pre>
+<h3 id="🧠-意思："><a href="#🧠-意思：" class="headerlink" title="🧠 意思："></a>🧠 意思：</h3><p>把 <code>blob</code>（檔案資料）轉成一個 <strong>暫時性的 URL</strong>，可以讓你用 <code>&lt;a&gt;</code> 標籤去連結、下載或預覽。</p>
+<h3 id="🧾-舉例："><a href="#🧾-舉例：" class="headerlink" title="🧾 舉例："></a>🧾 舉例：</h3><p>產生像這樣的網址：</p>
+<pre><code>blob:null/1a2b3c4d-5678-90ef-1234-567890abcdef
+</code></pre>
+<hr>
+<pre><code class="js">const a = document.createElement(&#39;a&#39;)
+</code></pre>
+<h3 id="🧠-意思：-1"><a href="#🧠-意思：-1" class="headerlink" title="🧠 意思："></a>🧠 意思：</h3><p>用 JavaScript 建立一個 <code>&lt;a&gt;</code> 超連結元素（不會加到畫面上）。</p>
+<hr>
+<pre><code class="js">a.href = url
+</code></pre>
+<h3 id="🧠-意思：-2"><a href="#🧠-意思：-2" class="headerlink" title="🧠 意思："></a>🧠 意思：</h3><p>把這個連結元素的 <code>href</code> 屬性設為上面建立的 blob URL，也就是指向我們要下載的檔案內容。</p>
+<hr>
+<pre><code class="js">a.download = &#39;data.json&#39;
+</code></pre>
+<h3 id="🧠-意思：-3"><a href="#🧠-意思：-3" class="headerlink" title="🧠 意思："></a>🧠 意思：</h3><p>這是 HTML5 的 <code>download</code> 屬性。<br>📂 它會告訴瀏覽器：「下載這個檔案，而且檔名叫做 <code>data.json</code>」。</p>
+<hr>
+<pre><code class="js">a.click()
+</code></pre>
+<h3 id="🧠-意思：-4"><a href="#🧠-意思：-4" class="headerlink" title="🧠 意思："></a>🧠 意思：</h3><p>模擬使用者「點擊」這個 <code>&lt;a&gt;</code> 標籤。<br>🚀 這一行會觸發瀏覽器開始「下載檔案」的動作。</p>
+<hr>
+<pre><code class="js">URL.revokeObjectURL(url)
+</code></pre>
+<h3 id="🧠-意思：-5"><a href="#🧠-意思：-5" class="headerlink" title="🧠 意思："></a>🧠 意思：</h3><p>釋放這個 blob URL 的記憶體空間，讓瀏覽器清理不再使用的資源（⚠️ 非常重要的清理動作）。</p>
+<hr>
+<h2 id="📌-總結流程圖（點一下-→-建立-URL-→-模擬下載-→-清理）："><a href="#📌-總結流程圖（點一下-→-建立-URL-→-模擬下載-→-清理）：" class="headerlink" title="📌 總結流程圖（點一下 → 建立 URL → 模擬下載 → 清理）："></a>📌 總結流程圖（點一下 → 建立 URL → 模擬下載 → 清理）：</h2><pre><code>1. Blob檔案  →  2. 建立URL  →  3. 建立&lt;a&gt;標籤 → 4. 模擬點擊 → 5. 清理資源
+</code></pre>
+<hr>
+<h2 id="✅-實際應用範例"><a href="#✅-實際應用範例" class="headerlink" title="✅ 實際應用範例"></a>✅ 實際應用範例</h2><p>你可以用這整段程式碼，讓使用者下載任何資料，例如：</p>
+<pre><code class="js">const jsonString = JSON.stringify({ name: &quot;Lily&quot;, age: 25 }, null, 2)
+const blob = new Blob([jsonString], { type: &#39;application/json&#39; })
+
+const url = URL.createObjectURL(blob)
+const a = document.createElement(&#39;a&#39;)
+a.href = url
+a.download = &#39;my_data.json&#39;
+a.click()
+URL.revokeObjectURL(url)
+</code></pre>
+<p>這會自動下載一個檔案 <code>my_data.json</code>，內容是：</p>
+<pre><code class="json">{
+  &quot;name&quot;: &quot;Lily&quot;,
+  &quot;age&quot;: 25
+}
+</code></pre>
+<hr>

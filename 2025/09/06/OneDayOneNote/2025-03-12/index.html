@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2025-03-12-國家資訊與地圖應用程式 -第二步">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025-03-12-國家資訊與地圖應用程式 -第二步">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/09/06/OneDayOneNote/2025-03-12/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2025-03-12-國家資訊與地圖應用程式 -第二步">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-09-06T15:08:42.000Z">
+<meta property="article:modified_time" content="2025-09-06T15:09:48.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2025/09/06/OneDayOneNote/2025-03-12/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2025/09/06/OneDayOneNote/2025-03-12/","path":"2025/09/06/OneDayOneNote/2025-03-12/","title":"2025-03-12-國家資訊與地圖應用程式 -第二步"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2025-03-12-國家資訊與地圖應用程式 -第二步 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2025-03-12-%E5%9C%8B%E5%AE%B6%E8%B3%87%E8%A8%8A%E8%88%87%E5%9C%B0%E5%9C%96%E6%87%89%E7%94%A8%E7%A8%8B%E5%BC%8F-%E7%AC%AC%E4%BA%8C%E6%AD%A5"><span class="nav-number">1.</span> <span class="nav-text">2025-03-12-國家資訊與地圖應用程式 -第二步</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%94%B7-%E5%8D%80%E5%A1%8A%EF%BC%9A%E7%95%AB%E9%9D%A2%E7%B5%90%E6%A7%8B"><span class="nav-number">1.1.</span> <span class="nav-text">🔷 &lt;template&gt; 區塊：畫面結構</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AA%AA%E6%98%8E%EF%BC%9A"><span class="nav-number">1.1.1.</span> <span class="nav-text">說明：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%94%B7-%E5%8D%80%E5%A1%8A%EF%BC%9A%E9%82%8F%E8%BC%AF%E7%A8%8B%E5%BC%8F"><span class="nav-number">1.2.</span> <span class="nav-text">🔷 &lt;script setup&gt; 區塊：邏輯程式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%A7%B1-%E5%9C%B0%E5%9C%96%E5%88%9D%E5%A7%8B%E5%8C%96-%E9%8C%AF%E8%AA%A4%E5%81%B5%E6%B8%AC"><span class="nav-number">1.2.1.</span> <span class="nav-text">🧱 地圖初始化 &amp; 錯誤偵測</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%97%BA%EF%B8%8F-%E5%BB%BA%E7%AB%8B%E5%9C%B0%E5%9C%96"><span class="nav-number">1.2.2.</span> <span class="nav-text">🗺️ 建立地圖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%A7%B1-%E5%8A%A0%E5%85%A5%E5%BA%95%E5%9C%96%EF%BC%88OpenStreetMap%EF%BC%89"><span class="nav-number">1.2.3.</span> <span class="nav-text">🧱 加入底圖（OpenStreetMap）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%A7%A9-%E8%A8%AD%E5%AE%9A-marker-%E5%9C%96%E7%A4%BA%EF%BC%88%E9%81%BF%E5%85%8D%E9%A1%AF%E7%A4%BA%E4%B8%8D%E5%87%BA%E4%BE%86%EF%BC%89"><span class="nav-number">1.2.4.</span> <span class="nav-text">🧩 設定 marker 圖示（避免顯示不出來）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%8C%8D-%E6%8A%93%E5%9C%8B%E5%AE%B6%E8%B3%87%E6%96%99%EF%BC%88REST-Countries-API%EF%BC%89"><span class="nav-number">1.2.5.</span> <span class="nav-text">🌍 抓國家資料（REST Countries API）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%9B%A1%EF%B8%8F-%E9%98%B2%E5%91%86%EF%BC%9AAPI-%E5%9B%9E%E5%82%B3%E4%B8%8D%E6%98%AF%E9%99%A3%E5%88%97"><span class="nav-number">1.2.6.</span> <span class="nav-text">🛡️ 防呆：API 回傳不是陣列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%93%8C-%E5%8A%A0%E5%85%A5%E6%AF%8F%E5%80%8B%E5%9C%8B%E5%AE%B6%E7%9A%84-marker"><span class="nav-number">1.2.7.</span> <span class="nav-text">📌 加入每個國家的 marker</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AA%AA%E6%98%8E%EF%BC%9A-1"><span class="nav-number">1.2.8.</span> <span class="nav-text">說明：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%A7%AF-%E6%8D%95%E6%8D%89%E9%8C%AF%E8%AA%A4"><span class="nav-number">1.2.9.</span> <span class="nav-text">🧯 捕捉錯誤</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%8E%A8-%E5%8D%80%E5%A1%8A%EF%BC%9A%E6%A8%A3%E5%BC%8F"><span class="nav-number">1.3.</span> <span class="nav-text">🎨 &lt;style scoped&gt; 區塊：樣式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%85-%E7%B8%BD%E7%B5%90"><span class="nav-number">1.4.</span> <span class="nav-text">✅ 總結</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">408</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2025/09/06/OneDayOneNote/2025-03-12/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2025-03-12-國家資訊與地圖應用程式 -第二步 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2025-03-12-國家資訊與地圖應用程式 -第二步">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2025-03-12-國家資訊與地圖應用程式 -第二步
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2025-09-06 23:08:42 / 修改時間：23:09:48" itemprop="dateCreated datePublished" datetime="2025-09-06T23:08:42+08:00">2025-09-06</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2025-03-12-國家資訊與地圖應用程式 -第二步</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="2025-03-12-國家資訊與地圖應用程式-第二步"><a href="#2025-03-12-國家資訊與地圖應用程式-第二步" class="headerlink" title="2025-03-12-國家資訊與地圖應用程式 -第二步"></a>2025-03-12-國家資訊與地圖應用程式 -第二步</h1><p>當然可以，下面是你這份 <code>CountryInfo.vue</code> 的程式碼逐行解釋，幫你了解每個區塊的 <strong>用途與原理</strong>。這會幫助你未來自己維護或擴充功能 🧠💡</p>
+<hr>
+<h2 id="🔷-區塊：畫面結構"><a href="#🔷-區塊：畫面結構" class="headerlink" title="🔷 &lt;template&gt; 區塊：畫面結構"></a>🔷 <code>&lt;template&gt;</code> 區塊：畫面結構</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;h2&gt;🌍 國家資訊與地圖應用程式&lt;/h2&gt;</span><br><span class="line">    &lt;div id=&quot;map&quot;&gt;&lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="說明："><a href="#說明：" class="headerlink" title="說明："></a>說明：</h3><ul>
+<li><p><code>h2</code> 是標題，讓使用者知道這是什麼應用。</p>
+</li>
+<li><p><code>#map</code> 是 Leaflet 地圖要掛載的位置（<strong>很重要！</strong>）</p>
+<ul>
+<li>Leaflet 會用 JavaScript 把地圖「插入」這個 DOM 元素中。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="🔷-區塊：邏輯程式"><a href="#🔷-區塊：邏輯程式" class="headerlink" title="🔷 &lt;script setup&gt; 區塊：邏輯程式"></a>🔷 <code>&lt;script setup&gt;</code> 區塊：邏輯程式</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; onMounted &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>✅ 匯入 <code>onMounted()</code>：Vue 組件掛載到畫面時會執行的生命週期函式。</p>
+<hr>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">onMounted</span>(<span class="keyword">async</span> () =&gt; &#123;</span><br></pre></td></tr></table></figure>
+
+<p>當地圖畫面 <code>#map</code> 被 Vue 渲染到畫面上後，這段程式碼就會開始執行。</p>
+<hr>
+<h3 id="🧱-地圖初始化-錯誤偵測"><a href="#🧱-地圖初始化-錯誤偵測" class="headerlink" title="🧱 地圖初始化 &amp; 錯誤偵測"></a>🧱 地圖初始化 &amp; 錯誤偵測</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (!<span class="variable language_">window</span>.<span class="property">L</span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;Leaflet (L) 尚未載入&#x27;</span>)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>✅ 確保全域變數 <code>L</code> 存在，這是 Leaflet 的主函式（因為你是用 CDN，不是用 <code>import</code>）</p>
+<hr>
+<h3 id="🗺️-建立地圖"><a href="#🗺️-建立地圖" class="headerlink" title="🗺️ 建立地圖"></a>🗺️ 建立地圖</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> map = L.<span class="title function_">map</span>(<span class="string">&#x27;map&#x27;</span>).<span class="title function_">setView</span>([<span class="number">20</span>, <span class="number">0</span>], <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+<p>✅ 建立 Leaflet 地圖，並設定初始視角：</p>
+<ul>
+<li><code>#map</code>：地圖插入的容器 ID</li>
+<li><code>[20, 0]</code>：緯度 20、經度 0 → 大致上是非洲中間</li>
+<li><code>2</code>：放大倍率，小數字表示縮得很遠（看整個世界）</li>
+</ul>
+<hr>
+<h3 id="🧱-加入底圖（OpenStreetMap）"><a href="#🧱-加入底圖（OpenStreetMap）" class="headerlink" title="🧱 加入底圖（OpenStreetMap）"></a>🧱 加入底圖（OpenStreetMap）</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">L.<span class="title function_">tileLayer</span>(<span class="string">&#x27;https://&#123;s&#125;.tile.openstreetmap.org/&#123;z&#125;/&#123;x&#125;/&#123;y&#125;.png&#x27;</span>, &#123;</span><br><span class="line">  <span class="attr">attribution</span>: <span class="string">&#x27;© OpenStreetMap contributors&#x27;</span></span><br><span class="line">&#125;).<span class="title function_">addTo</span>(map)</span><br></pre></td></tr></table></figure>
+
+<p>✅ 這是 Leaflet 的底圖來源，使用 OpenStreetMap 的免費圖資。</p>
+<ul>
+<li><code>&#123;s&#125;</code>、<code>&#123;z&#125;</code>、<code>&#123;x&#125;</code>、<code>&#123;y&#125;</code> 是地圖瓦片系統的變數。</li>
+</ul>
+<hr>
+<h3 id="🧩-設定-marker-圖示（避免顯示不出來）"><a href="#🧩-設定-marker-圖示（避免顯示不出來）" class="headerlink" title="🧩 設定 marker 圖示（避免顯示不出來）"></a>🧩 設定 marker 圖示（避免顯示不出來）</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> iconUrl = <span class="string">&#x27;https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png&#x27;</span></span><br><span class="line"><span class="keyword">const</span> shadowUrl = <span class="string">&#x27;https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">DefaultIcon</span> = L.<span class="title function_">icon</span>(&#123;</span><br><span class="line">  iconUrl,</span><br><span class="line">  shadowUrl,</span><br><span class="line">  <span class="attr">iconSize</span>: [<span class="number">25</span>, <span class="number">41</span>],</span><br><span class="line">  <span class="attr">iconAnchor</span>: [<span class="number">12</span>, <span class="number">41</span>],</span><br><span class="line">  <span class="attr">popupAnchor</span>: [<span class="number">1</span>, -<span class="number">34</span>],</span><br><span class="line">  <span class="attr">shadowSize</span>: [<span class="number">41</span>, <span class="number">41</span>]</span><br><span class="line">&#125;)</span><br><span class="line">L.<span class="property">Marker</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">options</span>.<span class="property">icon</span> = <span class="title class_">DefaultIcon</span></span><br></pre></td></tr></table></figure>
+
+<p>✅ Leaflet 使用自己的 marker 圖示，但在 CDN 環境下常常「找不到圖示」。<br>這段程式明確指定圖示網址，並設定為預設圖示，解決圖示不見的問題。</p>
+<hr>
+<h3 id="🌍-抓國家資料（REST-Countries-API）"><a href="#🌍-抓國家資料（REST-Countries-API）" class="headerlink" title="🌍 抓國家資料（REST Countries API）"></a>🌍 抓國家資料（REST Countries API）</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> res = <span class="keyword">await</span> <span class="title function_">fetch</span>(<span class="string">&#x27;https://restcountries.com/v3.1/all?fields=name,capital,latlng,flags,currencies&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> countries = <span class="keyword">await</span> res.<span class="title function_">json</span>()</span><br></pre></td></tr></table></figure>
+
+<p>✅ 向 REST Countries API 請求所有國家資料，但<strong>只取需要的欄位</strong>，減少資料量：</p>
+<ul>
+<li><code>name</code>：國家名稱</li>
+<li><code>capital</code>：首都</li>
+<li><code>latlng</code>：經緯度</li>
+<li><code>flags</code>：國旗圖</li>
+<li><code>currencies</code>：貨幣資料</li>
+</ul>
+<hr>
+<h3 id="🛡️-防呆：API-回傳不是陣列"><a href="#🛡️-防呆：API-回傳不是陣列" class="headerlink" title="🛡️ 防呆：API 回傳不是陣列"></a>🛡️ 防呆：API 回傳不是陣列</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!<span class="title class_">Array</span>.<span class="title function_">isArray</span>(countries)) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&#x27;API 傳回的資料不是陣列：&#x27;</span>, countries)</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>✅ 確保 <code>countries</code> 是一個陣列，如果不是就跳出，避免 <code>.forEach</code> 出錯。</p>
+<hr>
+<h3 id="📌-加入每個國家的-marker"><a href="#📌-加入每個國家的-marker" class="headerlink" title="📌 加入每個國家的 marker"></a>📌 加入每個國家的 marker</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">countries.<span class="title function_">forEach</span>(<span class="function">(<span class="params">country</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> latlng = country.<span class="property">latlng</span></span><br><span class="line">  <span class="keyword">const</span> name = country.<span class="property">name</span>?.<span class="property">common</span> || <span class="string">&#x27;未知&#x27;</span></span><br><span class="line">  <span class="keyword">const</span> capital = country.<span class="property">capital</span>?.[<span class="number">0</span>] || <span class="string">&#x27;未知&#x27;</span></span><br><span class="line">  <span class="keyword">const</span> flag = country.<span class="property">flags</span>?.<span class="property">png</span> || <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">const</span> currency = country.<span class="property">currencies</span></span><br><span class="line">    ? <span class="title class_">Object</span>.<span class="title function_">values</span>(country.<span class="property">currencies</span>)[<span class="number">0</span>]?.<span class="property">symbol</span> || <span class="string">&#x27;未知&#x27;</span></span><br><span class="line">    : <span class="string">&#x27;未知&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (latlng?.<span class="property">length</span> === <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> marker = L.<span class="title function_">marker</span>(latlng).<span class="title function_">addTo</span>(map)</span><br><span class="line">    marker.<span class="title function_">bindPopup</span>(<span class="string">`</span></span><br><span class="line"><span class="string">      &lt;div style=&quot;text-align: center;&quot;&gt;</span></span><br><span class="line"><span class="string">        &lt;img src=&quot;<span class="subst">$&#123;flag&#125;</span>&quot; width=&quot;80&quot;&gt;&lt;br&gt;</span></span><br><span class="line"><span class="string">        &lt;strong&gt;<span class="subst">$&#123;name&#125;</span>&lt;/strong&gt;&lt;br&gt;</span></span><br><span class="line"><span class="string">        首都：<span class="subst">$&#123;capital&#125;</span>&lt;br&gt;</span></span><br><span class="line"><span class="string">        貨幣：<span class="subst">$&#123;currency&#125;</span></span></span><br><span class="line"><span class="string">      &lt;/div&gt;</span></span><br><span class="line"><span class="string">    `</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="說明：-1"><a href="#說明：-1" class="headerlink" title="說明："></a>說明：</h3><ul>
+<li>✅ <code>country.latlng</code>：marker 座標</li>
+<li>✅ <code>country.name.common</code>：常用名稱，例如「Taiwan」</li>
+<li>✅ <code>country.capital[0]</code>：首都</li>
+<li>✅ <code>country.flags.png</code>：國旗圖片</li>
+<li>✅ <code>currencies</code>：貨幣資訊是物件，先轉成陣列後取第 1 筆</li>
+<li>✅ <code>L.marker(latlng)</code>：建立 marker</li>
+<li>✅ <code>.bindPopup(...)</code>：點 marker 時會跳出 popup</li>
+</ul>
+<hr>
+<h3 id="🧯-捕捉錯誤"><a href="#🧯-捕捉錯誤" class="headerlink" title="🧯 捕捉錯誤"></a>🧯 捕捉錯誤</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&#x27;地圖初始化錯誤：&#x27;</span>, err)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>✅ 如果以上任何一段出錯，會把錯誤資訊顯示在開發者工具中，不會整個壞掉。</p>
+<hr>
+<h2 id="🎨-區塊：樣式"><a href="#🎨-區塊：樣式" class="headerlink" title="🎨 &lt;style scoped&gt; 區塊：樣式"></a>🎨 <code>&lt;style scoped&gt;</code> 區塊：樣式</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h2</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">30px</span>;</span><br><span class="line">  <span class="attribute">margin-bottom</span>: <span class="number">15px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#map</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">90vh</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>h2</code>：讓標題看起來更大、漂亮</p>
+</li>
+<li><p><code>#map</code>：</p>
+<ul>
+<li>高度設為 90vh（瀏覽器視窗 90% 高）</li>
+<li>地圖才會顯示出來（Leaflet 需要容器高度）</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="✅-總結"><a href="#✅-總結" class="headerlink" title="✅ 總結"></a>✅ 總結</h2><p>這個 <code>CountryInfo.vue</code>：</p>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>是否完成</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>世界地圖初始化</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>使用 OpenStreetMap 當底圖</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>使用 REST API 取得各國資料</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>使用 CDN 版本的 Leaflet</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>在每個國家經緯度加 marker</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>點 marker 顯示國旗+首都+貨幣</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>錯誤處理與防呆</td>
+<td>✅</td>
+</tr>
+</tbody></table>
+<hr>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/Javascript/" rel="tag"># Javascript</a>
+              <a href="/apple.lily/tags/Vue/" rel="tag"># Vue</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/09/06/OneDayOneNote/2025-03-11/" rel="prev" title="2025-03-11-國家資訊與地圖應用程式 -第一步">
+                  <i class="fa fa-angle-left"></i> 2025-03-11-國家資訊與地圖應用程式 -第一步
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/09/06/OneDayOneNote/2025-03-13/" rel="next" title="2025-03-13-Leaflet 是如何「插入地圖」的">
+                  2025-03-13-Leaflet 是如何「插入地圖」的 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

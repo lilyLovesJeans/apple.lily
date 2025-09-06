@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2025-03-10-天氣查詢應用程式」的最後一步">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025-03-10-天氣查詢應用程式」的最後一步">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/09/06/OneDayOneNote/2025-03-10/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2025-03-10-天氣查詢應用程式」的最後一步">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-09-06T15:06:00.000Z">
+<meta property="article:modified_time" content="2025-09-06T15:07:25.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2025/09/06/OneDayOneNote/2025-03-10/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2025/09/06/OneDayOneNote/2025-03-10/","path":"2025/09/06/OneDayOneNote/2025-03-10/","title":"2025-03-10-天氣查詢應用程式」的最後一步"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2025-03-10-天氣查詢應用程式」的最後一步 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2025-03-10-%E5%A4%A9%E6%B0%A3%E6%9F%A5%E8%A9%A2%E6%87%89%E7%94%A8%E7%A8%8B%E5%BC%8F%E3%80%8D%E7%9A%84%E6%9C%80%E5%BE%8C%E4%B8%80%E6%AD%A5"><span class="nav-number">1.</span> <span class="nav-text">2025-03-10-天氣查詢應用程式」的最後一步</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.1.</span> <span class="nav-text">🌦️ 天氣查詢應用程式</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">408</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2025/09/06/OneDayOneNote/2025-03-10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2025-03-10-天氣查詢應用程式」的最後一步 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2025-03-10-天氣查詢應用程式」的最後一步">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2025-03-10-天氣查詢應用程式」的最後一步
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2025-09-06 23:06:00 / 修改時間：23:07:25" itemprop="dateCreated datePublished" datetime="2025-09-06T23:06:00+08:00">2025-09-06</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2025-03-10-天氣查詢應用程式」的最後一步</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="2025-03-10-天氣查詢應用程式」的最後一步"><a href="#2025-03-10-天氣查詢應用程式」的最後一步" class="headerlink" title="2025-03-10-天氣查詢應用程式」的最後一步"></a>2025-03-10-天氣查詢應用程式」的最後一步</h1><template>
+  <div class="container">
+    <h2>🌦️ 天氣查詢應用程式</h2>
+    <p>📅 資料時間：</p>
+
+<pre><code>&lt;div class=&quot;checkbox-group&quot;&gt;
+  &lt;label class=&quot;region-row&quot;&gt;
+    &lt;span class=&quot;region-title&quot;&gt;全部：&lt;/span&gt;
+    &lt;input
+      type=&quot;checkbox&quot;
+      value=&quot;全部&quot;
+      v-model=&quot;selectedCities&quot;
+      @change=&quot;handleAllToggle&quot;
+    /&gt;
+    &lt;span&gt;全部城市&lt;/span&gt;
+  &lt;/label&gt;
+
+  &lt;div v-for=&quot;(cities, region) in cityGroups&quot; :key=&quot;region&quot; class=&quot;region-row&quot;&gt;
+    &lt;span class=&quot;region-title&quot;&gt;&#123;&#123; region &#125;&#125;：&lt;/span&gt;
+    &lt;label v-for=&quot;city in cities&quot; :key=&quot;city&quot; class=&quot;city-checkbox-inline&quot;&gt;
+      &lt;input
+        type=&quot;checkbox&quot;
+        :value=&quot;city&quot;
+        v-model=&quot;selectedCities&quot;
+        :disabled=&quot;selectedCities.includes(&#39;全部&#39;)&quot;
+      /&gt;
+      &#123;&#123; city &#125;&#125;
+    &lt;/label&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;✅ 目前選擇：&#123;&#123; selectedCities.join(', ') &#125;&#125;&lt;/p&gt;
+
+&lt;div class=&quot;weather-container&quot;&gt;
+  &lt;div
+    v-for=&quot;city in sortedWeatherData&quot;
+    :key=&quot;city.locationName&quot;
+    class=&quot;city-card&quot;
+    :class=&quot;getWxClass(city)&quot;
+  &gt;
+    &lt;h3&gt;
+      🌆 &#123;&#123; city.locationName &#125;&#125;
+      &lt;span class=&quot;weather-icon&quot;&gt;&#123;&#123; getWxIcon(city) &#125;&#125;&lt;/span&gt;
+    &lt;/h3&gt;
+    &lt;p&gt;☀️ 天氣：&#123;&#123; getWeatherElement(city, 'Wx') &#125;&#125;&lt;/p&gt;
+    &lt;p&gt;🔥 最高溫：&#123;&#123; getWeatherElement(city, 'MaxT') &#125;&#125;°C&lt;/p&gt;
+    &lt;p&gt;❄️ 最低溫：&#123;&#123; getWeatherElement(city, 'MinT') &#125;&#125;°C&lt;/p&gt;
+    &lt;p&gt;🌧️ 降雨機率：&#123;&#123; getWeatherElement(city, 'PoP') &#125;&#125;%&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+  </div>
+</template>
+
+<script setup>
+import { ref, computed, onMounted } from 'vue'
+
+const apiKey = 'CWA-290D12F1-3FA3-4A61-B613-623327DD04C2' // <<--- 請替換為你註冊的 CWA API Key
+const url = `https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=${apiKey}`
+
+const weatherData = ref([])
+const selectedCities = ref(['全部'])
+const queryDateText = ref('') // 🌟 顯示查詢時間
+
+const cityGroups = {
+  北部: ['臺北市', '新北市', '基隆市', '桃園市', '新竹縣', '新竹市'],
+  中部: ['苗栗縣', '臺中市', '彰化縣', '南投縣', '雲林縣'],
+  南部: ['嘉義市', '嘉義縣', '臺南市', '高雄市', '屏東縣'],
+  東部: ['宜蘭縣', '花蓮縣', '臺東縣'],
+  離島: ['澎湖縣', '金門縣', '連江縣']
+}
+
+const officialCityOrder = Object.values(cityGroups).flat()
+
+onMounted(async () => {
+  try {
+    const response = await fetch(url)
+    const data = await response.json()
+    weatherData.value = data.records.location
+
+    // 🌟 抓第一筆 Wx 的 startTime
+    const firstWx = data.records.location?.[0]?.weatherElement.find(el => el.elementName === 'Wx')
+    queryDateText.value = firstWx?.time[0]?.startTime || new Date().toLocaleString()
+  } catch (error) {
+    console.error('❌ 發生錯誤:', error)
+  }
+})
+
+const sortedWeatherData = computed(() => {
+  const filtered = selectedCities.value.includes('全部')
+    ? weatherData.value
+    : weatherData.value.filter(city =>
+        selectedCities.value.includes(city.locationName)
+      )
+
+  return [...filtered].sort(
+    (a, b) =>
+      officialCityOrder.indexOf(a.locationName) -
+      officialCityOrder.indexOf(b.locationName)
+  )
+})
+
+function handleAllToggle() {
+  if (selectedCities.value.includes('全部')) {
+    selectedCities.value = ['全部']
+  }
+}
+
+function getWeatherElement(city, elementName) {
+  const element = city.weatherElement.find(el => el.elementName === elementName)
+  return element?.time[0]?.parameter?.parameterName || 'N/A'
+}
+
+const wxClassMap = {
+  '1': 'sunny',
+  '2': 'cloudy',
+  '3': 'partly-sunny',
+  '4': 'overcast',
+  '5': 'rainy',
+  '6': 'rainy',
+  '7': 'rainy',
+  '8': 'rainy',
+  '9': 'rainy',
+  '10': 'rainy',
+  '11': 'rainy',
+  '12': 'rainy',
+  '13': 'rainy',
+  '14': 'rainy',
+  '15': 'storm',
+  '16': 'storm',
+  '17': 'storm'
+}
+
+function getWxClass(city) {
+  const wx = city.weatherElement.find(el => el.elementName === 'Wx')
+  const code = wx?.time[0]?.parameter?.parameterValue
+  return wxClassMap[code] || ''
+}
+
+function getWxIcon(city) {
+  const wx = city.weatherElement.find(el => el.elementName === 'Wx')
+  const code = wx?.time[0]?.parameter?.parameterValue
+  const map = {
+    '1': '☀️',
+    '2': '☁️',
+    '3': '🌤',
+    '4': '🌥',
+    '5': '🌧',
+    '15': '⛈',
+    '16': '⛈',
+    '17': '⚡'
+  }
+  return map[code] || ''
+}
+</script>
+
+<style scoped>
+.container {
+  margin-left: 10px;
+}
+h2 {
+  font-size: 30px;
+  margin-bottom: 0.5rem;
+}
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+.region-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.region-title {
+  min-width: 4rem;
+  font-weight: bold;
+  color: #333;
+}
+.city-checkbox-inline {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: #f5f5f5;
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.4rem;
+}
+input[type='checkbox'] {
+  accent-color: #3498db;
+}
+
+/* Weather cards */
+.weather-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+.city-card {
+  flex: 1 1 300px;
+  max-width: 300px;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border-left: 6px solid #3498db;
+  transition: background 0.3s ease;
+}
+.city-card.sunny {
+  background: linear-gradient(#ffe082, #ffd54f);
+  border-left-color: #fbc02d;
+}
+.city-card.cloudy {
+  background: linear-gradient(#d7dde8, #cfd8dc);
+  border-left-color: #90a4ae;
+}
+.city-card.partly-sunny {
+  background: linear-gradient(#fff8e1, #ffe082);
+  border-left-color: #fbc02d;
+}
+.city-card.overcast {
+  background: linear-gradient(#b0bec5, #90a4ae);
+  border-left-color: #607d8b;
+}
+.city-card.rainy {
+  background: linear-gradient(#a5c8ff, #81d4fa);
+  border-left-color: #0288d1;
+}
+.city-card.storm {
+  background: linear-gradient(#616161, #9e9e9e);
+  border-left-color: #ffca28;
+}
+.weather-icon {
+  margin-left: 0.5rem;
+}
+</style>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/Javascript/" rel="tag"># Javascript</a>
+              <a href="/apple.lily/tags/Vue/" rel="tag"># Vue</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/09/06/OneDayOneNote/2025-03-09/" rel="prev" title="2025-03-09-天氣查詢應用程式」的自製 Checkbox 多選 UI">
+                  <i class="fa fa-angle-left"></i> 2025-03-09-天氣查詢應用程式」的自製 Checkbox 多選 UI
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/09/06/OneDayOneNote/2025-03-11/" rel="next" title="2025-03-11-國家資訊與地圖應用程式 -第一步">
+                  2025-03-11-國家資訊與地圖應用程式 -第一步 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

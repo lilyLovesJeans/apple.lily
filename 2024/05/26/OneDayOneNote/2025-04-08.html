@@ -1,0 +1,341 @@
+<hr>
+<h2 id="title-2025-04-08-JavaScript-系列九：第7課-──-學習開發狀態複雜的-vue-元件date-2025-09-06-23-55-11tags-Javascript-Vue-description-2025-04-08-JavaScript-系列九：第7課-──-學習開發狀態複雜的-vue-元件"><a href="#title-2025-04-08-JavaScript-系列九：第7課-──-學習開發狀態複雜的-vue-元件date-2025-09-06-23-55-11tags-Javascript-Vue-description-2025-04-08-JavaScript-系列九：第7課-──-學習開發狀態複雜的-vue-元件" class="headerlink" title="title: 2025-04-08-JavaScript 系列九：第7課 ── 學習開發狀態複雜的 vue 元件date: 2025-09-06 23:55:11tags:  [Javascript,Vue]description:     2025-04-08-JavaScript 系列九：第7課 ── 學習開發狀態複雜的 vue 元件"></a>title: 2025-04-08-JavaScript 系列九：第7課 ── 學習開發狀態複雜的 vue 元件<br>date: 2025-09-06 23:55:11<br>tags:  [Javascript,Vue]<br>description:     2025-04-08-JavaScript 系列九：第7課 ── 學習開發狀態複雜的 vue 元件</h2><h1 id="2025-04-08-JavaScript-系列九：第7課-──-學習開發狀態複雜的-vue-元件"><a href="#2025-04-08-JavaScript-系列九：第7課-──-學習開發狀態複雜的-vue-元件" class="headerlink" title="2025-04-08-JavaScript 系列九：第7課 ── 學習開發狀態複雜的 vue 元件"></a>2025-04-08-JavaScript 系列九：第7課 ── 學習開發狀態複雜的 vue 元件</h1><p>JavaScript 系列九：第7課 ── 學習開發狀態複雜的 vue 元件<br>課程目標<br>學習開發狀態複雜的 vue 元件<br>課程內容<br>前面的課程中，元件的狀態很單純，數量也很少</p>
+<p>但是有些元件，雖然對外溝通的狀態很少</p>
+<p>但是在元件內部，其實需要維持額外的多個狀態，才能使用</p>
+<p>比方說「顏色選擇器」類型的元件：雖然對外就一個代表色碼的字串而已，但在內部需要不少狀態來維持</p>
+<p>課後作業<br>這一課作業，請先看一下 Color Picker 元件的用法</p>
+<p><a href="https://quasar.dev/vue-components/color-picker">https://quasar.dev/vue-components/color-picker</a></p>
+<p>請使用官方的元件試玩工具：Vue SFC Playground</p>
+<p><a href="https://sfc.vuejs.org/">https://sfc.vuejs.org/</a></p>
+<p>請建立 MyColor.vue 元件，並支援下列功能<br>v-model 能夠設定色碼、取得色碼，格式支援 HEX 即可，例如：經典藍 #34568b<br>不用支援各種花俏的顏色選擇面板，就做 RGB 三捲軸就好了：使用 <input type="range"> 製作三個可以拉動的捲軸，分別代表紅色、綠色、藍色的比例<br>請自行搜尋 hex to rgb javascript rgb to hex javascript 研究 hex 色碼與 rgb 色碼如何轉換<br>完成之後，請在 App.vue 之中匯入此元件，並用多個範例證明，有完成上述規格</p>
+<p>做出以上功能，你就完成這次的課程目標了！<br>明白了！我們這一課是要做一個 <strong>狀態較複雜的 Vue 元件</strong>——一個 <strong>RGB 三捲軸的色彩選擇器（MyColor.vue）</strong>，並用 <code>v-model</code> 對外提供 HEX 色碼。下面我幫你整理 <strong>完整的實作思路和範例程式碼</strong>，一步步說明：</p>
+<hr>
+<h2 id="1️⃣-功能需求整理"><a href="#1️⃣-功能需求整理" class="headerlink" title="1️⃣ 功能需求整理"></a>1️⃣ 功能需求整理</h2><ol>
+<li><p><strong>對外 v-model</strong>：</p>
+<ul>
+<li>允許傳入初始 HEX 色碼，也可以取得目前選的 HEX 色碼。</li>
+</ul>
+</li>
+<li><p><strong>內部狀態</strong>：</p>
+<ul>
+<li>三個數字值分別代表 R &#x2F; G &#x2F; B（0~255）。</li>
+<li>這三個數值會互相影響最終的 HEX 值。</li>
+</ul>
+</li>
+<li><p><strong>UI</strong>：</p>
+<ul>
+<li>三個 <code>&lt;input type=&quot;range&quot;&gt;</code>，分別控制 R &#x2F; G &#x2F; B。</li>
+<li>顯示目前選的色塊與 HEX 值。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="2️⃣-HEX-↔-RGB-轉換工具函式"><a href="#2️⃣-HEX-↔-RGB-轉換工具函式" class="headerlink" title="2️⃣ HEX ↔ RGB 轉換工具函式"></a>2️⃣ HEX ↔ RGB 轉換工具函式</h2><pre><code class="javascript">// HEX -&gt; RGB
+function hexToRgb(hex) {
+  hex = hex.replace(&#39;#&#39;, &#39;&#39;);
+  const bigint = parseInt(hex, 16);
+  const r = (bigint &gt;&gt; 16) &amp; 255;
+  const g = (bigint &gt;&gt; 8) &amp; 255;
+  const b = bigint &amp; 255;
+  return { r, g, b };
+}
+
+// RGB -&gt; HEX
+function rgbToHex(r, g, b) {
+  return (
+    &#39;#&#39; +
+    [r, g, b]
+      .map(x =&gt; x.toString(16).padStart(2, &#39;0&#39;))
+      .join(&#39;&#39;)
+  );
+}
+</code></pre>
+<hr>
+<h2 id="3️⃣-MyColor-vue"><a href="#3️⃣-MyColor-vue" class="headerlink" title="3️⃣ MyColor.vue"></a>3️⃣ MyColor.vue</h2><pre><code class="vue">&lt;template&gt;
+  &lt;div class=&quot;my-color-picker&quot;&gt;
+    &lt;div
+      class=&quot;color-preview&quot;
+      :style=&quot;{ backgroundColor: currentHex }&quot;
+    &gt;&lt;/div&gt;
+    &lt;div class=&quot;sliders&quot;&gt;
+      &lt;label&gt;R: {{ r }}
+        &lt;input type=&quot;range&quot; min=&quot;0&quot; max=&quot;255&quot; v-model.number=&quot;r&quot; /&gt;
+      &lt;/label&gt;
+      &lt;label&gt;G: {{ g }}
+        &lt;input type=&quot;range&quot; min=&quot;0&quot; max=&quot;255&quot; v-model.number=&quot;g&quot; /&gt;
+      &lt;/label&gt;
+      &lt;label&gt;B: {{ b }}
+        &lt;input type=&quot;range&quot; min=&quot;0&quot; max=&quot;255&quot; v-model.number=&quot;b&quot; /&gt;
+      &lt;/label&gt;
+    &lt;/div&gt;
+    &lt;p&gt;HEX: {{ currentHex }}&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { ref, watch, computed } from &#39;vue&#39;;
+
+// props for v-model
+defineProps({
+  modelValue: { type: String, default: &#39;#000000&#39; }
+});
+const emit = defineEmits([&#39;update:modelValue&#39;]);
+
+// 工具函式
+function hexToRgb(hex) {
+  hex = hex.replace(&#39;#&#39;, &#39;&#39;);
+  const bigint = parseInt(hex, 16);
+  const r = (bigint &gt;&gt; 16) &amp; 255;
+  const g = (bigint &gt;&gt; 8) &amp; 255;
+  const b = bigint &amp; 255;
+  return { r, g, b };
+}
+function rgbToHex(r, g, b) {
+  return (
+    &#39;#&#39; +
+    [r, g, b]
+      .map(x =&gt; x.toString(16).padStart(2, &#39;0&#39;))
+      .join(&#39;&#39;)
+  );
+}
+
+// 內部狀態
+const r = ref(0);
+const g = ref(0);
+const b = ref(0);
+
+// 初始化 r/g/b
+const init = hexToRgb(defineProps().modelValue);
+r.value = init.r;
+g.value = init.g;
+b.value = init.b;
+
+// 計算 HEX
+const currentHex = computed(() =&gt; rgbToHex(r.value, g.value, b.value));
+
+// 當 r/g/b 改變時，發送 update:modelValue
+watch([r, g, b], () =&gt; {
+  emit(&#39;update:modelValue&#39;, currentHex.value);
+});
+
+// 當外部 modelValue 改變時，也更新內部狀態
+watch(
+  () =&gt; defineProps().modelValue,
+  (newVal) =&gt; {
+    const rgb = hexToRgb(newVal);
+    r.value = rgb.r;
+    g.value = rgb.g;
+    b.value = rgb.b;
+  }
+);
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+.my-color-picker {
+  width: 250px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+.color-preview {
+  width: 100%;
+  height: 50px;
+  margin-bottom: 10px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+}
+.sliders label {
+  display: block;
+  margin-bottom: 5px;
+}
+&lt;/style&gt;
+</code></pre>
+<hr>
+<h2 id="4️⃣-App-vue-測試範例"><a href="#4️⃣-App-vue-測試範例" class="headerlink" title="4️⃣ App.vue 測試範例"></a>4️⃣ App.vue 測試範例</h2><pre><code class="vue">&lt;template&gt;
+  &lt;div&gt;
+    &lt;h2&gt;測試 MyColor.vue&lt;/h2&gt;
+    &lt;MyColor v-model=&quot;color1&quot; /&gt;
+    &lt;p&gt;選擇的顏色: {{ color1 }}&lt;/p&gt;
+
+    &lt;MyColor v-model=&quot;color2&quot; /&gt;
+    &lt;p&gt;選擇的顏色: {{ color2 }}&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;;
+import MyColor from &#39;./components/MyColor.vue&#39;;
+
+const color1 = ref(&#39;#34568b&#39;); // 初始經典藍
+const color2 = ref(&#39;#ff0000&#39;); // 初始紅色
+&lt;/script&gt;
+</code></pre>
+<hr>
+<p>✅ 功能檢查：</p>
+<ol>
+<li>三個捲軸可拉動 R&#x2F;G&#x2F;B，HEX 值同步更新。</li>
+<li>對外 <code>v-model</code> 可取得目前 HEX 色碼。</li>
+<li>外部修改 <code>v-model</code> 的值，元件內部也會自動更新。</li>
+</ol>
+<hr>
+<p>加上 <strong>動態動畫效果</strong>：當滑桿改變時，顏色預覽會平滑過渡，而不是瞬間跳變，使用 <strong>CSS transition</strong> 配合 Vue 的 reactivity 就能做到。</p>
+<template>
+  <div class="my-color-picker">
+    <div
+      class="color-preview"
+      :style="{ backgroundColor: currentHex }"
+    ></div>
+
+<pre><code>&lt;div class=&quot;sliders&quot;&gt;
+  &lt;label&gt;R: {{ r }}
+    &lt;input type=&quot;range&quot; min=&quot;0&quot; max=&quot;255&quot; v-model.number=&quot;r&quot; /&gt;
+  &lt;/label&gt;
+  &lt;label&gt;G: {{ g }}
+    &lt;input type=&quot;range&quot; min=&quot;0&quot; max=&quot;255&quot; v-model.number=&quot;g&quot; /&gt;
+  &lt;/label&gt;
+  &lt;label&gt;B: {{ b }}
+    &lt;input type=&quot;range&quot; min=&quot;0&quot; max=&quot;255&quot; v-model.number=&quot;b&quot; /&gt;
+  &lt;/label&gt;
+&lt;/div&gt;
+
+&lt;p&gt;HEX: {{ currentHex }}&lt;/p&gt;
+</code></pre>
+  </div>
+</template>
+
+<script setup>
+import { ref, watch, computed } from 'vue'
+
+// ✅ 正確取得 props
+const props = defineProps({
+  modelValue: { type: String, default: '#000000' }
+})
+const emit = defineEmits(['update:modelValue'])
+
+// HEX ↔ RGB 工具函式
+function hexToRgb(hex) {
+  hex = hex.replace('#', '')
+  const bigint = parseInt(hex, 16)
+  const r = (bigint >> 16) & 255
+  const g = (bigint >> 8) & 255
+  const b = bigint & 255
+  return { r, g, b }
+}
+function rgbToHex(r, g, b) {
+  return (
+    '#' +
+    [r, g, b]
+      .map(x => x.toString(16).padStart(2, '0'))
+      .join('')
+  )
+}
+
+// 內部狀態
+const r = ref(0)
+const g = ref(0)
+const b = ref(0)
+
+// 初始化 r/g/b
+const init = hexToRgb(props.modelValue)
+r.value = init.r
+g.value = init.g
+b.value = init.b
+
+// 計算 HEX
+const currentHex = computed(() => rgbToHex(r.value, g.value, b.value))
+
+// 當 r/g/b 改變時，發送 update:modelValue
+watch([r, g, b], () => {
+  emit('update:modelValue', currentHex.value)
+})
+
+// 當外部 modelValue 改變時，也更新內部狀態
+watch(
+  () => props.modelValue,
+  newVal => {
+    const rgb = hexToRgb(newVal)
+    r.value = rgb.r
+    g.value = rgb.g
+    b.value = rgb.b
+  }
+)
+</script>
+
+<style scoped>
+.my-color-picker {
+  width: 250px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: Arial, sans-serif;
+}
+.color-preview {
+  width: 100%;
+  height: 50px;
+  margin-bottom: 10px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+.sliders label {
+  display: block;
+  margin-bottom: 5px;
+}
+input[type='range'] {
+  width: 100%;
+}
+</style>
+
+<hr>
+<h3 id="✅-新增功能"><a href="#✅-新增功能" class="headerlink" title="✅ 新增功能"></a>✅ 新增功能</h3><ol>
+<li><p><strong>顏色過渡動畫</strong>：</p>
+<ul>
+<li>CSS <code>transition: background-color 0.3s ease;</code> 讓顏色改變時平滑漸變。</li>
+</ul>
+</li>
+<li><p><strong>滑桿同步 HEX</strong>：</p>
+<ul>
+<li>調整滑桿時，預覽區顏色和 HEX 都會立即更新，但有動畫過渡。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<p>&#x2F;&#x2F; app.vue</p>
+<template>
+  <div style="padding: 20px;">
+    <h2>測試 MyColor.vue（含動畫效果）</h2>
+
+<pre><code>&lt;div style=&quot;margin-bottom: 30px;&quot;&gt;
+  &lt;h3&gt;範例 1&lt;/h3&gt;
+  &lt;MyColor v-model=&quot;color1&quot; /&gt;
+  &lt;p&gt;選擇的顏色: &lt;span :style=&quot;{ color: color1 }&quot;&gt;{{ color1 }}&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div style=&quot;margin-bottom: 30px;&quot;&gt;
+  &lt;h3&gt;範例 2&lt;/h3&gt;
+  &lt;MyColor v-model=&quot;color2&quot; /&gt;
+  &lt;p&gt;選擇的顏色: &lt;span :style=&quot;{ color: color2 }&quot;&gt;{{ color2 }}&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div style=&quot;margin-bottom: 30px;&quot;&gt;
+  &lt;h3&gt;範例 3（初始經典藍）&lt;/h3&gt;
+  &lt;MyColor v-model=&quot;color3&quot; /&gt;
+  &lt;p&gt;選擇的顏色: &lt;span :style=&quot;{ color: color3 }&quot;&gt;{{ color3 }}&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import MyColor from './components/MyColor.vue';
+
+// 初始化範例顏色
+const color1 = ref('#ff0000'); // 紅色
+const color2 = ref('#00ff00'); // 綠色
+const color3 = ref('#34568b'); // 經典藍
+</script>
+
+
+
+

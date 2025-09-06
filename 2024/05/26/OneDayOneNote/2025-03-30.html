@@ -1,0 +1,184 @@
+<hr>
+<h2 id="title-2025-03-30-改myButton版面date-2025-09-06-23-40-27tags-Javascript-Vue-description-2025-03-30-改myButton版面"><a href="#title-2025-03-30-改myButton版面date-2025-09-06-23-40-27tags-Javascript-Vue-description-2025-03-30-改myButton版面" class="headerlink" title="title: 2025-03-30- 改myButton版面date: 2025-09-06 23:40:27tags:  [Javascript,Vue]description:  2025-03-30- 改myButton版面"></a>title: 2025-03-30- 改myButton版面<br>date: 2025-09-06 23:40:27<br>tags:  [Javascript,Vue]<br>description:  2025-03-30- 改myButton版面</h2><h1 id="2025-03-30-改myButton版面"><a href="#2025-03-30-改myButton版面" class="headerlink" title="2025-03-30- 改myButton版面"></a>2025-03-30- 改myButton版面</h1><p>改myButton版面是：</p>
+<ul>
+<li>左邊是設定區（控制面板）</li>
+<li>右邊是可以新增、顯示你設計好的按鈕們</li>
+</ul>
+<p>我們可以這樣改：</p>
+<hr>
+<h3 id="✅-結果畫面會像這樣："><a href="#✅-結果畫面會像這樣：" class="headerlink" title="✅ 結果畫面會像這樣："></a>✅ 結果畫面會像這樣：</h3><pre><code>+----------------------------+-------------------------+
+|        控制面板           |     新增按鈕區          |
+|（設定文字、顏色等等）     |  按下按鈕 =&gt; 顯示右邊     |
++----------------------------+-------------------------+
+</code></pre>
+<hr>
+<h3 id="✅-修改重點"><a href="#✅-修改重點" class="headerlink" title="✅ 修改重點"></a>✅ 修改重點</h3><ol>
+<li>用 <code>display: flex</code> 建兩欄版面</li>
+<li><code>左邊 = 控制面板</code>，<code>右邊 = 顯示 MyButton 的地方</code></li>
+<li>把原本單一 <code>&lt;MyButton&gt;</code> 改成可以新增多個的 <code>v-for</code></li>
+<li>點擊後新增按鈕，不要 <code>alert</code>，而是 3 秒顯示訊息再消失</li>
+</ol>
+<hr>
+<h3 id="✅-完整整合後程式碼如下："><a href="#✅-完整整合後程式碼如下：" class="headerlink" title="✅ 完整整合後程式碼如下："></a>✅ 完整整合後程式碼如下：</h3><pre><code class="vue">&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+import MyButton from &#39;./Lesson3_components/MyButton.vue&#39;
+
+const label = ref(&#39;自訂按鈕&#39;)
+const color = ref(&#39;#ff6347&#39;)
+const textColor = ref(&#39;#ffffff&#39;)
+const fontSize = ref(16)
+const round = ref(true)
+const square = ref(false)
+
+const buttons = ref([]) // 儲存新增的按鈕
+const lastClicked = ref(&#39;&#39;)
+let timeout = null
+
+function handleAddButton() {
+  const newId = Date.now()
+  buttons.value.push({
+    id: newId,
+    label: label.value,
+    color: color.value,
+    textColor: textColor.value,
+    fontSize: fontSize.value,
+    round: round.value,
+    square: square.value
+  })
+}
+
+function handleClick(buttonData) {
+  lastClicked.value = `你剛剛點了：${buttonData.label}`
+  if (timeout) clearTimeout(timeout)
+  timeout = setTimeout(() =&gt; {
+    lastClicked.value = &#39;&#39;
+  }, 3000)
+}
+
+// 處理 checkbox 衝突
+function onRoundChange() {
+  if (round.value) square.value = false
+}
+function onSquareChange() {
+  if (square.value) round.value = false
+}
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;div class=&quot;layout&quot;&gt;
+    &lt;!-- 左邊控制面板 --&gt;
+    &lt;div class=&quot;control-panel&quot;&gt;
+      &lt;h3&gt;按鈕設定&lt;/h3&gt;
+      &lt;label&gt;
+        按鈕文字：
+        &lt;input v-model=&quot;label&quot; /&gt;
+      &lt;/label&gt;
+
+      &lt;label&gt;
+        背景顏色：
+        &lt;input type=&quot;color&quot; v-model=&quot;color&quot; /&gt;
+      &lt;/label&gt;
+
+      &lt;label&gt;
+        文字顏色：
+        &lt;input type=&quot;color&quot; v-model=&quot;textColor&quot; /&gt;
+      &lt;/label&gt;
+
+      &lt;label&gt;
+        字體大小：
+        &lt;input type=&quot;range&quot; min=&quot;10&quot; max=&quot;40&quot; v-model.number=&quot;fontSize&quot; /&gt;
+        &lt;span&gt;{{ fontSize }}px&lt;/span&gt;
+      &lt;/label&gt;
+
+      &lt;label&gt;
+        圓角樣式：
+        &lt;input type=&quot;checkbox&quot; v-model=&quot;round&quot; @change=&quot;onRoundChange&quot; /&gt;
+      &lt;/label&gt;
+
+      &lt;label&gt;
+        方形樣式：
+        &lt;input type=&quot;checkbox&quot; v-model=&quot;square&quot; @change=&quot;onSquareChange&quot; /&gt;
+      &lt;/label&gt;
+
+      &lt;button class=&quot;add-button&quot; @click=&quot;handleAddButton&quot;&gt;➕ 新增按鈕&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;!-- 右邊按鈕區 --&gt;
+    &lt;div class=&quot;button-display&quot;&gt;
+      &lt;h3&gt;按鈕展示區&lt;/h3&gt;
+      &lt;div v-if=&quot;lastClicked&quot; class=&quot;message&quot;&gt;{{ lastClicked }}&lt;/div&gt;
+
+      &lt;div class=&quot;MyButton-wrapper&quot;&gt;
+        &lt;MyButton
+          v-for=&quot;btn in buttons&quot;
+          :key=&quot;btn.id&quot;
+          :label=&quot;btn.label&quot;
+          :color=&quot;btn.color&quot;
+          :textColor=&quot;btn.textColor&quot;
+          :fontSize=&quot;btn.fontSize&quot;
+          :round=&quot;btn.round&quot;
+          :square=&quot;btn.square&quot;
+          @click=&quot;() =&gt; handleClick(btn)&quot;
+        /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;style scoped&gt;
+.layout {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.control-panel {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  padding: 1.5rem;
+  background: #f5f5f5;
+}
+
+.button-display {
+  flex: 1;
+  border: 2px dashed #999;
+  border-radius: 10px;
+  padding: 1.5rem;
+  background: #fff;
+}
+
+.MyButton-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.add-button {
+  padding: 0.5rem 1rem;
+  background-color: #4caf50;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.message {
+  color: #007bff;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+&lt;/style&gt;
+</code></pre>
+<hr>
+<h3 id="✅-下一步建議（選擇性功能）："><a href="#✅-下一步建議（選擇性功能）：" class="headerlink" title="✅ 下一步建議（選擇性功能）："></a>✅ 下一步建議（選擇性功能）：</h3><ul>
+<li>每個按鈕都能刪除：加個 <code>@click.right</code> 或 <code>x</code> 按鈕</li>
+<li>按鈕列表存進 <code>localStorage</code></li>
+<li>匯出按鈕設定成 JSON 檔</li>
+</ul>
+<hr>

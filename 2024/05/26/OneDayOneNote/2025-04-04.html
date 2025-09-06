@@ -1,0 +1,26 @@
+<hr>
+<h2 id="title-2025-04-04-margin-left-autodate-2025-09-06-23-48-07tags-Javascript-Vue-description-2025-04-04-margin-left-auto"><a href="#title-2025-04-04-margin-left-autodate-2025-09-06-23-48-07tags-Javascript-Vue-description-2025-04-04-margin-left-auto" class="headerlink" title="title: 2025-04-04- margin-left- autodate: 2025-09-06 23:48:07tags:  [Javascript,Vue]description:   2025-04-04- margin-left- auto"></a>title: 2025-04-04- margin-left- auto<br>date: 2025-09-06 23:48:07<br>tags:  [Javascript,Vue]<br>description:   2025-04-04- margin-left- auto</h2><h1 id="2025-04-04-margin-left-auto"><a href="#2025-04-04-margin-left-auto" class="headerlink" title="2025-04-04- margin-left- auto"></a>2025-04-04- margin-left- auto</h1><p>.banner-action {<br>    margin-left: auto;<br>  }<br>這是向右靠齊嗎？</p>
+<p>對 👌，你看得很準！</p>
+<p>這段 CSS：</p>
+<pre><code class="css">.banner-action {
+  margin-left: auto;
+}
+</code></pre>
+<p>意思就是：</p>
+<ul>
+<li><code>display: flex</code> 的情況下（父層 <code>.my-banner</code> 已經用 <code>display: flex; justify-content: space-between;</code>）</li>
+<li>當某個子元素（這裡是 <code>.banner-action</code>）設定 <code>margin-left: auto</code>，它會把「自己左邊的空間」撐到最大。</li>
+<li>結果就是：這個元素會 <strong>被推到最右邊</strong>。</li>
+</ul>
+<hr>
+<h3 id="舉個例子："><a href="#舉個例子：" class="headerlink" title="舉個例子："></a>舉個例子：</h3><pre><code class="html">&lt;div style=&quot;display: flex; background: #eee;&quot;&gt;
+  &lt;div&gt;左邊&lt;/div&gt;
+  &lt;div style=&quot;margin-left:auto;&quot;&gt;右邊&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p>效果：</p>
+<pre><code>[左邊                                  右邊]
+</code></pre>
+<p>左邊的東西保持原位，右邊的東西會緊貼右側。</p>
+<hr>
+<p>👉 所以在 <code>MyBanner.vue</code> 裡，<code>.banner-action</code> 就是靠這個技巧，把「action slot 的內容」推到最右邊。</p>

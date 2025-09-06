@@ -1,0 +1,56 @@
+<hr>
+<h2 id="title-2025-04-14-Tailwind-的顏色系統有幾個重要概念date-2025-09-07-00-03-13tags-Javascript-Vue-description-2025-04-14-Tailwind-的顏色系統有幾個重要概念"><a href="#title-2025-04-14-Tailwind-的顏色系統有幾個重要概念date-2025-09-07-00-03-13tags-Javascript-Vue-description-2025-04-14-Tailwind-的顏色系統有幾個重要概念" class="headerlink" title="title: 2025-04-14-Tailwind 的顏色系統有幾個重要概念date: 2025-09-07 00:03:13tags:  [Javascript,Vue]description:  2025-04-14-Tailwind 的顏色系統有幾個重要概念"></a>title: 2025-04-14-Tailwind 的顏色系統有幾個重要概念<br>date: 2025-09-07 00:03:13<br>tags:  [Javascript,Vue]<br>description:  2025-04-14-Tailwind 的顏色系統有幾個重要概念</h2><h1 id="2025-04-14-Tailwind-的顏色系統有幾個重要概念"><a href="#2025-04-14-Tailwind-的顏色系統有幾個重要概念" class="headerlink" title="2025-04-14-Tailwind 的顏色系統有幾個重要概念"></a>2025-04-14-Tailwind 的顏色系統有幾個重要概念</h1><p>好問題 — <strong>不是只有少數固定顏色</strong>，但要知道 Tailwind 的顏色系統有幾個重要概念：內建色盤（多個色系 + 多個深淺階層）、任意值 (arbitrary values)、以及在 <code>tailwind.config.js</code> 裡自訂&#x2F;擴充。下面用範例說明。</p>
+<h3 id="1-內建-palette（很多色系-多個深淺）"><a href="#1-內建-palette（很多色系-多個深淺）" class="headerlink" title="1) 內建 palette（很多色系 + 多個深淺）"></a>1) 內建 palette（很多色系 + 多個深淺）</h3><p>像 <code>bg-blue-500</code> 是 Tailwind 內建的其中一個色系（<code>blue</code>）和一個深淺等級（<code>500</code>）。每個色系通常有多個階層：<code>50,100,200,...,900</code>（數字越小越淺，越大越深）。Tailwind 預設提供很多色系（<code>blue</code>, <code>red</code>, <code>green</code>, <code>gray</code>, <code>slate</code>…等）。</p>
+<p>範例：</p>
+<pre><code class="html">&lt;div class=&quot;bg-blue-50&quot;&gt;淺藍&lt;/div&gt;
+&lt;div class=&quot;bg-blue-500&quot;&gt;預設藍（中等）&lt;/div&gt;
+&lt;div class=&quot;bg-blue-900&quot;&gt;深藍&lt;/div&gt;
+</code></pre>
+<hr>
+<h3 id="2-任意值（可以用任意-hex-rgb-rgba-CSS-變數）"><a href="#2-任意值（可以用任意-hex-rgb-rgba-CSS-變數）" class="headerlink" title="2) 任意值（可以用任意 hex &#x2F; rgb &#x2F; rgba &#x2F; CSS 變數）"></a>2) 任意值（可以用任意 hex &#x2F; rgb &#x2F; rgba &#x2F; CSS 變數）</h3><p>如果內建色不滿足，你可以直接在 class 用方括號指定任意顏色（Tailwind JIT 支援）：</p>
+<pre><code class="html">&lt;!-- hex --&gt;
+&lt;div class=&quot;bg-[#1da1f2]&quot;&gt;Twitter blue&lt;/div&gt;
+
+&lt;!-- rgb --&gt;
+&lt;div class=&quot;bg-[rgb(29,161,242)]&quot;&gt;RGB 指定&lt;/div&gt;
+
+&lt;!-- rgba（含透明度）--&gt;
+&lt;div class=&quot;bg-[rgba(29,161,242,0.5)]&quot;&gt;半透明&lt;/div&gt;
+
+&lt;!-- CSS 變數 --&gt;
+&lt;style&gt;
+  :root { --brand: #b22222; }
+&lt;/style&gt;
+&lt;div class=&quot;bg-[var(--brand)]&quot;&gt;使用 CSS 變數&lt;/div&gt;
+</code></pre>
+<hr>
+<h3 id="3-使用「-」快速設定透明度（更方便）"><a href="#3-使用「-」快速設定透明度（更方便）" class="headerlink" title="3) 使用「&#x2F;」快速設定透明度（更方便）"></a>3) 使用「&#x2F;」快速設定透明度（更方便）</h3><p>可以把透明度放在 class 後面：<code>bg-blue-500/50</code> 表示 blue-500 並帶 50% alpha（或 <code>bg-[#1da1f2]/30</code> 也可）。</p>
+<pre><code class="html">&lt;div class=&quot;bg-blue-500/30&quot;&gt;blue 30% alpha&lt;/div&gt;
+</code></pre>
+<hr>
+<h3 id="4-在-tailwind-config-js-自訂或擴充色彩"><a href="#4-在-tailwind-config-js-自訂或擴充色彩" class="headerlink" title="4) 在 tailwind.config.js 自訂或擴充色彩"></a>4) 在 tailwind.config.js 自訂或擴充色彩</h3><p>若想把公司色命名、統一管理，可以在設定檔擴充：</p>
+<pre><code class="js">// tailwind.config.js
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        brand: {
+          50:  &#39;#f5f7ff&#39;,
+          100: &#39;#e6efff&#39;,
+          500: &#39;#1e90ff&#39;, // brand-500
+          700: &#39;#1066d6&#39;
+        },
+        accent: &#39;#ff6b6b&#39; // 單一色值
+      }
+    }
+  }
+}
+</code></pre>
+<p>然後在 HTML 用 <code>bg-brand-500</code> 或 <code>bg-accent</code>。</p>
+<hr>
+<h3 id="5-小總結與建議"><a href="#5-小總結與建議" class="headerlink" title="5) 小總結與建議"></a>5) 小總結與建議</h3><ul>
+<li><strong>不是只有固定幾色</strong>：Tailwind 內建很多色系與 50–900 階層；還可任意指定 hex&#x2F;rgb&#x2F;rgba&#x2F;CSS 變數。</li>
+<li><strong>透明度兩種做法</strong>：在顏色後加 <code>/NN</code>（如 <code>/50</code>）或用 rgba&#x2F;arbitrary value。</li>
+<li><strong>若要統一管理顏色</strong>：把常用的色放到 <code>tailwind.config.js</code> 的 <code>extend.colors</code>。</li>
+</ul>
+<p>如果你有某個品牌色（hex）想轉成 Tailwind 常用的 <code>-500</code> 程度或想我幫你把一組公司色加到 <code>tailwind.config.js</code>，貼 hex 值我幫你寫好範例！</p>

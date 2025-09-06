@@ -1,0 +1,84 @@
+<hr>
+<h2 id="title-2025-02-20-非同步要同時處理很多事情date-2025-09-06-22-21-51tags-Javascript-Vue-description-2025-02-20-非同步要同時處理很多事情"><a href="#title-2025-02-20-非同步要同時處理很多事情date-2025-09-06-22-21-51tags-Javascript-Vue-description-2025-02-20-非同步要同時處理很多事情" class="headerlink" title="title: 2025-02-20-非同步要同時處理很多事情date: 2025-09-06 22:21:51tags:  [Javascript,Vue]description:  2025-02-20-非同步要同時處理很多事情"></a>title: 2025-02-20-非同步要同時處理很多事情<br>date: 2025-09-06 22:21:51<br>tags:  [Javascript,Vue]<br>description:  2025-02-20-非同步要同時處理很多事情</h2><h1 id="2025-02-20-非同步要同時處理很多事情"><a href="#2025-02-20-非同步要同時處理很多事情" class="headerlink" title="2025-02-20-非同步要同時處理很多事情"></a>2025-02-20-非同步要同時處理很多事情</h1><p>當我們想 <strong>同時執行多個非同步任務</strong>（例如：同時叫三個 API、同時讀三個檔案），就不能一個接一個 <code>await</code>，那會浪費時間。</p>
+<hr>
+<h2 id="✅-解法一：Promise-all（平行處理）"><a href="#✅-解法一：Promise-all（平行處理）" class="headerlink" title="✅ 解法一：Promise.all（平行處理）"></a>✅ 解法一：<code>Promise.all</code>（平行處理）</h2><p><code>Promise.all()</code> 可以讓多個非同步任務「<strong>同時執行</strong>」，然後等它們都完成後再處理結果。</p>
+<hr>
+<h3 id="🎯-情境範例：同時叫三個-API"><a href="#🎯-情境範例：同時叫三個-API" class="headerlink" title="🎯 情境範例：同時叫三個 API"></a>🎯 情境範例：同時叫三個 API</h3><pre><code class="js">function fetchA() {
+  return new Promise((resolve) =&gt; {
+    setTimeout(() =&gt; resolve(&#39;📦 A 完成&#39;), 1000)
+  })
+}
+
+function fetchB() {
+  return new Promise((resolve) =&gt; {
+    setTimeout(() =&gt; resolve(&#39;📦 B 完成&#39;), 1500)
+  })
+}
+
+function fetchC() {
+  return new Promise((resolve) =&gt; {
+    setTimeout(() =&gt; resolve(&#39;📦 C 完成&#39;), 500)
+  })
+}
+
+async function fetchAll() {
+  console.log(&#39;開始同時處理 A、B、C...&#39;)
+
+  const results = await Promise.all([fetchA(), fetchB(), fetchC()])
+
+  console.log(&#39;✅ 全部完成：&#39;, results)
+}
+
+fetchAll()
+</code></pre>
+<hr>
+<h3 id="🧾-執行結果："><a href="#🧾-執行結果：" class="headerlink" title="🧾 執行結果："></a>🧾 執行結果：</h3><pre><code>開始同時處理 A、B、C...
+✅ 全部完成： [ &#39;📦 A 完成&#39;, &#39;📦 B 完成&#39;, &#39;📦 C 完成&#39; ]
+</code></pre>
+<h3 id="🧠-關鍵點："><a href="#🧠-關鍵點：" class="headerlink" title="🧠 關鍵點："></a>🧠 關鍵點：</h3><ul>
+<li>三個請求同時進行，不會等彼此完成才開始。</li>
+<li>最長的那個（B：1.5秒）決定了總耗時。</li>
+</ul>
+<hr>
+<h2 id="✅-解法二：Promise-race（誰快就用誰）"><a href="#✅-解法二：Promise-race（誰快就用誰）" class="headerlink" title="✅ 解法二：Promise.race（誰快就用誰）"></a>✅ 解法二：<code>Promise.race</code>（誰快就用誰）</h2><pre><code class="js">Promise.race([fetchA(), fetchB(), fetchC()])
+  .then((fastest) =&gt; {
+    console.log(&#39;🏁 最快的是：&#39;, fastest)
+  })
+</code></pre>
+<ul>
+<li>誰最先完成，結果就來自誰。</li>
+<li>適合用在「先回應就先顯示」的場景，比如多個備援伺服器。</li>
+</ul>
+<hr>
+<h2 id="✅-解法三：不等結果，讓它們自己完成"><a href="#✅-解法三：不等結果，讓它們自己完成" class="headerlink" title="✅ 解法三：不等結果，讓它們自己完成"></a>✅ 解法三：不等結果，讓它們自己完成</h2><p>如果你不在乎結果的順序，只想「觸發」多個動作，但不需要等它們完成，也可以這樣：</p>
+<pre><code class="js">fetchA()
+fetchB()
+fetchC()
+console.log(&#39;我不等你們，我先做自己的事&#39;)
+</code></pre>
+<hr>
+<h2 id="🧠-小結："><a href="#🧠-小結：" class="headerlink" title="🧠 小結："></a>🧠 小結：</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>await A(); await B()</code></td>
+<td>依序等待，每個做完才做下一個（慢）</td>
+</tr>
+<tr>
+<td><code>Promise.all([A, B])</code></td>
+<td>同時處理多件事，<strong>全部都完成才繼續</strong></td>
+</tr>
+<tr>
+<td><code>Promise.race([A, B])</code></td>
+<td>同時處理，<strong>誰快用誰</strong></td>
+</tr>
+<tr>
+<td>不 await</td>
+<td>只觸發，不等結果</td>
+</tr>
+</tbody></table>
+<hr>

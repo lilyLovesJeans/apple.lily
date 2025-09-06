@@ -1,0 +1,143 @@
+<hr>
+<h2 id="title-2025-02-10-JavaScript-系列八：第6課-──-天氣查詢應用程式-步驟04date-2025-09-06-22-00-58tags-Javascript-Vue-description-2025-02-10-JavaScript-系列八：第6課-──-天氣查詢應用程式-步驟04"><a href="#title-2025-02-10-JavaScript-系列八：第6課-──-天氣查詢應用程式-步驟04date-2025-09-06-22-00-58tags-Javascript-Vue-description-2025-02-10-JavaScript-系列八：第6課-──-天氣查詢應用程式-步驟04" class="headerlink" title="title: 2025-02-10- JavaScript 系列八：第6課 ── 天氣查詢應用程式-步驟04date: 2025-09-06 22:00:58tags:  [Javascript,Vue]description:  2025-02-10- JavaScript 系列八：第6課 ── 天氣查詢應用程式-步驟04"></a>title: 2025-02-10- JavaScript 系列八：第6課 ── 天氣查詢應用程式-步驟04<br>date: 2025-09-06 22:00:58<br>tags:  [Javascript,Vue]<br>description:  2025-02-10- JavaScript 系列八：第6課 ── 天氣查詢應用程式-步驟04</h2><h1 id="2025-02-10-JavaScript-系列八：第6課-──-天氣查詢應用程式-步驟04"><a href="#2025-02-10-JavaScript-系列八：第6課-──-天氣查詢應用程式-步驟04" class="headerlink" title="2025-02-10- JavaScript 系列八：第6課 ── 天氣查詢應用程式-步驟04"></a>2025-02-10- JavaScript 系列八：第6課 ── 天氣查詢應用程式-步驟04</h1><hr>
+<h3 id="✅-你要的功能一覽："><a href="#✅-你要的功能一覽：" class="headerlink" title="✅ 你要的功能一覽："></a>✅ 你要的功能一覽：</h3><ol>
+<li><p><strong>RWD 響應式版面</strong><br>→ 使用 CSS Flexbox + Media Queries 或 Tailwind CSS 實作</p>
+</li>
+<li><p><strong>背景隨天氣變化</strong></p>
+<ul>
+<li>☀️ 晴天：漸層藍色背景</li>
+<li>☁️ 陰天：漸層灰色背景</li>
+<li>🌩️ 雷雨：黑色背景 + 閃電動畫</li>
+</ul>
+</li>
+<li><p><strong>對應的天氣圖示顯示</strong><br>→ 可使用 <code>weather-icons</code>、<code>Font Awesome</code>、或你選的 SVG 圖片</p>
+</li>
+</ol>
+<hr>
+<h3 id="🔧-建議的改進步驟"><a href="#🔧-建議的改進步驟" class="headerlink" title="🔧 建議的改進步驟"></a>🔧 建議的改進步驟</h3><p>我會先幫你 <strong>改寫 WeatherQuery.vue 的背景變化邏輯</strong>，並附上基本 RWD 設計。完成後，我們再加上圖示部分（SVG 或 Icon Font）。</p>
+<hr>
+<h3 id="🧩-改進版-WeatherQuery-vue（含背景切換與-RWD）"><a href="#🧩-改進版-WeatherQuery-vue（含背景切換與-RWD）" class="headerlink" title="🧩 改進版 WeatherQuery.vue（含背景切換與 RWD）"></a>🧩 改進版 WeatherQuery.vue（含背景切換與 RWD）</h3><pre><code class="vue">&lt;script setup&gt;
+import { ref, watch, computed } from &#39;vue&#39;
+
+const cities = [&#39;臺北市&#39;, &#39;新北市&#39;, &#39;桃園市&#39;, &#39;臺中市&#39;, &#39;臺南市&#39;, &#39;高雄市&#39;]
+const selectedCity = ref(&#39;臺北市&#39;)
+const weatherInfo = ref(null)
+
+const fetchWeather = async () =&gt; {
+  const apiKey = &#39;你的 API KEY&#39;
+  const url = `https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=${apiKey}&amp;locationName=${selectedCity.value}`
+
+  try {
+    const res = await fetch(url)
+    const data = await res.json()
+    const location = data.records.location[0]
+    const elements = location.weatherElement
+
+    weatherInfo.value = {
+      description: elements[0].time[0].parameter.parameterName,
+      minTemp: elements[2].time[0].parameter.parameterName,
+      maxTemp: elements[4].time[0].parameter.parameterName,
+      rain: elements[1].time[0].parameter.parameterName
+    }
+  } catch (error) {
+    console.error(&#39;API 錯誤：&#39;, error)
+  }
+}
+
+// 監聽縣市變化
+watch(selectedCity, fetchWeather)
+fetchWeather()
+
+// 根據天氣現象設定背景類別
+const backgroundClass = computed(() =&gt; {
+  if (!weatherInfo.value) return &#39;bg-default&#39;
+
+  const desc = weatherInfo.value.description
+  if (desc.includes(&#39;雷&#39;) || desc.includes(&#39;雨&#39;)) return &#39;bg-thunder&#39;
+  if (desc.includes(&#39;陰&#39;)) return &#39;bg-cloudy&#39;
+  if (desc.includes(&#39;晴&#39;)) return &#39;bg-sunny&#39;
+  return &#39;bg-default&#39;
+})
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;div :class=&quot;[&#39;weather-container&#39;, backgroundClass]&quot;&gt;
+    &lt;div class=&quot;weather-card&quot;&gt;
+      &lt;h2&gt;天氣查詢&lt;/h2&gt;
+      &lt;label&gt;
+        縣市：
+        &lt;select v-model=&quot;selectedCity&quot;&gt;
+          &lt;option v-for=&quot;city in cities&quot; :key=&quot;city&quot; :value=&quot;city&quot;&gt;{{ city }}&lt;/option&gt;
+        &lt;/select&gt;
+      &lt;/label&gt;
+
+      &lt;div v-if=&quot;weatherInfo&quot; class=&quot;weather-data&quot;&gt;
+        &lt;p&gt;🌦️ 現象：{{ weatherInfo.description }}&lt;/p&gt;
+        &lt;p&gt;🔺 最高溫：{{ weatherInfo.maxTemp }}°C&lt;/p&gt;
+        &lt;p&gt;🔻 最低溫：{{ weatherInfo.minTemp }}°C&lt;/p&gt;
+        &lt;p&gt;🌧️ 降雨率：{{ weatherInfo.rain }}%&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;style scoped&gt;
+.weather-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background 0.5s ease-in-out;
+  padding: 1rem;
+}
+
+/* 背景樣式 */
+.bg-sunny {
+  background: linear-gradient(to bottom, #87CEFA, #ffffff);
+}
+.bg-cloudy {
+  background: linear-gradient(to bottom, #999, #ccc);
+}
+.bg-thunder {
+  background: linear-gradient(to bottom, #111, #444);
+  animation: flash 2s infinite;
+}
+.bg-default {
+  background: #eee;
+}
+
+/* 閃電效果 */
+@keyframes flash {
+  0%, 100% { background-color: #111; }
+  50% { background-color: #222; }
+}
+
+.weather-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+/* RWD 響應式設計 */
+@media (max-width: 600px) {
+  .weather-card {
+    padding: 1rem;
+  }
+  h2 {
+    font-size: 1.4rem;
+  }
+}
+&lt;/style&gt;
+</code></pre>
+<hr>
+<h3 id="✅-下一步（你選）"><a href="#✅-下一步（你選）" class="headerlink" title="✅ 下一步（你選）"></a>✅ 下一步（你選）</h3><ol>
+<li><strong>加入天氣圖示：</strong> 例如晴天 ☀️、陰天 ☁️、雷雨 🌩️（SVG 或 Icon 套件）</li>
+<li><strong>加入 loading 動畫 &#x2F; 錯誤提示</strong></li>
+<li><strong>加強卡片動畫或轉場效果</strong></li>
+<li><strong>匯入 Tailwind CSS 做進一步美化</strong></li>
+</ol>
+<hr>

@@ -1,0 +1,52 @@
+<hr>
+<h2 id="title-2025-02-24-箭頭函式的隱式-returndate-2025-09-06-22-30-55tags-Javascript-Vue-description-2025-02-24-箭頭函式的隱式-return"><a href="#title-2025-02-24-箭頭函式的隱式-returndate-2025-09-06-22-30-55tags-Javascript-Vue-description-2025-02-24-箭頭函式的隱式-return" class="headerlink" title="title: 2025-02-24-箭頭函式的隱式 returndate: 2025-09-06 22:30:55tags:  [Javascript,Vue]description:   2025-02-24-箭頭函式的隱式 return"></a>title: 2025-02-24-箭頭函式的隱式 return<br>date: 2025-09-06 22:30:55<br>tags:  [Javascript,Vue]<br>description:   2025-02-24-箭頭函式的隱式 return</h2><h1 id="2025-02-24-箭頭函式的隱式-return"><a href="#2025-02-24-箭頭函式的隱式-return" class="headerlink" title="2025-02-24-箭頭函式的隱式 return"></a>2025-02-24-箭頭函式的隱式 return</h1><p>箭頭函式的隱式 return</p>
+<p>你觀察得非常細膩，這正是學得深入的表現 👏！</p>
+<p>來，我們來精準說明你看到的這個：</p>
+<pre><code class="js">fetch(url)
+  .then(response =&gt; response.json()) // ⬅️ 這裡「有 return」！
+</code></pre>
+<hr>
+<h2 id="❗其實這裡是-隱式-return"><a href="#❗其實這裡是-隱式-return" class="headerlink" title="❗其實這裡是 隱式 return"></a>❗其實這裡是 <strong>隱式 return</strong></h2><p>這一行寫成這樣：</p>
+<pre><code class="js">.then(response =&gt; response.json())
+</code></pre>
+<p>其實是「箭頭函式的簡寫語法」，<strong>等同於</strong>：</p>
+<pre><code class="js">.then(response =&gt; {
+  return response.json(); // ⬅️ 這才是完整寫法
+})
+</code></pre>
+<p>所以你看到我寫的那一行「雖然沒看到 return 關鍵字」，但它其實是 <strong>自動 return</strong> 的，這是 JavaScript 的語法特性。</p>
+<hr>
+<h2 id="🎯-小整理：箭頭函式的隱式-return"><a href="#🎯-小整理：箭頭函式的隱式-return" class="headerlink" title="🎯 小整理：箭頭函式的隱式 return"></a>🎯 小整理：箭頭函式的隱式 return</h2><table>
+<thead>
+<tr>
+<th>語法</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>x =&gt; x * 2</code></td>
+<td>✅ 隱式 return <code>x * 2</code></td>
+</tr>
+<tr>
+<td><code>x =&gt; { return x * 2 }</code></td>
+<td>✅ 明確 return</td>
+</tr>
+<tr>
+<td><code>x =&gt; { x * 2 }</code></td>
+<td>⛔ 沒有 return，會是 <code>undefined</code></td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="✅-正確理解你看到的寫法"><a href="#✅-正確理解你看到的寫法" class="headerlink" title="✅ 正確理解你看到的寫法"></a>✅ 正確理解你看到的寫法</h2><pre><code class="js">.then(response =&gt; response.json()) // 有隱式 return
+</code></pre>
+<p>這是完全正確的語法，<strong>只要你 return 的東西是單行表達式（expression）</strong>，就可以省略大括號和 <code>return</code>，語法更簡潔。</p>
+<hr>
+<p>如果你把它寫錯變成這樣：</p>
+<pre><code class="js">.then(response =&gt; {
+  response.json() // ⛔ 沒有 return
+})
+</code></pre>
+<p>那就真的「沒有回傳」，下一個 <code>.then()</code> 拿不到資料了。</p>
+<hr>
+<h3 id="🔚-結論："><a href="#🔚-結論：" class="headerlink" title="🔚 結論："></a>🔚 結論：</h3><p>你說的沒錯：**每一層 <code>then()</code> 要把結果傳給下一層，必須 <code>return</code>**。<br>只不過，我的寫法用的是「箭頭函式的隱式 return」語法糖。</p>
+<p>你這樣問表示你對語法已經有深入理解的意圖，很棒👍</p>

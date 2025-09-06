@@ -1,0 +1,158 @@
+<hr>
+<h2 id="title-2025-02-12-JavaScript-系列八：第6課-──-天氣查詢應用程式-步驟06date-2025-09-06-22-06-32tags-Javascript-Vue-description-2025-02-12-JavaScript-系列八：第6課-──-天氣查詢應用程式-步驟06"><a href="#title-2025-02-12-JavaScript-系列八：第6課-──-天氣查詢應用程式-步驟06date-2025-09-06-22-06-32tags-Javascript-Vue-description-2025-02-12-JavaScript-系列八：第6課-──-天氣查詢應用程式-步驟06" class="headerlink" title="title: 2025-02-12- JavaScript 系列八：第6課 ── 天氣查詢應用程式-步驟06date: 2025-09-06 22:06:32tags:  [Javascript,Vue]description:  2025-02-12- JavaScript 系列八：第6課 ── 天氣查詢應用程式-步驟06"></a>title: 2025-02-12- JavaScript 系列八：第6課 ── 天氣查詢應用程式-步驟06<br>date: 2025-09-06 22:06:32<br>tags:  [Javascript,Vue]<br>description:  2025-02-12- JavaScript 系列八：第6課 ── 天氣查詢應用程式-步驟06</h2><h1 id="2025-02-12-JavaScript-系列八：第6課-──-天氣查詢應用程式-步驟06"><a href="#2025-02-12-JavaScript-系列八：第6課-──-天氣查詢應用程式-步驟06" class="headerlink" title="2025-02-12- JavaScript 系列八：第6課 ── 天氣查詢應用程式-步驟06"></a>2025-02-12- JavaScript 系列八：第6課 ── 天氣查詢應用程式-步驟06</h1><p>以下是整合後的 <code>WeatherQuery.vue</code>，加入了：</p>
+<ol>
+<li>✅ <strong>動態抓取所有縣市名稱（from CWA API）</strong></li>
+<li>✅ 根據選擇的縣市顯示天氣資訊</li>
+<li>✅ <strong>背景顏色隨天氣變化（晴、陰、雷雨）</strong></li>
+<li>✅ <strong>圖示也會隨天氣變化</strong></li>
+<li>✅ <strong>RWD 響應式設計</strong></li>
+</ol>
+<hr>
+<h3 id="✅-WeatherQuery-vue"><a href="#✅-WeatherQuery-vue" class="headerlink" title="✅ WeatherQuery.vue"></a>✅ <code>WeatherQuery.vue</code></h3><pre><code class="vue">&lt;template&gt;
+  &lt;div :class=&quot;[&#39;weather-app&#39;, weatherClass]&quot;&gt;
+    &lt;div class=&quot;container&quot;&gt;
+      &lt;h1&gt;天氣查詢&lt;/h1&gt;
+
+      &lt;select v-model=&quot;selectedCity&quot; @change=&quot;fetchWeather&quot;&gt;
+        &lt;option v-for=&quot;city in cities&quot; :key=&quot;city&quot; :value=&quot;city&quot;&gt;{{ city }}&lt;/option&gt;
+      &lt;/select&gt;
+
+      &lt;div v-if=&quot;weatherData&quot; class=&quot;weather-info&quot;&gt;
+        &lt;img :src=&quot;weatherIcon&quot; alt=&quot;Weather Icon&quot; class=&quot;weather-icon&quot; /&gt;
+        &lt;p&gt;&lt;strong&gt;天氣現象：&lt;/strong&gt;{{ weatherData.weather }}&lt;/p&gt;
+        &lt;p&gt;&lt;strong&gt;最高溫度：&lt;/strong&gt;{{ weatherData.maxT }} °C&lt;/p&gt;
+        &lt;p&gt;&lt;strong&gt;最低溫度：&lt;/strong&gt;{{ weatherData.minT }} °C&lt;/p&gt;
+        &lt;p&gt;&lt;strong&gt;降雨機率：&lt;/strong&gt;{{ weatherData.pop }}%&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { ref, onMounted, watch } from &#39;vue&#39;
+
+const apiKey = &#39;你的API_KEY&#39; // &lt;&lt;--- 請替換為你註冊的 CWA API Key
+const cities = ref([])
+const selectedCity = ref(&#39;&#39;)
+const weatherData = ref(null)
+const weatherClass = ref(&#39;&#39;)
+const weatherIcon = ref(&#39;&#39;)
+
+// 取得城市清單
+const fetchCities = async () =&gt; {
+  const url = `https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=${apiKey}`
+  const res = await fetch(url)
+  const data = await res.json()
+  cities.value = data.records.location.map(loc =&gt; loc.locationName)
+  selectedCity.value = cities.value[0]
+}
+
+// 根據縣市抓取天氣資訊
+const fetchWeather = async () =&gt; {
+  const url = `https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=${apiKey}`
+  const res = await fetch(url)
+  const data = await res.json()
+  const cityData = data.records.location.find(loc =&gt; loc.locationName === selectedCity.value)
+
+  if (cityData) {
+    const weather = cityData.weatherElement.find(e =&gt; e.elementName === &#39;Wx&#39;).time[0].parameter.parameterName
+    const maxT = cityData.weatherElement.find(e =&gt; e.elementName === &#39;MaxT&#39;).time[0].parameter.parameterName
+    const minT = cityData.weatherElement.find(e =&gt; e.elementName === &#39;MinT&#39;).time[0].parameter.parameterName
+    const pop = cityData.weatherElement.find(e =&gt; e.elementName === &#39;PoP&#39;).time[0].parameter.parameterName
+
+    weatherData.value = { weather, maxT, minT, pop }
+    updateWeatherStyle(weather)
+  }
+}
+
+// 設定背景與圖示
+const updateWeatherStyle = (weather) =&gt; {
+  if (weather.includes(&#39;雷&#39;)) {
+    weatherClass.value = &#39;thunder&#39;
+    weatherIcon.value = &#39;https://cdn-icons-png.flaticon.com/512/1146/1146858.png&#39;
+  } else if (weather.includes(&#39;雨&#39;)) {
+    weatherClass.value = &#39;rainy&#39;
+    weatherIcon.value = &#39;https://cdn-icons-png.flaticon.com/512/4150/4150897.png&#39;
+  } else if (weather.includes(&#39;雲&#39;) || weather.includes(&#39;陰&#39;)) {
+    weatherClass.value = &#39;cloudy&#39;
+    weatherIcon.value = &#39;https://cdn-icons-png.flaticon.com/512/414/414825.png&#39;
+  } else {
+    weatherClass.value = &#39;sunny&#39;
+    weatherIcon.value = &#39;https://cdn-icons-png.flaticon.com/512/869/869869.png&#39;
+  }
+}
+
+onMounted(() =&gt; {
+  fetchCities().then(() =&gt; fetchWeather())
+})
+
+watch(selectedCity, fetchWeather)
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+.weather-app {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  transition: background 0.5s ease;
+}
+
+.container {
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+select {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.weather-info {
+  text-align: center;
+}
+
+.weather-icon {
+  width: 100px;
+  margin-bottom: 1rem;
+}
+
+/* RWD */
+@media (max-width: 600px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .weather-icon {
+    width: 70px;
+  }
+}
+
+/* 背景漸層樣式 */
+.sunny {
+  background: linear-gradient(to bottom, #87CEEB, #ffffff);
+}
+.cloudy {
+  background: linear-gradient(to bottom, #ccc, #eee);
+}
+.rainy {
+  background: linear-gradient(to bottom, #3a3a3a, #666);
+}
+.thunder {
+  background: linear-gradient(to bottom, #000000, #333333);
+}
+&lt;/style&gt;
+</code></pre>
+<hr>
+<h3 id="🎯-提醒事項"><a href="#🎯-提醒事項" class="headerlink" title="🎯 提醒事項"></a>🎯 提醒事項</h3><ul>
+<li><code>apiKey</code> 請改成你申請的金鑰（<a href="https://opendata.cwa.gov.tw/index">註冊中央氣象局</a>）</li>
+<li>天氣圖示使用的是免費 Flaticon 圖片，可替換成自己的圖或本地圖片</li>
+<li>若想用 <code>localStorage</code> 記住城市選擇，也可以加上</li>
+</ul>
+<hr>

@@ -1,0 +1,55 @@
+<hr>
+<h2 id="title-2025-02-09-JavaScript-系列八：第6課-──-天氣查詢應用程式-步驟03date-2025-09-06-21-59-10tags-Javascript-Vue-description-2025-02-09-JavaScript-系列八：第6課-──-天氣查詢應用程式-步驟03"><a href="#title-2025-02-09-JavaScript-系列八：第6課-──-天氣查詢應用程式-步驟03date-2025-09-06-21-59-10tags-Javascript-Vue-description-2025-02-09-JavaScript-系列八：第6課-──-天氣查詢應用程式-步驟03" class="headerlink" title="title: 2025-02-09- JavaScript 系列八：第6課 ── 天氣查詢應用程式-步驟03date: 2025-09-06 21:59:10tags:  [Javascript,Vue]description:   2025-02-09- JavaScript 系列八：第6課 ── 天氣查詢應用程式-步驟03"></a>title: 2025-02-09- JavaScript 系列八：第6課 ── 天氣查詢應用程式-步驟03<br>date: 2025-09-06 21:59:10<br>tags:  [Javascript,Vue]<br>description:   2025-02-09- JavaScript 系列八：第6課 ── 天氣查詢應用程式-步驟03</h2><h1 id="2025-02-09-JavaScript-系列八：第6課-──-天氣查詢應用程式-步驟03"><a href="#2025-02-09-JavaScript-系列八：第6課-──-天氣查詢應用程式-步驟03" class="headerlink" title="2025-02-09- JavaScript 系列八：第6課 ── 天氣查詢應用程式-步驟03"></a>2025-02-09- JavaScript 系列八：第6課 ── 天氣查詢應用程式-步驟03</h1><p>&#x2F;&#x2F; WeatherQuery.vue：天氣查詢應用程式<br><template><br>  <div><br>    <h2>天氣查詢應用程式</h2><br>  </div><br>  <div><br>    <h2>天氣查詢</h2><br>    <label>選擇縣市：<br>      <select v-model="selectedCity"><br>        <option v-for="city in cities" :key="city" :value="city">{{ city }}</option><br>      </select><br>    </label></p>
+<pre><code>&lt;div v-if=&quot;weatherInfo&quot;&gt;
+  &lt;p&gt;天氣現象：{{ weatherInfo.description }}&lt;/p&gt;
+  &lt;p&gt;最高溫度：{{ weatherInfo.maxTemp }}°C&lt;/p&gt;
+  &lt;p&gt;最低溫度：{{ weatherInfo.minTemp }}°C&lt;/p&gt;
+  &lt;p&gt;降雨機率：{{ weatherInfo.rain }}%&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+  </div>
+</template>
+
+<script setup>
+import { ref, watch } from 'vue'
+
+const cities = ['臺北市', '新北市', '桃園市', '臺中市', '臺南市', '高雄市']
+const selectedCity = ref('臺北市')
+
+const weatherInfo = ref(null)
+
+const fetchWeather = async () => {
+  const apiKey = 'CWA-290D12F1-3FA3-4A61-B613-623327DD04C2'
+  const url = `https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=${apiKey}&locationName=${selectedCity.value}`
+
+  try {
+    const res = await fetch(url)
+    const data = await res.json()
+    const location = data.records.location[0]
+
+    const elements = location.weatherElement
+    weatherInfo.value = {
+      description: elements[0].time[0].parameter.parameterName, // 天氣現象
+      minTemp: elements[2].time[0].parameter.parameterName,     // 最低溫
+      maxTemp: elements[4].time[0].parameter.parameterName,     // 最高溫
+      rain: elements[1].time[0].parameter.parameterName         // 降雨機率
+    }
+  } catch (error) {
+    console.error('讀取失敗：', error)
+  }
+}
+
+// 自動偵測縣市選擇改變時重新取得天氣資料
+watch(selectedCity, fetchWeather)
+
+// 初始載入資料
+fetchWeather()
+</script>
+
+<style scoped>
+label {
+  font-weight: bold;
+  margin-bottom: 1rem;
+  display: block;
+}
+</style>

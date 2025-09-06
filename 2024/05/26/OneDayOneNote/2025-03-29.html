@@ -1,0 +1,43 @@
+<hr>
+<h2 id="title-20250329-grid-template-columns-repeat-auto-fit-minmax-200px-1fr-date-2025-09-06-23-39-14tags-Javascript-Vue-description-20250329-grid-template-columns-repeat-auto-fit-minmax-200px-1fr"><a href="#title-20250329-grid-template-columns-repeat-auto-fit-minmax-200px-1fr-date-2025-09-06-23-39-14tags-Javascript-Vue-description-20250329-grid-template-columns-repeat-auto-fit-minmax-200px-1fr" class="headerlink" title="title: 20250329- grid-template-columns- repeat(auto-fit, minmax(200px, 1fr))date: 2025-09-06 23:39:14tags:  [Javascript,Vue]description:  20250329- grid-template-columns- repeat(auto-fit, minmax(200px, 1fr))"></a>title: 20250329- grid-template-columns- repeat(auto-fit, minmax(200px, 1fr))<br>date: 2025-09-06 23:39:14<br>tags:  [Javascript,Vue]<br>description:  20250329- grid-template-columns- repeat(auto-fit, minmax(200px, 1fr))</h2><h1 id="20250329-grid-template-columns-repeat-auto-fit-minmax-200px-1fr"><a href="#20250329-grid-template-columns-repeat-auto-fit-minmax-200px-1fr" class="headerlink" title="20250329- grid-template-columns- repeat(auto-fit, minmax(200px, 1fr))"></a>20250329- grid-template-columns- repeat(auto-fit, minmax(200px, 1fr))</h1><p>詳細解釋一下這行 CSS：</p>
+<pre><code class="css">grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+</code></pre>
+<hr>
+<h2 id="什麼是-grid-template-columns？"><a href="#什麼是-grid-template-columns？" class="headerlink" title="什麼是 grid-template-columns？"></a>什麼是 <code>grid-template-columns</code>？</h2><ul>
+<li>它是 CSS Grid 佈局中用來定義「<strong>欄的數量與寬度</strong>」的屬性。</li>
+</ul>
+<hr>
+<h2 id="拆解這段語法"><a href="#拆解這段語法" class="headerlink" title="拆解這段語法"></a>拆解這段語法</h2><h3 id="1-repeat-auto-fit"><a href="#1-repeat-auto-fit" class="headerlink" title="1. repeat(auto-fit, ...)"></a>1. <code>repeat(auto-fit, ...)</code></h3><ul>
+<li><code>repeat()</code> 是重複設定欄的意思。</li>
+<li><code>auto-fit</code> 是自動偵測最多能放幾欄，會盡可能多排欄。</li>
+</ul>
+<p>換句話說：</p>
+<blockquote>
+<p>「自動適應欄數，最多能放幾欄就放幾欄。」</p>
+</blockquote>
+<hr>
+<h3 id="2-minmax-200px-1fr"><a href="#2-minmax-200px-1fr" class="headerlink" title="2. minmax(200px, 1fr)"></a>2. <code>minmax(200px, 1fr)</code></h3><ul>
+<li><code>minmax(min, max)</code> 是給欄寬設定<strong>最小寬度</strong>和<strong>最大寬度</strong>的限制。</li>
+<li>這裡設定最小欄寬是 <code>200px</code>，最大寬度是 <code>1fr</code>。</li>
+</ul>
+<hr>
+<h3 id="3-1fr-是什麼？"><a href="#3-1fr-是什麼？" class="headerlink" title="3. 1fr 是什麼？"></a>3. <code>1fr</code> 是什麼？</h3><ul>
+<li><code>fr</code> 是「fraction」的縮寫，意指可用空間的分數。</li>
+<li><code>1fr</code> 表示這個欄位會佔用可用空間的<strong>一份</strong>，會自動撐開填滿。</li>
+</ul>
+<hr>
+<h2 id="總結："><a href="#總結：" class="headerlink" title="總結："></a>總結：</h2><pre><code class="css">grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+</code></pre>
+<p>意思是：</p>
+<ul>
+<li><strong>自動適應欄數</strong>（auto-fit），</li>
+<li>每個欄寬最少 200px，最多會撐滿整個容器（最大是剩餘空間的 1 份），</li>
+<li>因此在大螢幕會有多欄並列，</li>
+<li>在小螢幕寬度不夠時會自動變成單欄或少欄，達成響應式效果。</li>
+</ul>
+<hr>
+<h3 id="這種寫法的好處："><a href="#這種寫法的好處：" class="headerlink" title="這種寫法的好處："></a>這種寫法的好處：</h3><ul>
+<li>簡單實現自動換行且欄寬可控</li>
+<li>不用寫媒體查詢就能有彈性排版</li>
+</ul>
+<hr>

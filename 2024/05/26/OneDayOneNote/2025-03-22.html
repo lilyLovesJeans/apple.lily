@@ -1,0 +1,143 @@
+<hr>
+<h2 id="title-2025-03-22-JavaScript-系列九：第2課-──-學習-Vue-的-props-觀念-建立-MyBadge-vue-元件date-2025-09-06-23-24-30tags-Javascript-Vue-description-2025-03-22-JavaScript-系列九：第2課-──-學習-Vue-的-props-觀念-建立-MyBadge-vue-元件"><a href="#title-2025-03-22-JavaScript-系列九：第2課-──-學習-Vue-的-props-觀念-建立-MyBadge-vue-元件date-2025-09-06-23-24-30tags-Javascript-Vue-description-2025-03-22-JavaScript-系列九：第2課-──-學習-Vue-的-props-觀念-建立-MyBadge-vue-元件" class="headerlink" title="title: 2025-03-22-JavaScript 系列九：第2課 ── 學習 Vue 的 props 觀念-建立 MyBadge.vue 元件date: 2025-09-06 23:24:30tags:  [Javascript,Vue]description:  2025-03-22-JavaScript 系列九：第2課 ── 學習 Vue 的 props 觀念-建立 MyBadge.vue 元件"></a>title: 2025-03-22-JavaScript 系列九：第2課 ── 學習 Vue 的 props 觀念-建立 MyBadge.vue 元件<br>date: 2025-09-06 23:24:30<br>tags:  [Javascript,Vue]<br>description:  2025-03-22-JavaScript 系列九：第2課 ── 學習 Vue 的 props 觀念-建立 MyBadge.vue 元件</h2><h1 id="2025-03-22-JavaScript-系列九：第2課-──-學習-Vue-的-props-觀念-建立-MyBadge-vue-元件"><a href="#2025-03-22-JavaScript-系列九：第2課-──-學習-Vue-的-props-觀念-建立-MyBadge-vue-元件" class="headerlink" title="2025-03-22-JavaScript 系列九：第2課 ── 學習 Vue 的 props 觀念-建立 MyBadge.vue 元件"></a>2025-03-22-JavaScript 系列九：第2課 ── 學習 Vue 的 props 觀念-建立 MyBadge.vue 元件</h1><p>JavaScript 系列九：第2課 ── 學習 Vue 的 props 觀念-建立 <code>MyBadge.vue</code> 元件</p>
+<ul>
+<li><p>建立 <code>MyBadge.vue</code> 元件</p>
+</li>
+<li><p>接收 4 個 props：</p>
+<ul>
+<li><code>color</code> → 背景色</li>
+<li><code>textColor</code> → 文字顏色</li>
+<li><code>label</code> → 文字內容</li>
+<li><code>rounded</code> → 是否圓角</li>
+</ul>
+</li>
+<li><p>並在 <code>App.vue</code> 中匯入和使用多個範例來展示效果 ✅</p>
+</li>
+</ul>
+<hr>
+<h2 id="✅-1-建立-MyBadge-vue"><a href="#✅-1-建立-MyBadge-vue" class="headerlink" title="✅ 1. 建立 MyBadge.vue"></a>✅ 1. 建立 <code>MyBadge.vue</code></h2><p>📁 請在 <code>src/components/</code> 目錄中建立檔案：<code>MyBadge.vue</code></p>
+<pre><code class="vue">&lt;!-- src/components/MyBadge.vue --&gt;
+&lt;template&gt;
+  &lt;span
+    class=&quot;badge&quot;
+    :style=&quot;badgeStyle&quot;
+    :class=&quot;{ rounded }&quot;
+  &gt;
+    {{ label }}
+  &lt;/span&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { computed } from &#39;vue&#39;
+
+const props = defineProps({
+  color: {
+    type: String,
+    default: &#39;#eee&#39;
+  },
+  textColor: {
+    type: String,
+    default: &#39;#333&#39;
+  },
+  label: {
+    type: String,
+    required: true
+  },
+  rounded: {
+    type: Boolean,
+    default: false
+  }
+})
+
+const badgeStyle = computed(() =&gt; ({
+  backgroundColor: props.color,
+  color: props.textColor,
+}))
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+.badge {
+  display: inline-block;
+  padding: 0.4em 0.8em;
+  font-size: 0.875rem;
+  font-weight: bold;
+  margin: 0.25rem;
+}
+
+.rounded {
+  border-radius: 999px;
+}
+&lt;/style&gt;
+</code></pre>
+<hr>
+<h2 id="✅-2-修改-App-vue-測試元件"><a href="#✅-2-修改-App-vue-測試元件" class="headerlink" title="✅ 2. 修改 App.vue 測試元件"></a>✅ 2. 修改 <code>App.vue</code> 測試元件</h2><p>📁 請在 <code>src/App.vue</code> 中加入以下內容：</p>
+<pre><code class="vue">&lt;template&gt;
+  &lt;div class=&quot;app-container&quot;&gt;
+    &lt;h1&gt;🎯 MyBadge.vue 測試區&lt;/h1&gt;
+    &lt;MyBadge label=&quot;預設 Badge&quot; /&gt;
+    &lt;MyBadge label=&quot;紅底白字&quot; color=&quot;#e74c3c&quot; text-color=&quot;#fff&quot; /&gt;
+    &lt;MyBadge label=&quot;藍底黃字&quot; color=&quot;#3498db&quot; text-color=&quot;#f1c40f&quot; /&gt;
+    &lt;MyBadge label=&quot;圓角綠底白字&quot; color=&quot;#2ecc71&quot; text-color=&quot;#fff&quot; :rounded=&quot;true&quot; /&gt;
+    &lt;MyBadge label=&quot;圓角灰底黑字&quot; color=&quot;#bdc3c7&quot; text-color=&quot;#2c3e50&quot; :rounded=&quot;true&quot; /&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import MyBadge from &#39;./components/MyBadge.vue&#39;
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+.app-container {
+  padding: 2rem;
+}
+&lt;/style&gt;
+</code></pre>
+<hr>
+<h2 id="✅-成果說明"><a href="#✅-成果說明" class="headerlink" title="✅ 成果說明"></a>✅ 成果說明</h2><table>
+<thead>
+<tr>
+<th>label</th>
+<th>color</th>
+<th>text-color</th>
+<th>rounded</th>
+<th>顯示效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>預設</td>
+<td>#eee</td>
+<td>#333</td>
+<td>否</td>
+<td>灰底黑字</td>
+</tr>
+<tr>
+<td>紅底白字</td>
+<td>#e74c3c</td>
+<td>#fff</td>
+<td>否</td>
+<td>紅底白字</td>
+</tr>
+<tr>
+<td>藍底黃字</td>
+<td>#3498db</td>
+<td>#f1c40f</td>
+<td>否</td>
+<td>藍底黃字</td>
+</tr>
+<tr>
+<td>圓角綠底白字</td>
+<td>#2ecc71</td>
+<td>#fff</td>
+<td>✅</td>
+<td>綠底白字，圓角</td>
+</tr>
+<tr>
+<td>圓角灰底黑字</td>
+<td>#bdc3c7</td>
+<td>#2c3e50</td>
+<td>✅</td>
+<td>灰底黑字，圓角</td>
+</tr>
+</tbody></table>
+<hr>
+<p>如果你執行成功，恭喜你 🎉！你已經完成這次課程的 <strong>自訂元件開發目標</strong>，包含 props、樣式控制與元件引入實作！</p>

@@ -1,0 +1,50 @@
+<hr>
+<h2 id="title-2025-02-07-JavaScript-系列八：第6課-──-天氣查詢應用程式-步驟01date-2025-09-06-21-10-55tags-Javascript-Vue-description-2025-02-07-JavaScript-系列八：第6課-──-天氣查詢應用程式-步驟01"><a href="#title-2025-02-07-JavaScript-系列八：第6課-──-天氣查詢應用程式-步驟01date-2025-09-06-21-10-55tags-Javascript-Vue-description-2025-02-07-JavaScript-系列八：第6課-──-天氣查詢應用程式-步驟01" class="headerlink" title="title: 2025-02-07- JavaScript 系列八：第6課 ── 天氣查詢應用程式-步驟01date: 2025-09-06 21:10:55tags:  [Javascript,Vue]description:    2025-02-07- JavaScript 系列八：第6課 ── 天氣查詢應用程式-步驟01"></a>title: 2025-02-07- JavaScript 系列八：第6課 ── 天氣查詢應用程式-步驟01<br>date: 2025-09-06 21:10:55<br>tags:  [Javascript,Vue]<br>description:    2025-02-07- JavaScript 系列八：第6課 ── 天氣查詢應用程式-步驟01</h2><h1 id="2025-02-07-JavaScript-系列八：第6課-──-天氣查詢應用程式-步驟01"><a href="#2025-02-07-JavaScript-系列八：第6課-──-天氣查詢應用程式-步驟01" class="headerlink" title="2025-02-07- JavaScript 系列八：第6課 ── 天氣查詢應用程式-步驟01"></a>2025-02-07- JavaScript 系列八：第6課 ── 天氣查詢應用程式-步驟01</h1><p>這個天氣查詢應用程式練習可以幫助你學會串接 API 並顯示資料，是很實用的技能。下面我會給你一個清楚的架構和建議使用的中央氣象局 API。</p>
+<hr>
+<h3 id="🌤️【應用程式架構】天氣查詢-App"><a href="#🌤️【應用程式架構】天氣查詢-App" class="headerlink" title="🌤️【應用程式架構】天氣查詢 App"></a>🌤️【應用程式架構】天氣查詢 App</h3><p><strong>1️⃣ 頁面 UI</strong></p>
+<ul>
+<li><p>一個下拉選單（<code>&lt;select&gt;</code>）：讓使用者選擇「縣市」</p>
+</li>
+<li><p>一個顯示天氣資訊的區塊：顯示以下資料</p>
+<ul>
+<li>天氣現象（如：晴時多雲）</li>
+<li>最高溫度（℃）</li>
+<li>最低溫度（℃）</li>
+<li>降雨機率（%）</li>
+</ul>
+</li>
+</ul>
+<p><strong>2️⃣ 程式邏輯</strong></p>
+<ul>
+<li>使用者選擇縣市</li>
+<li>程式透過 Fetch API 向中央氣象局發送請求，取得對應的天氣資料</li>
+<li>顯示於畫面上</li>
+</ul>
+<hr>
+<h3 id="🧭【建議使用的-API】"><a href="#🧭【建議使用的-API】" class="headerlink" title="🧭【建議使用的 API】"></a>🧭【建議使用的 API】</h3><p>中央氣象局（CWB）的開放資料平台提供了適合的資料：</p>
+<p>🔗 API 文件入口：<br><a href="https://opendata.cwb.gov.tw/index">https://opendata.cwb.gov.tw/index</a></p>
+<p><strong>建議使用的 API</strong>：<br>📘「36 小時天氣預報」：<code>F-C0032-001</code></p>
+<ul>
+<li>這個 API 會回傳每個縣市接下來 36 小時內的天氣預測</li>
+<li>每個縣市都包含：天氣現象、最高&#x2F;最低溫、降雨機率</li>
+</ul>
+<hr>
+<h3 id="🔑【註冊並取得-API-金鑰】"><a href="#🔑【註冊並取得-API-金鑰】" class="headerlink" title="🔑【註冊並取得 API 金鑰】"></a>🔑【註冊並取得 API 金鑰】</h3><ol>
+<li>到 <a href="https://opendata.cwb.gov.tw/user/signup">中央氣象局開放資料平台</a> 註冊帳號</li>
+<li>註冊後，登入後台</li>
+<li>建立一個「應用程式」，就會拿到一組 API Key（稱作 <code>Authorization</code>）</li>
+</ol>
+<hr>
+<h3 id="🔗【API-呼叫方式（GET）範例】"><a href="#🔗【API-呼叫方式（GET）範例】" class="headerlink" title="🔗【API 呼叫方式（GET）範例】"></a>🔗【API 呼叫方式（GET）範例】</h3><pre><code class="bash">https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=你的API_KEY&amp;locationName=臺北市
+</code></pre>
+<ul>
+<li><code>Authorization</code>: 請填入你的 API 金鑰</li>
+<li><code>locationName</code>: 填入縣市名稱（例如：臺北市、桃園市、高雄市）</li>
+</ul>
+<hr>
+<h3 id="🧱【建議的程式結構】"><a href="#🧱【建議的程式結構】" class="headerlink" title="🧱【建議的程式結構】"></a>🧱【建議的程式結構】</h3><pre><code class="plaintext">weather-app/
+├── index.html     ← UI 結構
+├── style.css      ← 美化頁面
+└── script.js      ← 主要 JavaScript 程式邏輯
+</code></pre>
+<hr>

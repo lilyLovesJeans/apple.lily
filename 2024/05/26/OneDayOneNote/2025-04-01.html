@@ -1,0 +1,65 @@
+<hr>
+<h2 id="title-2025-04-01-Vue-的-computed-及-v-modal-的不同date-2025-09-06-23-44-58tags-Javascript-Vue-description-2025-04-01-Vue-的-computed-及-v-modal-的不同"><a href="#title-2025-04-01-Vue-的-computed-及-v-modal-的不同date-2025-09-06-23-44-58tags-Javascript-Vue-description-2025-04-01-Vue-的-computed-及-v-modal-的不同" class="headerlink" title="title: 2025-04-01- Vue 的 computed 及 v-modal  的不同date: 2025-09-06 23:44:58tags:  [Javascript,Vue]description:  2025-04-01- Vue 的 computed 及 v-modal  的不同"></a>title: 2025-04-01- Vue 的 computed 及 v-modal  的不同<br>date: 2025-09-06 23:44:58<br>tags:  [Javascript,Vue]<br>description:  2025-04-01- Vue 的 computed 及 v-modal  的不同</h2><h1 id="2025-04-01-Vue-的-computed-及-v-modal-的不同"><a href="#2025-04-01-Vue-的-computed-及-v-modal-的不同" class="headerlink" title="2025-04-01- Vue 的 computed 及 v-modal  的不同"></a>2025-04-01- Vue 的 computed 及 v-modal  的不同</h1><p>很多人一開始會想：「既然 <code>v-model</code> 是雙向的，那我直接用 <code>computed()</code> 來做 getter &#x2F; setter 不就好了？」<br>其實這兩個在父子元件傳值的情境裡，<strong>解決的問題不一樣</strong>。</p>
+<hr>
+<h2 id="1️⃣-computed-用在哪？"><a href="#1️⃣-computed-用在哪？" class="headerlink" title="1️⃣ computed() 用在哪？"></a>1️⃣ <code>computed()</code> 用在哪？</h2><p><code>computed</code> 是<strong>在元件內部</strong>建立「衍生值」或「雙向綁定某個內部狀態」的工具。<br>它的 getter &#x2F; setter 可以做雙向邏輯，但這是<strong>元件內部的資料流</strong>，<strong>不是父子元件溝通的機制</strong>。</p>
+<p>例子：</p>
+<pre><code class="vue">&lt;script setup&gt;
+import { ref, computed } from &#39;vue&#39;
+
+const firstName = ref(&#39;Lily&#39;)
+const lastName = ref(&#39;Chiou&#39;)
+
+const fullName = computed({
+  get: () =&gt; firstName.value + &#39; &#39; + lastName.value,
+  set: (value) =&gt; {
+    const parts = value.split(&#39; &#39;)
+    firstName.value = parts[0] || &#39;&#39;
+    lastName.value = parts[1] || &#39;&#39;
+  }
+})
+&lt;/script&gt;
+</code></pre>
+<p>這裡的 <code>fullName</code> 完全不需要 <code>props</code> 或 <code>emit</code>，因為它只在元件自己內部用。</p>
+<hr>
+<h2 id="2️⃣-v-model-用在哪？"><a href="#2️⃣-v-model-用在哪？" class="headerlink" title="2️⃣ v-model 用在哪？"></a>2️⃣ <code>v-model</code> 用在哪？</h2><p>當你需要<strong>父子元件雙向傳值</strong>時，必須透過：</p>
+<ul>
+<li><code>props</code> 接收父元件傳來的值</li>
+<li><code>emit</code> 事件回傳給父元件</li>
+</ul>
+<p>因為 Vue 的資料流是<strong>單向的</strong>（父 → 子），<br>子元件不能直接改父元件的變數，所以才需要 <code>$emit</code> 讓父元件去改。</p>
+<hr>
+<h2 id="3️⃣-為什麼子元件不能直接用-computed-改父元件的值？"><a href="#3️⃣-為什麼子元件不能直接用-computed-改父元件的值？" class="headerlink" title="3️⃣ 為什麼子元件不能直接用 computed() 改父元件的值？"></a>3️⃣ 為什麼子元件不能直接用 <code>computed()</code> 改父元件的值？</h2><p>假設子元件直接：</p>
+<pre><code class="js">const text = computed({
+  get: () =&gt; props.modelValue,
+  set: (val) =&gt; props.modelValue = val // ❌ 不行
+})
+</code></pre>
+<p>這樣會報錯：</p>
+<pre><code>[Vue warn]: Attempting to mutate prop &quot;modelValue&quot;
+</code></pre>
+<p>因為 <strong>props 在子元件是唯讀的</strong>，Vue 強制禁止直接修改，<br>所以即使你用 <code>computed</code>，setter 也沒辦法直接改 <code>props</code>，<br>你還是必須用 <code>$emit(&#39;update:modelValue&#39;, 新值)</code> 告訴父元件去改。</p>
+<hr>
+<p>✅ <strong>正確結合 computed + v-model 的方式</strong>（有些人喜歡這樣寫比較簡潔）</p>
+<pre><code class="vue">&lt;script setup&gt;
+const props = defineProps({ modelValue: String })
+const emit = defineEmits([&#39;update:modelValue&#39;])
+
+const text = computed({
+  get: () =&gt; props.modelValue,
+  set: (val) =&gt; emit(&#39;update:modelValue&#39;, val)
+})
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;input v-model=&quot;text&quot; /&gt;
+&lt;/template&gt;
+</code></pre>
+<p>這種方式只是讓你在 <code>&lt;template&gt;</code> 裡可以用 <code>v-model=&quot;text&quot;</code>，<br>而不用再手動寫 <code>:value</code> 和 <code>@input</code>，<br><strong>但底層還是要靠 <code>emit</code> 回傳，才能讓父元件更新</strong>。</p>
+<hr>
+<p>💡 <strong>重點</strong></p>
+<ul>
+<li><code>computed</code> 是<strong>元件內部狀態</strong>的雙向邏輯工具</li>
+<li><code>v-model</code>（props + emit）是<strong>父子元件間</strong>的雙向資料傳遞機制</li>
+<li>在子元件中用 computed 包 <code>props + emit</code>，只是寫法簡化，邏輯沒變</li>
+</ul>
+<hr>

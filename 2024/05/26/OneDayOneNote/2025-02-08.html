@@ -1,0 +1,86 @@
+<hr>
+<h2 id="title-2025-02-08-JavaScript-系列八：第6課-──-天氣查詢應用程式-步驟02date-2025-09-06-21-14-05tags-Javascript-Vue-description-2025-02-08-JavaScript-系列八：第6課-──-天氣查詢應用程式-步驟02"><a href="#title-2025-02-08-JavaScript-系列八：第6課-──-天氣查詢應用程式-步驟02date-2025-09-06-21-14-05tags-Javascript-Vue-description-2025-02-08-JavaScript-系列八：第6課-──-天氣查詢應用程式-步驟02" class="headerlink" title="title: 2025-02-08- JavaScript 系列八：第6課 ── 天氣查詢應用程式-步驟02date: 2025-09-06 21:14:05tags:  [Javascript,Vue]description:   2025-02-08- JavaScript 系列八：第6課 ── 天氣查詢應用程式-步驟02"></a>title: 2025-02-08- JavaScript 系列八：第6課 ── 天氣查詢應用程式-步驟02<br>date: 2025-09-06 21:14:05<br>tags:  [Javascript,Vue]<br>description:   2025-02-08- JavaScript 系列八：第6課 ── 天氣查詢應用程式-步驟02</h2><h1 id="2025-02-08-JavaScript-系列八：第6課-──-天氣查詢應用程式-步驟02"><a href="#2025-02-08-JavaScript-系列八：第6課-──-天氣查詢應用程式-步驟02" class="headerlink" title="2025-02-08- JavaScript 系列八：第6課 ── 天氣查詢應用程式-步驟02"></a>2025-02-08- JavaScript 系列八：第6課 ── 天氣查詢應用程式-步驟02</h1><p>接下來的目標是：</p>
+<h3 id="✅-目標"><a href="#✅-目標" class="headerlink" title="✅ 目標"></a>✅ 目標</h3><p>在 <code>WeatherQuery.vue</code> 中完成一個具備以下功能的天氣查詢 App：</p>
+<ul>
+<li><p>「縣市」下拉選單</p>
+</li>
+<li><p>顯示該縣市的：</p>
+<ul>
+<li>天氣現象</li>
+<li>最高溫度</li>
+<li>最低溫度</li>
+<li>降雨機率</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="🔧-建議步驟"><a href="#🔧-建議步驟" class="headerlink" title="🔧 建議步驟"></a>🔧 建議步驟</h3><h4 id="✅-1-先去中央氣象局註冊並取得-API-Key"><a href="#✅-1-先去中央氣象局註冊並取得-API-Key" class="headerlink" title="✅ 1. 先去中央氣象局註冊並取得 API Key"></a>✅ 1. 先去中央氣象局註冊並取得 API Key</h4><p>前往 <a href="https://opendata.cwb.gov.tw/index">https://opendata.cwb.gov.tw/index</a>，註冊後取得一組「授權碼 (Authorization)」。</p>
+<hr>
+<h4 id="✅-2-API-測試網址（可用-fetch-測試）"><a href="#✅-2-API-測試網址（可用-fetch-測試）" class="headerlink" title="✅ 2. API 測試網址（可用 fetch 測試）"></a>✅ 2. API 測試網址（可用 fetch 測試）</h4><pre><code class="plaintext">https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=你的API_KEY&amp;locationName=臺北市
+</code></pre>
+<hr>
+<h3 id="🧱-WeatherQuery-vue-初始版結構範例（可直接用）"><a href="#🧱-WeatherQuery-vue-初始版結構範例（可直接用）" class="headerlink" title="🧱 WeatherQuery.vue 初始版結構範例（可直接用）"></a>🧱 <code>WeatherQuery.vue</code> 初始版結構範例（可直接用）</h3><p>這是最簡單可運作的版本，之後我們再加強功能與樣式：</p>
+<pre><code class="vue">&lt;script setup&gt;
+import { ref, watch } from &#39;vue&#39;
+
+const cities = [&#39;臺北市&#39;, &#39;新北市&#39;, &#39;桃園市&#39;, &#39;臺中市&#39;, &#39;臺南市&#39;, &#39;高雄市&#39;]
+const selectedCity = ref(&#39;臺北市&#39;)
+
+const weatherInfo = ref(null)
+
+const fetchWeather = async () =&gt; {
+  const apiKey = &#39;你的 API KEY&#39;
+  const url = `https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=${apiKey}&amp;locationName=${selectedCity.value}`
+
+  try {
+    const res = await fetch(url)
+    const data = await res.json()
+    const location = data.records.location[0]
+
+    const elements = location.weatherElement
+    weatherInfo.value = {
+      description: elements[0].time[0].parameter.parameterName, // 天氣現象
+      minTemp: elements[2].time[0].parameter.parameterName,     // 最低溫
+      maxTemp: elements[4].time[0].parameter.parameterName,     // 最高溫
+      rain: elements[1].time[0].parameter.parameterName         // 降雨機率
+    }
+  } catch (error) {
+    console.error(&#39;讀取失敗：&#39;, error)
+  }
+}
+
+// 自動偵測縣市選擇改變時重新取得天氣資料
+watch(selectedCity, fetchWeather)
+
+// 初始載入資料
+fetchWeather()
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;h2&gt;天氣查詢&lt;/h2&gt;
+    &lt;label&gt;選擇縣市：
+      &lt;select v-model=&quot;selectedCity&quot;&gt;
+        &lt;option v-for=&quot;city in cities&quot; :key=&quot;city&quot; :value=&quot;city&quot;&gt;{{ city }}&lt;/option&gt;
+      &lt;/select&gt;
+    &lt;/label&gt;
+
+    &lt;div v-if=&quot;weatherInfo&quot;&gt;
+      &lt;p&gt;天氣現象：{{ weatherInfo.description }}&lt;/p&gt;
+      &lt;p&gt;最高溫度：{{ weatherInfo.maxTemp }}°C&lt;/p&gt;
+      &lt;p&gt;最低溫度：{{ weatherInfo.minTemp }}°C&lt;/p&gt;
+      &lt;p&gt;降雨機率：{{ weatherInfo.rain }}%&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;style scoped&gt;
+label {
+  font-weight: bold;
+  margin-bottom: 1rem;
+  display: block;
+}
+&lt;/style&gt;
+</code></pre>
+<hr>
+<hr>

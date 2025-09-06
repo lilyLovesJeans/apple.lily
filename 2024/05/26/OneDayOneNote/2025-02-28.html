@@ -1,0 +1,70 @@
+<hr>
+<h2 id="title-2025-02-28-JSON-stringifydate-2025-09-06-22-49-27tags-Javascript-Vue-description-2025-02-28-JSON-stringify"><a href="#title-2025-02-28-JSON-stringifydate-2025-09-06-22-49-27tags-Javascript-Vue-description-2025-02-28-JSON-stringify" class="headerlink" title="title: 2025-02-28-JSON_stringifydate: 2025-09-06 22:49:27tags:  [Javascript,Vue]description:   2025-02-28-JSON_stringify"></a>title: 2025-02-28-JSON_stringify<br>date: 2025-09-06 22:49:27<br>tags:  [Javascript,Vue]<br>description:   2025-02-28-JSON_stringify</h2><h1 id="2025-02-28-JSON-stringify"><a href="#2025-02-28-JSON-stringify" class="headerlink" title="2025-02-28-JSON_stringify"></a>2025-02-28-JSON_stringify</h1><p>JSON.stringify</p>
+<p>當你使用：</p>
+<pre><code class="js">JSON.stringify(data, null, 2)
+</code></pre>
+<p>這是一個把 JavaScript 物件（像 <code>data</code>）轉換成 <strong>格式化的 JSON 字串</strong> 的寫法。<br>我們來一層一層解釋它的三個參數：</p>
+<hr>
+<h2 id="✅-語法結構："><a href="#✅-語法結構：" class="headerlink" title="✅ 語法結構："></a>✅ 語法結構：</h2><pre><code class="js">JSON.stringify(value, replacer, space)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>參數名稱</th>
+<th>意義</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>value</code></td>
+<td>要轉成 JSON 字串的 JavaScript 物件（例如 <code>data</code>）</td>
+</tr>
+<tr>
+<td><code>replacer</code></td>
+<td>（選擇性）用來選擇或過濾哪些欄位要轉換</td>
+</tr>
+<tr>
+<td><code>space</code></td>
+<td>（選擇性）用來美化排版（縮排空格數量）</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🔍-你的程式：JSON-stringify-data-null-2-的意思："><a href="#🔍-你的程式：JSON-stringify-data-null-2-的意思：" class="headerlink" title="🔍 你的程式：JSON.stringify(data, null, 2) 的意思："></a>🔍 你的程式：<code>JSON.stringify(data, null, 2)</code> 的意思：</h2><ul>
+<li><code>data</code>：你要轉換的物件（例如從 API 拿到的 JSON）</li>
+<li><code>null</code>：不做欄位過濾，全部都輸出</li>
+<li><code>2</code>：縮排每一層用 2 個空白，讓格式更整齊易讀</li>
+</ul>
+<hr>
+<h2 id="🎯-實際範例："><a href="#🎯-實際範例：" class="headerlink" title="🎯 實際範例："></a>🎯 實際範例：</h2><p>原本是一個物件：</p>
+<pre><code class="js">const data = {
+  name: &quot;Lily&quot;,
+  age: 18,
+  location: {
+    city: &quot;Taipei&quot;,
+    country: &quot;Taiwan&quot;
+  }
+}
+</code></pre>
+<pre><code class="js">console.log(JSON.stringify(data, null, 2))
+</code></pre>
+<p>輸出：</p>
+<pre><code class="json">{
+  &quot;name&quot;: &quot;Lily&quot;,
+  &quot;age&quot;: 18,
+  &quot;location&quot;: {
+    &quot;city&quot;: &quot;Taipei&quot;,
+    &quot;country&quot;: &quot;Taiwan&quot;
+  }
+}
+</code></pre>
+<p>清楚有縮排，非常適合用來：</p>
+<ul>
+<li><strong>debug 時列印整齊的資料</strong></li>
+<li><strong>下載成 <code>.json</code> 檔</strong></li>
+<li><strong>貼到 JSON Crack 或 JSON Viewer 查看結構</strong></li>
+</ul>
+<hr>
+<h2 id="🎓-額外技巧：改變縮排方式"><a href="#🎓-額外技巧：改變縮排方式" class="headerlink" title="🎓 額外技巧：改變縮排方式"></a>🎓 額外技巧：改變縮排方式</h2><ul>
+<li><code>JSON.stringify(data, null, 4)</code> ➜ 用 4 個空格</li>
+<li><code>JSON.stringify(data, null, &quot;\t&quot;)</code> ➜ 用 tab 縮排</li>
+</ul>
+<hr>

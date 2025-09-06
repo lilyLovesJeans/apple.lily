@@ -1,0 +1,89 @@
+<hr>
+<h2 id="title-2025-03-26-VUE響應式變化date-2025-09-06-23-33-35tags-Javascript-Vue-description-「2025-03-26-VUE響應式變化"><a href="#title-2025-03-26-VUE響應式變化date-2025-09-06-23-33-35tags-Javascript-Vue-description-「2025-03-26-VUE響應式變化" class="headerlink" title="title: 2025-03-26- VUE響應式變化date: 2025-09-06 23:33:35tags:  [Javascript,Vue]description: 「2025-03-26- VUE響應式變化"></a>title: 2025-03-26- VUE響應式變化<br>date: 2025-09-06 23:33:35<br>tags:  [Javascript,Vue]<br>description: 「2025-03-26- VUE響應式變化</h2><h1 id="2025-03-26-VUE響應式變化"><a href="#2025-03-26-VUE響應式變化" class="headerlink" title="2025-03-26- VUE響應式變化"></a>2025-03-26- VUE響應式變化</h1><p>這是一個非常棒的問題，而且說明你已經在思考 <strong>Vue 中「響應式變化」與效能優化的核心概念</strong>了！</p>
+<hr>
+<h2 id="✅-為什麼接收一組-style-要用-computed-？"><a href="#✅-為什麼接收一組-style-要用-computed-？" class="headerlink" title="✅ 為什麼接收一組 style 要用 computed()？"></a>✅ 為什麼接收一組 <code>style</code> 要用 <code>computed()</code>？</h2><p>答案是：<strong>讓這組 style 自動「響應變化」並有效率地重新渲染 DOM</strong>。</p>
+<hr>
+<h3 id="🌟-我們來看一個基本寫法"><a href="#🌟-我們來看一個基本寫法" class="headerlink" title="🌟 我們來看一個基本寫法"></a>🌟 我們來看一個基本寫法</h3><pre><code class="js">const badgeStyle = {
+  backgroundColor: props.color,
+  color: props.textColor,
+}
+</code></pre>
+<p>這樣寫也「可以」工作，但有一個問題：</p>
+<ul>
+<li>這是一個<strong>靜態物件</strong>（plain object），<strong>只在 setup 時執行一次</strong>。</li>
+<li>如果 props 改變了，這個物件 <strong>不會更新</strong>。</li>
+</ul>
+<hr>
+<h3 id="✅-用-computed-包起來的好處"><a href="#✅-用-computed-包起來的好處" class="headerlink" title="✅ 用 computed() 包起來的好處"></a>✅ 用 <code>computed()</code> 包起來的好處</h3><pre><code class="js">const badgeStyle = computed(() =&gt; ({
+  backgroundColor: props.color,
+  color: props.textColor,
+}))
+</code></pre>
+<p>這樣一來：</p>
+<ul>
+<li>如果 <code>props.color</code> 或 <code>props.textColor</code> 改變了，</li>
+<li><code>badgeStyle</code> 會自動 <strong>重新計算</strong>，</li>
+<li>並觸發 DOM 的 style <strong>響應式更新</strong>。</li>
+</ul>
+<p>這正是 Vue 的反應式核心！</p>
+<hr>
+<h3 id="🧠-簡單比喻"><a href="#🧠-簡單比喻" class="headerlink" title="🧠 簡單比喻"></a>🧠 簡單比喻</h3><table>
+<thead>
+<tr>
+<th>做法</th>
+<th>類似行為</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>const obj = {...}</code></td>
+<td>拍一張靜態照片，不會變</td>
+</tr>
+<tr>
+<td><code>const obj = computed(() =&gt; {...})</code></td>
+<td>裝一台即時監視器，只要變動就會更新</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="🎯-實務重點：computed-vs-ref-vs-reactive"><a href="#🎯-實務重點：computed-vs-ref-vs-reactive" class="headerlink" title="🎯 實務重點：computed vs ref vs reactive"></a>🎯 實務重點：<code>computed</code> vs <code>ref</code> vs <code>reactive</code></h3><ul>
+<li>✅ <code>computed()</code>：當你想要根據變數動態產生新值時使用（常用於 <code>style</code>, <code>class</code>, <code>總價</code>, <code>折扣後價格</code>）。</li>
+<li>✅ <code>ref()</code>：單一變數（例如 <code>const count = ref(0)</code>）</li>
+<li>✅ <code>reactive()</code>：多個變數組成的物件（例如表單資料）</li>
+</ul>
+<hr>
+<h3 id="🔍-延伸：如果你不想用-computed-呢？"><a href="#🔍-延伸：如果你不想用-computed-呢？" class="headerlink" title="🔍 延伸：如果你不想用 computed() 呢？"></a>🔍 延伸：如果你不想用 <code>computed()</code> 呢？</h3><p>可以用 <code>watch()</code>，但寫法更長，而且不建議這樣做：</p>
+<pre><code class="js">const badgeStyle = ref({})
+
+watch(
+  () =&gt; [props.color, props.textColor],
+  ([newColor, newTextColor]) =&gt; {
+    badgeStyle.value = {
+      backgroundColor: newColor,
+      color: newTextColor
+    }
+  }
+)
+</code></pre>
+<p>是不是覺得 <code>computed()</code> 簡潔多了！</p>
+<hr>
+<h3 id="✅-結論"><a href="#✅-結論" class="headerlink" title="✅ 結論"></a>✅ 結論</h3><p>使用 <code>computed()</code> 的主要目的：</p>
+<table>
+<thead>
+<tr>
+<th>原因</th>
+<th>解釋</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>響應式更新</td>
+<td>props 改變時，style 自動更新</td>
+</tr>
+<tr>
+<td>更佳效能</td>
+<td>Vue 會快取並只在必要時重新計算</td>
+</tr>
+<tr>
+<td>可讀性更高</td>
+<td>直觀地表達「這是根據某些值動態計算出來的」變數</td>
+</tr>
+</tbody></table>
+<hr>

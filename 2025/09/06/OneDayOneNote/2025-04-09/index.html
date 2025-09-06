@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2025-04-09-JavaScript 系列九：第6課 ── 學習用外部狀態管理 vue 元件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025-04-09-JavaScript 系列九：第6課 ── 學習用外部狀態管理 vue 元件">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/09/06/OneDayOneNote/2025-04-09/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2025-04-09-JavaScript 系列九：第6課 ── 學習用外部狀態管理 vue 元件">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-09-06T15:56:29.000Z">
+<meta property="article:modified_time" content="2025-09-06T15:57:13.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2025/09/06/OneDayOneNote/2025-04-09/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2025/09/06/OneDayOneNote/2025-04-09/","path":"2025/09/06/OneDayOneNote/2025-04-09/","title":"2025-04-09-JavaScript 系列九：第6課 ── 學習用外部狀態管理 vue 元件"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2025-04-09-JavaScript 系列九：第6課 ── 學習用外部狀態管理 vue 元件 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2025-04-09-JavaScript-%E7%B3%BB%E5%88%97%E4%B9%9D%EF%BC%9A%E7%AC%AC6%E8%AA%B2-%E2%94%80%E2%94%80-%E5%AD%B8%E7%BF%92%E7%94%A8%E5%A4%96%E9%83%A8%E7%8B%80%E6%85%8B%E7%AE%A1%E7%90%86-vue-%E5%85%83%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">2025-04-09-JavaScript 系列九：第6課 ── 學習用外部狀態管理 vue 元件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%8E%AF-%E5%AD%B8%E7%BF%92%E7%9B%AE%E6%A8%99"><span class="nav-number">1.1.</span> <span class="nav-text">🎯 學習目標</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%9B%A0%EF%B8%8F-Step-1%EF%BC%9A%E5%BB%BA%E7%AB%8B-MyDialog-vue"><span class="nav-number">1.2.</span> <span class="nav-text">🛠️ Step 1：建立 MyDialog.vue</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%9B%A0%EF%B8%8F-Step-2%EF%BC%9A%E5%9C%A8-App-vue-%E6%B8%AC%E8%A9%A6"><span class="nav-number">1.3.</span> <span class="nav-text">🛠️ Step 2：在 App.vue 測試</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%85-%E5%8A%9F%E8%83%BD%E9%A9%97%E8%AD%89"><span class="nav-number">1.4.</span> <span class="nav-text">✅ 功能驗證</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%93%82-App-vue%EF%BC%88%E5%AF%A6%E9%9A%9B%E7%AF%84%E4%BE%8B%EF%BC%89"><span class="nav-number">1.5.</span> <span class="nav-text">📂 App.vue（實際範例）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%A8-%E6%8F%90%E4%BE%9B%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="nav-number">1.6.</span> <span class="nav-text">✨ 提供的例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%93%82-%E5%B0%88%E6%A1%88%E7%B5%90%E6%A7%8B"><span class="nav-number">1.7.</span> <span class="nav-text">📂 專案結構</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%93%84-MyDialog-vue"><span class="nav-number">1.8.</span> <span class="nav-text">📄 MyDialog.vue</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%93%84-App-vue"><span class="nav-number">1.9.</span> <span class="nav-text">📄 App.vue</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%94%91-%E5%B8%B8%E8%A6%8B%E6%8C%89%E9%88%95%E9%A1%8F%E8%89%B2%E5%BB%BA%E8%AD%B0"><span class="nav-number">1.10.</span> <span class="nav-text">🔑 常見按鈕顏色建議</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%99%BB%E5%85%A5-%E7%A2%BA%E8%AA%8D-%E5%84%B2%E5%AD%98"><span class="nav-number">1.10.1.</span> <span class="nav-text">1. 登入 &#x2F; 確認 &#x2F; 儲存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%88%AA%E9%99%A4-%E5%8D%B1%E9%9A%AA%E5%8B%95%E4%BD%9C"><span class="nav-number">1.10.2.</span> <span class="nav-text">2. 刪除 &#x2F; 危險動作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%96%B0%E5%A2%9E-%E5%BB%BA%E7%AB%8B"><span class="nav-number">1.10.3.</span> <span class="nav-text">3. 新增 &#x2F; 建立</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%8F%96%E6%B6%88-%E9%97%9C%E9%96%89"><span class="nav-number">1.10.4.</span> <span class="nav-text">4. 取消 &#x2F; 關閉</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%8E%A8-%E5%B0%8F%E7%B8%BD%E7%B5%90%E8%A1%A8"><span class="nav-number">1.11.</span> <span class="nav-text">🎨 小總結表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E5%BE%8C%E7%9A%84-Lesson6-vue"><span class="nav-number">1.12.</span> <span class="nav-text">修改後的 Lesson6.vue</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%8E%A8-%E5%A5%97%E7%94%A8%E8%A6%8F%E5%89%87%E8%AA%AA%E6%98%8E"><span class="nav-number">1.12.1.</span> <span class="nav-text">🎨 套用規則說明</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">408</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2025/09/06/OneDayOneNote/2025-04-09/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2025-04-09-JavaScript 系列九：第6課 ── 學習用外部狀態管理 vue 元件 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2025-04-09-JavaScript 系列九：第6課 ── 學習用外部狀態管理 vue 元件">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2025-04-09-JavaScript 系列九：第6課 ── 學習用外部狀態管理 vue 元件
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2025-09-06 23:56:29 / 修改時間：23:57:13" itemprop="dateCreated datePublished" datetime="2025-09-06T23:56:29+08:00">2025-09-06</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2025-04-09-JavaScript 系列九：第6課 ── 學習用外部狀態管理 vue 元件</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="2025-04-09-JavaScript-系列九：第6課-──-學習用外部狀態管理-vue-元件"><a href="#2025-04-09-JavaScript-系列九：第6課-──-學習用外部狀態管理-vue-元件" class="headerlink" title="2025-04-09-JavaScript 系列九：第6課 ── 學習用外部狀態管理 vue 元件"></a>2025-04-09-JavaScript 系列九：第6課 ── 學習用外部狀態管理 vue 元件</h1><p>JavaScript 系列九：第6課 ── 學習用外部狀態管理 vue 元件<br>課程目標<br>學習用外部狀態管理 vue 元件<br>課程內容<br>前面的課程中，元件的狀態很單純，都是匯入之後直接使用</p>
+<p>但是有些元件匯入之後，一開始在畫面上是不顯示的</p>
+<p>比方說視窗類型的元件：這種元件需要額外有一個狀態，來管理它是否顯示</p>
+<p>課後作業<br>這一課作業，請先看一下 Dialog 視窗元件的用法</p>
+<p><a target="_blank" rel="noopener" href="https://quasar.dev/vue-components/dialog">https://quasar.dev/vue-components/dialog</a></p>
+<p>請使用官方的元件試玩工具：Vue SFC Playground</p>
+<p><a target="_blank" rel="noopener" href="https://sfc.vuejs.org/">https://sfc.vuejs.org/</a></p>
+<p>請建立 MyDialog.vue 元件，並支援下列功能<br>v-model 能夠管理視窗是否顯示<br>預設的 slot 能夠放入視窗內容<br>完成之後，請在 App.vue 之中匯入此元件，並用多個範例證明，有完成上述規格</p>
+<p>做出以上功能，你就完成這次的課程目標了！</p>
+<p>好的 👍 我幫你把這一課的作業拆解成「小步驟」來完成，並給你完整範例程式碼。</p>
+<hr>
+<h2 id="🎯-學習目標"><a href="#🎯-學習目標" class="headerlink" title="🎯 學習目標"></a>🎯 學習目標</h2><ul>
+<li>建立一個 <strong>MyDialog.vue</strong> 元件</li>
+<li>讓它支援 <code>v-model</code> 控制「顯示&#x2F;隱藏」</li>
+<li>允許在 <strong>default slot</strong> 放入任意內容</li>
+<li>在 <code>App.vue</code> 中測試多個 MyDialog</li>
+</ul>
+<hr>
+<h2 id="🛠️-Step-1：建立-MyDialog-vue"><a href="#🛠️-Step-1：建立-MyDialog-vue" class="headerlink" title="🛠️ Step 1：建立 MyDialog.vue"></a>🛠️ Step 1：建立 MyDialog.vue</h2><p>這個元件要支援 <code>v-model</code>，所以我們要使用 <code>defineProps</code> + <code>defineEmits</code> 搭配 <strong>雙向綁定語法</strong>。</p>
+<p>📂 MyDialog.vue</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div v-if=&quot;modelValue&quot; class=&quot;dialog-backdrop&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;dialog&quot;&gt;</span><br><span class="line">      &lt;!-- slot：顯示外部傳入的內容 --&gt;</span><br><span class="line">      &lt;slot&gt;&lt;/slot&gt;</span><br><span class="line">      &lt;div class=&quot;actions&quot;&gt;</span><br><span class="line">        &lt;button @click=&quot;closeDialog&quot;&gt;關閉&lt;/button&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">const props = defineProps(&#123;</span><br><span class="line">  modelValue: &#123;</span><br><span class="line">    type: Boolean,</span><br><span class="line">    default: false</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">const emit = defineEmits([&#x27;update:modelValue&#x27;])</span><br><span class="line"></span><br><span class="line">// 關閉對話框</span><br><span class="line">function closeDialog() &#123;</span><br><span class="line">  emit(&#x27;update:modelValue&#x27;, false)</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">.dialog-backdrop &#123;</span><br><span class="line">  position: fixed;</span><br><span class="line">  top: 0;</span><br><span class="line">  left: 0;</span><br><span class="line">  right: 0;</span><br><span class="line">  bottom: 0;</span><br><span class="line">  background: rgba(0,0,0,0.5);</span><br><span class="line">  display: flex;</span><br><span class="line">  justify-content: center;</span><br><span class="line">  align-items: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.dialog &#123;</span><br><span class="line">  background: #fff;</span><br><span class="line">  padding: 20px;</span><br><span class="line">  border-radius: 12px;</span><br><span class="line">  min-width: 300px;</span><br><span class="line">  max-width: 500px;</span><br><span class="line">  box-shadow: 0 2px 10px rgba(0,0,0,0.3);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.actions &#123;</span><br><span class="line">  margin-top: 20px;</span><br><span class="line">  text-align: right;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="🛠️-Step-2：在-App-vue-測試"><a href="#🛠️-Step-2：在-App-vue-測試" class="headerlink" title="🛠️ Step 2：在 App.vue 測試"></a>🛠️ Step 2：在 App.vue 測試</h2><p>建立多個 MyDialog，並用不同內容確認 slot 與 v-model 功能。</p>
+<p>📂 App.vue</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;h2&gt;🎯 MyDialog 測試&lt;/h2&gt;</span><br><span class="line"></span><br><span class="line">  &lt;button @click=&quot;showDialog1 = true&quot;&gt;開啟對話框1&lt;/button&gt;</span><br><span class="line">  &lt;button @click=&quot;showDialog2 = true&quot;&gt;開啟對話框2&lt;/button&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- 測試 Dialog 1 --&gt;</span><br><span class="line">  &lt;MyDialog v-model=&quot;showDialog1&quot;&gt;</span><br><span class="line">    &lt;h3&gt;對話框 1&lt;/h3&gt;</span><br><span class="line">    &lt;p&gt;這是第一個對話框的內容。&lt;/p&gt;</span><br><span class="line">  &lt;/MyDialog&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- 測試 Dialog 2 --&gt;</span><br><span class="line">  &lt;MyDialog v-model=&quot;showDialog2&quot;&gt;</span><br><span class="line">    &lt;h3&gt;對話框 2&lt;/h3&gt;</span><br><span class="line">    &lt;p&gt;這裡放的是另一個內容。&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;slot 讓我們能自由放入 HTML！&lt;/p&gt;</span><br><span class="line">  &lt;/MyDialog&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">import &#123; ref &#125; from &#x27;vue&#x27;</span><br><span class="line">import MyDialog from &#x27;./MyDialog.vue&#x27;</span><br><span class="line"></span><br><span class="line">const showDialog1 = ref(false)</span><br><span class="line">const showDialog2 = ref(false)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="✅-功能驗證"><a href="#✅-功能驗證" class="headerlink" title="✅ 功能驗證"></a>✅ 功能驗證</h2><ol>
+<li>預設不顯示</li>
+<li>點擊按鈕 → 打開對話框</li>
+<li>點擊「關閉」 → <code>v-model</code> 更新，對話框隱藏</li>
+<li>slot 的內容可以不同</li>
+</ol>
+<p>這樣就完成了 <strong>「用外部狀態管理元件」</strong> 的作業 🎉</p>
+<hr>
+<p>懂了 👍<br>你不要「測試用的例子」，而是想要一些 <strong>實際日常會用到的對話框場景</strong>。<br>我幫你設計幾個常見的對話框情境，全部用 <code>MyDialog</code> 來示範：</p>
+<hr>
+<h2 id="📂-App-vue（實際範例）"><a href="#📂-App-vue（實際範例）" class="headerlink" title="📂 App.vue（實際範例）"></a>📂 App.vue（實際範例）</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;h2&gt;📌 常見的對話框範例&lt;/h2&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- 登入對話框 --&gt;</span><br><span class="line">  &lt;button @click=&quot;showLogin = true&quot;&gt;登入&lt;/button&gt;</span><br><span class="line">  &lt;MyDialog v-model=&quot;showLogin&quot;&gt;</span><br><span class="line">    &lt;h3&gt;🔑 使用者登入&lt;/h3&gt;</span><br><span class="line">    &lt;label&gt;</span><br><span class="line">      帳號：</span><br><span class="line">      &lt;input type=&quot;text&quot; placeholder=&quot;輸入帳號&quot; /&gt;</span><br><span class="line">    &lt;/label&gt;</span><br><span class="line">    &lt;br /&gt;</span><br><span class="line">    &lt;label&gt;</span><br><span class="line">      密碼：</span><br><span class="line">      &lt;input type=&quot;password&quot; placeholder=&quot;輸入密碼&quot; /&gt;</span><br><span class="line">    &lt;/label&gt;</span><br><span class="line">    &lt;div class=&quot;actions&quot;&gt;</span><br><span class="line">      &lt;button @click=&quot;showLogin = false&quot;&gt;取消&lt;/button&gt;</span><br><span class="line">      &lt;button @click=&quot;handleLogin&quot;&gt;登入&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/MyDialog&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- 確認刪除對話框 --&gt;</span><br><span class="line">  &lt;button @click=&quot;showDelete = true&quot;&gt;刪除資料&lt;/button&gt;</span><br><span class="line">  &lt;MyDialog v-model=&quot;showDelete&quot;&gt;</span><br><span class="line">    &lt;h3&gt;⚠️ 確認刪除&lt;/h3&gt;</span><br><span class="line">    &lt;p&gt;你確定要刪除這筆資料嗎？此動作無法復原。&lt;/p&gt;</span><br><span class="line">    &lt;div class=&quot;actions&quot;&gt;</span><br><span class="line">      &lt;button @click=&quot;showDelete = false&quot;&gt;取消&lt;/button&gt;</span><br><span class="line">      &lt;button class=&quot;danger&quot; @click=&quot;confirmDelete&quot;&gt;確定刪除&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/MyDialog&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- 表單輸入對話框 --&gt;</span><br><span class="line">  &lt;button @click=&quot;showForm = true&quot;&gt;新增聯絡人&lt;/button&gt;</span><br><span class="line">  &lt;MyDialog v-model=&quot;showForm&quot;&gt;</span><br><span class="line">    &lt;h3&gt;👤 新增聯絡人&lt;/h3&gt;</span><br><span class="line">    &lt;label&gt;</span><br><span class="line">      姓名：</span><br><span class="line">      &lt;input type=&quot;text&quot; v-model=&quot;newContact.name&quot; /&gt;</span><br><span class="line">    &lt;/label&gt;</span><br><span class="line">    &lt;br /&gt;</span><br><span class="line">    &lt;label&gt;</span><br><span class="line">      電話：</span><br><span class="line">      &lt;input type=&quot;text&quot; v-model=&quot;newContact.phone&quot; /&gt;</span><br><span class="line">    &lt;/label&gt;</span><br><span class="line">    &lt;div class=&quot;actions&quot;&gt;</span><br><span class="line">      &lt;button @click=&quot;showForm = false&quot;&gt;取消&lt;/button&gt;</span><br><span class="line">      &lt;button @click=&quot;saveContact&quot;&gt;儲存&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/MyDialog&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">import &#123; ref &#125; from &#x27;vue&#x27;</span><br><span class="line">import MyDialog from &#x27;./MyDialog.vue&#x27;</span><br><span class="line"></span><br><span class="line">const showLogin = ref(false)</span><br><span class="line">const showDelete = ref(false)</span><br><span class="line">const showForm = ref(false)</span><br><span class="line"></span><br><span class="line">const newContact = ref(&#123; name: &#x27;&#x27;, phone: &#x27;&#x27; &#125;)</span><br><span class="line"></span><br><span class="line">function handleLogin() &#123;</span><br><span class="line">  alert(&#x27;登入成功！（這裡可以改成實際 API 呼叫）&#x27;)</span><br><span class="line">  showLogin.value = false</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function confirmDelete() &#123;</span><br><span class="line">  alert(&#x27;資料已刪除！&#x27;)</span><br><span class="line">  showDelete.value = false</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function saveContact() &#123;</span><br><span class="line">  alert(`已新增聯絡人：$&#123;newContact.value.name&#125; / $&#123;newContact.value.phone&#125;`)</span><br><span class="line">  newContact.value = &#123; name: &#x27;&#x27;, phone: &#x27;&#x27; &#125;</span><br><span class="line">  showForm.value = false</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">.actions &#123;</span><br><span class="line">  margin-top: 20px;</span><br><span class="line">  text-align: right;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">button &#123;</span><br><span class="line">  margin: 4px;</span><br><span class="line">  padding: 6px 12px;</span><br><span class="line">  border-radius: 6px;</span><br><span class="line">  border: 1px solid #ccc;</span><br><span class="line">  cursor: pointer;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">button.danger &#123;</span><br><span class="line">  background: #e74c3c;</span><br><span class="line">  color: white;</span><br><span class="line">  border: none;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="✨-提供的例子"><a href="#✨-提供的例子" class="headerlink" title="✨ 提供的例子"></a>✨ 提供的例子</h2><ol>
+<li><strong>登入對話框</strong>：帳號 + 密碼輸入</li>
+<li><strong>確認刪除對話框</strong>：刪除前提醒</li>
+<li><strong>表單輸入對話框</strong>：新增聯絡人</li>
+</ol>
+<p>這三種是日常開發中最常用的對話框場景。</p>
+<hr>
+<p>好問題 👌<br>我們之前有把 <strong>MyDialog.vue</strong> 寫好，但我剛剛只放了 <strong>App.vue 的日常例子</strong>，沒有再把 <code>MyDialog.vue</code> 重複給你。<br>我幫你整理完整專案結構，這樣你就清楚知道 MyDialog.vue 要放在哪裡。</p>
+<hr>
+<h2 id="📂-專案結構"><a href="#📂-專案結構" class="headerlink" title="📂 專案結構"></a>📂 專案結構</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">src/</span><br><span class="line"> ├─ App.vue          ← 使用 MyDialog 的地方</span><br><span class="line"> └─ MyDialog.vue     ← 對話框元件</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="📄-MyDialog-vue"><a href="#📄-MyDialog-vue" class="headerlink" title="📄 MyDialog.vue"></a>📄 MyDialog.vue</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div v-if=&quot;modelValue&quot; class=&quot;dialog-backdrop&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;dialog&quot;&gt;</span><br><span class="line">      &lt;!-- slot：顯示外部傳入的內容 --&gt;</span><br><span class="line">      &lt;slot&gt;&lt;/slot&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">const props = defineProps(&#123;</span><br><span class="line">  modelValue: &#123;</span><br><span class="line">    type: Boolean,</span><br><span class="line">    default: false</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">const emit = defineEmits([&#x27;update:modelValue&#x27;])</span><br><span class="line"></span><br><span class="line">// 讓外部可以呼叫：&lt;MyDialog v-model=&quot;xxx&quot;&gt; 來控制顯示</span><br><span class="line">function closeDialog() &#123;</span><br><span class="line">  emit(&#x27;update:modelValue&#x27;, false)</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">.dialog-backdrop &#123;</span><br><span class="line">  position: fixed;</span><br><span class="line">  inset: 0; /* top, right, bottom, left = 0 */</span><br><span class="line">  background: rgba(0,0,0,0.5);</span><br><span class="line">  display: flex;</span><br><span class="line">  justify-content: center;</span><br><span class="line">  align-items: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.dialog &#123;</span><br><span class="line">  background: #fff;</span><br><span class="line">  padding: 20px;</span><br><span class="line">  border-radius: 12px;</span><br><span class="line">  min-width: 300px;</span><br><span class="line">  max-width: 500px;</span><br><span class="line">  box-shadow: 0 2px 10px rgba(0,0,0,0.3);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="📄-App-vue"><a href="#📄-App-vue" class="headerlink" title="📄 App.vue"></a>📄 App.vue</h2><p>（這就是我剛剛給的登入、刪除、表單三個範例）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;h2&gt;📌 常見的對話框範例&lt;/h2&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- 登入對話框 --&gt;</span><br><span class="line">  &lt;button @click=&quot;showLogin = true&quot;&gt;登入&lt;/button&gt;</span><br><span class="line">  &lt;MyDialog v-model=&quot;showLogin&quot;&gt;</span><br><span class="line">    &lt;h3&gt;🔑 使用者登入&lt;/h3&gt;</span><br><span class="line">    &lt;label&gt;</span><br><span class="line">      帳號：</span><br><span class="line">      &lt;input type=&quot;text&quot; placeholder=&quot;輸入帳號&quot; /&gt;</span><br><span class="line">    &lt;/label&gt;</span><br><span class="line">    &lt;br /&gt;</span><br><span class="line">    &lt;label&gt;</span><br><span class="line">      密碼：</span><br><span class="line">      &lt;input type=&quot;password&quot; placeholder=&quot;輸入密碼&quot; /&gt;</span><br><span class="line">    &lt;/label&gt;</span><br><span class="line">    &lt;div class=&quot;actions&quot;&gt;</span><br><span class="line">      &lt;button @click=&quot;showLogin = false&quot;&gt;取消&lt;/button&gt;</span><br><span class="line">      &lt;button @click=&quot;handleLogin&quot;&gt;登入&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/MyDialog&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- 確認刪除對話框 --&gt;</span><br><span class="line">  &lt;button @click=&quot;showDelete = true&quot;&gt;刪除資料&lt;/button&gt;</span><br><span class="line">  &lt;MyDialog v-model=&quot;showDelete&quot;&gt;</span><br><span class="line">    &lt;h3&gt;⚠️ 確認刪除&lt;/h3&gt;</span><br><span class="line">    &lt;p&gt;你確定要刪除這筆資料嗎？此動作無法復原。&lt;/p&gt;</span><br><span class="line">    &lt;div class=&quot;actions&quot;&gt;</span><br><span class="line">      &lt;button @click=&quot;showDelete = false&quot;&gt;取消&lt;/button&gt;</span><br><span class="line">      &lt;button class=&quot;danger&quot; @click=&quot;confirmDelete&quot;&gt;確定刪除&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/MyDialog&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- 表單輸入對話框 --&gt;</span><br><span class="line">  &lt;button @click=&quot;showForm = true&quot;&gt;新增聯絡人&lt;/button&gt;</span><br><span class="line">  &lt;MyDialog v-model=&quot;showForm&quot;&gt;</span><br><span class="line">    &lt;h3&gt;👤 新增聯絡人&lt;/h3&gt;</span><br><span class="line">    &lt;label&gt;</span><br><span class="line">      姓名：</span><br><span class="line">      &lt;input type=&quot;text&quot; v-model=&quot;newContact.name&quot; /&gt;</span><br><span class="line">    &lt;/label&gt;</span><br><span class="line">    &lt;br /&gt;</span><br><span class="line">    &lt;label&gt;</span><br><span class="line">      電話：</span><br><span class="line">      &lt;input type=&quot;text&quot; v-model=&quot;newContact.phone&quot; /&gt;</span><br><span class="line">    &lt;/label&gt;</span><br><span class="line">    &lt;div class=&quot;actions&quot;&gt;</span><br><span class="line">      &lt;button @click=&quot;showForm = false&quot;&gt;取消&lt;/button&gt;</span><br><span class="line">      &lt;button @click=&quot;saveContact&quot;&gt;儲存&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/MyDialog&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">import &#123; ref &#125; from &#x27;vue&#x27;</span><br><span class="line">import MyDialog from &#x27;./MyDialog.vue&#x27;</span><br><span class="line"></span><br><span class="line">const showLogin = ref(false)</span><br><span class="line">const showDelete = ref(false)</span><br><span class="line">const showForm = ref(false)</span><br><span class="line"></span><br><span class="line">const newContact = ref(&#123; name: &#x27;&#x27;, phone: &#x27;&#x27; &#125;)</span><br><span class="line"></span><br><span class="line">function handleLogin() &#123;</span><br><span class="line">  alert(&#x27;登入成功！（這裡可以改成實際 API 呼叫）&#x27;)</span><br><span class="line">  showLogin.value = false</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function confirmDelete() &#123;</span><br><span class="line">  alert(&#x27;資料已刪除！&#x27;)</span><br><span class="line">  showDelete.value = false</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function saveContact() &#123;</span><br><span class="line">  alert(`已新增聯絡人：$&#123;newContact.value.name&#125; / $&#123;newContact.value.phone&#125;`)</span><br><span class="line">  newContact.value = &#123; name: &#x27;&#x27;, phone: &#x27;&#x27; &#125;</span><br><span class="line">  showForm.value = false</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">.actions &#123;</span><br><span class="line">  margin-top: 20px;</span><br><span class="line">  text-align: right;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">button &#123;</span><br><span class="line">  margin: 4px;</span><br><span class="line">  padding: 6px 12px;</span><br><span class="line">  border-radius: 6px;</span><br><span class="line">  border: 1px solid #ccc;</span><br><span class="line">  cursor: pointer;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">button.danger &#123;</span><br><span class="line">  background: #e74c3c;</span><br><span class="line">  color: white;</span><br><span class="line">  border: none;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>👉 這樣你有 <strong>MyDialog.vue（元件本體）</strong> ＋ <strong>App.vue（日常例子）</strong>。</p>
+<p>要不要我再幫你把 <code>MyDialog.vue</code> 加上「右上角關閉按鈕 (X)」？這樣會更像實際專案常用的 Dialog。<br>這個問題問得很好 👍<br>按鈕顏色沒有「絕對規定」，但大部分 UI 設計（像 <strong>Material Design</strong>、<strong>Bootstrap</strong>、<strong>Ant Design</strong>、<strong>Quasar</strong> 等框架）都有一些「常見的配色習慣」：</p>
+<hr>
+<h2 id="🔑-常見按鈕顏色建議"><a href="#🔑-常見按鈕顏色建議" class="headerlink" title="🔑 常見按鈕顏色建議"></a>🔑 常見按鈕顏色建議</h2><h3 id="1-登入-確認-儲存"><a href="#1-登入-確認-儲存" class="headerlink" title="1. 登入 &#x2F; 確認 &#x2F; 儲存"></a>1. <strong>登入 &#x2F; 確認 &#x2F; 儲存</strong></h3><ul>
+<li><p>✅ <strong>主要動作（Primary Action）</strong></p>
+</li>
+<li><p>常見顏色：<strong>藍色 (Blue)</strong> 或 <strong>綠色 (Green)</strong></p>
+</li>
+<li><p>例子：</p>
+<ul>
+<li>藍色：#1976d2、#409eff（Element UI）、Bootstrap 的 <code>.btn-primary</code></li>
+<li>綠色：#28a745（Bootstrap Success）</li>
+</ul>
+</li>
+</ul>
+<p>👉 因為「藍色」給人穩定、信任的感覺，<br>👉 「綠色」則表示成功、完成。</p>
+<hr>
+<h3 id="2-刪除-危險動作"><a href="#2-刪除-危險動作" class="headerlink" title="2. 刪除 &#x2F; 危險動作"></a>2. <strong>刪除 &#x2F; 危險動作</strong></h3><ul>
+<li><p>⚠️ <strong>Danger &#x2F; Destructive Action</strong></p>
+</li>
+<li><p>常見顏色：<strong>紅色 (Red)</strong></p>
+</li>
+<li><p>例子：</p>
+<ul>
+<li>#e74c3c（常見 danger 紅色）</li>
+<li>Bootstrap <code>.btn-danger</code></li>
+<li>Quasar <code>color=&quot;negative&quot;</code></li>
+</ul>
+</li>
+</ul>
+<p>👉 紅色能立即讓使用者警覺「這個動作不可逆」。</p>
+<hr>
+<h3 id="3-新增-建立"><a href="#3-新增-建立" class="headerlink" title="3. 新增 &#x2F; 建立"></a>3. <strong>新增 &#x2F; 建立</strong></h3><ul>
+<li><p>➕ <strong>Add &#x2F; Create</strong></p>
+</li>
+<li><p>常見顏色：<strong>綠色 (Green)</strong></p>
+</li>
+<li><p>例子：</p>
+<ul>
+<li>#4caf50（Material Design Green 500）</li>
+<li>Bootstrap <code>.btn-success</code></li>
+</ul>
+</li>
+</ul>
+<p>👉 綠色象徵「新增、成長、正向」。</p>
+<hr>
+<h3 id="4-取消-關閉"><a href="#4-取消-關閉" class="headerlink" title="4. 取消 &#x2F; 關閉"></a>4. <strong>取消 &#x2F; 關閉</strong></h3><ul>
+<li><p>❌ <strong>Secondary &#x2F; Neutral</strong></p>
+</li>
+<li><p>常見顏色：<strong>灰色 (Gray)</strong></p>
+</li>
+<li><p>例子：</p>
+<ul>
+<li>#6c757d（Bootstrap <code>.btn-secondary</code>）</li>
+<li>Material Design「Cancel」多用灰色文字 + 輕量按鈕</li>
+</ul>
+</li>
+</ul>
+<p>👉 灰色代表「不強調、不會造成危險」。</p>
+<hr>
+<h2 id="🎨-小總結表"><a href="#🎨-小總結表" class="headerlink" title="🎨 小總結表"></a>🎨 小總結表</h2><table>
+<thead>
+<tr>
+<th>動作</th>
+<th>常見顏色</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>登入 &#x2F; 確認 &#x2F; 儲存</td>
+<td>藍色 &#x2F; 綠色</td>
+</tr>
+<tr>
+<td>刪除</td>
+<td>紅色</td>
+</tr>
+<tr>
+<td>新增</td>
+<td>綠色</td>
+</tr>
+<tr>
+<td>取消 &#x2F; 關閉</td>
+<td>灰色</td>
+</tr>
+</tbody></table>
+<hr>
+<p>要不要我幫你把 <strong>App.vue</strong> 的範例按鈕，套上這些「符合業界習慣的顏色」？</p>
+<p>好的 👍 我幫你把你的 <code>Lesson6.vue</code> 中按鈕顏色修改成 <strong>符合業界習慣的配色</strong>，並標註用途：</p>
+<hr>
+<h2 id="修改後的-Lesson6-vue"><a href="#修改後的-Lesson6-vue" class="headerlink" title="修改後的 Lesson6.vue"></a>修改後的 Lesson6.vue</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;h2&gt;JavaScript 系列九：第6課 ── 學習用外部狀態管理 vue 元件&lt;/h2&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- 登入對話框 --&gt;</span><br><span class="line">  &lt;button class=&quot;primary&quot; @click=&quot;showLogin = true&quot;&gt;登入&lt;/button&gt;</span><br><span class="line">  &lt;MyDialog v-model=&quot;showLogin&quot;&gt;</span><br><span class="line">    &lt;h3&gt;🔑 使用者登入&lt;/h3&gt;</span><br><span class="line">    &lt;label&gt;</span><br><span class="line">      帳號：</span><br><span class="line">      &lt;input type=&quot;text&quot; placeholder=&quot;輸入帳號&quot; /&gt;</span><br><span class="line">    &lt;/label&gt;</span><br><span class="line">    &lt;br /&gt;</span><br><span class="line">    &lt;label&gt;</span><br><span class="line">      密碼：</span><br><span class="line">      &lt;input type=&quot;password&quot; placeholder=&quot;輸入密碼&quot; /&gt;</span><br><span class="line">    &lt;/label&gt;</span><br><span class="line">    &lt;div class=&quot;actions&quot;&gt;</span><br><span class="line">      &lt;button class=&quot;secondary&quot; @click=&quot;showLogin = false&quot;&gt;取消&lt;/button&gt;</span><br><span class="line">      &lt;button class=&quot;primary&quot; @click=&quot;handleLogin&quot;&gt;登入&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/MyDialog&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- 確認刪除對話框 --&gt;</span><br><span class="line">  &lt;button class=&quot;danger&quot; @click=&quot;showDelete = true&quot;&gt;刪除資料&lt;/button&gt;</span><br><span class="line">  &lt;MyDialog v-model=&quot;showDelete&quot;&gt;</span><br><span class="line">    &lt;h3&gt;⚠️ 確認刪除&lt;/h3&gt;</span><br><span class="line">    &lt;p&gt;你確定要刪除這筆資料嗎？此動作無法復原。&lt;/p&gt;</span><br><span class="line">    &lt;div class=&quot;actions&quot;&gt;</span><br><span class="line">      &lt;button class=&quot;secondary&quot; @click=&quot;showDelete = false&quot;&gt;取消&lt;/button&gt;</span><br><span class="line">      &lt;button class=&quot;danger&quot; @click=&quot;confirmDelete&quot;&gt;確定刪除&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/MyDialog&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- 表單輸入對話框 --&gt;</span><br><span class="line">  &lt;button class=&quot;success&quot; @click=&quot;showForm = true&quot;&gt;新增聯絡人&lt;/button&gt;</span><br><span class="line">  &lt;MyDialog v-model=&quot;showForm&quot;&gt;</span><br><span class="line">    &lt;h3&gt;👤 新增聯絡人&lt;/h3&gt;</span><br><span class="line">    &lt;label&gt;</span><br><span class="line">      姓名：</span><br><span class="line">      &lt;input type=&quot;text&quot; v-model=&quot;newContact.name&quot; /&gt;</span><br><span class="line">    &lt;/label&gt;</span><br><span class="line">    &lt;br /&gt;</span><br><span class="line">    &lt;label&gt;</span><br><span class="line">      電話：</span><br><span class="line">      &lt;input type=&quot;text&quot; v-model=&quot;newContact.phone&quot; /&gt;</span><br><span class="line">    &lt;/label&gt;</span><br><span class="line">    &lt;div class=&quot;actions&quot;&gt;</span><br><span class="line">      &lt;button class=&quot;secondary&quot; @click=&quot;showForm = false&quot;&gt;取消&lt;/button&gt;</span><br><span class="line">      &lt;button class=&quot;success&quot; @click=&quot;saveContact&quot;&gt;儲存&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/MyDialog&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">import &#123; ref &#125; from &#x27;vue&#x27;</span><br><span class="line">import MyDialog from &#x27;./Lesson6_components/MyDialog.vue&#x27;</span><br><span class="line"></span><br><span class="line">const showLogin = ref(false)</span><br><span class="line">const showDelete = ref(false)</span><br><span class="line">const showForm = ref(false)</span><br><span class="line"></span><br><span class="line">const newContact = ref(&#123; name: &#x27;&#x27;, phone: &#x27;&#x27; &#125;)</span><br><span class="line"></span><br><span class="line">function handleLogin() &#123;</span><br><span class="line">  alert(&#x27;登入成功！（這裡可以改成實際 API 呼叫）&#x27;)</span><br><span class="line">  showLogin.value = false</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function confirmDelete() &#123;</span><br><span class="line">  alert(&#x27;資料已刪除！&#x27;)</span><br><span class="line">  showDelete.value = false</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function saveContact() &#123;</span><br><span class="line">  alert(`已新增聯絡人：$&#123;newContact.value.name&#125; / $&#123;newContact.value.phone&#125;`)</span><br><span class="line">  newContact.value = &#123; name: &#x27;&#x27;, phone: &#x27;&#x27; &#125;</span><br><span class="line">  showForm.value = false</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">.actions &#123;</span><br><span class="line">  margin-top: 20px;</span><br><span class="line">  text-align: right;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">button &#123;</span><br><span class="line">  margin: 4px;</span><br><span class="line">  padding: 6px 12px;</span><br><span class="line">  border-radius: 6px;</span><br><span class="line">  border: 1px solid #ccc;</span><br><span class="line">  cursor: pointer;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* 主要動作：登入 / 儲存 */</span><br><span class="line">button.primary &#123;</span><br><span class="line">  background-color: #1976d2; /* 藍色 */</span><br><span class="line">  color: white;</span><br><span class="line">  border: none;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* 成功 / 新增 */</span><br><span class="line">button.success &#123;</span><br><span class="line">  background-color: #28a745; /* 綠色 */</span><br><span class="line">  color: white;</span><br><span class="line">  border: none;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* 危險 / 刪除 */</span><br><span class="line">button.danger &#123;</span><br><span class="line">  background-color: #e74c3c; /* 紅色 */</span><br><span class="line">  color: white;</span><br><span class="line">  border: none;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* 次要 / 取消 */</span><br><span class="line">button.secondary &#123;</span><br><span class="line">  background-color: #6c757d; /* 灰色 */</span><br><span class="line">  color: white;</span><br><span class="line">  border: none;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">h2 &#123;</span><br><span class="line">  color: rgb(149, 44, 95);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="🎨-套用規則說明"><a href="#🎨-套用規則說明" class="headerlink" title="🎨 套用規則說明"></a>🎨 套用規則說明</h3><ul>
+<li><strong>primary</strong> → 藍色：登入 &#x2F; 確認</li>
+<li><strong>success</strong> → 綠色：新增 &#x2F; 儲存</li>
+<li><strong>danger</strong> → 紅色：刪除</li>
+<li><strong>secondary</strong> → 灰色：取消</li>
+</ul>
+<hr>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/Javascript/" rel="tag"># Javascript</a>
+              <a href="/apple.lily/tags/Vue/" rel="tag"># Vue</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/09/06/OneDayOneNote/2025-04-08/" rel="prev" title="2025-04-08-JavaScript 系列九：第7課 ── 學習開發狀態複雜的 vue 元件">
+                  <i class="fa fa-angle-left"></i> 2025-04-08-JavaScript 系列九：第7課 ── 學習開發狀態複雜的 vue 元件
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/09/06/OneDayOneNote/2025-04-10/" rel="next" title="2025-04-10-規劃心理測試網站">
+                  2025-04-10-規劃心理測試網站 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

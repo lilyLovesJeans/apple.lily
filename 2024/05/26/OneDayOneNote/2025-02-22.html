@@ -1,0 +1,78 @@
+<hr>
+<h2 id="title-20250222-then-裡的-return-是做什麼用的date-2025-09-06-22-26-15tags-Javascript-Vue-description-20250222-then-裡的-return-是做什麼用的"><a href="#title-20250222-then-裡的-return-是做什麼用的date-2025-09-06-22-26-15tags-Javascript-Vue-description-20250222-then-裡的-return-是做什麼用的" class="headerlink" title="title: 20250222-.then() 裡的 return 是做什麼用的date: 2025-09-06 22:26:15tags:  [Javascript,Vue]description:   20250222-.then() 裡的 return 是做什麼用的"></a>title: 20250222-.then() 裡的 return 是做什麼用的<br>date: 2025-09-06 22:26:15<br>tags:  [Javascript,Vue]<br>description:   20250222-.then() 裡的 return 是做什麼用的</h2><h1 id="20250222-then-裡的-return-是做什麼用的"><a href="#20250222-then-裡的-return-是做什麼用的" class="headerlink" title="20250222-.then() 裡的 return 是做什麼用的"></a>20250222-.then() 裡的 return 是做什麼用的</h1><p> .then() 裡的 return 是做什麼用的？</p>
+<p>來 <strong>一層一層拆解說明 <code>.then()</code> 中的 <code>return</code> 是在做什麼</strong>：</p>
+<hr>
+<h2 id="🔁-then-裡的-return-是做什麼用的？"><a href="#🔁-then-裡的-return-是做什麼用的？" class="headerlink" title="🔁 .then() 裡的 return 是做什麼用的？"></a>🔁 <code>.then()</code> 裡的 <code>return</code> 是做什麼用的？</h2><h3 id="✅-簡單說："><a href="#✅-簡單說：" class="headerlink" title="✅ 簡單說："></a>✅ 簡單說：</h3><blockquote>
+<p>每一個 <code>.then()</code> 都可以傳遞資料給「下一個」 <code>.then()</code>。<br>而要傳的資料，就是你在 <code>return</code> 裡寫的東西。</p>
+</blockquote>
+<hr>
+<h2 id="🔍-我們用你的範例來說明："><a href="#🔍-我們用你的範例來說明：" class="headerlink" title="🔍 我們用你的範例來說明："></a>🔍 我們用你的範例來說明：</h2><pre><code class="js">fetch(url)
+  .then(response =&gt; {
+    console.log(&#39;第一層：取得 response&#39;)
+    return response.json()  // ✅ 這裡 return 是要把解析後的 JSON 傳下去
+  })
+  .then(data =&gt; {
+    console.log(&#39;第二層：取得資料&#39;, data)
+    return data.records      // ✅ 把整份資料中的 records 傳下去
+  })
+  .then(records =&gt; {
+    console.log(&#39;第三層：處理 records&#39;, records)
+    return records.location  // ⚠️ 注意！如果 records 是陣列，這樣會錯！
+  })
+  .then(locations =&gt; {
+    console.log(&#39;第四層：拿到 locations&#39;, locations)
+  })
+  .catch(error =&gt; {
+    console.error(&#39;發生錯誤&#39;, error)
+  })
+</code></pre>
+<hr>
+<h2 id="🧠-一層一層看發生什麼事："><a href="#🧠-一層一層看發生什麼事：" class="headerlink" title="🧠 一層一層看發生什麼事："></a>🧠 一層一層看發生什麼事：</h2><table>
+<thead>
+<tr>
+<th><code>.then()</code> 順序</th>
+<th>做的事</th>
+<th><code>return</code> 傳下去的值是什麼？</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>第一層</td>
+<td>拿到 fetch 的 <code>response</code></td>
+<td><code>response.json()</code>（會變成 <code>data</code>）</td>
+</tr>
+<tr>
+<td>第二層</td>
+<td>拿到完整 JSON 資料，名為 <code>data</code></td>
+<td><code>data.records</code></td>
+</tr>
+<tr>
+<td>第三層</td>
+<td>拿到 <code>records</code> 陣列</td>
+<td><code>records.location</code>（⚠️小心，records 可能是陣列）</td>
+</tr>
+<tr>
+<td>第四層</td>
+<td>拿到上一層的 return 值（locations）</td>
+<td>印出結果</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🔧-小提醒："><a href="#🔧-小提醒：" class="headerlink" title="🔧 小提醒："></a>🔧 小提醒：</h2><pre><code class="js">return data.records
+</code></pre>
+<p>→ 是說：「我只要把整個 <code>records</code> 傳給下一層。」</p>
+<pre><code class="js">return records.location
+</code></pre>
+<p>→ 這句會錯，如果 <code>records</code> 是一個陣列，因為陣列是沒有 <code>location</code> 屬性的。</p>
+<p>你應該這樣寫：</p>
+<pre><code class="js">return records[0].location
+</code></pre>
+<p>或</p>
+<pre><code class="js">return records.map(r =&gt; r.location)
+</code></pre>
+<hr>
+<h2 id="✅-總結：為什麼要用-return？"><a href="#✅-總結：為什麼要用-return？" class="headerlink" title="✅ 總結：為什麼要用 return？"></a>✅ 總結：為什麼要用 <code>return</code>？</h2><ul>
+<li><code>return</code> 是為了 <strong>將資料傳給下一層</strong> 的 <code>.then()</code></li>
+<li>如果不寫 <code>return</code>，下一層 <code>.then()</code> 拿到的是 <code>undefined</code></li>
+<li>每一層都可以「選擇傳什麼資料」給下一層，這就是 <strong>Promise chain 的設計</strong></li>
+</ul>
+<hr>

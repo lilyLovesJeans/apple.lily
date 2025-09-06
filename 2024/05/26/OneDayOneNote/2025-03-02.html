@@ -1,0 +1,89 @@
+<hr>
+<h2 id="title-2025-03-02-Vue-中如何-統一管理並釋放-Blob-URL-資源date-2025-09-06-22-54-44tags-Javascript-Vue-description-2025-03-02-Vue-中如何-統一管理並釋放-Blob-URL-資源"><a href="#title-2025-03-02-Vue-中如何-統一管理並釋放-Blob-URL-資源date-2025-09-06-22-54-44tags-Javascript-Vue-description-2025-03-02-Vue-中如何-統一管理並釋放-Blob-URL-資源" class="headerlink" title="title: 2025-03-02-Vue 中如何 **統一管理並釋放 Blob URL 資源date: 2025-09-06 22:54:44tags:  [Javascript,Vue]description:   2025-03-02-Vue 中如何 **統一管理並釋放 Blob URL 資源"></a>title: 2025-03-02-Vue 中如何 **統一管理並釋放 Blob URL 資源<br>date: 2025-09-06 22:54:44<br>tags:  [Javascript,Vue]<br>description:   2025-03-02-Vue 中如何 **統一管理並釋放 Blob URL 資源</h2><h1 id="2025-03-02-Vue-中如何-統一管理並釋放-Blob-URL-資源"><a href="#2025-03-02-Vue-中如何-統一管理並釋放-Blob-URL-資源" class="headerlink" title="2025-03-02-Vue 中如何 **統一管理並釋放 Blob URL 資源"></a>2025-03-02-Vue 中如何 **統一管理並釋放 Blob URL 資源</h1><p>一步步了解在 Vue 中如何 <strong>統一管理並釋放 <code>Blob</code> URL 資源</strong>，這樣你的應用程式會更穩定、不會記憶體泄漏 💪</p>
+<hr>
+<h2 id="🎯-目標"><a href="#🎯-目標" class="headerlink" title="🎯 目標"></a>🎯 目標</h2><p>當我們在 Vue 中用 <code>URL.createObjectURL()</code> 建立了下載連結，要記得：</p>
+<ul>
+<li>⚠️ 每次都 <strong>記錄建立的 URL</strong></li>
+<li>🧹 在不需要時 <strong>釋放記憶體</strong></li>
+</ul>
+<hr>
+<h2 id="✅-作法一：使用-onUnmounted-清理資源"><a href="#✅-作法一：使用-onUnmounted-清理資源" class="headerlink" title="✅ 作法一：使用 onUnmounted() 清理資源"></a>✅ 作法一：使用 <code>onUnmounted()</code> 清理資源</h2><p>Vue 提供的 <code>onUnmounted()</code> lifecycle hook，可以在元件被移除時清理資源！</p>
+<hr>
+<h3 id="✅-範例：下載-JSON-並確保釋放記憶體"><a href="#✅-範例：下載-JSON-並確保釋放記憶體" class="headerlink" title="✅ 範例：下載 JSON 並確保釋放記憶體"></a>✅ 範例：下載 JSON 並確保釋放記憶體</h3><pre><code class="vue">&lt;script setup&gt;
+import { ref, onUnmounted } from &#39;vue&#39;
+
+const apiKey = &#39;你的API&#39;
+const url = `https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=${apiKey}`
+
+// 記錄 blob URL
+const blobUrl = ref(null)
+
+const downloadWeatherJSON = async () =&gt; {
+  try {
+    const response = await fetch(url)
+    const data = await response.json()
+    const json = JSON.stringify(data)
+
+    // 建立 Blob 並產生 URL
+    const blob = new Blob([json], { type: &#39;application/json&#39; })
+    blobUrl.value = URL.createObjectURL(blob)
+
+    const a = document.createElement(&#39;a&#39;)
+    a.href = blobUrl.value
+    a.download = &#39;weather_data.json&#39;
+    a.click()
+  } catch (error) {
+    console.error(&#39;❌ 發生錯誤:&#39;, error)
+  }
+}
+
+// 🔁 清理資源
+onUnmounted(() =&gt; {
+  if (blobUrl.value) {
+    URL.revokeObjectURL(blobUrl.value)
+    console.log(&#39;🧹 已釋放 Blob URL 記憶體&#39;)
+  }
+})
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;button @click=&quot;downloadWeatherJSON&quot;&gt;下載天氣 JSON&lt;/button&gt;
+&lt;/template&gt;
+</code></pre>
+<hr>
+<h2 id="📌-為什麼這樣設計？"><a href="#📌-為什麼這樣設計？" class="headerlink" title="📌 為什麼這樣設計？"></a>📌 為什麼這樣設計？</h2><table>
+<thead>
+<tr>
+<th>概念</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ref(blobUrl)</code></td>
+<td>要追蹤目前建立的 Blob URL，才能記得釋放</td>
+</tr>
+<tr>
+<td><code>onUnmounted()</code></td>
+<td>當元件被卸載時（例如換頁），就能清除記憶體</td>
+</tr>
+<tr>
+<td><code>URL.revokeObjectURL(...)</code></td>
+<td>主動釋放資源，避免佔用記憶體</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="💡-延伸技巧：若有多個-blob，要清多個？"><a href="#💡-延伸技巧：若有多個-blob，要清多個？" class="headerlink" title="💡 延伸技巧：若有多個 blob，要清多個？"></a>💡 延伸技巧：若有多個 blob，要清多個？</h2><p>你可以用陣列來管理：</p>
+<pre><code class="js">const blobUrls = ref([])
+
+onUnmounted(() =&gt; {
+  blobUrls.value.forEach(url =&gt; URL.revokeObjectURL(url))
+})
+</code></pre>
+<hr>
+<h2 id="✅-結語"><a href="#✅-結語" class="headerlink" title="✅ 結語"></a>✅ 結語</h2><p>這種做法可以幫助你：</p>
+<ul>
+<li>寫出更健壯的 Vue 元件</li>
+<li>管理「瀏覽器資源」（如 Blob、音訊、影片等）</li>
+<li>避免記憶體長期佔用，提升效能</li>
+</ul>
+<hr>

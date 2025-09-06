@@ -1,0 +1,119 @@
+<hr>
+<h2 id="title-2025-02-01-JavaScript-系列八：第5課-──-體重追蹤應用程式-步驟06date-2025-09-06-20-51-07tags-Javascript-Vue-description-2025-02-01-JavaScript-系列八：第5課-──-體重追蹤應用程式-步驟06"><a href="#title-2025-02-01-JavaScript-系列八：第5課-──-體重追蹤應用程式-步驟06date-2025-09-06-20-51-07tags-Javascript-Vue-description-2025-02-01-JavaScript-系列八：第5課-──-體重追蹤應用程式-步驟06" class="headerlink" title="title: 2025-02-01- JavaScript 系列八：第5課 ── 體重追蹤應用程式-步驟06date: 2025-09-06 20:51:07tags:  [Javascript,Vue]description:  2025-02-01- JavaScript 系列八：第5課 ── 體重追蹤應用程式-步驟06"></a>title: 2025-02-01- JavaScript 系列八：第5課 ── 體重追蹤應用程式-步驟06<br>date: 2025-09-06 20:51:07<br>tags:  [Javascript,Vue]<br>description:  2025-02-01- JavaScript 系列八：第5課 ── 體重追蹤應用程式-步驟06</h2><h1 id="2025-02-01-JavaScript-系列八：第5課-──-體重追蹤應用程式-步驟06"><a href="#2025-02-01-JavaScript-系列八：第5課-──-體重追蹤應用程式-步驟06" class="headerlink" title="2025-02-01- JavaScript 系列八：第5課 ── 體重追蹤應用程式-步驟06"></a>2025-02-01- JavaScript 系列八：第5課 ── 體重追蹤應用程式-步驟06</h1><!-- weightTrackerApp.vue -->
+<template>
+    <div class="p-4 max-w-md mx-auto">
+      <h1 class="text-2xl font-bold mb-4">體重追蹤器</h1>
+  
+<pre><code>  &lt;!-- 輸入表單--&gt;
+  &lt;form @submit.prevent=&quot;addRecord&quot; class=&quot;space-y-2 mb-4&quot;&gt;
+    &lt;div&gt;
+      &lt;label&gt;日期：&lt;/label&gt;
+      &lt;input type=&quot;date&quot; v-model=&quot;newRecord.date&quot; /&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;label&gt;體重(kg):&lt;/label&gt;
+      &lt;input type=&quot;number&quot; v-model.number=&quot;newRecord.weight&quot; class=&quot;border px-2 py-1&quot; required /&gt;
+    &lt;/div&gt;
+    &lt;button type=&quot;submit&quot; class=&quot;bg-blue-500 text-white px-4 py-1 rounded&quot;&gt;新增&lt;/button&gt;
+  &lt;/form&gt;
+
+  &lt;!-- 清單--&gt;
+  &lt;ul class=&quot;space-y-2 mb-6&quot;&gt;
+    &lt;li v-for=&quot;(record, index) in sortedRecords&quot; :key=&quot;record.id&quot; class=&quot;flex justify-between items-center border p-2&quot;&gt;
+      &lt;span&gt;{{ record.date }} - {{ record.weight }}kg&lt;/span&gt;
+      &lt;button @click=&quot;deleteRecord(record.id)&quot; class=&quot;text-red-500&quot;&gt;刪除&lt;/button&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+
+  &lt;!-- 圖表 --&gt;
+  &lt;canvas ref=&quot;chartCanvas&quot; class=&quot;w-full h-64&quot;&gt;&lt;/canvas&gt;
+&lt;/div&gt;
+</code></pre>
+  </template>
+  
+  <script setup>
+  import { ref, computed, onMounted, watch, nextTick } from 'vue'
+  
+  const newRecord = ref({
+    date: '',
+    weight: null,
+  })
+  
+  const records = ref([])
+  
+  // 取得 chart DOM 元素
+  const chartCanvas = ref(null)
+  let weightChart = null
+  
+  // 初始化資料
+  onMounted(() => {
+    const saved = localStorage.getItem('weight-records')
+    if (saved) {
+      records.value = JSON.parse(saved)
+    }
+    renderChart()
+  })
+  
+  // 監看資料變化自動存入 localStorage 並更新圖表
+  watch(records, (newVal) => {
+    localStorage.setItem('weight-records', JSON.stringify(newVal))
+    nextTick(() => renderChart())
+  }, { deep: true })
+  
+  const addRecord = () => {
+    if (!newRecord.value.date || !newRecord.value.weight) return
+    records.value.push({
+      id: Date.now(),
+      date: newRecord.value.date,
+      weight: newRecord.value.weight,
+    })
+    newRecord.value = { date: '', weight: null }
+  }
+  
+  const deleteRecord = (id) => {
+    records.value = records.value.filter(r => r.id !== id)
+  }
+  
+  const sortedRecords = computed(() => {
+    return [...records.value].sort((a, b) => new Date(a.date) - new Date(b.date))
+  })
+  
+  const renderChart = () => {
+    if (!chartCanvas.value) return
+  
+    // 銷毀舊圖表
+    if (weightChart) {
+      weightChart.destroy()
+    }
+  
+    const data = sortedRecords.value
+    weightChart = new Chart(chartCanvas.value, {
+      type: 'line',
+      data: {
+        labels: data.map(r => r.date),
+        datasets: [{
+          label: '體重 (kg)',
+          data: data.map(r => r.weight),
+          borderColor: 'rgba(59,130,246,1)',
+          backgroundColor: 'rgba(59,130,246,0.2)',
+          fill: true,
+          tension: 0.2
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: '體重變化圖'
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: false
+          }
+        }
+      }
+    })
+  }
+  </script>

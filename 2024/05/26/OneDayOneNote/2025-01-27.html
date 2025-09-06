@@ -1,0 +1,62 @@
+<hr>
+<h2 id="title-2025-01-27-Tailwind-CSSdate-2025-09-06-20-36-16tags-Javascript-Vue-description-2024-01-25-JavaScript-系列八：第5課-──-體重追蹤應用程式-步驟01"><a href="#title-2025-01-27-Tailwind-CSSdate-2025-09-06-20-36-16tags-Javascript-Vue-description-2024-01-25-JavaScript-系列八：第5課-──-體重追蹤應用程式-步驟01" class="headerlink" title="title: 2025-01-27- Tailwind CSSdate: 2025-09-06 20:36:16tags:  [Javascript,Vue]description:  2024-01-25 - JavaScript 系列八：第5課 ── 體重追蹤應用程式-步驟01"></a>title: 2025-01-27- Tailwind CSS<br>date: 2025-09-06 20:36:16<br>tags:  [Javascript,Vue]<br>description:  2024-01-25 - JavaScript 系列八：第5課 ── 體重追蹤應用程式-步驟01</h2><h1 id="2025-01-27-Tailwind-CSS"><a href="#2025-01-27-Tailwind-CSS" class="headerlink" title="2025-01-27- Tailwind CSS"></a>2025-01-27- Tailwind CSS</h1><div class="p-4 max-w-md mx-auto">
+
+<p>這是 <strong>Tailwind CSS</strong> 的語法，它是一種實用導向（utility-first）的 CSS 框架。</p>
+<h3 id="🔍-說明這段-的意思："><a href="#🔍-說明這段-的意思：" class="headerlink" title="🔍 說明這段 &lt;div class=&quot;p-4 max-w-md mx-auto&quot;&gt; 的意思："></a>🔍 說明這段 <code>&lt;div class=&quot;p-4 max-w-md mx-auto&quot;&gt;</code> 的意思：</h3><table>
+<thead>
+<tr>
+<th>類別</th>
+<th>含義</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>p-4</code></td>
+<td>padding 為 1rem（16px）</td>
+</tr>
+<tr>
+<td><code>max-w-md</code></td>
+<td>最大寬度為 “medium”，大約是 <code>28rem</code>（448px）</td>
+</tr>
+<tr>
+<td><code>mx-auto</code></td>
+<td>水平邊距自動（使元素在父容器中置中）</td>
+</tr>
+</tbody></table>
+<h3 id="✅-所以這一行的意思是："><a href="#✅-所以這一行的意思是：" class="headerlink" title="✅ 所以這一行的意思是："></a>✅ 所以這一行的意思是：</h3><p>建立一個中等寬度的容器，置中顯示，內部有四邊內距。</p>
+<hr>
+<h3 id="📌-如果你沒用-Tailwind："><a href="#📌-如果你沒用-Tailwind：" class="headerlink" title="📌 如果你沒用 Tailwind："></a>📌 如果你沒用 Tailwind：</h3><p>如果你的專案沒設定 Tailwind CSS，那這些類別不會生效，你會看到畫面很醜或沒對齊。你有使用 Tailwind 嗎？還是要我幫你改成純 CSS？</p>
+<p>沒問題！你可以使用 <strong>CDN</strong> 引入 Tailwind CSS，非常適合練習與快速開發。以下是步驟：</p>
+<hr>
+<h3 id="✅-在-index-html-加入-Tailwind-CDN"><a href="#✅-在-index-html-加入-Tailwind-CDN" class="headerlink" title="✅ 在 index.html 加入 Tailwind CDN"></a>✅ 在 <code>index.html</code> 加入 Tailwind CDN</h3><ol>
+<li><p>找到你專案的 <code>index.html</code>（通常在 <code>public/index.html</code>）</p>
+</li>
+<li><p>在 <code>&lt;head&gt;</code> 中加入以下這段：</p>
+</li>
+</ol>
+<pre><code class="html">&lt;!-- Tailwind CDN --&gt;
+&lt;script src=&quot;https://cdn.tailwindcss.com&quot;&gt;&lt;/script&gt;
+</code></pre>
+<hr>
+<h3 id="🔍-範例-index-html（簡化版）："><a href="#🔍-範例-index-html（簡化版）：" class="headerlink" title="🔍 範例 index.html（簡化版）："></a>🔍 範例 <code>index.html</code>（簡化版）：</h3><pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot; /&gt;
+    &lt;link rel=&quot;icon&quot; href=&quot;/favicon.ico&quot; /&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+    &lt;title&gt;Weight Tracker&lt;/title&gt;
+    
+    &lt;!-- Tailwind CSS CDN 加入這一行 --&gt;
+    &lt;script src=&quot;https://cdn.tailwindcss.com&quot;&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
+    &lt;script type=&quot;module&quot; src=&quot;/src/main.js&quot;&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<hr>
+<h3 id="🧪-加入後你可以這樣測試"><a href="#🧪-加入後你可以這樣測試" class="headerlink" title="🧪 加入後你可以這樣測試"></a>🧪 加入後你可以這樣測試</h3><pre><code class="html">&lt;div class=&quot;text-red-500 font-bold text-xl&quot;&gt;
+  如果這是紅色字，代表 Tailwind 正常！
+&lt;/div&gt;
+</code></pre>
+<hr>

@@ -1,0 +1,108 @@
+<hr>
+<h2 id="title-2025-03-31-加一個「按鈕即時展示區」date-2025-09-06-23-43-16tags-Javascript-Vue-description-2025-03-31-加一個「按鈕即時展示區」"><a href="#title-2025-03-31-加一個「按鈕即時展示區」date-2025-09-06-23-43-16tags-Javascript-Vue-description-2025-03-31-加一個「按鈕即時展示區」" class="headerlink" title="title: 2025-03-31- 加一個「按鈕即時展示區」date: 2025-09-06 23:43:16tags:  [Javascript,Vue]description:  2025-03-31- 加一個「按鈕即時展示區」"></a>title: 2025-03-31- 加一個「按鈕即時展示區」<br>date: 2025-09-06 23:43:16<br>tags:  [Javascript,Vue]<br>description:  2025-03-31- 加一個「按鈕即時展示區」</h2><h1 id="2025-03-31-加一個「按鈕即時展示區」"><a href="#2025-03-31-加一個「按鈕即時展示區」" class="headerlink" title="2025-03-31- 加一個「按鈕即時展示區」"></a>2025-03-31- 加一個「按鈕即時展示區」</h1><p>在「新增按鈕」按鈕上方加一個「按鈕即時展示區」，即時展示目前你設定好的按鈕樣式（但還沒新增到列表的按鈕），讓你能即時預覽。</p>
+<p>修改重點：</p>
+<ul>
+<li>在控制面板裡，新增一區塊展示當前設定的按鈕（用同樣的 <code>&lt;MyButton&gt;</code>）</li>
+<li>位置放在「新增按鈕」按鈕的上方</li>
+<li>用標題文字區分</li>
+</ul>
+<hr>
+<h2 id="修改後的程式碼（只改-template-和新增少量-CSS）"><a href="#修改後的程式碼（只改-template-和新增少量-CSS）" class="headerlink" title="修改後的程式碼（只改 template 和新增少量 CSS）"></a>修改後的程式碼（只改 <code>template</code> 和新增少量 CSS）</h2><pre><code class="vue">&lt;template&gt;
+  &lt;div class=&quot;layout&quot;&gt;
+    &lt;!-- 左邊控制面板 --&gt;
+    &lt;div class=&quot;control-panel&quot;&gt;
+      &lt;h3&gt;按鈕設定&lt;/h3&gt;
+
+      &lt;!-- 即時預覽區 --&gt;
+      &lt;div class=&quot;preview-area&quot;&gt;
+        &lt;h4&gt;按鈕即時展示區&lt;/h4&gt;
+        &lt;MyButton
+          :label=&quot;label&quot;
+          :color=&quot;color&quot;
+          :textColor=&quot;textColor&quot;
+          :fontSize=&quot;fontSize&quot;
+          :round=&quot;round&quot;
+          :square=&quot;square&quot;
+          @click=&quot;handleClick({ label })&quot;
+        /&gt;
+      &lt;/div&gt;
+
+      &lt;label&gt;
+        按鈕文字：
+        &lt;input v-model=&quot;label&quot; /&gt;
+      &lt;/label&gt;
+
+      &lt;label&gt;
+        背景顏色：
+        &lt;input type=&quot;color&quot; v-model=&quot;color&quot; /&gt;
+      &lt;/label&gt;
+
+      &lt;label&gt;
+        文字顏色：
+        &lt;input type=&quot;color&quot; v-model=&quot;textColor&quot; /&gt;
+      &lt;/label&gt;
+
+      &lt;label&gt;
+        字體大小：
+        &lt;input type=&quot;range&quot; min=&quot;10&quot; max=&quot;40&quot; v-model.number=&quot;fontSize&quot; /&gt;
+        &lt;span&gt;{{ fontSize }}px&lt;/span&gt;
+      &lt;/label&gt;
+
+      &lt;label&gt;
+        圓角樣式：
+        &lt;input type=&quot;checkbox&quot; v-model=&quot;round&quot; @change=&quot;onRoundChange&quot; /&gt;
+      &lt;/label&gt;
+
+      &lt;label&gt;
+        方形樣式：
+        &lt;input type=&quot;checkbox&quot; v-model=&quot;square&quot; @change=&quot;onSquareChange&quot; /&gt;
+      &lt;/label&gt;
+
+      &lt;button class=&quot;add-button&quot; @click=&quot;handleAddButton&quot;&gt;➕ 新增按鈕&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;!-- 右邊按鈕區 --&gt;
+    &lt;div class=&quot;button-display&quot;&gt;
+      &lt;h3&gt;按鈕展示區&lt;/h3&gt;
+      &lt;div v-if=&quot;lastClicked&quot; class=&quot;message&quot;&gt;{{ lastClicked }}&lt;/div&gt;
+
+      &lt;div class=&quot;MyButton-wrapper&quot;&gt;
+        &lt;div
+          v-for=&quot;btn in buttons&quot;
+          :key=&quot;btn.id&quot;
+          class=&quot;button-container&quot;
+        &gt;
+          &lt;MyButton
+            :label=&quot;btn.label&quot;
+            :color=&quot;btn.color&quot;
+            :textColor=&quot;btn.textColor&quot;
+            :fontSize=&quot;btn.fontSize&quot;
+            :round=&quot;btn.round&quot;
+            :square=&quot;btn.square&quot;
+            @click=&quot;() =&gt; handleClick(btn)&quot;
+          /&gt;
+          &lt;button class=&quot;delete-btn&quot; @click=&quot;deleteButton(btn.id)&quot;&gt;×&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;style scoped&gt;
+/* 新增即時預覽區樣式 */
+.preview-area {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 1.5px solid #bbb;
+  border-radius: 10px;
+  background-color: #fff;
+  text-align: center;
+}
+
+.preview-area h4 {
+  margin-bottom: 0.75rem;
+  color: #555;
+}
+&lt;/style&gt;
+</code></pre>
+<hr>

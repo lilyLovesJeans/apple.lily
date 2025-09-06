@@ -1,0 +1,61 @@
+<hr>
+<h2 id="title-2025-03-03-為什麼「ref-物件要改-value，不能整個指派」date-2025-09-06-22-56-38tags-Javascript-Vue-description-2025-03-03-為什麼「ref-物件要改-value，不能整個指派」"><a href="#title-2025-03-03-為什麼「ref-物件要改-value，不能整個指派」date-2025-09-06-22-56-38tags-Javascript-Vue-description-2025-03-03-為什麼「ref-物件要改-value，不能整個指派」" class="headerlink" title="title: 2025-03-03-為什麼「ref 物件要改 .value，不能整個指派」date: 2025-09-06 22:56:38tags:  [Javascript,Vue]description:   2025-03-03-為什麼「ref 物件要改 .value，不能整個指派」"></a>title: 2025-03-03-為什麼「ref 物件要改 .value，不能整個指派」<br>date: 2025-09-06 22:56:38<br>tags:  [Javascript,Vue]<br>description:   2025-03-03-為什麼「ref 物件要改 .value，不能整個指派」</h2><h1 id="2025-03-03-為什麼「ref-物件要改-value，不能整個指派」"><a href="#2025-03-03-為什麼「ref-物件要改-value，不能整個指派」" class="headerlink" title="2025-03-03-為什麼「ref 物件要改 .value，不能整個指派」"></a>2025-03-03-為什麼「ref 物件要改 .value，不能整個指派」</h1><p>這牽涉到 Vue 3 中 <code>ref</code> 的本質與 reactivity（響應式）系統的運作方式。<br>我們來一步步說明為什麼「ref 物件要改 <code>.value</code>，不能整個指派」。</p>
+<hr>
+<h3 id="🔹-ref-是什麼？"><a href="#🔹-ref-是什麼？" class="headerlink" title="🔹 ref 是什麼？"></a>🔹 <code>ref</code> 是什麼？</h3><p>當你這樣寫：</p>
+<pre><code class="js">const allLocationNames = ref([])
+</code></pre>
+<p>你建立的是一個「包著值的物件」，它的結構像這樣：</p>
+<pre><code class="js">{
+  value: []
+}
+</code></pre>
+<p>這個 <code>.value</code> 是 <strong>真正的值</strong>（陣列），Vue 的響應式系統就是在監聽 <code>.value</code> 的變化。</p>
+<hr>
+<h3 id="🧨-為什麼不能這樣寫？"><a href="#🧨-為什麼不能這樣寫？" class="headerlink" title="🧨 為什麼不能這樣寫？"></a>🧨 為什麼不能這樣寫？</h3><pre><code class="js">allLocationNames = names  // ❌ 錯了！
+</code></pre>
+<p>這一行的意思是：</p>
+<blockquote>
+<p>把 <code>allLocationNames</code> 整個變數，換成 <code>names</code> 陣列。</p>
+</blockquote>
+<p>這就等於「<strong>你拋棄了原本的 ref 包裝</strong>」，Vue 也就無法追蹤變化，畫面不會更新。</p>
+<hr>
+<h3 id="✅-正確寫法是："><a href="#✅-正確寫法是：" class="headerlink" title="✅ 正確寫法是："></a>✅ 正確寫法是：</h3><pre><code class="js">allLocationNames.value = names
+</code></pre>
+<p>這表示：</p>
+<blockquote>
+<p>「我保留這個 ref 物件，<strong>只改裡面的值</strong>」，這樣 Vue 就會自動幫你更新畫面。</p>
+</blockquote>
+<hr>
+<h3 id="🔁-小小比喻（超級好懂！）"><a href="#🔁-小小比喻（超級好懂！）" class="headerlink" title="🔁 小小比喻（超級好懂！）"></a>🔁 小小比喻（超級好懂！）</h3><p>假設：</p>
+<ul>
+<li><code>ref</code> 是一個「透明果凍盒子」</li>
+<li><code>.value</code> 是盒子裡面的水果</li>
+</ul>
+<p>Vue 只會「盯著果凍盒子裡的水果變化」。<br>你要換水果（資料）時，應該把新的水果放進 <code>.value</code> 裡。</p>
+<p>如果你整個盒子換掉（<code>allLocationNames = names</code>），Vue 會說：「我不知道你換盒子了，我只看我原本那盒」。</p>
+<hr>
+<h3 id="🟢-所以總結："><a href="#🟢-所以總結：" class="headerlink" title="🟢 所以總結："></a>🟢 所以總結：</h3><table>
+<thead>
+<tr>
+<th>方式</th>
+<th>用途</th>
+<th>是否正確</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ref([])</code></td>
+<td>建立響應式資料</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>allLocationNames.value = [...]</code></td>
+<td>更新資料</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>allLocationNames = [...]</code></td>
+<td>拋棄 ref，變成普通變數</td>
+<td>❌</td>
+</tr>
+</tbody></table>
+<hr>

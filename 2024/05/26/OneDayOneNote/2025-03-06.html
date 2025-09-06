@@ -1,0 +1,147 @@
+<hr>
+<h2 id="title-2025-03-06-天氣查詢應用程式」的第-2-步：畫面顯示三個城市的主要天氣資訊date-2025-09-06-23-00-34tags-Javascript-Vue-description-2025-03-06-天氣查詢應用程式」的第-2-步：畫面顯示三個城市的主要天氣資訊"><a href="#title-2025-03-06-天氣查詢應用程式」的第-2-步：畫面顯示三個城市的主要天氣資訊date-2025-09-06-23-00-34tags-Javascript-Vue-description-2025-03-06-天氣查詢應用程式」的第-2-步：畫面顯示三個城市的主要天氣資訊" class="headerlink" title="title: 2025-03-06-天氣查詢應用程式」的第 2 步：畫面顯示三個城市的主要天氣資訊date: 2025-09-06 23:00:34tags:  [Javascript,Vue]description:  2025-03-06-天氣查詢應用程式」的第 2 步：畫面顯示三個城市的主要天氣資訊"></a>title: 2025-03-06-天氣查詢應用程式」的第 2 步：畫面顯示三個城市的主要天氣資訊<br>date: 2025-09-06 23:00:34<br>tags:  [Javascript,Vue]<br>description:  2025-03-06-天氣查詢應用程式」的第 2 步：畫面顯示三個城市的主要天氣資訊</h2><h1 id="2025-03-06-天氣查詢應用程式」的第-2-步：畫面顯示三個城市的主要天氣資訊"><a href="#2025-03-06-天氣查詢應用程式」的第-2-步：畫面顯示三個城市的主要天氣資訊" class="headerlink" title="2025-03-06-天氣查詢應用程式」的第 2 步：畫面顯示三個城市的主要天氣資訊"></a>2025-03-06-天氣查詢應用程式」的第 2 步：畫面顯示三個城市的主要天氣資訊</h1><p><strong>第 2 步：畫面顯示三個城市的主要天氣資訊</strong>。</p>
+<hr>
+<h2 id="✅-規格說明（第-2-步）"><a href="#✅-規格說明（第-2-步）" class="headerlink" title="✅ 規格說明（第 2 步）"></a>✅ 規格說明（第 2 步）</h2><p>畫面要顯示三筆資料，每筆為一個城市，並顯示以下資訊：</p>
+<ul>
+<li>城市名稱 <code>locationName</code></li>
+<li>天氣現象（<code>Wx</code>）→ 顯示今天天氣</li>
+<li>最高溫度（<code>MaxT</code>）</li>
+<li>最低溫度（<code>MinT</code>）</li>
+<li>降雨機率（<code>PoP</code>）</li>
+</ul>
+<p>每個城市一塊區塊，<strong>直向排列三排</strong>。</p>
+<hr>
+<h2 id="✅-完整範例程式碼（Vue-3-Composition-API）"><a href="#✅-完整範例程式碼（Vue-3-Composition-API）" class="headerlink" title="✅ 完整範例程式碼（Vue 3 + Composition API）"></a>✅ 完整範例程式碼（Vue 3 + Composition API）</h2><pre><code class="vue">&lt;template&gt;
+  &lt;h2&gt;🌦️ 三個城市的天氣概況&lt;/h2&gt;
+
+  &lt;div v-for=&quot;city in weatherData&quot; :key=&quot;city.locationName&quot; class=&quot;city-card&quot;&gt;
+    &lt;h3&gt;{{ city.locationName }}&lt;/h3&gt;
+    &lt;p&gt;🌤️ 天氣現象：{{ getWeatherElement(city, &#39;Wx&#39;) }}&lt;/p&gt;
+    &lt;p&gt;🌡️ 最高溫度：{{ getWeatherElement(city, &#39;MaxT&#39;) }}°C&lt;/p&gt;
+    &lt;p&gt;🥶 最低溫度：{{ getWeatherElement(city, &#39;MinT&#39;) }}°C&lt;/p&gt;
+    &lt;p&gt;☔ 降雨機率：{{ getWeatherElement(city, &#39;PoP&#39;) }}%&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { ref, onMounted } from &#39;vue&#39;
+
+const apiKey = &#39;你的 API 金鑰&#39;
+const url = `https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=${apiKey}`
+
+const allCities = [&#39;臺北市&#39;, &#39;臺中市&#39;, &#39;高雄市&#39;]
+const weatherData = ref([])
+
+onMounted(async () =&gt; {
+  try {
+    const response = await fetch(url)
+    const data = await response.json()
+
+    const locations = data.records.location
+
+    weatherData.value = locations.filter(loc =&gt;
+      allCities.includes(loc.locationName)
+    )
+  } catch (error) {
+    console.error(&#39;❌ 發生錯誤:&#39;, error)
+  }
+})
+
+// 取得指定欄位的第一筆預報值
+function getWeatherElement(city, elementName) {
+  const element = city.weatherElement.find(el =&gt; el.elementName === elementName)
+  return element?.time[0]?.parameter?.parameterName || &#39;N/A&#39;
+}
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+.city-card {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 0.5rem;
+  background: #f0f8ff;
+}
+&lt;/style&gt;
+</code></pre>
+<hr>
+<h2 id="🔍-說明重點"><a href="#🔍-說明重點" class="headerlink" title="🔍 說明重點"></a>🔍 說明重點</h2><table>
+<thead>
+<tr>
+<th>欄位</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Wx</code></td>
+<td>天氣現象，如「晴時多雲」</td>
+</tr>
+<tr>
+<td><code>PoP</code></td>
+<td>降雨機率（百分比）</td>
+</tr>
+<tr>
+<td><code>MaxT</code></td>
+<td>最高溫度（攝氏）</td>
+</tr>
+<tr>
+<td><code>MinT</code></td>
+<td>最低溫度（攝氏）</td>
+</tr>
+<tr>
+<td><code>.time[0]</code></td>
+<td>代表第一個時間區段（通常是今晚～明晨）</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="✅-下一步可選："><a href="#✅-下一步可選：" class="headerlink" title="✅ 下一步可選："></a>✅ 下一步可選：</h2><ul>
+<li>💡 加上 <code>&lt;select&gt;</code> 選擇城市、只顯示單一城市資料</li>
+<li>💡 做出 RWD + 背景色變化</li>
+<li>💡 根據天氣現象改變 icon 或背景</li>
+</ul>
+<hr>
+<p>你可以先跑跑看這個範例，再來決定是否繼續加入 RWD 或互動選單功能，我可以帶你一步步來 💪</p>
+<p>好問題！你問的：</p>
+<blockquote>
+<p>畫面並沒有直向排列，是不是因為沒有指定 <code>border-box</code>？</p>
+</blockquote>
+<p>其實不是關鍵問題在 <code>border-box</code>，而是：</p>
+<hr>
+<h3 id="✅-【畫面沒直向排列】常見-3-個可能原因："><a href="#✅-【畫面沒直向排列】常見-3-個可能原因：" class="headerlink" title="✅ 【畫面沒直向排列】常見 3 個可能原因："></a>✅ 【畫面沒直向排列】常見 3 個可能原因：</h3><hr>
+<h4 id="✅-1-最外層容器是否有-display-flex-flex-direction-column"><a href="#✅-1-最外層容器是否有-display-flex-flex-direction-column" class="headerlink" title="✅ 1. 最外層容器是否有 display: flex; flex-direction: column;"></a>✅ 1. <strong>最外層容器是否有 <code>display: flex; flex-direction: column;</code></strong></h4><p>在 <code>&lt;style scoped&gt;</code> 裡應該這樣寫：</p>
+<pre><code class="css">.weather-container {
+  display: flex;
+  flex-direction: column; /* ⬅️ 確保是垂直排列 */
+  gap: 1.5rem;
+}
+</code></pre>
+<hr>
+<h4 id="✅-2-確定-weather-container-是否有套上-class？"><a href="#✅-2-確定-weather-container-是否有套上-class？" class="headerlink" title="✅ 2. 確定 .weather-container 是否有套上 class？"></a>✅ 2. <strong>確定 <code>.weather-container</code> 是否有套上 class？</strong></h4><p>你的 <code>&lt;template&gt;</code> 裡應該是：</p>
+<pre><code class="html">&lt;div class=&quot;weather-container&quot;&gt;
+  &lt;div v-for=&quot;city in weatherData&quot; :key=&quot;city.locationName&quot; class=&quot;city-card&quot;&gt;
+    ...
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p>✅ <strong>別漏掉 <code>class=&quot;weather-container&quot;</code>！</strong><br>這是讓容器用 flex 垂直排列的關鍵。</p>
+<hr>
+<h4 id="✅-3-不是-border-box-問題（它是內容區域的計算方式）"><a href="#✅-3-不是-border-box-問題（它是內容區域的計算方式）" class="headerlink" title="✅ 3. 不是 border-box 問題（它是內容區域的計算方式）"></a>✅ 3. <strong>不是 <code>border-box</code> 問題（它是內容區域的計算方式）</strong></h4><ul>
+<li><code>box-sizing: border-box;</code> 影響的是：padding + border 是否會被算進寬度</li>
+<li>跟「排列方向」沒關係，和 <code>flex-direction</code> 不同概念</li>
+</ul>
+<hr>
+<h3 id="🔧-快速檢查步驟："><a href="#🔧-快速檢查步驟：" class="headerlink" title="🔧 快速檢查步驟："></a>🔧 快速檢查步驟：</h3><ol>
+<li>檢查 <code>weather-container</code> 是否真的有 <code>flex-direction: column</code></li>
+<li>確保有套到 class</li>
+<li>確保畫面寬度夠寬（手機版可能看不出差別）</li>
+<li>開 DevTools → 點 <code>.weather-container</code> → 看 computed style 有沒有 <code>display: flex</code></li>
+</ol>
+<hr>
+<h3 id="bonus：想強制直向排列"><a href="#bonus：想強制直向排列" class="headerlink" title="bonus：想強制直向排列"></a>bonus：想強制直向排列</h3><p>你可以加這行來幫助確認效果：</p>
+<pre><code class="css">.weather-container {
+  display: flex;
+  flex-direction: column;
+  border: 2px dashed red; /* 測試用框線 */
+}
+</code></pre>
+<hr>
