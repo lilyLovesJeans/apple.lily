@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2025-04-16-網站從零開始到能跑起來的明確逐步作法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025-04-16-網站從零開始到能跑起來的明確逐步作法">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/09/09/OneDayOneNote/2025-04-16/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2025-04-16-網站從零開始到能跑起來的明確逐步作法">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-09-09T14:12:28.000Z">
+<meta property="article:modified_time" content="2025-09-09T14:13:28.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="架站">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2025/09/09/OneDayOneNote/2025-04-16/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2025/09/09/OneDayOneNote/2025-04-16/","path":"2025/09/09/OneDayOneNote/2025-04-16/","title":"2025-04-16-網站從零開始到能跑起來的明確逐步作法"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2025-04-16-網站從零開始到能跑起來的明確逐步作法 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2025-04-16-%E7%B6%B2%E7%AB%99%E5%BE%9E%E9%9B%B6%E9%96%8B%E5%A7%8B%E5%88%B0%E8%83%BD%E8%B7%91%E8%B5%B7%E4%BE%86%E7%9A%84%E6%98%8E%E7%A2%BA%E9%80%90%E6%AD%A5%E4%BD%9C%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">2025-04-16-網站從零開始到能跑起來的明確逐步作法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E8%A6%BD%EF%BC%88%E9%AB%98%E5%B1%A4%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">一覽（高層）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A9%B3%E7%B4%B0%E6%AD%A5%E9%A9%9F%EF%BC%88%E8%AB%8B%E5%9C%A8-Windows-%E4%B8%BB%E5%8A%9B%E6%A9%9F%E4%B8%8A%E6%93%8D%E4%BD%9C%EF%BC%9BPowerShell-%E7%82%BA%E4%BE%8B%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">詳細步驟（請在 Windows 主力機上操作；PowerShell 為例）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC-0-%E7%AF%80%EF%BC%9A%E5%85%88%E6%B1%BA%E6%A2%9D%E4%BB%B6%EF%BC%88%E5%A6%82%E6%9E%9C%E4%BD%A0%E5%B7%B2%E7%B6%93%E8%A3%9D%E5%A5%BD%E5%8F%AF%E8%B7%B3%E9%81%8E%EF%BC%89"><span class="nav-number">3.1.</span> <span class="nav-text">第 0 節：先決條件（如果你已經裝好可跳過）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%BB%BA%E5%B0%88%E6%A1%88%E7%9B%AE%E9%8C%84%E7%B5%90%E6%A7%8B%EF%BC%88%E5%9C%A8%E4%BD%A0%E6%83%B3%E6%94%BE%E7%9A%84%E4%BD%8D%E7%BD%AE%EF%BC%89"><span class="nav-number">3.2.</span> <span class="nav-text">1. 建專案目錄結構（在你想放的位置）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E7%94%A8-Docker-%E5%9C%A8-Windows-%E5%BB%BA-MySQL%EF%BC%88%E9%96%8B%E7%99%BC%E7%94%A8%EF%BC%89"><span class="nav-number">3.3.</span> <span class="nav-text">2. 用 Docker 在 Windows 建 MySQL（開發用）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%BB%BA%E8%B3%87%E6%96%99%E8%A1%A8%EF%BC%88%E7%94%A8-SQL-seed%EF%BC%89"><span class="nav-number">3.4.</span> <span class="nav-text">3. 建資料表（用 SQL seed）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%BB%BA%E5%BE%8C%E7%AB%AF%EF%BC%9AC-ASP-NET-Core-Web-API%EF%BC%88%E4%B8%BB%E8%A6%81%E7%AF%84%E4%BE%8B%EF%BC%89"><span class="nav-number">3.5.</span> <span class="nav-text">4. 建後端：C# ASP.NET Core Web API（主要範例）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-scaffold-%E5%B0%88%E6%A1%88"><span class="nav-number">3.5.1.</span> <span class="nav-text">4.1 scaffold 專案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E5%AE%89%E8%A3%9D%E5%BF%85%E8%A6%81%E5%A5%97%E4%BB%B6%EF%BC%88EF-Core-MySQL-provider%EF%BC%89"><span class="nav-number">3.5.2.</span> <span class="nav-text">4.2 安裝必要套件（EF Core + MySQL provider）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-%E4%BF%AE%E6%94%B9-appsettings-Development-json%EF%BC%88%E5%8A%A0%E5%85%A5-DB-%E9%80%A3%E7%B7%9A%EF%BC%89"><span class="nav-number">3.5.3.</span> <span class="nav-text">4.3 修改 appsettings.Development.json（加入 DB 連線）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-%E5%BB%BA-DbContext-%E8%88%87-Model%EF%BC%88%E7%B0%A1%E7%9F%AD%E7%AF%84%E4%BE%8B%EF%BC%89"><span class="nav-number">3.5.4.</span> <span class="nav-text">4.4 建 DbContext 與 Model（簡短範例）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-%E5%BB%BA%E7%B0%A1%E5%96%AE-Controller%EF%BC%88Readings-AI-proxy%EF%BC%89"><span class="nav-number">3.5.5.</span> <span class="nav-text">4.5 建簡單 Controller（Readings &amp; AI proxy）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-%E5%BB%BA-DB-migration-%E4%B8%A6%E5%9F%B7%E8%A1%8C"><span class="nav-number">3.5.6.</span> <span class="nav-text">4.6 建 DB migration 並執行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-7-%E5%9F%B7%E8%A1%8C%E5%BE%8C%E7%AB%AF"><span class="nav-number">3.5.7.</span> <span class="nav-text">4.7 執行後端</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%BB%BA%E5%BE%8C%E7%AB%AF%EF%BC%9APython-FastAPI%EF%BC%88%E5%A6%82%E6%9E%9C%E4%BD%A0%E6%9C%AA%E4%BE%86%E6%83%B3%E7%94%A8-Python-%E5%BF%AB%E9%80%9F%E8%A9%A6-AI%EF%BC%89"><span class="nav-number">3.6.</span> <span class="nav-text">5. 建後端：Python FastAPI（如果你未來想用 Python 快速試 AI）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E5%BB%BA%E5%89%8D%E7%AB%AF%EF%BC%9AVue-3-Vite%EF%BC%88%E5%9C%A8-frontend%EF%BC%89"><span class="nav-number">3.7.</span> <span class="nav-text">6. 建前端：Vue 3 + Vite（在 frontend）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E6%9C%AC%E6%A9%9F%E6%B8%AC%E8%A9%A6%E9%A0%86%E5%BA%8F%EF%BC%88%E9%9D%9E%E5%B8%B8%E9%87%8D%E8%A6%81%EF%BC%89"><span class="nav-number">3.8.</span> <span class="nav-text">7. 本機測試順序（非常重要）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-AI-Key-%E8%88%87%E5%AE%89%E5%85%A8%EF%BC%88%E5%BF%85%E5%81%9A%EF%BC%89"><span class="nav-number">3.9.</span> <span class="nav-text">8. AI Key 與安全（必做）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-Dockerize-%E5%BE%8C%E7%AB%AF%EF%BC%88%E5%BF%AB%E9%80%9F-build-run%EF%BC%89"><span class="nav-number">3.10.</span> <span class="nav-text">9. Dockerize 後端（快速 build &amp; run）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-%E5%BE%8C%E7%BA%8C%E5%BB%BA%E8%AD%B0%EF%BC%88%E7%9F%AD%E6%9C%9F-%E9%95%B7%E6%9C%9F%EF%BC%89"><span class="nav-number">3.11.</span> <span class="nav-text">10. 後續建議（短期 &amp; 長期）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%80%E5%BE%8C-%E2%80%94-%E6%88%91%E7%82%BA%E4%BD%A0%E6%BA%96%E5%82%99%E7%9A%84%E3%80%8C%E7%AB%8B%E5%8D%B3%E5%8F%AF%E8%A4%87%E8%A3%BD%E3%80%8D%E6%B8%85%E5%96%AE%EF%BC%88%E4%B8%89%E5%80%8B%E7%AB%8B%E5%8D%B3%E4%BB%BB%E5%8B%99%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">最後 — 我為你準備的「立即可複製」清單（三個立即任務）</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">410</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2025/09/09/OneDayOneNote/2025-04-16/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2025-04-16-網站從零開始到能跑起來的明確逐步作法 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2025-04-16-網站從零開始到能跑起來的明確逐步作法">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2025-04-16-網站從零開始到能跑起來的明確逐步作法
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2025-09-09 22:12:28 / 修改時間：22:13:28" itemprop="dateCreated datePublished" datetime="2025-09-09T22:12:28+08:00">2025-09-09</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2025-04-16-網站從零開始到能跑起來的明確逐步作法</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="2025-04-16-網站從零開始到能跑起來的明確逐步作法"><a href="#2025-04-16-網站從零開始到能跑起來的明確逐步作法" class="headerlink" title="2025-04-16-網站從零開始到能跑起來的明確逐步作法"></a>2025-04-16-網站從零開始到能跑起來的明確逐步作法</h1><p><strong>從零開始到能跑起來的明確逐步作法</strong> 釐清成一個可跟做的清單（以 <strong>Windows 為主力開發機 &#x2F; 使用 C# (ASP.NET Core) 為預設後端</strong>，並同時給你 <strong>Python(FastAPI)</strong> 的快速替代路徑備選）。每一步都包含必需的指令、檔案或範例內容，你照著做就能把整個「Vue 前端 + 後端 API + MySQL + AI proxy」MVP 拉起來並互通。</p>
+<p>我把流程分成三大階段：準備環境 → 建立資料庫與後端 → 建立前端並整合 AI。每一步都有可直接貼上的指令或檔案範例。</p>
+<h1 id="一覽（高層）"><a href="#一覽（高層）" class="headerlink" title="一覽（高層）"></a>一覽（高層）</h1><ol>
+<li>設環境：Windows 安裝必要工具（Node、.NET、Docker、VS Code、Git）</li>
+<li>建 MySQL（用 Docker）並建立資料表 seed 資料</li>
+<li>Scaffold 後端（<strong>C# ASP.NET Core</strong>）含 AI proxy endpoint 與 DB 連線（若你要 Python，我也附 FastAPI 快速替代）</li>
+<li>Scaffold 前端（Vue 3 + Vite），設定 proxy 呼叫後端</li>
+<li>本機測試：啟動 DB → 後端 → 前端；測 AI endpoint，確認能拿到回應</li>
+<li>下一步（選項）：加入認證、部署到雲、監控、備份</li>
+</ol>
+<hr>
+<h1 id="詳細步驟（請在-Windows-主力機上操作；PowerShell-為例）"><a href="#詳細步驟（請在-Windows-主力機上操作；PowerShell-為例）" class="headerlink" title="詳細步驟（請在 Windows 主力機上操作；PowerShell 為例）"></a>詳細步驟（請在 Windows 主力機上操作；PowerShell 為例）</h1><h2 id="第-0-節：先決條件（如果你已經裝好可跳過）"><a href="#第-0-節：先決條件（如果你已經裝好可跳過）" class="headerlink" title="第 0 節：先決條件（如果你已經裝好可跳過）"></a>第 0 節：先決條件（如果你已經裝好可跳過）</h2><ul>
+<li>Visual Studio 2022 或 .NET SDK（建議 .NET 7&#x2F;8 LTS）<br>下載並安裝 .NET SDK：<a target="_blank" rel="noopener" href="https://dotnet.microsoft.com/">https://dotnet.microsoft.com</a> （或用 Visual Studio Installer）</li>
+<li>Node.js (LTS) 已安裝（你已完成）</li>
+<li>Docker Desktop 已安裝並啟用（啟用 WSL2 integration 建議）</li>
+<li>VS Code 已安裝（推薦安裝 Volar、C#、Docker、ESLint 等擴充）</li>
+<li>Git 已安裝，並設定 SSH key 加到 GitHub</li>
+</ul>
+<hr>
+<h2 id="1-建專案目錄結構（在你想放的位置）"><a href="#1-建專案目錄結構（在你想放的位置）" class="headerlink" title="1. 建專案目錄結構（在你想放的位置）"></a>1. 建專案目錄結構（在你想放的位置）</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 建專案資料夾</span></span><br><span class="line">mkdir psych<span class="literal">-site</span></span><br><span class="line"><span class="built_in">cd</span> psych<span class="literal">-site</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 建 frontend / backend / infra 目錄</span></span><br><span class="line">mkdir frontend backend infra</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="2-用-Docker-在-Windows-建-MySQL（開發用）"><a href="#2-用-Docker-在-Windows-建-MySQL（開發用）" class="headerlink" title="2. 用 Docker 在 Windows 建 MySQL（開發用）"></a>2. 用 Docker 在 Windows 建 MySQL（開發用）</h2><p>在 <code>psych-site/infra</code> 建 <code>docker-compose.yml</code>（可直接複製）：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&quot;3.8&quot;</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">mysql:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">mysql:8.0</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">MYSQL_ROOT_PASSWORD:</span> <span class="string">RootPwd123!</span></span><br><span class="line">      <span class="attr">MYSQL_DATABASE:</span> <span class="string">psychdb</span></span><br><span class="line">      <span class="attr">MYSQL_USER:</span> <span class="string">appuser</span></span><br><span class="line">      <span class="attr">MYSQL_PASSWORD:</span> <span class="string">AppUserPwd123!</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;3306:3306&quot;</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">mysql_data:/var/lib/mysql</span></span><br><span class="line">    <span class="attr">healthcheck:</span></span><br><span class="line">      <span class="attr">test:</span> [<span class="string">&quot;CMD&quot;</span>, <span class="string">&quot;mysqladmin&quot;</span>, <span class="string">&quot;ping&quot;</span>, <span class="string">&quot;-pRootPwd123!&quot;</span>]</span><br><span class="line">      <span class="attr">interval:</span> <span class="string">10s</span></span><br><span class="line">      <span class="attr">retries:</span> <span class="number">5</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">phpmyadmin:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">phpmyadmin/phpmyadmin</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">PMA_HOST:</span> <span class="string">mysql</span></span><br><span class="line">      <span class="attr">PMA_USER:</span> <span class="string">root</span></span><br><span class="line">      <span class="attr">PMA_PASSWORD:</span> <span class="string">RootPwd123!</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;8080:80&quot;</span></span><br><span class="line">    <span class="attr">depends_on:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">mysql</span></span><br><span class="line"></span><br><span class="line"><span class="attr">volumes:</span></span><br><span class="line">  <span class="attr">mysql_data:</span></span><br></pre></td></tr></table></figure>
+
+<p>啟動：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> infra</span><br><span class="line">docker compose up <span class="literal">-d</span></span><br><span class="line">docker <span class="built_in">ps</span></span><br><span class="line"><span class="comment"># 等 mysql 容器健康後，打開 http://localhost:8080 用 root/RootPwd123! 登入 phpMyAdmin（開發用）</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>注意</strong>：本機開發用密碼示範，實務請用更強密碼且不要放 repo。</p>
+</blockquote>
+<hr>
+<h2 id="3-建資料表（用-SQL-seed）"><a href="#3-建資料表（用-SQL-seed）" class="headerlink" title="3. 建資料表（用 SQL seed）"></a>3. 建資料表（用 SQL seed）</h2><p>在 <code>infra</code> 下建立檔案 <code>init_seed.sql</code>（或用 phpMyAdmin 匯入）：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">USE psychdb;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> readings (</span><br><span class="line">  id <span class="type">BIGINT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT,</span><br><span class="line">  title <span class="type">VARCHAR</span>(<span class="number">200</span>),</span><br><span class="line">  category <span class="type">VARCHAR</span>(<span class="number">80</span>),</span><br><span class="line">  text TEXT,</span><br><span class="line">  created_at DATETIME <span class="keyword">DEFAULT</span> <span class="built_in">CURRENT_TIMESTAMP</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> history (</span><br><span class="line">  id <span class="type">BIGINT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT,</span><br><span class="line">  user_id <span class="type">BIGINT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  reading_id <span class="type">BIGINT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  custom_text TEXT,</span><br><span class="line">  picked_at DATETIME,</span><br><span class="line">  created_at DATETIME <span class="keyword">DEFAULT</span> <span class="built_in">CURRENT_TIMESTAMP</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> readings (title, category, text) <span class="keyword">VALUES</span></span><br><span class="line">(<span class="string">&#x27;暖心小語&#x27;</span>,<span class="string">&#x27;心情&#x27;</span>,<span class="string">&#x27;今天給自己一個微笑，你比想像中堅強。&#x27;</span>),</span><br><span class="line">(<span class="string">&#x27;職場提醒&#x27;</span>,<span class="string">&#x27;工作&#x27;</span>,<span class="string">&#x27;用小步快跑的方式完成大目標，別怕分段執行。&#x27;</span>),</span><br><span class="line">(<span class="string">&#x27;情感共鳴&#x27;</span>,<span class="string">&#x27;情感&#x27;</span>,<span class="string">&#x27;說出你的感受，也許會帶來意外的理解。&#x27;</span>),</span><br><span class="line">(<span class="string">&#x27;小挑戰&#x27;</span>,<span class="string">&#x27;成長&#x27;</span>,<span class="string">&#x27;嘗試 10 分鐘的新習慣，給自己驚喜。&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>匯入方式：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 直接用 docker exec 匯入</span></span><br><span class="line">docker exec <span class="literal">-i</span> <span class="variable">$</span>(docker <span class="built_in">ps</span> <span class="literal">-q</span> <span class="operator">-f</span> name=psych<span class="literal">-site_infra_mysql</span>) mysql <span class="literal">-uroot</span> <span class="literal">-pRootPwd123</span>! psychdb &lt; init_seed.sql</span><br><span class="line"><span class="comment"># 若容器名稱不同，先 docker ps 找 mysql container id/name 再代入</span></span><br></pre></td></tr></table></figure>
+
+<p>（或用 phpMyAdmin 匯入 SQL）</p>
+<hr>
+<h2 id="4-建後端：C-ASP-NET-Core-Web-API（主要範例）"><a href="#4-建後端：C-ASP-NET-Core-Web-API（主要範例）" class="headerlink" title="4. 建後端：C# ASP.NET Core Web API（主要範例）"></a>4. 建後端：<strong>C# ASP.NET Core Web API</strong>（主要範例）</h2><h3 id="4-1-scaffold-專案"><a href="#4-1-scaffold-專案" class="headerlink" title="4.1 scaffold 專案"></a>4.1 scaffold 專案</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ..\backend</span><br><span class="line">dotnet new webapi <span class="literal">-n</span> psych.backend</span><br><span class="line"><span class="built_in">cd</span> psych.backend</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2-安裝必要套件（EF-Core-MySQL-provider）"><a href="#4-2-安裝必要套件（EF-Core-MySQL-provider）" class="headerlink" title="4.2 安裝必要套件（EF Core + MySQL provider）"></a>4.2 安裝必要套件（EF Core + MySQL provider）</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dotnet add package Pomelo.EntityFrameworkCore.MySql <span class="literal">--version</span> <span class="number">6.0</span>.<span class="number">0</span></span><br><span class="line">dotnet add package Microsoft.EntityFrameworkCore.Design</span><br><span class="line">dotnet tool install <span class="literal">--global</span> dotnet<span class="literal">-ef</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-3-修改-appsettings-Development-json（加入-DB-連線）"><a href="#4-3-修改-appsettings-Development-json（加入-DB-連線）" class="headerlink" title="4.3 修改 appsettings.Development.json（加入 DB 連線）"></a>4.3 修改 <code>appsettings.Development.json</code>（加入 DB 連線）</h3><p>在 <code>appsettings.Development.json</code> 加入：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;ConnectionStrings&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;DefaultConnection&quot;</span><span class="punctuation">:</span> <span class="string">&quot;server=localhost;port=3306;database=psychdb;user=appuser;password=AppUserPwd123!&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-4-建-DbContext-與-Model（簡短範例）"><a href="#4-4-建-DbContext-與-Model（簡短範例）" class="headerlink" title="4.4 建 DbContext 與 Model（簡短範例）"></a>4.4 建 DbContext 與 Model（簡短範例）</h3><p>在 <code>Models/Reading.cs</code>:</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Reading</span> &#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="built_in">long</span> Id &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">  <span class="keyword">public</span> <span class="built_in">string</span> Title &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">  <span class="keyword">public</span> <span class="built_in">string</span> Category &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">  <span class="keyword">public</span> <span class="built_in">string</span> Text &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">  <span class="keyword">public</span> DateTime CreatedAt &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>Data/AppDbContext.cs</code>:</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> Microsoft.EntityFrameworkCore;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">AppDbContext</span> : <span class="title">DbContext</span> &#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">AppDbContext</span>(<span class="params">DbContextOptions&lt;AppDbContext&gt; options</span>) : <span class="title">base</span>(<span class="params">options</span>)</span> &#123;&#125;</span><br><span class="line">  <span class="keyword">public</span> DbSet&lt;Reading&gt; Readings &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">  <span class="keyword">public</span> DbSet&lt;HistoryItem&gt; History &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>Program.cs</code> 註冊：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> builder = WebApplication.CreateBuilder(args);</span><br><span class="line">builder.Services.AddDbContext&lt;AppDbContext&gt;(options =&gt;</span><br><span class="line">    options.UseMySql(builder.Configuration.GetConnectionString(<span class="string">&quot;DefaultConnection&quot;</span>), </span><br><span class="line">    ServerVersion.AutoDetect(builder.Configuration.GetConnectionString(<span class="string">&quot;DefaultConnection&quot;</span>))));</span><br><span class="line">builder.Services.AddControllers();</span><br><span class="line">builder.Services.AddCors(options =&gt; options.AddDefaultPolicy(pb =&gt; pb.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));</span><br><span class="line"><span class="keyword">var</span> app = builder.Build();</span><br><span class="line">app.MapControllers();</span><br><span class="line">app.Run();</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-5-建簡單-Controller（Readings-AI-proxy）"><a href="#4-5-建簡單-Controller（Readings-AI-proxy）" class="headerlink" title="4.5 建簡單 Controller（Readings &amp; AI proxy）"></a>4.5 建簡單 Controller（Readings &amp; AI proxy）</h3><p><code>Controllers/ReadingsController.cs</code>（簡潔示範）：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">ApiController</span>]</span><br><span class="line">[<span class="meta">Route(<span class="string">&quot;api/[controller]&quot;</span>)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ReadingsController</span> : <span class="title">ControllerBase</span> &#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">readonly</span> AppDbContext _db;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">ReadingsController</span>(<span class="params">AppDbContext db</span>)</span> &#123; _db = db; &#125;</span><br><span class="line"></span><br><span class="line">  [<span class="meta">HttpGet</span>]</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">async</span> Task&lt;IActionResult&gt; <span class="title">Get</span>()</span> =&gt; Ok(<span class="keyword">await</span> _db.Readings.ToListAsync());</span><br><span class="line"></span><br><span class="line">  [<span class="meta">HttpGet(<span class="string">&quot;random&quot;</span>)</span>]</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">async</span> Task&lt;IActionResult&gt; <span class="title">Random</span>()</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> list = <span class="keyword">await</span> _db.Readings.ToListAsync();</span><br><span class="line">    <span class="keyword">var</span> item = list[<span class="keyword">new</span> Random().Next(list.Count)];</span><br><span class="line">    <span class="keyword">return</span> Ok(item);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>Controllers/AiController.cs</code>（AI proxy 範例，需在環境變數放 API KEY）：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">ApiController</span>]</span><br><span class="line">[<span class="meta">Route(<span class="string">&quot;api/ai&quot;</span>)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">AiController</span> : <span class="title">ControllerBase</span> &#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">readonly</span> IHttpClientFactory _http;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">readonly</span> IConfiguration _config;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">AiController</span>(<span class="params">IHttpClientFactory http, IConfiguration config</span>)</span> &#123; _http = http; _config = config; &#125;</span><br><span class="line"></span><br><span class="line">  [<span class="meta">HttpPost(<span class="string">&quot;read&quot;</span>)</span>]</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">async</span> Task&lt;IActionResult&gt; <span class="title">Read</span>(<span class="params">[FromBody] AiRequest req</span>)</span> &#123;</span><br><span class="line">    <span class="comment">// 基本敏感詞檢查（示範）</span></span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">string</span>.IsNullOrEmpty(req.Prompt) &amp;&amp; req.Prompt.Contains(<span class="string">&quot;自殺&quot;</span>)) &#123;</span><br><span class="line">      <span class="keyword">return</span> BadRequest(<span class="keyword">new</span> &#123; error = <span class="string">&quot;偵測到危險文字，請求助專業機構&quot;</span> &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> client = _http.CreateClient();</span><br><span class="line">    client.DefaultRequestHeaders.Authorization = <span class="keyword">new</span> AuthenticationHeaderValue(<span class="string">&quot;Bearer&quot;</span>, _config[<span class="string">&quot;AI_API_KEY&quot;</span>]);</span><br><span class="line">    <span class="keyword">var</span> payload = <span class="keyword">new</span> &#123; model = <span class="string">&quot;gpt-like&quot;</span>, input = <span class="string">$&quot;請用溫柔語氣回覆：<span class="subst">&#123;req.Prompt&#125;</span>&quot;</span>, max_tokens = <span class="number">200</span> &#125;;</span><br><span class="line">    <span class="keyword">var</span> resp = <span class="keyword">await</span> client.PostAsJsonAsync(_config[<span class="string">&quot;AI_API_URL&quot;</span>], payload);</span><br><span class="line">    <span class="keyword">if</span> (!resp.IsSuccessStatusCode) <span class="keyword">return</span> StatusCode(<span class="number">502</span>, <span class="string">&quot;AI provider error&quot;</span>);</span><br><span class="line">    <span class="keyword">var</span> j = <span class="keyword">await</span> resp.Content.ReadFromJsonAsync&lt;JsonElement&gt;();</span><br><span class="line">    <span class="keyword">var</span> text = j.GetProperty(<span class="string">&quot;choices&quot;</span>)[<span class="number">0</span>].GetProperty(<span class="string">&quot;text&quot;</span>).GetString(); <span class="comment">// 根據 provider 調整</span></span><br><span class="line">    <span class="keyword">return</span> Ok(<span class="keyword">new</span> &#123; text = text.Trim() &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>将你的 AI_API_KEY、AI_API_URL 放在 Windows environment variable 或 <code>secrets</code>。不要放到前端。</p>
+</blockquote>
+<h3 id="4-6-建-DB-migration-並執行"><a href="#4-6-建-DB-migration-並執行" class="headerlink" title="4.6 建 DB migration 並執行"></a>4.6 建 DB migration 並執行</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dotnet ef migrations add InitialCreate</span><br><span class="line">dotnet ef database update</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-7-執行後端"><a href="#4-7-執行後端" class="headerlink" title="4.7 執行後端"></a>4.7 執行後端</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dotnet run</span><br><span class="line"><span class="comment"># ASP.NET Core 會在 https://localhost:5001 或 http://localhost:5000</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="5-建後端：Python-FastAPI（如果你未來想用-Python-快速試-AI）"><a href="#5-建後端：Python-FastAPI（如果你未來想用-Python-快速試-AI）" class="headerlink" title="5. 建後端：Python FastAPI（如果你未來想用 Python 快速試 AI）"></a>5. 建後端：<strong>Python FastAPI</strong>（如果你未來想用 Python 快速試 AI）</h2><p>快速 scaffold（備選）：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ..\backend</span><br><span class="line">python <span class="literal">-m</span> venv venv</span><br><span class="line">venv\Scripts\activate</span><br><span class="line">pip install fastapi uvicorn sqlalchemy pymysql httpx python<span class="literal">-dotenv</span></span><br></pre></td></tr></table></figure>
+
+<p><code>main.py</code> 提供 <code>/api/ai/read</code> 與 <code>/api/readings</code>；使用 <code>httpx</code> 呼叫 AI provider；DB 用 SQLAlchemy 連 <code>mysql+pymysql://appuser:AppUserPwd123!@localhost:3306/psychdb</code>。</p>
+<hr>
+<h2 id="6-建前端：Vue-3-Vite（在-frontend）"><a href="#6-建前端：Vue-3-Vite（在-frontend）" class="headerlink" title="6. 建前端：Vue 3 + Vite（在 frontend）"></a>6. 建前端：Vue 3 + Vite（在 <code>frontend</code>）</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ..\frontend</span><br><span class="line">npm create vite@latest . <span class="literal">--</span> <span class="literal">--template</span> vue</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>vite.config.js</code> 加 proxy，讓開發時呼叫 <code>/api</code> 轉到後端（以 C# 為例）：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; defineConfig &#125; <span class="keyword">from</span> <span class="string">&#x27;vite&#x27;</span></span><br><span class="line"><span class="keyword">import</span> vue <span class="keyword">from</span> <span class="string">&#x27;@vitejs/plugin-vue&#x27;</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">defineConfig</span>(&#123;</span><br><span class="line">  <span class="attr">plugins</span>: [<span class="title function_">vue</span>()],</span><br><span class="line">  <span class="attr">server</span>: &#123;</span><br><span class="line">    <span class="attr">proxy</span>: &#123;</span><br><span class="line">      <span class="string">&#x27;/api&#x27;</span>: <span class="string">&#x27;http://localhost:5000&#x27;</span> <span class="comment">// 或 http://localhost:5000 若後端在 5000</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>把之前提供給你的 <code>App.vue</code>（純前端版本）貼到 <code>src/App.vue</code>，但將 <code>getReading()</code> 改為呼叫後端 AI 或 readings：</p>
+<ul>
+<li>呼叫本地 <code>/api/readings</code> 或 <code>/api/ai/read</code>（視你要哪個）</li>
+</ul>
+<p>示例呼叫 AI（前端）：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> res = <span class="keyword">await</span> <span class="title function_">fetch</span>(<span class="string">&#x27;/api/ai/read&#x27;</span>, &#123;</span><br><span class="line">  <span class="attr">method</span>: <span class="string">&#x27;POST&#x27;</span>,</span><br><span class="line">  <span class="attr">headers</span>: &#123; <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/json&#x27;</span> &#125;,</span><br><span class="line">  <span class="attr">body</span>: <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(&#123; <span class="attr">prompt</span>: promptText &#125;)</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">const</span> json = <span class="keyword">await</span> res.<span class="title function_">json</span>();</span><br></pre></td></tr></table></figure>
+
+<p>啟動前端：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm run dev</span><br><span class="line"><span class="comment"># 打開 http://localhost:5173</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="7-本機測試順序（非常重要）"><a href="#7-本機測試順序（非常重要）" class="headerlink" title="7. 本機測試順序（非常重要）"></a>7. 本機測試順序（非常重要）</h2><ol>
+<li><code>docker compose up -d</code> (infra&#x2F;mysql) → 等 mysql ready</li>
+<li>在 backend 專案執行 <code>dotnet run</code>（或 <code>uvicorn main:app --reload</code> for FastAPI）</li>
+<li>在 frontend 執行 <code>npm run dev</code></li>
+<li>用瀏覽器開 <code>http://localhost:5173</code> 測 UI；或直接呼叫 <code>http://localhost:5000/api/readings</code> 測後端</li>
+</ol>
+<hr>
+<h2 id="8-AI-Key-與安全（必做）"><a href="#8-AI-Key-與安全（必做）" class="headerlink" title="8. AI Key 與安全（必做）"></a>8. AI Key 與安全（必做）</h2><ul>
+<li>在 Windows 設環境變數（PowerShell）：</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">setx AI_API_KEY <span class="string">&quot;你的_api_key&quot;</span></span><br><span class="line">setx AI_API_URL <span class="string">&quot;https://api.yourprovider/v1/generate&quot;</span></span><br><span class="line"><span class="comment"># 重新啟動 shell 讓 env 生效</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>後端只讀 env 的值，不寫在程式碼中。</li>
+<li>加速測試可先用 mock 回應，再接真實 provider。</li>
+<li>在後端實作「簡易敏感詞過濾」及速率限制（ASP.NET 可用 middleware 或套件）。</li>
+</ul>
+<hr>
+<h2 id="9-Dockerize-後端（快速-build-run）"><a href="#9-Dockerize-後端（快速-build-run）" class="headerlink" title="9. Dockerize 後端（快速 build &amp; run）"></a>9. Dockerize 後端（快速 build &amp; run）</h2><p>在 <code>backend/psych.backend</code> 建 <code>Dockerfile</code>：</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> mcr.microsoft.com/dotnet/aspnet:<span class="number">7.0</span> AS base</span><br><span class="line"><span class="keyword">WORKDIR</span><span class="language-bash"> /app</span></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">80</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">FROM</span> mcr.microsoft.com/dotnet/sdk:<span class="number">7.0</span> AS build</span><br><span class="line"><span class="keyword">WORKDIR</span><span class="language-bash"> /src</span></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> . .</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> dotnet publish -c Release -o /app/publish</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">FROM</span> base AS final</span><br><span class="line"><span class="keyword">WORKDIR</span><span class="language-bash"> /app</span></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> --from=build /app/publish .</span></span><br><span class="line"><span class="keyword">ENTRYPOINT</span><span class="language-bash"> [<span class="string">&quot;dotnet&quot;</span>,<span class="string">&quot;psych.backend.dll&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+
+<p>建 image &amp; run（示例）：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker build <span class="literal">-t</span> psych<span class="literal">-backend</span>:latest .</span><br><span class="line">docker run <span class="literal">-d</span> <span class="literal">-p</span> <span class="number">5000</span>:<span class="number">80</span> <span class="literal">--name</span> psych<span class="literal">-backend</span> <span class="literal">--env</span> AI_API_KEY=... psych<span class="literal">-backend</span>:latest</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="10-後續建議（短期-長期）"><a href="#10-後續建議（短期-長期）" class="headerlink" title="10. 後續建議（短期 &amp; 長期）"></a>10. 後續建議（短期 &amp; 長期）</h2><p>短期（先做 MVP）：</p>
+<ul>
+<li>完成前端抽小語 &#x2F; 新增小語 &#x2F; 歷史儲存（DB）</li>
+<li>做 AI proxy endpoint 並測試（把 prompt 邏輯寫在後端）</li>
+<li>加速限制與簡易 moderation</li>
+</ul>
+<p>長期（上線）：</p>
+<ul>
+<li>把 DB 移到雲端 Managed DB（RDS &#x2F; Azure Database）</li>
+<li>實作 JWT 認證、使用者系統</li>
+<li>加監控（Application Insights &#x2F; Prometheus）與 log（Serilog）</li>
+<li>部署：Docker Compose &#x2F; Kubernetes 或雲端 PaaS（Azure App Service &#x2F; DigitalOcean App）</li>
+</ul>
+<hr>
+<h1 id="最後-—-我為你準備的「立即可複製」清單（三個立即任務）"><a href="#最後-—-我為你準備的「立即可複製」清單（三個立即任務）" class="headerlink" title="最後 — 我為你準備的「立即可複製」清單（三個立即任務）"></a>最後 — 我為你準備的「立即可複製」清單（三個立即任務）</h1><ol>
+<li>在 <code>psych-site/infra</code> 建 <code>docker-compose.yml</code>（上面內容）並執行：<br><code>docker compose up -d</code></li>
+<li>在 <code>psych-site/backend</code> scaffold C#（上面 dotnet 指令），把 <code>appsettings.Development.json</code> 的連線字串改成你 docker 的設定，執行 <code>dotnet ef database update</code>。</li>
+<li>在 <code>psych-site/frontend</code> scaffold Vite、貼上 <code>App.vue</code>（或我之前給的完整前端程式），在 <code>vite.config.js</code> 設 proxy，然後 <code>npm run dev</code> 開前端。</li>
+</ol>
+<hr>
+<p>你要我現在幫你做哪一件 <strong>我就直接把對應完整檔案內容貼給你</strong>（不用再問）：<br>A. 把 <code>backend</code> 的 C# 專案 <strong>完整檔案（Program.cs、AppDbContext.cs、Model、Controllers、Dockerfile）</strong> 一次貼給你複製貼上；<br>B. 或把 <strong>FastAPI 版本的 backend</strong> 完整檔案一次貼給你；<br>C. 或把 <strong>前端 App.vue + vite.config.js</strong>（已優化可呼叫後端 AI）一次貼給你。</p>
+<p>選 A、B 或 C，我立刻把那個部分的完整可運行檔案貼出來。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/%E6%9E%B6%E7%AB%99/" rel="tag"># 架站</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/09/08/OneDayOneNote/2025-04-15/" rel="prev" title="2025-04-15-為什麼架網站 要用 Node.js（LTS）">
+                  <i class="fa fa-angle-left"></i> 2025-04-15-為什麼架網站 要用 Node.js（LTS）
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
