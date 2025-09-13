@@ -1,0 +1,87 @@
+<hr>
+<h2 id="title-2025-04-17-Docker-Desktop-Settingsdate-2025-09-11-00-38-21tags-Docker-desktop-description-2025-04-17-Docker-Desktop-Settings"><a href="#title-2025-04-17-Docker-Desktop-Settingsdate-2025-09-11-00-38-21tags-Docker-desktop-description-2025-04-17-Docker-Desktop-Settings" class="headerlink" title="title: 2025-04-17-Docker Desktop Settingsdate: 2025-09-11 00:38:21tags:  [Docker_desktop]description:  2025-04-17-Docker Desktop Settings"></a>title: 2025-04-17-Docker Desktop Settings<br>date: 2025-09-11 00:38:21<br>tags:  [Docker_desktop]<br>description:  2025-04-17-Docker Desktop Settings</h2><h1 id="2025-04-17-Docker-Desktop-Settings"><a href="#2025-04-17-Docker-Desktop-Settings" class="headerlink" title="2025-04-17-Docker Desktop Settings"></a>2025-04-17-Docker Desktop Settings</h1><p>明白了，我幫你整理 <strong>Docker Desktop Settings</strong> 的重點設定，特別針對 <strong>初學者和 Windows 11 + WSL 2</strong> 的情況。<br>我會告訴你每個選項應該怎麼勾，為什麼要這樣設定。</p>
+<hr>
+<h2 id="1️⃣-打開-Settings"><a href="#1️⃣-打開-Settings" class="headerlink" title="1️⃣ 打開 Settings"></a>1️⃣ 打開 Settings</h2><ul>
+<li>在 Docker Desktop 右下角小鯨魚 🐳 上右鍵 → 選 <strong>Settings</strong></li>
+<li>或者在 Docker Desktop 主畫面右上角齒輪圖示 ⚙️</li>
+</ul>
+<hr>
+<h2 id="2️⃣-General（一般設定）"><a href="#2️⃣-General（一般設定）" class="headerlink" title="2️⃣ General（一般設定）"></a>2️⃣ <strong>General（一般設定）</strong></h2><table>
+<thead>
+<tr>
+<th>選項</th>
+<th>建議</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Start Docker Desktop when you log in</td>
+<td>✅ 勾選</td>
+<td>電腦開機時自動啟動 Docker</td>
+</tr>
+<tr>
+<td>Use the WSL 2 based engine</td>
+<td>✅ 勾選</td>
+<td>必須勾，因為你安裝時選擇 WSL 2</td>
+</tr>
+<tr>
+<td>Enable Docker Desktop telemetry</td>
+<td>⚪ 可不勾</td>
+<td>會將使用數據傳給 Docker，個人學習可不勾</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="3️⃣-Resources（資源）"><a href="#3️⃣-Resources（資源）" class="headerlink" title="3️⃣ Resources（資源）"></a>3️⃣ <strong>Resources（資源）</strong></h2><p>這裡設定 Docker 可使用的 <strong>CPU &#x2F; Memory &#x2F; Disk</strong></p>
+<ul>
+<li><strong>CPU</strong>：建議分配 2~4 核（依你電腦總核數）</li>
+<li><strong>Memory</strong>：建議 2~4 GB</li>
+<li><strong>Swap</strong>：可不動</li>
+<li><strong>Disk image location &#x2F; Disk size</strong>：可維持預設</li>
+</ul>
+<blockquote>
+<p>⚠️ 如果分配太少 → 容器跑不順；分配太多 → 電腦卡</p>
+</blockquote>
+<hr>
+<h2 id="4️⃣-WSL-Integration（Windows-專用）"><a href="#4️⃣-WSL-Integration（Windows-專用）" class="headerlink" title="4️⃣ WSL Integration（Windows 專用）"></a>4️⃣ <strong>WSL Integration（Windows 專用）</strong></h2><ul>
+<li>開啟 WSL Integration → 勾選你要整合的 Linux 發行版，例如 <code>Ubuntu</code></li>
+<li><strong>意思</strong>：Docker 可以直接用這個 WSL Linux 執行容器</li>
+<li>初學者至少要勾一個主要 Linux 發行版</li>
+</ul>
+<hr>
+<h2 id="5️⃣-Kubernetes（可選）"><a href="#5️⃣-Kubernetes（可選）" class="headerlink" title="5️⃣ Kubernetes（可選）"></a>5️⃣ <strong>Kubernetes（可選）</strong></h2><ul>
+<li>Enable Kubernetes → 初學者先不勾</li>
+<li>只有要練習 Kubernetes 時才用</li>
+</ul>
+<hr>
+<h2 id="6️⃣-Docker-Engine"><a href="#6️⃣-Docker-Engine" class="headerlink" title="6️⃣ Docker Engine"></a>6️⃣ <strong>Docker Engine</strong></h2><ul>
+<li>這裡顯示 Docker 的 <strong>JSON 設定檔</strong></li>
+<li>初學者不用改</li>
+</ul>
+<hr>
+<h3 id="🔑-建議設定總結（初學者-Windows-11-WSL2）"><a href="#🔑-建議設定總結（初學者-Windows-11-WSL2）" class="headerlink" title="🔑 建議設定總結（初學者 Windows 11 + WSL2）"></a>🔑 建議設定總結（初學者 Windows 11 + WSL2）</h3><ol>
+<li><p><strong>General</strong></p>
+<ul>
+<li>Start Docker Desktop when you log in ✔</li>
+<li>Use the WSL 2 based engine ✔</li>
+</ul>
+</li>
+<li><p><strong>Resources</strong></p>
+<ul>
+<li>CPU 2~4</li>
+<li>Memory 2~4GB</li>
+</ul>
+</li>
+<li><p><strong>WSL Integration</strong></p>
+<ul>
+<li>勾選主要 Linux 發行版</li>
+</ul>
+</li>
+<li><p><strong>Kubernetes</strong></p>
+<ul>
+<li>不勾</li>
+</ul>
+</li>
+</ol>
+<hr>
+<p>如果你願意，我可以幫你畫一個 <strong>Docker Desktop Settings 示意圖</strong>，直接標出哪些要勾、哪些不用勾，照圖操作就好。</p>
+<p>你希望我幫你畫嗎？</p>

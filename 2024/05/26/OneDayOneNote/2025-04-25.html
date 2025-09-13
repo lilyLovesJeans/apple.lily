@@ -1,0 +1,108 @@
+<hr>
+<h2 id="title-2025-04-25-MVP-Minimum-Viable-Product-階段安裝清單date-2025-09-13-21-51-02tags-MVP-description-2025-04-25-MVP-Minimum-Viable-Product-階段安裝清單"><a href="#title-2025-04-25-MVP-Minimum-Viable-Product-階段安裝清單date-2025-09-13-21-51-02tags-MVP-description-2025-04-25-MVP-Minimum-Viable-Product-階段安裝清單" class="headerlink" title="title: 2025-04-25-MVP* (Minimum Viable Product) 階段安裝清單date: 2025-09-13 21:51:02tags:  [MVP]description: 2025-04-25-MVP* (Minimum Viable Product) 階段安裝清單"></a>title: 2025-04-25-MVP* (Minimum Viable Product) 階段安裝清單<br>date: 2025-09-13 21:51:02<br>tags:  [MVP]<br>description: 2025-04-25-MVP* (Minimum Viable Product) 階段安裝清單</h2><h1 id="2025-04-25-MVP-Minimum-Viable-Product-階段安裝清單"><a href="#2025-04-25-MVP-Minimum-Viable-Product-階段安裝清單" class="headerlink" title="2025-04-25-MVP* (Minimum Viable Product) 階段安裝清單"></a>2025-04-25-MVP* (Minimum Viable Product) 階段安裝清單</h1><p>「<em><em>MVP</em> (Minimum Viable Product) 階段安裝清單</em>*」，這份清單只放 <strong>必要的東西</strong>，讓你可以最快速開始做心理＋算命網站，不會浪費電腦效能，也不會卡在安裝麻煩工具上。</p>
+<hr>
+<h1 id="🚀-MVP-階段安裝清單（Windows-主力機）"><a href="#🚀-MVP-階段安裝清單（Windows-主力機）" class="headerlink" title="🚀 MVP 階段安裝清單（Windows 主力機）"></a>🚀 MVP 階段安裝清單（Windows 主力機）</h1><h3 id="1-基本工具"><a href="#1-基本工具" class="headerlink" title="1. 基本工具"></a>1. 基本工具</h3><p>✅ <strong>Node.js LTS</strong></p>
+<ul>
+<li><p>官網下載 LTS（長期支持版），穩定可靠。</p>
+</li>
+<li><p>安裝後檢查：</p>
+<pre><code class="bash">node -v
+npm -v
+</code></pre>
+</li>
+</ul>
+<p>✅ <strong>Visual Studio Code</strong></p>
+<ul>
+<li><p>主力開發編輯器。</p>
+</li>
+<li><p>推薦外掛：</p>
+<ul>
+<li>Volar（Vue 3 支援）</li>
+<li>Tailwind CSS IntelliSense</li>
+<li>ESLint</li>
+<li>Prettier（程式碼自動排版）</li>
+</ul>
+</li>
+</ul>
+<p>✅ <strong>Git</strong></p>
+<ul>
+<li><p>管理程式碼，未來要連 GitHub。</p>
+</li>
+<li><p>檢查：</p>
+<pre><code class="bash">git --version
+</code></pre>
+</li>
+</ul>
+<p>✅ <strong>瀏覽器（至少 2 個）</strong></p>
+<ul>
+<li>Chrome（主力）</li>
+<li>Edge 或 Firefox（交叉測試用）</li>
+</ul>
+<hr>
+<h3 id="2-Vue-專案環境"><a href="#2-Vue-專案環境" class="headerlink" title="2. Vue 專案環境"></a>2. Vue 專案環境</h3><p>✅ <strong>Vite + Vue 3</strong></p>
+<ul>
+<li><p>建立新專案：</p>
+<pre><code class="bash">npm create vite@latest my-app -- --template vue
+cd my-app
+npm install
+npm run dev
+</code></pre>
+</li>
+</ul>
+<p>✅ <strong>Tailwind CSS</strong></p>
+<ul>
+<li><p>UI 設計，安裝指令：</p>
+<pre><code class="bash">npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+</code></pre>
+</li>
+<li><p>在 <code>tailwind.config.js</code> 加入：</p>
+<pre><code class="js">content: [&quot;./index.html&quot;, &quot;./src/**/*.{vue,js,ts,jsx,tsx}&quot;]
+</code></pre>
+</li>
+<li><p>在 <code>src/index.css</code> 加：</p>
+<pre><code class="css">@tailwind base;
+@tailwind components;
+@tailwind utilities;
+</code></pre>
+</li>
+</ul>
+<hr>
+<h3 id="3-測試流程"><a href="#3-測試流程" class="headerlink" title="3. 測試流程"></a>3. 測試流程</h3><p>✅ <strong>在手機測試 RWD</strong></p>
+<ol>
+<li>Windows 開 <code>npm run dev -- --host</code></li>
+<li>找出 Windows IP（cmd → <code>ipconfig</code>，找 IPv4，例如 <code>192.168.1.10</code>）</li>
+<li>手機同一 Wi-Fi，瀏覽器打 <code>http://192.168.1.10:5173</code></li>
+</ol>
+<p>✅ <strong>Mac 的角色</strong></p>
+<ul>
+<li>用 Safari 測試網站相容性</li>
+<li>平常查資料、寫文件（避免主機太卡）</li>
+</ul>
+<hr>
+<h3 id="4-部署（最簡單方式）"><a href="#4-部署（最簡單方式）" class="headerlink" title="4. 部署（最簡單方式）"></a>4. 部署（最簡單方式）</h3><p>✅ <strong>Vercel 或 Netlify（免費）</strong></p>
+<ul>
+<li>把程式 push 到 GitHub</li>
+<li>Vercel&#x2F;Netlify 直接綁定 GitHub，一鍵部署</li>
+<li>自動生成網址，朋友手機也能用</li>
+</ul>
+<hr>
+<h1 id="🔑-總結"><a href="#🔑-總結" class="headerlink" title="🔑 總結"></a>🔑 總結</h1><p>👉 MVP 階段，你只需要：<br><strong>Node.js + VS Code + Git + 瀏覽器</strong><br>就能開始做心理＋算命網站了。<br>Docker、WSL2、資料庫 → 等你進入「後端學習」再加。</p>
+<hr>
+<p>要不要我幫你做一份 <strong>「心理＋算命網站 MVP 功能表」</strong>（列 3～5 個最小功能，讓你依清單實作）？</p>
+<p>MVP 是 <strong>Minimum Viable Product</strong> 的簡稱，中文通常翻譯成 <strong>最小可行產品</strong>。</p>
+<p>意思是：<br>👉 先做出一個「最小規模、可運作、能被使用者體驗」的產品版本，用最少的功能去驗證你的想法。</p>
+<p>例如你的「心理＋算命網站」：</p>
+<ul>
+<li>MVP 版本只需要有一個小測驗（比如 3 個問題），然後給使用者一個簡單結果。</li>
+<li>UI 可以很簡單（用 Vue + TailwindCSS 做個乾淨的畫面就好）。</li>
+<li>不需要會員系統、不需要 AI、不需要完整資料庫。</li>
+</ul>
+<p>這樣你可以：</p>
+<ol>
+<li><strong>快速上線</strong> → 馬上有東西能跑。</li>
+<li><strong>收集回饋</strong> → 看使用者喜不喜歡、要什麼功能。</li>
+<li><strong>降低成本</strong> → 避免一開始就花太多時間做沒人用的功能。</li>
+</ol>
+<p>等確認有價值後，再慢慢加上：會員系統、資料庫、AI 推薦、手機 APP…</p>
+<p>要不要我幫你設計一個 <strong>「心理＋算命網站 MVP 功能表」</strong>，讓你第一階段有明確的目標？</p>

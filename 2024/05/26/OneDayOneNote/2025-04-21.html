@@ -1,0 +1,160 @@
+<hr>
+<h2 id="title-2025-04-21-docker-desktop-Settings-Docker-Enginedate-2025-09-11-00-44-45tags-Docker-desktop-description-2025-04-21-docker-desktop-Settings-Docker-Engine"><a href="#title-2025-04-21-docker-desktop-Settings-Docker-Enginedate-2025-09-11-00-44-45tags-Docker-desktop-description-2025-04-21-docker-desktop-Settings-Docker-Engine" class="headerlink" title="title: 2025-04-21-docker desktop Settings Docker Enginedate: 2025-09-11 00:44:45tags:  [Docker_desktop]description: 2025-04-21-docker desktop Settings Docker Engine"></a>title: 2025-04-21-docker desktop Settings Docker Engine<br>date: 2025-09-11 00:44:45<br>tags:  [Docker_desktop]<br>description: 2025-04-21-docker desktop Settings Docker Engine</h2><h1 id="2025-04-21-docker-desktop-Settings-Docker-Engine"><a href="#2025-04-21-docker-desktop-Settings-Docker-Engine" class="headerlink" title="2025-04-21-docker desktop Settings Docker Engine"></a>2025-04-21-docker desktop Settings Docker Engine</h1><p>docker desktop Settings<br>Docker Engine:</p>
+<pre><code>Docker Engine
+V28.3.3
+Configure the Docker daemon by typing a json Docker daemon configuration file.
+！This can prevent Docker from starting. Use at your own risk.
+
+{
+  &quot;builder&quot;:{
+    &quot;gc&quot;:{
+      &quot;defaultKeepStorage&quot;: &quot;20GB&quot;,
+      &quot;enabled&quot;: true
+    }
+  },
+ &quot;experimental&quot; : false
+}
+</code></pre>
+<p>很好 👌 你現在看到的是 <strong>Docker Engine 設定</strong>，這裡直接編輯 <strong>Docker Daemon 的 JSON 設定檔</strong>。這部分要小心，因為設定錯誤會導致 Docker Desktop 無法啟動。</p>
+<hr>
+<h3 id="📄-你現在的設定解讀"><a href="#📄-你現在的設定解讀" class="headerlink" title="📄 你現在的設定解讀"></a>📄 你現在的設定解讀</h3><pre><code class="json">{
+  &quot;builder&quot;: {
+    &quot;gc&quot;: {
+      &quot;defaultKeepStorage&quot;: &quot;20GB&quot;,
+      &quot;enabled&quot;: true
+    }
+  },
+  &quot;experimental&quot;: false
+}
+</code></pre>
+<ol>
+<li><p><strong>builder.gc.enabled: true</strong></p>
+<ul>
+<li>開啟「建置垃圾回收（Garbage Collection, GC）」功能。</li>
+<li>Docker 在建置映像時會產生暫存層，這些會占空間。</li>
+<li>開啟 GC → 會自動清理不用的暫存層。</li>
+</ul>
+</li>
+<li><p><strong>builder.gc.defaultKeepStorage: “20GB”</strong></p>
+<ul>
+<li>表示 Docker 至少會保留 <strong>20GB</strong> 的暫存檔空間。</li>
+<li>超過這個容量時，Docker 才會開始自動清理。</li>
+</ul>
+</li>
+<li><p><strong>experimental: false</strong></p>
+<ul>
+<li>表示「實驗性功能」沒有開啟。</li>
+<li>一般情況建議保持 <code>false</code>（避免不穩定功能）。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="🔧-建議你可以做什麼？"><a href="#🔧-建議你可以做什麼？" class="headerlink" title="🔧 建議你可以做什麼？"></a>🔧 建議你可以做什麼？</h3><ol>
+<li><p><strong>保持現狀（最安全）</strong></p>
+<ul>
+<li>現在的設定已經很合理，不需要改。</li>
+</ul>
+</li>
+<li><p><strong>如果你 C 槽很容易爆滿</strong></p>
+<ul>
+<li>可以把 <code>defaultKeepStorage</code> 改小一點（例如 <code>&quot;10GB&quot;</code>），這樣 Docker 更快清理暫存檔。</li>
+<li>但這會讓建置映像時比較常需要重新下載或重建（時間較長）。</li>
+</ul>
+</li>
+<li><p><strong>進階可調參數（常用的）</strong></p>
+<ul>
+<li><p><strong>registry-mirrors</strong>（加速下載映像，特別是在台灣&#x2F;中國區會很有用）：</p>
+<pre><code class="json">{
+  &quot;registry-mirrors&quot;: [&quot;https://mirror.gcr.io&quot;]
+}
+</code></pre>
+<p>（也可以換成阿里雲、中國科大等加速器）</p>
+</li>
+<li><p><strong>insecure-registries</strong>（如果你要連內網私有 Docker Registry 且沒 SSL）：</p>
+<pre><code class="json">{
+  &quot;insecure-registries&quot;: [&quot;myregistry.local:5000&quot;]
+}
+</code></pre>
+</li>
+<li><p><strong>data-root</strong>（指定 Docker 存放資料的資料夾，如果 C 槽快滿）：</p>
+<pre><code class="json">{
+  &quot;data-root&quot;: &quot;D:\\DockerData&quot;
+}
+</code></pre>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<p>✅ <strong>結論：</strong><br>你的 JSON 配置很乾淨，現在不用改。<br>如果將來遇到 <strong>空間不足</strong> 或 <strong>拉映像很慢</strong>，再來調整。</p>
+<hr>
+<p>要不要我幫你寫一份「建議版 <code>daemon.json</code>」範例，適合一般開發用（有自動清理 + 加速下載），讓你未來可以直接用？</p>
+<p>好 👍 我幫你準備一份 **建議版 <code>daemon.json</code>**（Docker Engine 設定），適合一般開發者用，包含：</p>
+<ul>
+<li>自動清理建置暫存檔</li>
+<li>設定最大暫存空間</li>
+<li>加速下載映像（使用官方 mirror，可換成台灣&#x2F;中國加速器）</li>
+</ul>
+<hr>
+<h2 id="📄-建議版-daemon-json"><a href="#📄-建議版-daemon-json" class="headerlink" title="📄 建議版 daemon.json"></a>📄 建議版 <code>daemon.json</code></h2><pre><code class="json">{
+  &quot;builder&quot;: {
+    &quot;gc&quot;: {
+      &quot;enabled&quot;: true,
+      &quot;defaultKeepStorage&quot;: &quot;10GB&quot;
+    }
+  },
+  &quot;experimental&quot;: false,
+  &quot;registry-mirrors&quot;: [
+    &quot;https://mirror.gcr.io&quot;
+  ],
+  &quot;features&quot;: {
+    &quot;buildkit&quot;: true
+  }
+}
+</code></pre>
+<hr>
+<h2 id="⚙️-設定說明"><a href="#⚙️-設定說明" class="headerlink" title="⚙️ 設定說明"></a>⚙️ 設定說明</h2><ol>
+<li><p><strong>builder.gc.enabled: true</strong></p>
+<ul>
+<li>開啟建置垃圾回收，避免磁碟爆滿。</li>
+</ul>
+</li>
+<li><p><strong>builder.gc.defaultKeepStorage: “10GB”</strong></p>
+<ul>
+<li>限制暫存最多 10GB。</li>
+<li>你 C 槽不大（常見情況），建議比預設 20GB 再小一些。</li>
+</ul>
+</li>
+<li><p><strong>experimental: false</strong></p>
+<ul>
+<li>關閉實驗性功能（穩定為主）。</li>
+</ul>
+</li>
+<li><p><strong>registry-mirrors</strong></p>
+<ul>
+<li>加速拉取 Docker Hub 的映像。</li>
+<li>這裡用 Google 提供的全球加速器 <code>https://mirror.gcr.io</code>。</li>
+<li>如果速度還是慢，可以改成阿里雲 &#x2F; DaoCloud &#x2F; 中科大等中國區鏡像（需要帳號或 URL）。</li>
+</ul>
+</li>
+<li><p><strong>features.buildkit: true</strong></p>
+<ul>
+<li>啟用 <strong>BuildKit</strong>，Docker 官方新一代建置引擎。</li>
+<li>優點：建置快、支援 cache、輸出更漂亮。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="🚀-套用方法"><a href="#🚀-套用方法" class="headerlink" title="🚀 套用方法"></a>🚀 套用方法</h2><ol>
+<li><p>在 Docker Desktop → <strong>Settings → Docker Engine</strong> 裡，貼上這份 JSON（取代原本的）。</p>
+</li>
+<li><p>點 <strong>Apply &amp; Restart</strong>。</p>
+</li>
+<li><p>測試是否成功：</p>
+<pre><code class="powershell">docker info
+</code></pre>
+<p>會看到 <code>Registry Mirrors</code> 與 <code>BuildKit</code> 設定。</p>
+</li>
+</ol>
+<hr>
+<p>要不要我幫你列幾個 <strong>常見中國&#x2F;台灣的 Docker Hub 加速器鏡像網址</strong>，讓你可以替換 <code>registry-mirrors</code>，下載速度更快？</p>

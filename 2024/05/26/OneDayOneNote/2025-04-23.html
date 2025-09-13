@@ -1,0 +1,33 @@
+<hr>
+<h2 id="title-2025-04-23-docker-desktop-Settings-AIdate-2025-09-11-00-47-57tags-Docker-desktop-description-2025-04-23-docker-desktop-Settings-AI"><a href="#title-2025-04-23-docker-desktop-Settings-AIdate-2025-09-11-00-47-57tags-Docker-desktop-description-2025-04-23-docker-desktop-Settings-AI" class="headerlink" title="title: 2025-04-23-docker desktop Settings AIdate: 2025-09-11 00:47:57tags:  [Docker_desktop]description: 2025-04-23-docker desktop Settings AI"></a>title: 2025-04-23-docker desktop Settings AI<br>date: 2025-09-11 00:47:57<br>tags:  [Docker_desktop]<br>description: 2025-04-23-docker desktop Settings AI</h2><h1 id="2025-04-23-docker-desktop-Settings-AI"><a href="#2025-04-23-docker-desktop-Settings-AI" class="headerlink" title="2025-04-23-docker desktop Settings AI"></a>2025-04-23-docker desktop Settings AI</h1><p>docker desktop Settings<br>AI:<br>    AI<br>    Settings for beta AI features can be found here.</p>
+<pre><code>Docker Model Runner
+✔ Enable Docker Model Runner 
+  Enable GPU-accelerated inference engines on /var/run/docker.sock and model-runner.docker.internal:80
+  Note: inference engine support may take a few minutes to initialize.
+      ⚪  Enable host-side TCP support
+</code></pre>
+<p>你看到的 <strong>AI 區塊</strong> 其實是 Docker Desktop 最近新增的 <strong>實驗性功能 (beta)</strong> 🎯。<br>它主要是給「AI&#x2F;機器學習模型」做推論（inference）的開發者用的，不是一般 Docker 基本功能。</p>
+<hr>
+<h3 id="各選項說明："><a href="#各選項說明：" class="headerlink" title="各選項說明："></a>各選項說明：</h3><ul>
+<li><p><strong>Enable Docker Model Runner</strong> ✅<br>這是打開一個專門用來跑 AI 模型的服務。</p>
+<ul>
+<li>它會在 <code>/var/run/docker.sock</code> 和 <code>model-runner.docker.internal:80</code> 提供推論服務。</li>
+<li>如果你的電腦有 **GPU (特別是 NVIDIA CUDA GPU)**，可以利用 GPU 加速推論。</li>
+<li>啟動後要等幾分鐘，因為它需要初始化環境。</li>
+</ul>
+</li>
+<li><p><strong>Enable host-side TCP support</strong> ⚪<br>這是讓「本機的 TCP 連線」也能直接連到這個 Model Runner。</p>
+<ul>
+<li>默認是關掉的。</li>
+<li>如果你只是一般使用 Docker，不需要特別打開。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="重點-🙋"><a href="#重點-🙋" class="headerlink" title="重點 🙋"></a>重點 🙋</h3><ol>
+<li>如果你只是用 Docker 來跑一般的 <strong>Web App、Database、API</strong> → 可以 <strong>不用勾 AI 的選項</strong>。</li>
+<li>如果你未來要嘗試 **AI 模型推論 (例如跑 LLM、影像分類)**，那麼才需要開啟。</li>
+<li>這個功能目前是 <strong>beta</strong>，所以穩定性可能不是很好。</li>
+</ol>
+<hr>
+<p>要不要我幫你整理一份「初學者建議在 Docker Desktop Settings 裡該勾什麼、不該勾什麼」？這樣你就不用擔心亂勾了。</p>

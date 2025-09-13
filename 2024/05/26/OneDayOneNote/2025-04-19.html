@@ -1,0 +1,42 @@
+<hr>
+<h2 id="title-2025-04-19-CLI-是什麼date-2025-09-11-00-41-43tags-Docker-desktop-description-2025-04-19-CLI-是什麼"><a href="#title-2025-04-19-CLI-是什麼date-2025-09-11-00-41-43tags-Docker-desktop-description-2025-04-19-CLI-是什麼" class="headerlink" title="title: 2025-04-19-CLI 是什麼date: 2025-09-11 00:41:43tags:  [Docker_desktop]description: 2025-04-19-CLI 是什麼"></a>title: 2025-04-19-CLI 是什麼<br>date: 2025-09-11 00:41:43<br>tags:  [Docker_desktop]<br>description: 2025-04-19-CLI 是什麼</h2><h1 id="2025-04-19-CLI-是什麼"><a href="#2025-04-19-CLI-是什麼" class="headerlink" title="2025-04-19-CLI 是什麼"></a>2025-04-19-CLI 是什麼</h1><p>好，來簡單明瞭地說明 <code>CLI</code> 是什麼 — 用中文、舉例、再給你幾個常用指令當速查表。</p>
+<hr>
+<h3 id="什麼是-CLI？"><a href="#什麼是-CLI？" class="headerlink" title="什麼是 CLI？"></a>什麼是 CLI？</h3><p><strong>CLI（Command-Line Interface）</strong>，中文通常叫做「命令列介面」或「指令介面」。<br>它是用文字指令與電腦互動的介面——你在終端機 &#x2F; 命令提示字元裡輸入命令，程式回傳文字結果。跟用滑鼠點按的圖形介面（GUI）相對。</p>
+<hr>
+<h3 id="常見的-CLI-終端機-範例"><a href="#常見的-CLI-終端機-範例" class="headerlink" title="常見的 CLI &#x2F; 終端機 範例"></a>常見的 CLI &#x2F; 終端機 範例</h3><ul>
+<li>Windows: <strong>Command Prompt (cmd.exe)<strong>、</strong>PowerShell</strong></li>
+<li>WSL &#x2F; macOS &#x2F; Linux: <strong>bash</strong>, <strong>zsh</strong>（在 Terminal.app、Windows Terminal、WSL 的 Ubuntu 等）</li>
+<li>工具專屬 CLI：像 <code>docker</code>、<code>git</code>、<code>npm</code>、<code>dotnet</code> 等都是命令列工具（你在終端輸入這些命令來操作它們）。</li>
+</ul>
+<hr>
+<h3 id="CLI-有什麼好處？"><a href="#CLI-有什麼好處？" class="headerlink" title="CLI 有什麼好處？"></a>CLI 有什麼好處？</h3><ul>
+<li><strong>速度</strong>：熟練後比 GUI 快很多。</li>
+<li><strong>可自動化</strong>：可以寫 script（批次檔 &#x2F; shell script）重複執行任務。</li>
+<li><strong>遠端管理</strong>：SSH 登入伺服器後只能用 CLI。</li>
+<li><strong>精細控制</strong>：很多進階參數只在 CLI 提供。</li>
+</ul>
+<p>缺點是：一開始要記命令和參數，比較不直覺。</p>
+<hr>
+<h3 id="跟你剛才看到的「Choose-container-terminal-→-Integrated-System-default」有什麼關係？"><a href="#跟你剛才看到的「Choose-container-terminal-→-Integrated-System-default」有什麼關係？" class="headerlink" title="跟你剛才看到的「Choose container terminal → Integrated &#x2F; System default」有什麼關係？"></a>跟你剛才看到的「Choose container terminal → Integrated &#x2F; System default」有什麼關係？</h3><ul>
+<li><strong>Integrated</strong>：從 Docker Desktop 裡開容器終端會在 Docker Desktop 內建的終端視窗（或整合介面）開啟。體驗與 Docker Desktop 更一致。</li>
+<li><strong>System default</strong>：則會用你電腦上的預設終端程式（例如 PowerShell、Windows Terminal、或 macOS 的 Terminal）來開啟。<br>兩者功能相同，只是開啟的「終端程式」不同。</li>
+</ul>
+<hr>
+<h3 id="Docker-CLI-常用速查表（可貼到終端試試）"><a href="#Docker-CLI-常用速查表（可貼到終端試試）" class="headerlink" title="Docker CLI 常用速查表（可貼到終端試試）"></a>Docker CLI 常用速查表（可貼到終端試試）</h3><ul>
+<li><code>docker --version</code><br>查看 Docker 版本</li>
+<li><code>docker run hello-world</code><br>測試 Docker 是否能拉取並執行容器（新手必跑）</li>
+<li><code>docker ps</code><br>列出正在執行的容器</li>
+<li><code>docker ps -a</code><br>列出所有容器（包含停止的）</li>
+<li><code>docker images</code><br>列出已下載的映像（images）</li>
+<li><code>docker pull &lt;image&gt;</code><br>從遠端拉一個映像，例如 <code>docker pull nginx</code></li>
+<li><code>docker run -d --name mynginx -p 8080:80 nginx</code><br>背景執行一個 nginx 容器，並把主機 8080 連到容器 80（示例）</li>
+<li><code>docker exec -it &lt;container&gt; /bin/bash</code> 或 <code>sh</code><br>進入正在運行的容器互動式終端（<code>-it</code>）</li>
+<li><code>docker-compose up</code>（若有 docker-compose.yml）<br>啟動多容器應用（前提安裝 docker compose）</li>
+</ul>
+<hr>
+<h3 id="小提醒（安全與習慣）"><a href="#小提醒（安全與習慣）" class="headerlink" title="小提醒（安全與習慣）"></a>小提醒（安全與習慣）</h3><ul>
+<li>執行不熟悉的命令前先讀懂，避免用 <code>sudo</code> 或以管理員身份執行未知腳本。</li>
+<li>CLI 很強大，習慣用幾個常用指令會大幅提升效率。</li>
+</ul>
+<hr>
+<p>要不要我示範給你看幾個指令該怎麼在 Windows PowerShell 或 Docker Desktop integrated terminal 裡打？（我可以直接把要打的命令列給你，你複製貼上執行）</p>

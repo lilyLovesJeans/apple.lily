@@ -1,0 +1,184 @@
+<hr>
+<h2 id="title-2025-04-20-docker-desktop-Settings-Resourcesdate-2025-09-11-00-43-12tags-Docker-desktop-description-2025-04-20-docker-desktop-Settings-Resources"><a href="#title-2025-04-20-docker-desktop-Settings-Resourcesdate-2025-09-11-00-43-12tags-Docker-desktop-description-2025-04-20-docker-desktop-Settings-Resources" class="headerlink" title="title: 2025-04-20-docker desktop Settings Resourcesdate: 2025-09-11 00:43:12tags:  [Docker_desktop]description: 2025-04-20-docker desktop Settings Resources"></a>title: 2025-04-20-docker desktop Settings Resources<br>date: 2025-09-11 00:43:12<br>tags:  [Docker_desktop]<br>description: 2025-04-20-docker desktop Settings Resources</h2><h1 id="2025-04-20-docker-desktop-Settings-Resources"><a href="#2025-04-20-docker-desktop-Settings-Resources" class="headerlink" title="2025-04-20-docker desktop Settings Resources"></a>2025-04-20-docker desktop Settings Resources</h1><p>docker desktop Settings<br>Resources:</p>
+<p>Advanced<br>    You are using the WSL 2 backend, so resource limits are managed by Windows.</p>
+<pre><code>You can configure limits on the memory, CPU, and swap size allocated to WSL 2 in a .wslconfig file.
+
+disk image location
+
+C:\Users\lily_\AppData\Local\Docker\wsl   [Browse]
+
+Resource Saver
+✔ Enable Resource Saver
+  Reduces CPU and memory utilization when no containers are running.
+  Exit from Resource Saver mode happens automatically when containers are started.
+
+  Use the slider to set the duration of time between no containers running and Docker Desktop entering Resource Saver mode.
+
+  30sec 10min 20min 30min 40min 50min 60min (default 5min)
+</code></pre>
+<p>File sharing</p>
+<h1 id="Directory-sharing-is-limited-to-specific-directories"><a href="#Directory-sharing-is-limited-to-specific-directories" class="headerlink" title="Directory sharing is limited to specific directories"></a>Directory sharing is limited to specific directories</h1><pre><code>These directories(and their subdirectories) can be bind mounted into Docker containers. You can check the documentation for more details.
+
+ c:\path\to\exported\diretory           Browse
+</code></pre>
+<p>Proxies<br>    Docker Desktop automatically detects and uses the system proxy.<br>    Alternatively, the proxy server can be manually specified.</p>
+<pre><code>The supported proxies are HTTP/HTTPS and AOCKS5.
+
+    ⚪  Manual proxy configuration
+
+Web Server(HTTP)
+
+Secure Web Server(HTTPS)
+</code></pre>
+<p>Network<br>    Configure the way Cocker containers interact with the network<br>    Docker subnet<br>    192.168.65.0&#x2F;24<br>    default: 192.168.65.0&#x2F;24</p>
+<pre><code>⚪ Enable host networking
+   Host networking allows containers that are started with -net=host use localhost 
+   to connect to TCP and UDP services on the host. It will automatically allow software
+   on the host to use localhost to connect to TCP  and UDP services in the container.
+
+Default networking mode
+IPv4 only / IPv6 only / Dual IPv4/IPv6
+(Docker networks will support only IPv4 by default. This can be overridden on per-network basis.
+
+  Inhibit DNS resolution for IPv4 /  IPv6
+   (Base on selected network mode)
+      Auto(recommended / filter IPv6(AAAA records) / No filtering
+       (Docker will detect whether your host supports IPv4 and/or IPv6. It will automatically
+    filter unsupported DNS record types(A or AAAA) to prevent containers from attempting
+    failed connections This can be overridden on a per-network basis.
+</code></pre>
+<p>WSL integration<br>    Configure which WSL distress you want to access Docker from.</p>
+<pre><code>✔ Enable integration with my default WSL bistro
+You don&#39;t have any WSL 2 distress installed. Please convert a WSL 1 bistro to WSL 2, 
+or install a new bistro and it will appear here.       
+[Refetch distros]
+</code></pre>
+<p>非常好 👌 你打得很完整，我來逐段解釋 <strong>Docker Desktop → Settings → Resources</strong> 的各個選項，並告訴你「是否需要動」「建議怎麼設」：</p>
+<hr>
+<h2 id="🔹-Advanced"><a href="#🔹-Advanced" class="headerlink" title="🔹 Advanced"></a>🔹 Advanced</h2><ul>
+<li><p><strong>提示：You are using the WSL 2 backend…</strong><br>👉 表示你選用 WSL2，資源（CPU、記憶體、Swap）不是在 Docker Desktop 裡設，而是透過 <strong><code>.wslconfig</code></strong> 檔案控制。</p>
+<ul>
+<li>預設就夠用了，不需要馬上改。</li>
+<li>如果你將來發現「容器跑起來很慢」或「Windows 記憶體不足」，才需要去調整。</li>
+</ul>
+</li>
+<li><p><strong>Disk image location</strong><br>👉 存放 Docker 的虛擬磁碟檔（容器 &amp; 映像）。</p>
+<ul>
+<li>建議保持預設（<code>C:\Users\lily_\AppData\Local\Docker\wsl</code>）。</li>
+<li>如果 C 槽快滿，才考慮搬到 D 槽或外接 SSD。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="🔹-Resource-Saver"><a href="#🔹-Resource-Saver" class="headerlink" title="🔹 Resource Saver"></a>🔹 Resource Saver</h2><ul>
+<li><p><strong>Enable Resource Saver</strong>（✔ 建議勾選）</p>
+<ul>
+<li>沒有容器在跑時，Docker Desktop 會「休眠」，減少 CPU &#x2F; RAM 佔用。</li>
+<li>只要一啟動容器，就會自動恢復正常運作。</li>
+<li><strong>Slider 時間</strong>：保持 <strong>5 分鐘</strong>（預設），夠用。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="🔹-File-Sharing"><a href="#🔹-File-Sharing" class="headerlink" title="🔹 File Sharing"></a>🔹 File Sharing</h2><ul>
+<li><p>這裡決定「哪些 Windows 資料夾」可以掛載進容器。</p>
+<ul>
+<li>預設沒有開放（安全一點）。</li>
+<li>如果你要讓容器存取某個資料夾（例如程式碼目錄），就在這裡 <strong>新增路徑</strong>。</li>
+<li>舉例：你有專案在 <code>C:\Users\lily_\Projects</code>，就要加這個路徑。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="🔹-Proxies"><a href="#🔹-Proxies" class="headerlink" title="🔹 Proxies"></a>🔹 Proxies</h2><ul>
+<li><strong>Docker Desktop 會自動抓系統 Proxy 設定</strong>。</li>
+<li>除非你公司有規定要用 Proxy 上網，否則 <strong>保持自動偵測</strong> 就好，不要亂勾。</li>
+</ul>
+<hr>
+<h2 id="🔹-Network"><a href="#🔹-Network" class="headerlink" title="🔹 Network"></a>🔹 Network</h2><ul>
+<li><p><strong>Docker subnet</strong>（192.168.65.0&#x2F;24）</p>
+<ul>
+<li>預設即可，不建議隨便改。</li>
+<li>如果和你家網路 IP 衝突（很少見），才需要換一個子網段。</li>
+</ul>
+</li>
+<li><p><strong>Enable host networking</strong>（⚪ 建議不要開）</p>
+<ul>
+<li>Host 模式安全性比較低，除非你知道要用（像跑某些伺服器需要），否則不要勾。</li>
+</ul>
+</li>
+<li><p><strong>Default networking mode</strong></p>
+<ul>
+<li>建議用 <strong>IPv4 only</strong>（最穩定，絕大多數容器都跑 IPv4）。</li>
+<li>如果將來你要玩 IPv6 容器，再改成 Dual IPv4&#x2F;IPv6。</li>
+</ul>
+</li>
+<li><p><strong>Inhibit DNS resolution…</strong></p>
+<ul>
+<li>建議保持 **Auto (recommended)**。Docker 會自動判斷。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="🔹-WSL-Integration"><a href="#🔹-WSL-Integration" class="headerlink" title="🔹 WSL Integration"></a>🔹 WSL Integration</h2><ul>
+<li><p><strong>Enable integration with my default WSL distro</strong>（✔ 建議勾選）</p>
+<ul>
+<li>這樣你的 WSL2 Linux 環境（例如 Ubuntu）可以直接用 <code>docker</code> 指令。</li>
+<li>目前提示「You don’t have any WSL2 distro installed」，表示你還沒裝 WSL2 Linux。</li>
+<li>之後可以安裝 Ubuntu（建議），在那裡跑 Docker 會更自然。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>✅ <strong>總結：建議設定</strong></p>
+<ul>
+<li><strong>Resource Saver</strong> → ✔ 開啟（預設 5 分鐘）</li>
+<li><strong>File Sharing</strong> → 依專案需求新增路徑</li>
+<li><strong>Proxies</strong> → 不動（除非公司有 Proxy）</li>
+<li><strong>Network</strong> → 保持 IPv4 only + Auto (recommended)</li>
+<li><strong>WSL Integration</strong> → ✔ 勾選，等安裝 Ubuntu 後就能用了</li>
+</ul>
+<hr>
+<p>要不要我順便給你一份 <strong><code>.wslconfig</code> 範例</strong>，讓你知道將來如果要限制 WSL2 的 CPU &#x2F; RAM 要怎麼寫？（例如避免 Docker 佔太多記憶體）<br>好 👍 我給你一個 <strong><code>.wslconfig</code> 範例</strong>，這是設定 WSL2 的 CPU &#x2F; RAM &#x2F; Swap 限制，避免 Docker 把 Windows 的資源吃光。</p>
+<hr>
+<h2 id="📄-建立-wslconfig-檔案"><a href="#📄-建立-wslconfig-檔案" class="headerlink" title="📄 建立 .wslconfig 檔案"></a>📄 建立 <code>.wslconfig</code> 檔案</h2><ol>
+<li><p>在 Windows <strong>使用者目錄</strong> 建立一個文字檔：</p>
+<pre><code>C:\Users\&lt;你的帳號&gt;\.wslconfig
+</code></pre>
+<p>（你的帳號應該是 <code>lily_</code>，所以完整路徑會是 <code>C:\Users\lily_\.wslconfig</code>）</p>
+</li>
+<li><p>複製以下範例內容：</p>
+</li>
+</ol>
+<pre><code class="ini">[wsl2]
+memory=4GB        # 限制最大記憶體 4GB
+processors=2      # 限制最多使用 2 個 CPU
+swap=2GB          # swap 空間 2GB（像虛擬記憶體）
+localhostForwarding=true   # 允許 localhost 轉發 (建議開)
+</code></pre>
+<hr>
+<h2 id="⚙️-參數解釋"><a href="#⚙️-參數解釋" class="headerlink" title="⚙️ 參數解釋"></a>⚙️ 參數解釋</h2><ul>
+<li><p><strong>memory</strong><br>限制 WSL2（包含 Docker）最多用多少記憶體。<br>👉 如果你的電腦有 16GB RAM，可以設 4GB～8GB。</p>
+</li>
+<li><p><strong>processors</strong><br>限制最多用幾顆 CPU。<br>👉 建議一半左右（你有 4 核心就設 2）。</p>
+</li>
+<li><p><strong>swap</strong><br>類似虛擬記憶體（用硬碟當備用記憶體）。<br>👉 設個 1～2GB 就好，不要太大。</p>
+</li>
+<li><p><strong>localhostForwarding</strong><br>預設是 true，讓容器能透過 <code>localhost</code> 訪問主機服務（例如 DB）。</p>
+</li>
+</ul>
+<hr>
+<h2 id="🚀-套用設定"><a href="#🚀-套用設定" class="headerlink" title="🚀 套用設定"></a>🚀 套用設定</h2><p>修改 <code>.wslconfig</code> 後，要重新啟動 WSL2 才會生效：</p>
+<ol>
+<li><p>在 PowerShell 輸入：</p>
+<pre><code class="powershell">wsl --shutdown
+</code></pre>
+<p>（會關閉所有 WSL2 &#x2F; Docker 虛擬機）</p>
+</li>
+<li><p>再重新開啟 Docker Desktop，它就會用新的限制。</p>
+</li>
+</ol>
+<hr>
+<p>💡 小技巧：你可以先設定「小一點」（例如 memory&#x3D;2GB, processors&#x3D;2），然後觀察 Docker 運行速度。如果覺得太慢，再調高。</p>
+<hr>
+<p>要不要我幫你根據 <strong>你電腦的規格（RAM &#x2F; CPU）</strong>，算一個比較適合的 <code>.wslconfig</code> 建議值？</p>

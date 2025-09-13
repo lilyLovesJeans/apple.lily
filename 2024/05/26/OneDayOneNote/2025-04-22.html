@@ -1,0 +1,79 @@
+<hr>
+<h2 id="title-2025-04-22-docker-desktop-Settings-Buildersdate-2025-09-11-00-45-47tags-Docker-desktop-description-2025-04-22-docker-desktop-Settings-Builders"><a href="#title-2025-04-22-docker-desktop-Settings-Buildersdate-2025-09-11-00-45-47tags-Docker-desktop-description-2025-04-22-docker-desktop-Settings-Builders" class="headerlink" title="title: 2025-04-22-docker desktop Settings Buildersdate: 2025-09-11 00:45:47tags:  [Docker_desktop]description: 2025-04-22-docker desktop Settings Builders"></a>title: 2025-04-22-docker desktop Settings Builders<br>date: 2025-09-11 00:45:47<br>tags:  [Docker_desktop]<br>description: 2025-04-22-docker desktop Settings Builders</h2><h1 id="2025-04-22-docker-desktop-Settings-Builders"><a href="#2025-04-22-docker-desktop-Settings-Builders" class="headerlink" title="2025-04-22-docker desktop Settings Builders"></a>2025-04-22-docker desktop Settings Builders</h1><p>docker desktop Settings<br>Builders:<br>    Selected builder<br>    The default builder used when you start a build.<br>    desktop-linux …… error</p>
+<pre><code>Available binders
+Inspect and manage your binders.
+default ....... error
+</code></pre>
+<p>好 👌 你現在看到的是 <strong>Docker Desktop → Settings → Builders</strong> 的錯誤訊息：</p>
+<ul>
+<li><code>desktop-linux ...... error</code></li>
+<li><code>default ....... error</code></li>
+</ul>
+<p>這表示 Docker Desktop 啟動後，內建的 <strong>BuildKit Builder</strong> 沒有正常載入。</p>
+<hr>
+<h2 id="🔍-為什麼會出錯？"><a href="#🔍-為什麼會出錯？" class="headerlink" title="🔍 為什麼會出錯？"></a>🔍 為什麼會出錯？</h2><ol>
+<li><p><strong>Docker Daemon 啟動有問題</strong></p>
+<ul>
+<li>如果你的 <strong>Docker Engine 設定（daemon.json）</strong> 有語法錯誤，Docker Daemon 會啟動失敗 → builder 也會掛掉。</li>
+</ul>
+</li>
+<li><p><strong>WSL2 後端沒有正常啟動</strong></p>
+<ul>
+<li>Docker Desktop 依賴 WSL2（你勾了「Use WSL2 backend」）。</li>
+<li>如果 WSL2 沒有 Ubuntu 或其他 Linux 發行版，Docker 有時候啟動不完整。</li>
+</ul>
+</li>
+<li><p><strong>Docker Desktop 內部狀態錯亂</strong></p>
+<ul>
+<li>有時候更新或重開機後，builder 設定檔沒載入，導致錯誤。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="✅-解決方式"><a href="#✅-解決方式" class="headerlink" title="✅ 解決方式"></a>✅ 解決方式</h2><p>你可以依序嘗試以下方法：</p>
+<h3 id="1-確認-Docker-Engine-JSON-正確"><a href="#1-確認-Docker-Engine-JSON-正確" class="headerlink" title="1. 確認 Docker Engine JSON 正確"></a>1. 確認 Docker Engine JSON 正確</h3><ul>
+<li>打開 <strong>Settings → Docker Engine</strong></li>
+<li>確認 JSON 沒錯（例如上一版建議的設定）</li>
+<li>點 <strong>Apply &amp; Restart</strong></li>
+</ul>
+<p>如果 JSON 有逗號、括號錯誤，Docker Daemon 就會掛掉，Builder 一定會錯。</p>
+<hr>
+<h3 id="2-重啟-WSL2"><a href="#2-重啟-WSL2" class="headerlink" title="2. 重啟 WSL2"></a>2. 重啟 WSL2</h3><p>在 PowerShell 輸入：</p>
+<pre><code class="powershell">wsl --shutdown
+</code></pre>
+<p>然後重新開啟 Docker Desktop，等「🐳 icon」變成綠色。</p>
+<hr>
+<h3 id="3-重建-Builder"><a href="#3-重建-Builder" class="headerlink" title="3. 重建 Builder"></a>3. 重建 Builder</h3><p>在 PowerShell 或 Docker CLI 輸入：</p>
+<pre><code class="powershell">docker buildx create --use --name mybuilder
+docker buildx inspect --bootstrap
+</code></pre>
+<p>這會建立一個新的 builder (<code>mybuilder</code>) 並啟用它。</p>
+<p>檢查是否修好：</p>
+<pre><code class="powershell">docker buildx ls
+</code></pre>
+<p>應該會看到 <code>mybuilder</code> 而不是錯誤。</p>
+<hr>
+<h3 id="4-檢查-WSL-發行版"><a href="#4-檢查-WSL-發行版" class="headerlink" title="4. 檢查 WSL 發行版"></a>4. 檢查 WSL 發行版</h3><p>輸入：</p>
+<pre><code class="powershell">wsl -l -v
+</code></pre>
+<p>確保有一個 Linux 發行版（例如 Ubuntu），而且版本是 <strong>2</strong>。<br>如果顯示 <code>You don&#39;t have any WSL 2 distros installed</code>（你之前看到過），建議安裝 Ubuntu：</p>
+<pre><code class="powershell">wsl --install -d Ubuntu
+</code></pre>
+<hr>
+<h3 id="📌-總結"><a href="#📌-總結" class="headerlink" title="📌 總結"></a>📌 總結</h3><ul>
+<li>90% 的情況是 <strong>daemon.json 格式錯誤</strong> 或 <strong>WSL2 沒有 Linux 發行版</strong> 導致 builder error。</li>
+<li>建議你先檢查 <strong>Docker Engine JSON</strong> 是否正確 → 然後 <code>wsl --shutdown</code> → 再開 Docker Desktop。</li>
+<li>如果還是錯，再用 <code>docker buildx create --use</code> 建立新 builder。</li>
+</ul>
+<hr>
+<p>要不要我幫你整理一個 <strong>最小可用的 daemon.json</strong>（完全不改動，只保證能啟動），讓你測試是不是 JSON 設定害的？</p>
+<p>對～你觀察得很準 🎯</p>
+<p>在 <strong>Docker Desktop Settings</strong> 裡面，如果你有修改過設定（例如 <strong>Docker Engine</strong> 那個 JSON、或是 <strong>Builders</strong> 的選項），通常要按 <strong>Apply &amp; Restart</strong> 才會真正生效。</p>
+<p>👉 幾個注意事項：</p>
+<ol>
+<li><strong>Apply &amp; Restart</strong> 會重新啟動 Docker Engine，所以在此過程中正在跑的容器會中斷。</li>
+<li>如果修改了 <strong>Docker Engine JSON</strong>，格式要正確，否則會啟動失敗（會回報 error）。</li>
+<li>你看到 <code>desktop-linux ... error</code> 或 <code>default ... error</code>，很可能是因為上次的設定沒有正確套用，或 Docker Engine 沒有正確啟動。</li>
+<li>建議你先回到 <strong>General 頁籤</strong> → 勾選 “Use the WSL 2 based engine”（如果你在 Win11 上） → 按 <strong>Apply &amp; Restart</strong>，確保引擎能正常啟動。</li>
+</ol>
+<p>要不要我一步一步帶你 <strong>重設 Docker Desktop 的基本設定</strong>，確保你的 <strong>Builders 不會 error</strong>？</p>

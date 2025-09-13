@@ -1,0 +1,304 @@
+<hr>
+<h2 id="title-2025-04-16-網站從零開始到能跑起來的明確逐步作法date-2025-09-09-22-12-28tags-架站-description-2025-04-16-網站從零開始到能跑起來的明確逐步作法"><a href="#title-2025-04-16-網站從零開始到能跑起來的明確逐步作法date-2025-09-09-22-12-28tags-架站-description-2025-04-16-網站從零開始到能跑起來的明確逐步作法" class="headerlink" title="title: 2025-04-16-網站從零開始到能跑起來的明確逐步作法date: 2025-09-09 22:12:28tags:  [架站]description:  2025-04-16-網站從零開始到能跑起來的明確逐步作法"></a>title: 2025-04-16-網站從零開始到能跑起來的明確逐步作法<br>date: 2025-09-09 22:12:28<br>tags:  [架站]<br>description:  2025-04-16-網站從零開始到能跑起來的明確逐步作法</h2><h1 id="2025-04-16-網站從零開始到能跑起來的明確逐步作法"><a href="#2025-04-16-網站從零開始到能跑起來的明確逐步作法" class="headerlink" title="2025-04-16-網站從零開始到能跑起來的明確逐步作法"></a>2025-04-16-網站從零開始到能跑起來的明確逐步作法</h1><p><strong>從零開始到能跑起來的明確逐步作法</strong> 釐清成一個可跟做的清單（以 <strong>Windows 為主力開發機 &#x2F; 使用 C# (ASP.NET Core) 為預設後端</strong>，並同時給你 <strong>Python(FastAPI)</strong> 的快速替代路徑備選）。每一步都包含必需的指令、檔案或範例內容，你照著做就能把整個「Vue 前端 + 後端 API + MySQL + AI proxy」MVP 拉起來並互通。</p>
+<p>我把流程分成三大階段：準備環境 → 建立資料庫與後端 → 建立前端並整合 AI。每一步都有可直接貼上的指令或檔案範例。</p>
+<h1 id="一覽（高層）"><a href="#一覽（高層）" class="headerlink" title="一覽（高層）"></a>一覽（高層）</h1><ol>
+<li>設環境：Windows 安裝必要工具（Node、.NET、Docker、VS Code、Git）</li>
+<li>建 MySQL（用 Docker）並建立資料表 seed 資料</li>
+<li>Scaffold 後端（<strong>C# ASP.NET Core</strong>）含 AI proxy endpoint 與 DB 連線（若你要 Python，我也附 FastAPI 快速替代）</li>
+<li>Scaffold 前端（Vue 3 + Vite），設定 proxy 呼叫後端</li>
+<li>本機測試：啟動 DB → 後端 → 前端；測 AI endpoint，確認能拿到回應</li>
+<li>下一步（選項）：加入認證、部署到雲、監控、備份</li>
+</ol>
+<hr>
+<h1 id="詳細步驟（請在-Windows-主力機上操作；PowerShell-為例）"><a href="#詳細步驟（請在-Windows-主力機上操作；PowerShell-為例）" class="headerlink" title="詳細步驟（請在 Windows 主力機上操作；PowerShell 為例）"></a>詳細步驟（請在 Windows 主力機上操作；PowerShell 為例）</h1><h2 id="第-0-節：先決條件（如果你已經裝好可跳過）"><a href="#第-0-節：先決條件（如果你已經裝好可跳過）" class="headerlink" title="第 0 節：先決條件（如果你已經裝好可跳過）"></a>第 0 節：先決條件（如果你已經裝好可跳過）</h2><ul>
+<li>Visual Studio 2022 或 .NET SDK（建議 .NET 7&#x2F;8 LTS）<br>下載並安裝 .NET SDK：<a href="https://dotnet.microsoft.com/">https://dotnet.microsoft.com</a> （或用 Visual Studio Installer）</li>
+<li>Node.js (LTS) 已安裝（你已完成）</li>
+<li>Docker Desktop 已安裝並啟用（啟用 WSL2 integration 建議）</li>
+<li>VS Code 已安裝（推薦安裝 Volar、C#、Docker、ESLint 等擴充）</li>
+<li>Git 已安裝，並設定 SSH key 加到 GitHub</li>
+</ul>
+<hr>
+<h2 id="1-建專案目錄結構（在你想放的位置）"><a href="#1-建專案目錄結構（在你想放的位置）" class="headerlink" title="1. 建專案目錄結構（在你想放的位置）"></a>1. 建專案目錄結構（在你想放的位置）</h2><pre><code class="powershell"># 建專案資料夾
+mkdir psych-site
+cd psych-site
+
+# 建 frontend / backend / infra 目錄
+mkdir frontend backend infra
+</code></pre>
+<hr>
+<h2 id="2-用-Docker-在-Windows-建-MySQL（開發用）"><a href="#2-用-Docker-在-Windows-建-MySQL（開發用）" class="headerlink" title="2. 用 Docker 在 Windows 建 MySQL（開發用）"></a>2. 用 Docker 在 Windows 建 MySQL（開發用）</h2><p>在 <code>psych-site/infra</code> 建 <code>docker-compose.yml</code>（可直接複製）：</p>
+<pre><code class="yaml">version: &quot;3.8&quot;
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: RootPwd123!
+      MYSQL_DATABASE: psychdb
+      MYSQL_USER: appuser
+      MYSQL_PASSWORD: AppUserPwd123!
+    ports:
+      - &quot;3306:3306&quot;
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: [&quot;CMD&quot;, &quot;mysqladmin&quot;, &quot;ping&quot;, &quot;-pRootPwd123!&quot;]
+      interval: 10s
+      retries: 5
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: root
+      PMA_PASSWORD: RootPwd123!
+    ports:
+      - &quot;8080:80&quot;
+    depends_on:
+      - mysql
+
+volumes:
+  mysql_data:
+</code></pre>
+<p>啟動：</p>
+<pre><code class="powershell">cd infra
+docker compose up -d
+docker ps
+# 等 mysql 容器健康後，打開 http://localhost:8080 用 root/RootPwd123! 登入 phpMyAdmin（開發用）
+</code></pre>
+<blockquote>
+<p><strong>注意</strong>：本機開發用密碼示範，實務請用更強密碼且不要放 repo。</p>
+</blockquote>
+<hr>
+<h2 id="3-建資料表（用-SQL-seed）"><a href="#3-建資料表（用-SQL-seed）" class="headerlink" title="3. 建資料表（用 SQL seed）"></a>3. 建資料表（用 SQL seed）</h2><p>在 <code>infra</code> 下建立檔案 <code>init_seed.sql</code>（或用 phpMyAdmin 匯入）：</p>
+<pre><code class="sql">USE psychdb;
+
+CREATE TABLE IF NOT EXISTS readings (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  title VARCHAR(200),
+  category VARCHAR(80),
+  text TEXT,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS history (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  user_id BIGINT NULL,
+  reading_id BIGINT NULL,
+  custom_text TEXT,
+  picked_at DATETIME,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO readings (title, category, text) VALUES
+(&#39;暖心小語&#39;,&#39;心情&#39;,&#39;今天給自己一個微笑，你比想像中堅強。&#39;),
+(&#39;職場提醒&#39;,&#39;工作&#39;,&#39;用小步快跑的方式完成大目標，別怕分段執行。&#39;),
+(&#39;情感共鳴&#39;,&#39;情感&#39;,&#39;說出你的感受，也許會帶來意外的理解。&#39;),
+(&#39;小挑戰&#39;,&#39;成長&#39;,&#39;嘗試 10 分鐘的新習慣，給自己驚喜。&#39;);
+</code></pre>
+<p>匯入方式：</p>
+<pre><code class="powershell"># 直接用 docker exec 匯入
+docker exec -i $(docker ps -q -f name=psych-site_infra_mysql) mysql -uroot -pRootPwd123! psychdb &lt; init_seed.sql
+# 若容器名稱不同，先 docker ps 找 mysql container id/name 再代入
+</code></pre>
+<p>（或用 phpMyAdmin 匯入 SQL）</p>
+<hr>
+<h2 id="4-建後端：C-ASP-NET-Core-Web-API（主要範例）"><a href="#4-建後端：C-ASP-NET-Core-Web-API（主要範例）" class="headerlink" title="4. 建後端：C# ASP.NET Core Web API（主要範例）"></a>4. 建後端：<strong>C# ASP.NET Core Web API</strong>（主要範例）</h2><h3 id="4-1-scaffold-專案"><a href="#4-1-scaffold-專案" class="headerlink" title="4.1 scaffold 專案"></a>4.1 scaffold 專案</h3><pre><code class="powershell">cd ..\backend
+dotnet new webapi -n psych.backend
+cd psych.backend
+</code></pre>
+<h3 id="4-2-安裝必要套件（EF-Core-MySQL-provider）"><a href="#4-2-安裝必要套件（EF-Core-MySQL-provider）" class="headerlink" title="4.2 安裝必要套件（EF Core + MySQL provider）"></a>4.2 安裝必要套件（EF Core + MySQL provider）</h3><pre><code class="powershell">dotnet add package Pomelo.EntityFrameworkCore.MySql --version 6.0.0
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet tool install --global dotnet-ef
+</code></pre>
+<h3 id="4-3-修改-appsettings-Development-json（加入-DB-連線）"><a href="#4-3-修改-appsettings-Development-json（加入-DB-連線）" class="headerlink" title="4.3 修改 appsettings.Development.json（加入 DB 連線）"></a>4.3 修改 <code>appsettings.Development.json</code>（加入 DB 連線）</h3><p>在 <code>appsettings.Development.json</code> 加入：</p>
+<pre><code class="json">{
+  &quot;ConnectionStrings&quot;: {
+    &quot;DefaultConnection&quot;: &quot;server=localhost;port=3306;database=psychdb;user=appuser;password=AppUserPwd123!&quot;
+  }
+}
+</code></pre>
+<h3 id="4-4-建-DbContext-與-Model（簡短範例）"><a href="#4-4-建-DbContext-與-Model（簡短範例）" class="headerlink" title="4.4 建 DbContext 與 Model（簡短範例）"></a>4.4 建 DbContext 與 Model（簡短範例）</h3><p>在 <code>Models/Reading.cs</code>:</p>
+<pre><code class="csharp">public class Reading {
+  public long Id { get; set; }
+  public string Title { get; set; }
+  public string Category { get; set; }
+  public string Text { get; set; }
+  public DateTime CreatedAt { get; set; }
+}
+</code></pre>
+<p>在 <code>Data/AppDbContext.cs</code>:</p>
+<pre><code class="csharp">using Microsoft.EntityFrameworkCore;
+public class AppDbContext : DbContext {
+  public AppDbContext(DbContextOptions&lt;AppDbContext&gt; options) : base(options) {}
+  public DbSet&lt;Reading&gt; Readings { get; set; }
+  public DbSet&lt;HistoryItem&gt; History { get; set; }
+}
+</code></pre>
+<p>在 <code>Program.cs</code> 註冊：</p>
+<pre><code class="csharp">var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext&lt;AppDbContext&gt;(options =&gt;
+    options.UseMySql(builder.Configuration.GetConnectionString(&quot;DefaultConnection&quot;), 
+    ServerVersion.AutoDetect(builder.Configuration.GetConnectionString(&quot;DefaultConnection&quot;))));
+builder.Services.AddControllers();
+builder.Services.AddCors(options =&gt; options.AddDefaultPolicy(pb =&gt; pb.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
+var app = builder.Build();
+app.MapControllers();
+app.Run();
+</code></pre>
+<h3 id="4-5-建簡單-Controller（Readings-AI-proxy）"><a href="#4-5-建簡單-Controller（Readings-AI-proxy）" class="headerlink" title="4.5 建簡單 Controller（Readings &amp; AI proxy）"></a>4.5 建簡單 Controller（Readings &amp; AI proxy）</h3><p><code>Controllers/ReadingsController.cs</code>（簡潔示範）：</p>
+<pre><code class="csharp">[ApiController]
+[Route(&quot;api/[controller]&quot;)]
+public class ReadingsController : ControllerBase {
+  private readonly AppDbContext _db;
+  public ReadingsController(AppDbContext db) { _db = db; }
+
+  [HttpGet]
+  public async Task&lt;IActionResult&gt; Get() =&gt; Ok(await _db.Readings.ToListAsync());
+
+  [HttpGet(&quot;random&quot;)]
+  public async Task&lt;IActionResult&gt; Random() {
+    var list = await _db.Readings.ToListAsync();
+    var item = list[new Random().Next(list.Count)];
+    return Ok(item);
+  }
+}
+</code></pre>
+<p><code>Controllers/AiController.cs</code>（AI proxy 範例，需在環境變數放 API KEY）：</p>
+<pre><code class="csharp">[ApiController]
+[Route(&quot;api/ai&quot;)]
+public class AiController : ControllerBase {
+  private readonly IHttpClientFactory _http;
+  private readonly IConfiguration _config;
+  public AiController(IHttpClientFactory http, IConfiguration config) { _http = http; _config = config; }
+
+  [HttpPost(&quot;read&quot;)]
+  public async Task&lt;IActionResult&gt; Read([FromBody] AiRequest req) {
+    // 基本敏感詞檢查（示範）
+    if (!string.IsNullOrEmpty(req.Prompt) &amp;&amp; req.Prompt.Contains(&quot;自殺&quot;)) {
+      return BadRequest(new { error = &quot;偵測到危險文字，請求助專業機構&quot; });
+    }
+
+    var client = _http.CreateClient();
+    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(&quot;Bearer&quot;, _config[&quot;AI_API_KEY&quot;]);
+    var payload = new { model = &quot;gpt-like&quot;, input = $&quot;請用溫柔語氣回覆：{req.Prompt}&quot;, max_tokens = 200 };
+    var resp = await client.PostAsJsonAsync(_config[&quot;AI_API_URL&quot;], payload);
+    if (!resp.IsSuccessStatusCode) return StatusCode(502, &quot;AI provider error&quot;);
+    var j = await resp.Content.ReadFromJsonAsync&lt;JsonElement&gt;();
+    var text = j.GetProperty(&quot;choices&quot;)[0].GetProperty(&quot;text&quot;).GetString(); // 根據 provider 調整
+    return Ok(new { text = text.Trim() });
+  }
+}
+</code></pre>
+<blockquote>
+<p>将你的 AI_API_KEY、AI_API_URL 放在 Windows environment variable 或 <code>secrets</code>。不要放到前端。</p>
+</blockquote>
+<h3 id="4-6-建-DB-migration-並執行"><a href="#4-6-建-DB-migration-並執行" class="headerlink" title="4.6 建 DB migration 並執行"></a>4.6 建 DB migration 並執行</h3><pre><code class="powershell">dotnet ef migrations add InitialCreate
+dotnet ef database update
+</code></pre>
+<h3 id="4-7-執行後端"><a href="#4-7-執行後端" class="headerlink" title="4.7 執行後端"></a>4.7 執行後端</h3><pre><code class="powershell">dotnet run
+# ASP.NET Core 會在 https://localhost:5001 或 http://localhost:5000
+</code></pre>
+<hr>
+<h2 id="5-建後端：Python-FastAPI（如果你未來想用-Python-快速試-AI）"><a href="#5-建後端：Python-FastAPI（如果你未來想用-Python-快速試-AI）" class="headerlink" title="5. 建後端：Python FastAPI（如果你未來想用 Python 快速試 AI）"></a>5. 建後端：<strong>Python FastAPI</strong>（如果你未來想用 Python 快速試 AI）</h2><p>快速 scaffold（備選）：</p>
+<pre><code class="powershell">cd ..\backend
+python -m venv venv
+venv\Scripts\activate
+pip install fastapi uvicorn sqlalchemy pymysql httpx python-dotenv
+</code></pre>
+<p><code>main.py</code> 提供 <code>/api/ai/read</code> 與 <code>/api/readings</code>；使用 <code>httpx</code> 呼叫 AI provider；DB 用 SQLAlchemy 連 <code>mysql+pymysql://appuser:AppUserPwd123!@localhost:3306/psychdb</code>。</p>
+<hr>
+<h2 id="6-建前端：Vue-3-Vite（在-frontend）"><a href="#6-建前端：Vue-3-Vite（在-frontend）" class="headerlink" title="6. 建前端：Vue 3 + Vite（在 frontend）"></a>6. 建前端：Vue 3 + Vite（在 <code>frontend</code>）</h2><pre><code class="powershell">cd ..\frontend
+npm create vite@latest . -- --template vue
+npm install
+</code></pre>
+<p>在 <code>vite.config.js</code> 加 proxy，讓開發時呼叫 <code>/api</code> 轉到後端（以 C# 為例）：</p>
+<pre><code class="js">import { defineConfig } from &#39;vite&#39;
+import vue from &#39;@vitejs/plugin-vue&#39;
+export default defineConfig({
+  plugins: [vue()],
+  server: {
+    proxy: {
+      &#39;/api&#39;: &#39;http://localhost:5000&#39; // 或 http://localhost:5000 若後端在 5000
+    }
+  }
+})
+</code></pre>
+<p>把之前提供給你的 <code>App.vue</code>（純前端版本）貼到 <code>src/App.vue</code>，但將 <code>getReading()</code> 改為呼叫後端 AI 或 readings：</p>
+<ul>
+<li>呼叫本地 <code>/api/readings</code> 或 <code>/api/ai/read</code>（視你要哪個）</li>
+</ul>
+<p>示例呼叫 AI（前端）：</p>
+<pre><code class="js">const res = await fetch(&#39;/api/ai/read&#39;, {
+  method: &#39;POST&#39;,
+  headers: { &#39;Content-Type&#39;: &#39;application/json&#39; },
+  body: JSON.stringify({ prompt: promptText })
+});
+const json = await res.json();
+</code></pre>
+<p>啟動前端：</p>
+<pre><code class="powershell">npm run dev
+# 打開 http://localhost:5173
+</code></pre>
+<hr>
+<h2 id="7-本機測試順序（非常重要）"><a href="#7-本機測試順序（非常重要）" class="headerlink" title="7. 本機測試順序（非常重要）"></a>7. 本機測試順序（非常重要）</h2><ol>
+<li><code>docker compose up -d</code> (infra&#x2F;mysql) → 等 mysql ready</li>
+<li>在 backend 專案執行 <code>dotnet run</code>（或 <code>uvicorn main:app --reload</code> for FastAPI）</li>
+<li>在 frontend 執行 <code>npm run dev</code></li>
+<li>用瀏覽器開 <code>http://localhost:5173</code> 測 UI；或直接呼叫 <code>http://localhost:5000/api/readings</code> 測後端</li>
+</ol>
+<hr>
+<h2 id="8-AI-Key-與安全（必做）"><a href="#8-AI-Key-與安全（必做）" class="headerlink" title="8. AI Key 與安全（必做）"></a>8. AI Key 與安全（必做）</h2><ul>
+<li>在 Windows 設環境變數（PowerShell）：</li>
+</ul>
+<pre><code class="powershell">setx AI_API_KEY &quot;你的_api_key&quot;
+setx AI_API_URL &quot;https://api.yourprovider/v1/generate&quot;
+# 重新啟動 shell 讓 env 生效
+</code></pre>
+<ul>
+<li>後端只讀 env 的值，不寫在程式碼中。</li>
+<li>加速測試可先用 mock 回應，再接真實 provider。</li>
+<li>在後端實作「簡易敏感詞過濾」及速率限制（ASP.NET 可用 middleware 或套件）。</li>
+</ul>
+<hr>
+<h2 id="9-Dockerize-後端（快速-build-run）"><a href="#9-Dockerize-後端（快速-build-run）" class="headerlink" title="9. Dockerize 後端（快速 build &amp; run）"></a>9. Dockerize 後端（快速 build &amp; run）</h2><p>在 <code>backend/psych.backend</code> 建 <code>Dockerfile</code>：</p>
+<pre><code class="dockerfile">FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
+WORKDIR /app
+EXPOSE 80
+
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+WORKDIR /src
+COPY . .
+RUN dotnet publish -c Release -o /app/publish
+
+FROM base AS final
+WORKDIR /app
+COPY --from=build /app/publish .
+ENTRYPOINT [&quot;dotnet&quot;,&quot;psych.backend.dll&quot;]
+</code></pre>
+<p>建 image &amp; run（示例）：</p>
+<pre><code class="powershell">docker build -t psych-backend:latest .
+docker run -d -p 5000:80 --name psych-backend --env AI_API_KEY=... psych-backend:latest
+</code></pre>
+<hr>
+<h2 id="10-後續建議（短期-長期）"><a href="#10-後續建議（短期-長期）" class="headerlink" title="10. 後續建議（短期 &amp; 長期）"></a>10. 後續建議（短期 &amp; 長期）</h2><p>短期（先做 MVP）：</p>
+<ul>
+<li>完成前端抽小語 &#x2F; 新增小語 &#x2F; 歷史儲存（DB）</li>
+<li>做 AI proxy endpoint 並測試（把 prompt 邏輯寫在後端）</li>
+<li>加速限制與簡易 moderation</li>
+</ul>
+<p>長期（上線）：</p>
+<ul>
+<li>把 DB 移到雲端 Managed DB（RDS &#x2F; Azure Database）</li>
+<li>實作 JWT 認證、使用者系統</li>
+<li>加監控（Application Insights &#x2F; Prometheus）與 log（Serilog）</li>
+<li>部署：Docker Compose &#x2F; Kubernetes 或雲端 PaaS（Azure App Service &#x2F; DigitalOcean App）</li>
+</ul>
+<hr>
+<h1 id="最後-—-我為你準備的「立即可複製」清單（三個立即任務）"><a href="#最後-—-我為你準備的「立即可複製」清單（三個立即任務）" class="headerlink" title="最後 — 我為你準備的「立即可複製」清單（三個立即任務）"></a>最後 — 我為你準備的「立即可複製」清單（三個立即任務）</h1><ol>
+<li>在 <code>psych-site/infra</code> 建 <code>docker-compose.yml</code>（上面內容）並執行：<br><code>docker compose up -d</code></li>
+<li>在 <code>psych-site/backend</code> scaffold C#（上面 dotnet 指令），把 <code>appsettings.Development.json</code> 的連線字串改成你 docker 的設定，執行 <code>dotnet ef database update</code>。</li>
+<li>在 <code>psych-site/frontend</code> scaffold Vite、貼上 <code>App.vue</code>（或我之前給的完整前端程式），在 <code>vite.config.js</code> 設 proxy，然後 <code>npm run dev</code> 開前端。</li>
+</ol>
+<hr>
+<p>你要我現在幫你做哪一件 <strong>我就直接把對應完整檔案內容貼給你</strong>（不用再問）：<br>A. 把 <code>backend</code> 的 C# 專案 <strong>完整檔案（Program.cs、AppDbContext.cs、Model、Controllers、Dockerfile）</strong> 一次貼給你複製貼上；<br>B. 或把 <strong>FastAPI 版本的 backend</strong> 完整檔案一次貼給你；<br>C. 或把 <strong>前端 App.vue + vite.config.js</strong>（已優化可呼叫後端 AI）一次貼給你。</p>
+<p>選 A、B 或 C，我立刻把那個部分的完整可運行檔案貼出來。</p>
