@@ -1,0 +1,148 @@
+<hr>
+<h2 id="title-2025-05-02-MacBook-Air（macOS）上架設一個可跑的-MCP-serverdate-2025-09-16-22-19-34tags-MCP-description-2025-05-02-MacBook-Air（macOS）上架設一個可跑的-MCP-server"><a href="#title-2025-05-02-MacBook-Air（macOS）上架設一個可跑的-MCP-serverdate-2025-09-16-22-19-34tags-MCP-description-2025-05-02-MacBook-Air（macOS）上架設一個可跑的-MCP-server" class="headerlink" title="title: 2025-05-02-MacBook Air（macOS）上架設一個可跑的 MCP serverdate: 2025-09-16 22:19:34tags:  [MCP]description: 2025-05-02-MacBook Air（macOS）上架設一個可跑的 MCP server"></a>title: 2025-05-02-MacBook Air（macOS）上架設一個可跑的 MCP server<br>date: 2025-09-16 22:19:34<br>tags:  [MCP]<br>description: 2025-05-02-MacBook Air（macOS）上架設一個可跑的 MCP server</h2><h1 id="2025-05-02-MacBook-Air（macOS）上架設一個可跑的-MCP-server"><a href="#2025-05-02-MacBook-Air（macOS）上架設一個可跑的-MCP-server" class="headerlink" title="2025-05-02-MacBook Air（macOS）上架設一個可跑的 MCP server"></a>2025-05-02-MacBook Air（macOS）上架設一個可跑的 MCP server</h1><p> <strong>一步步在舊 MacBook Air（macOS）上架設一個可跑的 MCP server（採 Node.js 範例）</strong>，並把每一步該執行的 Terminal 指令、檢查點和常見問題一起寫清楚。<br>我選 Node.js 路線（因為你熟 Vue&#x2F;JS，Node 生態整合比較順），如果之後你想要 Python 範例我也可以再給出來。</p>
+<blockquote>
+<p>重要事實先說：MCP 有官方 Node &#x2F; Python SDK，Node 需要 **Node 18+**；Python 路線需 **Python 3.10+**。官方 MCP quickstart 與 Node SDK 文件是本教學的依據。(<a href="https://modelcontextprotocol.io/quickstart/server" title="Build an MCP server - Model Context Protocol">modelcontextprotocol.io</a>)</p>
+</blockquote>
+<hr>
+<h1 id="總體步驟（概覽）"><a href="#總體步驟（概覽）" class="headerlink" title="總體步驟（概覽）"></a>總體步驟（概覽）</h1><ol>
+<li>確認 macOS 版本與 CPU 架構（很重要）</li>
+<li>安裝開發工具（Xcode Command Line Tools）</li>
+<li>安裝 Homebrew（macOS 的套件管理）並用它安裝 nvm（Node 版本管理）</li>
+<li>用 nvm 安裝 Node 18 並驗證</li>
+<li>建立簡單的 MCP Node 專案（安裝 <code>@modelcontextprotocol/sdk</code>）並貼上範例程式碼</li>
+<li>執行 MCP server（stdio transport）並把它接到支援 MCP 的客戶端（例如 Claude Desktop）</li>
+<li>簡單除錯與注意事項</li>
+</ol>
+<p>下面把每一步細化成可直接複製執行的命令與說明。</p>
+<hr>
+<h2 id="1-檢查-macOS-版本與-CPU-架構（先做）"><a href="#1-檢查-macOS-版本與-CPU-架構（先做）" class="headerlink" title="1) 檢查 macOS 版本與 CPU 架構（先做）"></a>1) 檢查 macOS 版本與 CPU 架構（先做）</h2><p>在 Terminal 執行：</p>
+<pre><code class="bash">sw_vers -productVersion
+uname -m
+</code></pre>
+<ul>
+<li><code>sw_vers -productVersion</code> 會回傳像 <code>10.15.7</code>、<code>12.6</code>、<code>13.6</code> 等（macOS Catalina &#x2F; Monterey &#x2F; Ventura 等）。也可從「 → About This Mac」看。(<a href="https://www.macminivault.com/faq/how-to-determine-which-version-of-macos-is-running/?utm_source=chatgpt.com" title="How to determine which version of macOS is running">Mac Mini Vault</a>)</li>
+<li><code>uname -m</code> 會回傳 <code>x86_64</code>（Intel）或 <code>arm64</code>（Apple Silicon &#x2F; M1&#x2F;M2）。</li>
+</ul>
+<p><strong>建議</strong>：若能升到 <strong>macOS 10.15+ (Catalina)</strong> 或更新會最順（Node 18 預建二進位針對 10.15+；Apple Silicon 建議 macOS 11+）。若太舊、安裝新版有困難，請回報版本號我再給替代方案（例如在 Windows&#x2F;雲端跑）。(<a href="https://github.com/nodejs/build/issues/2815?utm_source=chatgpt.com" title="Platform requirements for Node.js 18 · Issue #2815">GitHub</a>)</p>
+<hr>
+<h2 id="2-安裝-Xcode-Command-Line-Tools（必要）"><a href="#2-安裝-Xcode-Command-Line-Tools（必要）" class="headerlink" title="2) 安裝 Xcode Command Line Tools（必要）"></a>2) 安裝 Xcode Command Line Tools（必要）</h2><p>如果尚未安裝：</p>
+<pre><code class="bash">xcode-select --install
+</code></pre>
+<p>安裝完會提供 <code>git</code>、編譯工具等，之後 Homebrew 與某些套件需要它。</p>
+<hr>
+<h2 id="3-安裝-Homebrew（如果還沒裝）"><a href="#3-安裝-Homebrew（如果還沒裝）" class="headerlink" title="3) 安裝 Homebrew（如果還沒裝）"></a>3) 安裝 Homebrew（如果還沒裝）</h2><p>Homebrew 用來安裝 nvm &#x2F; python 等工具，官方安裝指令：</p>
+<pre><code class="bash">/bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;
+</code></pre>
+<p>（執行後依指示把 Homebrew 的路徑加到 shell 設定檔）(<a href="https://ru.wikipedia.org/wiki/Homebrew_%28%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80_%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%BE%D0%B2%29?utm_source=chatgpt.com" title="Homebrew (менеджер пакетов)">維基百科</a>)</p>
+<hr>
+<h2 id="4-安裝-nvm（Node-版本管理）並安裝-Node-18（推薦）"><a href="#4-安裝-nvm（Node-版本管理）並安裝-Node-18（推薦）" class="headerlink" title="4) 安裝 nvm（Node 版本管理）並安裝 Node 18（推薦）"></a>4) 安裝 nvm（Node 版本管理）並安裝 Node 18（推薦）</h2><p>用 nvm 可以避免系統 Node 衝突：</p>
+<pre><code class="bash">brew install nvm
+mkdir -p ~/.nvm
+# 把下面兩行加入你的 shell 設定檔 (~/.zshrc 或 ~/.bash_profile)
+echo &#39;export NVM_DIR=&quot;$HOME/.nvm&quot;&#39; &gt;&gt; ~/.zshrc
+echo &#39;source $(brew --prefix nvm)/nvm.sh&#39; &gt;&gt; ~/.zshrc
+# 立刻套用
+source ~/.zshrc
+
+# 安裝 Node 18 LTS
+nvm install 18
+nvm use 18
+node -v   # 應顯示 v18.x.x
+npm -v
+</code></pre>
+<blockquote>
+<p>若你不想用 nvm，也可以 <code>brew install node@18</code>，但 nvm 更方便切換版本。<br>Node 18 是官方建議用於 MCP SDK 的最低版本。(<a href="https://www.npmjs.com/package/%40modelcontextprotocol/sdk" title="@modelcontextprotocol/sdk - npm">npm</a>)</p>
+</blockquote>
+<hr>
+<h2 id="5-建立-MCP-Node-範例專案（從零開始）"><a href="#5-建立-MCP-Node-範例專案（從零開始）" class="headerlink" title="5) 建立 MCP Node 範例專案（從零開始）"></a>5) 建立 MCP Node 範例專案（從零開始）</h2><p>在家目錄建立資料夾並安裝 SDK：</p>
+<pre><code class="bash">mkdir ~/mcp-server
+cd ~/mcp-server
+npm init -y
+npm i @modelcontextprotocol/sdk zod
+</code></pre>
+<p>建立檔案 <code>server.mjs</code>（使用 ESM，Node 18 支援 top-level await） — 把下面程式碼貼進去（這是一個極簡的 demo，提供一個 <code>add</code> 工具）：</p>
+<pre><code class="js">// server.mjs
+import { McpServer } from &quot;@modelcontextprotocol/sdk/server/mcp.js&quot;;
+import { StdioServerTransport } from &quot;@modelcontextprotocol/sdk/server/stdio.js&quot;;
+import { z } from &quot;zod&quot;;
+
+const server = new McpServer({ name: &quot;demo-mcp&quot;, version: &quot;0.1.0&quot; });
+
+// 註冊一個簡單工具：add
+server.registerTool(
+  &quot;add&quot;,
+  {
+    title: &quot;Addition&quot;,
+    description: &quot;Add two numbers&quot;,
+    inputSchema: { a: z.number(), b: z.number() }
+  },
+  async ({ a, b }) =&gt; {
+    return { content: [{ type: &quot;text&quot;, text: String(a + b) }] };
+  }
+);
+
+// 使用 stdio transport（常用於桌面客戶端如 Claude Desktop）
+const transport = new StdioServerTransport();
+await server.connect(transport);
+
+// 注意：不要用 console.log() 打到 stdout，會干擾 MCP 協議。
+// 若要記錄請用 console.error() 或寫檔。
+console.error(&quot;MCP server started: demo-mcp&quot;);
+</code></pre>
+<p><strong>執行</strong>：</p>
+<pre><code class="bash">node server.mjs
+</code></pre>
+<p>如果看到沒有錯誤、且沒有把 JSON 輸出到屏幕，那麼 server 應該已啟動並等待 MCP 客戶端透過 stdio 與它通訊。Node SDK 的用法與範例可參考官方文件（上面程式取自官方 quickstart 範例）。(<a href="https://www.npmjs.com/package/%40modelcontextprotocol/sdk" title="@modelcontextprotocol/sdk - npm">npm</a>)</p>
+<hr>
+<h2 id="6-在客戶端（例如-Claude-Desktop）註冊你的-MCP-server"><a href="#6-在客戶端（例如-Claude-Desktop）註冊你的-MCP-server" class="headerlink" title="6) 在客戶端（例如 Claude Desktop）註冊你的 MCP server"></a>6) 在客戶端（例如 Claude Desktop）註冊你的 MCP server</h2><p>以 <strong>Claude for Desktop</strong> 為例（官方 quickstart 示範）：</p>
+<p>打開或建立設定檔：</p>
+<pre><code class="bash">code ~/Library/Application\ Support/Claude/claude_desktop_config.json
+</code></pre>
+<p>在 <code>mcpServers</code> 裡加一段（路徑請改成你的絕對路徑）：</p>
+<pre><code class="json">{
+  &quot;mcpServers&quot;: {
+    &quot;demo-mcp&quot;: {
+      &quot;command&quot;: &quot;node&quot;,
+      &quot;args&quot;: [ &quot;/Users/yourname/mcp-server/server.mjs&quot; ]
+    }
+  }
+}
+</code></pre>
+<p>儲存後重啟 Claude Desktop，應該會在工具&#x2F;設定中看到 <code>demo-mcp</code> 的工具（若沒有，檢查路徑與 Node 版本）。官方 quickstart 有相同範例可參考。(<a href="https://modelcontextprotocol.io/quickstart/server" title="Build an MCP server - Model Context Protocol">modelcontextprotocol.io</a>)</p>
+<blockquote>
+<p><strong>重點提醒</strong>：當使用 stdio transport 時，請 <strong>絕對不要</strong> 在程式中用 <code>console.log()</code> 或 <code>print()</code> 輸出到 stdout（會破壞 MCP JSON-RPC），可用 <code>console.error()</code> 或 log 檔案。(<a href="https://modelcontextprotocol.io/quickstart/server" title="Build an MCP server - Model Context Protocol">modelcontextprotocol.io</a>)</p>
+</blockquote>
+<hr>
+<h2 id="7-簡單除錯清單（常見問題）"><a href="#7-簡單除錯清單（常見問題）" class="headerlink" title="7) 簡單除錯清單（常見問題）"></a>7) 簡單除錯清單（常見問題）</h2><ul>
+<li><strong>沒啟動 &#x2F; 客戶端抓不到 server</strong>：檢查 <code>claude_desktop_config.json</code> 的 command 與 args 路徑是否為絕對路徑，並重啟客戶端。(<a href="https://modelcontextprotocol.io/quickstart/server" title="Build an MCP server - Model Context Protocol">modelcontextprotocol.io</a>)</li>
+<li><strong>程式錯誤、stacktrace 顯示在 stdout</strong>：確定不要把錯誤輸出到 stdout；Node 的 <code>console.error()</code> 會到 stderr。</li>
+<li><strong>Node 版本太低</strong>：<code>node -v</code> 顯示要 &gt;&#x3D; v18.x。若不是，使用 <code>nvm install 18</code>。(<a href="https://www.npmjs.com/package/%40modelcontextprotocol/sdk" title="@modelcontextprotocol/sdk - npm">npm</a>)</li>
+<li><strong>macOS 太舊安裝 Node 有問題</strong>：有些極舊 macOS 需編譯 Node（比較麻煩），若遇到可回報你的 <code>sw_vers</code> 我幫你看要不要升級或用其他方案（如在 Windows&#x2F;雲端跑）。(<a href="https://github.com/nodejs/build/issues/2815?utm_source=chatgpt.com" title="Platform requirements for Node.js 18 · Issue #2815">GitHub</a>)</li>
+</ul>
+<hr>
+<h2 id="8-如果你想用-Python-路線（快速說明）"><a href="#8-如果你想用-Python-路線（快速說明）" class="headerlink" title="8) 如果你想用 Python 路線（快速說明）"></a>8) 如果你想用 Python 路線（快速說明）</h2><p>官方 quickstart 用 Python 的 FastMCP 非常直接，需求是 **Python 3.10+**。快速步驟（官方推薦使用 <code>uv</code> 工具來管理）：</p>
+<pre><code class="bash"># 安裝 uv 執行器（官方 quickstart 建議）
+curl -LsSf https://astral.sh/uv/install.sh | sh
+# 重新開 terminal
+uv init weather
+cd weather
+uv venv
+source .venv/bin/activate
+uv add &quot;mcp[cli]&quot; httpx
+# 建立 weather.py 並參考 quickstart 範例
+uv run weather.py
+</code></pre>
+<p>詳細 Python 範例請參考官方 quickstart。若你想要我把 Python 版本的完整步驟與 <code>weather.py</code> 範例貼給你，我可以接著做。(<a href="https://modelcontextprotocol.io/quickstart/server" title="Build an MCP server - Model Context Protocol">modelcontextprotocol.io</a>)</p>
+<hr>
+<h2 id="小結與我接下來可以幫你的事"><a href="#小結與我接下來可以幫你的事" class="headerlink" title="小結與我接下來可以幫你的事"></a>小結與我接下來可以幫你的事</h2><ul>
+<li><p>我<strong>已經為你準備好</strong>：完整 Node.js 路線的 step-by-step，包含檢查 macOS、安裝 Homebrew、nvm、Node、建立 <code>server.mjs</code>、如何在 Claude Desktop 註冊。主要參考來自官方 MCP quickstart 與 Node SDK 文件。(<a href="https://modelcontextprotocol.io/quickstart/server" title="Build an MCP server - Model Context Protocol">modelcontextprotocol.io</a>)</p>
+</li>
+<li><p>下一步（你可以選一個）：</p>
+<ol>
+<li>我直接把 <code>server.mjs</code> 寫成你可以直接複製貼上、完全可跑的檔案（包含更完整的 error-handling 與 README）——<strong>我已包含簡短範例</strong>，要我昇級成更完整的 demo 嗎？</li>
+<li>或我把 Python (<code>weather.py</code>) 的完整步驟也貼上（如果你想走 Python 路線）。</li>
+<li>或你現在就照上面步驟做，有任何卡住的錯誤訊息（把完整 Terminal 訊息貼來），我幫你排錯。</li>
+</ol>
+</li>
+</ul>
+<p>你想要我<strong>現在把那個 <code>server.mjs</code> 的完整 ready-to-run 檔</strong>再貼一次（含 package.json 建議），還是你要先執行到哪個步驟我再支援？</p>

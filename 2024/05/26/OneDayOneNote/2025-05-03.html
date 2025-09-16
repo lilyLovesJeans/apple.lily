@@ -1,0 +1,38 @@
+<hr>
+<h2 id="title-2025-05-03-在-macOS（或-Linux）上安裝-Homebrew-的官方安裝方式date-2025-09-16-22-21-23tags-Homebrew-description-2025-05-03-在-macOS（或-Linux）上安裝-Homebrew-的官方安裝方式"><a href="#title-2025-05-03-在-macOS（或-Linux）上安裝-Homebrew-的官方安裝方式date-2025-09-16-22-21-23tags-Homebrew-description-2025-05-03-在-macOS（或-Linux）上安裝-Homebrew-的官方安裝方式" class="headerlink" title="title: 2025-05-03-在 macOS（或 Linux）上安裝 Homebrew 的官方安裝方式date: 2025-09-16 22:21:23tags:  [Homebrew]description: 2025-05-03-在 macOS（或 Linux）上安裝 Homebrew 的官方安裝方式"></a>title: 2025-05-03-在 macOS（或 Linux）上安裝 Homebrew 的官方安裝方式<br>date: 2025-09-16 22:21:23<br>tags:  [Homebrew]<br>description: 2025-05-03-在 macOS（或 Linux）上安裝 Homebrew 的官方安裝方式</h2><h1 id="2025-05-03-在-macOS（或-Linux）上安裝-Homebrew-的官方安裝方式"><a href="#2025-05-03-在-macOS（或-Linux）上安裝-Homebrew-的官方安裝方式" class="headerlink" title="2025-05-03-在 macOS（或 Linux）上安裝 Homebrew 的官方安裝方式"></a>2025-05-03-在 macOS（或 Linux）上安裝 Homebrew 的官方安裝方式</h1><p>在 macOS（或 Linux）上安裝 Homebrew 的官方安裝方式</p>
+<p>這一行指令其實是 <strong>在 macOS（或 Linux）上安裝 Homebrew</strong> 的官方安裝方式。<br>我們可以一步一步拆解給你看：</p>
+<hr>
+<h3 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h3><pre><code class="bash">/bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;
+</code></pre>
+<hr>
+<h3 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h3><ol>
+<li><p><strong><code>/bin/bash -c &quot;...&quot;</code></strong></p>
+<ul>
+<li>意思是：用 <strong>bash</strong> 這個 shell 來執行後面引號中的指令。</li>
+<li><code>-c</code> 的意思是「執行字串形式的命令」。</li>
+</ul>
+</li>
+<li><p><strong><code>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh</code></strong></p>
+<ul>
+<li><code>curl</code> 是一個指令列工具，可以下載網路上的內容。</li>
+<li><code>-f</code>：遇到錯誤時不輸出 HTML 錯誤頁面（fail silently）。</li>
+<li><code>-s</code>：安靜模式，不顯示進度條。</li>
+<li><code>-S</code>：如果失敗，才顯示錯誤訊息。</li>
+<li><code>-L</code>：自動跟隨重新導向（redirect）。</li>
+<li>下載的目標網址是 GitHub 上 Homebrew 官方提供的安裝腳本（<code>install.sh</code>）。</li>
+</ul>
+<p>👉 這行會 <strong>下載 Homebrew 的安裝腳本內容</strong>。</p>
+</li>
+<li><p><strong><code>$( ... )</code></strong></p>
+<ul>
+<li>是 bash 的「指令替換」（command substitution）。</li>
+<li>它會先執行裡面的 <code>curl ...</code> 指令，把下載回來的腳本內容放進來，然後交給 <code>/bin/bash -c</code> 執行。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h3><p>這行指令的意思是：</p>
+<p>➡️ 從 GitHub 下載 Homebrew 的官方安裝腳本 (<code>install.sh</code>)，並且立刻用 bash 執行它。</p>
+<p>換句話說：<br>它就是 <strong>自動安裝 Homebrew</strong> 的指令，不需要你手動下載檔案再執行。</p>
+<hr>
+<p>要不要我幫你展開一下這個 <code>install.sh</code> 腳本的內容，讓你看清楚它大概做了什麼（例如建立目錄、下載核心檔案、設定 PATH）？</p>

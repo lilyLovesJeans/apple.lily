@@ -1,0 +1,71 @@
+<hr>
+<h2 id="title-2025-05-04-建立-MCP-Node-範例專案指令說明date-2025-09-16-22-23-06tags-MCP-description-2025-05-04-建立-MCP-Node-範例專案指令說明"><a href="#title-2025-05-04-建立-MCP-Node-範例專案指令說明date-2025-09-16-22-23-06tags-MCP-description-2025-05-04-建立-MCP-Node-範例專案指令說明" class="headerlink" title="title: 2025-05-04-建立 MCP Node 範例專案指令說明date: 2025-09-16 22:23:06tags:  [MCP]description:  2025-05-04-建立 MCP Node 範例專案指令說明"></a>title: 2025-05-04-建立 MCP Node 範例專案指令說明<br>date: 2025-09-16 22:23:06<br>tags:  [MCP]<br>description:  2025-05-04-建立 MCP Node 範例專案指令說明</h2><h1 id="2025-05-04-建立-MCP-Node-範例專案指令說明"><a href="#2025-05-04-建立-MCP-Node-範例專案指令說明" class="headerlink" title="2025-05-04-建立 MCP Node 範例專案指令說明"></a>2025-05-04-建立 MCP Node 範例專案指令說明</h1><ol start="5">
+<li>建立 MCP Node 範例專案（從零開始）</li>
+</ol>
+<p>在家目錄建立資料夾並安裝 SDK：</p>
+<p>mkdir ~&#x2F;mcp-server<br>cd ~&#x2F;mcp-server<br>npm init -y<br>npm i @modelcontextprotocol&#x2F;sdk zod</p>
+<p>請解釋這些指令</p>
+<p>好，我幫你逐行拆解這些指令，說明它們的作用，以及為什麼要這樣做。</p>
+<hr>
+<h3 id="1️⃣-建立專案資料夾"><a href="#1️⃣-建立專案資料夾" class="headerlink" title="1️⃣ 建立專案資料夾"></a>1️⃣ 建立專案資料夾</h3><pre><code class="bash">mkdir ~/mcp-server
+</code></pre>
+<ul>
+<li><p><code>mkdir</code> &#x3D; <strong>make directory</strong>，建立資料夾的指令。</p>
+</li>
+<li><p><code>~/mcp-server</code></p>
+<ul>
+<li><code>~</code> 代表「使用者的家目錄」（macOS 預設就是 <code>/Users/你的帳號</code>）。</li>
+<li><code>mcp-server</code> 是資料夾名稱。<br>👉 這一步會在你的「家目錄」下新增一個叫做 <code>mcp-server</code> 的資料夾，用來存放 MCP 專案。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="2️⃣-進入專案資料夾"><a href="#2️⃣-進入專案資料夾" class="headerlink" title="2️⃣ 進入專案資料夾"></a>2️⃣ 進入專案資料夾</h3><pre><code class="bash">cd ~/mcp-server
+</code></pre>
+<ul>
+<li><code>cd</code> &#x3D; <strong>change directory</strong>，切換到剛剛建立的 <code>mcp-server</code> 資料夾裡。<br>👉 接下來的所有指令都會在這個資料夾底下執行。</li>
+</ul>
+<hr>
+<h3 id="3️⃣-初始化-Node-js-專案"><a href="#3️⃣-初始化-Node-js-專案" class="headerlink" title="3️⃣ 初始化 Node.js 專案"></a>3️⃣ 初始化 Node.js 專案</h3><pre><code class="bash">npm init -y
+</code></pre>
+<ul>
+<li><p><code>npm</code> &#x3D; Node Package Manager，Node.js 的套件管理工具。</p>
+</li>
+<li><p><code>init</code> &#x3D; 初始化一個新的專案，會建立 <code>package.json</code> 檔案，這個檔案用來紀錄：</p>
+<ul>
+<li>專案名稱、版本</li>
+<li>專案的相依套件（dependencies）</li>
+<li>執行指令（scripts）</li>
+</ul>
+</li>
+<li><p><code>-y</code> &#x3D; <strong>yes</strong>，自動接受所有預設選項，不需要手動輸入。<br>👉 這一步會產生一個 <code>package.json</code>，作為你的 Node.js 專案的「配置檔」。</p>
+</li>
+</ul>
+<hr>
+<h3 id="4️⃣-安裝-SDK-與-Zod"><a href="#4️⃣-安裝-SDK-與-Zod" class="headerlink" title="4️⃣ 安裝 SDK 與 Zod"></a>4️⃣ 安裝 SDK 與 Zod</h3><pre><code class="bash">npm i @modelcontextprotocol/sdk zod
+</code></pre>
+<ul>
+<li><p><code>npm i</code> &#x3D; <code>npm install</code>，安裝套件。</p>
+</li>
+<li><p><code>@modelcontextprotocol/sdk</code></p>
+<ul>
+<li>MCP（Model Context Protocol）的官方 <strong>JavaScript&#x2F;TypeScript SDK</strong>。</li>
+<li>這個套件提供 MCP server 開發需要的 API 與工具。</li>
+</ul>
+</li>
+<li><p><code>zod</code></p>
+<ul>
+<li>一個 TypeScript&#x2F;JavaScript 的 <strong>資料驗證庫</strong>。</li>
+<li>常用來檢查輸入的 JSON 或物件是否符合預期的格式。<br>👉 安裝後會更新 <code>package.json</code>，並且把套件下載到 <code>node_modules</code> 資料夾。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>📦 最後，你會得到這個專案結構：</p>
+<pre><code>mcp-server/
+ ├─ node_modules/         # 套件程式碼
+ ├─ package.json          # 專案設定檔
+ ├─ package-lock.json     # 套件版本鎖定檔
+</code></pre>
+<hr>
+<p>要不要我幫你把這個步驟跑完之後，補上 <strong>一個最小可執行的 MCP Server 範例程式</strong>（例如 <code>index.js</code>），讓你馬上可以 <code>node index.js</code> 測試？</p>

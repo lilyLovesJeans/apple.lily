@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2025-05-02-MacBook Air（macOS）上架設一個可跑的 MCP server">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025-05-02-MacBook Air（macOS）上架設一個可跑的 MCP server">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/09/16/OneDayOneNote/2025-05-02/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2025-05-02-MacBook Air（macOS）上架設一個可跑的 MCP server">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-09-16T14:19:34.000Z">
+<meta property="article:modified_time" content="2025-09-16T14:20:45.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="MCP">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2025/09/16/OneDayOneNote/2025-05-02/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2025/09/16/OneDayOneNote/2025-05-02/","path":"2025/09/16/OneDayOneNote/2025-05-02/","title":"2025-05-02-MacBook Air（macOS）上架設一個可跑的 MCP server"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2025-05-02-MacBook Air（macOS）上架設一個可跑的 MCP server | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2025-05-02-MacBook-Air%EF%BC%88macOS%EF%BC%89%E4%B8%8A%E6%9E%B6%E8%A8%AD%E4%B8%80%E5%80%8B%E5%8F%AF%E8%B7%91%E7%9A%84-MCP-server"><span class="nav-number">1.</span> <span class="nav-text">2025-05-02-MacBook Air（macOS）上架設一個可跑的 MCP server</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B8%BD%E9%AB%94%E6%AD%A5%E9%A9%9F%EF%BC%88%E6%A6%82%E8%A6%BD%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">總體步驟（概覽）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%AA%A2%E6%9F%A5-macOS-%E7%89%88%E6%9C%AC%E8%88%87-CPU-%E6%9E%B6%E6%A7%8B%EF%BC%88%E5%85%88%E5%81%9A%EF%BC%89"><span class="nav-number">2.1.</span> <span class="nav-text">1) 檢查 macOS 版本與 CPU 架構（先做）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%AE%89%E8%A3%9D-Xcode-Command-Line-Tools%EF%BC%88%E5%BF%85%E8%A6%81%EF%BC%89"><span class="nav-number">2.2.</span> <span class="nav-text">2) 安裝 Xcode Command Line Tools（必要）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%AE%89%E8%A3%9D-Homebrew%EF%BC%88%E5%A6%82%E6%9E%9C%E9%82%84%E6%B2%92%E8%A3%9D%EF%BC%89"><span class="nav-number">2.3.</span> <span class="nav-text">3) 安裝 Homebrew（如果還沒裝）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%AE%89%E8%A3%9D-nvm%EF%BC%88Node-%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%EF%BC%89%E4%B8%A6%E5%AE%89%E8%A3%9D-Node-18%EF%BC%88%E6%8E%A8%E8%96%A6%EF%BC%89"><span class="nav-number">2.4.</span> <span class="nav-text">4) 安裝 nvm（Node 版本管理）並安裝 Node 18（推薦）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%BB%BA%E7%AB%8B-MCP-Node-%E7%AF%84%E4%BE%8B%E5%B0%88%E6%A1%88%EF%BC%88%E5%BE%9E%E9%9B%B6%E9%96%8B%E5%A7%8B%EF%BC%89"><span class="nav-number">2.5.</span> <span class="nav-text">5) 建立 MCP Node 範例專案（從零開始）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E5%9C%A8%E5%AE%A2%E6%88%B6%E7%AB%AF%EF%BC%88%E4%BE%8B%E5%A6%82-Claude-Desktop%EF%BC%89%E8%A8%BB%E5%86%8A%E4%BD%A0%E7%9A%84-MCP-server"><span class="nav-number">2.6.</span> <span class="nav-text">6) 在客戶端（例如 Claude Desktop）註冊你的 MCP server</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E7%B0%A1%E5%96%AE%E9%99%A4%E9%8C%AF%E6%B8%85%E5%96%AE%EF%BC%88%E5%B8%B8%E8%A6%8B%E5%95%8F%E9%A1%8C%EF%BC%89"><span class="nav-number">2.7.</span> <span class="nav-text">7) 簡單除錯清單（常見問題）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E5%A6%82%E6%9E%9C%E4%BD%A0%E6%83%B3%E7%94%A8-Python-%E8%B7%AF%E7%B7%9A%EF%BC%88%E5%BF%AB%E9%80%9F%E8%AA%AA%E6%98%8E%EF%BC%89"><span class="nav-number">2.8.</span> <span class="nav-text">8) 如果你想用 Python 路線（快速說明）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%B5%90%E8%88%87%E6%88%91%E6%8E%A5%E4%B8%8B%E4%BE%86%E5%8F%AF%E4%BB%A5%E5%B9%AB%E4%BD%A0%E7%9A%84%E4%BA%8B"><span class="nav-number">2.9.</span> <span class="nav-text">小結與我接下來可以幫你的事</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">428</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">33</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2025/09/16/OneDayOneNote/2025-05-02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2025-05-02-MacBook Air（macOS）上架設一個可跑的 MCP server | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2025-05-02-MacBook Air（macOS）上架設一個可跑的 MCP server">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2025-05-02-MacBook Air（macOS）上架設一個可跑的 MCP server
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2025-09-16 22:19:34 / 修改時間：22:20:45" itemprop="dateCreated datePublished" datetime="2025-09-16T22:19:34+08:00">2025-09-16</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2025-05-02-MacBook Air（macOS）上架設一個可跑的 MCP server</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="2025-05-02-MacBook-Air（macOS）上架設一個可跑的-MCP-server"><a href="#2025-05-02-MacBook-Air（macOS）上架設一個可跑的-MCP-server" class="headerlink" title="2025-05-02-MacBook Air（macOS）上架設一個可跑的 MCP server"></a>2025-05-02-MacBook Air（macOS）上架設一個可跑的 MCP server</h1><p> <strong>一步步在舊 MacBook Air（macOS）上架設一個可跑的 MCP server（採 Node.js 範例）</strong>，並把每一步該執行的 Terminal 指令、檢查點和常見問題一起寫清楚。<br>我選 Node.js 路線（因為你熟 Vue&#x2F;JS，Node 生態整合比較順），如果之後你想要 Python 範例我也可以再給出來。</p>
+<blockquote>
+<p>重要事實先說：MCP 有官方 Node &#x2F; Python SDK，Node 需要 **Node 18+**；Python 路線需 **Python 3.10+**。官方 MCP quickstart 與 Node SDK 文件是本教學的依據。(<a target="_blank" rel="noopener" href="https://modelcontextprotocol.io/quickstart/server" title="Build an MCP server - Model Context Protocol">modelcontextprotocol.io</a>)</p>
+</blockquote>
+<hr>
+<h1 id="總體步驟（概覽）"><a href="#總體步驟（概覽）" class="headerlink" title="總體步驟（概覽）"></a>總體步驟（概覽）</h1><ol>
+<li>確認 macOS 版本與 CPU 架構（很重要）</li>
+<li>安裝開發工具（Xcode Command Line Tools）</li>
+<li>安裝 Homebrew（macOS 的套件管理）並用它安裝 nvm（Node 版本管理）</li>
+<li>用 nvm 安裝 Node 18 並驗證</li>
+<li>建立簡單的 MCP Node 專案（安裝 <code>@modelcontextprotocol/sdk</code>）並貼上範例程式碼</li>
+<li>執行 MCP server（stdio transport）並把它接到支援 MCP 的客戶端（例如 Claude Desktop）</li>
+<li>簡單除錯與注意事項</li>
+</ol>
+<p>下面把每一步細化成可直接複製執行的命令與說明。</p>
+<hr>
+<h2 id="1-檢查-macOS-版本與-CPU-架構（先做）"><a href="#1-檢查-macOS-版本與-CPU-架構（先做）" class="headerlink" title="1) 檢查 macOS 版本與 CPU 架構（先做）"></a>1) 檢查 macOS 版本與 CPU 架構（先做）</h2><p>在 Terminal 執行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sw_vers -productVersion</span><br><span class="line"><span class="built_in">uname</span> -m</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>sw_vers -productVersion</code> 會回傳像 <code>10.15.7</code>、<code>12.6</code>、<code>13.6</code> 等（macOS Catalina &#x2F; Monterey &#x2F; Ventura 等）。也可從「 → About This Mac」看。(<a target="_blank" rel="noopener" href="https://www.macminivault.com/faq/how-to-determine-which-version-of-macos-is-running/?utm_source=chatgpt.com" title="How to determine which version of macOS is running">Mac Mini Vault</a>)</li>
+<li><code>uname -m</code> 會回傳 <code>x86_64</code>（Intel）或 <code>arm64</code>（Apple Silicon &#x2F; M1&#x2F;M2）。</li>
+</ul>
+<p><strong>建議</strong>：若能升到 <strong>macOS 10.15+ (Catalina)</strong> 或更新會最順（Node 18 預建二進位針對 10.15+；Apple Silicon 建議 macOS 11+）。若太舊、安裝新版有困難，請回報版本號我再給替代方案（例如在 Windows&#x2F;雲端跑）。(<a target="_blank" rel="noopener" href="https://github.com/nodejs/build/issues/2815?utm_source=chatgpt.com" title="Platform requirements for Node.js 18 · Issue #2815">GitHub</a>)</p>
+<hr>
+<h2 id="2-安裝-Xcode-Command-Line-Tools（必要）"><a href="#2-安裝-Xcode-Command-Line-Tools（必要）" class="headerlink" title="2) 安裝 Xcode Command Line Tools（必要）"></a>2) 安裝 Xcode Command Line Tools（必要）</h2><p>如果尚未安裝：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xcode-select --install</span><br></pre></td></tr></table></figure>
+
+<p>安裝完會提供 <code>git</code>、編譯工具等，之後 Homebrew 與某些套件需要它。</p>
+<hr>
+<h2 id="3-安裝-Homebrew（如果還沒裝）"><a href="#3-安裝-Homebrew（如果還沒裝）" class="headerlink" title="3) 安裝 Homebrew（如果還沒裝）"></a>3) 安裝 Homebrew（如果還沒裝）</h2><p>Homebrew 用來安裝 nvm &#x2F; python 等工具，官方安裝指令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/bin/bash -c <span class="string">&quot;<span class="subst">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>（執行後依指示把 Homebrew 的路徑加到 shell 設定檔）(<a target="_blank" rel="noopener" href="https://ru.wikipedia.org/wiki/Homebrew_%28%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80_%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%BE%D0%B2%29?utm_source=chatgpt.com" title="Homebrew (менеджер пакетов)">維基百科</a>)</p>
+<hr>
+<h2 id="4-安裝-nvm（Node-版本管理）並安裝-Node-18（推薦）"><a href="#4-安裝-nvm（Node-版本管理）並安裝-Node-18（推薦）" class="headerlink" title="4) 安裝 nvm（Node 版本管理）並安裝 Node 18（推薦）"></a>4) 安裝 nvm（Node 版本管理）並安裝 Node 18（推薦）</h2><p>用 nvm 可以避免系統 Node 衝突：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">brew install nvm</span><br><span class="line"><span class="built_in">mkdir</span> -p ~/.nvm</span><br><span class="line"><span class="comment"># 把下面兩行加入你的 shell 設定檔 (~/.zshrc 或 ~/.bash_profile)</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;export NVM_DIR=&quot;$HOME/.nvm&quot;&#x27;</span> &gt;&gt; ~/.zshrc</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;source $(brew --prefix nvm)/nvm.sh&#x27;</span> &gt;&gt; ~/.zshrc</span><br><span class="line"><span class="comment"># 立刻套用</span></span><br><span class="line"><span class="built_in">source</span> ~/.zshrc</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安裝 Node 18 LTS</span></span><br><span class="line">nvm install 18</span><br><span class="line">nvm use 18</span><br><span class="line">node -v   <span class="comment"># 應顯示 v18.x.x</span></span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>若你不想用 nvm，也可以 <code>brew install node@18</code>，但 nvm 更方便切換版本。<br>Node 18 是官方建議用於 MCP SDK 的最低版本。(<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/%40modelcontextprotocol/sdk" title="@modelcontextprotocol/sdk - npm">npm</a>)</p>
+</blockquote>
+<hr>
+<h2 id="5-建立-MCP-Node-範例專案（從零開始）"><a href="#5-建立-MCP-Node-範例專案（從零開始）" class="headerlink" title="5) 建立 MCP Node 範例專案（從零開始）"></a>5) 建立 MCP Node 範例專案（從零開始）</h2><p>在家目錄建立資料夾並安裝 SDK：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> ~/mcp-server</span><br><span class="line"><span class="built_in">cd</span> ~/mcp-server</span><br><span class="line">npm init -y</span><br><span class="line">npm i @modelcontextprotocol/sdk zod</span><br></pre></td></tr></table></figure>
+
+<p>建立檔案 <code>server.mjs</code>（使用 ESM，Node 18 支援 top-level await） — 把下面程式碼貼進去（這是一個極簡的 demo，提供一個 <code>add</code> 工具）：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// server.mjs</span></span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">McpServer</span> &#125; <span class="keyword">from</span> <span class="string">&quot;@modelcontextprotocol/sdk/server/mcp.js&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">StdioServerTransport</span> &#125; <span class="keyword">from</span> <span class="string">&quot;@modelcontextprotocol/sdk/server/stdio.js&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; z &#125; <span class="keyword">from</span> <span class="string">&quot;zod&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> server = <span class="keyword">new</span> <span class="title class_">McpServer</span>(&#123; <span class="attr">name</span>: <span class="string">&quot;demo-mcp&quot;</span>, <span class="attr">version</span>: <span class="string">&quot;0.1.0&quot;</span> &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 註冊一個簡單工具：add</span></span><br><span class="line">server.<span class="title function_">registerTool</span>(</span><br><span class="line">  <span class="string">&quot;add&quot;</span>,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">title</span>: <span class="string">&quot;Addition&quot;</span>,</span><br><span class="line">    <span class="attr">description</span>: <span class="string">&quot;Add two numbers&quot;</span>,</span><br><span class="line">    <span class="attr">inputSchema</span>: &#123; <span class="attr">a</span>: z.<span class="title function_">number</span>(), <span class="attr">b</span>: z.<span class="title function_">number</span>() &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="keyword">async</span> (&#123; a, b &#125;) =&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123; <span class="attr">content</span>: [&#123; <span class="attr">type</span>: <span class="string">&quot;text&quot;</span>, <span class="attr">text</span>: <span class="title class_">String</span>(a + b) &#125;] &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用 stdio transport（常用於桌面客戶端如 Claude Desktop）</span></span><br><span class="line"><span class="keyword">const</span> transport = <span class="keyword">new</span> <span class="title class_">StdioServerTransport</span>();</span><br><span class="line"><span class="keyword">await</span> server.<span class="title function_">connect</span>(transport);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 注意：不要用 console.log() 打到 stdout，會干擾 MCP 協議。</span></span><br><span class="line"><span class="comment">// 若要記錄請用 console.error() 或寫檔。</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&quot;MCP server started: demo-mcp&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>執行</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node server.mjs</span><br></pre></td></tr></table></figure>
+
+<p>如果看到沒有錯誤、且沒有把 JSON 輸出到屏幕，那麼 server 應該已啟動並等待 MCP 客戶端透過 stdio 與它通訊。Node SDK 的用法與範例可參考官方文件（上面程式取自官方 quickstart 範例）。(<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/%40modelcontextprotocol/sdk" title="@modelcontextprotocol/sdk - npm">npm</a>)</p>
+<hr>
+<h2 id="6-在客戶端（例如-Claude-Desktop）註冊你的-MCP-server"><a href="#6-在客戶端（例如-Claude-Desktop）註冊你的-MCP-server" class="headerlink" title="6) 在客戶端（例如 Claude Desktop）註冊你的 MCP server"></a>6) 在客戶端（例如 Claude Desktop）註冊你的 MCP server</h2><p>以 <strong>Claude for Desktop</strong> 為例（官方 quickstart 示範）：</p>
+<p>打開或建立設定檔：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">code ~/Library/Application\ Support/Claude/claude_desktop_config.json</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>mcpServers</code> 裡加一段（路徑請改成你的絕對路徑）：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;mcpServers&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;demo-mcp&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;command&quot;</span><span class="punctuation">:</span> <span class="string">&quot;node&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;args&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span> <span class="string">&quot;/Users/yourname/mcp-server/server.mjs&quot;</span> <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>儲存後重啟 Claude Desktop，應該會在工具&#x2F;設定中看到 <code>demo-mcp</code> 的工具（若沒有，檢查路徑與 Node 版本）。官方 quickstart 有相同範例可參考。(<a target="_blank" rel="noopener" href="https://modelcontextprotocol.io/quickstart/server" title="Build an MCP server - Model Context Protocol">modelcontextprotocol.io</a>)</p>
+<blockquote>
+<p><strong>重點提醒</strong>：當使用 stdio transport 時，請 <strong>絕對不要</strong> 在程式中用 <code>console.log()</code> 或 <code>print()</code> 輸出到 stdout（會破壞 MCP JSON-RPC），可用 <code>console.error()</code> 或 log 檔案。(<a target="_blank" rel="noopener" href="https://modelcontextprotocol.io/quickstart/server" title="Build an MCP server - Model Context Protocol">modelcontextprotocol.io</a>)</p>
+</blockquote>
+<hr>
+<h2 id="7-簡單除錯清單（常見問題）"><a href="#7-簡單除錯清單（常見問題）" class="headerlink" title="7) 簡單除錯清單（常見問題）"></a>7) 簡單除錯清單（常見問題）</h2><ul>
+<li><strong>沒啟動 &#x2F; 客戶端抓不到 server</strong>：檢查 <code>claude_desktop_config.json</code> 的 command 與 args 路徑是否為絕對路徑，並重啟客戶端。(<a target="_blank" rel="noopener" href="https://modelcontextprotocol.io/quickstart/server" title="Build an MCP server - Model Context Protocol">modelcontextprotocol.io</a>)</li>
+<li><strong>程式錯誤、stacktrace 顯示在 stdout</strong>：確定不要把錯誤輸出到 stdout；Node 的 <code>console.error()</code> 會到 stderr。</li>
+<li><strong>Node 版本太低</strong>：<code>node -v</code> 顯示要 &gt;&#x3D; v18.x。若不是，使用 <code>nvm install 18</code>。(<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/%40modelcontextprotocol/sdk" title="@modelcontextprotocol/sdk - npm">npm</a>)</li>
+<li><strong>macOS 太舊安裝 Node 有問題</strong>：有些極舊 macOS 需編譯 Node（比較麻煩），若遇到可回報你的 <code>sw_vers</code> 我幫你看要不要升級或用其他方案（如在 Windows&#x2F;雲端跑）。(<a target="_blank" rel="noopener" href="https://github.com/nodejs/build/issues/2815?utm_source=chatgpt.com" title="Platform requirements for Node.js 18 · Issue #2815">GitHub</a>)</li>
+</ul>
+<hr>
+<h2 id="8-如果你想用-Python-路線（快速說明）"><a href="#8-如果你想用-Python-路線（快速說明）" class="headerlink" title="8) 如果你想用 Python 路線（快速說明）"></a>8) 如果你想用 Python 路線（快速說明）</h2><p>官方 quickstart 用 Python 的 FastMCP 非常直接，需求是 **Python 3.10+**。快速步驟（官方推薦使用 <code>uv</code> 工具來管理）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安裝 uv 執行器（官方 quickstart 建議）</span></span><br><span class="line">curl -LsSf https://astral.sh/uv/install.sh | sh</span><br><span class="line"><span class="comment"># 重新開 terminal</span></span><br><span class="line">uv init weather</span><br><span class="line"><span class="built_in">cd</span> weather</span><br><span class="line">uv venv</span><br><span class="line"><span class="built_in">source</span> .venv/bin/activate</span><br><span class="line">uv add <span class="string">&quot;mcp[cli]&quot;</span> httpx</span><br><span class="line"><span class="comment"># 建立 weather.py 並參考 quickstart 範例</span></span><br><span class="line">uv run weather.py</span><br></pre></td></tr></table></figure>
+
+<p>詳細 Python 範例請參考官方 quickstart。若你想要我把 Python 版本的完整步驟與 <code>weather.py</code> 範例貼給你，我可以接著做。(<a target="_blank" rel="noopener" href="https://modelcontextprotocol.io/quickstart/server" title="Build an MCP server - Model Context Protocol">modelcontextprotocol.io</a>)</p>
+<hr>
+<h2 id="小結與我接下來可以幫你的事"><a href="#小結與我接下來可以幫你的事" class="headerlink" title="小結與我接下來可以幫你的事"></a>小結與我接下來可以幫你的事</h2><ul>
+<li><p>我<strong>已經為你準備好</strong>：完整 Node.js 路線的 step-by-step，包含檢查 macOS、安裝 Homebrew、nvm、Node、建立 <code>server.mjs</code>、如何在 Claude Desktop 註冊。主要參考來自官方 MCP quickstart 與 Node SDK 文件。(<a target="_blank" rel="noopener" href="https://modelcontextprotocol.io/quickstart/server" title="Build an MCP server - Model Context Protocol">modelcontextprotocol.io</a>)</p>
+</li>
+<li><p>下一步（你可以選一個）：</p>
+<ol>
+<li>我直接把 <code>server.mjs</code> 寫成你可以直接複製貼上、完全可跑的檔案（包含更完整的 error-handling 與 README）——<strong>我已包含簡短範例</strong>，要我昇級成更完整的 demo 嗎？</li>
+<li>或我把 Python (<code>weather.py</code>) 的完整步驟也貼上（如果你想走 Python 路線）。</li>
+<li>或你現在就照上面步驟做，有任何卡住的錯誤訊息（把完整 Terminal 訊息貼來），我幫你排錯。</li>
+</ol>
+</li>
+</ul>
+<p>你想要我<strong>現在把那個 <code>server.mjs</code> 的完整 ready-to-run 檔</strong>再貼一次（含 package.json 建議），還是你要先執行到哪個步驟我再支援？</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/MCP/" rel="tag"># MCP</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/09/16/OneDayOneNote/2025-05-01/" rel="prev" title="2025-05-01-Theme Manager版本控制與自動化發佈">
+                  <i class="fa fa-angle-left"></i> 2025-05-01-Theme Manager版本控制與自動化發佈
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/09/16/OneDayOneNote/2025-05-03/" rel="next" title="2025-05-03-在 macOS（或 Linux）上安裝 Homebrew 的官方安裝方式">
+                  2025-05-03-在 macOS（或 Linux）上安裝 Homebrew 的官方安裝方式 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
