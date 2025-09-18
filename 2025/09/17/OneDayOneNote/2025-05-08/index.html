@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2025-05-08 第一階段：前端 MVP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025-05-08 第一階段：前端 MVP">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/09/17/OneDayOneNote/2025-05-08/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2025-05-08 第一階段：前端 MVP">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-09-17T13:52:49.000Z">
+<meta property="article:modified_time" content="2025-09-17T14:09:07.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="架構設計">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2025/09/17/OneDayOneNote/2025-05-08/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2025/09/17/OneDayOneNote/2025-05-08/","path":"2025/09/17/OneDayOneNote/2025-05-08/","title":"2025-05-08 第一階段：前端 MVP"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2025-05-08 第一階段：前端 MVP | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2025-05-08-%E7%AC%AC%E4%B8%80%E9%9A%8E%E6%AE%B5%EF%BC%9A%E5%89%8D%E7%AB%AF-MVP"><span class="nav-number">1.</span> <span class="nav-text">2025-05-08 第一階段：前端 MVP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%9C%85-MVP-%E5%BF%AB%E9%A9%97%E6%B8%85%E5%96%AE%EF%BC%88%E7%85%A7%E8%91%97%E5%81%9A%E5%B0%B1%E8%A1%8C%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">✅ MVP 快驗清單（照著做就行）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%9B%A0-%E5%B8%B8%E8%A6%8B%E5%95%8F%E9%A1%8C%E8%88%87%E5%BF%AB%E9%80%9F%E4%BF%AE%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">🛠 常見問題與快速修法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%9C-%E5%BB%BA%E8%AD%B0%E4%B8%8B%E4%B8%80%E6%AD%A5%EF%BC%88%E5%AE%8C%E6%88%90-MVP-%E5%BE%8C%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">🔜 建議下一步（完成 MVP 後）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Tailwind-CSS-%E7%B0%A1%E7%9F%AD%E8%A4%87%E7%BF%92%EF%BC%88%E4%B8%AD%E6%96%87%E9%87%8D%E9%BB%9E%E7%89%88%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">Tailwind CSS 簡短複習（中文重點版）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E9%BA%BC%E6%98%AF-Tailwind%EF%BC%9F"><span class="nav-number">5.1.</span> <span class="nav-text">什麼是 Tailwind？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%84%AA%E9%BB%9E%E8%88%87%E7%BC%BA%E9%BB%9E%EF%BC%88%E5%AF%A6%E7%94%A8%E5%88%A4%E6%96%B7%EF%BC%89"><span class="nav-number">5.2.</span> <span class="nav-text">優點與缺點（實用判斷）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8-Vue-Vite-%E5%B0%88%E6%A1%88%E5%BF%AB%E8%A8%AD%E5%AE%9A%EF%BC%88%E9%87%8D%E9%BB%9E%EF%BC%89"><span class="nav-number">5.3.</span> <span class="nav-text">在 Vue + Vite 專案快設定（重點）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E8%AA%9E%E6%B3%95%E7%AF%84%E4%BE%8B%EF%BC%88%E6%9C%80%E5%A5%BD%E6%87%82%EF%BC%89"><span class="nav-number">5.4.</span> <span class="nav-text">常用語法範例（最好懂）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8-Vue-%E7%9A%84%E5%AF%A6%E5%8B%99%E5%B0%8F%E6%8A%80%E5%B7%A7"><span class="nav-number">5.5.</span> <span class="nav-text">在 Vue 的實務小技巧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AF%84%E4%BE%8B%EF%BC%9A%E6%8A%8A-InputForm-vue-%E7%94%A8-Tailwind-%E6%94%B9%E9%80%A0"><span class="nav-number">5.6.</span> <span class="nav-text">範例：把 InputForm.vue 用 Tailwind 改造</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E4%BD%B3%E5%AF%A6%E5%8B%99%E8%88%87%E5%BB%BA%E8%AD%B0"><span class="nav-number">5.7.</span> <span class="nav-text">最佳實務與建議</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MVP-%E5%9C%A8%E8%BB%9F%E9%AB%94%E9%96%8B%E7%99%BC%E8%A3%A1%E7%9A%84%E6%84%8F%E6%80%9D"><span class="nav-number">6.</span> <span class="nav-text">MVP 在軟體開發裡的意思</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E7%BE%A9"><span class="nav-number">6.1.</span> <span class="nav-text">定義</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%82%BA%E4%BB%80%E9%BA%BC%E8%A6%81%E6%9C%89-MVP%EF%BC%9F"><span class="nav-number">6.2.</span> <span class="nav-text">為什麼要有 MVP？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%88%89%E4%BE%8B%EF%BC%88%E5%A5%97%E7%94%A8%E5%88%B0%E4%BD%A0%E5%BF%83%E7%90%86%EF%BC%8B%E7%AE%97%E5%91%BD%E7%B6%B2%E7%AB%99%EF%BC%89"><span class="nav-number">6.3.</span> <span class="nav-text">舉例（套用到你心理＋算命網站）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B8%BD%E7%B5%90"><span class="nav-number">6.4.</span> <span class="nav-text">總結</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">434</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2025/09/17/OneDayOneNote/2025-05-08/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2025-05-08 第一階段：前端 MVP | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2025-05-08 第一階段：前端 MVP">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2025-05-08 第一階段：前端 MVP
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2025-09-17 21:52:49 / 修改時間：22:09:07" itemprop="dateCreated datePublished" datetime="2025-09-17T21:52:49+08:00">2025-09-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2025-05-08 第一階段：前端 MVP</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="2025-05-08-第一階段：前端-MVP"><a href="#2025-05-08-第一階段：前端-MVP" class="headerlink" title="2025-05-08 第一階段：前端 MVP"></a>2025-05-08 第一階段：前端 MVP</h1><p>好！很棒的決定 — 先把 <strong>前端 MVP</strong> 做穩最實際。下面給你一個簡短、直接可照做的「快驗清單 + 常見問題與解法」，之後有問題直接把錯誤訊息或程式碼貼給我，我會幫你找出問題並改正。</p>
+<h1 id="✅-MVP-快驗清單（照著做就行）"><a href="#✅-MVP-快驗清單（照著做就行）" class="headerlink" title="✅ MVP 快驗清單（照著做就行）"></a>✅ MVP 快驗清單（照著做就行）</h1><ul>
+<li><p><input disabled="" type="checkbox"> 
+建專案並能啟動開發伺服器</p>
+<ul>
+<li><code>npm create vite@latest psychology-fortune -- --template vue</code></li>
+<li><code>npm install</code></li>
+<li><code>npm run dev</code> （瀏覽器開 <code>http://localhost:5173</code>）</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+加入 Tailwind 並在 <code>main.js</code> 引入 <code>index.css</code>（Tailwind 設定完成後能使用 class）</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+設定 Vue Router（<code>/</code>、<code>/test</code>、<code>/result</code> 三頁可切換）</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+建好 <code>InputForm.vue</code>、<code>ResultCard.vue</code>、<code>Header/Footer</code>（先簡單 UI）</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+表單提交：把資料寫入 <code>localStorage</code>（或 Pinia state）並導到 <code>/result</code> 顯示</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+Result 根據輸入顯示動態結果（暫時用簡單邏輯或 mapping）</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+RWD（手機可用）：確認按鈕、輸入框在手機上不會被截斷</p>
+</li>
+</ul>
+<h1 id="🛠-常見問題與快速修法"><a href="#🛠-常見問題與快速修法" class="headerlink" title="🛠 常見問題與快速修法"></a>🛠 常見問題與快速修法</h1><ul>
+<li><p>問：<code>npm run dev</code> 後頁面白屏或 Cannot GET &#x2F;</p>
+<ul>
+<li>改檢查 <code>main.js</code> 是否正確 mount、router 是否 <code>export default</code>、<code>index.html</code> root id 是否一致。</li>
+</ul>
+</li>
+<li><p>問：Tailwind 樣式不生效</p>
+<ul>
+<li>檢查 <code>tailwind.config.js</code> 的 <code>content</code> 是否包含 <code>./src/**/*.&#123;vue,js&#125;</code>，以及 <code>index.css</code> 是否有 <code>@tailwind base; @tailwind components; @tailwind utilities;</code>。</li>
+</ul>
+</li>
+<li><p>問：路由切換不正常（按鈕點了沒反應）</p>
+<ul>
+<li>檢查 <code>&lt;router-link to=&quot;/test&quot;&gt;</code> 或程式導頁 <code>router.push(&#39;/result&#39;)</code> 是否拿到 <code>useRouter()</code>。</li>
+</ul>
+</li>
+<li><p>問：元件收到 <code>props</code> 是 undefined</p>
+<ul>
+<li>檢查 <code>defineProps</code> 或 <code>props: &#123;&#125;</code> 是否正確、父元件傳入資料是否有值（console.log 確認）。</li>
+</ul>
+</li>
+<li><p>問：localStorage 取不到值</p>
+<ul>
+<li>檢查 <code>JSON.stringify</code> &#x2F; <code>JSON.parse</code> 使用是否正確，且 key 名稱一致。</li>
+</ul>
+</li>
+</ul>
+<h1 id="🔜-建議下一步（完成-MVP-後）"><a href="#🔜-建議下一步（完成-MVP-後）" class="headerlink" title="🔜 建議下一步（完成 MVP 後）"></a>🔜 建議下一步（完成 MVP 後）</h1><ol>
+<li>把測驗邏輯做成可配置（題庫 JSON），方便擴充。</li>
+<li>把結果頁的文字用模板或範本產生（避免硬寫字串）。</li>
+<li>加入簡單分享功能（把結果轉成短連結或 copy to clipboard）。</li>
+<li>再下一步：串後端或串 AI（如果要升級智慧解說）。</li>
+</ol>
+<hr>
+<p>如果你碰到任何錯誤或不確定的地方，<strong>直接貼上：</strong></p>
+<ul>
+<li>錯誤訊息（完整 copy）</li>
+<li>有問題的檔案（或貼重點程式碼段）<br>我會幫你逐行檢查並給出修正。加油！🚀</li>
+</ul>
+<h1 id="Tailwind-CSS-簡短複習（中文重點版）"><a href="#Tailwind-CSS-簡短複習（中文重點版）" class="headerlink" title="Tailwind CSS 簡短複習（中文重點版）"></a>Tailwind CSS 簡短複習（中文重點版）</h1><p>很好，Tailwind 在現代前端很常見 —— 它不是一個「預做好的元件庫」，而是一個 <strong>utility-first（實用類別優先）</strong> 的 CSS 工具集。下面把重點、優點、使用方法與實務範例都說清楚，方便你馬上回去套在 Vue 元件上。</p>
+<hr>
+<h2 id="什麼是-Tailwind？"><a href="#什麼是-Tailwind？" class="headerlink" title="什麼是 Tailwind？"></a>什麼是 Tailwind？</h2><ul>
+<li><strong>Utility-first</strong>：提供大量小而單一職責的 class（像 <code>p-4</code>、<code>text-sm</code>、<code>bg-blue-500</code>），透過組合這些 class 來完成樣式，而不是寫大量自訂 CSS。</li>
+<li><strong>不預設外觀</strong>：不像 Bootstrap 那樣有強烈主題，Tailwind 提供基礎工具，讓你自由打造風格。</li>
+<li><strong>高度可客製</strong>：可以在 <code>tailwind.config.js</code> 裡擴充顏色、間距、字型等。</li>
+</ul>
+<hr>
+<h2 id="優點與缺點（實用判斷）"><a href="#優點與缺點（實用判斷）" class="headerlink" title="優點與缺點（實用判斷）"></a>優點與缺點（實用判斷）</h2><p><strong>優點</strong></p>
+<ul>
+<li>快速開發 UI：不用在 CSS 檔案來回切換，直接在 markup 上寫 class。</li>
+<li>一致性好：團隊上使用同一套 spacing &#x2F; color scale。</li>
+<li>生產環境體積小：透過 <code>content</code>（或 purge）只保留用到的 class，輸出 CSS 很小。</li>
+<li>易做 RWD：用 <code>sm:</code>, <code>md:</code>, <code>lg:</code> 簡單寫響應式。</li>
+</ul>
+<p><strong>缺點</strong></p>
+<ul>
+<li>初期 class 看起來「很長」或「雜」，可用 <code>@apply</code> 抽成 class。</li>
+<li>習慣上需要改變思維（從寫 CSS 移到組合 class）。</li>
+<li>若把邏輯產生的 class 亂寫，可能導致無法被 purge（需要注意 content 配置或用 safelist）。</li>
+</ul>
+<hr>
+<h2 id="在-Vue-Vite-專案快設定（重點）"><a href="#在-Vue-Vite-專案快設定（重點）" class="headerlink" title="在 Vue + Vite 專案快設定（重點）"></a>在 Vue + Vite 專案快設定（重點）</h2><p>已做過的指令回顧：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -D tailwindcss postcss autoprefixer</span><br><span class="line">npx tailwindcss init -p</span><br></pre></td></tr></table></figure>
+
+<p><code>index.css</code>（或 <code>src/index.css</code>）要有：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@tailwind</span> base;</span><br><span class="line"><span class="keyword">@tailwind</span> components;</span><br><span class="line"><span class="keyword">@tailwind</span> utilities;</span><br></pre></td></tr></table></figure>
+
+<p><code>tailwind.config.js</code> 最重要的 <code>content</code> 設定：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">content</span>: [</span><br><span class="line">    <span class="string">&quot;./index.html&quot;</span>,</span><br><span class="line">    <span class="string">&quot;./src/**/*.&#123;vue,js,ts,jsx,tsx&#125;&quot;</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">theme</span>: &#123; <span class="attr">extend</span>: &#123;&#125; &#125;,</span><br><span class="line">  <span class="attr">plugins</span>: [],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>把 <code>index.css</code> 在 <code>main.js</code> 引入：<code>import &#39;./index.css&#39;</code></p>
+<hr>
+<h2 id="常用語法範例（最好懂）"><a href="#常用語法範例（最好懂）" class="headerlink" title="常用語法範例（最好懂）"></a>常用語法範例（最好懂）</h2><ul>
+<li>文字與間距：<code>text-sm</code>, <code>text-xl</code>, <code>p-4</code>, <code>px-6</code>, <code>py-2</code>, <code>m-2</code></li>
+<li>色彩與背景：<code>text-white</code>, <code>bg-blue-500</code>, <code>hover:bg-blue-600</code></li>
+<li>版型：<code>flex</code>, <code>grid</code>, <code>gap-4</code>, <code>items-center</code>, <code>justify-between</code></li>
+<li>邊框與陰影：<code>border</code>, <code>rounded-lg</code>, <code>shadow-md</code></li>
+<li>響應式：<code>sm:text-sm md:text-base lg:text-lg</code></li>
+<li>偽類：<code>hover:</code>, <code>focus:</code>, <code>active:</code></li>
+</ul>
+<p>範例按鈕：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md&quot;</span>&gt;</span></span><br><span class="line">  送出</span><br><span class="line"><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="在-Vue-的實務小技巧"><a href="#在-Vue-的實務小技巧" class="headerlink" title="在 Vue 的實務小技巧"></a>在 Vue 的實務小技巧</h2><ul>
+<li><p><strong>動態 class</strong>：可以用 <code>:class</code> 綁定字串或物件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button :class=&quot;[&#x27;px-4 py-2 rounded&#x27;, isActive ? &#x27;bg-green-500&#x27; : &#x27;bg-gray-300&#x27;]&quot;&gt;按我&lt;/button&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>避免無法 purge 的動態 class</strong>：若 class 是由變數拼接（像 <code>bg-$&#123;color&#125;-500</code>），Tailwind 可能無法偵測到。可用 safelist 或在 template 裡列明所有可能的 class。</p>
+</li>
+<li><p><strong>重複樣式抽出</strong>：用 <code>@apply</code> 在你的 CSS 裡抽成一個自訂 class（減少長長的 class 列表）：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.btn</span> &#123;</span><br><span class="line">  <span class="keyword">@apply</span> px-<span class="number">4</span> py-<span class="number">2</span> rounded bg-blue-<span class="number">500</span> text-white <span class="attribute">hover</span>:bg-blue-<span class="number">600</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>表單美化</strong>：安裝官方 plugin <code>@tailwindcss/forms</code> 能快速讓 input&#x2F;select&#x2F;look 更好看。</p>
+</li>
+</ul>
+<hr>
+<h2 id="範例：把-InputForm-vue-用-Tailwind-改造"><a href="#範例：把-InputForm-vue-用-Tailwind-改造" class="headerlink" title="範例：把 InputForm.vue 用 Tailwind 改造"></a>範例：把 InputForm.vue 用 Tailwind 改造</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;form @submit.prevent=&quot;submitForm&quot; class=&quot;flex flex-col gap-4 w-full max-w-sm&quot;&gt;</span><br><span class="line">    &lt;input v-model=&quot;name&quot; type=&quot;text&quot; placeholder=&quot;姓名&quot;</span><br><span class="line">           class=&quot;border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-400&quot; /&gt;</span><br><span class="line">    &lt;input v-model=&quot;birthday&quot; type=&quot;date&quot;</span><br><span class="line">           class=&quot;border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-400&quot; /&gt;</span><br><span class="line">    &lt;button type=&quot;submit&quot; class=&quot;bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md&quot;&gt;</span><br><span class="line">      送出</span><br><span class="line">    &lt;/button&gt;</span><br><span class="line">  &lt;/form&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="最佳實務與建議"><a href="#最佳實務與建議" class="headerlink" title="最佳實務與建議"></a>最佳實務與建議</h2><ol>
+<li><strong>先熟悉常用 utility</strong>（flex、spacing、typography、colors）再用進階功能。</li>
+<li><strong>用 <code>@apply</code> 抽重複樣式</strong>，維持模板可讀性。</li>
+<li><strong>注意 <code>content</code> 配置</strong>，確保生產環境能正確 tree-shake CSS。</li>
+<li><strong>把設計 token（colors、spacing）放到 <code>tailwind.config.js</code> 的 <code>theme.extend</code>，團隊一致性更好。</strong></li>
+</ol>
+<hr>
+<p>如果你想，我可以：</p>
+<ul>
+<li>幫你把 <code>InputForm.vue</code>、<code>ResultCard.vue</code> 的 class 改成更漂亮的 Tailwind 樣式；或</li>
+<li>提供一份 <code>tailwind.config.js</code> 範本（包含自定義色板／字型）讓你直接貼上使用。</li>
+</ul>
+<p>你想先看哪一個？🙂</p>
+<p>好問題 👍 我來幫你釐清 <strong>MVP</strong> 這個詞的意思。</p>
+<hr>
+<h1 id="MVP-在軟體開發裡的意思"><a href="#MVP-在軟體開發裡的意思" class="headerlink" title="MVP 在軟體開發裡的意思"></a>MVP 在軟體開發裡的意思</h1><p><strong>MVP &#x3D; Minimum Viable Product</strong><br>👉 翻譯成中文常見是 <strong>「最小可行產品」</strong> 或 <strong>「最小可用產品」</strong>。</p>
+<hr>
+<h2 id="定義"><a href="#定義" class="headerlink" title="定義"></a>定義</h2><p>MVP 指的是：</p>
+<ul>
+<li><strong>功能最少、但仍然能解決使用者核心需求的版本</strong>。</li>
+<li>先不追求完整或華麗，而是快速做出一個「能動」的產品，讓使用者可以試用，得到回饋，再逐步改進。</li>
+</ul>
+<hr>
+<h2 id="為什麼要有-MVP？"><a href="#為什麼要有-MVP？" class="headerlink" title="為什麼要有 MVP？"></a>為什麼要有 MVP？</h2><ol>
+<li><strong>降低成本</strong>：不用一次做一個大而全的系統，避免浪費時間。</li>
+<li><strong>快速驗證</strong>：先看看市場或使用者有沒有興趣，避免白做。</li>
+<li><strong>早期學習</strong>：從使用者的反饋，修正產品方向。</li>
+<li><strong>迭代基礎</strong>：MVP 是第一塊積木，之後慢慢疊加更多功能。</li>
+</ol>
+<hr>
+<h2 id="舉例（套用到你心理＋算命網站）"><a href="#舉例（套用到你心理＋算命網站）" class="headerlink" title="舉例（套用到你心理＋算命網站）"></a>舉例（套用到你心理＋算命網站）</h2><ul>
+<li><p><strong>完整版</strong>（未來目標）：</p>
+<ul>
+<li>各種心理測驗</li>
+<li>八字、星座、塔羅功能</li>
+<li>使用者註冊、登入、存紀錄</li>
+<li>分享到社群</li>
+<li>手機版 + RWD</li>
+<li>AI 智能解讀</li>
+</ul>
+</li>
+<li><p><strong>MVP（第一版最小可行）</strong>：</p>
+<ul>
+<li>一個簡單的心理測驗頁面（例如「選一個顏色測個性」）</li>
+<li>使用 Vue 做到 <strong>輸入 ➝ 按送出 ➝ 顯示結果</strong></li>
+<li>沒有登入，沒有資料庫，只在前端跑</li>
+</ul>
+</li>
+</ul>
+<p>這樣你就能很快上線，讓朋友試用，收集意見，再慢慢加功能。</p>
+<hr>
+<h2 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h2><p>MVP 的精神就是：<br><strong>「先做一個能動的簡單版本 → 拿到使用者回饋 → 再迭代優化」</strong>。</p>
+<hr>
+<p>要不要我幫你把 <strong>你的心理＋算命網站的 MVP 功能清單</strong>寫出來？<br>（用 3～5 個功能點，讓你一開始就能快速開發 🚀）</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/%E6%9E%B6%E6%A7%8B%E8%A8%AD%E8%A8%88/" rel="tag"># 架構設計</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/09/17/OneDayOneNote/2025-05-07/" rel="prev" title="2025-05-07 架構 心理＋算命網站， 一步步來">
+                  <i class="fa fa-angle-left"></i> 2025-05-07 架構 心理＋算命網站， 一步步來
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/09/17/OneDayOneNote/2025-05-09/" rel="next" title="2025-05-09 3 台 notebook規劃各自功能">
+                  2025-05-09 3 台 notebook規劃各自功能 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

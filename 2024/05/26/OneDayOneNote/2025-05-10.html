@@ -1,0 +1,132 @@
+<hr>
+<h2 id="title-2025-05-10-MVP-階段的安裝清單date-2025-09-17-21-57-38categories-OneDayOneNotetags-架構設計-description-2025-05-10-MVP-階段的安裝清單"><a href="#title-2025-05-10-MVP-階段的安裝清單date-2025-09-17-21-57-38categories-OneDayOneNotetags-架構設計-description-2025-05-10-MVP-階段的安裝清單" class="headerlink" title="title: 2025-05-10 MVP 階段的安裝清單date: 2025-09-17 21:57:38categories: OneDayOneNotetags:  [架構設計]description:  2025-05-10 MVP 階段的安裝清單"></a>title: 2025-05-10 MVP 階段的安裝清單<br>date: 2025-09-17 21:57:38<br>categories: OneDayOneNote<br>tags:  [架構設計]<br>description:  2025-05-10 MVP 階段的安裝清單</h2><h1 id="2025-05-10-MVP-階段的安裝清單"><a href="#2025-05-10-MVP-階段的安裝清單" class="headerlink" title="2025-05-10 MVP 階段的安裝清單"></a>2025-05-10 MVP 階段的安裝清單</h1><p>太好了 👍 我幫你整理一份「<strong>MVP 階段安裝清單</strong>」，這份清單只放 <strong>必要的東西</strong>，讓你可以最快速開始做心理＋算命網站，不會浪費電腦效能，也不會卡在安裝麻煩工具上。</p>
+<hr>
+<h1 id="🚀-MVP-階段安裝清單（Windows-主力機）"><a href="#🚀-MVP-階段安裝清單（Windows-主力機）" class="headerlink" title="🚀 MVP 階段安裝清單（Windows 主力機）"></a>🚀 MVP 階段安裝清單（Windows 主力機）</h1><h3 id="1-基本工具"><a href="#1-基本工具" class="headerlink" title="1. 基本工具"></a>1. 基本工具</h3><p>✅ <strong>Node.js LTS</strong></p>
+<ul>
+<li><p>官網下載 LTS（長期支持版），穩定可靠。</p>
+</li>
+<li><p>安裝後檢查：</p>
+<pre><code class="bash">node -v
+npm -v
+</code></pre>
+</li>
+</ul>
+<p>✅ <strong>Visual Studio Code</strong></p>
+<ul>
+<li><p>主力開發編輯器。</p>
+</li>
+<li><p>推薦外掛：</p>
+<ul>
+<li>Volar（Vue 3 支援）</li>
+<li>Tailwind CSS IntelliSense</li>
+<li>ESLint</li>
+<li>Prettier（程式碼自動排版）</li>
+</ul>
+</li>
+</ul>
+<p>✅ <strong>Git</strong></p>
+<ul>
+<li><p>管理程式碼，未來要連 GitHub。</p>
+</li>
+<li><p>檢查：</p>
+<pre><code class="bash">git --version
+</code></pre>
+</li>
+</ul>
+<p>✅ <strong>瀏覽器（至少 2 個）</strong></p>
+<ul>
+<li>Chrome（主力）</li>
+<li>Edge 或 Firefox（交叉測試用）</li>
+</ul>
+<hr>
+<h3 id="2-Vue-專案環境"><a href="#2-Vue-專案環境" class="headerlink" title="2. Vue 專案環境"></a>2. Vue 專案環境</h3><p>✅ <strong>Vite + Vue 3</strong></p>
+<ul>
+<li><p>建立新專案：</p>
+<pre><code class="bash">npm create vite@latest my-app -- --template vue
+cd my-app
+npm install
+npm run dev
+</code></pre>
+</li>
+</ul>
+<p>✅ <strong>Tailwind CSS</strong></p>
+<ul>
+<li><p>UI 設計，安裝指令：</p>
+<pre><code class="bash">npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+</code></pre>
+</li>
+<li><p>在 <code>tailwind.config.js</code> 加入：</p>
+<pre><code class="js">content: [&quot;./index.html&quot;, &quot;./src/**/*.{vue,js,ts,jsx,tsx}&quot;]
+</code></pre>
+</li>
+<li><p>在 <code>src/index.css</code> 加：</p>
+<pre><code class="css">@tailwind base;
+@tailwind components;
+@tailwind utilities;
+</code></pre>
+</li>
+</ul>
+<hr>
+<h3 id="3-測試流程"><a href="#3-測試流程" class="headerlink" title="3. 測試流程"></a>3. 測試流程</h3><p>✅ <strong>在手機測試 RWD</strong></p>
+<ol>
+<li>Windows 開 <code>npm run dev -- --host</code></li>
+<li>找出 Windows IP（cmd → <code>ipconfig</code>，找 IPv4，例如 <code>192.168.1.10</code>）</li>
+<li>手機同一 Wi-Fi，瀏覽器打 <code>http://192.168.1.10:5173</code></li>
+</ol>
+<p>✅ <strong>Mac 的角色</strong></p>
+<ul>
+<li>用 Safari 測試網站相容性</li>
+<li>平常查資料、寫文件（避免主機太卡）</li>
+</ul>
+<hr>
+<h3 id="4-部署（最簡單方式）"><a href="#4-部署（最簡單方式）" class="headerlink" title="4. 部署（最簡單方式）"></a>4. 部署（最簡單方式）</h3><p>✅ <strong>Vercel 或 Netlify（免費）</strong></p>
+<ul>
+<li>把程式 push 到 GitHub</li>
+<li>Vercel&#x2F;Netlify 直接綁定 GitHub，一鍵部署</li>
+<li>自動生成網址，朋友手機也能用</li>
+</ul>
+<hr>
+<h1 id="🔑-總結"><a href="#🔑-總結" class="headerlink" title="🔑 總結"></a>🔑 總結</h1><p>👉 MVP 階段，你只需要：<br><strong>Node.js + VS Code + Git + 瀏覽器</strong><br>就能開始做心理＋算命網站了。<br>Docker、WSL2、資料庫 → 等你進入「後端學習」再加。</p>
+<hr>
+<p>要不要我幫你做一份 <strong>「心理＋算命網站 MVP 功能表」</strong>（列 3～5 個最小功能，讓你依清單實作）？</p>
+<p>很好 👍 你已經把 <strong>VS Code</strong> 裝好，接下來要安裝外掛（Extensions）。步驟如下：</p>
+<hr>
+<h3 id="🔹-安裝-VS-Code-外掛的方法"><a href="#🔹-安裝-VS-Code-外掛的方法" class="headerlink" title="🔹 安裝 VS Code 外掛的方法"></a>🔹 安裝 VS Code 外掛的方法</h3><ol>
+<li>打開 <strong>VS Code</strong>。</li>
+<li>左邊工具列找到 <strong>Extensions（擴充功能）</strong>，圖示像一個方塊拼圖。</li>
+<li>在搜尋框輸入外掛名稱 → 按 <strong>Install</strong> 安裝。</li>
+</ol>
+<hr>
+<h3 id="🔹-建議安裝的外掛"><a href="#🔹-建議安裝的外掛" class="headerlink" title="🔹 建議安裝的外掛"></a>🔹 建議安裝的外掛</h3><ol>
+<li><p><strong>Volar</strong>（Vue 3 支援）</p>
+<ul>
+<li>搜尋：<code>Volar</code></li>
+<li>安裝後就能得到 Vue 3 的語法提示、錯誤檢查。</li>
+<li>⚠️ 如果之前有安裝 <code>Vetur</code>，記得先移除（Vetur 是給 Vue 2 的）。</li>
+</ul>
+</li>
+<li><p><strong>Tailwind CSS IntelliSense</strong></p>
+<ul>
+<li>搜尋：<code>Tailwind CSS IntelliSense</code></li>
+<li>功能：打 class 時會自動提示（例如 <code>bg-...</code>、<code>text-...</code>）。</li>
+</ul>
+</li>
+<li><p><strong>ESLint</strong></p>
+<ul>
+<li>搜尋：<code>ESLint</code></li>
+<li>功能：幫你檢查程式碼是否符合規範，避免 bug。</li>
+<li>安裝後，建議在專案裡也安裝 ESLint 套件（之後我可以教你）。</li>
+</ul>
+</li>
+<li><p><strong>Prettier - Code formatter</strong></p>
+<ul>
+<li>搜尋：<code>Prettier</code></li>
+<li>功能：自動排版程式碼（按下 <strong>右鍵 → Format Document</strong>，或存檔時自動排版）。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<p>✅ 安裝完這些外掛後，你的 VS Code 就能支援 <strong>Vue 3 + TailwindCSS + 自動排版 + 程式碼檢查</strong>。<br>⚡ 建議安裝順序：<br>先 <strong>Volar</strong> → 再 <strong>Tailwind CSS IntelliSense</strong> → 然後 <strong>ESLint</strong> → 最後 <strong>Prettier</strong>。</p>
+<hr>
+<p>要不要我幫你設計一個 <strong>第一個 Vue + Tailwind 心理測驗小程式</strong>，讓你可以馬上測試這些外掛有沒有正常運作？</p>

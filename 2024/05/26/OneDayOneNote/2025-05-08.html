@@ -1,0 +1,210 @@
+<hr>
+<h2 id="title-2025-05-08-第一階段：前端-MVPdate-2025-09-17-21-52-49categories-OneDayOneNotetags-架構設計-description-2025-05-08-第一階段：前端-MVP"><a href="#title-2025-05-08-第一階段：前端-MVPdate-2025-09-17-21-52-49categories-OneDayOneNotetags-架構設計-description-2025-05-08-第一階段：前端-MVP" class="headerlink" title="title: 2025-05-08 第一階段：前端 MVPdate: 2025-09-17 21:52:49categories: OneDayOneNotetags:  [架構設計]description:   2025-05-08 第一階段：前端 MVP"></a>title: 2025-05-08 第一階段：前端 MVP<br>date: 2025-09-17 21:52:49<br>categories: OneDayOneNote<br>tags:  [架構設計]<br>description:   2025-05-08 第一階段：前端 MVP</h2><h1 id="2025-05-08-第一階段：前端-MVP"><a href="#2025-05-08-第一階段：前端-MVP" class="headerlink" title="2025-05-08 第一階段：前端 MVP"></a>2025-05-08 第一階段：前端 MVP</h1><p>好！很棒的決定 — 先把 <strong>前端 MVP</strong> 做穩最實際。下面給你一個簡短、直接可照做的「快驗清單 + 常見問題與解法」，之後有問題直接把錯誤訊息或程式碼貼給我，我會幫你找出問題並改正。</p>
+<h1 id="✅-MVP-快驗清單（照著做就行）"><a href="#✅-MVP-快驗清單（照著做就行）" class="headerlink" title="✅ MVP 快驗清單（照著做就行）"></a>✅ MVP 快驗清單（照著做就行）</h1><ul>
+<li><p><input disabled="" type="checkbox"> 
+建專案並能啟動開發伺服器</p>
+<ul>
+<li><code>npm create vite@latest psychology-fortune -- --template vue</code></li>
+<li><code>npm install</code></li>
+<li><code>npm run dev</code> （瀏覽器開 <code>http://localhost:5173</code>）</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+加入 Tailwind 並在 <code>main.js</code> 引入 <code>index.css</code>（Tailwind 設定完成後能使用 class）</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+設定 Vue Router（<code>/</code>、<code>/test</code>、<code>/result</code> 三頁可切換）</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+建好 <code>InputForm.vue</code>、<code>ResultCard.vue</code>、<code>Header/Footer</code>（先簡單 UI）</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+表單提交：把資料寫入 <code>localStorage</code>（或 Pinia state）並導到 <code>/result</code> 顯示</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+Result 根據輸入顯示動態結果（暫時用簡單邏輯或 mapping）</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+RWD（手機可用）：確認按鈕、輸入框在手機上不會被截斷</p>
+</li>
+</ul>
+<h1 id="🛠-常見問題與快速修法"><a href="#🛠-常見問題與快速修法" class="headerlink" title="🛠 常見問題與快速修法"></a>🛠 常見問題與快速修法</h1><ul>
+<li><p>問：<code>npm run dev</code> 後頁面白屏或 Cannot GET &#x2F;</p>
+<ul>
+<li>改檢查 <code>main.js</code> 是否正確 mount、router 是否 <code>export default</code>、<code>index.html</code> root id 是否一致。</li>
+</ul>
+</li>
+<li><p>問：Tailwind 樣式不生效</p>
+<ul>
+<li>檢查 <code>tailwind.config.js</code> 的 <code>content</code> 是否包含 <code>./src/**/*.{vue,js}</code>，以及 <code>index.css</code> 是否有 <code>@tailwind base; @tailwind components; @tailwind utilities;</code>。</li>
+</ul>
+</li>
+<li><p>問：路由切換不正常（按鈕點了沒反應）</p>
+<ul>
+<li>檢查 <code>&lt;router-link to=&quot;/test&quot;&gt;</code> 或程式導頁 <code>router.push(&#39;/result&#39;)</code> 是否拿到 <code>useRouter()</code>。</li>
+</ul>
+</li>
+<li><p>問：元件收到 <code>props</code> 是 undefined</p>
+<ul>
+<li>檢查 <code>defineProps</code> 或 <code>props: {}</code> 是否正確、父元件傳入資料是否有值（console.log 確認）。</li>
+</ul>
+</li>
+<li><p>問：localStorage 取不到值</p>
+<ul>
+<li>檢查 <code>JSON.stringify</code> &#x2F; <code>JSON.parse</code> 使用是否正確，且 key 名稱一致。</li>
+</ul>
+</li>
+</ul>
+<h1 id="🔜-建議下一步（完成-MVP-後）"><a href="#🔜-建議下一步（完成-MVP-後）" class="headerlink" title="🔜 建議下一步（完成 MVP 後）"></a>🔜 建議下一步（完成 MVP 後）</h1><ol>
+<li>把測驗邏輯做成可配置（題庫 JSON），方便擴充。</li>
+<li>把結果頁的文字用模板或範本產生（避免硬寫字串）。</li>
+<li>加入簡單分享功能（把結果轉成短連結或 copy to clipboard）。</li>
+<li>再下一步：串後端或串 AI（如果要升級智慧解說）。</li>
+</ol>
+<hr>
+<p>如果你碰到任何錯誤或不確定的地方，<strong>直接貼上：</strong></p>
+<ul>
+<li>錯誤訊息（完整 copy）</li>
+<li>有問題的檔案（或貼重點程式碼段）<br>我會幫你逐行檢查並給出修正。加油！🚀</li>
+</ul>
+<h1 id="Tailwind-CSS-簡短複習（中文重點版）"><a href="#Tailwind-CSS-簡短複習（中文重點版）" class="headerlink" title="Tailwind CSS 簡短複習（中文重點版）"></a>Tailwind CSS 簡短複習（中文重點版）</h1><p>很好，Tailwind 在現代前端很常見 —— 它不是一個「預做好的元件庫」，而是一個 <strong>utility-first（實用類別優先）</strong> 的 CSS 工具集。下面把重點、優點、使用方法與實務範例都說清楚，方便你馬上回去套在 Vue 元件上。</p>
+<hr>
+<h2 id="什麼是-Tailwind？"><a href="#什麼是-Tailwind？" class="headerlink" title="什麼是 Tailwind？"></a>什麼是 Tailwind？</h2><ul>
+<li><strong>Utility-first</strong>：提供大量小而單一職責的 class（像 <code>p-4</code>、<code>text-sm</code>、<code>bg-blue-500</code>），透過組合這些 class 來完成樣式，而不是寫大量自訂 CSS。</li>
+<li><strong>不預設外觀</strong>：不像 Bootstrap 那樣有強烈主題，Tailwind 提供基礎工具，讓你自由打造風格。</li>
+<li><strong>高度可客製</strong>：可以在 <code>tailwind.config.js</code> 裡擴充顏色、間距、字型等。</li>
+</ul>
+<hr>
+<h2 id="優點與缺點（實用判斷）"><a href="#優點與缺點（實用判斷）" class="headerlink" title="優點與缺點（實用判斷）"></a>優點與缺點（實用判斷）</h2><p><strong>優點</strong></p>
+<ul>
+<li>快速開發 UI：不用在 CSS 檔案來回切換，直接在 markup 上寫 class。</li>
+<li>一致性好：團隊上使用同一套 spacing &#x2F; color scale。</li>
+<li>生產環境體積小：透過 <code>content</code>（或 purge）只保留用到的 class，輸出 CSS 很小。</li>
+<li>易做 RWD：用 <code>sm:</code>, <code>md:</code>, <code>lg:</code> 簡單寫響應式。</li>
+</ul>
+<p><strong>缺點</strong></p>
+<ul>
+<li>初期 class 看起來「很長」或「雜」，可用 <code>@apply</code> 抽成 class。</li>
+<li>習慣上需要改變思維（從寫 CSS 移到組合 class）。</li>
+<li>若把邏輯產生的 class 亂寫，可能導致無法被 purge（需要注意 content 配置或用 safelist）。</li>
+</ul>
+<hr>
+<h2 id="在-Vue-Vite-專案快設定（重點）"><a href="#在-Vue-Vite-專案快設定（重點）" class="headerlink" title="在 Vue + Vite 專案快設定（重點）"></a>在 Vue + Vite 專案快設定（重點）</h2><p>已做過的指令回顧：</p>
+<pre><code class="bash">npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+</code></pre>
+<p><code>index.css</code>（或 <code>src/index.css</code>）要有：</p>
+<pre><code class="css">@tailwind base;
+@tailwind components;
+@tailwind utilities;
+</code></pre>
+<p><code>tailwind.config.js</code> 最重要的 <code>content</code> 設定：</p>
+<pre><code class="js">module.exports = {
+  content: [
+    &quot;./index.html&quot;,
+    &quot;./src/**/*.{vue,js,ts,jsx,tsx}&quot;
+  ],
+  theme: { extend: {} },
+  plugins: [],
+}
+</code></pre>
+<p>把 <code>index.css</code> 在 <code>main.js</code> 引入：<code>import &#39;./index.css&#39;</code></p>
+<hr>
+<h2 id="常用語法範例（最好懂）"><a href="#常用語法範例（最好懂）" class="headerlink" title="常用語法範例（最好懂）"></a>常用語法範例（最好懂）</h2><ul>
+<li>文字與間距：<code>text-sm</code>, <code>text-xl</code>, <code>p-4</code>, <code>px-6</code>, <code>py-2</code>, <code>m-2</code></li>
+<li>色彩與背景：<code>text-white</code>, <code>bg-blue-500</code>, <code>hover:bg-blue-600</code></li>
+<li>版型：<code>flex</code>, <code>grid</code>, <code>gap-4</code>, <code>items-center</code>, <code>justify-between</code></li>
+<li>邊框與陰影：<code>border</code>, <code>rounded-lg</code>, <code>shadow-md</code></li>
+<li>響應式：<code>sm:text-sm md:text-base lg:text-lg</code></li>
+<li>偽類：<code>hover:</code>, <code>focus:</code>, <code>active:</code></li>
+</ul>
+<p>範例按鈕：</p>
+<pre><code class="html">&lt;button class=&quot;bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md&quot;&gt;
+  送出
+&lt;/button&gt;
+</code></pre>
+<hr>
+<h2 id="在-Vue-的實務小技巧"><a href="#在-Vue-的實務小技巧" class="headerlink" title="在 Vue 的實務小技巧"></a>在 Vue 的實務小技巧</h2><ul>
+<li><p><strong>動態 class</strong>：可以用 <code>:class</code> 綁定字串或物件：</p>
+<pre><code class="vue">&lt;button :class=&quot;[&#39;px-4 py-2 rounded&#39;, isActive ? &#39;bg-green-500&#39; : &#39;bg-gray-300&#39;]&quot;&gt;按我&lt;/button&gt;
+</code></pre>
+</li>
+<li><p><strong>避免無法 purge 的動態 class</strong>：若 class 是由變數拼接（像 <code>bg-${color}-500</code>），Tailwind 可能無法偵測到。可用 safelist 或在 template 裡列明所有可能的 class。</p>
+</li>
+<li><p><strong>重複樣式抽出</strong>：用 <code>@apply</code> 在你的 CSS 裡抽成一個自訂 class（減少長長的 class 列表）：</p>
+<pre><code class="css">.btn {
+  @apply px-4 py-2 rounded bg-blue-500 text-white hover:bg-blue-600;
+}
+</code></pre>
+</li>
+<li><p><strong>表單美化</strong>：安裝官方 plugin <code>@tailwindcss/forms</code> 能快速讓 input&#x2F;select&#x2F;look 更好看。</p>
+</li>
+</ul>
+<hr>
+<h2 id="範例：把-InputForm-vue-用-Tailwind-改造"><a href="#範例：把-InputForm-vue-用-Tailwind-改造" class="headerlink" title="範例：把 InputForm.vue 用 Tailwind 改造"></a>範例：把 InputForm.vue 用 Tailwind 改造</h2><pre><code class="vue">&lt;template&gt;
+  &lt;form @submit.prevent=&quot;submitForm&quot; class=&quot;flex flex-col gap-4 w-full max-w-sm&quot;&gt;
+    &lt;input v-model=&quot;name&quot; type=&quot;text&quot; placeholder=&quot;姓名&quot;
+           class=&quot;border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-400&quot; /&gt;
+    &lt;input v-model=&quot;birthday&quot; type=&quot;date&quot;
+           class=&quot;border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-400&quot; /&gt;
+    &lt;button type=&quot;submit&quot; class=&quot;bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md&quot;&gt;
+      送出
+    &lt;/button&gt;
+  &lt;/form&gt;
+&lt;/template&gt;
+</code></pre>
+<hr>
+<h2 id="最佳實務與建議"><a href="#最佳實務與建議" class="headerlink" title="最佳實務與建議"></a>最佳實務與建議</h2><ol>
+<li><strong>先熟悉常用 utility</strong>（flex、spacing、typography、colors）再用進階功能。</li>
+<li><strong>用 <code>@apply</code> 抽重複樣式</strong>，維持模板可讀性。</li>
+<li><strong>注意 <code>content</code> 配置</strong>，確保生產環境能正確 tree-shake CSS。</li>
+<li><strong>把設計 token（colors、spacing）放到 <code>tailwind.config.js</code> 的 <code>theme.extend</code>，團隊一致性更好。</strong></li>
+</ol>
+<hr>
+<p>如果你想，我可以：</p>
+<ul>
+<li>幫你把 <code>InputForm.vue</code>、<code>ResultCard.vue</code> 的 class 改成更漂亮的 Tailwind 樣式；或</li>
+<li>提供一份 <code>tailwind.config.js</code> 範本（包含自定義色板／字型）讓你直接貼上使用。</li>
+</ul>
+<p>你想先看哪一個？🙂</p>
+<p>好問題 👍 我來幫你釐清 <strong>MVP</strong> 這個詞的意思。</p>
+<hr>
+<h1 id="MVP-在軟體開發裡的意思"><a href="#MVP-在軟體開發裡的意思" class="headerlink" title="MVP 在軟體開發裡的意思"></a>MVP 在軟體開發裡的意思</h1><p><strong>MVP &#x3D; Minimum Viable Product</strong><br>👉 翻譯成中文常見是 <strong>「最小可行產品」</strong> 或 <strong>「最小可用產品」</strong>。</p>
+<hr>
+<h2 id="定義"><a href="#定義" class="headerlink" title="定義"></a>定義</h2><p>MVP 指的是：</p>
+<ul>
+<li><strong>功能最少、但仍然能解決使用者核心需求的版本</strong>。</li>
+<li>先不追求完整或華麗，而是快速做出一個「能動」的產品，讓使用者可以試用，得到回饋，再逐步改進。</li>
+</ul>
+<hr>
+<h2 id="為什麼要有-MVP？"><a href="#為什麼要有-MVP？" class="headerlink" title="為什麼要有 MVP？"></a>為什麼要有 MVP？</h2><ol>
+<li><strong>降低成本</strong>：不用一次做一個大而全的系統，避免浪費時間。</li>
+<li><strong>快速驗證</strong>：先看看市場或使用者有沒有興趣，避免白做。</li>
+<li><strong>早期學習</strong>：從使用者的反饋，修正產品方向。</li>
+<li><strong>迭代基礎</strong>：MVP 是第一塊積木，之後慢慢疊加更多功能。</li>
+</ol>
+<hr>
+<h2 id="舉例（套用到你心理＋算命網站）"><a href="#舉例（套用到你心理＋算命網站）" class="headerlink" title="舉例（套用到你心理＋算命網站）"></a>舉例（套用到你心理＋算命網站）</h2><ul>
+<li><p><strong>完整版</strong>（未來目標）：</p>
+<ul>
+<li>各種心理測驗</li>
+<li>八字、星座、塔羅功能</li>
+<li>使用者註冊、登入、存紀錄</li>
+<li>分享到社群</li>
+<li>手機版 + RWD</li>
+<li>AI 智能解讀</li>
+</ul>
+</li>
+<li><p><strong>MVP（第一版最小可行）</strong>：</p>
+<ul>
+<li>一個簡單的心理測驗頁面（例如「選一個顏色測個性」）</li>
+<li>使用 Vue 做到 <strong>輸入 ➝ 按送出 ➝ 顯示結果</strong></li>
+<li>沒有登入，沒有資料庫，只在前端跑</li>
+</ul>
+</li>
+</ul>
+<p>這樣你就能很快上線，讓朋友試用，收集意見，再慢慢加功能。</p>
+<hr>
+<h2 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h2><p>MVP 的精神就是：<br><strong>「先做一個能動的簡單版本 → 拿到使用者回饋 → 再迭代優化」</strong>。</p>
+<hr>
+<p>要不要我幫你把 <strong>你的心理＋算命網站的 MVP 功能清單</strong>寫出來？<br>（用 3～5 個功能點，讓你一開始就能快速開發 🚀）</p>
