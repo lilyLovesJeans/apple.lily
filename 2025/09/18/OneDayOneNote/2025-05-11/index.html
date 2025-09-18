@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2025-05-11 無 DB 的 MVP → 加 DB 的進化版」超精簡、分步且可立即執行的路線圖">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025-05-11 無 DB 的 MVP → 加 DB 的進化版」超精簡、分步且可立即執行的路線圖">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/09/18/OneDayOneNote/2025-05-11/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2025-05-11 無 DB 的 MVP → 加 DB 的進化版」超精簡、分步且可立即執行的路線圖">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-09-18T12:53:25.000Z">
+<meta property="article:modified_time" content="2025-09-18T12:55:12.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="架構設計">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2025/09/18/OneDayOneNote/2025-05-11/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2025/09/18/OneDayOneNote/2025-05-11/","path":"2025/09/18/OneDayOneNote/2025-05-11/","title":"2025-05-11 無 DB 的 MVP → 加 DB 的進化版」超精簡、分步且可立即執行的路線圖"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2025-05-11 無 DB 的 MVP → 加 DB 的進化版」超精簡、分步且可立即執行的路線圖 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2025-05-11-%E7%84%A1-DB-%E7%9A%84-MVP-%E2%86%92-%E5%8A%A0-DB-%E7%9A%84%E9%80%B2%E5%8C%96%E7%89%88%E3%80%8D%E8%B6%85%E7%B2%BE%E7%B0%A1%E3%80%81%E5%88%86%E6%AD%A5%E4%B8%94%E5%8F%AF%E7%AB%8B%E5%8D%B3%E5%9F%B7%E8%A1%8C%E7%9A%84%E8%B7%AF%E7%B7%9A%E5%9C%96"><span class="nav-number">1.</span> <span class="nav-text">2025-05-11 無 DB 的 MVP → 加 DB 的進化版」超精簡、分步且可立即執行的路線圖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A6%82%E8%A7%80%EF%BC%88%E5%85%A9%E5%80%8B%E9%9A%8E%E6%AE%B5%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">概觀（兩個階段）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9A%8E%E6%AE%B5-A-%E2%80%94-%E7%84%A1-DB-%E7%9A%84-MVP%EF%BC%88%E7%9B%AE%E6%A8%99%EF%BC%9A%E6%9C%80%E5%BF%AB%E6%8A%8A%E5%95%8F%E7%AD%94%E5%BE%9E%E5%89%8D%E7%AB%AF%E8%B7%91%E5%88%B0-AI-%E4%B8%A6%E5%9B%9E%E4%BE%86%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">階段 A — 無 DB 的 MVP（目標：最快把問答從前端跑到 AI 並回來）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-A1-%E2%80%94-%E5%9C%A8-Mac-%E8%B5%B7%E4%B8%80%E5%80%8B%E6%9C%80%E5%B0%8F-MCP-gateway%EF%BC%88%E4%B8%AD%E4%BB%8B%EF%BC%89"><span class="nav-number">3.0.1.</span> <span class="nav-text">Step A1 — 在 Mac 起一個最小 MCP gateway（中介）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-A2-%E2%80%94-%E5%9C%A8-Windows%EF%BC%88%E6%88%96%E5%8F%A6%E4%B8%80%E5%8F%B0%EF%BC%89%E5%81%9A%E7%B0%A1%E5%96%AE%E5%89%8D%E7%AB%AF%E6%B8%AC%E8%A9%A6%E9%A0%81%E9%9D%A2%EF%BC%88Ask%EF%BC%89"><span class="nav-number">3.0.2.</span> <span class="nav-text">Step A2 — 在 Windows（或另一台）做簡單前端測試頁面（Ask）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-A3-%E2%80%94-%EF%BC%88%E9%81%B8%E5%81%9A%EF%BC%89%E5%9C%A8-Mac-%E4%B8%8A%E7%94%A8-pm2-%E5%B8%B8%E9%A7%90"><span class="nav-number">3.0.3.</span> <span class="nav-text">Step A3 — （選做）在 Mac 上用 pm2 常駐</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9A%8E%E6%AE%B5-B-%E2%80%94-%E5%8A%A0-DB-%E7%9A%84%E9%80%B2%E5%8C%96%E7%89%88%EF%BC%88%E7%9B%AE%E6%A8%99%EF%BC%9A%E4%BF%9D%E7%95%99%E6%AD%B7%E5%8F%B2%E3%80%81%E7%B0%A1%E5%96%AE%E6%9C%83%E5%93%A1%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">階段 B — 加 DB 的進化版（目標：保留歷史、簡單會員）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%82%BA%E4%BB%80%E9%BA%BC%E6%8A%8A-DB-%E6%94%BE-Windows-Docker%EF%BC%9F"><span class="nav-number">4.1.</span> <span class="nav-text">為什麼把 DB 放 Windows Docker？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-Step1-%E2%80%94-%E5%9C%A8-Windows-%E7%94%A8-Docker-%E5%95%9F%E5%8B%95-MySQL%EF%BC%88%E6%9C%80%E5%B0%8F%EF%BC%89"><span class="nav-number">4.2.</span> <span class="nav-text">B Step1 — 在 Windows 用 Docker 啟動 MySQL（最小）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-Step2-%E2%80%94-%E5%9C%A8-Mac-%E7%9A%84-gateway-%E5%8A%A0%E4%B8%8A%E6%9C%80%E5%B0%8F-DB-%E5%AD%98%E5%8F%96%EF%BC%88Node-mysql2%EF%BC%89"><span class="nav-number">4.3.</span> <span class="nav-text">B Step2 — 在 Mac 的 gateway 加上最小 DB 存取（Node mysql2）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%8F%E5%9E%8B-repo-%E5%BB%BA%E8%AD%B0%EF%BC%88%E5%BE%88%E7%B0%A1%E7%9F%AD%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">小型 repo 建議（很簡短）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E5%85%A8-%E5%AF%A6%E5%8B%99%E5%B0%8F%E6%8F%90%E9%86%92%EF%BC%88%E5%BF%85%E8%AE%80%EF%BC%89"><span class="nav-number">6.</span> <span class="nav-text">安全 &amp; 實務小提醒（必讀）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BF%83%E9%9D%88%E7%AE%97%E5%91%BD%E7%B6%B2%E7%AB%99%E5%AD%B8%E7%BF%92%E8%B7%AF%E7%B7%9A%E5%9C%96%EF%BC%88%E9%99%84%E7%B0%A1%E7%A8%B1%E7%BF%BB%E8%AD%AF%EF%BC%89"><span class="nav-number">7.</span> <span class="nav-text">心靈算命網站學習路線圖（附簡稱翻譯）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B8%BD%E9%AB%94%E6%A6%82%E5%BF%B5"><span class="nav-number">7.1.</span> <span class="nav-text">總體概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%8E%E6%AE%B5-A-%E2%80%94-%E7%84%A1-DB-%E7%9A%84-MVP%EF%BC%88%E5%BF%AB%E9%80%9F%E9%A9%97%E8%AD%89-AI-%E4%BA%92%E5%8B%95%E6%B5%81%E7%A8%8B%EF%BC%89"><span class="nav-number">7.2.</span> <span class="nav-text">階段 A — 無 DB 的 MVP（快速驗證 AI 互動流程）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-A1-%E2%80%94-%E5%BB%BA%E7%AB%8B-MCP-Gateway"><span class="nav-number">7.2.1.</span> <span class="nav-text">Step A1 — 建立 MCP Gateway</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-A2-%E2%80%94-%E5%89%8D%E7%AB%AF%E6%9C%80%E5%B0%8F%E6%B8%AC%E8%A9%A6%E9%A0%81%E9%9D%A2"><span class="nav-number">7.2.2.</span> <span class="nav-text">Step A2 — 前端最小測試頁面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-A3-%E2%80%94-MCP-Gateway-%E5%B8%B8%E9%A7%90"><span class="nav-number">7.2.3.</span> <span class="nav-text">Step A3 — MCP Gateway 常駐</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%8E%E6%AE%B5-B-%E2%80%94-%E5%8A%A0-DB-%E7%9A%84%E9%80%B2%E5%8C%96%E7%89%88%EF%BC%88%E4%BF%9D%E5%AD%98%E6%AD%B7%E5%8F%B2%E3%80%81%E6%9C%83%E5%93%A1%E7%B3%BB%E7%B5%B1%EF%BC%89"><span class="nav-number">7.3.</span> <span class="nav-text">階段 B — 加 DB 的進化版（保存歷史、會員系統）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-B1-%E2%80%94-%E5%9C%A8-Windows-%E7%94%A8-Docker-%E5%95%9F%E5%8B%95-MySQL"><span class="nav-number">7.3.1.</span> <span class="nav-text">Step B1 — 在 Windows 用 Docker 啟動 MySQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-B2-%E2%80%94-MCP-Gateway-%E5%AF%AB%E5%85%A5-DB"><span class="nav-number">7.3.2.</span> <span class="nav-text">Step B2 — MCP Gateway 寫入 DB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-B3-%E2%80%94-%E5%89%8D%E7%AB%AF%E9%A1%AF%E7%A4%BA%E6%AD%B7%E5%8F%B2"><span class="nav-number">7.3.3.</span> <span class="nav-text">Step B3 — 前端顯示歷史</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B3%87%E6%BA%90%E5%88%86%E9%85%8D%E5%BB%BA%E8%AD%B0"><span class="nav-number">7.4.</span> <span class="nav-text">資源分配建議</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%A6%E5%8B%99%E5%B0%8F%E6%8F%90%E9%86%92"><span class="nav-number">7.5.</span> <span class="nav-text">實務小提醒</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">435</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2025/09/18/OneDayOneNote/2025-05-11/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2025-05-11 無 DB 的 MVP → 加 DB 的進化版」超精簡、分步且可立即執行的路線圖 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2025-05-11 無 DB 的 MVP → 加 DB 的進化版」超精簡、分步且可立即執行的路線圖">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2025-05-11 無 DB 的 MVP → 加 DB 的進化版」超精簡、分步且可立即執行的路線圖
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2025-09-18 20:53:25 / 修改時間：20:55:12" itemprop="dateCreated datePublished" datetime="2025-09-18T20:53:25+08:00">2025-09-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2025-05-11 無 DB 的 MVP → 加 DB 的進化版」超精簡、分步且可立即執行的路線圖</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="2025-05-11-無-DB-的-MVP-→-加-DB-的進化版」超精簡、分步且可立即執行的路線圖"><a href="#2025-05-11-無-DB-的-MVP-→-加-DB-的進化版」超精簡、分步且可立即執行的路線圖" class="headerlink" title="2025-05-11 無 DB 的 MVP → 加 DB 的進化版」超精簡、分步且可立即執行的路線圖"></a>2025-05-11 無 DB 的 MVP → 加 DB 的進化版」超精簡、分步且可立即執行的路線圖</h1><p>太棒 — 我把「<strong>無 DB 的 MVP → 加 DB 的進化版</strong>」做成一個超精簡、分步且可立即執行的路線圖。每一步都拆得很小、只做一件事，並附上可貼上執行的最小程式&#x2F;命令與驗收標準。你照做、完成驗收就告訴我，我再給下一步。（一步一步學最穩）</p>
+<h1 id="概觀（兩個階段）"><a href="#概觀（兩個階段）" class="headerlink" title="概觀（兩個階段）"></a>概觀（兩個階段）</h1><ul>
+<li>階段 A（無 DB 的 MVP）：讓前端可以問問題 → MCP（Mac）轉發到 OpenAI &#x2F; DeepSeek → 回前端。<strong>不存資料</strong>，快速驗證整個流程。</li>
+<li>階段 B（加 DB 的進化版）：把問答紀錄存在 MySQL（放在 Windows 的 Docker），加入使用者帳號基礎（可選 JWT），並做簡單的管理&#x2F;查詢頁面。</li>
+</ul>
+<hr>
+<h1 id="階段-A-—-無-DB-的-MVP（目標：最快把問答從前端跑到-AI-並回來）"><a href="#階段-A-—-無-DB-的-MVP（目標：最快把問答從前端跑到-AI-並回來）" class="headerlink" title="階段 A — 無 DB 的 MVP（目標：最快把問答從前端跑到 AI 並回來）"></a>階段 A — 無 DB 的 MVP（目標：最快把問答從前端跑到 AI 並回來）</h1><p>總時長：每一步約 5–20 分鐘（取決於你熟悉度）。<br>先做「Step A1」，完成後告訴我，我再給 A2。</p>
+<h3 id="Step-A1-—-在-Mac-起一個最小-MCP-gateway（中介）"><a href="#Step-A1-—-在-Mac-起一個最小-MCP-gateway（中介）" class="headerlink" title="Step A1 — 在 Mac 起一個最小 MCP gateway（中介）"></a>Step A1 — 在 Mac 起一個最小 MCP gateway（中介）</h3><p>目的：確認 Mac 能接收前端&#x2F;Windows 的 POST 並回覆（mock 或實際 API）</p>
+<ol>
+<li>建目錄、安裝依賴：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> ~/mcp-gateway</span><br><span class="line"><span class="built_in">cd</span> ~/mcp-gateway</span><br><span class="line">npm init -y</span><br><span class="line"><span class="comment"># 如果 Node &gt;=18 可以不用 node-fetch</span></span><br><span class="line">npm i express dotenv</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>建 <code>.env</code>（先可不放金鑰，測試 mock）：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PORT=4000</span><br><span class="line">OPENAI_API_KEY=</span><br><span class="line">DEEPSEEK_API_KEY=</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>建 <code>gateway.mjs</code>（貼上整段並儲存）：</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> express <span class="keyword">from</span> <span class="string">&#x27;express&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> dotenv <span class="keyword">from</span> <span class="string">&#x27;dotenv&#x27;</span>;</span><br><span class="line">dotenv.<span class="title function_">config</span>();</span><br><span class="line"><span class="keyword">const</span> app = <span class="title function_">express</span>();</span><br><span class="line">app.<span class="title function_">use</span>(express.<span class="title function_">json</span>());</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">OPENAI_KEY</span> = process.<span class="property">env</span>.<span class="property">OPENAI_API_KEY</span> || <span class="string">&#x27;&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">DEEPSEEK_KEY</span> = process.<span class="property">env</span>.<span class="property">DEEPSEEK_API_KEY</span> || <span class="string">&#x27;&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> providers = &#123;</span><br><span class="line">  <span class="attr">openai</span>: <span class="keyword">async</span> (&#123; messages &#125;) =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="variable constant_">OPENAI_KEY</span>) <span class="keyword">return</span> &#123; <span class="attr">text</span>: <span class="string">&#x27;[mock openai] 這是模擬回覆&#x27;</span> &#125;;</span><br><span class="line">    <span class="keyword">const</span> resp = <span class="keyword">await</span> <span class="title function_">fetch</span>(<span class="string">&#x27;https://api.openai.com/v1/chat/completions&#x27;</span>, &#123;</span><br><span class="line">      <span class="attr">method</span>: <span class="string">&#x27;POST&#x27;</span>,</span><br><span class="line">      <span class="attr">headers</span>: &#123; <span class="string">&#x27;Authorization&#x27;</span>: <span class="string">`Bearer <span class="subst">$&#123;OPENAI_KEY&#125;</span>`</span>, <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/json&#x27;</span> &#125;,</span><br><span class="line">      <span class="attr">body</span>: <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(&#123; <span class="attr">model</span>: <span class="string">&#x27;gpt-3.5-turbo&#x27;</span>, messages &#125;)</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">const</span> data = <span class="keyword">await</span> resp.<span class="title function_">json</span>();</span><br><span class="line">    <span class="keyword">return</span> &#123; <span class="attr">text</span>: data?.<span class="property">choices</span>?.[<span class="number">0</span>]?.<span class="property">message</span>?.<span class="property">content</span> ?? <span class="string">&#x27;&#x27;</span>, <span class="attr">raw</span>: data &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">deepseek</span>: <span class="keyword">async</span> (&#123; messages &#125;) =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="variable constant_">DEEPSEEK_KEY</span>) <span class="keyword">return</span> &#123; <span class="attr">text</span>: <span class="string">&#x27;[mock deepseek] 這是模擬回覆&#x27;</span> &#125;;</span><br><span class="line">    <span class="keyword">const</span> resp = <span class="keyword">await</span> <span class="title function_">fetch</span>(<span class="string">&#x27;https://api.deepseek.com/v1/chat/completions&#x27;</span>, &#123;</span><br><span class="line">      <span class="attr">method</span>: <span class="string">&#x27;POST&#x27;</span>,</span><br><span class="line">      <span class="attr">headers</span>: &#123; <span class="string">&#x27;Authorization&#x27;</span>: <span class="string">`Bearer <span class="subst">$&#123;DEEPSEEK_KEY&#125;</span>`</span>, <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/json&#x27;</span> &#125;,</span><br><span class="line">      <span class="attr">body</span>: <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(&#123; <span class="attr">model</span>: <span class="string">&#x27;deepseek-v1&#x27;</span>, messages &#125;)</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">const</span> data = <span class="keyword">await</span> resp.<span class="title function_">json</span>();</span><br><span class="line">    <span class="keyword">return</span> &#123; <span class="attr">text</span>: data?.<span class="property">choices</span>?.[<span class="number">0</span>]?.<span class="property">message</span>?.<span class="property">content</span> ?? <span class="string">&#x27;&#x27;</span>, <span class="attr">raw</span>: data &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/health&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> res.<span class="title function_">json</span>(&#123; <span class="attr">status</span>: <span class="string">&#x27;ok&#x27;</span>, <span class="attr">role</span>: <span class="string">&#x27;mcp-gateway&#x27;</span> &#125;));</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">post</span>(<span class="string">&#x27;/api/chat&#x27;</span>, <span class="keyword">async</span> (req, res) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; provider=<span class="string">&#x27;openai&#x27;</span>, messages=[&#123;<span class="attr">role</span>:<span class="string">&#x27;user&#x27;</span>, <span class="attr">content</span>:<span class="string">&#x27;hello&#x27;</span>&#125;] &#125; = req.<span class="property">body</span>;</span><br><span class="line">  <span class="keyword">const</span> adapter = providers[provider];</span><br><span class="line">  <span class="keyword">if</span> (!adapter) <span class="keyword">return</span> res.<span class="title function_">status</span>(<span class="number">400</span>).<span class="title function_">json</span>(&#123; <span class="attr">error</span>: <span class="string">&#x27;unknown provider&#x27;</span> &#125;);</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; text, raw &#125; = <span class="keyword">await</span> <span class="title function_">adapter</span>(&#123; messages &#125;);</span><br><span class="line">    <span class="keyword">return</span> res.<span class="title function_">json</span>(&#123; provider, text, raw &#125;);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&#x27;provider error&#x27;</span>, err);</span><br><span class="line">    <span class="keyword">return</span> res.<span class="title function_">status</span>(<span class="number">500</span>).<span class="title function_">json</span>(&#123; <span class="attr">error</span>: <span class="string">&#x27;provider error&#x27;</span> &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> port = process.<span class="property">env</span>.<span class="property">PORT</span> || <span class="number">4000</span>;</span><br><span class="line">app.<span class="title function_">listen</span>(port, <span class="function">() =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`MCP gateway listening on <span class="subst">$&#123;port&#125;</span>`</span>));</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>在 Mac 上啟動：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node gateway.mjs</span><br><span class="line"><span class="comment"># 若要常駐可 later 用 pm2: npm i -g pm2 ； pm2 start gateway.mjs --name mcp-gateway</span></span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>在 Mac 測試（同機）：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">curl http://localhost:4000/health</span><br><span class="line"><span class="comment"># 應得到 &#123;&quot;status&quot;:&quot;ok&quot;,&quot;role&quot;:&quot;mcp-gateway&quot;&#125;</span></span><br><span class="line"></span><br><span class="line">curl -X POST http://localhost:4000/api/chat -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;&quot;provider&quot;:&quot;openai&quot;,&quot;messages&quot;:[&#123;&quot;role&quot;:&quot;user&quot;,&quot;content&quot;:&quot;哈囉&quot;&#125;]&#125;&#x27;</span></span><br><span class="line"><span class="comment"># 若沒放 OPENAI_KEY 會看到 mock 回覆</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>驗收 A1</strong>（完成就回報）：</p>
+<ul>
+<li><code>/health</code> 回 <code>ok</code>，且 <code>/api/chat</code> 對 <code>provider=openai</code> 與 <code>provider=deepseek</code> 都會回覆（mock OK）。</li>
+<li>如果你想立刻測真 API，把 OPENAI_KEY 放進 <code>.env</code>（重啟）再測一次。</li>
+</ul>
+<hr>
+<h3 id="Step-A2-—-在-Windows（或另一台）做簡單前端測試頁面（Ask）"><a href="#Step-A2-—-在-Windows（或另一台）做簡單前端測試頁面（Ask）" class="headerlink" title="Step A2 — 在 Windows（或另一台）做簡單前端測試頁面（Ask）"></a>Step A2 — 在 Windows（或另一台）做簡單前端測試頁面（Ask）</h3><p>（等 A1 OK 我再貼最小前端檔案。這一步會驗證 Mac 的網路可達性）</p>
+<hr>
+<h3 id="Step-A3-—-（選做）在-Mac-上用-pm2-常駐"><a href="#Step-A3-—-（選做）在-Mac-上用-pm2-常駐" class="headerlink" title="Step A3 — （選做）在 Mac 上用 pm2 常駐"></a>Step A3 — （選做）在 Mac 上用 pm2 常駐</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm i -g pm2</span><br><span class="line">pm2 start gateway.mjs --name mcp-gateway</span><br><span class="line">pm2 save</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="階段-B-—-加-DB-的進化版（目標：保留歷史、簡單會員）"><a href="#階段-B-—-加-DB-的進化版（目標：保留歷史、簡單會員）" class="headerlink" title="階段 B — 加 DB 的進化版（目標：保留歷史、簡單會員）"></a>階段 B — 加 DB 的進化版（目標：保留歷史、簡單會員）</h1><p>當你在 A 拿到穩定的中介就做 B。B 我也拆成小步，先列重點與第一個子步。</p>
+<h2 id="為什麼把-DB-放-Windows-Docker？"><a href="#為什麼把-DB-放-Windows-Docker？" class="headerlink" title="為什麼把 DB 放 Windows Docker？"></a>為什麼把 DB 放 Windows Docker？</h2><ul>
+<li>你的 Windows 比較新，可以穩定跑 Docker + MySQL、方便管理 volume 與備份，不會讓舊 Mac 吃太多資源。</li>
+</ul>
+<h2 id="B-Step1-—-在-Windows-用-Docker-啟動-MySQL（最小）"><a href="#B-Step1-—-在-Windows-用-Docker-啟動-MySQL（最小）" class="headerlink" title="B Step1 — 在 Windows 用 Docker 啟動 MySQL（最小）"></a>B Step1 — 在 Windows 用 Docker 啟動 MySQL（最小）</h2><ol>
+<li>在 Windows 建一個資料夾放 <code>docker-compose.yml</code>：</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&#x27;3.1&#x27;</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">db:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">mysql:8</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">MYSQL_ROOT_PASSWORD:</span> <span class="string">example</span></span><br><span class="line">      <span class="attr">MYSQL_DATABASE:</span> <span class="string">mindsite</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;3306:3306&quot;</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">db_data:/var/lib/mysql</span></span><br><span class="line"><span class="attr">volumes:</span></span><br><span class="line">  <span class="attr">db_data:</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>啟動：</li>
+</ol>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker<span class="literal">-compose</span> up <span class="literal">-d</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>驗證（在 Windows）：</li>
+</ol>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">ps</span></span><br><span class="line"><span class="comment"># 或用 mysql client 連上 localhost:3306</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>驗收 B1</strong>：MySQL container 正常啟動，能用 client 連上。</p>
+<hr>
+<h2 id="B-Step2-—-在-Mac-的-gateway-加上最小-DB-存取（Node-mysql2）"><a href="#B-Step2-—-在-Mac-的-gateway-加上最小-DB-存取（Node-mysql2）" class="headerlink" title="B Step2 — 在 Mac 的 gateway 加上最小 DB 存取（Node mysql2）"></a>B Step2 — 在 Mac 的 gateway 加上最小 DB 存取（Node mysql2）</h2><p>（等 B1 OK，我會給你 <code>npm i mysql2</code> 的最小程式碼把每次問答寫進 readings 表）</p>
+<hr>
+<h1 id="小型-repo-建議（很簡短）"><a href="#小型-repo-建議（很簡短）" class="headerlink" title="小型 repo 建議（很簡短）"></a>小型 repo 建議（很簡短）</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mindsite-backend/</span><br><span class="line">  gateway.mjs</span><br><span class="line">  .env</span><br><span class="line">mindsite-frontend/</span><br><span class="line">  vite project with Ask.vue</span><br></pre></td></tr></table></figure>
+
+<h1 id="安全-實務小提醒（必讀）"><a href="#安全-實務小提醒（必讀）" class="headerlink" title="安全 &amp; 實務小提醒（必讀）"></a>安全 &amp; 實務小提醒（必讀）</h1><ul>
+<li>API keys 只放在 Mac <code>.env</code>（server），不要放前端。</li>
+<li>測試 LAN 請先不要做 port-forward 開到 Internet；若要測網路通，先用 ngrok。</li>
+<li>舊 Mac 只做路由&#x2F;adaptor，不要跑 heavy compute 或 DB。</li>
+<li>日誌：開發期就把 <code>console.log</code> 改成簡單檔案或 winston，方便追蹤。</li>
+</ul>
+<hr>
+<p>我現在先給你 <strong>最重要的下一件事（立刻做）</strong>：<br>請在你的 Mac 上照 <strong>階段 A Step A1</strong> 的指令把 <code>gateway.mjs</code> 啟動並測試 <code>/health</code> 與 <code>/api/chat</code>（mock 回覆也行）。完成 A1 的驗收後回來告訴我「A1 完成」，我會立刻給你：</p>
+<ul>
+<li>A2（可直接貼用的最小前端 Ask.vue）與測試方法，及如何從 Windows 呼叫 Mac（包含排錯防火牆指令）。</li>
+<li>或若你想直接跳到 B，我會把 B Step2 的 <code>gateway -&gt; mysql</code> 存儲完整程式貼給你。</li>
+</ul>
+<p>你先做 A1，做完回我「A1 完成」或把出現的錯誤貼上，我馬上回下一步。</p>
+<p>好，我幫你把之前設計的 <strong>「無 DB 的 MVP → 加 DB 的進化版」學習路線圖</strong>，整理成一步步、附上簡稱翻譯的版本，方便你理解每個步驟的角色與目的。每個步驟都非常小、可立即驗收。</p>
+<hr>
+<h1 id="心靈算命網站學習路線圖（附簡稱翻譯）"><a href="#心靈算命網站學習路線圖（附簡稱翻譯）" class="headerlink" title="心靈算命網站學習路線圖（附簡稱翻譯）"></a>心靈算命網站學習路線圖（附簡稱翻譯）</h1><h2 id="總體概念"><a href="#總體概念" class="headerlink" title="總體概念"></a>總體概念</h2><ul>
+<li>**MVP (Minimum Viable Product，最小可行產品)**：先做最簡單能跑通的功能，不追求完整。</li>
+<li>**MCP (Model Context Protocol，模型上下文協定)**：你的 Mac 上的中介 server，用來連接多個 AI 服務。</li>
+<li>**DB (Database，資料庫)**：存使用者問答歷史、會員資料等。</li>
+<li>**API (Application Programming Interface，應用程式介面)**：前端與 MCP server、AI 服務之間的通訊介面。</li>
+</ul>
+<hr>
+<h2 id="階段-A-—-無-DB-的-MVP（快速驗證-AI-互動流程）"><a href="#階段-A-—-無-DB-的-MVP（快速驗證-AI-互動流程）" class="headerlink" title="階段 A — 無 DB 的 MVP（快速驗證 AI 互動流程）"></a><strong>階段 A — 無 DB 的 MVP（快速驗證 AI 互動流程）</strong></h2><p>目標：前端問問題 → MCP server → AI 服務（OpenAI &#x2F; DeepSeek） → 回前端。<strong>不存資料</strong>。</p>
+<h3 id="Step-A1-—-建立-MCP-Gateway"><a href="#Step-A1-—-建立-MCP-Gateway" class="headerlink" title="Step A1 — 建立 MCP Gateway"></a>Step A1 — 建立 MCP Gateway</h3><ul>
+<li><p>功能：在 Mac 上起一個 Node.js server，接收前端請求，轉給不同 AI provider。</p>
+</li>
+<li><p>驗收：</p>
+<ul>
+<li><code>/health</code> 回傳 MCP 狀態。</li>
+<li><code>/api/chat</code> 對 <code>provider=openai</code> 或 <code>provider=deepseek</code> 能回傳 mock 或實際回答。</li>
+</ul>
+</li>
+<li><p>簡稱翻譯：</p>
+<ul>
+<li>MCP：中介 server</li>
+<li>AI provider：AI 服務提供者（OpenAI &#x2F; DeepSeek）</li>
+</ul>
+</li>
+<li><p>操作：前面我給你的 <code>gateway.mjs</code> 指令與測試。</p>
+</li>
+</ul>
+<h3 id="Step-A2-—-前端最小測試頁面"><a href="#Step-A2-—-前端最小測試頁面" class="headerlink" title="Step A2 — 前端最小測試頁面"></a>Step A2 — 前端最小測試頁面</h3><ul>
+<li><p>功能：建立 Vite + Vue 前端，能輸入問題並呼叫 MCP <code>/api/chat</code>，顯示回覆。</p>
+</li>
+<li><p>驗收：輸入問題 → 點送出 → 顯示回覆。</p>
+</li>
+<li><p>簡稱翻譯：</p>
+<ul>
+<li>Vite：前端開發工具</li>
+<li>Vue：前端框架</li>
+</ul>
+</li>
+</ul>
+<h3 id="Step-A3-—-MCP-Gateway-常駐"><a href="#Step-A3-—-MCP-Gateway-常駐" class="headerlink" title="Step A3 — MCP Gateway 常駐"></a>Step A3 — MCP Gateway 常駐</h3><ul>
+<li>功能：使用 <code>pm2</code> 或類似工具，讓 MCP 在 Mac 上常駐，避免關掉終端就停止。</li>
+<li>驗收：關閉終端 → MCP 仍可接收 API 請求。</li>
+</ul>
+<hr>
+<h2 id="階段-B-—-加-DB-的進化版（保存歷史、會員系統）"><a href="#階段-B-—-加-DB-的進化版（保存歷史、會員系統）" class="headerlink" title="階段 B — 加 DB 的進化版（保存歷史、會員系統）"></a><strong>階段 B — 加 DB 的進化版（保存歷史、會員系統）</strong></h2><p>目標：讓使用者問答可以保存到資料庫，方便後續擴展統計、會員、課金等功能。</p>
+<h3 id="Step-B1-—-在-Windows-用-Docker-啟動-MySQL"><a href="#Step-B1-—-在-Windows-用-Docker-啟動-MySQL" class="headerlink" title="Step B1 — 在 Windows 用 Docker 啟動 MySQL"></a>Step B1 — 在 Windows 用 Docker 啟動 MySQL</h3><ul>
+<li><p>功能：</p>
+<ul>
+<li>Docker：容器化工具，隔離環境、快速部署 DB。</li>
+<li>MySQL：DB，用於存問答紀錄。</li>
+</ul>
+</li>
+<li><p>驗收：MySQL container 正常啟動，能連線。</p>
+</li>
+<li><p>簡稱翻譯：</p>
+<ul>
+<li>Docker：容器化部署工具</li>
+<li>MySQL：關聯式資料庫</li>
+</ul>
+</li>
+</ul>
+<h3 id="Step-B2-—-MCP-Gateway-寫入-DB"><a href="#Step-B2-—-MCP-Gateway-寫入-DB" class="headerlink" title="Step B2 — MCP Gateway 寫入 DB"></a>Step B2 — MCP Gateway 寫入 DB</h3><ul>
+<li><p>功能：將每次問答寫入 DB（使用 <code>mysql2</code> 或 ORM），可記錄：</p>
+<ul>
+<li>使用者 ID</li>
+<li>提問</li>
+<li>回答</li>
+<li>Provider</li>
+<li>時間</li>
+</ul>
+</li>
+<li><p>驗收：</p>
+<ul>
+<li>發送問題 → AI 回答 → DB 有對應紀錄。</li>
+</ul>
+</li>
+</ul>
+<h3 id="Step-B3-—-前端顯示歷史"><a href="#Step-B3-—-前端顯示歷史" class="headerlink" title="Step B3 — 前端顯示歷史"></a>Step B3 — 前端顯示歷史</h3><ul>
+<li><p>功能：前端可查詢歷史對話。</p>
+</li>
+<li><p>驗收：輸入會員帳號 → 顯示過去問答紀錄。</p>
+</li>
+<li><p>簡稱翻譯：</p>
+<ul>
+<li>JWT (JSON Web Token，網頁驗證用令牌)：可選，用於會員登入驗證。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="資源分配建議"><a href="#資源分配建議" class="headerlink" title="資源分配建議"></a><strong>資源分配建議</strong></h2><table>
+<thead>
+<tr>
+<th>電腦</th>
+<th>角色</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Mac A（舊）</td>
+<td>Documentation &#x2F; 技術文件</td>
+<td>編寫設計文檔、流程圖、Git 操作</td>
+</tr>
+<tr>
+<td>Mac B（舊）</td>
+<td>MCP Gateway &#x2F; 中介</td>
+<td>Node.js MCP server，轉發請求給 AI，mock 測試或真實 API 呼叫</td>
+</tr>
+<tr>
+<td>Lenovo Windows 11</td>
+<td>主開發機 + DB</td>
+<td>Docker MySQL、前端開發、整合測試、可能放本地 DB 和 CI&#x2F;CD</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="實務小提醒"><a href="#實務小提醒" class="headerlink" title="實務小提醒"></a><strong>實務小提醒</strong></h2><ol>
+<li><strong>API keys 只放 MCP server 的 <code>.env</code>，前端不要放</strong></li>
+<li><strong>Mac B 性能有限</strong> → 只做路由&#x2F;adapter，不跑大型模型</li>
+<li><strong>LAN 測試</strong> → 先不要開網路端口，正式上線再考慮 ngrok 或 port-forward</li>
+<li><strong>日誌與排錯</strong> → 開發期可用 console.log，之後用 winston 寫檔</li>
+<li><strong>驗收逐步做</strong> → 完成 A1 → A2 → A3，再進入 B1 → B2 → B3</li>
+</ol>
+<hr>
+<p>我可以幫你把 <strong>Step A2（最小前端 Ask.vue）</strong> 做成 <strong>可直接貼上執行的完整檔案</strong>，包括呼叫 MCP、顯示回覆、mock 測試的方式。</p>
+<p>你希望我現在直接給你 Step A2 的程式碼嗎？</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/%E6%9E%B6%E6%A7%8B%E8%A8%AD%E8%A8%88/" rel="tag"># 架構設計</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/09/17/OneDayOneNote/2025-05-10/" rel="prev" title="2025-05-10 MVP 階段的安裝清單">
+                  <i class="fa fa-angle-left"></i> 2025-05-10 MVP 階段的安裝清單
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
