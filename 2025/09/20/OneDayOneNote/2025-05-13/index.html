@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2025-05-13 npm（Node Package Manager）的常見指令與參數">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025-05-13 npm（Node Package Manager）的常見指令與參數">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/09/20/OneDayOneNote/2025-05-13/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2025-05-13 npm（Node Package Manager）的常見指令與參數">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-09-20T14:30:29.000Z">
+<meta property="article:modified_time" content="2025-09-20T14:40:59.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="架構設計">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2025/09/20/OneDayOneNote/2025-05-13/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2025/09/20/OneDayOneNote/2025-05-13/","path":"2025/09/20/OneDayOneNote/2025-05-13/","title":"2025-05-13 npm（Node Package Manager）的常見指令與參數"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2025-05-13 npm（Node Package Manager）的常見指令與參數 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2025-05-13-npm%EF%BC%88Node-Package-Manager%EF%BC%89%E7%9A%84%E5%B8%B8%E8%A6%8B%E6%8C%87%E4%BB%A4%E8%88%87%E5%8F%83%E6%95%B8"><span class="nav-number">1.</span> <span class="nav-text">2025-05-13 npm（Node Package Manager）的常見指令與參數</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%9F%A2-%E5%B8%B8%E7%94%A8%E7%9A%84-npm-%E6%8C%87%E4%BB%A4"><span class="nav-number">1.1.</span> <span class="nav-text">🟢 常用的 npm 指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%BB%BA%E7%AB%8B%E5%B0%88%E6%A1%88"><span class="nav-number">1.1.1.</span> <span class="nav-text">1. 建立專案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%AE%89%E8%A3%9D%E5%A5%97%E4%BB%B6"><span class="nav-number">1.1.2.</span> <span class="nav-text">2. 安裝套件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E8%A6%8B%E5%8F%83%E6%95%B8%EF%BC%9A"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">常見參數：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E7%A7%BB%E9%99%A4%E5%A5%97%E4%BB%B6"><span class="nav-number">1.1.3.</span> <span class="nav-text">3. 移除套件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%9B%B4%E6%96%B0%E5%A5%97%E4%BB%B6"><span class="nav-number">1.1.4.</span> <span class="nav-text">4. 更新套件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%9F%B7%E8%A1%8C%E6%8C%87%E4%BB%A4"><span class="nav-number">1.1.5.</span> <span class="nav-text">5. 執行指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E6%9F%A5%E7%9C%8B%E5%A5%97%E4%BB%B6%E7%89%88%E6%9C%AC"><span class="nav-number">1.1.6.</span> <span class="nav-text">6. 查看套件版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E6%B8%85%E7%90%86"><span class="nav-number">1.1.7.</span> <span class="nav-text">7. 清理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%93%8C-%E5%B8%B8%E8%A6%8B%E7%94%A8%E6%B3%95%E7%B8%BD%E6%95%B4%E7%90%86"><span class="nav-number">1.2.</span> <span class="nav-text">📌 常見用法總整理</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">438</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2025/09/20/OneDayOneNote/2025-05-13/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2025-05-13 npm（Node Package Manager）的常見指令與參數 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2025-05-13 npm（Node Package Manager）的常見指令與參數">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2025-05-13 npm（Node Package Manager）的常見指令與參數
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2025-09-20 22:30:29 / 修改時間：22:40:59" itemprop="dateCreated datePublished" datetime="2025-09-20T22:30:29+08:00">2025-09-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2025-05-13 npm（Node Package Manager）的常見指令與參數</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="2025-05-13-npm（Node-Package-Manager）的常見指令與參數"><a href="#2025-05-13-npm（Node-Package-Manager）的常見指令與參數" class="headerlink" title="2025-05-13 npm（Node Package Manager）的常見指令與參數"></a>2025-05-13 npm（Node Package Manager）的常見指令與參數</h1><p> <code>npm</code>（Node Package Manager）的<strong>常見指令與參數</strong>，讓你知道什麼時候該怎麼下。</p>
+<hr>
+<h2 id="🟢-常用的-npm-指令"><a href="#🟢-常用的-npm-指令" class="headerlink" title="🟢 常用的 npm 指令"></a>🟢 常用的 <code>npm</code> 指令</h2><h3 id="1-建立專案"><a href="#1-建立專案" class="headerlink" title="1. 建立專案"></a>1. 建立專案</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>建立 <code>package.json</code> 檔案</li>
+<li>會問一堆問題（專案名稱、版本、描述…）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init -y</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>快速建立</strong>，用預設值，不會問問題</li>
+</ul>
+<hr>
+<h3 id="2-安裝套件"><a href="#2-安裝套件" class="headerlink" title="2. 安裝套件"></a>2. 安裝套件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install &lt;套件名稱&gt;</span><br></pre></td></tr></table></figure>
+
+<p>或縮寫：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i &lt;套件名稱&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="常見參數："><a href="#常見參數：" class="headerlink" title="常見參數："></a>常見參數：</h4><ul>
+<li><p><code>--save</code>（舊寫法，現在預設就是存進 <code>dependencies</code>）</p>
+</li>
+<li><p><code>--save-dev</code> 或 <code>-D</code>：安裝成開發用套件（只在開發時需要，正式部署不會用到）<br>👉 例如 <code>eslint</code>、<code>nodemon</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -D nodemon</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>-g</code>：全域安裝（整台電腦都能用，不限某專案）<br>👉 例如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -g typescript</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>--force</code>：強制安裝（忽略版本衝突或警告）</p>
+</li>
+<li><p><code>--legacy-peer-deps</code>：遇到新版相依性問題時，用舊方式安裝</p>
+</li>
+</ul>
+<hr>
+<h3 id="3-移除套件"><a href="#3-移除套件" class="headerlink" title="3. 移除套件"></a>3. 移除套件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall &lt;套件名稱&gt;</span><br></pre></td></tr></table></figure>
+
+<p>或縮寫：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm un &lt;套件名稱&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="4-更新套件"><a href="#4-更新套件" class="headerlink" title="4. 更新套件"></a>4. 更新套件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm update &lt;套件名稱&gt;</span><br></pre></td></tr></table></figure>
+
+<p>更新所有套件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm update</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="5-執行指令"><a href="#5-執行指令" class="headerlink" title="5. 執行指令"></a>5. 執行指令</h3><p>在 <code>package.json</code> 裡的 <code>&quot;scripts&quot;</code> 會設定指令，例如：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;start&quot;</span><span class="punctuation">:</span> <span class="string">&quot;node server.js&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;dev&quot;</span><span class="punctuation">:</span> <span class="string">&quot;nodemon server.js&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>執行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm run start</span><br><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
+
+<p>如果是特殊的 <code>start</code>，可以直接用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm start</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="6-查看套件版本"><a href="#6-查看套件版本" class="headerlink" title="6. 查看套件版本"></a>6. 查看套件版本</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm list</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>顯示目前專案安裝的套件</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm list &lt;套件名稱&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>只看某個套件版本</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>看 npm 版本</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>看 Node.js 版本</li>
+</ul>
+<hr>
+<h3 id="7-清理"><a href="#7-清理" class="headerlink" title="7. 清理"></a>7. 清理</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm cache clean --force</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>清除快取（有時候安裝壞掉會用這個）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">rm</span> -rf node_modules</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>刪掉全部套件，重新安裝（解決奇怪錯誤的常見招數）</li>
+</ul>
+<hr>
+<h2 id="📌-常見用法總整理"><a href="#📌-常見用法總整理" class="headerlink" title="📌 常見用法總整理"></a>📌 常見用法總整理</h2><ol>
+<li>建立專案：<code>npm init -y</code></li>
+<li>安裝套件：<code>npm i express dotenv</code></li>
+<li>安裝開發工具：<code>npm i -D nodemon</code></li>
+<li>移除套件：<code>npm un express</code></li>
+<li>執行 script：<code>npm run dev</code></li>
+</ol>
+<hr>
+<p>要不要我幫你整理一份 <strong>「npm 指令小抄（Cheat Sheet）」</strong>，像筆記一樣簡單明瞭，方便你隨時翻？</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/%E6%9E%B6%E6%A7%8B%E8%A8%AD%E8%A8%88/" rel="tag"># 架構設計</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/09/19/OneDayOneNote/2025-05-12/" rel="prev" title="2025-05-12 MVP 一步步可執行的開始計畫-1">
+                  <i class="fa fa-angle-left"></i> 2025-05-12 MVP 一步步可執行的開始計畫-1
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/09/20/OneDayOneNote/2025-05-14/" rel="next" title="2025-05-14 建立一個新的 Node.js 專案，並安裝需要的套件（Express 與 dotenv）的指令">
+                  2025-05-14 建立一個新的 Node.js 專案，並安裝需要的套件（Express 與 dotenv）的指令 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
