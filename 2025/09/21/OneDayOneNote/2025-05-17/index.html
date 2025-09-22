@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2025-05-17 gateway.mjs  MCP Gateway 的最小版伺服器解釋">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025-05-17 gateway.mjs  MCP Gateway 的最小版伺服器解釋">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/09/21/OneDayOneNote/2025-05-17/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2025-05-17 gateway.mjs  MCP Gateway 的最小版伺服器解釋">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-09-20T16:07:22.000Z">
+<meta property="article:modified_time" content="2025-09-20T16:09:04.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="MCP">
+<meta property="article:tag" content="架構設計">
+<meta property="article:tag" content="node">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2025/09/21/OneDayOneNote/2025-05-17/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2025/09/21/OneDayOneNote/2025-05-17/","path":"2025/09/21/OneDayOneNote/2025-05-17/","title":"2025-05-17 gateway.mjs  MCP Gateway 的最小版伺服器解釋"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2025-05-17 gateway.mjs  MCP Gateway 的最小版伺服器解釋 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2025-05-17-gateway-mjs-MCP-Gateway-%E7%9A%84%E6%9C%80%E5%B0%8F%E7%89%88%E4%BC%BA%E6%9C%8D%E5%99%A8%E8%A7%A3%E9%87%8B"><span class="nav-number">1.</span> <span class="nav-text">2025-05-17 gateway.mjs  MCP Gateway 的最小版伺服器解釋</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%94%8E-%E7%A8%8B%E5%BC%8F%E9%80%90%E6%AE%B5%E8%AA%AA%E6%98%8E"><span class="nav-number">1.1.</span> <span class="nav-text">🔎 程式逐段說明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%8C%AF%E5%85%A5%E6%A8%A1%E7%B5%84-%E5%95%9F%E5%8B%95%E8%A8%AD%E5%AE%9A"><span class="nav-number">1.1.1.</span> <span class="nav-text">1. 匯入模組 &amp; 啟動設定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E8%AE%80%E5%8F%96%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8"><span class="nav-number">1.1.2.</span> <span class="nav-text">2. 讀取環境變數</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Providers%EF%BC%88%E6%8F%90%E4%BE%9B%E8%80%85%E9%81%A9%E9%85%8D%E5%99%A8%EF%BC%89"><span class="nav-number">1.1.3.</span> <span class="nav-text">3. Providers（提供者適配器）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%81%A5%E5%BA%B7%E6%AA%A2%E6%9F%A5-API"><span class="nav-number">1.1.4.</span> <span class="nav-text">4. 健康檢查 API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E8%81%8A%E5%A4%A9-API"><span class="nav-number">1.1.5.</span> <span class="nav-text">5. 聊天 API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E5%95%9F%E5%8B%95%E4%BC%BA%E6%9C%8D%E5%99%A8"><span class="nav-number">1.1.6.</span> <span class="nav-text">6. 啟動伺服器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%9A%A9-%E9%87%8D%E9%BB%9E%E6%95%B4%E7%90%86"><span class="nav-number">1.2.</span> <span class="nav-text">🚩 重點整理</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">448</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2025/09/21/OneDayOneNote/2025-05-17/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2025-05-17 gateway.mjs  MCP Gateway 的最小版伺服器解釋 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2025-05-17 gateway.mjs  MCP Gateway 的最小版伺服器解釋">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2025-05-17 gateway.mjs  MCP Gateway 的最小版伺服器解釋
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2025-09-21 00:07:22 / 修改時間：00:09:04" itemprop="dateCreated datePublished" datetime="2025-09-21T00:07:22+08:00">2025-09-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2025-05-17 gateway.mjs  MCP Gateway 的最小版伺服器解釋</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="2025-05-17-gateway-mjs-MCP-Gateway-的最小版伺服器解釋"><a href="#2025-05-17-gateway-mjs-MCP-Gateway-的最小版伺服器解釋" class="headerlink" title="2025-05-17 gateway.mjs  MCP Gateway 的最小版伺服器解釋"></a>2025-05-17 gateway.mjs  MCP Gateway 的最小版伺服器解釋</h1><p>很好 👌 這份 <code>gateway.mjs</code> 就是你 MCP Gateway 的最小版伺服器。我幫你逐段解釋，最後整理出重點。</p>
+<hr>
+<h2 id="🔎-程式逐段說明"><a href="#🔎-程式逐段說明" class="headerlink" title="🔎 程式逐段說明"></a>🔎 程式逐段說明</h2><h3 id="1-匯入模組-啟動設定"><a href="#1-匯入模組-啟動設定" class="headerlink" title="1. 匯入模組 &amp; 啟動設定"></a>1. 匯入模組 &amp; 啟動設定</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> express <span class="keyword">from</span> <span class="string">&#x27;express&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> dotenv <span class="keyword">from</span> <span class="string">&#x27;dotenv&#x27;</span>;</span><br><span class="line">dotenv.<span class="title function_">config</span>();</span><br><span class="line"><span class="keyword">const</span> app = <span class="title function_">express</span>();</span><br><span class="line">app.<span class="title function_">use</span>(express.<span class="title function_">json</span>());</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>express</code> → Node.js 最常用的 Web 框架，用來建 API。</li>
+<li><code>dotenv</code> → 讀取 <code>.env</code> 檔案，把裡面的設定值放到 <code>process.env</code> 裡。</li>
+<li><code>dotenv.config()</code> → 這行會自動讀取 <code>.env</code>。</li>
+<li><code>app.use(express.json())</code> → 讓 Express 可以解析 JSON 格式的 request body。</li>
+</ul>
+<hr>
+<h3 id="2-讀取環境變數"><a href="#2-讀取環境變數" class="headerlink" title="2. 讀取環境變數"></a>2. 讀取環境變數</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="variable constant_">OPENAI_KEY</span> = process.<span class="property">env</span>.<span class="property">OPENAI_API_KEY</span> || <span class="string">&#x27;&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">DEEPSEEK_KEY</span> = process.<span class="property">env</span>.<span class="property">DEEPSEEK_API_KEY</span> || <span class="string">&#x27;&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>嘗試讀 <code>.env</code> 裡的 <code>OPENAI_API_KEY</code> 和 <code>DEEPSEEK_API_KEY</code>。</li>
+<li>如果沒設定，預設就是空字串（方便之後用「mock 模式」測試）。</li>
+</ul>
+<hr>
+<h3 id="3-Providers（提供者適配器）"><a href="#3-Providers（提供者適配器）" class="headerlink" title="3. Providers（提供者適配器）"></a>3. Providers（提供者適配器）</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> providers = &#123;</span><br><span class="line">  <span class="attr">openai</span>: <span class="keyword">async</span> (&#123; messages &#125;) =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="variable constant_">OPENAI_KEY</span>) <span class="keyword">return</span> &#123; <span class="attr">text</span>: <span class="string">&#x27;[mock openai] 這是模擬回覆&#x27;</span> &#125;;</span><br><span class="line">    ...</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="attr">deepseek</span>: <span class="keyword">async</span> (&#123; messages &#125;) =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="variable constant_">DEEPSEEK_KEY</span>) <span class="keyword">return</span> &#123; <span class="attr">text</span>: <span class="string">&#x27;[mock deepseek] 這是模擬回覆&#x27;</span> &#125;;</span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>這裡定義了 <strong>兩個 AI 提供者的呼叫方式</strong>：<code>openai</code> 和 <code>deepseek</code>。</li>
+<li><strong>特別設計</strong>：如果 key 沒設定 → 回傳一個 <strong>假回覆（mock）</strong>，方便本地測試。</li>
+<li>否則就真的去呼叫 API（用 <code>fetch</code> POST 到對應的 API endpoint）。</li>
+<li>回傳格式統一 <code>&#123; text, raw &#125;</code>，<code>text</code> 是簡單結果，<code>raw</code> 是完整 API 回覆。</li>
+</ul>
+<hr>
+<h3 id="4-健康檢查-API"><a href="#4-健康檢查-API" class="headerlink" title="4. 健康檢查 API"></a>4. 健康檢查 API</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/health&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> res.<span class="title function_">json</span>(&#123; <span class="attr">status</span>: <span class="string">&#x27;ok&#x27;</span>, <span class="attr">role</span>: <span class="string">&#x27;mcp-gateway&#x27;</span> &#125;));</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>提供 <code>/health</code> API，確認伺服器活著。</li>
+<li>通常監控系統或 DevOps 會打這個來檢查服務是否正常。</li>
+</ul>
+<hr>
+<h3 id="5-聊天-API"><a href="#5-聊天-API" class="headerlink" title="5. 聊天 API"></a>5. 聊天 API</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">app.<span class="title function_">post</span>(<span class="string">&#x27;/api/chat&#x27;</span>, <span class="keyword">async</span> (req, res) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; provider = <span class="string">&#x27;openai&#x27;</span>, messages = [&#123; <span class="attr">role</span>:<span class="string">&#x27;user&#x27;</span>, <span class="attr">content</span>:<span class="string">&#x27;hello&#x27;</span> &#125;] &#125; = req.<span class="property">body</span>;</span><br><span class="line">  <span class="keyword">const</span> adapter = providers[provider];</span><br><span class="line">  <span class="keyword">if</span> (!adapter) <span class="keyword">return</span> res.<span class="title function_">status</span>(<span class="number">400</span>).<span class="title function_">json</span>(&#123; <span class="attr">error</span>: <span class="string">&#x27;unknown provider&#x27;</span> &#125;);</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; text, raw &#125; = <span class="keyword">await</span> <span class="title function_">adapter</span>(&#123; messages &#125;);</span><br><span class="line">    <span class="keyword">return</span> res.<span class="title function_">json</span>(&#123; provider, text, raw &#125;);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&#x27;provider error&#x27;</span>, err);</span><br><span class="line">    <span class="keyword">return</span> res.<span class="title function_">status</span>(<span class="number">500</span>).<span class="title function_">json</span>(&#123; <span class="attr">error</span>: <span class="string">&#x27;provider error&#x27;</span> &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>這是主要的 API：**<code>POST /api/chat</code>**。</p>
+</li>
+<li><p>Request body 應該包含：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;provider&quot;</span><span class="punctuation">:</span> <span class="string">&quot;openai&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;messages&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">&#123;</span> <span class="attr">&quot;role&quot;</span><span class="punctuation">:</span> <span class="string">&quot;user&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;content&quot;</span><span class="punctuation">:</span> <span class="string">&quot;hello&quot;</span> <span class="punctuation">&#125;</span><span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>如果沒提供，預設就是 <code>openai</code> + 一個簡單訊息。</p>
+</li>
+<li><p>根據 provider 來選擇要呼叫哪個適配器。</p>
+</li>
+<li><p>如果 provider 不存在 → 回傳 400（Bad Request）。</p>
+</li>
+<li><p>如果 API 呼叫失敗 → 回傳 500（Server Error）。</p>
+</li>
+<li><p>成功就回傳：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;provider&quot;</span><span class="punctuation">:</span> <span class="string">&quot;openai&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;text&quot;</span><span class="punctuation">:</span> <span class="string">&quot;... AI 回覆 ...&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;raw&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> ...完整 API 結果... <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h3 id="6-啟動伺服器"><a href="#6-啟動伺服器" class="headerlink" title="6. 啟動伺服器"></a>6. 啟動伺服器</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> port = process.<span class="property">env</span>.<span class="property">PORT</span> || <span class="number">4000</span>;</span><br><span class="line">app.<span class="title function_">listen</span>(port, <span class="function">() =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`MCP gateway listening on <span class="subst">$&#123;port&#125;</span>`</span>));</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>從 <code>.env</code> 讀取 <code>PORT</code>，如果沒設定就用 <code>4000</code>。</li>
+<li>啟動 Express 伺服器，監聽這個 port。</li>
+<li>啟動成功會在終端機輸出提示。</li>
+</ul>
+<hr>
+<h2 id="🚩-重點整理"><a href="#🚩-重點整理" class="headerlink" title="🚩 重點整理"></a>🚩 重點整理</h2><ol>
+<li><p><strong>模組</strong></p>
+<ul>
+<li><code>express</code> → Web 伺服器</li>
+<li><code>dotenv</code> → 讀取 <code>.env</code></li>
+</ul>
+</li>
+<li><p><strong>環境變數管理</strong></p>
+<ul>
+<li>API Key 都放在 <code>.env</code>，不寫死在程式裡。</li>
+<li>Key 留空時會回 mock 回覆，方便測試。</li>
+</ul>
+</li>
+<li><p><strong>API 路徑</strong></p>
+<ul>
+<li><code>GET /health</code> → 檢查服務狀態</li>
+<li><code>POST /api/chat</code> → 呼叫 AI（支援 <code>openai</code>、<code>deepseek</code>）</li>
+</ul>
+</li>
+<li><p><strong>設計重點</strong></p>
+<ul>
+<li><strong>Adapter Pattern（適配器模式）</strong>：每個 provider 都是一個 adapter，以後要加新 provider（例如 Anthropic、Gemini）也很容易。</li>
+<li><strong>錯誤處理</strong>：有 try&#x2F;catch，避免伺服器直接掛掉。</li>
+<li><strong>Mock 機制</strong>：沒 API key 也能本地跑通，降低開發阻力。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<p>要不要我幫你畫一個 <strong>請求流程圖</strong>（從前端發送 → gateway → provider → 回傳）？這樣你一看就能明白整個 Gateway 的作用。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/MCP/" rel="tag"># MCP</a>
+              <a href="/apple.lily/tags/%E6%9E%B6%E6%A7%8B%E8%A8%AD%E8%A8%88/" rel="tag"># 架構設計</a>
+              <a href="/apple.lily/tags/node/" rel="tag"># node</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/09/20/OneDayOneNote/2025-05-16/" rel="prev" title="2025-05-16 怎麼看到 .env">
+                  <i class="fa fa-angle-left"></i> 2025-05-16 怎麼看到 .env
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/09/21/OneDayOneNote/2025-05-18/" rel="next" title="2025-05-18 Postman 測試 /api/chat 的完整流程">
+                  2025-05-18 Postman 測試 /api/chat 的完整流程 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

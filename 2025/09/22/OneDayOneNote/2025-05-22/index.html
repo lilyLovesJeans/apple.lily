@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2025-05-22 為什麼 brew install node 在 macOS 上會花很久">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025-05-22 為什麼 brew install node 在 macOS 上會花很久">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/09/22/OneDayOneNote/2025-05-22/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2025-05-22 為什麼 brew install node 在 macOS 上會花很久">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-09-22T14:23:51.000Z">
+<meta property="article:modified_time" content="2025-09-22T14:26:26.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="MCP">
+<meta property="article:tag" content="架構設計">
+<meta property="article:tag" content="node">
+<meta property="article:tag" content="macOS">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2025/09/22/OneDayOneNote/2025-05-22/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2025/09/22/OneDayOneNote/2025-05-22/","path":"2025/09/22/OneDayOneNote/2025-05-22/","title":"2025-05-22 為什麼 brew install node 在 macOS 上會花很久"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2025-05-22 為什麼 brew install node 在 macOS 上會花很久 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2025-05-22-%E7%82%BA%E4%BB%80%E9%BA%BC-brew-install-node-%E5%9C%A8-macOS-%E4%B8%8A%E6%9C%83%E8%8A%B1%E5%BE%88%E4%B9%85"><span class="nav-number">1.</span> <span class="nav-text">2025-05-22 為什麼 brew install node 在 macOS 上會花很久</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Homebrew-%E7%9A%84%E5%AE%89%E8%A3%9D%E6%B5%81%E7%A8%8B%E6%AF%94%E8%BC%83%E5%AE%8C%E6%95%B4"><span class="nav-number">1.0.1.</span> <span class="nav-text">1. Homebrew 的安裝流程比較完整</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%B7%A8%E8%AD%AF%E6%88%96%E8%A7%A3%E5%A3%93%E7%B8%AE%E8%80%97%E6%99%82"><span class="nav-number">1.0.2.</span> <span class="nav-text">2. 編譯或解壓縮耗時</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E7%B6%B2%E8%B7%AF%E9%80%9F%E5%BA%A6%E8%88%87-GitHub-CDN"><span class="nav-number">1.0.3.</span> <span class="nav-text">3. 網路速度與 GitHub CDN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E7%A3%81%E7%A2%9F-I-O-%E6%88%96%E8%88%8A%E6%A9%9F%E6%95%88%E8%83%BD"><span class="nav-number">1.0.4.</span> <span class="nav-text">4. 磁碟 I&#x2F;O 或舊機效能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%8D-1-%E5%85%88%E6%AA%A2%E6%9F%A5%E5%AE%89%E8%A3%9D%E7%8B%80%E6%85%8B"><span class="nav-number">1.0.5.</span> <span class="nav-text">🔍 1. 先檢查安裝狀態</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%9B%A0-2-%E5%A6%82%E6%9E%9C%E5%AE%89%E8%A3%9D%E8%A2%AB%E4%B8%AD%E6%96%B7%E4%BA%86%EF%BC%88Ctrl-C-%E6%88%96%E7%B6%B2%E8%B7%AF%E6%96%B7%E6%8E%89%EF%BC%89"><span class="nav-number">1.0.6.</span> <span class="nav-text">🛠 2. 如果安裝被中斷了（Ctrl+C 或網路斷掉）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%9A%80-3-%E6%83%B3%E8%A6%81%E5%BF%AB%E4%B8%80%E9%BB%9E%EF%BC%88%E9%81%BF%E5%85%8D%E5%8D%A1%E4%BD%8F%EF%BC%89"><span class="nav-number">1.0.7.</span> <span class="nav-text">🚀 3. 想要快一點（避免卡住）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%9A%A1-4-%E5%A6%82%E6%9E%9C%E6%83%B3%E7%B9%BC%E7%BA%8C%E7%94%A8-brew%EF%BC%8C%E4%BD%86%E6%80%95%E5%86%8D%E5%8D%A1%E4%BD%8F"><span class="nav-number">1.0.8.</span> <span class="nav-text">⚡ 4. 如果想繼續用 brew，但怕再卡住</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%83%85%E6%B3%81%E5%88%86%E6%9E%90"><span class="nav-number">1.0.9.</span> <span class="nav-text">情況分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%9C%85-%E5%A6%82%E6%9E%9C%E4%BD%A0%E5%8F%AA%E6%98%AF%E7%B7%B4%E7%BF%92%EF%BC%8C%E6%83%B3%E5%AE%8C%E5%85%A8%E5%88%AA%E6%8E%89"><span class="nav-number">1.0.10.</span> <span class="nav-text">✅ 如果你只是練習，想完全刪掉</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%9A%A0%EF%B8%8F-%E6%B3%A8%E6%84%8F"><span class="nav-number">1.0.11.</span> <span class="nav-text">⚠️ 注意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A3%9C%E5%85%85"><span class="nav-number">1.0.12.</span> <span class="nav-text">補充</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">448</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2025/09/22/OneDayOneNote/2025-05-22/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2025-05-22 為什麼 brew install node 在 macOS 上會花很久 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2025-05-22 為什麼 brew install node 在 macOS 上會花很久">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2025-05-22 為什麼 brew install node 在 macOS 上會花很久
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2025-09-22 22:23:51 / 修改時間：22:26:26" itemprop="dateCreated datePublished" datetime="2025-09-22T22:23:51+08:00">2025-09-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2025-05-22 為什麼 brew install node 在 macOS 上會花很久</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="2025-05-22-為什麼-brew-install-node-在-macOS-上會花很久"><a href="#2025-05-22-為什麼-brew-install-node-在-macOS-上會花很久" class="headerlink" title="2025-05-22 為什麼 brew install node 在 macOS 上會花很久"></a>2025-05-22 為什麼 brew install node 在 macOS 上會花很久</h1><p>這個問題很常見 👍，我幫你分幾個原因來解釋為什麼 <code>brew install node</code> 在 macOS 上會花很久：</p>
+<hr>
+<h3 id="1-Homebrew-的安裝流程比較完整"><a href="#1-Homebrew-的安裝流程比較完整" class="headerlink" title="1. Homebrew 的安裝流程比較完整"></a>1. <strong>Homebrew 的安裝流程比較完整</strong></h3><ul>
+<li><p><code>brew install node</code> 並不是單純下載一個 <code>.pkg</code> 或 <code>.dmg</code> 安裝檔。</p>
+</li>
+<li><p>它會：</p>
+<ol>
+<li>檢查依賴 (dependencies)。</li>
+<li>下載 Node.js 的 <strong>原始壓縮檔</strong> 或預編譯套件。</li>
+<li>驗證檔案完整性 (SHA256)。</li>
+<li>展開、安裝到 <code>/usr/local</code> 或 <code>/opt/homebrew</code>（M1&#x2F;M2）。</li>
+<li>建立 symlink。</li>
+</ol>
+</li>
+</ul>
+<p>所以比起直接去 Node.js 官網下載安裝檔，brew 的動作會更多。</p>
+<hr>
+<h3 id="2-編譯或解壓縮耗時"><a href="#2-編譯或解壓縮耗時" class="headerlink" title="2. 編譯或解壓縮耗時"></a>2. <strong>編譯或解壓縮耗時</strong></h3><ul>
+<li><p>大多數情況下，brew 會下載 Node.js 官方的 <strong>預編譯二進位檔</strong>，速度還算快。</p>
+</li>
+<li><p>但如果你電腦架構（例如舊的 Intel Mac，或比較老的版本）沒有對應的預編譯包，brew 可能會自動 <strong>從原始碼編譯 Node.js</strong>。</p>
+<ul>
+<li>Node.js 原始碼很大，編譯過程要跑 <code>clang</code>，這會非常久。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="3-網路速度與-GitHub-CDN"><a href="#3-網路速度與-GitHub-CDN" class="headerlink" title="3. 網路速度與 GitHub CDN"></a>3. <strong>網路速度與 GitHub CDN</strong></h3><ul>
+<li>Homebrew 的套件主要從 GitHub 的 <strong>Bottles (二進位包)</strong> 或 Node.js 官方 CDN 下載。</li>
+<li>在台灣，連 GitHub Release &#x2F; CDN 偶爾會變慢，甚至被 reset 連線。</li>
+<li>如果下載速度掉到幾十 KB&#x2F;s，當然會拖很久。</li>
+</ul>
+<hr>
+<h3 id="4-磁碟-I-O-或舊機效能"><a href="#4-磁碟-I-O-或舊機效能" class="headerlink" title="4. 磁碟 I&#x2F;O 或舊機效能"></a>4. <strong>磁碟 I&#x2F;O 或舊機效能</strong></h3><ul>
+<li>你提到你有舊的 Mac Air，如果是 <strong>機械硬碟 (HDD)</strong> 或老舊 SSD，解壓縮大檔案（Node.js 安裝包 &gt;50MB）也會明顯變慢。</li>
+</ul>
+<hr>
+<p>✅ <strong>解決建議：</strong></p>
+<ol>
+<li><p>如果只是要快速安裝 Node.js（不用管 brew），可以直接下載官方安裝檔：<br>👉 <a target="_blank" rel="noopener" href="https://nodejs.org/en/download">Node.js 官方 LTS 版</a><br>安裝好就能用，比 brew 快很多。</p>
+</li>
+<li><p>如果堅持用 brew，但下載慢，可以試：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew update-reset</span><br><span class="line">brew cleanup</span><br></pre></td></tr></table></figure>
+
+<p>然後再安裝，確保用的是最新鏡像。</p>
+</li>
+<li><p>也可以換 <strong>中科大 Homebrew 鏡像</strong>（中國大陸常用），台灣也會快一點。</p>
+</li>
+</ol>
+<hr>
+<p>很好問題 👌，你現在卡在「安裝到一半」的情況，處理方式要看你目前的狀態：</p>
+<hr>
+<h3 id="🔍-1-先檢查安裝狀態"><a href="#🔍-1-先檢查安裝狀態" class="headerlink" title="🔍 1. 先檢查安裝狀態"></a>🔍 1. 先檢查安裝狀態</h3><p>執行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew list node</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果有輸出一堆檔案 → 代表 Node <strong>已經裝好了</strong>（可能還沒連 symlink）。</li>
+<li>如果顯示「Error: No such keg: …」 → 代表安裝沒完成。</li>
+</ul>
+<p>再試：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>有版本號 → 成功了，不用再裝。</li>
+<li>沒有版本號 → 代表還沒裝好。</li>
+</ul>
+<hr>
+<h3 id="🛠-2-如果安裝被中斷了（Ctrl-C-或網路斷掉）"><a href="#🛠-2-如果安裝被中斷了（Ctrl-C-或網路斷掉）" class="headerlink" title="🛠 2. 如果安裝被中斷了（Ctrl+C 或網路斷掉）"></a>🛠 2. 如果安裝被中斷了（Ctrl+C 或網路斷掉）</h3><p>你可以清掉不完整的安裝再重試：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">brew uninstall node</span><br><span class="line">brew cleanup</span><br><span class="line">brew install node</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="🚀-3-想要快一點（避免卡住）"><a href="#🚀-3-想要快一點（避免卡住）" class="headerlink" title="🚀 3. 想要快一點（避免卡住）"></a>🚀 3. 想要快一點（避免卡住）</h3><p>如果你是舊 Mac 或網路不穩，建議不要讓 Homebrew 自行編譯。<br>改用下載 <strong>官方安裝檔</strong>會快很多：<br>👉 <a target="_blank" rel="noopener" href="https://nodejs.org/en/download">Node.js 官方 LTS 安裝檔</a><br>這樣直接裝好，brew 的問題就跳過了。</p>
+<hr>
+<h3 id="⚡-4-如果想繼續用-brew，但怕再卡住"><a href="#⚡-4-如果想繼續用-brew，但怕再卡住" class="headerlink" title="⚡ 4. 如果想繼續用 brew，但怕再卡住"></a>⚡ 4. 如果想繼續用 brew，但怕再卡住</h3><p>可以用 <code>--verbose</code> 或 <code>--force-bottle</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install node --verbose --force-bottle</span><br></pre></td></tr></table></figure>
+
+<p>這會強制用官方的預編譯包（bottle），避免 brew 自動跑編譯，速度快很多。</p>
+<hr>
+<p>這個問題問得很精準 👍</p>
+<hr>
+<h3 id="情況分析"><a href="#情況分析" class="headerlink" title="情況分析"></a>情況分析</h3><p><code>mkdir ~/mcp-server</code> 只是 <strong>你自己手動建立的資料夾</strong>，裡面可能放：</p>
+<ul>
+<li>你之後跑 <code>npm init -y</code> 建的 <code>package.json</code></li>
+<li><code>node_modules/</code></li>
+<li>其他程式碼（例如 <code>server.mjs</code>）</li>
+</ul>
+<p>它 <strong>不是</strong> Homebrew 安裝的系統套件，所以 <strong>不需要用 brew uninstall</strong>。</p>
+<hr>
+<h3 id="✅-如果你只是練習，想完全刪掉"><a href="#✅-如果你只是練習，想完全刪掉" class="headerlink" title="✅ 如果你只是練習，想完全刪掉"></a>✅ 如果你只是練習，想完全刪掉</h3><p>直接刪掉整個目錄即可：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">rm</span> -rf ~/mcp-server</span><br></pre></td></tr></table></figure>
+
+<p>這樣就乾淨了，什麼都不會殘留。</p>
+<hr>
+<h3 id="⚠️-注意"><a href="#⚠️-注意" class="headerlink" title="⚠️ 注意"></a>⚠️ 注意</h3><ul>
+<li>如果你裡面有寫好的程式碼（例如 <code>server.mjs</code>），刪掉就沒了，建議先備份。</li>
+<li><code>npm install</code> 裝的套件（在 <code>node_modules</code> 裡）也會一併刪掉，不會影響全域系統。</li>
+</ul>
+<hr>
+<h3 id="補充"><a href="#補充" class="headerlink" title="補充"></a>補充</h3><ul>
+<li><strong>Homebrew 套件的卸載</strong>要用 <code>brew uninstall &lt;package&gt;</code></li>
+<li><strong>npm 全域套件</strong>的卸載要用 <code>npm uninstall -g &lt;package&gt;</code></li>
+<li><strong>自己建立的專案資料夾</strong>（像 <code>~/mcp-server</code>）只要 <code>rm -rf</code> 刪掉就好。</li>
+</ul>
+<hr>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/MCP/" rel="tag"># MCP</a>
+              <a href="/apple.lily/tags/%E6%9E%B6%E6%A7%8B%E8%A8%AD%E8%A8%88/" rel="tag"># 架構設計</a>
+              <a href="/apple.lily/tags/node/" rel="tag"># node</a>
+              <a href="/apple.lily/tags/macOS/" rel="tag"># macOS</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/09/22/OneDayOneNote/2025-05-21/" rel="prev" title="2025-05-21 「mock」這個詞在軟體開發裡有幾種常見意思">
+                  <i class="fa fa-angle-left"></i> 2025-05-21 「mock」這個詞在軟體開發裡有幾種常見意思
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/09/22/OneDayOneNote/2025-05-23/" rel="next" title="2025-05-23 檢查 node 是如何安裝的">
+                  2025-05-23 檢查 node 是如何安裝的 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
