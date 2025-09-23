@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2025-06-04 如何在關螢幕讓你的MCP 永遠在背景運行">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025-06-04 如何在關螢幕讓你的MCP 永遠在背景運行">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/09/23/OneDayOneNote/2025-06-04/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2025-06-04 如何在關螢幕讓你的MCP 永遠在背景運行">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-09-23T14:56:56.000Z">
+<meta property="article:modified_time" content="2025-09-23T14:58:13.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="MCP">
+<meta property="article:tag" content="架構設計">
+<meta property="article:tag" content="node">
+<meta property="article:tag" content="macOS">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2025/09/23/OneDayOneNote/2025-06-04/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2025/09/23/OneDayOneNote/2025-06-04/","path":"2025/09/23/OneDayOneNote/2025-06-04/","title":"2025-06-04 如何在關螢幕讓你的MCP 永遠在背景運行"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2025-06-04 如何在關螢幕讓你的MCP 永遠在背景運行 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2025-06-04-%E5%A6%82%E4%BD%95%E5%9C%A8%E9%97%9C%E8%9E%A2%E5%B9%95%E8%AE%93%E4%BD%A0%E7%9A%84MCP-%E6%B0%B8%E9%81%A0%E5%9C%A8%E8%83%8C%E6%99%AF%E9%81%8B%E8%A1%8C"><span class="nav-number">1.</span> <span class="nav-text">2025-06-04 如何在關螢幕讓你的MCP 永遠在背景運行</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%EF%B8%8F%E2%83%A3-%E4%BD%BF%E7%94%A8-pm2-%E5%B8%B8%E9%A7%90%EF%BC%88%E6%8E%A8%E8%96%A6%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">1️⃣ 使用 pm2 常駐（推薦）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%9D-pm2"><span class="nav-number">1.1.1.</span> <span class="nav-text">安裝 pm2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8-pm2-%E5%95%9F%E5%8B%95-MCP"><span class="nav-number">1.1.2.</span> <span class="nav-text">用 pm2 啟動 MCP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E7%8B%80%E6%85%8B"><span class="nav-number">1.1.3.</span> <span class="nav-text">查看狀態</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9C%E6%AD%A2-MCP"><span class="nav-number">1.1.4.</span> <span class="nav-text">停止 MCP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%93-pm2-%E9%96%8B%E6%A9%9F%E8%87%AA%E5%8B%95%E5%95%9F%E5%8B%95"><span class="nav-number">1.1.5.</span> <span class="nav-text">讓 pm2 開機自動啟動</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%EF%B8%8F%E2%83%A3-%E9%97%9C%E8%9E%A2%E5%B9%95%E8%A8%AD%E5%AE%9A"><span class="nav-number">1.2.</span> <span class="nav-text">2️⃣ 關螢幕設定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%EF%B8%8F%E2%83%A3-%E9%A9%97%E6%94%B6%E6%96%B9%E5%BC%8F"><span class="nav-number">1.3.</span> <span class="nav-text">3️⃣ 驗收方式</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">461</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2025/09/23/OneDayOneNote/2025-06-04/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2025-06-04 如何在關螢幕讓你的MCP 永遠在背景運行 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2025-06-04 如何在關螢幕讓你的MCP 永遠在背景運行">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2025-06-04 如何在關螢幕讓你的MCP 永遠在背景運行
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2025-09-23 22:56:56 / 修改時間：22:58:13" itemprop="dateCreated datePublished" datetime="2025-09-23T22:56:56+08:00">2025-09-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2025-06-04 如何在關螢幕讓你的MCP 永遠在背景運行</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="2025-06-04-如何在關螢幕讓你的MCP-永遠在背景運行"><a href="#2025-06-04-如何在關螢幕讓你的MCP-永遠在背景運行" class="headerlink" title="2025-06-04 如何在關螢幕讓你的MCP 永遠在背景運行"></a>2025-06-04 如何在關螢幕讓你的MCP 永遠在背景運行</h1><p>可以 ✅，你可以讓 <strong>Mac B 的 MCP Gateway</strong> 在關螢幕或登出螢幕時繼續運行，但需要注意幾件事：</p>
+<hr>
+<h2 id="1️⃣-使用-pm2-常駐（推薦）"><a href="#1️⃣-使用-pm2-常駐（推薦）" class="headerlink" title="1️⃣ 使用 pm2 常駐（推薦）"></a>1️⃣ 使用 <strong>pm2</strong> 常駐（推薦）</h2><p><code>pm2</code> 是 Node.js 的程式管理工具，可以讓你的 MCP 永遠在背景運行，不會因為關螢幕或終端機關閉而停止。</p>
+<h3 id="安裝-pm2"><a href="#安裝-pm2" class="headerlink" title="安裝 pm2"></a>安裝 pm2</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g pm2</span><br></pre></td></tr></table></figure>
+
+<h3 id="用-pm2-啟動-MCP"><a href="#用-pm2-啟動-MCP" class="headerlink" title="用 pm2 啟動 MCP"></a>用 pm2 啟動 MCP</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 start ~/mcp-gateway/gateway.mjs --name mcp-gateway</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看狀態"><a href="#查看狀態" class="headerlink" title="查看狀態"></a>查看狀態</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 list</span><br></pre></td></tr></table></figure>
+
+<h3 id="停止-MCP"><a href="#停止-MCP" class="headerlink" title="停止 MCP"></a>停止 MCP</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 stop mcp-gateway</span><br></pre></td></tr></table></figure>
+
+<h3 id="讓-pm2-開機自動啟動"><a href="#讓-pm2-開機自動啟動" class="headerlink" title="讓 pm2 開機自動啟動"></a>讓 pm2 開機自動啟動</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pm2 startup</span><br><span class="line">pm2 save</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>這樣 Mac B 開機後，MCP 會自動在背景啟動。</p>
+</blockquote>
+<hr>
+<h2 id="2️⃣-關螢幕設定"><a href="#2️⃣-關螢幕設定" class="headerlink" title="2️⃣ 關螢幕設定"></a>2️⃣ 關螢幕設定</h2><ul>
+<li><p><strong>MacBook 預設</strong>：合上螢幕會進入睡眠模式 → Node.js 程式會停止。</p>
+</li>
+<li><p><strong>解決方法</strong>：</p>
+<ol>
+<li><strong>System Settings → Battery → Prevent computer from sleeping automatically when the display is off</strong>（macOS Monterey &#x2F; Ventura 位置可能略不同）</li>
+<li>或使用工具：<code>Amphetamine</code>（App Store 免費） → 設定合上螢幕時保持喚醒。</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>建議用 <strong>pm2 + Prevent sleep</strong>，確保 MCP Gateway 即使關螢幕也能運行。</p>
+</blockquote>
+<hr>
+<h2 id="3️⃣-驗收方式"><a href="#3️⃣-驗收方式" class="headerlink" title="3️⃣ 驗收方式"></a>3️⃣ 驗收方式</h2><ul>
+<li>開啟 MCP gateway</li>
+<li>合上 MacBook 螢幕或鎖螢幕</li>
+<li>用 Windows 前端送問題 → 仍收到回覆</li>
+</ul>
+<hr>
+<p>如果你要，我可以幫你寫 <strong>完整指令列表</strong>，讓 Mac B 可以 <strong>開機 → 自動啟動 MCP → 合螢幕仍可跑</strong>，全部一步到位。</p>
+<p>你希望我整理這份指令嗎？</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/MCP/" rel="tag"># MCP</a>
+              <a href="/apple.lily/tags/%E6%9E%B6%E6%A7%8B%E8%A8%AD%E8%A8%88/" rel="tag"># 架構設計</a>
+              <a href="/apple.lily/tags/node/" rel="tag"># node</a>
+              <a href="/apple.lily/tags/macOS/" rel="tag"># macOS</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/09/23/OneDayOneNote/2025-06-03/" rel="prev" title="2025-06-03 連接內網方式">
+                  <i class="fa fa-angle-left"></i> 2025-06-03 連接內網方式
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/09/23/OneDayOneNote/2025-06-05/" rel="next" title="2025-06-05 Step 2：Windows 前端 Vue 最小 Ask.vue + App.vue">
+                  2025-06-05 Step 2：Windows 前端 Vue 最小 Ask.vue + App.vue <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
