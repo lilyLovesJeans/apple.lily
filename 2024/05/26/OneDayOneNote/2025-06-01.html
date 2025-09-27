@@ -1,0 +1,89 @@
+<hr>
+<h2 id="title-2025-06-01-URL-是什麼date-2025-09-23-22-38-28categories-OneDayOneNotetags-架構設計-node-MCP-macOS-description-2025-06-01-URL-是什麼"><a href="#title-2025-06-01-URL-是什麼date-2025-09-23-22-38-28categories-OneDayOneNotetags-架構設計-node-MCP-macOS-description-2025-06-01-URL-是什麼" class="headerlink" title="title: 2025-06-01  URL 是什麼date: 2025-09-23 22:38:28categories: OneDayOneNotetags:  [架構設計,node,MCP, macOS]description: 2025-06-01  URL 是什麼"></a>title: 2025-06-01  URL 是什麼<br>date: 2025-09-23 22:38:28<br>categories: OneDayOneNote<br>tags:  [架構設計,node,MCP, macOS]<br>description: 2025-06-01  URL 是什麼</h2><h1 id="2025-06-01-URL-是什麼"><a href="#2025-06-01-URL-是什麼" class="headerlink" title="2025-06-01  URL 是什麼"></a>2025-06-01  URL 是什麼</h1><p>好的，我來詳細解釋 😊</p>
+<hr>
+<h2 id="🔹-URL-是什麼？"><a href="#🔹-URL-是什麼？" class="headerlink" title="🔹 URL 是什麼？"></a>🔹 URL 是什麼？</h2><p><strong>URL</strong> 全名是 <strong>Uniform Resource Locator</strong>，中文通常翻成 <strong>統一資源定位器</strong>。</p>
+<p>簡單來說：</p>
+<blockquote>
+<p>URL 就是 <strong>網路上某個資源的位置（地址）</strong>，告訴電腦要去哪裡找到它。</p>
+</blockquote>
+<hr>
+<h3 id="1️⃣-URL-的結構"><a href="#1️⃣-URL-的結構" class="headerlink" title="1️⃣ URL 的結構"></a>1️⃣ URL 的結構</h3><p>一個完整的 URL 通常像這樣：</p>
+<pre><code>http://example.com:80/path/to/page?query=abc#section1
+</code></pre>
+<p>拆解說明：</p>
+<table>
+<thead>
+<tr>
+<th>部分</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>http://</code></td>
+<td>協議（Protocol），告訴瀏覽器怎麼存取（HTTP&#x2F;HTTPS）</td>
+</tr>
+<tr>
+<td><code>example.com</code></td>
+<td>網域名稱或 IP，告訴電腦要連到哪台伺服器</td>
+</tr>
+<tr>
+<td><code>:80</code></td>
+<td>連接的 port（可選，HTTP 預設是 80）</td>
+</tr>
+<tr>
+<td><code>/path/to/page</code></td>
+<td>路徑（Path），伺服器上的資源位置</td>
+</tr>
+<tr>
+<td><code>?query=abc</code></td>
+<td>查詢參數（Query），給伺服器的額外資料</td>
+</tr>
+<tr>
+<td><code>#section1</code></td>
+<td>錨點（Fragment），指網頁內特定位置</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="2️⃣-舉例對應到你的-MCP-Gateway"><a href="#2️⃣-舉例對應到你的-MCP-Gateway" class="headerlink" title="2️⃣ 舉例對應到你的 MCP Gateway"></a>2️⃣ 舉例對應到你的 MCP Gateway</h3><ul>
+<li>URL：</li>
+</ul>
+<pre><code>http://localhost:4000/health
+</code></pre>
+<p>拆解：</p>
+<table>
+<thead>
+<tr>
+<th>部分</th>
+<th>對應你的例子</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>http://</code></td>
+<td>用 HTTP 協議連線</td>
+</tr>
+<tr>
+<td><code>localhost</code></td>
+<td>指你的電腦自己（127.0.0.1）</td>
+</tr>
+<tr>
+<td><code>:4000</code></td>
+<td>連到你的 gateway.mjs 監聽的 port</td>
+</tr>
+<tr>
+<td><code>/health</code></td>
+<td>伺服器上的路由，也就是你設定的健康檢查 API</td>
+</tr>
+</tbody></table>
+<p>另一個例子：</p>
+<pre><code>http://localhost:4000/api/chat
+</code></pre>
+<ul>
+<li><code>/api/chat</code> → 你的聊天 API</li>
+<li>這個 URL 就是「前端或 Postman 要呼叫的地址」</li>
+</ul>
+<hr>
+<h3 id="🔹-總結"><a href="#🔹-總結" class="headerlink" title="🔹 總結"></a>🔹 總結</h3><ul>
+<li>URL &#x3D; 網路資源的「地址」</li>
+<li>就像你家地址一樣，讓網路知道要去哪台電腦、哪個資料夾找資料</li>
+</ul>
+<hr>

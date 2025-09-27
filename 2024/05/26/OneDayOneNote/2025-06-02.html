@@ -1,0 +1,48 @@
+<hr>
+<h2 id="title-2025-06-02-「mock」這個詞在軟體開發裡有幾種常見意思date-2025-09-23-22-45-06categories-OneDayOneNotetags-架構設計-node-MCP-macOS-description-2025-06-02-「mock」這個詞在軟體開發裡有幾種常見意思"><a href="#title-2025-06-02-「mock」這個詞在軟體開發裡有幾種常見意思date-2025-09-23-22-45-06categories-OneDayOneNotetags-架構設計-node-MCP-macOS-description-2025-06-02-「mock」這個詞在軟體開發裡有幾種常見意思" class="headerlink" title="title: 2025-06-02 「mock」這個詞在軟體開發裡有幾種常見意思date: 2025-09-23 22:45:06categories: OneDayOneNotetags:  [架構設計,node,MCP, macOS]description: 2025-06-02 「mock」這個詞在軟體開發裡有幾種常見意思"></a>title: 2025-06-02 「mock」這個詞在軟體開發裡有幾種常見意思<br>date: 2025-09-23 22:45:06<br>categories: OneDayOneNote<br>tags:  [架構設計,node,MCP, macOS]<br>description: 2025-06-02 「mock」這個詞在軟體開發裡有幾種常見意思</h2><h1 id="2025-06-02-「mock」這個詞在軟體開發裡有幾種常見意思"><a href="#2025-06-02-「mock」這個詞在軟體開發裡有幾種常見意思" class="headerlink" title="2025-06-02 「mock」這個詞在軟體開發裡有幾種常見意思"></a>2025-06-02 「mock」這個詞在軟體開發裡有幾種常見意思</h1><p>「mock」這個詞在軟體開發裡有幾種常見意思，我分情境幫你整理：</p>
+<hr>
+<h3 id="1-測試（單元測試-TDD）裡的-mock"><a href="#1-測試（單元測試-TDD）裡的-mock" class="headerlink" title="1. 測試（單元測試 &#x2F; TDD）裡的 mock"></a>1. 測試（單元測試 &#x2F; TDD）裡的 <strong>mock</strong></h3><ul>
+<li><p><strong>mock</strong> &#x3D; 一個「假的物件」或「假的函數」，用來模擬真實元件的行為。</p>
+</li>
+<li><p>目的：讓你在測試時，不需要真的去呼叫資料庫、API 或外部服務，只要模擬它的回應。</p>
+</li>
+<li><p>例如：</p>
+<pre><code class="csharp">// C# 單元測試
+var mockRepository = new Mock&lt;IProductRepository&gt;();
+mockRepository.Setup(r =&gt; r.GetById(1)).Returns(new Product { Id = 1, Name = &quot;Apple&quot; });
+
+var service = new ProductService(mockRepository.Object);
+var product = service.GetProduct(1);
+
+Assert.Equal(&quot;Apple&quot;, product.Name);
+</code></pre>
+<p>👉 這裡的 <code>mockRepository</code> 不是真的資料庫，而是假的物件，只回傳我們設定的值。</p>
+</li>
+</ul>
+<hr>
+<h3 id="2-前端-API-開發裡的-mock"><a href="#2-前端-API-開發裡的-mock" class="headerlink" title="2. 前端 &#x2F; API 開發裡的 mock"></a>2. 前端 &#x2F; API 開發裡的 <strong>mock</strong></h3><ul>
+<li><p><strong>mock data</strong>（模擬資料）：在 API 還沒完成前，前端工程師可以先用「假資料」來開發。</p>
+</li>
+<li><p><strong>mock server</strong>：模擬一個 API 伺服器，提供固定或假造的回應。<br>例如：</p>
+<pre><code class="json">// mock API 回應
+{
+  &quot;id&quot;: 1,
+  &quot;name&quot;: &quot;Test User&quot;,
+  &quot;email&quot;: &quot;test@example.com&quot;
+}
+</code></pre>
+<p>👉 前端就能用這個資料假裝 API 已經準備好。</p>
+</li>
+</ul>
+<hr>
+<h3 id="3-一般用語"><a href="#3-一般用語" class="headerlink" title="3. 一般用語"></a>3. 一般用語</h3><ul>
+<li>「mock」也有「模擬」「假裝」的意思。<br>例如：mock exam（模擬考試）、mockup（原型設計稿）。</li>
+</ul>
+<hr>
+<p>🔑 總結：</p>
+<ul>
+<li>在 <strong>測試</strong> → mock &#x3D; 假物件，用來隔離真實依賴。</li>
+<li>在 <strong>前端 &#x2F; API</strong> → mock &#x3D; 假資料或假伺服器，用來模擬尚未完成的後端。</li>
+<li>在 <strong>日常用語</strong> → mock &#x3D; 模擬、假裝。</li>
+</ul>
+<p>要不要我幫你用 <strong>一個具體例子</strong>（例如：你在 Vue 寫 API 但後端還沒完成）示範怎麼用 <strong>mock server</strong> ？</p>

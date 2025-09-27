@@ -1,0 +1,30 @@
+<hr>
+<h2 id="title-2025-05-27-macOS-顯示隱藏檔案的指令date-2025-09-22-22-46-49categories-OneDayOneNotetags-架構設計-node-MCP-macOS-description-2025-05-27-macOS-顯示隱藏檔案的指令"><a href="#title-2025-05-27-macOS-顯示隱藏檔案的指令date-2025-09-22-22-46-49categories-OneDayOneNotetags-架構設計-node-MCP-macOS-description-2025-05-27-macOS-顯示隱藏檔案的指令" class="headerlink" title="title: 2025-05-27 macOS 顯示隱藏檔案的指令date: 2025-09-22 22:46:49categories: OneDayOneNotetags:  [架構設計,node,MCP, macOS]description: 2025-05-27 macOS 顯示隱藏檔案的指令"></a>title: 2025-05-27 macOS 顯示隱藏檔案的指令<br>date: 2025-09-22 22:46:49<br>categories: OneDayOneNote<br>tags:  [架構設計,node,MCP, macOS]<br>description: 2025-05-27 macOS 顯示隱藏檔案的指令</h2><h1 id="2025-05-27-macOS-顯示隱藏檔案的指令"><a href="#2025-05-27-macOS-顯示隱藏檔案的指令" class="headerlink" title="2025-05-27 macOS 顯示隱藏檔案的指令"></a>2025-05-27 macOS 顯示隱藏檔案的指令</h1><p>這個問題很正常 👍</p>
+<p>因為 <strong><code>.env</code> 是隱藏檔案</strong>（檔名前面有 <code>.</code> 的在 Linux&#x2F;macOS 預設都不會顯示）。</p>
+<hr>
+<h3 id="🔍-怎麼看到-env？"><a href="#🔍-怎麼看到-env？" class="headerlink" title="🔍 怎麼看到 .env？"></a>🔍 怎麼看到 <code>.env</code>？</h3><p>在 <code>~/mcp-gateway</code> 目錄裡，你現在可能是打：</p>
+<pre><code class="bash">ls -l
+</code></pre>
+<p>要顯示隱藏檔案，要加上 <code>-a</code> 參數：</p>
+<pre><code class="bash">ls -la
+</code></pre>
+<p>你就會看到：</p>
+<pre><code>-rw-r--r--   1 maggie  staff     42 Sep 20 20:30 .env
+</code></pre>
+<hr>
+<h3 id="✅-檢查-env-裡的內容"><a href="#✅-檢查-env-裡的內容" class="headerlink" title="✅ 檢查 .env 裡的內容"></a>✅ 檢查 <code>.env</code> 裡的內容</h3><p>你可以用：</p>
+<pre><code class="bash">cat .env
+</code></pre>
+<p>或</p>
+<pre><code class="bash">nano .env
+</code></pre>
+<p>來確認內容是不是：</p>
+<pre><code>PORT=4000
+OPENAI_API_KEY=
+DEEPSEEK_API_KEY=
+</code></pre>
+<hr>
+<p>👉 你要不要我幫你把 <strong><code>package.json</code> 的 scripts 改好</strong>，讓 <code>.env</code> 自動讀取後跑伺服器？這樣以後你只要打：</p>
+<pre><code class="bash">npm start
+</code></pre>
+<p>就能啟動 <code>server.js</code>，不用每次打 <code>node server.js</code>。</p>

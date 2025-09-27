@@ -1,0 +1,129 @@
+<hr>
+<h2 id="title-2025-05-17-gateway-mjs-MCP-Gateway-的最小版伺服器解釋date-2025-09-21-00-07-22categories-OneDayOneNotetags-架構設計-node-MCP-description-2025-05-17-gateway-mjs-MCP-Gateway-的最小版伺服器解釋"><a href="#title-2025-05-17-gateway-mjs-MCP-Gateway-的最小版伺服器解釋date-2025-09-21-00-07-22categories-OneDayOneNotetags-架構設計-node-MCP-description-2025-05-17-gateway-mjs-MCP-Gateway-的最小版伺服器解釋" class="headerlink" title="title: 2025-05-17 gateway.mjs  MCP Gateway 的最小版伺服器解釋date: 2025-09-21 00:07:22categories: OneDayOneNotetags:  [架構設計,node,MCP]description:  2025-05-17 gateway.mjs  MCP Gateway 的最小版伺服器解釋"></a>title: 2025-05-17 gateway.mjs  MCP Gateway 的最小版伺服器解釋<br>date: 2025-09-21 00:07:22<br>categories: OneDayOneNote<br>tags:  [架構設計,node,MCP]<br>description:  2025-05-17 gateway.mjs  MCP Gateway 的最小版伺服器解釋</h2><h1 id="2025-05-17-gateway-mjs-MCP-Gateway-的最小版伺服器解釋"><a href="#2025-05-17-gateway-mjs-MCP-Gateway-的最小版伺服器解釋" class="headerlink" title="2025-05-17 gateway.mjs  MCP Gateway 的最小版伺服器解釋"></a>2025-05-17 gateway.mjs  MCP Gateway 的最小版伺服器解釋</h1><p>很好 👌 這份 <code>gateway.mjs</code> 就是你 MCP Gateway 的最小版伺服器。我幫你逐段解釋，最後整理出重點。</p>
+<hr>
+<h2 id="🔎-程式逐段說明"><a href="#🔎-程式逐段說明" class="headerlink" title="🔎 程式逐段說明"></a>🔎 程式逐段說明</h2><h3 id="1-匯入模組-啟動設定"><a href="#1-匯入模組-啟動設定" class="headerlink" title="1. 匯入模組 &amp; 啟動設定"></a>1. 匯入模組 &amp; 啟動設定</h3><pre><code class="js">import express from &#39;express&#39;;
+import dotenv from &#39;dotenv&#39;;
+dotenv.config();
+const app = express();
+app.use(express.json());
+</code></pre>
+<ul>
+<li><code>express</code> → Node.js 最常用的 Web 框架，用來建 API。</li>
+<li><code>dotenv</code> → 讀取 <code>.env</code> 檔案，把裡面的設定值放到 <code>process.env</code> 裡。</li>
+<li><code>dotenv.config()</code> → 這行會自動讀取 <code>.env</code>。</li>
+<li><code>app.use(express.json())</code> → 讓 Express 可以解析 JSON 格式的 request body。</li>
+</ul>
+<hr>
+<h3 id="2-讀取環境變數"><a href="#2-讀取環境變數" class="headerlink" title="2. 讀取環境變數"></a>2. 讀取環境變數</h3><pre><code class="js">const OPENAI_KEY = process.env.OPENAI_API_KEY || &#39;&#39;;
+const DEEPSEEK_KEY = process.env.DEEPSEEK_API_KEY || &#39;&#39;;
+</code></pre>
+<ul>
+<li>嘗試讀 <code>.env</code> 裡的 <code>OPENAI_API_KEY</code> 和 <code>DEEPSEEK_API_KEY</code>。</li>
+<li>如果沒設定，預設就是空字串（方便之後用「mock 模式」測試）。</li>
+</ul>
+<hr>
+<h3 id="3-Providers（提供者適配器）"><a href="#3-Providers（提供者適配器）" class="headerlink" title="3. Providers（提供者適配器）"></a>3. Providers（提供者適配器）</h3><pre><code class="js">const providers = {
+  openai: async ({ messages }) =&gt; {
+    if (!OPENAI_KEY) return { text: &#39;[mock openai] 這是模擬回覆&#39; };
+    ...
+  },
+
+  deepseek: async ({ messages }) =&gt; {
+    if (!DEEPSEEK_KEY) return { text: &#39;[mock deepseek] 這是模擬回覆&#39; };
+    ...
+  }
+};
+</code></pre>
+<ul>
+<li>這裡定義了 <strong>兩個 AI 提供者的呼叫方式</strong>：<code>openai</code> 和 <code>deepseek</code>。</li>
+<li><strong>特別設計</strong>：如果 key 沒設定 → 回傳一個 <strong>假回覆（mock）</strong>，方便本地測試。</li>
+<li>否則就真的去呼叫 API（用 <code>fetch</code> POST 到對應的 API endpoint）。</li>
+<li>回傳格式統一 <code>{ text, raw }</code>，<code>text</code> 是簡單結果，<code>raw</code> 是完整 API 回覆。</li>
+</ul>
+<hr>
+<h3 id="4-健康檢查-API"><a href="#4-健康檢查-API" class="headerlink" title="4. 健康檢查 API"></a>4. 健康檢查 API</h3><pre><code class="js">app.get(&#39;/health&#39;, (req, res) =&gt; res.json({ status: &#39;ok&#39;, role: &#39;mcp-gateway&#39; }));
+</code></pre>
+<ul>
+<li>提供 <code>/health</code> API，確認伺服器活著。</li>
+<li>通常監控系統或 DevOps 會打這個來檢查服務是否正常。</li>
+</ul>
+<hr>
+<h3 id="5-聊天-API"><a href="#5-聊天-API" class="headerlink" title="5. 聊天 API"></a>5. 聊天 API</h3><pre><code class="js">app.post(&#39;/api/chat&#39;, async (req, res) =&gt; {
+  const { provider = &#39;openai&#39;, messages = [{ role:&#39;user&#39;, content:&#39;hello&#39; }] } = req.body;
+  const adapter = providers[provider];
+  if (!adapter) return res.status(400).json({ error: &#39;unknown provider&#39; });
+  try {
+    const { text, raw } = await adapter({ messages });
+    return res.json({ provider, text, raw });
+  } catch (err) {
+    console.error(&#39;provider error&#39;, err);
+    return res.status(500).json({ error: &#39;provider error&#39; });
+  }
+});
+</code></pre>
+<ul>
+<li><p>這是主要的 API：**<code>POST /api/chat</code>**。</p>
+</li>
+<li><p>Request body 應該包含：</p>
+<pre><code class="json">{
+  &quot;provider&quot;: &quot;openai&quot;,
+  &quot;messages&quot;: [{ &quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;hello&quot; }]
+}
+</code></pre>
+</li>
+<li><p>如果沒提供，預設就是 <code>openai</code> + 一個簡單訊息。</p>
+</li>
+<li><p>根據 provider 來選擇要呼叫哪個適配器。</p>
+</li>
+<li><p>如果 provider 不存在 → 回傳 400（Bad Request）。</p>
+</li>
+<li><p>如果 API 呼叫失敗 → 回傳 500（Server Error）。</p>
+</li>
+<li><p>成功就回傳：</p>
+<pre><code class="json">{
+  &quot;provider&quot;: &quot;openai&quot;,
+  &quot;text&quot;: &quot;... AI 回覆 ...&quot;,
+  &quot;raw&quot;: { ...完整 API 結果... }
+}
+</code></pre>
+</li>
+</ul>
+<hr>
+<h3 id="6-啟動伺服器"><a href="#6-啟動伺服器" class="headerlink" title="6. 啟動伺服器"></a>6. 啟動伺服器</h3><pre><code class="js">const port = process.env.PORT || 4000;
+app.listen(port, () =&gt; console.log(`MCP gateway listening on ${port}`));
+</code></pre>
+<ul>
+<li>從 <code>.env</code> 讀取 <code>PORT</code>，如果沒設定就用 <code>4000</code>。</li>
+<li>啟動 Express 伺服器，監聽這個 port。</li>
+<li>啟動成功會在終端機輸出提示。</li>
+</ul>
+<hr>
+<h2 id="🚩-重點整理"><a href="#🚩-重點整理" class="headerlink" title="🚩 重點整理"></a>🚩 重點整理</h2><ol>
+<li><p><strong>模組</strong></p>
+<ul>
+<li><code>express</code> → Web 伺服器</li>
+<li><code>dotenv</code> → 讀取 <code>.env</code></li>
+</ul>
+</li>
+<li><p><strong>環境變數管理</strong></p>
+<ul>
+<li>API Key 都放在 <code>.env</code>，不寫死在程式裡。</li>
+<li>Key 留空時會回 mock 回覆，方便測試。</li>
+</ul>
+</li>
+<li><p><strong>API 路徑</strong></p>
+<ul>
+<li><code>GET /health</code> → 檢查服務狀態</li>
+<li><code>POST /api/chat</code> → 呼叫 AI（支援 <code>openai</code>、<code>deepseek</code>）</li>
+</ul>
+</li>
+<li><p><strong>設計重點</strong></p>
+<ul>
+<li><strong>Adapter Pattern（適配器模式）</strong>：每個 provider 都是一個 adapter，以後要加新 provider（例如 Anthropic、Gemini）也很容易。</li>
+<li><strong>錯誤處理</strong>：有 try&#x2F;catch，避免伺服器直接掛掉。</li>
+<li><strong>Mock 機制</strong>：沒 API key 也能本地跑通，降低開發阻力。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<p>要不要我幫你畫一個 <strong>請求流程圖</strong>（從前端發送 → gateway → provider → 回傳）？這樣你一看就能明白整個 Gateway 的作用。</p>

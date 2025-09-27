@@ -1,0 +1,79 @@
+<hr>
+<h2 id="title-2025-05-29-前端-→-gateway-→-AI-的整個流程，以及-Header-Body-的對應關係date-2025-09-23-22-28-40categories-OneDayOneNotetags-架構設計-node-MCP-macOS-description-2025-05-29-前端-→-gateway-→-AI-的整個流程，以及-Header-Body-的對應關係"><a href="#title-2025-05-29-前端-→-gateway-→-AI-的整個流程，以及-Header-Body-的對應關係date-2025-09-23-22-28-40categories-OneDayOneNotetags-架構設計-node-MCP-macOS-description-2025-05-29-前端-→-gateway-→-AI-的整個流程，以及-Header-Body-的對應關係" class="headerlink" title="title: 2025-05-29  前端 → gateway → AI 的整個流程，以及 Header &#x2F; Body 的對應關係date: 2025-09-23 22:28:40categories: OneDayOneNotetags:  [架構設計,node,MCP, macOS]description: 2025-05-29  前端 → gateway → AI 的整個流程，以及 Header &#x2F; Body 的對應關係"></a>title: 2025-05-29  前端 → gateway → AI 的整個流程，以及 Header &#x2F; Body 的對應關係<br>date: 2025-09-23 22:28:40<br>categories: OneDayOneNote<br>tags:  [架構設計,node,MCP, macOS]<br>description: 2025-05-29  前端 → gateway → AI 的整個流程，以及 Header &#x2F; Body 的對應關係</h2><h1 id="2025-05-29-前端-→-gateway-→-AI-的整個流程，以及-Header-Body-的對應關係"><a href="#2025-05-29-前端-→-gateway-→-AI-的整個流程，以及-Header-Body-的對應關係" class="headerlink" title="2025-05-29  前端 → gateway → AI 的整個流程，以及 Header &#x2F; Body 的對應關係"></a>2025-05-29  前端 → gateway → AI 的整個流程，以及 Header &#x2F; Body 的對應關係</h1><p>太棒了 😄 我幫你畫一個 <strong>圖示化箭頭流程圖</strong>，用文字表示前端、Gateway、AI 之間的資料流向，包括 Header、Body 和 API Key 的位置，方便你快速理解整個流程。</p>
+<hr>
+<pre><code>[ 前端 / Postman ]
+      │
+      │ POST http://localhost:4000/api/chat
+      │ Header:
+      │   Content-Type: application/json
+      │ Body:
+      │   {
+      │     &quot;provider&quot;: &quot;openai&quot;,
+      │     &quot;messages&quot;: [{ &quot;role&quot;:&quot;user&quot;,&quot;content&quot;:&quot;hello&quot; }]
+      │   }
+      ▼
+───────────────────────────────
+│        MCP Gateway           │
+│  (gateway.mjs / Express)     │
+│                               │
+│ 1️⃣ 解析 Body → provider &amp; messages
+│ 2️⃣ 檢查 .env API Key
+│ 3️⃣ 如果無 key → 回 mock
+│ 4️⃣ 如果有 key → 呼叫 AI API
+───────────────────────────────
+      │
+      │ POST https://api.openai.com/v1/chat/completions
+      │ (或 DeepSeek API)
+      │ Header:
+      │   Authorization: Bearer &lt;API_KEY&gt;
+      │   Content-Type: application/json
+      │ Body:
+      │   { model: &quot;gpt-3.5-turbo&quot;, messages: [...] }
+      ▼
+───────────────────────────────
+│        AI Provider           │
+│ (OpenAI / DeepSeek)          │
+│                               │
+│ 回傳 JSON Response            │
+│ { choices: [...], ... }       │
+───────────────────────────────
+      │
+      │ Gateway 整理成統一格式
+      ▼
+[ 前端 / Postman ]
+      │
+      │ Response JSON:
+      │ {
+      │   &quot;provider&quot;: &quot;openai&quot;,
+      │   &quot;text&quot;: &quot;AI 回覆文字&quot;,
+      │   &quot;raw&quot;: { ...完整 AI 回覆... }
+      │ }
+</code></pre>
+<hr>
+<h3 id="🔑-讀圖重點"><a href="#🔑-讀圖重點" class="headerlink" title="🔑 讀圖重點"></a>🔑 讀圖重點</h3><ol>
+<li><p><strong>前端 Header &#x2F; Body</strong></p>
+<ul>
+<li>Header：告訴 Gateway 內容是 JSON</li>
+<li>Body：告訴 Gateway 要用哪個 AI、訊息內容</li>
+</ul>
+</li>
+<li><p><strong>Gateway 的工作</strong></p>
+<ul>
+<li>解析前端請求</li>
+<li>決定要 mock 還是呼叫真正 AI</li>
+<li>呼叫外部 API 時帶上 Authorization 與 Body</li>
+</ul>
+</li>
+<li><p><strong>Gateway 統一回傳</strong></p>
+<ul>
+<li>不管是真實回覆還是 mock，都用統一格式給前端</li>
+</ul>
+</li>
+<li><p><strong>AI Provider</strong></p>
+<ul>
+<li>接收 Gateway 封裝好的 request</li>
+<li>回傳結果給 Gateway</li>
+</ul>
+</li>
+</ol>
+<hr>

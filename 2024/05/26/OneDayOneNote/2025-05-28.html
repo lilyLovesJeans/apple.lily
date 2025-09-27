@@ -1,0 +1,140 @@
+<hr>
+<h2 id="title-2025-05-28-情境式的比喻來解釋-POST-api-chat-這個-API-怎麼用date-2025-09-23-22-24-15categories-OneDayOneNotetags-架構設計-node-MCP-macOS-description-2025-05-28-情境式的比喻來解釋-POST-api-chat-這個-API-怎麼用"><a href="#title-2025-05-28-情境式的比喻來解釋-POST-api-chat-這個-API-怎麼用date-2025-09-23-22-24-15categories-OneDayOneNotetags-架構設計-node-MCP-macOS-description-2025-05-28-情境式的比喻來解釋-POST-api-chat-這個-API-怎麼用" class="headerlink" title="title: 2025-05-28  情境式的比喻來解釋 POST &#x2F;api&#x2F;chat 這個 API 怎麼用date: 2025-09-23 22:24:15categories: OneDayOneNotetags:  [架構設計,node,MCP, macOS]description: 2025-05-28  情境式的比喻來解釋 POST &#x2F;api&#x2F;chat 這個 API 怎麼用"></a>title: 2025-05-28  情境式的比喻來解釋 POST &#x2F;api&#x2F;chat 這個 API 怎麼用<br>date: 2025-09-23 22:24:15<br>categories: OneDayOneNote<br>tags:  [架構設計,node,MCP, macOS]<br>description: 2025-05-28  情境式的比喻來解釋 POST &#x2F;api&#x2F;chat 這個 API 怎麼用</h2><h1 id="2025-05-28-情境式的比喻來解釋-POST-api-chat-這個-API-怎麼用"><a href="#2025-05-28-情境式的比喻來解釋-POST-api-chat-這個-API-怎麼用" class="headerlink" title="2025-05-28  情境式的比喻來解釋 POST &#x2F;api&#x2F;chat 這個 API 怎麼用"></a>2025-05-28  情境式的比喻來解釋 POST &#x2F;api&#x2F;chat 這個 API 怎麼用</h1><p>很好 👍 我用一個「情境式」的比喻來解釋 <strong><code>POST /api/chat</code></strong> 這個 API 怎麼用。</p>
+<hr>
+<h3 id="1-API-路徑"><a href="#1-API-路徑" class="headerlink" title="1. API 路徑"></a>1. API 路徑</h3><ul>
+<li><p>你的 server（<code>gateway.mjs</code>）啟動後會跑在某個網址，例如：</p>
+<pre><code>http://localhost:4000
+</code></pre>
+</li>
+<li><p><code>POST /api/chat</code> 就是：</p>
+<pre><code>http://localhost:4000/api/chat
+</code></pre>
+</li>
+</ul>
+<hr>
+<h3 id="2-這個-API-的用途"><a href="#2-這個-API-的用途" class="headerlink" title="2. 這個 API 的用途"></a>2. 這個 API 的用途</h3><p>它是一個「轉接站」，前端（或你自己用 curl &#x2F; Postman 測試）可以呼叫這個 API，告訴它：</p>
+<ul>
+<li>我要用哪個 AI（provider，例如 openai 或 deepseek）</li>
+<li>我要傳送什麼對話（messages，像是使用者說的話）</li>
+</ul>
+<p>API 收到後會：</p>
+<ol>
+<li>判斷你要的是哪個 provider（openai 或 deepseek）。</li>
+<li>把你的對話轉交給對應的 AI。</li>
+<li>把 AI 回覆再轉交回來給你。</li>
+</ol>
+<p>如果你沒填 API key，它會用 <strong>mock（模擬回覆）</strong> 給你假資料，方便測試。</p>
+<hr>
+<h3 id="3-Request-Body-說明"><a href="#3-Request-Body-說明" class="headerlink" title="3. Request Body 說明"></a>3. Request Body 說明</h3><pre><code class="json">{
+  &quot;provider&quot;: &quot;openai&quot;,
+  &quot;messages&quot;: [{ &quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;hello&quot; }]
+}
+</code></pre>
+<ul>
+<li><p><code>provider</code>: 指定要呼叫哪個 AI</p>
+<ul>
+<li><code>openai</code> → 會走 OpenAI API</li>
+<li><code>deepseek</code> → 會走 DeepSeek API</li>
+<li>如果沒寫，預設是 <code>openai</code></li>
+</ul>
+</li>
+<li><p><code>messages</code>: 對話內容</p>
+<ul>
+<li><p>這是 <strong>ChatGPT 風格的格式</strong>，包含多個訊息。</p>
+</li>
+<li><p>每個訊息有：</p>
+<ul>
+<li><code>role</code>: 誰在說話（<code>user</code>&#x3D;使用者, <code>assistant</code>&#x3D;AI, <code>system</code>&#x3D;系統指令）</li>
+<li><code>content</code>: 實際的文字內容</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>例如：</p>
+<pre><code class="json">{
+  &quot;provider&quot;: &quot;openai&quot;,
+  &quot;messages&quot;: [
+    { &quot;role&quot;: &quot;system&quot;, &quot;content&quot;: &quot;你是一個很有禮貌的客服&quot; },
+    { &quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;你好，可以幫我查詢訂單嗎？&quot; }
+  ]
+}
+</code></pre>
+<hr>
+<h3 id="4-測試方式（情境）"><a href="#4-測試方式（情境）" class="headerlink" title="4. 測試方式（情境）"></a>4. 測試方式（情境）</h3><p>假設我在本機跑起來，你可以用 <strong>curl</strong> 測試：</p>
+<pre><code class="bash">curl -X POST http://localhost:4000/api/chat \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#39;{
+    &quot;provider&quot;: &quot;openai&quot;,
+    &quot;messages&quot;: [{ &quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;hello&quot; }]
+  }&#39;
+</code></pre>
+<p>回傳（如果沒 API key）會像這樣：</p>
+<pre><code class="json">{
+  &quot;provider&quot;: &quot;openai&quot;,
+  &quot;text&quot;: &quot;[mock openai] 這是模擬回覆&quot;
+}
+</code></pre>
+<hr>
+<p>👉 重點總結：</p>
+<ul>
+<li><code>/api/chat</code> 就是「前端問 AI 的唯一入口」。</li>
+<li>你在 body 裡面指定 <strong>要用哪個 AI</strong>（<code>provider</code>）和 <strong>對話內容</strong>（<code>messages</code>）。</li>
+<li>它會幫你轉接給 OpenAI 或 DeepSeek，沒 key 就回 mock。</li>
+</ul>
+<hr>
+<p>要不要我幫你寫一個 <strong>實際 Postman 測試範例</strong>（含畫面流程），讓你可以直接看結果？<br>好 👍 那我就用 <strong>Postman 測試 <code>/api/chat</code></strong> 的完整流程來給你一個「情境式操作」範例。</p>
+<hr>
+<h2 id="🎯-前置條件"><a href="#🎯-前置條件" class="headerlink" title="🎯 前置條件"></a>🎯 前置條件</h2><ol>
+<li><p>你已經在 <code>mcp-gateway</code> 目錄下建立好 <strong>gateway.mjs</strong>。</p>
+</li>
+<li><p>已經裝好 express &#x2F; dotenv（你剛剛有做）。</p>
+</li>
+<li><p><code>.env</code> 裡面先不用放 API key（這樣會回 mock 回覆）。</p>
+</li>
+<li><p>啟動 server：</p>
+<pre><code class="bash">node gateway.mjs
+</code></pre>
+<p>你應該會看到：</p>
+<pre><code>MCP gateway listening on 4000
+</code></pre>
+</li>
+</ol>
+<hr>
+<h2 id="🛠️-Postman-測試步驟"><a href="#🛠️-Postman-測試步驟" class="headerlink" title="🛠️ Postman 測試步驟"></a>🛠️ Postman 測試步驟</h2><h3 id="1-開啟-Postman"><a href="#1-開啟-Postman" class="headerlink" title="1. 開啟 Postman"></a>1. 開啟 Postman</h3><ul>
+<li>新增一個 <strong>Request</strong></li>
+<li>選擇 <strong>POST</strong></li>
+</ul>
+<hr>
+<h3 id="2-設定-URL"><a href="#2-設定-URL" class="headerlink" title="2. 設定 URL"></a>2. 設定 URL</h3><p>在 URL 欄位輸入：</p>
+<pre><code>http://localhost:4000/api/chat
+</code></pre>
+<hr>
+<h3 id="3-設定-Header"><a href="#3-設定-Header" class="headerlink" title="3. 設定 Header"></a>3. 設定 Header</h3><p>在 <strong>Headers</strong> 分頁新增一筆：</p>
+<pre><code>Key: Content-Type
+Value: application/json
+</code></pre>
+<hr>
+<h3 id="4-設定-Body"><a href="#4-設定-Body" class="headerlink" title="4. 設定 Body"></a>4. 設定 Body</h3><p>切換到 <strong>Body → raw → JSON</strong>，輸入：</p>
+<pre><code class="json">{
+  &quot;provider&quot;: &quot;openai&quot;,
+  &quot;messages&quot;: [{ &quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;hello&quot; }]
+}
+</code></pre>
+<hr>
+<h3 id="5-點擊-Send"><a href="#5-點擊-Send" class="headerlink" title="5. 點擊 Send"></a>5. 點擊 Send</h3><p>如果你的 <code>.env</code> 沒有設定 API key，會回：</p>
+<pre><code class="json">{
+  &quot;provider&quot;: &quot;openai&quot;,
+  &quot;text&quot;: &quot;[mock openai] 這是模擬回覆&quot;
+}
+</code></pre>
+<p>如果你有填 API key，會回傳真正的 OpenAI 回覆（例如 GPT 回應一段文字）。</p>
+<hr>
+<h2 id="📌-重點"><a href="#📌-重點" class="headerlink" title="📌 重點"></a>📌 重點</h2><ul>
+<li><code>http://localhost:4000/api/chat</code> &#x3D; 你的 API Gateway 入口。</li>
+<li><strong>Body</strong> 的 <code>provider</code> 決定用哪個 AI。</li>
+<li><strong>messages</strong> 是對話訊息（照 ChatGPT API 格式）。</li>
+<li>沒有 API key → 回 mock（方便測試）。</li>
+</ul>
+<hr>
+<p>要不要我幫你整理一張 <strong>Postman 測試畫面示意圖</strong>（標出 URL、Headers、Body）？這樣你照著操作就不會錯。</p>

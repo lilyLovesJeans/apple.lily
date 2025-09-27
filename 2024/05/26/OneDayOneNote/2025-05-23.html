@@ -1,0 +1,50 @@
+<hr>
+<h2 id="title-2025-05-23-檢查-node-是如何安裝的date-2025-09-22-22-28-59categories-OneDayOneNotetags-架構設計-node-MCP-macOS-description-2025-05-23-檢查-node-是如何安裝的"><a href="#title-2025-05-23-檢查-node-是如何安裝的date-2025-09-22-22-28-59categories-OneDayOneNotetags-架構設計-node-MCP-macOS-description-2025-05-23-檢查-node-是如何安裝的" class="headerlink" title="title: 2025-05-23 檢查 node 是如何安裝的date: 2025-09-22 22:28:59categories: OneDayOneNotetags:  [架構設計,node,MCP, macOS]description: 2025-05-23 檢查 node 是如何安裝的"></a>title: 2025-05-23 檢查 node 是如何安裝的<br>date: 2025-09-22 22:28:59<br>categories: OneDayOneNote<br>tags:  [架構設計,node,MCP, macOS]<br>description: 2025-05-23 檢查 node 是如何安裝的</h2><h1 id="2025-05-23-檢查-node-是如何安裝的"><a href="#2025-05-23-檢查-node-是如何安裝的" class="headerlink" title="2025-05-23 檢查 node 是如何安裝的"></a>2025-05-23 檢查 node 是如何安裝的</h1><p>哦～懂了 👌 你現在的情況是：不確定 <code>node</code> 是用 <strong>Homebrew</strong> 裝的，還是自己下載安裝檔裝的。<br>別擔心，我教你一步步檢查：</p>
+<hr>
+<h3 id="🔍-1-檢查-Node-來源"><a href="#🔍-1-檢查-Node-來源" class="headerlink" title="🔍 1. 檢查 Node 來源"></a>🔍 1. 檢查 Node 來源</h3><p>輸入：</p>
+<pre><code class="bash">which node
+</code></pre>
+<p>可能會看到以下幾種結果：</p>
+<ul>
+<li><code>/usr/local/bin/node</code>（Intel Mac, Homebrew 常見路徑）</li>
+<li><code>/opt/homebrew/bin/node</code>（M1&#x2F;M2&#x2F;M3 Mac, Homebrew 常見路徑）</li>
+<li><code>/usr/local/bin/node</code> 但其實是 <strong>官網安裝器</strong>（pkg）裝的</li>
+<li><code>/usr/bin/node</code>（通常是系統內建，macOS 其實預設沒有 node，大多數是自己安裝的）</li>
+</ul>
+<hr>
+<h3 id="🔍-2-用-Homebrew-查"><a href="#🔍-2-用-Homebrew-查" class="headerlink" title="🔍 2. 用 Homebrew 查"></a>🔍 2. 用 Homebrew 查</h3><pre><code class="bash">brew list node
+</code></pre>
+<ul>
+<li><p>如果有列出一堆檔案，表示 <strong>是 Homebrew 安裝的</strong>。</p>
+</li>
+<li><p>如果顯示：</p>
+<pre><code>Error: No such keg: /usr/local/Cellar/node
+</code></pre>
+<p>那就不是用 Homebrew 裝的。</p>
+</li>
+</ul>
+<hr>
+<h3 id="🔍-3-用-pkgutil-檢查（如果是官方安裝檔安裝）"><a href="#🔍-3-用-pkgutil-檢查（如果是官方安裝檔安裝）" class="headerlink" title="🔍 3. 用 pkgutil 檢查（如果是官方安裝檔安裝）"></a>🔍 3. 用 pkgutil 檢查（如果是官方安裝檔安裝）</h3><pre><code class="bash">pkgutil --pkgs | grep node
+</code></pre>
+<ul>
+<li>如果有出現類似 <code>org.nodejs.node.pkg</code> → 代表是用 Node.js 官網的安裝檔 (<code>.pkg</code>) 裝的。</li>
+</ul>
+<hr>
+<h3 id="🛠-4-卸載方法"><a href="#🛠-4-卸載方法" class="headerlink" title="🛠 4. 卸載方法"></a>🛠 4. 卸載方法</h3><ul>
+<li><p><strong>Homebrew 裝的</strong> →</p>
+<pre><code class="bash">brew uninstall node
+brew cleanup
+</code></pre>
+</li>
+<li><p><strong>官網 <code>.pkg</code> 安裝器裝的</strong> →<br>需要用官方提供的卸載指令，或手動刪除：</p>
+<pre><code class="bash">sudo rm -rf /usr/local/lib/node_modules
+sudo rm -rf /usr/local/include/node
+sudo rm -rf /usr/local/bin/node
+sudo rm -rf /usr/local/bin/npm
+</code></pre>
+</li>
+<li><p><strong>自己 mkdir 的資料夾 (專案，例如 ~&#x2F;mcp-server)</strong> →<br>只要 <code>rm -rf ~/mcp-server</code> 就好，完全不影響系統。</p>
+</li>
+</ul>
+<hr>
+<p>要不要我幫你寫一個 <strong>「一鍵檢查腳本」</strong>，直接告訴你 Node 是用 Homebrew 還是 pkg 裝的？</p>

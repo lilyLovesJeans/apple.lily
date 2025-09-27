@@ -1,0 +1,55 @@
+<hr>
+<h2 id="title-2025-05-26-env-檔案是什麼date-2025-09-22-22-44-09categories-OneDayOneNotetags-架構設計-node-MCP-macOS-description-2025-05-26-env-檔案是什麼"><a href="#title-2025-05-26-env-檔案是什麼date-2025-09-22-22-44-09categories-OneDayOneNotetags-架構設計-node-MCP-macOS-description-2025-05-26-env-檔案是什麼" class="headerlink" title="title: 2025-05-26 .env 檔案是什麼date: 2025-09-22 22:44:09categories: OneDayOneNotetags:  [架構設計,node,MCP, macOS]description: 2025-05-26 .env 檔案是什麼"></a>title: 2025-05-26 .env 檔案是什麼<br>date: 2025-09-22 22:44:09<br>categories: OneDayOneNote<br>tags:  [架構設計,node,MCP, macOS]<br>description: 2025-05-26 .env 檔案是什麼</h2><h1 id="2025-05-26-env-檔案是什麼"><a href="#2025-05-26-env-檔案是什麼" class="headerlink" title="2025-05-26 .env 檔案是什麼"></a>2025-05-26 .env 檔案是什麼</h1><p>好 👌 我來幫你說清楚 <strong><code>.env</code> 檔案是什麼</strong>，以及怎麼建立。</p>
+<hr>
+<h2 id="🔑-env-檔案是什麼？"><a href="#🔑-env-檔案是什麼？" class="headerlink" title="🔑 .env 檔案是什麼？"></a>🔑 <code>.env</code> 檔案是什麼？</h2><ul>
+<li><p><code>.env</code> 全名是 <strong>environment file（環境變數檔案）</strong>。</p>
+</li>
+<li><p>用來存放敏感或環境相關的設定，例如：</p>
+<ul>
+<li>API Key</li>
+<li>資料庫密碼</li>
+<li>伺服器的 port</li>
+</ul>
+</li>
+<li><p>好處是：<strong>不用把密碼寫死在程式碼裡</strong>，而是透過 <code>dotenv</code> 套件自動讀取。</p>
+</li>
+</ul>
+<hr>
+<h2 id="📂-怎麼建立-env-檔案？"><a href="#📂-怎麼建立-env-檔案？" class="headerlink" title="📂 怎麼建立 .env 檔案？"></a>📂 怎麼建立 <code>.env</code> 檔案？</h2><p>你現在在 <code>~/mcp-gateway</code> 專案目錄，直接執行：</p>
+<pre><code class="bash">nano .env
+</code></pre>
+<p>會開啟一個編輯器，把以下內容貼進去：</p>
+<pre><code>PORT=4000
+OPENAI_API_KEY=
+DEEPSEEK_API_KEY=
+</code></pre>
+<p>存檔方法（在 nano 裡）：</p>
+<ol>
+<li>按 <code>Ctrl + O</code> （字母 O，不是零），存檔</li>
+<li>按 <code>Enter</code> 確認檔名 <code>.env</code></li>
+<li>按 <code>Ctrl + X</code> 退出</li>
+</ol>
+<p>這樣就會在 <code>mcp-gateway</code> 目錄下生成 <code>.env</code> 檔案。</p>
+<hr>
+<h2 id="🧪-使用方法"><a href="#🧪-使用方法" class="headerlink" title="🧪 使用方法"></a>🧪 使用方法</h2><p>程式碼裡用 <code>dotenv</code> 讀取：</p>
+<pre><code class="js">import dotenv from &quot;dotenv&quot;;
+dotenv.config();
+
+console.log(&quot;Port:&quot;, process.env.PORT);
+console.log(&quot;OpenAI Key:&quot;, process.env.OPENAI_API_KEY);
+</code></pre>
+<p>執行：</p>
+<pre><code class="bash">node server.js
+</code></pre>
+<p>會看到：</p>
+<pre><code>Port: 4000
+OpenAI Key:
+</code></pre>
+<hr>
+<p>⚠️ 注意：</p>
+<ol>
+<li><code>.env</code> 檔案通常會加到 <code>.gitignore</code>，避免不小心把 API Key 上傳到 GitHub。</li>
+<li>Key 的值目前留空沒關係，以後要用真的 API Key 再貼上。</li>
+</ol>
+<hr>
+<p>要不要我直接幫你修改 <code>package.json</code>，加一個 <code>start</code> 指令，讓你之後只要打 <code>npm start</code> 就會自動讀 <code>.env</code> 並跑 <code>server.js</code>？</p>

@@ -1,0 +1,44 @@
+<hr>
+<h2 id="title-2025-05-14-建立一個新的-Node-js-專案，並安裝需要的套件（Express-與-dotenv）的指令date-2025-09-20-22-34-02categories-OneDayOneNotetags-架構設計-node-description-2025-05-14-建立一個新的-Node-js-專案，並安裝需要的套件（Express-與-dotenv）的指令"><a href="#title-2025-05-14-建立一個新的-Node-js-專案，並安裝需要的套件（Express-與-dotenv）的指令date-2025-09-20-22-34-02categories-OneDayOneNotetags-架構設計-node-description-2025-05-14-建立一個新的-Node-js-專案，並安裝需要的套件（Express-與-dotenv）的指令" class="headerlink" title="title: 2025-05-14 建立一個新的 Node.js 專案，並安裝需要的套件（Express 與 dotenv）的指令date: 2025-09-20 22:34:02categories: OneDayOneNotetags:  [架構設計, node]description:  2025-05-14 建立一個新的 Node.js 專案，並安裝需要的套件（Express 與 dotenv）的指令"></a>title: 2025-05-14 建立一個新的 Node.js 專案，並安裝需要的套件（Express 與 dotenv）的指令<br>date: 2025-09-20 22:34:02<br>categories: OneDayOneNote<br>tags:  [架構設計, node]<br>description:  2025-05-14 建立一個新的 Node.js 專案，並安裝需要的套件（Express 與 dotenv）的指令</h2><h1 id="2025-05-14-建立一個新的-Node-js-專案，並安裝需要的套件（Express-與-dotenv）的指令"><a href="#2025-05-14-建立一個新的-Node-js-專案，並安裝需要的套件（Express-與-dotenv）的指令" class="headerlink" title="2025-05-14 建立一個新的 Node.js 專案，並安裝需要的套件（Express 與 dotenv）的指令"></a>2025-05-14 建立一個新的 Node.js 專案，並安裝需要的套件（Express 與 dotenv）的指令</h1><p>好 👍 我一步一步拆解給你看，這四行指令是用來建立一個新的 <strong>Node.js 專案</strong>，並安裝需要的套件（Express 與 dotenv）：</p>
+<hr>
+<h3 id="1"><a href="#1" class="headerlink" title="1."></a>1.</h3><pre><code class="bash">mkdir ~/mcp-gateway
+</code></pre>
+<ul>
+<li><code>mkdir</code> &#x3D; make directory（建立資料夾）</li>
+<li><code>~/</code> &#x3D; 代表目前使用者的家目錄 (home directory)，在 macOS&#x2F;Linux 上就是 <code>/Users/你的帳號/</code></li>
+<li><code>mcp-gateway</code> &#x3D; 資料夾名稱</li>
+</ul>
+<p>👉 這行就是 <strong>在家目錄下新建一個叫 <code>mcp-gateway</code> 的資料夾</strong>。</p>
+<hr>
+<h3 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h3><pre><code class="bash">cd ~/mcp-gateway
+</code></pre>
+<ul>
+<li><code>cd</code> &#x3D; change directory（切換目錄）<br>👉 這行就是 <strong>進到剛剛新建的 <code>mcp-gateway</code> 資料夾裡面</strong>。</li>
+</ul>
+<hr>
+<h3 id="3"><a href="#3" class="headerlink" title="3."></a>3.</h3><pre><code class="bash">npm init -y
+</code></pre>
+<ul>
+<li><code>npm</code> &#x3D; Node.js 的套件管理工具（Node Package Manager）</li>
+<li><code>init</code> &#x3D; 初始化一個新的 Node.js 專案（會建立一個 <code>package.json</code> 檔案，記錄專案資訊與套件依賴）</li>
+<li><code>-y</code> &#x3D; 自動回答「yes」，用預設值建立，不會一題一題問你</li>
+</ul>
+<p>👉 這行就是 <strong>建立一個新的 Node.js 專案，產生 <code>package.json</code> 檔案</strong>。</p>
+<hr>
+<h3 id="4"><a href="#4" class="headerlink" title="4."></a>4.</h3><pre><code class="bash">npm i express dotenv
+</code></pre>
+<ul>
+<li><code>npm i</code> &#x3D; <code>npm install</code> 的縮寫（安裝套件）</li>
+<li><code>express</code> &#x3D; 一個輕量級的 <strong>Web 應用框架</strong>，用來快速建 API 或 Web 伺服器</li>
+<li><code>dotenv</code> &#x3D; 一個讀取 <code>.env</code> 檔案的套件，可以把環境變數（像是 API key、資料庫密碼）安全地放在 <code>.env</code> 裡</li>
+</ul>
+<p>👉 這行就是 <strong>在這個專案裡安裝 Express 和 dotenv 兩個套件</strong>，並會把它們記錄在 <code>package.json</code> 的 <code>dependencies</code> 裡。</p>
+<hr>
+<p>📦 執行完這四行，你就會得到一個：</p>
+<ul>
+<li>專案資料夾 <code>mcp-gateway/</code></li>
+<li>裡面有 <code>package.json</code></li>
+<li>多了一個 <code>node_modules/</code> 資料夾（存放安裝的套件）</li>
+<li><code>package-lock.json</code>（記錄套件版本）</li>
+</ul>
+<hr>

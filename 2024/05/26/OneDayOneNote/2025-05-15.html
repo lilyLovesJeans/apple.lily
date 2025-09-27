@@ -1,0 +1,46 @@
+<hr>
+<h2 id="title-2025-05-15-npm-init-y-幫你自動產生了一個-package-json-檔案date-2025-09-20-23-15-14categories-OneDayOneNotetags-架構設計-node-description-2025-05-15-npm-init-y-幫你自動產生了一個-package-json-檔案"><a href="#title-2025-05-15-npm-init-y-幫你自動產生了一個-package-json-檔案date-2025-09-20-23-15-14categories-OneDayOneNotetags-架構設計-node-description-2025-05-15-npm-init-y-幫你自動產生了一個-package-json-檔案" class="headerlink" title="title: 2025-05-15 npm init -y 幫你自動產生了一個 package.json 檔案date: 2025-09-20 23:15:14categories: OneDayOneNotetags:  [架構設計,node]description:  2025-05-15 npm init -y 幫你自動產生了一個 package.json 檔案"></a>title: 2025-05-15 npm init -y 幫你自動產生了一個 package.json 檔案<br>date: 2025-09-20 23:15:14<br>categories: OneDayOneNote<br>tags:  [架構設計,node]<br>description:  2025-05-15 npm init -y 幫你自動產生了一個 package.json 檔案</h2><h1 id="2025-05-15-npm-init-y-幫你自動產生了一個-package-json-檔案"><a href="#2025-05-15-npm-init-y-幫你自動產生了一個-package-json-檔案" class="headerlink" title="2025-05-15 npm init -y 幫你自動產生了一個 package.json 檔案"></a>2025-05-15 npm init -y 幫你自動產生了一個 package.json 檔案</h1><p>✅ 很正常！恭喜你成功跑了 <code>npm init -y</code> 🎉</p>
+<hr>
+<p>你現在在 <code>~/mcp-gateway</code> 資料夾裡，<code>npm init -y</code> 幫你自動產生了一個 <code>package.json</code> 檔案，內容就是：</p>
+<pre><code class="json">{
+  &quot;name&quot;: &quot;mcp-gateway&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;description&quot;: &quot;&quot;,
+  &quot;main&quot;: &quot;index.js&quot;,
+  &quot;scripts&quot;: {
+    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
+  },
+  &quot;keywords&quot;: [],
+  &quot;author&quot;: &quot;&quot;,
+  &quot;license&quot;: &quot;ISC&quot;
+}
+</code></pre>
+<hr>
+<h3 id="🔎-解釋一下每個欄位："><a href="#🔎-解釋一下每個欄位：" class="headerlink" title="🔎 解釋一下每個欄位："></a>🔎 解釋一下每個欄位：</h3><ul>
+<li><p><code>&quot;name&quot;: &quot;mcp-gateway&quot;</code><br>專案名稱，預設會用資料夾名稱。</p>
+</li>
+<li><p><code>&quot;version&quot;: &quot;1.0.0&quot;</code><br>版本號，通常用 <strong>主版號.次版號.修正版號</strong>。</p>
+</li>
+<li><p><code>&quot;description&quot;: &quot;&quot;</code><br>描述，現在空的，你可以改成專案簡介。</p>
+</li>
+<li><p><code>&quot;main&quot;: &quot;index.js&quot;</code><br>專案的進入點檔案，預設是 <code>index.js</code>（以後可以改成 <code>server.js</code>）。</p>
+</li>
+<li><p><code>&quot;scripts&quot;</code><br>定義可以用 <code>npm run xxx</code> 執行的指令，現在只有一個 <code>test</code>。</p>
+</li>
+<li><p><code>&quot;keywords&quot;: []</code><br>關鍵字，可以留空。</p>
+</li>
+<li><p><code>&quot;author&quot;: &quot;&quot;</code><br>作者名稱。</p>
+</li>
+<li><p><code>&quot;license&quot;: &quot;ISC&quot;</code><br>授權方式，預設是 ISC license。</p>
+</li>
+</ul>
+<hr>
+<h3 id="✅-下一步你可以做的事"><a href="#✅-下一步你可以做的事" class="headerlink" title="✅ 下一步你可以做的事"></a>✅ 下一步你可以做的事</h3><p>現在 <code>package.json</code> 已經準備好，接下來就可以安裝你需要的套件，例如：</p>
+<pre><code class="bash">npm i express dotenv
+</code></pre>
+<p>裝完會多出：</p>
+<ul>
+<li><code>node_modules/</code> 資料夾（存放套件程式碼）</li>
+<li><code>package-lock.json</code>（記錄套件版本細節）</li>
+</ul>
+<hr>

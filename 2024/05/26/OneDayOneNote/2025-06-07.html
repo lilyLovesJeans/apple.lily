@@ -1,0 +1,34 @@
+<hr>
+<h2 id="title-‘2025-06-07-Error-ERR-MODULE-NOT-FOUND-Cannot-find-package-‘’cors’’-‘date-2025-09-23-23-45-23categories-OneDayOneNotetags-架構設計-node-MCP-macOS-description-‘2025-06-07-Error-ERR-MODULE-NOT-FOUND-Cannot-find-package-‘’cors’’-‘"><a href="#title-‘2025-06-07-Error-ERR-MODULE-NOT-FOUND-Cannot-find-package-‘’cors’’-‘date-2025-09-23-23-45-23categories-OneDayOneNotetags-架構設計-node-MCP-macOS-description-‘2025-06-07-Error-ERR-MODULE-NOT-FOUND-Cannot-find-package-‘’cors’’-‘" class="headerlink" title="title:  ‘2025-06-07 Error [ERR_MODULE_NOT_FOUND]: Cannot find package ‘’cors’’ ‘date: 2025-09-23 23:45:23categories: OneDayOneNotetags:  [架構設計,node,MCP, macOS]description: ‘2025-06-07 Error [ERR_MODULE_NOT_FOUND]: Cannot find package ‘’cors’’ ‘"></a>title:  ‘2025-06-07 Error [ERR_MODULE_NOT_FOUND]: Cannot find package ‘’cors’’ ‘<br>date: 2025-09-23 23:45:23<br>categories: OneDayOneNote<br>tags:  [架構設計,node,MCP, macOS]<br>description: ‘2025-06-07 Error [ERR_MODULE_NOT_FOUND]: Cannot find package ‘’cors’’ ‘</h2><h1 id="2025-06-07-Error-ERR-MODULE-NOT-FOUND-Cannot-find-package-cors"><a href="#2025-06-07-Error-ERR-MODULE-NOT-FOUND-Cannot-find-package-cors" class="headerlink" title="2025-06-07 Error [ERR_MODULE_NOT_FOUND]: Cannot find package &#39;&#39;cors&#39;&#39; "></a><code>2025-06-07 Error [ERR_MODULE_NOT_FOUND]: Cannot find package &#39;&#39;cors&#39;&#39; </code></h1><p>liutekiMacBook-Air:mcp-gateway maggie$ node gateway.mjs<br>node:internal&#x2F;modules&#x2F;package_json_reader:266<br>  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);<br>        ^</p>
+<p>Error [ERR_MODULE_NOT_FOUND]: Cannot find package ‘cors’ imported from &#x2F;Users&#x2F;maggie&#x2F;mcp-gateway&#x2F;gateway.mjs<br>    at Object.getPackageJSONURL (node:internal&#x2F;modules&#x2F;package_json_reader:266:9)<br>    at packageResolve (node:internal&#x2F;modules&#x2F;esm&#x2F;resolve:767:81)<br>    at moduleResolve (node:internal&#x2F;modules&#x2F;esm&#x2F;resolve:853:18)<br>    at defaultResolve (node:internal&#x2F;modules&#x2F;esm&#x2F;resolve:983:11)<br>    at #cachedDefaultResolve (node:internal&#x2F;modules&#x2F;esm&#x2F;loader:717:20)<br>    at ModuleLoader.resolve (node:internal&#x2F;modules&#x2F;esm&#x2F;loader:694:38)<br>    at ModuleLoader.getModuleJobForImport (node:internal&#x2F;modules&#x2F;esm&#x2F;loader:308:38)<br>    at ModuleJob._link (node:internal&#x2F;modules&#x2F;esm&#x2F;module_job:183:49) {<br>  code: ‘ERR_MODULE_NOT_FOUND’<br>}</p>
+<p>Node.js v22.19.0</p>
+<p>✅ 這個錯誤訊息告訴我們：</p>
+<pre><code>Error [ERR_MODULE_NOT_FOUND]: Cannot find package &#39;cors&#39;
+</code></pre>
+<p>意思是 <strong>你的 <code>gateway.mjs</code> 裡面有用到 <code>cors</code> 模組，但是你沒有安裝它</strong>。</p>
+<p>在 <strong>Mac B (mcp-gateway)</strong> 的專案目錄 <code>/Users/maggie/mcp-gateway</code> 裡，請執行：</p>
+<pre><code class="bash">cd ~/mcp-gateway
+npm install cors
+</code></pre>
+<p>這樣會把 <code>cors</code> 安裝到你的 <code>node_modules/</code>，同時也會更新 <code>package.json</code> 和 <code>package-lock.json</code>。</p>
+<hr>
+<h3 id="確認流程"><a href="#確認流程" class="headerlink" title="確認流程"></a>確認流程</h3><ol>
+<li><p>進到你的專案目錄：</p>
+<pre><code class="bash">cd ~/mcp-gateway
+</code></pre>
+</li>
+<li><p>安裝缺少的套件：</p>
+<pre><code class="bash">npm install cors
+</code></pre>
+</li>
+<li><p>再重新啟動 gateway：</p>
+<pre><code class="bash">node gateway.mjs
+</code></pre>
+</li>
+</ol>
+<hr>
+<p>⚠️ 補充：如果之後還遇到 <strong>其他缺少套件</strong>（例如 <code>express</code>, <code>dotenv</code>），一樣就用：</p>
+<pre><code class="bash">npm install &lt;套件名稱&gt;
+</code></pre>
+<hr>
+<p>要不要我幫你檢查一下常見的依賴（express, cors, dotenv）一次性裝起來，避免你一個一個遇到錯誤？</p>

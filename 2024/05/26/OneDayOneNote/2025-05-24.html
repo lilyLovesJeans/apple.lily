@@ -1,0 +1,64 @@
+<hr>
+<h2 id="title-2025-05-24-npm-i-express-dotenv-這是什麼意思date-2025-09-22-22-30-52categories-OneDayOneNotetags-架構設計-node-MCP-macOS-description-2025-05-24-npm-i-express-dotenv-這是什麼意思"><a href="#title-2025-05-24-npm-i-express-dotenv-這是什麼意思date-2025-09-22-22-30-52categories-OneDayOneNotetags-架構設計-node-MCP-macOS-description-2025-05-24-npm-i-express-dotenv-這是什麼意思" class="headerlink" title="title: 2025-05-24 npm i express dotenv 這是什麼意思date: 2025-09-22 22:30:52categories: OneDayOneNotetags:  [架構設計,node,MCP, macOS]description: 2025-05-24 npm i express dotenv 這是什麼意思"></a>title: 2025-05-24 npm i express dotenv 這是什麼意思<br>date: 2025-09-22 22:30:52<br>categories: OneDayOneNote<br>tags:  [架構設計,node,MCP, macOS]<br>description: 2025-05-24 npm i express dotenv 這是什麼意思</h2><h1 id="2025-05-24-npm-i-express-dotenv-這是什麼意思"><a href="#2025-05-24-npm-i-express-dotenv-這是什麼意思" class="headerlink" title="2025-05-24 npm i express dotenv 這是什麼意思"></a>2025-05-24 npm i express dotenv 這是什麼意思</h1><p>好——簡短清楚解釋一下：</p>
+<p><code>npm i express dotenv</code> 的意思是用 <strong>npm</strong>（Node.js 的套件管理器）安裝兩個套件：<code>express</code> 跟 <code>dotenv</code>。<br><code>npm i</code> 是 <code>npm install</code> 的縮寫。</p>
+<hr>
+<h3 id="逐項說明"><a href="#逐項說明" class="headerlink" title="逐項說明"></a>逐項說明</h3><ul>
+<li><code>npm i</code> &#x3D; <code>npm install</code>：把套件下載到目前專案的 <code>node_modules/</code>，並預設把套件寫入 <code>package.json</code> 的 <code>dependencies</code>（除非你加 <code>--no-save</code>）。</li>
+<li><code>express</code>：一個非常常用的 Node.js web 應用框架，用來快速建立 HTTP 伺服器、路由、middleware 等。</li>
+<li><code>dotenv</code>：用來從專案根目錄的 <code>.env</code> 檔案讀取環境變數（例如 API_KEY、PORT、DB 密碼），讓敏感資料不寫在程式碼裡面。</li>
+</ul>
+<hr>
+<h3 id="常見流程（步驟）"><a href="#常見流程（步驟）" class="headerlink" title="常見流程（步驟）"></a>常見流程（步驟）</h3><ol>
+<li>初始化專案（若還沒做過）：</li>
+</ol>
+<pre><code class="bash">npm init -y
+</code></pre>
+<p>這會生成 <code>package.json</code>。</p>
+<ol start="2">
+<li>安裝套件：</li>
+</ol>
+<pre><code class="bash">npm i express dotenv
+</code></pre>
+<p>安裝後你會看到 <code>node_modules/</code>、<code>package-lock.json</code>，<code>package.json</code> 的 <code>dependencies</code> 也會包含這兩個套件。</p>
+<ol start="3">
+<li>建一個 <code>.env</code> 檔，放在專案根目錄（注意不要把它推到 git）：</li>
+</ol>
+<pre><code>PORT=3000
+SECRET=meow123
+</code></pre>
+<p>並在 <code>.gitignore</code> 加上 <code>.env</code>。</p>
+<ol start="4">
+<li>建一個範例伺服器 <code>server.js</code>（CommonJS）：</li>
+</ol>
+<pre><code class="js">// server.js
+require(&#39;dotenv&#39;).config();   // 讀取 .env
+const express = require(&#39;express&#39;);
+const app = express();
+
+const PORT = process.env.PORT || 3000;
+
+app.get(&#39;/&#39;, (req, res) =&gt; res.send(&#39;Hello world!&#39;));
+
+app.listen(PORT, () =&gt; {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
+</code></pre>
+<p>執行：</p>
+<pre><code class="bash">node server.js
+</code></pre>
+<p>如果你使用 ESM（在 <code>package.json</code> 設 <code>&quot;type&quot;:&quot;module&quot;</code>），寫法會是：</p>
+<pre><code class="js">import &#39;dotenv/config&#39;;
+import express from &#39;express&#39;;
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+...
+</code></pre>
+<hr>
+<h3 id="補充小提醒"><a href="#補充小提醒" class="headerlink" title="補充小提醒"></a>補充小提醒</h3><ul>
+<li>如果只想安裝為開發時用（不放到 production dependencies），用 <code>npm i -D &lt;pkg&gt;</code>（或 <code>--save-dev</code>）。</li>
+<li>若想安裝全域命令工具才用 <code>-g</code>（大多數 library 不需要全域安裝）。</li>
+<li><code>.env</code> 不要上傳到公開 repo（放到 <code>.gitignore</code>）。</li>
+<li>若要指定版本：<code>npm i express@4.18.2</code>（例子而已）。</li>
+</ul>
+<hr>

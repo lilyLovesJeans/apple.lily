@@ -1,0 +1,133 @@
+<hr>
+<h2 id="title-2025-05-18-Postman-測試-api-chat-的完整流程date-2025-09-21-00-10-19categories-OneDayOneNotetags-架構設計-node-MCP-Postman-description-2025-05-18-Postman-測試-api-chat-的完整流程"><a href="#title-2025-05-18-Postman-測試-api-chat-的完整流程date-2025-09-21-00-10-19categories-OneDayOneNotetags-架構設計-node-MCP-Postman-description-2025-05-18-Postman-測試-api-chat-的完整流程" class="headerlink" title="title: 2025-05-18 Postman 測試 &#x2F;api&#x2F;chat 的完整流程date: 2025-09-21 00:10:19categories: OneDayOneNotetags:  [架構設計,node,MCP,Postman]description:  2025-05-18 Postman 測試 &#x2F;api&#x2F;chat 的完整流程"></a>title: 2025-05-18 Postman 測試 &#x2F;api&#x2F;chat 的完整流程<br>date: 2025-09-21 00:10:19<br>categories: OneDayOneNote<br>tags:  [架構設計,node,MCP,Postman]<br>description:  2025-05-18 Postman 測試 &#x2F;api&#x2F;chat 的完整流程</h2><h1 id="2025-05-18-Postman-測試-api-chat-的完整流程"><a href="#2025-05-18-Postman-測試-api-chat-的完整流程" class="headerlink" title="2025-05-18 Postman 測試 &#x2F;api&#x2F;chat 的完整流程"></a>2025-05-18 Postman 測試 &#x2F;api&#x2F;chat 的完整流程</h1><p>用 <strong>Postman 測試 <code>/api/chat</code></strong> 的完整流程「情境式操作」範例。</p>
+<hr>
+<h2 id="🎯-前置條件"><a href="#🎯-前置條件" class="headerlink" title="🎯 前置條件"></a>🎯 前置條件</h2><ol>
+<li><p>你已經在 <code>mcp-gateway</code> 目錄下建立好 <strong>gateway.mjs</strong>。</p>
+</li>
+<li><p>已經裝好 express &#x2F; dotenv（你剛剛有做）。</p>
+</li>
+<li><p><code>.env</code> 裡面先不用放 API key（這樣會回 mock 回覆）。</p>
+</li>
+<li><p>啟動 server：</p>
+<pre><code class="bash">node gateway.mjs
+</code></pre>
+<p>你應該會看到：</p>
+<pre><code>MCP gateway listening on 4000
+</code></pre>
+</li>
+</ol>
+<hr>
+<h2 id="🛠️-Postman-測試步驟"><a href="#🛠️-Postman-測試步驟" class="headerlink" title="🛠️ Postman 測試步驟"></a>🛠️ Postman 測試步驟</h2><h3 id="1-開啟-Postman"><a href="#1-開啟-Postman" class="headerlink" title="1. 開啟 Postman"></a>1. 開啟 Postman</h3><ul>
+<li>新增一個 <strong>Request</strong></li>
+<li>選擇 <strong>POST</strong></li>
+</ul>
+<hr>
+<h3 id="2-設定-URL"><a href="#2-設定-URL" class="headerlink" title="2. 設定 URL"></a>2. 設定 URL</h3><p>在 URL 欄位輸入：</p>
+<pre><code>http://localhost:4000/api/chat
+</code></pre>
+<hr>
+<h3 id="3-設定-Header"><a href="#3-設定-Header" class="headerlink" title="3. 設定 Header"></a>3. 設定 Header</h3><p>在 <strong>Headers</strong> 分頁新增一筆：</p>
+<pre><code>Key: Content-Type
+Value: application/json
+</code></pre>
+<hr>
+<h3 id="4-設定-Body"><a href="#4-設定-Body" class="headerlink" title="4. 設定 Body"></a>4. 設定 Body</h3><p>切換到 <strong>Body → raw → JSON</strong>，輸入：</p>
+<pre><code class="json">{
+  &quot;provider&quot;: &quot;openai&quot;,
+  &quot;messages&quot;: [{ &quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;hello&quot; }]
+}
+</code></pre>
+<hr>
+<h3 id="5-點擊-Send"><a href="#5-點擊-Send" class="headerlink" title="5. 點擊 Send"></a>5. 點擊 Send</h3><p>如果你的 <code>.env</code> 沒有設定 API key，會回：</p>
+<pre><code class="json">{
+  &quot;provider&quot;: &quot;openai&quot;,
+  &quot;text&quot;: &quot;[mock openai] 這是模擬回覆&quot;
+}
+</code></pre>
+<p>如果你有填 API key，會回傳真正的 OpenAI 回覆（例如 GPT 回應一段文字）。</p>
+<hr>
+<h2 id="📌-重點"><a href="#📌-重點" class="headerlink" title="📌 重點"></a>📌 重點</h2><ul>
+<li><code>http://localhost:4000/api/chat</code> &#x3D; 你的 API Gateway 入口。</li>
+<li><strong>Body</strong> 的 <code>provider</code> 決定用哪個 AI。</li>
+<li><strong>messages</strong> 是對話訊息（照 ChatGPT API 格式）。</li>
+<li>沒有 API key → 回 mock（方便測試）。</li>
+</ul>
+<hr>
+<p> <strong>圖示化箭頭流程圖</strong>，用文字表示前端、Gateway、AI 之間的資料流向，包括 Header、Body 和 API Key 的位置，方便你快速理解整個流程。</p>
+<hr>
+<pre><code>[ 前端 / Postman ]
+      │
+      │ POST http://localhost:4000/api/chat
+      │ Header:
+      │   Content-Type: application/json
+      │ Body:
+      │   {
+      │     &quot;provider&quot;: &quot;openai&quot;,
+      │     &quot;messages&quot;: [{ &quot;role&quot;:&quot;user&quot;,&quot;content&quot;:&quot;hello&quot; }]
+      │   }
+      ▼
+───────────────────────────────
+│        MCP Gateway           │
+│  (gateway.mjs / Express)     │
+│                               │
+│ 1️⃣ 解析 Body → provider &amp; messages
+│ 2️⃣ 檢查 .env API Key
+│ 3️⃣ 如果無 key → 回 mock
+│ 4️⃣ 如果有 key → 呼叫 AI API
+───────────────────────────────
+      │
+      │ POST https://api.openai.com/v1/chat/completions
+      │ (或 DeepSeek API)
+      │ Header:
+      │   Authorization: Bearer &lt;API_KEY&gt;
+      │   Content-Type: application/json
+      │ Body:
+      │   { model: &quot;gpt-3.5-turbo&quot;, messages: [...] }
+      ▼
+───────────────────────────────
+│        AI Provider           │
+│ (OpenAI / DeepSeek)          │
+│                               │
+│ 回傳 JSON Response            │
+│ { choices: [...], ... }       │
+───────────────────────────────
+      │
+      │ Gateway 整理成統一格式
+      ▼
+[ 前端 / Postman ]
+      │
+      │ Response JSON:
+      │ {
+      │   &quot;provider&quot;: &quot;openai&quot;,
+      │   &quot;text&quot;: &quot;AI 回覆文字&quot;,
+      │   &quot;raw&quot;: { ...完整 AI 回覆... }
+      │ }
+</code></pre>
+<hr>
+<h3 id="🔑-讀圖重點"><a href="#🔑-讀圖重點" class="headerlink" title="🔑 讀圖重點"></a>🔑 讀圖重點</h3><ol>
+<li><p><strong>前端 Header &#x2F; Body</strong></p>
+<ul>
+<li>Header：告訴 Gateway 內容是 JSON</li>
+<li>Body：告訴 Gateway 要用哪個 AI、訊息內容</li>
+</ul>
+</li>
+<li><p><strong>Gateway 的工作</strong></p>
+<ul>
+<li>解析前端請求</li>
+<li>決定要 mock 還是呼叫真正 AI</li>
+<li>呼叫外部 API 時帶上 Authorization 與 Body</li>
+</ul>
+</li>
+<li><p><strong>Gateway 統一回傳</strong></p>
+<ul>
+<li>不管是真實回覆還是 mock，都用統一格式給前端</li>
+</ul>
+</li>
+<li><p><strong>AI Provider</strong></p>
+<ul>
+<li>接收 Gateway 封裝好的 request</li>
+<li>回傳結果給 Gateway</li>
+</ul>
+</li>
+</ol>
+<hr>

@@ -1,0 +1,46 @@
+<hr>
+<h2 id="title-2025-06-06-錯誤：Failed-to-fetch，代表-Windows-的-Vue-前端沒辦法連到-Mac-B-的-MCP-Gatewaydate-2025-09-23-23-22-50categories-OneDayOneNotetags-架構設計-node-MCP-macOS-description-2025-06-05-Step-2：Windows-前端-Vue-最小-Ask-vue-App-vue"><a href="#title-2025-06-06-錯誤：Failed-to-fetch，代表-Windows-的-Vue-前端沒辦法連到-Mac-B-的-MCP-Gatewaydate-2025-09-23-23-22-50categories-OneDayOneNotetags-架構設計-node-MCP-macOS-description-2025-06-05-Step-2：Windows-前端-Vue-最小-Ask-vue-App-vue" class="headerlink" title="title: 2025-06-06 錯誤：Failed to fetch，代表 Windows 的 Vue 前端沒辦法連到 Mac B 的 MCP Gatewaydate: 2025-09-23 23:22:50categories: OneDayOneNotetags:  [架構設計,node,MCP, macOS]description: 2025-06-05 Step 2：Windows 前端 Vue 最小 Ask.vue + App.vue"></a>title: 2025-06-06 錯誤：Failed to fetch，代表 Windows 的 Vue 前端沒辦法連到 Mac B 的 MCP Gateway<br>date: 2025-09-23 23:22:50<br>categories: OneDayOneNote<br>tags:  [架構設計,node,MCP, macOS]<br>description: 2025-06-05 Step 2：Windows 前端 Vue 最小 Ask.vue + App.vue</h2><h1 id="2025-06-05-Step-2：Windows-前端-Vue-最小-Ask-vue-App"><a href="#2025-06-05-Step-2：Windows-前端-Vue-最小-Ask-vue-App" class="headerlink" title="2025-06-05 Step 2：Windows 前端 Vue 最小 Ask.vue + App."></a>2025-06-05 Step 2：Windows 前端 Vue 最小 Ask.vue + App.</h1><p>很好 👍 這個錯誤 <code>⚠️ 錯誤：Failed to fetch</code>，代表 <strong>Windows 的 Vue 前端沒辦法連到 Mac B 的 MCP Gateway</strong>。<br>我一步步幫你檢查：</p>
+<hr>
+<h2 id="✅-Step-1：Mac-B-是否真的在跑-MCP-Gateway？"><a href="#✅-Step-1：Mac-B-是否真的在跑-MCP-Gateway？" class="headerlink" title="✅ Step 1：Mac B 是否真的在跑 MCP Gateway？"></a>✅ Step 1：Mac B 是否真的在跑 MCP Gateway？</h2><p>在 <strong>Mac B</strong> 開啟終端機，確認程式有跑：</p>
+<pre><code class="bash">lsof -i :4000
+</code></pre>
+<p>應該要看到類似：</p>
+<pre><code>node   12345 maggie   12u  IPv4 ...  TCP *:4000 (LISTEN)
+</code></pre>
+<p>這表示 <strong>Mac B 的 4000 port 有開放</strong>。</p>
+<p>如果沒看到 → 請先啟動：</p>
+<pre><code class="bash">node gateway.mjs
+</code></pre>
+<hr>
+<h2 id="✅-Step-2：確認-Windows-能-ping-到-Mac-B"><a href="#✅-Step-2：確認-Windows-能-ping-到-Mac-B" class="headerlink" title="✅ Step 2：確認 Windows 能 ping 到 Mac B"></a>✅ Step 2：確認 Windows 能 ping 到 Mac B</h2><p>在 Windows 的終端機 (cmd &#x2F; PowerShell) 輸入：</p>
+<pre><code class="powershell">ping 192.168.0.103
+</code></pre>
+<p>應該要看到回覆時間（幾毫秒）。</p>
+<ul>
+<li>如果成功 → 網路連得通。</li>
+<li>如果失敗 → Windows 和 Mac 不在同一個區網，或 Mac 防火牆擋了。</li>
+</ul>
+<hr>
+<h2 id="✅-Step-3：測試-API-是否能打通"><a href="#✅-Step-3：測試-API-是否能打通" class="headerlink" title="✅ Step 3：測試 API 是否能打通"></a>✅ Step 3：測試 API 是否能打通</h2><p>在 Windows 上（不是 Vue，先用 curl 測試）：</p>
+<pre><code class="powershell">curl http://192.168.0.103:4000/health
+</code></pre>
+<p>應該要得到：</p>
+<pre><code class="json">{&quot;status&quot;:&quot;ok&quot;,&quot;role&quot;:&quot;mcp-gateway&quot;}
+</code></pre>
+<p>如果這一步不通 → 表示問題在 <strong>Mac 防火牆 &#x2F; 網路設置</strong>。</p>
+<hr>
+<h2 id="✅-Step-4：防火牆設定-Mac-B"><a href="#✅-Step-4：防火牆設定-Mac-B" class="headerlink" title="✅ Step 4：防火牆設定 (Mac B)"></a>✅ Step 4：防火牆設定 (Mac B)</h2><p>macOS 可能擋住了 <code>node</code>。</p>
+<ol>
+<li>到 <strong>系統偏好設定 → 安全性與隱私 → 防火牆</strong></li>
+<li>點「防火牆選項」</li>
+<li>允許 <code>node</code> 接收傳入連線</li>
+</ol>
+<hr>
+<p>📌 總結：</p>
+<ul>
+<li>如果 <strong>Step 2 ping 不通</strong> → 網路問題（Wi-Fi 或區網不同）。</li>
+<li>如果 <strong>Step 2 通，但 Step 3 curl 不通</strong> → Mac 防火牆問題。</li>
+<li>如果 <strong>Step 3 curl 通，但 Vue 還是 Failed to fetch</strong> → 那可能是 CORS（跨來源請求限制），我可以幫你在 gateway.mjs 加 <code>CORS</code> 支援。</li>
+</ul>
+<hr>
+<p>要不要你先幫我跑 **Step 3：在 Windows 用 curl 測試 <a href="http://192.168.0.103:4000/health**%EF%BC%8C%E7%9C%8B%E8%83%BD%E4%B8%8D%E8%83%BD%E9%80%9A%EF%BC%9F">http://192.168.0.103:4000/health**，看能不能通？</a></p>

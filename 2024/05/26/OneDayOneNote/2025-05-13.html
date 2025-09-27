@@ -1,0 +1,105 @@
+<hr>
+<h2 id="title-2025-05-13-npm（Node-Package-Manager）的常見指令與參數date-2025-09-20-22-30-29categories-OneDayOneNotetags-架構設計-description-2025-05-13-npm（Node-Package-Manager）的常見指令與參數"><a href="#title-2025-05-13-npm（Node-Package-Manager）的常見指令與參數date-2025-09-20-22-30-29categories-OneDayOneNotetags-架構設計-description-2025-05-13-npm（Node-Package-Manager）的常見指令與參數" class="headerlink" title="title: 2025-05-13 npm（Node Package Manager）的常見指令與參數date: 2025-09-20 22:30:29categories: OneDayOneNotetags:  [架構設計]description: 2025-05-13 npm（Node Package Manager）的常見指令與參數"></a>title: 2025-05-13 npm（Node Package Manager）的常見指令與參數<br>date: 2025-09-20 22:30:29<br>categories: OneDayOneNote<br>tags:  [架構設計]<br>description: 2025-05-13 npm（Node Package Manager）的常見指令與參數</h2><h1 id="2025-05-13-npm（Node-Package-Manager）的常見指令與參數"><a href="#2025-05-13-npm（Node-Package-Manager）的常見指令與參數" class="headerlink" title="2025-05-13 npm（Node Package Manager）的常見指令與參數"></a>2025-05-13 npm（Node Package Manager）的常見指令與參數</h1><p> <code>npm</code>（Node Package Manager）的<strong>常見指令與參數</strong>，讓你知道什麼時候該怎麼下。</p>
+<hr>
+<h2 id="🟢-常用的-npm-指令"><a href="#🟢-常用的-npm-指令" class="headerlink" title="🟢 常用的 npm 指令"></a>🟢 常用的 <code>npm</code> 指令</h2><h3 id="1-建立專案"><a href="#1-建立專案" class="headerlink" title="1. 建立專案"></a>1. 建立專案</h3><pre><code class="bash">npm init
+</code></pre>
+<ul>
+<li>建立 <code>package.json</code> 檔案</li>
+<li>會問一堆問題（專案名稱、版本、描述…）</li>
+</ul>
+<pre><code class="bash">npm init -y
+</code></pre>
+<ul>
+<li><strong>快速建立</strong>，用預設值，不會問問題</li>
+</ul>
+<hr>
+<h3 id="2-安裝套件"><a href="#2-安裝套件" class="headerlink" title="2. 安裝套件"></a>2. 安裝套件</h3><pre><code class="bash">npm install &lt;套件名稱&gt;
+</code></pre>
+<p>或縮寫：</p>
+<pre><code class="bash">npm i &lt;套件名稱&gt;
+</code></pre>
+<h4 id="常見參數："><a href="#常見參數：" class="headerlink" title="常見參數："></a>常見參數：</h4><ul>
+<li><p><code>--save</code>（舊寫法，現在預設就是存進 <code>dependencies</code>）</p>
+</li>
+<li><p><code>--save-dev</code> 或 <code>-D</code>：安裝成開發用套件（只在開發時需要，正式部署不會用到）<br>👉 例如 <code>eslint</code>、<code>nodemon</code></p>
+<pre><code class="bash">npm i -D nodemon
+</code></pre>
+</li>
+<li><p><code>-g</code>：全域安裝（整台電腦都能用，不限某專案）<br>👉 例如：</p>
+<pre><code class="bash">npm i -g typescript
+</code></pre>
+</li>
+<li><p><code>--force</code>：強制安裝（忽略版本衝突或警告）</p>
+</li>
+<li><p><code>--legacy-peer-deps</code>：遇到新版相依性問題時，用舊方式安裝</p>
+</li>
+</ul>
+<hr>
+<h3 id="3-移除套件"><a href="#3-移除套件" class="headerlink" title="3. 移除套件"></a>3. 移除套件</h3><pre><code class="bash">npm uninstall &lt;套件名稱&gt;
+</code></pre>
+<p>或縮寫：</p>
+<pre><code class="bash">npm un &lt;套件名稱&gt;
+</code></pre>
+<hr>
+<h3 id="4-更新套件"><a href="#4-更新套件" class="headerlink" title="4. 更新套件"></a>4. 更新套件</h3><pre><code class="bash">npm update &lt;套件名稱&gt;
+</code></pre>
+<p>更新所有套件：</p>
+<pre><code class="bash">npm update
+</code></pre>
+<hr>
+<h3 id="5-執行指令"><a href="#5-執行指令" class="headerlink" title="5. 執行指令"></a>5. 執行指令</h3><p>在 <code>package.json</code> 裡的 <code>&quot;scripts&quot;</code> 會設定指令，例如：</p>
+<pre><code class="json">&quot;scripts&quot;: {
+  &quot;start&quot;: &quot;node server.js&quot;,
+  &quot;dev&quot;: &quot;nodemon server.js&quot;
+}
+</code></pre>
+<p>執行：</p>
+<pre><code class="bash">npm run start
+npm run dev
+</code></pre>
+<p>如果是特殊的 <code>start</code>，可以直接用：</p>
+<pre><code class="bash">npm start
+</code></pre>
+<hr>
+<h3 id="6-查看套件版本"><a href="#6-查看套件版本" class="headerlink" title="6. 查看套件版本"></a>6. 查看套件版本</h3><pre><code class="bash">npm list
+</code></pre>
+<ul>
+<li>顯示目前專案安裝的套件</li>
+</ul>
+<pre><code class="bash">npm list &lt;套件名稱&gt;
+</code></pre>
+<ul>
+<li>只看某個套件版本</li>
+</ul>
+<pre><code class="bash">npm -v
+</code></pre>
+<ul>
+<li>看 npm 版本</li>
+</ul>
+<pre><code class="bash">node -v
+</code></pre>
+<ul>
+<li>看 Node.js 版本</li>
+</ul>
+<hr>
+<h3 id="7-清理"><a href="#7-清理" class="headerlink" title="7. 清理"></a>7. 清理</h3><pre><code class="bash">npm cache clean --force
+</code></pre>
+<ul>
+<li>清除快取（有時候安裝壞掉會用這個）</li>
+</ul>
+<pre><code class="bash">rm -rf node_modules
+npm install
+</code></pre>
+<ul>
+<li>刪掉全部套件，重新安裝（解決奇怪錯誤的常見招數）</li>
+</ul>
+<hr>
+<h2 id="📌-常見用法總整理"><a href="#📌-常見用法總整理" class="headerlink" title="📌 常見用法總整理"></a>📌 常見用法總整理</h2><ol>
+<li>建立專案：<code>npm init -y</code></li>
+<li>安裝套件：<code>npm i express dotenv</code></li>
+<li>安裝開發工具：<code>npm i -D nodemon</code></li>
+<li>移除套件：<code>npm un express</code></li>
+<li>執行 script：<code>npm run dev</code></li>
+</ol>
+<hr>
+<p>要不要我幫你整理一份 <strong>「npm 指令小抄（Cheat Sheet）」</strong>，像筆記一樣簡單明瞭，方便你隨時翻？</p>

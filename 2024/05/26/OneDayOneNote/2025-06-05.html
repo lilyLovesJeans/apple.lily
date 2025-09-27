@@ -1,0 +1,136 @@
+<hr>
+<h2 id="title-2025-06-05-Step-2：Windows-前端-Vue-最小-Ask-vue-App-vuedate-2025-09-23-23-04-59categories-OneDayOneNotetags-架構設計-node-MCP-macOS-description-2025-06-05-Step-2：Windows-前端-Vue-最小-Ask-vue-App-vue"><a href="#title-2025-06-05-Step-2：Windows-前端-Vue-最小-Ask-vue-App-vuedate-2025-09-23-23-04-59categories-OneDayOneNotetags-架構設計-node-MCP-macOS-description-2025-06-05-Step-2：Windows-前端-Vue-最小-Ask-vue-App-vue" class="headerlink" title="title: 2025-06-05 Step 2：Windows 前端 Vue 最小 Ask.vue + App.vuedate: 2025-09-23 23:04:59categories: OneDayOneNotetags:  [架構設計,node,MCP, macOS]description: 2025-06-05 Step 2：Windows 前端 Vue 最小 Ask.vue + App.vue"></a>title: 2025-06-05 Step 2：Windows 前端 Vue 最小 Ask.vue + App.vue<br>date: 2025-09-23 23:04:59<br>categories: OneDayOneNote<br>tags:  [架構設計,node,MCP, macOS]<br>description: 2025-06-05 Step 2：Windows 前端 Vue 最小 Ask.vue + App.vue</h2><h1 id="2025-06-05-Step-2：Windows-前端-Vue-最小-Ask-vue-App-vue"><a href="#2025-06-05-Step-2：Windows-前端-Vue-最小-Ask-vue-App-vue" class="headerlink" title="2025-06-05 Step 2：Windows 前端 Vue 最小 Ask.vue + App.vue"></a>2025-06-05 Step 2：Windows 前端 Vue 最小 Ask.vue + App.vue</h1><p>很好 👍 我懂了，你現在要進入 <strong>Step 2：Windows 前端 Vue 最小 Ask.vue + App.vue</strong>。<br>我們先做一個最簡單的版本：前端可以輸入訊息 → 經由 HTTP 呼叫 <strong>Mac B 的 MCP Gateway</strong> → 回傳結果顯示在畫面上。</p>
+<hr>
+<h2 id="✅-Step-2-1-修改-App-vue"><a href="#✅-Step-2-1-修改-App-vue" class="headerlink" title="✅ Step 2-1 修改 App.vue"></a>✅ Step 2-1 修改 <code>App.vue</code></h2><p>你已經有 <code>App.vue</code>，現在只要在 <code>&lt;template&gt;</code> 中放入 <code>Ask</code> 元件即可：</p>
+<pre><code class="vue">&lt;!-- App.vue --&gt;
+&lt;script setup&gt;
+import Ask from &#39;./components/Ask.vue&#39;
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;h2&gt;🧘 心靈算命 MVP&lt;/h2&gt;
+    &lt;Ask /&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;style scoped&gt;
+h2 {
+  color: darkblue;
+}
+&lt;/style&gt;
+</code></pre>
+<hr>
+<h2 id="✅-Step-2-2-建立-Ask-vue（最小版）"><a href="#✅-Step-2-2-建立-Ask-vue（最小版）" class="headerlink" title="✅ Step 2-2 建立 Ask.vue（最小版）"></a>✅ Step 2-2 建立 <code>Ask.vue</code>（最小版）</h2><p>在 <code>src/components/Ask.vue</code> 建立一個檔案：</p>
+<pre><code class="vue">&lt;!-- Ask.vue --&gt;
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;
+
+// 使用者輸入
+const userInput = ref(&#39;&#39;)
+// 從 MCP server 回覆的結果
+const reply = ref(&#39;&#39;)
+
+// 呼叫 Mac B 的 MCP Gateway
+const askServer = async () =&gt; {
+  reply.value = &quot;⌛ 等待回覆...&quot;
+
+  try {
+    const res = await fetch(&quot;http://localhost:4000/api/chat&quot;, {
+      method: &quot;POST&quot;,
+      headers: { &quot;Content-Type&quot;: &quot;application/json&quot; },
+      body: JSON.stringify({
+        provider: &quot;openai&quot;,   // 你可以換成 &quot;deepseek&quot;
+        messages: [{ role: &quot;user&quot;, content: userInput.value }]
+      })
+    })
+
+    const data = await res.json()
+    reply.value = data.text
+  } catch (err) {
+    reply.value = &quot;⚠️ 錯誤：&quot; + err.message
+  }
+}
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;input v-model=&quot;userInput&quot; placeholder=&quot;輸入問題...&quot; /&gt;
+    &lt;button @click=&quot;askServer&quot;&gt;送出&lt;/button&gt;
+    &lt;p&gt;🔮 回覆：{{ reply }}&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;style scoped&gt;
+input {
+  padding: 5px;
+  margin-right: 10px;
+}
+button {
+  padding: 5px 10px;
+}
+&lt;/style&gt;
+</code></pre>
+<hr>
+<h2 id="✅-Step-2-3-測試方式"><a href="#✅-Step-2-3-測試方式" class="headerlink" title="✅ Step 2-3 測試方式"></a>✅ Step 2-3 測試方式</h2><ol>
+<li><p>確保 <strong>Mac B</strong> 的 MCP Gateway 有在跑：</p>
+<pre><code class="bash">node gateway.mjs
+</code></pre>
+<p>或者用 <code>pm2 start gateway.mjs --name mcp-gateway</code>。</p>
+</li>
+<li><p>在 <strong>Windows</strong> 開啟你的 Vue 專案：</p>
+<pre><code class="bash">npm run dev
+</code></pre>
+</li>
+<li><p>打開瀏覽器 → <code>http://localhost:5173</code></p>
+<ul>
+<li>輸入「嗨」</li>
+<li>會看到從 <strong>Mac B</strong> 的 MCP Gateway 回覆（mock 或 API 回覆）。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<p>👉 下一步（Step 3），我可以教你如何把 <strong>localhost</strong> 換成 <strong>Mac B 的 LAN IP</strong>，讓 Windows 可以直接呼叫 Mac（同區域網路下）。</p>
+<p>要不要我直接幫你做 <strong>LAN IP 設定教學</strong>？</p>
+<p>太好了 👍 你的 <strong>Mac B（MCP Gateway）</strong> 的區域網路 IP 是 <code>192.168.0.103</code>。<br>那麼 Windows 上的 Vue 前端就可以直接透過這個 IP 呼叫 Mac B，而不是 <code>localhost</code>。</p>
+<hr>
+<h2 id="✅-修改-Ask-vue"><a href="#✅-修改-Ask-vue" class="headerlink" title="✅ 修改 Ask.vue"></a>✅ 修改 Ask.vue</h2><p>把原本的 <code>fetch(&quot;http://localhost:4000/api/chat&quot;, ...)</code> 改成：</p>
+<pre><code class="vue">const res = await fetch(&quot;http://192.168.0.103:4000/api/chat&quot;, {
+  method: &quot;POST&quot;,
+  headers: { &quot;Content-Type&quot;: &quot;application/json&quot; },
+  body: JSON.stringify({
+    provider: &quot;openai&quot;,   // 或 &quot;deepseek&quot;
+    messages: [{ role: &quot;user&quot;, content: userInput.value }]
+  })
+})
+</code></pre>
+<hr>
+<h2 id="✅-測試流程"><a href="#✅-測試流程" class="headerlink" title="✅ 測試流程"></a>✅ 測試流程</h2><ol>
+<li><p>在 <strong>Mac B</strong> 上啟動 MCP Gateway：</p>
+<pre><code class="bash">node gateway.mjs
+</code></pre>
+<p>或者如果你有用 pm2：</p>
+<pre><code class="bash">pm2 start mcp-gateway
+</code></pre>
+</li>
+<li><p>在 <strong>Windows</strong> 上啟動 Vue 前端：</p>
+<pre><code class="bash">npm run dev
+</code></pre>
+</li>
+<li><p>瀏覽器打開 <code>http://localhost:5173</code></p>
+<ul>
+<li>在輸入框輸入「嗨」</li>
+<li>點「送出」</li>
+<li>會透過 <code>192.168.0.103:4000/api/chat</code> 向 Mac B 發送請求</li>
+<li>收到回覆（目前應該還是 <code>[mock openai]</code> 或 <code>[mock deepseek]</code>）。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<p>⚠️ 注意：</p>
+<ul>
+<li>Windows 必須跟 Mac B 在同一個 Wi-Fi 或 LAN 網路下。</li>
+<li>如果 Windows 無法連到 <code>192.168.0.103:4000</code>，可能是 <strong>Mac 防火牆</strong> 擋住，要去 <code>系統偏好設定 → 安全性與隱私 → 防火牆 → 開啟防火牆選項</code> → 允許 <code>node</code>。</li>
+</ul>
+<hr>
+<p>要不要我幫你整理一份 <strong>Windows ←→ Mac B 測試清單</strong>，讓你一步步確認能不能通？</p>

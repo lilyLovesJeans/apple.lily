@@ -1,0 +1,143 @@
+<hr>
+<h2 id="title-2025-05-12-MVP-一步步可執行的開始計畫-1date-2025-09-19-23-51-09categories-OneDayOneNotetags-架構設計-MVP-description-2025-05-12-MVP-一步步可執行的開始計畫-1"><a href="#title-2025-05-12-MVP-一步步可執行的開始計畫-1date-2025-09-19-23-51-09categories-OneDayOneNotetags-架構設計-MVP-description-2025-05-12-MVP-一步步可執行的開始計畫-1" class="headerlink" title="title: 2025-05-12 MVP 一步步可執行的開始計畫-1date: 2025-09-19 23:51:09categories: OneDayOneNotetags:  [架構設計, MVP]description: 2025-05-12 MVP 一步步可執行的開始計畫-1"></a>title: 2025-05-12 MVP 一步步可執行的開始計畫-1<br>date: 2025-09-19 23:51:09<br>categories: OneDayOneNote<br>tags:  [架構設計, MVP]<br>description: 2025-05-12 MVP 一步步可執行的開始計畫-1</h2><h1 id="2025-05-12-MVP-一步步可執行的開始計畫-1"><a href="#2025-05-12-MVP-一步步可執行的開始計畫-1" class="headerlink" title="2025-05-12 MVP 一步步可執行的開始計畫-1"></a>2025-05-12 MVP 一步步可執行的開始計畫-1</h1><p><strong>最小、一步步可執行的開始計畫</strong> 整理好：先給出三台機器的<strong>職責分配</strong>，再給出 <code>MVP</code> 的<strong>第一個小步驟（最小可做的一件事）</strong>，附上可直接貼上執行的程式碼與測試命令。每一步都很小、可驗收，完成後你回我「Step1 完成」我再給下一步。</p>
+<p>同時附上你要求的簡稱翻譯（在最下面）。</p>
+<hr>
+<h1 id="三台筆電功能分配（簡短）"><a href="#三台筆電功能分配（簡短）" class="headerlink" title="三台筆電功能分配（簡短）"></a>三台筆電功能分配（簡短）</h1><ul>
+<li><p><strong>Mac A（已在用） — Documentation（技術文件機）</strong><br>功能：寫設計文件、流程圖、記錄步驟、同步到 GitHub。<br>安裝：VS Code &#x2F; Typora（已運行即可）。</p>
+</li>
+<li><p><strong>Mac B（舊 Mac） — MCP Gateway（中介伺服器）</strong><br>功能：接收前端請求 → 決定並呼叫 AI provider（ChatGPT &#x2F; DeepSeek）→ 回傳結果。<strong>不存資料庫</strong>（你指定）。<br>安裝（MVP 必要）：Node.js（&gt;&#x3D;18 推薦）、npm、（可選）pm2。</p>
+</li>
+<li><p><strong>Lenovo Windows 11 — 前端開發 &amp; 未來 DB（選用）</strong><br>功能：開發 Vue 前端（Ask 頁面）、做測試、未來如要 DB 可在此用 Docker 啟 MySQL。<br>安裝（MVP 必要）：Node.js、npm、VS Code、Git（建議）。</p>
+</li>
+</ul>
+<hr>
+<h1 id="MVP-路線（極簡、只做必要事）"><a href="#MVP-路線（極簡、只做必要事）" class="headerlink" title="MVP 路線（極簡、只做必要事）"></a>MVP 路線（極簡、只做必要事）</h1><p>目標：讓使用者能在前端發出問題 → MCP（Mac B）轉發給 ChatGPT 或 DeepSeek → 回前端（目前不儲存）。</p>
+<p>我把整個流程拆成小步，你先做 <strong>Step 1</strong>（最小可驗收），完成回報我再給 <strong>Step 2</strong>。</p>
+<hr>
+<h2 id="Step-1（現在就做）-—-在-Mac-B-建最小-MCP-gateway（中介）"><a href="#Step-1（現在就做）-—-在-Mac-B-建最小-MCP-gateway（中介）" class="headerlink" title="Step 1（現在就做） — 在 Mac B 建最小 MCP gateway（中介）"></a>Step 1（現在就做） — 在 <strong>Mac B</strong> 建最小 MCP gateway（中介）</h2><p>目的：在 Mac B 啟一個 Node server（MCP），能回應 <code>/health</code> 並能接受 <code>/api/chat</code> 並回 mock 回覆（或實際呼叫有 key 的 provider）。</p>
+<h3 id="要安裝（Mac-B）"><a href="#要安裝（Mac-B）" class="headerlink" title="要安裝（Mac B）"></a>要安裝（Mac B）</h3><ol>
+<li>打開 Terminal，檢查 Node：</li>
+</ol>
+<pre><code class="bash">node -v
+</code></pre>
+<ul>
+<li>若沒有安裝或版本 &lt; 18：請安裝 Node LTS（建議 18 或 20）：</li>
+</ul>
+<pre><code class="bash"># 需要 Homebrew
+brew install node
+</code></pre>
+<h3 id="在-Mac-B-建專案與檔案"><a href="#在-Mac-B-建專案與檔案" class="headerlink" title="在 Mac B 建專案與檔案"></a>在 Mac B 建專案與檔案</h3><ol>
+<li>建資料夾並初始化：</li>
+</ol>
+<pre><code class="bash">mkdir ~/mcp-gateway
+cd ~/mcp-gateway
+npm init -y
+npm i express dotenv
+</code></pre>
+<ol start="2">
+<li>在目錄下建立 <code>.env</code>（先可留空 key，方便測試 mock）：</li>
+</ol>
+<pre><code>PORT=4000
+OPENAI_API_KEY=
+DEEPSEEK_API_KEY=
+</code></pre>
+<ol start="3">
+<li>建 <code>gateway.mjs</code>（整檔貼上並存檔）：</li>
+</ol>
+<pre><code class="js">// gateway.mjs
+import express from &#39;express&#39;;
+import dotenv from &#39;dotenv&#39;;
+dotenv.config();
+const app = express();
+app.use(express.json());
+
+const OPENAI_KEY = process.env.OPENAI_API_KEY || &#39;&#39;;
+const DEEPSEEK_KEY = process.env.DEEPSEEK_API_KEY || &#39;&#39;;
+
+// provider adapters (最小示範：若沒 key 則回 mock)
+const providers = {
+  openai: async ({ messages }) =&gt; {
+    if (!OPENAI_KEY) return { text: &#39;[mock openai] 這是模擬回覆&#39; };
+    const resp = await fetch(&#39;https://api.openai.com/v1/chat/completions&#39;, {
+      method: &#39;POST&#39;,
+      headers: { &#39;Authorization&#39;: `Bearer ${OPENAI_KEY}`, &#39;Content-Type&#39;: &#39;application/json&#39; },
+      body: JSON.stringify({ model: &#39;gpt-3.5-turbo&#39;, messages })
+    });
+    const data = await resp.json();
+    return { text: data?.choices?.[0]?.message?.content ?? &#39;&#39;, raw: data };
+  },
+
+  deepseek: async ({ messages }) =&gt; {
+    if (!DEEPSEEK_KEY) return { text: &#39;[mock deepseek] 這是模擬回覆&#39; };
+    const resp = await fetch(&#39;https://api.deepseek.com/v1/chat/completions&#39;, {
+      method: &#39;POST&#39;,
+      headers: { &#39;Authorization&#39;: `Bearer ${DEEPSEEK_KEY}`, &#39;Content-Type&#39;: &#39;application/json&#39; },
+      body: JSON.stringify({ model: &#39;deepseek-v1&#39;, messages })
+    });
+    const data = await resp.json();
+    return { text: data?.choices?.[0]?.message?.content ?? &#39;&#39;, raw: data };
+  }
+};
+
+app.get(&#39;/health&#39;, (req, res) =&gt; res.json({ status: &#39;ok&#39;, role: &#39;mcp-gateway&#39; }));
+
+app.post(&#39;/api/chat&#39;, async (req, res) =&gt; {
+  const { provider = &#39;openai&#39;, messages = [{ role:&#39;user&#39;, content:&#39;hello&#39; }] } = req.body;
+  const adapter = providers[provider];
+  if (!adapter) return res.status(400).json({ error: &#39;unknown provider&#39; });
+  try {
+    const { text, raw } = await adapter({ messages });
+    return res.json({ provider, text, raw });
+  } catch (err) {
+    console.error(&#39;provider error&#39;, err);
+    return res.status(500).json({ error: &#39;provider error&#39; });
+  }
+});
+
+const port = process.env.PORT || 4000;
+app.listen(port, () =&gt; console.log(`MCP gateway listening on ${port}`));
+</code></pre>
+<blockquote>
+<p>註：若你的 Node 版本 &gt;&#x3D; 18，上面可直接使用 <code>fetch()</code>（不需額外安裝 <code>node-fetch</code>）。若 Node 版本較舊，執行前請先 <code>npm i node-fetch</code> 並在檔頭 import。</p>
+</blockquote>
+<h3 id="啟動-MCP-gateway"><a href="#啟動-MCP-gateway" class="headerlink" title="啟動 MCP gateway"></a>啟動 MCP gateway</h3><pre><code class="bash">node gateway.mjs
+</code></pre>
+<h3 id="測試（在-Mac-B-本機）"><a href="#測試（在-Mac-B-本機）" class="headerlink" title="測試（在 Mac B 本機）"></a>測試（在 Mac B 本機）</h3><ol>
+<li>health:</li>
+</ol>
+<pre><code class="bash">curl http://localhost:4000/health
+# 預期回應: {&quot;status&quot;:&quot;ok&quot;,&quot;role&quot;:&quot;mcp-gateway&quot;}
+</code></pre>
+<ol start="2">
+<li>mock chat (openai):</li>
+</ol>
+<pre><code class="bash">curl -X POST http://localhost:4000/api/chat -H &quot;Content-Type: application/json&quot; \
+  -d &#39;{&quot;provider&quot;:&quot;openai&quot;,&quot;messages&quot;:[{&quot;role&quot;:&quot;user&quot;,&quot;content&quot;:&quot;嗨&quot;}]}&#39;
+# 沒放 OPENAI_API_KEY 會看到 mock 回覆
+</code></pre>
+<ol start="3">
+<li>mock chat (deepseek):</li>
+</ol>
+<pre><code class="bash">curl -X POST http://localhost:4000/api/chat -H &quot;Content-Type: application/json&quot; \
+  -d &#39;{&quot;provider&quot;:&quot;deepseek&quot;,&quot;messages&quot;:[{&quot;role&quot;:&quot;user&quot;,&quot;content&quot;:&quot;嗨&quot;}]}&#39;
+</code></pre>
+<h3 id="驗收標準（若都-ok，Step1-完成）"><a href="#驗收標準（若都-ok，Step1-完成）" class="headerlink" title="驗收標準（若都 ok，Step1 完成）"></a>驗收標準（若都 ok，Step1 完成）</h3><ul>
+<li>能在 Mac B 上 <code>node gateway.mjs</code> 並在本機 <code>curl /health</code> 得到回應。</li>
+<li><code>POST /api/chat</code> 針對 <code>provider=openai</code> 與 <code>provider=deepseek</code> 都能回 mock 回覆（或若你已放 key，能拿到實回覆）。</li>
+</ul>
+<hr>
+<h1 id="下一步（我會給你）"><a href="#下一步（我會給你）" class="headerlink" title="下一步（我會給你）"></a>下一步（我會給你）</h1><ul>
+<li><strong>Step 2（前端 Ask 頁）</strong>：我會給 Windows 上可放的最小 Vue <code>Ask.vue</code> 檔案，教你如何從 Windows 呼叫 Mac B 的 MCP（含 proxy 或直接呼叫 Mac 的 LAN IP）。</li>
+<li>之後是 Step 3、Step 4（加 pm2 常駐、log、或實際放 API keys）。</li>
+</ul>
+<hr>
+<h1 id="簡稱翻譯（你要求的）"><a href="#簡稱翻譯（你要求的）" class="headerlink" title="簡稱翻譯（你要求的）"></a>簡稱翻譯（你要求的）</h1><ul>
+<li><strong>MVP</strong> — Minimum Viable Product（最小可行產品）</li>
+<li><strong>MCP</strong> — Model Context Protocol（模型上下文協定）／在你情境指中介 server</li>
+<li><strong>DB</strong> — Database（資料庫）</li>
+<li><strong>API</strong> — Application Programming Interface（應用程式介面）</li>
+<li><strong>LAN</strong> — Local Area Network（區域網路）</li>
+<li><strong>pm2</strong> — process manager for Node（Node.js 程式常駐管理工具）</li>
+</ul>
+<hr>
+<p>如果你準備好了，請在 <strong>Mac B</strong> 做完上面 Step 1 並回覆「Step1 完成」，或把執行時遇到的錯誤貼上來（我會直接修正命令或程式碼）。我接著馬上給你 <strong>Step 2（Windows：最小前端 Ask.vue + 呼叫 MCP 的方法）</strong>。</p>

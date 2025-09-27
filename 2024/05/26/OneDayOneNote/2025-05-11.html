@@ -1,0 +1,287 @@
+<hr>
+<h2 id="title-2025-05-11-無-DB-的-MVP-→-加-DB-的進化版」超精簡、分步且可立即執行的路線圖date-2025-09-18-20-53-25categories-OneDayOneNotetags-架構設計-description-2025-05-11-無-DB-的-MVP-→-加-DB-的進化版」超精簡、分步且可立即執行的路線圖"><a href="#title-2025-05-11-無-DB-的-MVP-→-加-DB-的進化版」超精簡、分步且可立即執行的路線圖date-2025-09-18-20-53-25categories-OneDayOneNotetags-架構設計-description-2025-05-11-無-DB-的-MVP-→-加-DB-的進化版」超精簡、分步且可立即執行的路線圖" class="headerlink" title="title: 2025-05-11 無 DB 的 MVP → 加 DB 的進化版」超精簡、分步且可立即執行的路線圖date: 2025-09-18 20:53:25categories: OneDayOneNotetags:  [架構設計]description:  2025-05-11 無 DB 的 MVP → 加 DB 的進化版」超精簡、分步且可立即執行的路線圖"></a>title: 2025-05-11 無 DB 的 MVP → 加 DB 的進化版」超精簡、分步且可立即執行的路線圖<br>date: 2025-09-18 20:53:25<br>categories: OneDayOneNote<br>tags:  [架構設計]<br>description:  2025-05-11 無 DB 的 MVP → 加 DB 的進化版」超精簡、分步且可立即執行的路線圖</h2><h1 id="2025-05-11-無-DB-的-MVP-→-加-DB-的進化版」超精簡、分步且可立即執行的路線圖"><a href="#2025-05-11-無-DB-的-MVP-→-加-DB-的進化版」超精簡、分步且可立即執行的路線圖" class="headerlink" title="2025-05-11 無 DB 的 MVP → 加 DB 的進化版」超精簡、分步且可立即執行的路線圖"></a>2025-05-11 無 DB 的 MVP → 加 DB 的進化版」超精簡、分步且可立即執行的路線圖</h1><p>太棒 — 我把「<strong>無 DB 的 MVP → 加 DB 的進化版</strong>」做成一個超精簡、分步且可立即執行的路線圖。每一步都拆得很小、只做一件事，並附上可貼上執行的最小程式&#x2F;命令與驗收標準。你照做、完成驗收就告訴我，我再給下一步。（一步一步學最穩）</p>
+<h1 id="概觀（兩個階段）"><a href="#概觀（兩個階段）" class="headerlink" title="概觀（兩個階段）"></a>概觀（兩個階段）</h1><ul>
+<li>階段 A（無 DB 的 MVP）：讓前端可以問問題 → MCP（Mac）轉發到 OpenAI &#x2F; DeepSeek → 回前端。<strong>不存資料</strong>，快速驗證整個流程。</li>
+<li>階段 B（加 DB 的進化版）：把問答紀錄存在 MySQL（放在 Windows 的 Docker），加入使用者帳號基礎（可選 JWT），並做簡單的管理&#x2F;查詢頁面。</li>
+</ul>
+<hr>
+<h1 id="階段-A-—-無-DB-的-MVP（目標：最快把問答從前端跑到-AI-並回來）"><a href="#階段-A-—-無-DB-的-MVP（目標：最快把問答從前端跑到-AI-並回來）" class="headerlink" title="階段 A — 無 DB 的 MVP（目標：最快把問答從前端跑到 AI 並回來）"></a>階段 A — 無 DB 的 MVP（目標：最快把問答從前端跑到 AI 並回來）</h1><p>總時長：每一步約 5–20 分鐘（取決於你熟悉度）。<br>先做「Step A1」，完成後告訴我，我再給 A2。</p>
+<h3 id="Step-A1-—-在-Mac-起一個最小-MCP-gateway（中介）"><a href="#Step-A1-—-在-Mac-起一個最小-MCP-gateway（中介）" class="headerlink" title="Step A1 — 在 Mac 起一個最小 MCP gateway（中介）"></a>Step A1 — 在 Mac 起一個最小 MCP gateway（中介）</h3><p>目的：確認 Mac 能接收前端&#x2F;Windows 的 POST 並回覆（mock 或實際 API）</p>
+<ol>
+<li>建目錄、安裝依賴：</li>
+</ol>
+<pre><code class="bash">mkdir ~/mcp-gateway
+cd ~/mcp-gateway
+npm init -y
+# 如果 Node &gt;=18 可以不用 node-fetch
+npm i express dotenv
+</code></pre>
+<ol start="2">
+<li>建 <code>.env</code>（先可不放金鑰，測試 mock）：</li>
+</ol>
+<pre><code>PORT=4000
+OPENAI_API_KEY=
+DEEPSEEK_API_KEY=
+</code></pre>
+<ol start="3">
+<li>建 <code>gateway.mjs</code>（貼上整段並儲存）：</li>
+</ol>
+<pre><code class="js">import express from &#39;express&#39;;
+import dotenv from &#39;dotenv&#39;;
+dotenv.config();
+const app = express();
+app.use(express.json());
+
+const OPENAI_KEY = process.env.OPENAI_API_KEY || &#39;&#39;;
+const DEEPSEEK_KEY = process.env.DEEPSEEK_API_KEY || &#39;&#39;;
+
+const providers = {
+  openai: async ({ messages }) =&gt; {
+    if (!OPENAI_KEY) return { text: &#39;[mock openai] 這是模擬回覆&#39; };
+    const resp = await fetch(&#39;https://api.openai.com/v1/chat/completions&#39;, {
+      method: &#39;POST&#39;,
+      headers: { &#39;Authorization&#39;: `Bearer ${OPENAI_KEY}`, &#39;Content-Type&#39;: &#39;application/json&#39; },
+      body: JSON.stringify({ model: &#39;gpt-3.5-turbo&#39;, messages })
+    });
+    const data = await resp.json();
+    return { text: data?.choices?.[0]?.message?.content ?? &#39;&#39;, raw: data };
+  },
+  deepseek: async ({ messages }) =&gt; {
+    if (!DEEPSEEK_KEY) return { text: &#39;[mock deepseek] 這是模擬回覆&#39; };
+    const resp = await fetch(&#39;https://api.deepseek.com/v1/chat/completions&#39;, {
+      method: &#39;POST&#39;,
+      headers: { &#39;Authorization&#39;: `Bearer ${DEEPSEEK_KEY}`, &#39;Content-Type&#39;: &#39;application/json&#39; },
+      body: JSON.stringify({ model: &#39;deepseek-v1&#39;, messages })
+    });
+    const data = await resp.json();
+    return { text: data?.choices?.[0]?.message?.content ?? &#39;&#39;, raw: data };
+  }
+};
+
+app.get(&#39;/health&#39;, (req, res) =&gt; res.json({ status: &#39;ok&#39;, role: &#39;mcp-gateway&#39; }));
+
+app.post(&#39;/api/chat&#39;, async (req, res) =&gt; {
+  const { provider=&#39;openai&#39;, messages=[{role:&#39;user&#39;, content:&#39;hello&#39;}] } = req.body;
+  const adapter = providers[provider];
+  if (!adapter) return res.status(400).json({ error: &#39;unknown provider&#39; });
+  try {
+    const { text, raw } = await adapter({ messages });
+    return res.json({ provider, text, raw });
+  } catch (err) {
+    console.error(&#39;provider error&#39;, err);
+    return res.status(500).json({ error: &#39;provider error&#39; });
+  }
+});
+
+const port = process.env.PORT || 4000;
+app.listen(port, () =&gt; console.log(`MCP gateway listening on ${port}`));
+</code></pre>
+<ol start="4">
+<li>在 Mac 上啟動：</li>
+</ol>
+<pre><code class="bash">node gateway.mjs
+# 若要常駐可 later 用 pm2: npm i -g pm2 ； pm2 start gateway.mjs --name mcp-gateway
+</code></pre>
+<ol start="5">
+<li>在 Mac 測試（同機）：</li>
+</ol>
+<pre><code class="bash">curl http://localhost:4000/health
+# 應得到 {&quot;status&quot;:&quot;ok&quot;,&quot;role&quot;:&quot;mcp-gateway&quot;}
+
+curl -X POST http://localhost:4000/api/chat -H &quot;Content-Type: application/json&quot; \
+  -d &#39;{&quot;provider&quot;:&quot;openai&quot;,&quot;messages&quot;:[{&quot;role&quot;:&quot;user&quot;,&quot;content&quot;:&quot;哈囉&quot;}]}&#39;
+# 若沒放 OPENAI_KEY 會看到 mock 回覆
+</code></pre>
+<p><strong>驗收 A1</strong>（完成就回報）：</p>
+<ul>
+<li><code>/health</code> 回 <code>ok</code>，且 <code>/api/chat</code> 對 <code>provider=openai</code> 與 <code>provider=deepseek</code> 都會回覆（mock OK）。</li>
+<li>如果你想立刻測真 API，把 OPENAI_KEY 放進 <code>.env</code>（重啟）再測一次。</li>
+</ul>
+<hr>
+<h3 id="Step-A2-—-在-Windows（或另一台）做簡單前端測試頁面（Ask）"><a href="#Step-A2-—-在-Windows（或另一台）做簡單前端測試頁面（Ask）" class="headerlink" title="Step A2 — 在 Windows（或另一台）做簡單前端測試頁面（Ask）"></a>Step A2 — 在 Windows（或另一台）做簡單前端測試頁面（Ask）</h3><p>（等 A1 OK 我再貼最小前端檔案。這一步會驗證 Mac 的網路可達性）</p>
+<hr>
+<h3 id="Step-A3-—-（選做）在-Mac-上用-pm2-常駐"><a href="#Step-A3-—-（選做）在-Mac-上用-pm2-常駐" class="headerlink" title="Step A3 — （選做）在 Mac 上用 pm2 常駐"></a>Step A3 — （選做）在 Mac 上用 pm2 常駐</h3><pre><code class="bash">npm i -g pm2
+pm2 start gateway.mjs --name mcp-gateway
+pm2 save
+</code></pre>
+<hr>
+<h1 id="階段-B-—-加-DB-的進化版（目標：保留歷史、簡單會員）"><a href="#階段-B-—-加-DB-的進化版（目標：保留歷史、簡單會員）" class="headerlink" title="階段 B — 加 DB 的進化版（目標：保留歷史、簡單會員）"></a>階段 B — 加 DB 的進化版（目標：保留歷史、簡單會員）</h1><p>當你在 A 拿到穩定的中介就做 B。B 我也拆成小步，先列重點與第一個子步。</p>
+<h2 id="為什麼把-DB-放-Windows-Docker？"><a href="#為什麼把-DB-放-Windows-Docker？" class="headerlink" title="為什麼把 DB 放 Windows Docker？"></a>為什麼把 DB 放 Windows Docker？</h2><ul>
+<li>你的 Windows 比較新，可以穩定跑 Docker + MySQL、方便管理 volume 與備份，不會讓舊 Mac 吃太多資源。</li>
+</ul>
+<h2 id="B-Step1-—-在-Windows-用-Docker-啟動-MySQL（最小）"><a href="#B-Step1-—-在-Windows-用-Docker-啟動-MySQL（最小）" class="headerlink" title="B Step1 — 在 Windows 用 Docker 啟動 MySQL（最小）"></a>B Step1 — 在 Windows 用 Docker 啟動 MySQL（最小）</h2><ol>
+<li>在 Windows 建一個資料夾放 <code>docker-compose.yml</code>：</li>
+</ol>
+<pre><code class="yaml">version: &#39;3.1&#39;
+services:
+  db:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: mindsite
+    ports:
+      - &quot;3306:3306&quot;
+    volumes:
+      - db_data:/var/lib/mysql
+volumes:
+  db_data:
+</code></pre>
+<ol start="2">
+<li>啟動：</li>
+</ol>
+<pre><code class="powershell">docker-compose up -d
+</code></pre>
+<ol start="3">
+<li>驗證（在 Windows）：</li>
+</ol>
+<pre><code class="powershell">docker ps
+# 或用 mysql client 連上 localhost:3306
+</code></pre>
+<p><strong>驗收 B1</strong>：MySQL container 正常啟動，能用 client 連上。</p>
+<hr>
+<h2 id="B-Step2-—-在-Mac-的-gateway-加上最小-DB-存取（Node-mysql2）"><a href="#B-Step2-—-在-Mac-的-gateway-加上最小-DB-存取（Node-mysql2）" class="headerlink" title="B Step2 — 在 Mac 的 gateway 加上最小 DB 存取（Node mysql2）"></a>B Step2 — 在 Mac 的 gateway 加上最小 DB 存取（Node mysql2）</h2><p>（等 B1 OK，我會給你 <code>npm i mysql2</code> 的最小程式碼把每次問答寫進 readings 表）</p>
+<hr>
+<h1 id="小型-repo-建議（很簡短）"><a href="#小型-repo-建議（很簡短）" class="headerlink" title="小型 repo 建議（很簡短）"></a>小型 repo 建議（很簡短）</h1><pre><code>mindsite-backend/
+  gateway.mjs
+  .env
+mindsite-frontend/
+  vite project with Ask.vue
+</code></pre>
+<h1 id="安全-實務小提醒（必讀）"><a href="#安全-實務小提醒（必讀）" class="headerlink" title="安全 &amp; 實務小提醒（必讀）"></a>安全 &amp; 實務小提醒（必讀）</h1><ul>
+<li>API keys 只放在 Mac <code>.env</code>（server），不要放前端。</li>
+<li>測試 LAN 請先不要做 port-forward 開到 Internet；若要測網路通，先用 ngrok。</li>
+<li>舊 Mac 只做路由&#x2F;adaptor，不要跑 heavy compute 或 DB。</li>
+<li>日誌：開發期就把 <code>console.log</code> 改成簡單檔案或 winston，方便追蹤。</li>
+</ul>
+<hr>
+<p>我現在先給你 <strong>最重要的下一件事（立刻做）</strong>：<br>請在你的 Mac 上照 <strong>階段 A Step A1</strong> 的指令把 <code>gateway.mjs</code> 啟動並測試 <code>/health</code> 與 <code>/api/chat</code>（mock 回覆也行）。完成 A1 的驗收後回來告訴我「A1 完成」，我會立刻給你：</p>
+<ul>
+<li>A2（可直接貼用的最小前端 Ask.vue）與測試方法，及如何從 Windows 呼叫 Mac（包含排錯防火牆指令）。</li>
+<li>或若你想直接跳到 B，我會把 B Step2 的 <code>gateway -&gt; mysql</code> 存儲完整程式貼給你。</li>
+</ul>
+<p>你先做 A1，做完回我「A1 完成」或把出現的錯誤貼上，我馬上回下一步。</p>
+<p>好，我幫你把之前設計的 <strong>「無 DB 的 MVP → 加 DB 的進化版」學習路線圖</strong>，整理成一步步、附上簡稱翻譯的版本，方便你理解每個步驟的角色與目的。每個步驟都非常小、可立即驗收。</p>
+<hr>
+<h1 id="心靈算命網站學習路線圖（附簡稱翻譯）"><a href="#心靈算命網站學習路線圖（附簡稱翻譯）" class="headerlink" title="心靈算命網站學習路線圖（附簡稱翻譯）"></a>心靈算命網站學習路線圖（附簡稱翻譯）</h1><h2 id="總體概念"><a href="#總體概念" class="headerlink" title="總體概念"></a>總體概念</h2><ul>
+<li>**MVP (Minimum Viable Product，最小可行產品)**：先做最簡單能跑通的功能，不追求完整。</li>
+<li>**MCP (Model Context Protocol，模型上下文協定)**：你的 Mac 上的中介 server，用來連接多個 AI 服務。</li>
+<li>**DB (Database，資料庫)**：存使用者問答歷史、會員資料等。</li>
+<li>**API (Application Programming Interface，應用程式介面)**：前端與 MCP server、AI 服務之間的通訊介面。</li>
+</ul>
+<hr>
+<h2 id="階段-A-—-無-DB-的-MVP（快速驗證-AI-互動流程）"><a href="#階段-A-—-無-DB-的-MVP（快速驗證-AI-互動流程）" class="headerlink" title="階段 A — 無 DB 的 MVP（快速驗證 AI 互動流程）"></a><strong>階段 A — 無 DB 的 MVP（快速驗證 AI 互動流程）</strong></h2><p>目標：前端問問題 → MCP server → AI 服務（OpenAI &#x2F; DeepSeek） → 回前端。<strong>不存資料</strong>。</p>
+<h3 id="Step-A1-—-建立-MCP-Gateway"><a href="#Step-A1-—-建立-MCP-Gateway" class="headerlink" title="Step A1 — 建立 MCP Gateway"></a>Step A1 — 建立 MCP Gateway</h3><ul>
+<li><p>功能：在 Mac 上起一個 Node.js server，接收前端請求，轉給不同 AI provider。</p>
+</li>
+<li><p>驗收：</p>
+<ul>
+<li><code>/health</code> 回傳 MCP 狀態。</li>
+<li><code>/api/chat</code> 對 <code>provider=openai</code> 或 <code>provider=deepseek</code> 能回傳 mock 或實際回答。</li>
+</ul>
+</li>
+<li><p>簡稱翻譯：</p>
+<ul>
+<li>MCP：中介 server</li>
+<li>AI provider：AI 服務提供者（OpenAI &#x2F; DeepSeek）</li>
+</ul>
+</li>
+<li><p>操作：前面我給你的 <code>gateway.mjs</code> 指令與測試。</p>
+</li>
+</ul>
+<h3 id="Step-A2-—-前端最小測試頁面"><a href="#Step-A2-—-前端最小測試頁面" class="headerlink" title="Step A2 — 前端最小測試頁面"></a>Step A2 — 前端最小測試頁面</h3><ul>
+<li><p>功能：建立 Vite + Vue 前端，能輸入問題並呼叫 MCP <code>/api/chat</code>，顯示回覆。</p>
+</li>
+<li><p>驗收：輸入問題 → 點送出 → 顯示回覆。</p>
+</li>
+<li><p>簡稱翻譯：</p>
+<ul>
+<li>Vite：前端開發工具</li>
+<li>Vue：前端框架</li>
+</ul>
+</li>
+</ul>
+<h3 id="Step-A3-—-MCP-Gateway-常駐"><a href="#Step-A3-—-MCP-Gateway-常駐" class="headerlink" title="Step A3 — MCP Gateway 常駐"></a>Step A3 — MCP Gateway 常駐</h3><ul>
+<li>功能：使用 <code>pm2</code> 或類似工具，讓 MCP 在 Mac 上常駐，避免關掉終端就停止。</li>
+<li>驗收：關閉終端 → MCP 仍可接收 API 請求。</li>
+</ul>
+<hr>
+<h2 id="階段-B-—-加-DB-的進化版（保存歷史、會員系統）"><a href="#階段-B-—-加-DB-的進化版（保存歷史、會員系統）" class="headerlink" title="階段 B — 加 DB 的進化版（保存歷史、會員系統）"></a><strong>階段 B — 加 DB 的進化版（保存歷史、會員系統）</strong></h2><p>目標：讓使用者問答可以保存到資料庫，方便後續擴展統計、會員、課金等功能。</p>
+<h3 id="Step-B1-—-在-Windows-用-Docker-啟動-MySQL"><a href="#Step-B1-—-在-Windows-用-Docker-啟動-MySQL" class="headerlink" title="Step B1 — 在 Windows 用 Docker 啟動 MySQL"></a>Step B1 — 在 Windows 用 Docker 啟動 MySQL</h3><ul>
+<li><p>功能：</p>
+<ul>
+<li>Docker：容器化工具，隔離環境、快速部署 DB。</li>
+<li>MySQL：DB，用於存問答紀錄。</li>
+</ul>
+</li>
+<li><p>驗收：MySQL container 正常啟動，能連線。</p>
+</li>
+<li><p>簡稱翻譯：</p>
+<ul>
+<li>Docker：容器化部署工具</li>
+<li>MySQL：關聯式資料庫</li>
+</ul>
+</li>
+</ul>
+<h3 id="Step-B2-—-MCP-Gateway-寫入-DB"><a href="#Step-B2-—-MCP-Gateway-寫入-DB" class="headerlink" title="Step B2 — MCP Gateway 寫入 DB"></a>Step B2 — MCP Gateway 寫入 DB</h3><ul>
+<li><p>功能：將每次問答寫入 DB（使用 <code>mysql2</code> 或 ORM），可記錄：</p>
+<ul>
+<li>使用者 ID</li>
+<li>提問</li>
+<li>回答</li>
+<li>Provider</li>
+<li>時間</li>
+</ul>
+</li>
+<li><p>驗收：</p>
+<ul>
+<li>發送問題 → AI 回答 → DB 有對應紀錄。</li>
+</ul>
+</li>
+</ul>
+<h3 id="Step-B3-—-前端顯示歷史"><a href="#Step-B3-—-前端顯示歷史" class="headerlink" title="Step B3 — 前端顯示歷史"></a>Step B3 — 前端顯示歷史</h3><ul>
+<li><p>功能：前端可查詢歷史對話。</p>
+</li>
+<li><p>驗收：輸入會員帳號 → 顯示過去問答紀錄。</p>
+</li>
+<li><p>簡稱翻譯：</p>
+<ul>
+<li>JWT (JSON Web Token，網頁驗證用令牌)：可選，用於會員登入驗證。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="資源分配建議"><a href="#資源分配建議" class="headerlink" title="資源分配建議"></a><strong>資源分配建議</strong></h2><table>
+<thead>
+<tr>
+<th>電腦</th>
+<th>角色</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Mac A（舊）</td>
+<td>Documentation &#x2F; 技術文件</td>
+<td>編寫設計文檔、流程圖、Git 操作</td>
+</tr>
+<tr>
+<td>Mac B（舊）</td>
+<td>MCP Gateway &#x2F; 中介</td>
+<td>Node.js MCP server，轉發請求給 AI，mock 測試或真實 API 呼叫</td>
+</tr>
+<tr>
+<td>Lenovo Windows 11</td>
+<td>主開發機 + DB</td>
+<td>Docker MySQL、前端開發、整合測試、可能放本地 DB 和 CI&#x2F;CD</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="實務小提醒"><a href="#實務小提醒" class="headerlink" title="實務小提醒"></a><strong>實務小提醒</strong></h2><ol>
+<li><strong>API keys 只放 MCP server 的 <code>.env</code>，前端不要放</strong></li>
+<li><strong>Mac B 性能有限</strong> → 只做路由&#x2F;adapter，不跑大型模型</li>
+<li><strong>LAN 測試</strong> → 先不要開網路端口，正式上線再考慮 ngrok 或 port-forward</li>
+<li><strong>日誌與排錯</strong> → 開發期可用 console.log，之後用 winston 寫檔</li>
+<li><strong>驗收逐步做</strong> → 完成 A1 → A2 → A3，再進入 B1 → B2 → B3</li>
+</ol>
+<hr>
+<p>我可以幫你把 <strong>Step A2（最小前端 Ask.vue）</strong> 做成 <strong>可直接貼上執行的完整檔案</strong>，包括呼叫 MCP、顯示回覆、mock 測試的方式。</p>
+<p>你希望我現在直接給你 Step A2 的程式碼嗎？</p>

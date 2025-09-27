@@ -1,0 +1,53 @@
+<hr>
+<h2 id="title-2025-05-19-MCP-gateway-listening-on-4000-已經-正常啟動date-2025-09-21-00-16-00categories-OneDayOneNotetags-架構設計-node-MCP-Postman-description-2025-05-19-MCP-gateway-listening-on-4000-已經-正常啟動"><a href="#title-2025-05-19-MCP-gateway-listening-on-4000-已經-正常啟動date-2025-09-21-00-16-00categories-OneDayOneNotetags-架構設計-node-MCP-Postman-description-2025-05-19-MCP-gateway-listening-on-4000-已經-正常啟動" class="headerlink" title="title: 2025-05-19 MCP gateway listening on 4000 已經 正常啟動date: 2025-09-21 00:16:00categories: OneDayOneNotetags:  [架構設計,node,MCP,Postman]description:  2025-05-19 MCP gateway listening on 4000 已經 正常啟動"></a>title: 2025-05-19 MCP gateway listening on 4000 已經 正常啟動<br>date: 2025-09-21 00:16:00<br>categories: OneDayOneNote<br>tags:  [架構設計,node,MCP,Postman]<br>description:  2025-05-19 MCP gateway listening on 4000 已經 正常啟動</h2><h1 id="2025-05-19-MCP-gateway-listening-on-4000-已經-正常啟動"><a href="#2025-05-19-MCP-gateway-listening-on-4000-已經-正常啟動" class="headerlink" title="2025-05-19 MCP gateway listening on 4000 已經 正常啟動"></a>2025-05-19 MCP gateway listening on 4000 已經 正常啟動</h1><p>很好 👍 這個訊息表示你的 MCP Gateway 已經 <strong>正常啟動</strong>，並且成功讀取 <code>.env</code> 的環境變數（即使現在是空的 Key，也沒關係）。</p>
+<hr>
+<h3 id="解讀訊息"><a href="#解讀訊息" class="headerlink" title="解讀訊息"></a>解讀訊息</h3><ol>
+<li></li>
+</ol>
+<pre><code>[dotenv@17.2.2] injecting env (3) from .env -- tip: ⚙️  load multiple .env files with { path: [&#39;.env.local&#39;, &#39;.env&#39;] }
+</code></pre>
+<ul>
+<li><code>dotenv</code> 成功從你的 <code>.env</code> 檔案載入 3 個環境變數（PORT、OPENAI_API_KEY、DEEPSEEK_API_KEY）</li>
+<li>提示說你可以載入多個 <code>.env</code> 檔案，例如 <code>.env.local</code>、<code>.env</code></li>
+</ul>
+<ol start="2">
+<li></li>
+</ol>
+<pre><code>MCP gateway listening on 4000
+</code></pre>
+<ul>
+<li>表示伺服器已經開始監聽 <strong>port 4000</strong></li>
+<li>你現在可以透過 <strong><a href="http://localhost:4000/">http://localhost:4000</a></strong> 或 Postman 來測試 API</li>
+</ul>
+<hr>
+<h3 id="下一步建議"><a href="#下一步建議" class="headerlink" title="下一步建議"></a>下一步建議</h3><ol>
+<li>測試 <strong>健康檢查 API</strong>：</li>
+</ol>
+<pre><code class="bash">curl http://localhost:4000/health
+</code></pre>
+<ul>
+<li>預期回傳：</li>
+</ul>
+<pre><code class="json">{&quot;status&quot;:&quot;ok&quot;,&quot;role&quot;:&quot;mcp-gateway&quot;}
+</code></pre>
+<ol start="2">
+<li>測試 <strong>聊天 API</strong>：</li>
+</ol>
+<pre><code class="bash">curl -X POST http://localhost:4000/api/chat \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#39;{&quot;provider&quot;:&quot;openai&quot;,&quot;messages&quot;:[{&quot;role&quot;:&quot;user&quot;,&quot;content&quot;:&quot;hello&quot;}]}&#39;
+</code></pre>
+<ul>
+<li>因為你還沒有 API key，會回：</li>
+</ul>
+<pre><code class="json">{&quot;provider&quot;:&quot;openai&quot;,&quot;text&quot;:&quot;[mock openai] 這是模擬回覆&quot;}
+</code></pre>
+<hr>
+<p>💡 小提示：</p>
+<ul>
+<li>以後如果要改 port 或加 API Key，只要修改 <code>.env</code> 再重新啟動即可。</li>
+<li>你也可以設定 <code>package.json</code> 的 <code>scripts</code>，用 <code>npm start</code> 來啟動，不用每次手動打 <code>node gateway.mjs</code>。</li>
+</ul>
+<hr>
+<p>我可以幫你把 <strong><code>package.json</code> 加上 start 指令</strong>，這樣以後只要打 <code>npm start</code> 就能啟動 gateway。</p>
+<p>你要我幫你加嗎？</p>
