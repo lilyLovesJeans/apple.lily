@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="設 𝑃為 △𝐴𝐵𝐶 內部一點">
+<meta property="og:type" content="article">
+<meta property="og:title" content="設 𝑃為 △𝐴𝐵𝐶 內部一點">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/09/28/HighSchoolMath/Vector-004/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="設 𝑃為 △𝐴𝐵𝐶 內部一點">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-09-28T15:53:56.000Z">
+<meta property="article:modified_time" content="2025-09-28T15:55:50.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="高中數學">
+<meta property="article:tag" content="向量">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2025/09/28/HighSchoolMath/Vector-004/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2025/09/28/HighSchoolMath/Vector-004/","path":"2025/09/28/HighSchoolMath/Vector-004/","title":"設 𝑃為 △𝐴𝐵𝐶 內部一點"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>設 𝑃為 △𝐴𝐵𝐶 內部一點 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+<style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A8%AD-%F0%9D%91%83%E7%82%BA-%E2%96%B3%F0%9D%90%B4%F0%9D%90%B5%F0%9D%90%B6-%E5%85%A7%E9%83%A8%E4%B8%80%E9%BB%9E"><span class="nav-number">1.</span> <span class="nav-text">設 𝑃為 △𝐴𝐵𝐶 內部一點</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A1%8C%E7%9B%AE"><span class="nav-number"></span> <span class="nav-text">題目</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AD%94%E6%A1%88"><span class="nav-number"></span> <span class="nav-text">答案</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A3%E9%A1%8C%E6%80%9D%E8%B7%AF"><span class="nav-number"></span> <span class="nav-text">解題思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9D%A2%E7%A9%8D%E8%A8%88%E7%AE%97"><span class="nav-number"></span> <span class="nav-text">面積計算</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%96%E7%A4%BA%EF%BC%88%E9%AB%98%E4%B8%AD%E8%AA%B2%E6%9C%AC%E9%A2%A8%E6%A0%BC%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">圖示（高中課本風格）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%94%9F%E6%B4%BB%E6%87%89%E7%94%A8"><span class="nav-number"></span> <span class="nav-text">生活應用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo-MathJax-%E5%8F%8B%E5%A5%BD%E7%89%88%E6%9C%AC%E7%A4%BA%E7%AF%84"><span class="nav-number"></span> <span class="nav-text">Hexo&#x2F;MathJax 友好版本示範</span></a></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">465</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">39</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2025/09/28/HighSchoolMath/Vector-004/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="設 𝑃為 △𝐴𝐵𝐶 內部一點 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="設 𝑃為 △𝐴𝐵𝐶 內部一點">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          設 𝑃為 △𝐴𝐵𝐶 內部一點
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2025-09-28 23:53:56 / 修改時間：23:55:50" itemprop="dateCreated datePublished" datetime="2025-09-28T23:53:56+08:00">2025-09-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/%E9%AB%98%E4%B8%AD%E6%95%B8%E5%AD%B8/" itemprop="url" rel="index"><span itemprop="name">高中數學</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">設 𝑃為 △𝐴𝐵𝐶 內部一點</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="設-𝑃為-△𝐴𝐵𝐶-內部一點"><a href="#設-𝑃為-△𝐴𝐵𝐶-內部一點" class="headerlink" title="設 𝑃為 △𝐴𝐵𝐶 內部一點"></a>設 𝑃為 △𝐴𝐵𝐶 內部一點</h2><hr>
+<h1 id="題目"><a href="#題目" class="headerlink" title="題目"></a>題目</h1><p>設 (P) 為 (\triangle ABC) 內部一點，若</p>
+<p>[<br>2\vec{PA} + 3\vec{PB} + 4\vec{PC} = 0,<br>]</p>
+<p>又 (AP) 交 (BC) 於 (D)，且</p>
+<p>[<br>\vec{AD} = x\vec{AB} + y\vec{AC},<br>]</p>
+<p>且 (\triangle ABC) 面積為 (18)，求：</p>
+<ol>
+<li>數對 ((x, y))</li>
+<li>(\triangle PAB) 面積</li>
+</ol>
+<hr>
+<h1 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h1><ol>
+<li>((x, y) = (2/3, 1/3))</li>
+<li>(S_{\triangle PAB} = 6)</li>
+</ol>
+<hr>
+<h1 id="解題思路"><a href="#解題思路" class="headerlink" title="解題思路"></a>解題思路</h1><ol>
+<li><strong>向量加權平均（重心法）</strong></li>
+</ol>
+<p>已知</p>
+<p>[<br>2\vec{PA} + 3\vec{PB} + 4\vec{PC} = 0<br>]</p>
+<p>可以改寫成：</p>
+<p>[<br>\vec{OP} = \frac{2\vec{A} + 3\vec{B} + 4\vec{C}}{9}<br>]</p>
+<blockquote>
+<p>理解：想像 9 個小朋友在跷跷板上平衡，A 佔 2 個位置、B 佔 3 個位置、C 佔 4 個位置，平衡點就是 P。</p>
+</blockquote>
+<ol>
+<li><strong>求 (\vec{AP})</strong></li>
+</ol>
+<p>[<br>\vec{AP} = \vec{OP} - \vec{OA} = \frac{3\vec{B} + 4\vec{C} - 7\vec{A}}{9} = \frac{1}{3}\vec{AB} + \frac{4}{9}\vec{AC}<br>]</p>
+<ol start="3">
+<li><strong>設 (D) 在 (BC) 上</strong></li>
+</ol>
+<p>[<br>\vec{AD} = x\vec{AB} + y\vec{AC}, \quad P \text{ 在 } AD \text{ 上} \Rightarrow \vec{AP} = t\vec{AD} = t(x\vec{AB} + y\vec{AC})<br>]</p>
+<p>對比系數：</p>
+<p>[<br>t x = 1/3, \quad t y = 4/9 \quad\Rightarrow\quad y/x = 4/3<br>]</p>
+<p>再利用 (D) 在 (BC) 上，最後得到：</p>
+<p>[<br>(x, y) = (2/3, 1/3)<br>]</p>
+<hr>
+<h1 id="面積計算"><a href="#面積計算" class="headerlink" title="面積計算"></a>面積計算</h1><ul>
+<li>(\triangle ABC) 面積 (S = 18)</li>
+<li>因為 P 分割三角形成比例區域，利用比例法：</li>
+</ul>
+<p>[<br>S_{\triangle PAB} = 6<br>]</p>
+<blockquote>
+<p>小學生理解：整個三角形像一塊蛋糕，P 把蛋糕切成 3 份，(\triangle PAB) 剛好是 6 片大小。</p>
+</blockquote>
+<hr>
+<h1 id="圖示（高中課本風格）"><a href="#圖示（高中課本風格）" class="headerlink" title="圖示（高中課本風格）"></a>圖示（高中課本風格）</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">       A</span><br><span class="line">       *</span><br><span class="line">      /\</span><br><span class="line">     /  \</span><br><span class="line">    /    \</span><br><span class="line">   P*------\</span><br><span class="line">  / \       \</span><br><span class="line"> /   \       \</span><br><span class="line">B*-----*------C</span><br><span class="line">       D</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>P 是向量加權平均點</li>
+<li>D 在 BC 上，AD = (2/3)AB + (1/3)AC</li>
+<li>△PAB 面積 = 6</li>
+</ul>
+<hr>
+<h1 id="生活應用"><a href="#生活應用" class="headerlink" title="生活應用"></a>生活應用</h1><ol>
+<li><strong>分蛋糕</strong>：蛋糕按比例切給不同人。</li>
+<li><strong>平衡樞軸</strong>：跷跷板不同重量小朋友的平衡點。</li>
+<li><strong>地圖定位</strong>：根據三個地標權重找到位置。</li>
+</ol>
+<hr>
+<h1 id="Hexo-MathJax-友好版本示範"><a href="#Hexo-MathJax-友好版本示範" class="headerlink" title="Hexo/MathJax 友好版本示範"></a>Hexo/MathJax 友好版本示範</h1><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">設 P 為 △ABC 內部一點，若</span><br><span class="line">$$</span><br><span class="line">2\vec{PA} + 3\vec{PB} + 4\vec{PC} = 0,</span><br><span class="line">$$</span><br><span class="line">又 AP 交 BC 於 D，且</span><br><span class="line">$$</span><br><span class="line">\vec{AD} = x\vec{AB} + y\vec{AC},</span><br><span class="line">$$</span><br><span class="line">且 △ABC 面積為 18，則：</span><br><span class="line"></span><br><span class="line"><span class="bullet">1.</span> $(x, y) = (2/3, 1/3)$</span><br><span class="line"><span class="bullet">2.</span> △PAB 面積 $S<span class="emphasis">_{\triangle PAB} = 6$</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/%E9%AB%98%E4%B8%AD%E6%95%B8%E5%AD%B8/" rel="tag"># 高中數學</a>
+              <a href="/apple.lily/tags/%E5%90%91%E9%87%8F/" rel="tag"># 向量</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/09/28/HighSchoolMath/Vector-003/" rel="prev" title="範例12 內積的應用——在坐標平面上有點 C[圓C:(x+1)^2+(y-2)^2=5]">
+                  <i class="fa fa-angle-left"></i> 範例12 內積的應用——在坐標平面上有點 C[圓C:(x+1)^2+(y-2)^2=5]
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/apple.lily/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
