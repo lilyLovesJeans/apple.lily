@@ -1,6 +1,5 @@
 https://lilylovesjeans.github.io/apple.lily/2025/09/28/HighSchoolMath/Vector-004/
-https://lilylovesjeans.github.io/apple.lily/2025/09/28/HighSchoolMath/Vector-004%20copy%202/
-https://lilylovesjeans.github.io/apple.lily/2025/09/28/HighSchoolMath/Vector-004%20copy/
+https://lilylovesjeans.github.io/apple.lily/2025/09/28/HighSchoolMath/Vector-004/Vector-004%20copy01/
 https://lilylovesjeans.github.io/apple.lily/2025/09/28/HighSchoolMath/Vector-003/
 https://lilylovesjeans.github.io/apple.lily/2025/09/28/HighSchoolMath/Vector-001/
 https://lilylovesjeans.github.io/apple.lily/2025/09/28/HighSchoolMath/Vector-002/
@@ -514,6 +513,6 @@ https://lilylovesjeans.github.io/apple.lily/categories/hexo/
 https://lilylovesjeans.github.io/apple.lily/categories/%E6%84%9B%E5%AF%AB%E6%89%A3%E8%87%AA%E5%AD%B8%E7%B3%BB%E5%88%97/
 https://lilylovesjeans.github.io/apple.lily/categories/OneDayOneNote/
 https://lilylovesjeans.github.io/apple.lily/categories/%E9%AB%98%E4%B8%AD%E6%95%B8%E5%AD%B8/
-https://lilylovesjeans.github.io/apple.lily/categories/SA/
 https://lilylovesjeans.github.io/apple.lily/categories/WDS/
+https://lilylovesjeans.github.io/apple.lily/categories/SA/
 https://lilylovesjeans.github.io/apple.lily/categories/Oracle/
