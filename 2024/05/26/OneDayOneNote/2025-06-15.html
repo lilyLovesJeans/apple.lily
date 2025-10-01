@@ -1,0 +1,115 @@
+<hr>
+<h2 id="title-2025-06-15-「MVP-階段安裝清單」date-2025-10-01-23-13-51categories-OneDayOneNotetags-MVP-MCP-Node-description-2025-06-15-「MVP-階段安裝清單」"><a href="#title-2025-06-15-「MVP-階段安裝清單」date-2025-10-01-23-13-51categories-OneDayOneNotetags-MVP-MCP-Node-description-2025-06-15-「MVP-階段安裝清單」" class="headerlink" title="title: 2025-06-15 「MVP 階段安裝清單」date: 2025-10-01 23:13:51categories: OneDayOneNotetags:  [MVP,MCP,Node]description: 2025-06-15 「MVP 階段安裝清單」"></a>title: 2025-06-15 「MVP 階段安裝清單」<br>date: 2025-10-01 23:13:51<br>categories: OneDayOneNote<br>tags:  [MVP,MCP,Node]<br>description: 2025-06-15 「MVP 階段安裝清單」</h2><h2 id="2025-06-15-「MVP-階段安裝清單」"><a href="#2025-06-15-「MVP-階段安裝清單」" class="headerlink" title="2025-06-15 「MVP 階段安裝清單」"></a>2025-06-15 「MVP 階段安裝清單」</h2><p>👌 明白了，我幫你整理一份非常具體的 <strong>「MVP 階段安裝清單」</strong>，把三台電腦要安裝什麼軟體、用途、為什麼需要，一一列出來。這份清單只針對 <strong>MVP（Minimum Viable Product，最小可行產品）</strong> 階段，不會讓你安裝多餘的東西。</p>
+<hr>
+<h1 id="MVP-階段安裝清單"><a href="#MVP-階段安裝清單" class="headerlink" title="MVP 階段安裝清單"></a>MVP 階段安裝清單</h1><h2 id="🖥️-Mac-B（舊-Mac，用來跑-MCP-Server）"><a href="#🖥️-Mac-B（舊-Mac，用來跑-MCP-Server）" class="headerlink" title="🖥️ Mac B（舊 Mac，用來跑 MCP Server）"></a>🖥️ Mac B（舊 Mac，用來跑 MCP Server）</h2><p>👉 角色：<strong>MCP (Model Context Protocol，中介伺服器)</strong><br>👉 功能：接收前端的請求，轉發給 ChatGPT 或 DeepSeek，然後把回應傳回去。</p>
+<p><strong>需要安裝：</strong></p>
+<ol>
+<li><p><strong>Node.js (推薦 LTS 版本 18 或 20)</strong></p>
+<ul>
+<li><p>用來跑 JavaScript 伺服器程式（MCP Server）。</p>
+</li>
+<li><p>安裝方式（macOS）：</p>
+<pre><code class="bash">brew install node
+</code></pre>
+</li>
+<li><p>驗收：</p>
+<pre><code class="bash">node -v
+npm -v
+</code></pre>
+<p>有版本號就 OK。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>npm（隨 Node.js 內建）</strong></p>
+<ul>
+<li>用來安裝需要的套件（例如 <code>@modelcontextprotocol/sdk</code>）。</li>
+</ul>
+</li>
+<li><p><strong>VS Code (Visual Studio Code)</strong></p>
+<ul>
+<li>用來編寫 MCP server 程式碼。</li>
+</ul>
+</li>
+</ol>
+<p>✅ Mac B MVP 階段不用安裝：MySQL、Docker、前端工具。<br>（因為它只是中介，不做資料保存）</p>
+<hr>
+<h2 id="🖥️-Lenovo-Windows-11（主力開發機）"><a href="#🖥️-Lenovo-Windows-11（主力開發機）" class="headerlink" title="🖥️ Lenovo Windows 11（主力開發機）"></a>🖥️ Lenovo Windows 11（主力開發機）</h2><p>👉 角色：<strong>前端開發機 + 未來的 DB（Database，資料庫）機</strong><br>👉 功能：</p>
+<ul>
+<li>用來寫 Vue 前端網站（心靈算命網站）。</li>
+<li>將來可用 Docker 啟動 MySQL。</li>
+</ul>
+<p><strong>需要安裝：</strong></p>
+<ol>
+<li><p><strong>Node.js (推薦 LTS 版本 20)</strong></p>
+<ul>
+<li>用來跑 Vue 前端專案。</li>
+</ul>
+</li>
+<li><p><strong>npm（隨 Node.js 內建）</strong></p>
+<ul>
+<li>用來安裝前端套件。</li>
+</ul>
+</li>
+<li><p><strong>VS Code</strong></p>
+<ul>
+<li>前端程式主要開發工具。</li>
+</ul>
+</li>
+<li><p><strong>Git（可選，建議）</strong></p>
+<ul>
+<li>做版本控制，之後要多人合作會需要。</li>
+</ul>
+</li>
+</ol>
+<p>（❌ MVP 階段不需要安裝 MySQL &#x2F; Docker，因為我們先不做資料保存）</p>
+<hr>
+<h2 id="🖥️-Mac-A（舊-Mac，用來寫文件）"><a href="#🖥️-Mac-A（舊-Mac，用來寫文件）" class="headerlink" title="🖥️ Mac A（舊 Mac，用來寫文件）"></a>🖥️ Mac A（舊 Mac，用來寫文件）</h2><p>👉 角色：<strong>Documentation（技術文件機）</strong><br>👉 功能：整理學習筆記、系統設計文檔。</p>
+<p><strong>需要安裝：</strong></p>
+<ol>
+<li><p><strong>VS Code 或 Typora（或任何 Markdown 編輯器）</strong></p>
+<ul>
+<li>用來寫技術文件。</li>
+</ul>
+</li>
+<li><p><strong>Git（可選）</strong></p>
+<ul>
+<li>讓你的技術文件同步到 GitHub。</li>
+</ul>
+</li>
+</ol>
+<p>✅ 不需要安裝 Node.js、Docker、MySQL。</p>
+<hr>
+<h1 id="📌-總結"><a href="#📌-總結" class="headerlink" title="📌 總結"></a>📌 總結</h1><ul>
+<li><p><strong>Mac B (MCP Server 機)</strong><br>安裝：Node.js + VS Code<br>功能：跑 MCP Server，轉發到 ChatGPT &#x2F; DeepSeek</p>
+</li>
+<li><p><strong>Windows (主力開發機)</strong><br>安裝：Node.js + VS Code + （可選 Git）<br>功能：跑 Vue 前端專案（心靈算命網站）</p>
+</li>
+<li><p><strong>Mac A (文件機)</strong><br>安裝：VS Code &#x2F; Typora + （可選 Git）<br>功能：寫技術文件、整理架構筆記</p>
+</li>
+</ul>
+<hr>
+<p>👉 下一步，我建議我們從 <strong>Mac B 的 MCP Server</strong> 開始。<br>因為它是 AI 的「中介」，只要它能跑起來，前端才能接 ChatGPT &#x2F; DeepSeek。</p>
+<p>要不要我幫你寫一份 <strong>「Mac B 上安裝 Node.js 與建立最小 MCP Server」的逐步操作指南</strong>？<br>這句 <strong>「如果 Node &gt;&#x3D;18 可以不用 node-fetch」</strong> 的意思是：</p>
+<ul>
+<li><p><strong>Node.js</strong> 在 <strong>18 版以後</strong>，已經<strong>內建支援 <code>fetch()</code> API</strong>（就像瀏覽器裡的 <code>fetch</code> 一樣）。</p>
+</li>
+<li><p>以前（Node.js 18 之前），如果你想在 Node.js 程式裡用 <code>fetch()</code> 來呼叫 API，就必須額外安裝一個套件：</p>
+<pre><code class="bash">npm install node-fetch
+</code></pre>
+</li>
+<li><p>但是現在如果你的 Node.js 版本 <strong>大於等於 18</strong>，可以直接寫：</p>
+<pre><code class="js">const res = await fetch(&quot;https://api.openai.com/v1/chat/completions&quot;);
+const data = await res.json();
+console.log(data);
+</code></pre>
+<p>✅ 不需要再安裝 <code>node-fetch</code>。</p>
+</li>
+</ul>
+<hr>
+<p>🔑 簡單說：</p>
+<ul>
+<li><strong>Node.js &lt; 18</strong> → 需要 <code>node-fetch</code></li>
+<li><strong>Node.js &gt;&#x3D; 18</strong> → 直接用內建 <code>fetch</code></li>
+</ul>
+<hr>
+<p>要不要我教你怎麼在 <strong>Mac B（MCP Server 機）檢查 Node.js 版本</strong>，確認你能不能直接用 <code>fetch</code>？</p>

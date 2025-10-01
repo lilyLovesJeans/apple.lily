@@ -1,0 +1,168 @@
+<hr>
+<h2 id="title-2025-06-19-gateway-mjsdate-2025-10-01-23-42-38categories-OneDayOneNotetags-MVP-MCP-Node-description-2025-06-19-gateway-mjs"><a href="#title-2025-06-19-gateway-mjsdate-2025-10-01-23-42-38categories-OneDayOneNotetags-MVP-MCP-Node-description-2025-06-19-gateway-mjs" class="headerlink" title="title: 2025-06-19  gateway.mjsdate: 2025-10-01 23:42:38categories: OneDayOneNotetags:  [MVP,MCP,Node]description: 2025-06-19  gateway.mjs"></a>title: 2025-06-19  gateway.mjs<br>date: 2025-10-01 23:42:38<br>categories: OneDayOneNote<br>tags:  [MVP,MCP,Node]<br>description: 2025-06-19  gateway.mjs</h2><h2 id="2025-06-19-gateway-mjs"><a href="#2025-06-19-gateway-mjs" class="headerlink" title="2025-06-19  gateway.mjs"></a>2025-06-19  gateway.mjs</h2><pre><code class="mjs">// gateway.mjs
+import express from &#39;express&#39;;
+import cors from &quot;cors&quot;;
+import dotenv from &#39;dotenv&#39;;
+dotenv.config();
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+const OPENAI_KEY = process.env.OPENAI_API_KEY || &#39;&#39;;
+const DEEPSEEK_KEY = process.env.DEEPSEEK_API_KEY || &#39;&#39;;
+
+// provider adapters (最小示範：若沒 key 則回 mock)
+const providers = {
+  openai: async ({ messages }) =&gt; {
+    if (!OPENAI_KEY) return { text: &#39;[mock openai] 這是模擬回覆&#39; };
+    const resp = await fetch(&#39;https://api.openai.com/v1/chat/completions&#39;, {
+      method: &#39;POST&#39;,
+      headers: { &#39;Authorization&#39;: `Bearer ${OPENAI_KEY}`, &#39;Content-Type&#39;: &#39;application/json&#39; },
+      body: JSON.stringify({ model: &#39;gpt-3.5-turbo&#39;, messages })
+    });
+    const data = await resp.json();
+    return { text: data?.choices?.[0]?.message?.content ?? &#39;&#39;, raw: data };
+  },
+
+  deepseek: async ({ messages }) =&gt; {
+    if (!DEEPSEEK_KEY) return { text: &#39;[mock deepseek] 這是模擬回覆&#39; };
+    const resp = await fetch(&#39;https://api.deepseek.com/v1/chat/completions&#39;, {
+      method: &#39;POST&#39;,
+      headers: { &#39;Authorization&#39;: `Bearer ${DEEPSEEK_KEY}`, &#39;Content-Type&#39;: &#39;application/json&#39; },
+      body: JSON.stringify({ model: &#39;deepseek-v1&#39;, messages })
+    });
+    const data = await resp.json();
+    return { text: data?.choices?.[0]?.message?.content ?? &#39;&#39;, raw: data };
+  }
+};
+
+app.get(&#39;/health&#39;, (req, res) =&gt; res.json({ status: &#39;ok&#39;, role: &#39;mcp-gateway&#39; }));
+
+app.post(&#39;/api/chat&#39;, async (req, res) =&gt; {
+  const { provider = &#39;openai&#39;, messages = [{ role:&#39;user&#39;, content:&#39;hello&#39; }] } = req.body;
+  const adapter = providers[provider];
+  if (!adapter) return res.status(400).json({ error: &#39;unknown provider&#39; });
+  try {
+    const { text, raw } = await adapter({ messages });
+    return res.json({ provider, text, raw });
+  } catch (err) {
+    console.error(&#39;provider error&#39;, err);
+    return res.status(500).json({ error: &#39;provider error&#39; });
+  }
+});
+
+const port = process.env.PORT || 4000;
+app.listen(port, () =&gt; console.log(`MCP gateway listening on ${port}`));
+</code></pre>
+<p>很好 — 你貼的 <code>gateway.mjs</code> 看起來很完整了，功能與結構也正確。下面我把它<strong>逐項檢查、補充建議、常見問題排查指令</strong>都寫清楚，方便你立刻驗證、上線（或繼續下一步）。我會把簡稱翻譯也放進去（你之前要求的）。</p>
+<hr>
+<h1 id="1-立即檢查：這個檔案做了什麼（摘要）"><a href="#1-立即檢查：這個檔案做了什麼（摘要）" class="headerlink" title="1) 立即檢查：這個檔案做了什麼（摘要）"></a>1) 立即檢查：這個檔案做了什麼（摘要）</h1><ul>
+<li>用 Express 建一個 HTTP server。</li>
+<li><code>cors()</code> 已啟用 → 允許跨來源（方便前端從 Windows 呼叫）。</li>
+<li>定義了兩個 provider adapter：<code>openai</code> 與 <code>deepseek</code>。若沒有各自的 API key，會回 mock 回覆（方便測試）。</li>
+<li><code>GET /health</code> 與 <code>POST /api/chat</code> 路由都已正確設置。</li>
+<li>監聽 <code>PORT</code>（預設 4000）。</li>
+</ul>
+<p>（簡稱翻譯：<strong>CORS</strong> &#x3D; Cross-Origin Resource Sharing（跨來源資源共享），<strong>API</strong> &#x3D; Application Programming Interface（應用程式介面）。）</p>
+<hr>
+<h1 id="2-如果你要馬上測試（步驟）"><a href="#2-如果你要馬上測試（步驟）" class="headerlink" title="2) 如果你要馬上測試（步驟）"></a>2) 如果你要馬上測試（步驟）</h1><ol>
+<li><p>在 Mac B 的專案資料夾確定有 <code>.env</code>（若要用真實 API）：</p>
+<pre><code>PORT=4000
+OPENAI_API_KEY=sk-...
+DEEPSEEK_API_KEY=ds-...
+</code></pre>
+</li>
+<li><p>啟動&#x2F;重啟 server：</p>
+<pre><code class="bash">node gateway.mjs
+# 或（建議未來用 pm2）
+pm2 start gateway.mjs --name mcp-gateway
+</code></pre>
+</li>
+<li><p>在同機或 Windows 測試（你之前 curl &#x2F;health 成功）：</p>
+<pre><code class="bash">curl http://192.168.0.103:4000/health
+curl -X POST http://192.168.0.103:4000/api/chat -H &quot;Content-Type: application/json&quot; \
+  -d &#39;{&quot;provider&quot;:&quot;openai&quot;,&quot;messages&quot;:[{&quot;role&quot;:&quot;user&quot;,&quot;content&quot;:&quot;嗨&quot;}]}&#39;
+</code></pre>
+</li>
+</ol>
+<hr>
+<h1 id="3-常見問題與排查（你會遇到的）"><a href="#3-常見問題與排查（你會遇到的）" class="headerlink" title="3) 常見問題與排查（你會遇到的）"></a>3) 常見問題與排查（你會遇到的）</h1><ul>
+<li><p><code>Failed to fetch</code>（在瀏覽器）→ 通常是 <strong>CORS</strong> 或 <strong>網路</strong>。你已加 <code>cors()</code>，且之前能 <code>curl</code> 成功，所以已解決。</p>
+</li>
+<li><p><code>fetch is not defined</code>（在 Node）→ 代表你的 Node 版本 &lt; 18（舊版 Node 沒有內建 <code>fetch</code>）。解法：</p>
+<ul>
+<li><p>檢查版本：<code>node -v</code></p>
+</li>
+<li><p>若 &lt; 18，安裝 <code>node-fetch</code> 並修改開頭：</p>
+<pre><code class="bash">npm i node-fetch
+</code></pre>
+<p>在檔案開頭：</p>
+<pre><code class="js">import fetch from &#39;node-fetch&#39;;
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>若回傳 500 且 console 顯示 <code>provider error</code> → 把 <code>console.error(err)</code> 補成 <code>console.error(err?.stack ?? err)</code> 看詳細錯誤，或在 adapter 裡加 try&#x2F;catch 逐步 log。</p>
+</li>
+</ul>
+<hr>
+<h1 id="4-建議（小改善、比較實務）"><a href="#4-建議（小改善、比較實務）" class="headerlink" title="4) 建議（小改善、比較實務）"></a>4) 建議（小改善、比較實務）</h1><ol>
+<li><p><strong>限制 CORS（生產）</strong> — 目前 <code>app.use(cors())</code> 允許所有來源，測試時方便；上線時改成只允許你的前端：</p>
+<pre><code class="js">app.use(cors({ origin: [&#39;http://localhost:5173&#39;,&#39;http://你的前端網址&#39;] }));
+</code></pre>
+</li>
+<li><p><strong>增加 request logging（方便除錯）</strong>：</p>
+<pre><code class="js">app.use((req, res, next) =&gt; {
+  console.log(new Date().toISOString(), req.method, req.url);
+  next();
+});
+</code></pre>
+</li>
+<li><p><strong>加上超時&#x2F;重試</strong>（避免 provider 卡住）— 可用 <code>AbortController</code>（Node 18+）或在 fetch 外包 timeout：</p>
+<pre><code class="js">const controller = new AbortController();
+setTimeout(() =&gt; controller.abort(), 15000); // 15s timeout
+const resp = await fetch(url, { ..., signal: controller.signal });
+</code></pre>
+</li>
+<li><p><strong>更友善的錯誤回應</strong>：</p>
+<pre><code class="js">try { ... }
+catch (err) {
+  console.error(err);
+  res.status(502).json({ error: &#39;upstream provider failed&#39;, detail: err.message });
+}
+</code></pre>
+</li>
+<li><p><strong>不要把 API key 放到版本控制</strong> — <code>.env</code> 加到 <code>.gitignore</code>。</p>
+</li>
+</ol>
+<hr>
+<h1 id="5-如果你要把真實-API-key-放進去（步驟）"><a href="#5-如果你要把真實-API-key-放進去（步驟）" class="headerlink" title="5) 如果你要把真實 API key 放進去（步驟）"></a>5) 如果你要把真實 API key 放進去（步驟）</h1><ol>
+<li><p>在 <code>~/mcp-gateway/.env</code> 填入：</p>
+<pre><code>OPENAI_API_KEY=sk-...
+DEEPSEEK_API_KEY=ds-...
+PORT=4000
+</code></pre>
+</li>
+<li><p>重啟 server（或用 pm2 restart）：</p>
+<pre><code class="bash">pm2 restart mcp-gateway   # 如果用 pm2
+# 或
+node gateway.mjs
+</code></pre>
+</li>
+<li><p>用前端或 curl 測試（若 API key 有問題，OpenAI 會回 401 或 429）。</p>
+</li>
+</ol>
+<hr>
+<h1 id="6-要常駐-合螢幕也能跑（快速指令）"><a href="#6-要常駐-合螢幕也能跑（快速指令）" class="headerlink" title="6) 要常駐 &amp; 合螢幕也能跑（快速指令）"></a>6) 要常駐 &amp; 合螢幕也能跑（快速指令）</h1><pre><code class="bash">npm i -g pm2
+pm2 start gateway.mjs --name mcp-gateway
+pm2 startup        # 產生開機啟動指令（依系統提示執行）
+pm2 save
+</code></pre>
+<p>另外 mac 合螢幕睡眠要關（System Settings → Battery → Prevent computer from sleeping when display is off），或用 Amphetamine App。</p>
+<hr>
+<h1 id="7-下一步建議（你可以選一個）"><a href="#7-下一步建議（你可以選一個）" class="headerlink" title="7) 下一步建議（你可以選一個）"></a>7) 下一步建議（你可以選一個）</h1><ul>
+<li>A. 我幫你把 <code>gateway.mjs</code> 加上：<code>request logging</code>、<code>fetch timeout</code>、更清楚的 error message（貼給你修改後的完整檔案）。</li>
+<li>B. 你把 <code>node -v</code> 回我，我幫你檢查是否需要 <code>node-fetch</code>，如果需要，我直接給可貼上的修改。</li>
+<li>C. 你想現在把 OPENAI_KEY 放 <code>.env</code>，我給你測試指令與如何檢查 token 被使用的簡單方法。</li>
+</ul>
+<p>你選一個，我立即把對應的完整程式或指令貼給你。</p>

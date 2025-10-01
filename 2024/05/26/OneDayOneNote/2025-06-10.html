@@ -1,0 +1,231 @@
+<hr>
+<h2 id="title-2025-06-10-網站拆成清楚的階段date-2025-10-01-22-56-26categories-OneDayOneNotetags-MVP-description-2025-06-10-網站拆成清楚的階段"><a href="#title-2025-06-10-網站拆成清楚的階段date-2025-10-01-22-56-26categories-OneDayOneNotetags-MVP-description-2025-06-10-網站拆成清楚的階段" class="headerlink" title="title: 2025-06-10 網站拆成清楚的階段date: 2025-10-01 22:56:26categories: OneDayOneNotetags:  [MVP]description: 2025-06-10 網站拆成清楚的階段"></a>title: 2025-06-10 網站拆成清楚的階段<br>date: 2025-10-01 22:56:26<br>categories: OneDayOneNote<br>tags:  [MVP]<br>description: 2025-06-10 網站拆成清楚的階段</h2><h2 id="2025-06-10-網站拆成清楚的階段"><a href="#2025-06-10-網站拆成清楚的階段" class="headerlink" title="2025-06-10 網站拆成清楚的階段"></a>2025-06-10 網站拆成清楚的階段</h2><p>「從頭、一步步、可馬上動手」的版本整理好，幫你把網站拆成清楚的階段、每一步要做的工作、範例程式與必要的注意事項。你不用馬上回答任何問題（我幫你選好預設路線），照著一步步做就能把 MVP 跑起來，之後再慢慢優化 AI 路由、UI、付款、審核等功能。</p>
+<h1 id="概覽（一句話）"><a href="#概覽（一句話）" class="headerlink" title="概覽（一句話）"></a>概覽（一句話）</h1><p>建立一個前端 Vue 3（Vite）+ 後端 Node&#x2F;Express 的網站，資料存 MySQL，後端當 AI gateway（支援 ChatGPT 與 DeepSeek &#x2F; 其他 provider），MCP Server 可做為本地&#x2F;特殊模型運行或作為另一個 provider。先做 MVP：使用者可註冊、提問（AI 回覆）、儲存查詢紀錄與查看歷史。</p>
+<h1 id="推薦技術堆疊（快速決策）"><a href="#推薦技術堆疊（快速決策）" class="headerlink" title="推薦技術堆疊（快速決策）"></a>推薦技術堆疊（快速決策）</h1><ul>
+<li>前端：Vue 3 + Vite，Composition API（你喜歡 Composition）</li>
+<li>後端：Node.js + Express（快速、少摩擦）</li>
+<li>多模型 Gateway：同一個後端實作 provider adapter（OpenAI &#x2F; DeepSeek）</li>
+<li>DB：MySQL（可本地或雲端），起步用 <code>mysql2</code>，之後可改 ORM&#x2F;Prisma</li>
+<li>認證：JWT + bcrypt（或使用 OAuth）</li>
+<li>部署：Frontend → Vercel &#x2F; Netlify；Backend → Render &#x2F; DigitalOcean &#x2F; VPS；MCP Server → 先放在 Mac（開發）或雲端（生產）</li>
+<li>其他：cors, helmet, express-rate-limit, winston（logging）</li>
+</ul>
+<h1 id="系統架構（文字圖）"><a href="#系統架構（文字圖）" class="headerlink" title="系統架構（文字圖）"></a>系統架構（文字圖）</h1><p>Frontend (Vue) ←→ Backend API (Express, &#x2F;api&#x2F;*) ←→ AI Providers (OpenAI &#x2F; DeepSeek &#x2F; MCP Server)<br>↑<br>MySQL（讀寫儲存、歷史、會員）</p>
+<h1 id="MVP-功能（優先順序）"><a href="#MVP-功能（優先順序）" class="headerlink" title="MVP 功能（優先順序）"></a>MVP 功能（優先順序）</h1><ol>
+<li>用戶系統：註冊、登入、JWT 驗證</li>
+<li>提問功能：輸入問題 → 後端決定 provider → 回傳 AI 回覆</li>
+<li>查詢紀錄：每次提問儲存在 readings 表，使用者可看歷史</li>
+<li>管理後台（簡單）：可查看 logs、設定 provider 權重（後期）</li>
+<li>基本 Moderation：在發送給 AI 前做簡單關鍵詞檢查（敏感詞）</li>
+</ol>
+<h1 id="開發分階段（每階段分小步驟）"><a href="#開發分階段（每階段分小步驟）" class="headerlink" title="開發分階段（每階段分小步驟）"></a>開發分階段（每階段分小步驟）</h1><h2 id="Phase-0-—-準備環境（目標：建立前端-後端骨架）"><a href="#Phase-0-—-準備環境（目標：建立前端-後端骨架）" class="headerlink" title="Phase 0 — 準備環境（目標：建立前端 + 後端骨架）"></a>Phase 0 — 準備環境（目標：建立前端 + 後端骨架）</h2><ol>
+<li>建 repo（frontend &#x2F; backend）：<code>git init</code></li>
+<li>建前端（Vite + Vue）：</li>
+</ol>
+<pre><code class="bash">npm create vite@latest mindsite -- --template vue
+cd mindsite
+npm install
+npm run dev
+</code></pre>
+<ol start="3">
+<li>建後端（Express）：</li>
+</ol>
+<pre><code class="bash">mkdir backend &amp;&amp; cd backend
+npm init -y
+npm i express dotenv mysql2 cors helmet express-rate-limit bcrypt jsonwebtoken
+# Node 18+ 建議使用 ESM (server.mjs) 或 commonjs
+</code></pre>
+<ol start="4">
+<li>建 MySQL 本地資料庫（或使用雲端 MySQL）：建立 <code>mindsite</code> DB。</li>
+</ol>
+<p>驗收：能在瀏覽器看到 Vue 開發頁面、能呼叫 <code>GET /api/health</code> 回 <code>OK</code>。</p>
+<hr>
+<h2 id="Phase-1-—-資料庫-認證（目標：使用者可註冊、登入）"><a href="#Phase-1-—-資料庫-認證（目標：使用者可註冊、登入）" class="headerlink" title="Phase 1 — 資料庫 + 認證（目標：使用者可註冊、登入）"></a>Phase 1 — 資料庫 + 認證（目標：使用者可註冊、登入）</h2><ol>
+<li>建資料表（SQL 範例）：</li>
+</ol>
+<pre><code class="sql">CREATE TABLE users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  name VARCHAR(100),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE readings (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT,
+  provider VARCHAR(50),
+  prompt TEXT,
+  response LONGTEXT,
+  cost DECIMAL(10,4) DEFAULT 0,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);
+</code></pre>
+<ol start="2">
+<li>在後端實作 <code>/api/auth/register</code>、<code>/api/auth/login</code>（bcrypt 存密碼、回 JWT）。</li>
+</ol>
+<p>驗收：註冊成功後登入得到 JWT，可帶 Authorization 呼叫受保護 API。</p>
+<hr>
+<h2 id="Phase-2-—-AI-Gateway（目標：能夠向-OpenAI-DeepSeek-發問）"><a href="#Phase-2-—-AI-Gateway（目標：能夠向-OpenAI-DeepSeek-發問）" class="headerlink" title="Phase 2 — AI Gateway（目標：能夠向 OpenAI &#x2F; DeepSeek 發問）"></a>Phase 2 — AI Gateway（目標：能夠向 OpenAI &#x2F; DeepSeek 發問）</h2><ol>
+<li>在後端建立 provider adapter（統一介面）。下面是一個簡化的示範（server.mjs）：</li>
+</ol>
+<pre><code class="js">// server.mjs (最簡版)
+import express from &#39;express&#39;;
+import dotenv from &#39;dotenv&#39;;
+dotenv.config();
+import mysql from &#39;mysql2/promise&#39;;
+
+const app = express();
+app.use(express.json());
+
+const pool = mysql.createPool({
+  host: process.env.DB_HOST, user: process.env.DB_USER, password: process.env.DB_PASS, database: process.env.DB_NAME
+});
+
+// providers
+const providers = {
+  openai: async ({ messages, opts }) =&gt; {
+    const res = await fetch(&#39;https://api.openai.com/v1/chat/completions&#39;, {
+      method:&#39;POST&#39;,
+      headers:{
+        &#39;Authorization&#39;: `Bearer ${process.env.OPENAI_API_KEY}`,
+        &#39;Content-Type&#39;:&#39;application/json&#39;
+      },
+      body: JSON.stringify({ model: opts?.model || &#39;gpt-4o-mini&#39;, messages })
+    });
+    const data = await res.json();
+    return { text: data?.choices?.[0]?.message?.content ?? &#39;&#39;, raw: data };
+  },
+  deepseek: async ({ messages, opts }) =&gt; {
+    const res = await fetch(&#39;https://api.deepseek.com/v1/chat/completions&#39;, {
+      method:&#39;POST&#39;,
+      headers:{
+        &#39;Authorization&#39;: `Bearer ${process.env.DEEPSEEK_API_KEY}`,
+        &#39;Content-Type&#39;:&#39;application/json&#39;
+      },
+      body: JSON.stringify({ model: opts?.model || &#39;deepseek-v1&#39;, messages })
+    });
+    const data = await res.json();
+    return { text: data?.choices?.[0]?.message?.content ?? &#39;&#39;, raw: data };
+  }
+};
+
+app.post(&#39;/api/chat&#39;, async (req, res) =&gt; {
+  const { provider = &#39;openai&#39;, messages, userId } = req.body;
+  try {
+    const { text, raw } = await providers[provider]({ messages });
+    // 存 readings
+    await pool.query(&#39;INSERT INTO readings (user_id, provider, prompt, response) VALUES (?, ?, ?, ?)&#39;, [userId || null, provider, JSON.stringify(messages), text]);
+    res.json({ provider, text, raw });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: &#39;provider error&#39; });
+  }
+});
+
+app.listen(3000, ()=&gt;console.log(&#39;listening 3000&#39;));
+</code></pre>
+<ol start="2">
+<li>前端簡單頁面 <code>Ask.vue</code>：給使用者輸入、呼叫 <code>/api/chat</code> 顯示回覆（我會在下面給完整範例）。</li>
+</ol>
+<p>驗收：可在 UI 輸入一句話，後端回 ChatGPT 回覆並儲存到 DB。</p>
+<hr>
+<h2 id="Phase-3-—-功能補強與上線（目標：加權限、審查、部署）"><a href="#Phase-3-—-功能補強與上線（目標：加權限、審查、部署）" class="headerlink" title="Phase 3 — 功能補強與上線（目標：加權限、審查、部署）"></a>Phase 3 — 功能補強與上線（目標：加權限、審查、部署）</h2><ol>
+<li>加入 content moderation（在送 provider 前先檢查敏感詞或呼叫 moderation API）。</li>
+<li>加入 rate-limiting、logging（winston）、錯誤告警（Sentry）</li>
+<li>加入 user 訂閱 &#x2F; 付費（若要商用）</li>
+<li>部署流程（CI&#x2F;CD）：Github Actions → 自動推到 Vercel (frontend)、Render (backend)</li>
+<li>若要在生產支援 stream（即時回覆），再處理 streaming adapter。</li>
+</ol>
+<hr>
+<h1 id="前端簡單範例（Ask-vue-Composition-API）"><a href="#前端簡單範例（Ask-vue-Composition-API）" class="headerlink" title="前端簡單範例（Ask.vue, Composition API）"></a>前端簡單範例（Ask.vue, Composition API）</h1><pre><code class="vue">&lt;template&gt;
+  &lt;div&gt;
+    &lt;h2&gt;問卜 / 提問&lt;/h2&gt;
+    &lt;textarea v-model=&quot;prompt&quot; rows=&quot;4&quot; placeholder=&quot;在這輸入你的問題...&quot;&gt;&lt;/textarea&gt;
+    &lt;div&gt;
+      &lt;select v-model=&quot;provider&quot;&gt;
+        &lt;option value=&quot;openai&quot;&gt;ChatGPT&lt;/option&gt;
+        &lt;option value=&quot;deepseek&quot;&gt;DeepSeek&lt;/option&gt;
+      &lt;/select&gt;
+      &lt;button @click=&quot;send&quot;&gt;送出&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;div v-if=&quot;loading&quot;&gt;等待回覆…&lt;/div&gt;
+    &lt;div v-if=&quot;answer&quot;&gt;&lt;h3&gt;回覆&lt;/h3&gt;&lt;div&gt;{{ answer }}&lt;/div&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { ref } from &#39;vue&#39;;
+const prompt = ref(&#39;&#39;);
+const provider = ref(&#39;openai&#39;);
+const answer = ref(&#39;&#39;);
+const loading = ref(false);
+
+async function send(){
+  loading.value = true;
+  try{
+    const res = await fetch(&#39;/api/chat&#39;, {
+      method:&#39;POST&#39;,
+      headers:{ &#39;Content-Type&#39;:&#39;application/json&#39; },
+      body: JSON.stringify({ provider: provider.value, messages: [{ role:&#39;user&#39;, content: prompt.value }] })
+    });
+    const data = await res.json();
+    answer.value = data.text ?? JSON.stringify(data.raw, null, 2);
+  }catch(e){
+    answer.value = &#39;發生錯誤&#39;;
+  }finally{
+    loading.value = false;
+  }
+}
+&lt;/script&gt;
+</code></pre>
+<blockquote>
+<p>開發時：為了讓 Vite 在本地就能呼叫到後端，<code>vite.config.js</code> 加 <code>server.proxy</code> 指向 <code>http://localhost:3000</code>。</p>
+</blockquote>
+<hr>
+<h1 id="安全、合規重點（務必注意）"><a href="#安全、合規重點（務必注意）" class="headerlink" title="安全、合規重點（務必注意）"></a>安全、合規重點（務必注意）</h1><ul>
+<li><strong>API Key 千萬別放前端</strong>：只能放在後端環境變數。</li>
+<li><strong>密碼用 bcrypt</strong>，token 用 JWT（短時效）或 session。</li>
+<li><strong>儲存&#x2F;刪除個資</strong>：如果你要保存使用者敏感資訊（出生時間、姓名），要在隱私政策寫明並提供刪除功能。</li>
+<li><strong>moderation</strong>：對生成性的回覆先過濾（暴力、醫療、法律建議等敏感內容）。</li>
+<li><strong>成本管理</strong>：記錄每次呼叫成本，針對高成本查詢（長 context &#x2F; gpt-4）做限制或轉 cheap model。</li>
+</ul>
+<hr>
+<h1 id="專案目錄建議（簡潔）"><a href="#專案目錄建議（簡潔）" class="headerlink" title="專案目錄建議（簡潔）"></a>專案目錄建議（簡潔）</h1><pre><code>mindsite/
+  frontend/         # Vite + Vue 3
+    src/
+      components/
+      pages/
+      App.vue
+  backend/
+    server.mjs
+    routes/
+    providers/
+      openai.js
+      deepseek.js
+    db/
+</code></pre>
+<hr>
+<h1 id="立即可做的-5-個小步驟（你現在就能開始）"><a href="#立即可做的-5-個小步驟（你現在就能開始）" class="headerlink" title="立即可做的 5 個小步驟（你現在就能開始）"></a>立即可做的 5 個小步驟（你現在就能開始）</h1><ol>
+<li>創兩個 repo：<code>mindsite-frontend</code>、<code>mindsite-backend</code>。</li>
+<li>建前端 Vite 專案（上面那段命令）。</li>
+<li>建後端 express skeleton，新增 <code>/api/health</code> 測試回傳 <code>&quot;ok&quot;</code>.</li>
+<li>建本地 MySQL 並建立 <code>users</code>、<code>readings</code> 表。</li>
+<li>把前端 dev server proxy 指向後端，實作前端 <code>Ask.vue</code> 與後端 <code>/api/chat</code>（回傳 mock 回應先）。</li>
+</ol>
+<hr>
+<h1 id="三個小練習（給你做）"><a href="#三個小練習（給你做）" class="headerlink" title="三個小練習（給你做）"></a>三個小練習（給你做）</h1><ol>
+<li>在本機把 Vite 專案跑起來，並把 <code>Ask.vue</code> 顯示在首頁（驗收：能在頁面輸入並看到 fetch 發送的 log）。</li>
+<li>在後端實作 <code>/api/health</code> 與 <code>/api/chat</code>（初期 <code>/api/chat</code> 回傳固定文字），用 Postman 測試。</li>
+<li>在 MySQL 建表並寫一個 script（Node）插入一筆 <code>readings</code>，然後用 SQL 查閱（驗收：能看到那筆資料）。</li>
+</ol>
+<hr>
+<p>如果你要我幫你做什麼：</p>
+<ul>
+<li>我可以把 <strong>完整的後端 server.mjs</strong>（含 provider adapter、DB 連線、auth skeleton）貼給你，你直接貼上執行就能跑。</li>
+<li>或我可以把 <strong>前端完整範例</strong>（vite config + Ask.vue + proxy）產出。</li>
+<li>或我把<strong>資料庫 migration SQL</strong> 與 <code>docker-compose</code>（MySQL）給你，方便一鍵起 DB。</li>
+</ul>
+<p>你想先要哪一樣？我會直接把可貼上、可執行的檔案貼給你。 (不用回答太多，我會預設先給後端 <code>server.mjs</code> 與 DB SQL，除非你要我改成 C# 或 Python)</p>

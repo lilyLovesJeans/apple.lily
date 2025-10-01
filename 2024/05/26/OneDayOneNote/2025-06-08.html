@@ -1,0 +1,72 @@
+<hr>
+<h2 id="title-2025-06-08-NexT-主題的數學公式渲染器-MathJax-沒有正確開啟date-2025-09-30-22-48-48categories-OneDayOneNotetags-node-Hexo-macOS-description-2025-06-08-NexT-主題的數學公式渲染器-MathJax-沒有正確開啟"><a href="#title-2025-06-08-NexT-主題的數學公式渲染器-MathJax-沒有正確開啟date-2025-09-30-22-48-48categories-OneDayOneNotetags-node-Hexo-macOS-description-2025-06-08-NexT-主題的數學公式渲染器-MathJax-沒有正確開啟" class="headerlink" title="title: 2025-06-08 NexT 主題的數學公式渲染器 (MathJax) 沒有正確開啟date: 2025-09-30 22:48:48categories: OneDayOneNotetags:  [node,Hexo, macOS]description: 2025-06-08 NexT 主題的數學公式渲染器 (MathJax) 沒有正確開啟"></a>title: 2025-06-08 NexT 主題的數學公式渲染器 (MathJax) 沒有正確開啟<br>date: 2025-09-30 22:48:48<br>categories: OneDayOneNote<br>tags:  [node,Hexo, macOS]<br>description: 2025-06-08 NexT 主題的數學公式渲染器 (MathJax) 沒有正確開啟</h2><h2 id="2025-06-08-NexT-主題的數學公式渲染器-MathJax-沒有正確開啟"><a href="#2025-06-08-NexT-主題的數學公式渲染器-MathJax-沒有正確開啟" class="headerlink" title="2025-06-08 NexT 主題的數學公式渲染器 (MathJax) 沒有正確開啟"></a>2025-06-08 NexT 主題的數學公式渲染器 (MathJax) 沒有正確開啟</h2><p>你的數學符號 <code>$\overrightarrow{AO} = r \overrightarrow{AB} + s \overrightarrow{AC}$</code> 沒有在 Hexo 網站上正確顯示，通常不是打錯，而是 <strong>NexT 主題的數學公式渲染器 (MathJax &#x2F; KaTeX) 沒有正確開啟</strong>。</p>
+<hr>
+<h3 id="✅-該怎麼檢查？"><a href="#✅-該怎麼檢查？" class="headerlink" title="✅ 該怎麼檢查？"></a>✅ 該怎麼檢查？</h3><p>你在 <code>_config.next.yml</code>（不是 <code>_config.yml</code>）裡面已經有一段：</p>
+<pre><code class="yaml">math:
+  enable: true
+  mathjax:
+    enable: true
+    tags: none
+</code></pre>
+<p>這表示你用的是 <strong>MathJax</strong>，理論上 Hexo 生成時就應該支援 <code>$$...$$</code> 或 <code>$...$</code> 的數學公式。</p>
+<hr>
+<h3 id="🔍-可能的原因"><a href="#🔍-可能的原因" class="headerlink" title="🔍 可能的原因"></a>🔍 可能的原因</h3><ol>
+<li><p><strong>Markdown 渲染器不支援內嵌公式</strong></p>
+<ul>
+<li><p>如果你用的渲染器是 <code>hexo-renderer-marked</code>，它有時候和 MathJax 衝突。</p>
+</li>
+<li><p>NexT 官方推薦用：</p>
+<pre><code class="bash">npm uninstall hexo-renderer-marked
+npm install hexo-renderer-markdown-it-plus --save
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>公式語法問題</strong></p>
+<ul>
+<li><p><code>$...$</code>（單個 <code>$</code>）有時會被當作普通字元，最好改成：</p>
+<ul>
+<li><p>行內公式：<code>\(...\)</code> 或 <code>\( \overrightarrow{AO} = r \overrightarrow{AB} + s \overrightarrow{AC} \)</code></p>
+</li>
+<li><p>區塊公式：</p>
+<pre><code class="latex">$$
+\overrightarrow{AO} = r \overrightarrow{AB} + s \overrightarrow{AC}
+$$
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>快取問題</strong></p>
+<ul>
+<li><p>NexT 有快取功能，記得清除快取再重建：</p>
+<pre><code class="bash">hexo clean
+hexo g
+hexo s
+</code></pre>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="✅-建議解法"><a href="#✅-建議解法" class="headerlink" title="✅ 建議解法"></a>✅ 建議解法</h3><ol>
+<li><p>確認 <code>_config.next.yml</code> 有：</p>
+<pre><code class="yaml">math:
+  enable: true
+  mathjax:
+    enable: true
+</code></pre>
+</li>
+<li><p>確認你文章裡公式用 <strong><code>$$...$$</code> 區塊</strong>，不要只用單 <code>$</code>。</p>
+</li>
+<li><p>如果還是不行，建議換渲染器：</p>
+<pre><code class="bash">npm uninstall hexo-renderer-marked
+npm install hexo-renderer-kramed --save
+</code></pre>
+<p>或者</p>
+<pre><code class="bash">npm install hexo-renderer-markdown-it --save
+</code></pre>
+</li>
+</ol>
+<hr>

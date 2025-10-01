@@ -1,0 +1,96 @@
+<hr>
+<h2 id="title-2025-06-18-透過-192-168-0-103-4000-api-chat-向-Mac-B-發送請求-回覆：⚠️-錯誤：Failed-to-fetchdate-2025-10-01-23-37-51categories-OneDayOneNotetags-MVP-MCP-Node-description-2025-06-18-透過-192-168-0-103-4000-api-chat-向-Mac-B-發送請求-回覆：⚠️-錯誤：Failed-to-fetch"><a href="#title-2025-06-18-透過-192-168-0-103-4000-api-chat-向-Mac-B-發送請求-回覆：⚠️-錯誤：Failed-to-fetchdate-2025-10-01-23-37-51categories-OneDayOneNotetags-MVP-MCP-Node-description-2025-06-18-透過-192-168-0-103-4000-api-chat-向-Mac-B-發送請求-回覆：⚠️-錯誤：Failed-to-fetch" class="headerlink" title="title: 2025-06-18 透過 192.168.0.103:4000&#x2F;api&#x2F;chat 向 Mac B 發送請求 回覆：⚠️ 錯誤：Failed to fetchdate: 2025-10-01 23:37:51categories: OneDayOneNotetags:  [MVP,MCP,Node]description: 2025-06-18 透過 192.168.0.103:4000&#x2F;api&#x2F;chat 向 Mac B 發送請求 回覆：⚠️ 錯誤：Failed to fetch"></a>title: 2025-06-18 透過 192.168.0.103:4000&#x2F;api&#x2F;chat 向 Mac B 發送請求 回覆：⚠️ 錯誤：Failed to fetch<br>date: 2025-10-01 23:37:51<br>categories: OneDayOneNote<br>tags:  [MVP,MCP,Node]<br>description: 2025-06-18 透過 192.168.0.103:4000&#x2F;api&#x2F;chat 向 Mac B 發送請求 回覆：⚠️ 錯誤：Failed to fetch</h2><h2 id="2025-06-18-透過-192-168-0-103-4000-api-chat-向-Mac-B-發送請求-回覆：⚠️-錯誤：Failed-to-fetch"><a href="#2025-06-18-透過-192-168-0-103-4000-api-chat-向-Mac-B-發送請求-回覆：⚠️-錯誤：Failed-to-fetch" class="headerlink" title="2025-06-18 透過 192.168.0.103:4000&#x2F;api&#x2F;chat 向 Mac B 發送請求 回覆：⚠️ 錯誤：Failed to fetch"></a>2025-06-18 透過 192.168.0.103:4000&#x2F;api&#x2F;chat 向 Mac B 發送請求 回覆：⚠️ 錯誤：Failed to fetch</h2><p>很好 👍 這個錯誤 <code>⚠️ 錯誤：Failed to fetch</code>，代表 <strong>Windows 的 Vue 前端沒辦法連到 Mac B 的 MCP Gateway</strong>。<br>我一步步幫你檢查：</p>
+<hr>
+<h2 id="✅-Step-1：Mac-B-是否真的在跑-MCP-Gateway？"><a href="#✅-Step-1：Mac-B-是否真的在跑-MCP-Gateway？" class="headerlink" title="✅ Step 1：Mac B 是否真的在跑 MCP Gateway？"></a>✅ Step 1：Mac B 是否真的在跑 MCP Gateway？</h2><p>在 <strong>Mac B</strong> 開啟終端機，確認程式有跑：</p>
+<pre><code class="bash">lsof -i :4000
+</code></pre>
+<p>應該要看到類似：</p>
+<pre><code>node   12345 maggie   12u  IPv4 ...  TCP *:4000 (LISTEN)
+</code></pre>
+<p>這表示 <strong>Mac B 的 4000 port 有開放</strong>。</p>
+<p>如果沒看到 → 請先啟動：</p>
+<pre><code class="bash">node gateway.mjs
+</code></pre>
+<hr>
+<h2 id="✅-Step-2：確認-Windows-能-ping-到-Mac-B"><a href="#✅-Step-2：確認-Windows-能-ping-到-Mac-B" class="headerlink" title="✅ Step 2：確認 Windows 能 ping 到 Mac B"></a>✅ Step 2：確認 Windows 能 ping 到 Mac B</h2><p>在 Windows 的終端機 (cmd &#x2F; PowerShell) 輸入：</p>
+<pre><code class="powershell">ping 192.168.0.103
+</code></pre>
+<p>應該要看到回覆時間（幾毫秒）。</p>
+<ul>
+<li>如果成功 → 網路連得通。</li>
+<li>如果失敗 → Windows 和 Mac 不在同一個區網，或 Mac 防火牆擋了。</li>
+</ul>
+<hr>
+<h2 id="✅-Step-3：測試-API-是否能打通"><a href="#✅-Step-3：測試-API-是否能打通" class="headerlink" title="✅ Step 3：測試 API 是否能打通"></a>✅ Step 3：測試 API 是否能打通</h2><p>在 Windows 上（不是 Vue，先用 curl 測試）：</p>
+<pre><code class="powershell">curl http://192.168.0.103:4000/health
+</code></pre>
+<p>應該要得到：</p>
+<pre><code class="json">{&quot;status&quot;:&quot;ok&quot;,&quot;role&quot;:&quot;mcp-gateway&quot;}
+</code></pre>
+<p>如果這一步不通 → 表示問題在 <strong>Mac 防火牆 &#x2F; 網路設置</strong>。</p>
+<hr>
+<h2 id="✅-Step-4：防火牆設定-Mac-B"><a href="#✅-Step-4：防火牆設定-Mac-B" class="headerlink" title="✅ Step 4：防火牆設定 (Mac B)"></a>✅ Step 4：防火牆設定 (Mac B)</h2><p>macOS 可能擋住了 <code>node</code>。</p>
+<ol>
+<li>到 <strong>系統偏好設定 → 安全性與隱私 → 防火牆</strong></li>
+<li>點「防火牆選項」</li>
+<li>允許 <code>node</code> 接收傳入連線</li>
+</ol>
+<hr>
+<p>📌 總結：</p>
+<ul>
+<li>如果 <strong>Step 2 ping 不通</strong> → 網路問題（Wi-Fi 或區網不同）。</li>
+<li>如果 <strong>Step 2 通，但 Step 3 curl 不通</strong> → Mac 防火牆問題。</li>
+<li>如果 <strong>Step 3 curl 通，但 Vue 還是 Failed to fetch</strong> → 那可能是 CORS（跨來源請求限制），我可以幫你在 gateway.mjs 加 <code>CORS</code> 支援。</li>
+</ul>
+<hr>
+<p>C:\Users\lily_&gt;curl <a href="http://192.168.0.103:4000/health">http://192.168.0.103:4000/health</a><br>{“status”:”ok”,”role”:”mcp-gateway”}<br>C:\Users\lily_&gt;</p>
+<p>完美 🎉 這表示 <strong>Windows 已經能打通 Mac B 的 MCP Gateway</strong>，所以不是網路、防火牆的問題。</p>
+<p>👉 那剩下的唯一可能是 **CORS (Cross-Origin Resource Sharing, 跨來源資源共享)**。</p>
+<hr>
+<h2 id="為什麼會出錯？"><a href="#為什麼會出錯？" class="headerlink" title="為什麼會出錯？"></a>為什麼會出錯？</h2><ul>
+<li>你在 Windows 的 Vue 前端 (<code>http://localhost:5173</code>)</li>
+<li>去呼叫 Mac B (<code>http://192.168.0.103:4000</code>)</li>
+<li>因為「不同來源 (Origin)」 → 瀏覽器安全限制 → <code>Failed to fetch</code>。</li>
+</ul>
+<hr>
+<h2 id="✅-解法：在-gateway-mjs-加-CORS-支援"><a href="#✅-解法：在-gateway-mjs-加-CORS-支援" class="headerlink" title="✅ 解法：在 gateway.mjs 加 CORS 支援"></a>✅ 解法：在 <code>gateway.mjs</code> 加 CORS 支援</h2><p>請編輯 **Mac B 的 <code>gateway.mjs</code>**，在 Express 伺服器那段加上 CORS：</p>
+<pre><code class="js">import express from &quot;express&quot;;
+import cors from &quot;cors&quot;;
+
+const app = express();
+app.use(cors()); // 允許所有來源
+app.use(express.json());
+
+// 健康檢查
+app.get(&quot;/health&quot;, (req, res) =&gt; {
+  res.json({ status: &quot;ok&quot;, role: &quot;mcp-gateway&quot; });
+});
+
+// Chat API
+app.post(&quot;/api/chat&quot;, async (req, res) =&gt; {
+  const { provider, messages } = req.body;
+
+  // 模擬回覆
+  res.json({
+    provider,
+    text: `[mock ${provider}] 這是模擬回覆`
+  });
+});
+
+app.listen(4000, () =&gt; {
+  console.log(&quot;🚀 MCP Gateway running on port 4000&quot;);
+});
+</code></pre>
+<hr>
+<h2 id="✅-測試方式"><a href="#✅-測試方式" class="headerlink" title="✅ 測試方式"></a>✅ 測試方式</h2><ol>
+<li><p>在 Mac B 重新啟動 MCP Gateway：</p>
+<pre><code class="bash">node gateway.mjs
+</code></pre>
+<p>（或 <code>pm2 restart mcp-gateway</code>）</p>
+</li>
+<li><p>在 Windows 打開你的 Vue 前端 → 輸入訊息 → 點送出</p>
+</li>
+</ol>
+<p>👉 這時候就不會再出現 <code>Failed to fetch</code>，而是能拿到 <code>[mock openai] 這是模擬回覆</code>。</p>
+<hr>
+<p>要不要我幫你直接整理一個「加了 CORS 的完整 gateway.mjs 範例檔」給你？</p>

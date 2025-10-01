@@ -1,0 +1,31 @@
+<hr>
+<h2 id="title-2025-06-20-Error-ERR-MODULE-NOT-FOUND-Cannot-find-package-corsdate-2025-10-01-23-49-06categories-OneDayOneNotetags-MVP-MCP-Node-description-2025-06-20-Error-ERR-MODULE-NOT-FOUND-Cannot-find-package-cors"><a href="#title-2025-06-20-Error-ERR-MODULE-NOT-FOUND-Cannot-find-package-corsdate-2025-10-01-23-49-06categories-OneDayOneNotetags-MVP-MCP-Node-description-2025-06-20-Error-ERR-MODULE-NOT-FOUND-Cannot-find-package-cors" class="headerlink" title="title: 2025-06-20  Error [ERR_MODULE_NOT_FOUND] Cannot find package corsdate: 2025-10-01 23:49:06categories: OneDayOneNotetags:  [MVP,MCP,Node]description: 2025-06-20  Error [ERR_MODULE_NOT_FOUND] Cannot find package cors"></a>title: 2025-06-20  Error [ERR_MODULE_NOT_FOUND] Cannot find package cors<br>date: 2025-10-01 23:49:06<br>categories: OneDayOneNote<br>tags:  [MVP,MCP,Node]<br>description: 2025-06-20  Error [ERR_MODULE_NOT_FOUND] Cannot find package cors</h2><h2 id="2025-06-20-Error-ERR-MODULE-NOT-FOUND-Cannot-find-package-cors"><a href="#2025-06-20-Error-ERR-MODULE-NOT-FOUND-Cannot-find-package-cors" class="headerlink" title="2025-06-20  Error ERR_MODULE_NOT_FOUND Cannot find package cors"></a>2025-06-20  Error ERR_MODULE_NOT_FOUND Cannot find package cors</h2><p>✅ 這個錯誤訊息告訴我們：</p>
+<pre><code>Error [ERR_MODULE_NOT_FOUND]: Cannot find package &#39;cors&#39;
+</code></pre>
+<p>意思是 <strong>你的 <code>gateway.mjs</code> 裡面有用到 <code>cors</code> 模組，但是你沒有安裝它</strong>。</p>
+<p>在 <strong>Mac B (mcp-gateway)</strong> 的專案目錄 <code>/Users/maggie/mcp-gateway</code> 裡，請執行：</p>
+<pre><code class="bash">cd ~/mcp-gateway
+npm install cors
+</code></pre>
+<p>這樣會把 <code>cors</code> 安裝到你的 <code>node_modules/</code>，同時也會更新 <code>package.json</code> 和 <code>package-lock.json</code>。</p>
+<hr>
+<h3 id="確認流程"><a href="#確認流程" class="headerlink" title="確認流程"></a>確認流程</h3><ol>
+<li><p>進到你的專案目錄：</p>
+<pre><code class="bash">cd ~/mcp-gateway
+</code></pre>
+</li>
+<li><p>安裝缺少的套件：</p>
+<pre><code class="bash">npm install cors
+</code></pre>
+</li>
+<li><p>再重新啟動 gateway：</p>
+<pre><code class="bash">node gateway.mjs
+</code></pre>
+</li>
+</ol>
+<hr>
+<p>⚠️ 補充：如果之後還遇到 <strong>其他缺少套件</strong>（例如 <code>express</code>, <code>dotenv</code>），一樣就用：</p>
+<pre><code class="bash">npm install &lt;套件名稱&gt;
+</code></pre>
+<hr>
+<p>要不要我幫你檢查一下常見的依賴（express, cors, dotenv）一次性裝起來，避免你一個一個遇到錯誤？</p>

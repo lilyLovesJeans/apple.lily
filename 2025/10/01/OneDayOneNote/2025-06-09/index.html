@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2025-06-09 一個 MCP server 同時連兩種 AI（ChatGPT &#x2F; OpenAI 與 DeepSeek）」的整體設計">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025-06-09 一個 MCP server 同時連兩種 AI（ChatGPT &#x2F; OpenAI 與 DeepSeek）」的整體設計">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/10/01/OneDayOneNote/2025-06-09/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2025-06-09 一個 MCP server 同時連兩種 AI（ChatGPT &#x2F; OpenAI 與 DeepSeek）」的整體設計">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-10-01T14:53:28.000Z">
+<meta property="article:modified_time" content="2025-10-01T14:54:41.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="MCP">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2025/10/01/OneDayOneNote/2025-06-09/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2025/10/01/OneDayOneNote/2025-06-09/","path":"2025/10/01/OneDayOneNote/2025-06-09/","title":"2025-06-09 一個 MCP server 同時連兩種 AI（ChatGPT / OpenAI 與 DeepSeek）」的整體設計"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2025-06-09 一個 MCP server 同時連兩種 AI（ChatGPT / OpenAI 與 DeepSeek）」的整體設計 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2025-06-09-%E4%B8%80%E5%80%8B-MCP-server-%E5%90%8C%E6%99%82%E9%80%A3%E5%85%A9%E7%A8%AE-AI%EF%BC%88ChatGPT-OpenAI-%E8%88%87-DeepSeek%EF%BC%89%E3%80%8D%E7%9A%84%E6%95%B4%E9%AB%94%E8%A8%AD%E8%A8%88"><span class="nav-number">1.</span> <span class="nav-text">2025-06-09 一個 MCP server 同時連兩種 AI（ChatGPT &#x2F; OpenAI 與 DeepSeek）」的整體設計</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%EF%BC%88%E4%B8%80%E5%8F%A5%E8%A9%B1%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">核心概念（一句話）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A8%AD%E8%A8%88%E8%A6%81%E9%BB%9E%EF%BC%88%E5%BF%85%E8%AE%80%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">設計要點（必讀）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B0%A1%E5%96%AE%E7%9A%84-Node-js-%E7%AF%84%E4%BE%8B%EF%BC%88%E6%A6%82%E5%BF%B5%E6%80%A7%E3%80%81%E5%8F%AF%E7%9B%B4%E6%8E%A5%E8%B2%BC%E7%94%A8%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">簡單的 Node.js 範例（概念性、可直接貼用）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%B2%E9%9A%8E%E5%8A%9F%E8%83%BD%E5%BB%BA%E8%AD%B0%EF%BC%88%E9%83%A8%E7%BD%B2%E6%99%82%E5%86%8D%E5%8A%A0%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">進階功能建議（部署時再加）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A2%A8%E9%9A%AA%E6%8F%90%E9%86%92%EF%BC%88%E7%89%B9%E5%88%A5%E9%87%8D%E8%A6%81%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">風險提醒（特別重要）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%88%91%E5%8F%AF%E4%BB%A5%E5%B9%AB%E4%BD%A0%E5%81%9A%E4%BB%80%E9%BA%BC%EF%BC%88%E9%81%B8%E4%B8%80%E5%80%8B%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">我可以幫你做什麼（選一個）</span></a></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">484</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2025/10/01/OneDayOneNote/2025-06-09/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2025-06-09 一個 MCP server 同時連兩種 AI（ChatGPT / OpenAI 與 DeepSeek）」的整體設計 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2025-06-09 一個 MCP server 同時連兩種 AI（ChatGPT / OpenAI 與 DeepSeek）」的整體設計">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2025-06-09 一個 MCP server 同時連兩種 AI（ChatGPT / OpenAI 與 DeepSeek）」的整體設計
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2025-10-01 22:53:28 / 修改時間：22:54:41" itemprop="dateCreated datePublished" datetime="2025-10-01T22:53:28+08:00">2025-10-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2025-06-09 一個 MCP server 同時連兩種 AI（ChatGPT / OpenAI 與 DeepSeek）」的整體設計</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2025-06-09-一個-MCP-server-同時連兩種-AI（ChatGPT-OpenAI-與-DeepSeek）」的整體設計"><a href="#2025-06-09-一個-MCP-server-同時連兩種-AI（ChatGPT-OpenAI-與-DeepSeek）」的整體設計" class="headerlink" title="2025-06-09 一個 MCP server 同時連兩種 AI（ChatGPT &#x2F; OpenAI 與 DeepSeek）」的整體設計"></a>2025-06-09 一個 MCP server 同時連兩種 AI（ChatGPT &#x2F; OpenAI 與 DeepSeek）」的整體設計</h2><p>好 — 我幫你把「一個 MCP server 同時連兩種 AI（ChatGPT &#x2F; OpenAI 與 DeepSeek）」的整體設計、實作重點、風險與範例程式碼一次講清楚，讓你能立刻把它接進去。</p>
+<hr>
+<h1 id="核心概念（一句話）"><a href="#核心概念（一句話）" class="headerlink" title="核心概念（一句話）"></a>核心概念（一句話）</h1><p>把 MCP server 當成 <strong>多供應商 AI Gateway</strong>：接收前端請求 → 決定要用哪個 AI（或同時多個） → 呼叫對應供應商 API → 將回應標準化並回到前端或 MCP client。</p>
+<p>（DeepSeek 提供類 OpenAI 風格的 chat API；多供應商 gateway 是常見做法，可用於路由、降級、成本控制與安全審查）。(<a target="_blank" rel="noopener" href="https://api-docs.deepseek.com/?utm_source=chatgpt.com" title="DeepSeek API Docs: Your First API Call">api-docs.deepseek.com</a>)</p>
+<hr>
+<h1 id="設計要點（必讀）"><a href="#設計要點（必讀）" class="headerlink" title="設計要點（必讀）"></a>設計要點（必讀）</h1><ol>
+<li><p><strong>抽象化 Provider 層</strong>：為每個 AI 寫一個「adapter&#x2F;driver」，讓上層呼叫統一介面（例如 <code>getChatResponse(&#123;messages, opts&#125;)</code>），內部負責 provider-specific 的轉換與呼叫。這樣新增&#x2F;換模型時只需新增 adapter。(<a target="_blank" rel="noopener" href="https://github.com/knnlabs/Conduit?utm_source=chatgpt.com" title="knnlabs/Conduit: A unified API gateway for multiple LLM ...">GitHub</a>)</p>
+</li>
+<li><p><strong>路由策略</strong>（如何決定用哪個模型）：</p>
+<ul>
+<li>依使用者選擇（UI 提供 switch）</li>
+<li>根據功能（例如：長篇寫作給 ChatGPT；快速搜尋型回覆給 DeepSeek）</li>
+<li>成本&#x2F;速率路由（若超出費用上限就改用較便宜模型）</li>
+</ul>
+</li>
+<li><p><strong>一致化輸入&#x2F;輸出</strong>：不同廠商回傳格式不同（choices、message、content 等），要在 gateway 標準化成你 MCP client 要的格式。(<a target="_blank" rel="noopener" href="https://kgateway.dev/docs/latest/ai/cloud-providers/?utm_source=chatgpt.com" title="Cloud LLM providers">kgateway.dev</a>)</p>
+</li>
+<li><p><strong>串流（stream）支援</strong>：若有即時需求，確認兩邊是否支援 SSE&#x2F;WS 或 streaming flag，且在 adapter 處理逐塊轉發。DeepSeek 與 OpenAI 都提供非同步 streaming 選項（但實作細節不同）。(<a target="_blank" rel="noopener" href="https://api-docs.deepseek.com/?utm_source=chatgpt.com" title="DeepSeek API Docs: Your First API Call">api-docs.deepseek.com</a>)</p>
+</li>
+<li><p><strong>錯誤 &#x2F; 降級 &amp; 超時</strong>：一個 provider 失敗時能自動 failover（例如轉到另一個模型或回傳友善錯誤）。</p>
+</li>
+<li><p><strong>安全與合規</strong>：把 API keys 放在 server 環境變數；若某供應商在特定議題上有行為差異（如新聞報導指出 DeepSeek 在敏感議題上可能表現不一），在路由與審核邏輯加入白&#x2F;黑名單或額外的 moderation。(<a target="_blank" rel="noopener" href="https://www.washingtonpost.com/technology/2025/09/16/deepseek-ai-security/?utm_source=chatgpt.com" title="AI firm DeepSeek writes less-secure code for groups China disfavors">The Washington Post</a>)</p>
+</li>
+<li><p><strong>計費&#x2F;日誌&#x2F;速率限制</strong>：記 tokens、cost、latency，必要時實作速率限制、quota。可用中介層（cache）減少重複請求。(<a target="_blank" rel="noopener" href="https://medium.com/%40adnanmasood/llm-gateways-for-enterprise-risk-building-an-ai-control-plane-e7bed1fdcd9c?utm_source=chatgpt.com" title="LLM Gateways for Enterprise Risk — Building an AI Control ...">Medium</a>)</p>
+</li>
+</ol>
+<hr>
+<h1 id="簡單的-Node-js-範例（概念性、可直接貼用）"><a href="#簡單的-Node-js-範例（概念性、可直接貼用）" class="headerlink" title="簡單的 Node.js 範例（概念性、可直接貼用）"></a>簡單的 Node.js 範例（概念性、可直接貼用）</h1><p>下面示範一個最小 Gateway：<code>/api/chat</code> 接收 <code>provider</code>（”openai” 或 “deepseek”）與 <code>messages</code>，再呼叫對應 adapter。範例用 <code>fetch</code>（Node 18+），真實環境要做好錯誤處理、驗證、logging、速率限制、以及 stream 支援（這裡只示單次回應）。</p>
+<ol>
+<li><code>.env</code></li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">OPENAI_API_KEY=sk-xxxxx</span><br><span class="line">DEEPSEEK_API_KEY=ds-xxxxx</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><code>server.mjs</code></li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> express <span class="keyword">from</span> <span class="string">&#x27;express&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> dotenv <span class="keyword">from</span> <span class="string">&#x27;dotenv&#x27;</span>;</span><br><span class="line">dotenv.<span class="title function_">config</span>();</span><br><span class="line"><span class="keyword">const</span> app = <span class="title function_">express</span>();</span><br><span class="line">app.<span class="title function_">use</span>(express.<span class="title function_">json</span>());</span><br><span class="line"></span><br><span class="line"><span class="comment">// provider adapter registry</span></span><br><span class="line"><span class="keyword">const</span> providers = &#123;</span><br><span class="line">  <span class="attr">openai</span>: <span class="keyword">async</span> (&#123;messages, opts&#125;) =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> resp = <span class="keyword">await</span> <span class="title function_">fetch</span>(<span class="string">&#x27;https://api.openai.com/v1/chat/completions&#x27;</span>, &#123;</span><br><span class="line">      <span class="attr">method</span>: <span class="string">&#x27;POST&#x27;</span>,</span><br><span class="line">      <span class="attr">headers</span>: &#123;</span><br><span class="line">        <span class="string">&#x27;Authorization&#x27;</span>: <span class="string">`Bearer <span class="subst">$&#123;process.env.OPENAI_API_KEY&#125;</span>`</span>,</span><br><span class="line">        <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/json&#x27;</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">body</span>: <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(&#123;</span><br><span class="line">        <span class="attr">model</span>: opts?.<span class="property">model</span> || <span class="string">&#x27;gpt-4o-mini&#x27;</span>,</span><br><span class="line">        messages</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">const</span> data = <span class="keyword">await</span> resp.<span class="title function_">json</span>();</span><br><span class="line">    <span class="comment">// standardize: return text and raw</span></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      <span class="attr">text</span>: data?.<span class="property">choices</span>?.[<span class="number">0</span>]?.<span class="property">message</span>?.<span class="property">content</span> ?? <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">      <span class="attr">raw</span>: data</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="attr">deepseek</span>: <span class="keyword">async</span> (&#123;messages, opts&#125;) =&gt; &#123;</span><br><span class="line">    <span class="comment">// DeepSeek 的 API 與 OpenAI 相似（多數情況下互換），但確認官方 doc 欄位</span></span><br><span class="line">    <span class="keyword">const</span> resp = <span class="keyword">await</span> <span class="title function_">fetch</span>(<span class="string">&#x27;https://api.deepseek.com/v1/chat/completions&#x27;</span>, &#123;</span><br><span class="line">      <span class="attr">method</span>: <span class="string">&#x27;POST&#x27;</span>,</span><br><span class="line">      <span class="attr">headers</span>: &#123;</span><br><span class="line">        <span class="string">&#x27;Authorization&#x27;</span>: <span class="string">`Bearer <span class="subst">$&#123;process.env.DEEPSEEK_API_KEY&#125;</span>`</span>,</span><br><span class="line">        <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/json&#x27;</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">body</span>: <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(&#123;</span><br><span class="line">        <span class="attr">model</span>: opts?.<span class="property">model</span> || <span class="string">&#x27;deepseek-v3.1&#x27;</span>,</span><br><span class="line">        messages</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">const</span> data = <span class="keyword">await</span> resp.<span class="title function_">json</span>();</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      <span class="attr">text</span>: data?.<span class="property">choices</span>?.[<span class="number">0</span>]?.<span class="property">message</span>?.<span class="property">content</span> ?? <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">      <span class="attr">raw</span>: data</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">post</span>(<span class="string">&#x27;/api/chat&#x27;</span>, <span class="keyword">async</span> (req, res) =&gt; &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; provider = <span class="string">&#x27;openai&#x27;</span>, messages, opts &#125; = req.<span class="property">body</span>;</span><br><span class="line">    <span class="keyword">if</span> (!messages) <span class="keyword">return</span> res.<span class="title function_">status</span>(<span class="number">400</span>).<span class="title function_">json</span>(&#123; <span class="attr">error</span>: <span class="string">&#x27;missing messages&#x27;</span> &#125;);</span><br><span class="line">    <span class="keyword">const</span> adapter = providers[provider];</span><br><span class="line">    <span class="keyword">if</span> (!adapter) <span class="keyword">return</span> res.<span class="title function_">status</span>(<span class="number">400</span>).<span class="title function_">json</span>(&#123; <span class="attr">error</span>: <span class="string">&#x27;unknown provider&#x27;</span> &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// basic failover example: 如果第一個 provider 失敗，嘗試 fallback</span></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> &#123; text, raw &#125; = <span class="keyword">await</span> <span class="title function_">adapter</span>(&#123; messages, opts &#125;);</span><br><span class="line">      <span class="keyword">return</span> res.<span class="title function_">json</span>(&#123; provider, text, raw &#125;);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">`provider <span class="subst">$&#123;provider&#125;</span> failed:`</span>, err);</span><br><span class="line">      <span class="comment">// example fallback to other provider</span></span><br><span class="line">      <span class="keyword">const</span> fallback = provider === <span class="string">&#x27;openai&#x27;</span> ? providers[<span class="string">&#x27;deepseek&#x27;</span>] : providers[<span class="string">&#x27;openai&#x27;</span>];</span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> &#123; text, raw &#125; = <span class="keyword">await</span> <span class="title function_">fallback</span>(&#123; messages, opts &#125;);</span><br><span class="line">        <span class="keyword">return</span> res.<span class="title function_">json</span>(&#123; <span class="attr">provider</span>: provider + <span class="string">&#x27;_fallback&#x27;</span>, text, raw &#125;);</span><br><span class="line">      &#125; <span class="keyword">catch</span> (err2) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&#x27;fallback failed:&#x27;</span>, err2);</span><br><span class="line">        <span class="keyword">return</span> res.<span class="title function_">status</span>(<span class="number">500</span>).<span class="title function_">json</span>(&#123; <span class="attr">error</span>: <span class="string">&#x27;all providers failed&#x27;</span> &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(err);</span><br><span class="line">    res.<span class="title function_">status</span>(<span class="number">500</span>).<span class="title function_">json</span>(&#123; <span class="attr">error</span>: <span class="string">&#x27;server error&#x27;</span> &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">listen</span>(<span class="number">3000</span>, <span class="function">()=&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;AI gateway listening on 3000&#x27;</span>));</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：DeepSeek 與 OpenAI 的 endpoint 路徑、參數或 header 可能會隨時間有差異。請以官方文件為主，DeepSeek 官方文件可以參考其 API docs。(<a target="_blank" rel="noopener" href="https://api-docs.deepseek.com/?utm_source=chatgpt.com" title="DeepSeek API Docs: Your First API Call">api-docs.deepseek.com</a>)</p>
+</blockquote>
+<hr>
+<h1 id="進階功能建議（部署時再加）"><a href="#進階功能建議（部署時再加）" class="headerlink" title="進階功能建議（部署時再加）"></a>進階功能建議（部署時再加）</h1><ul>
+<li><strong>路由規則管理 UI</strong>：可在後台設定哪些 prompt &#x2F; user 用哪個 provider（方便 AB 測試）。</li>
+<li><strong>多路並發 &#x2F; 條件聚合</strong>：同一個 prompt 同時問兩個 provider，將答案合併或做可信度比對後再回給使用者（多模型投票&#x2F;融合）。</li>
+<li><strong>安全內容審查 pipeline</strong>：先把 user prompt 經過 moderation（可使用 OpenAI &#x2F;自身規則），必要時拒絕或轉人工審核。</li>
+<li><strong>token &amp; cost 控制</strong>：每次呼叫前估算 tokens，超出閾值則轉到 cheaper model 或拒絕。</li>
+<li><strong>監控 &amp; 告警</strong>：監控 latency、error rate 與花費；異常時自動切流。(<a target="_blank" rel="noopener" href="https://aws-solutions-library-samples.github.io/ai-ml/guidance-for-multi-provider-generative-ai-gateway-on-aws.html?utm_source=chatgpt.com" title="Guidance for Multi-Provider Generative AI Gateway on AWS">AWS 解決方案庫範本</a>)</li>
+</ul>
+<hr>
+<h1 id="風險提醒（特別重要）"><a href="#風險提醒（特別重要）" class="headerlink" title="風險提醒（特別重要）"></a>風險提醒（特別重要）</h1><ul>
+<li><strong>內容與安全性</strong>：最近報導指出 DeepSeek 在某些敏感題材或地緣政治議題上回答品質或傾向可能與其它國家供應商不同（在某些情況下產生不安全或不穩定的程式碼建議）。若你的應用會處理敏感議題或生成可執行程式碼，務必在 pipeline 加強審查與測試。(<a target="_blank" rel="noopener" href="https://www.washingtonpost.com/technology/2025/09/16/deepseek-ai-security/?utm_source=chatgpt.com" title="AI firm DeepSeek writes less-secure code for groups China disfavors">The Washington Post</a>)</li>
+<li><strong>法規&#x2F;資料主權</strong>：若有嚴格資料主權要求（例如不能把特定資料送到境外），必須在路由規則上控管哪些請求可以被哪些 provider 接收。</li>
+<li><strong>可靠性差異</strong>：不同 provider 的可用性&#x2F;延遲&#x2F;計費差異會影響 UX，要在 UX 層處理好等待&#x2F;降級行為。</li>
+</ul>
+<hr>
+<h1 id="我可以幫你做什麼（選一個）"><a href="#我可以幫你做什麼（選一個）" class="headerlink" title="我可以幫你做什麼（選一個）"></a>我可以幫你做什麼（選一個）</h1><ol>
+<li>幫你把你現有的 MCP server 程式碼改寫為上面那種 provider-adapter 架構（請貼 <code>server</code> 主要檔案）。</li>
+<li>提供「支援 stream 的 adapter」範例（如果你要進行即時串流、SSE 或 websocket）。</li>
+<li>幫你把路由策略與成本&#x2F;安全檢查寫成可配置的中介層（config + UI）。</li>
+</ol>
+<p>你偏好哪一項？或直接把你目前的 server 程式碼貼上（告訴我 Node 或 Python），我就直接改給你可貼入的程式。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/MCP/" rel="tag"># MCP</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/10/01/MVP/mvp-001/" rel="prev" title="mvp-001 心靈算命網站 MVP 小任務清單">
+                  <i class="fa fa-angle-left"></i> mvp-001 心靈算命網站 MVP 小任務清單
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/10/01/OneDayOneNote/2025-06-10/" rel="next" title="2025-06-10 網站拆成清楚的階段">
+                  2025-06-10 網站拆成清楚的階段 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/apple.lily/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

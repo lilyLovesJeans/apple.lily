@@ -1,0 +1,41 @@
+<hr>
+<h2 id="title-2025-06-17-mcp-gateway可以關螢幕跑嗎-date-2025-10-01-23-25-32categories-OneDayOneNotetags-MVP-MCP-Node-description-2025-06-17-mcp-gateway可以關螢幕跑嗎"><a href="#title-2025-06-17-mcp-gateway可以關螢幕跑嗎-date-2025-10-01-23-25-32categories-OneDayOneNotetags-MVP-MCP-Node-description-2025-06-17-mcp-gateway可以關螢幕跑嗎" class="headerlink" title="title: 2025-06-17 mcp-gateway可以關螢幕跑嗎?date: 2025-10-01 23:25:32categories: OneDayOneNotetags:  [MVP,MCP,Node]description: 2025-06-17 mcp-gateway可以關螢幕跑嗎?"></a>title: 2025-06-17 mcp-gateway可以關螢幕跑嗎?<br>date: 2025-10-01 23:25:32<br>categories: OneDayOneNote<br>tags:  [MVP,MCP,Node]<br>description: 2025-06-17 mcp-gateway可以關螢幕跑嗎?</h2><h2 id="2025-06-17-mcp-gateway可以關螢幕跑嗎"><a href="#2025-06-17-mcp-gateway可以關螢幕跑嗎" class="headerlink" title="2025-06-17 mcp-gateway可以關螢幕跑嗎?"></a>2025-06-17 mcp-gateway可以關螢幕跑嗎?</h2><p>讓 <strong>Mac B 的 MCP Gateway</strong> 在關螢幕或登出螢幕時繼續運行，但需要注意幾件事：</p>
+<hr>
+<h2 id="1️⃣-使用-pm2-常駐（推薦）"><a href="#1️⃣-使用-pm2-常駐（推薦）" class="headerlink" title="1️⃣ 使用 pm2 常駐（推薦）"></a>1️⃣ 使用 <strong>pm2</strong> 常駐（推薦）</h2><p><code>pm2</code> 是 Node.js 的程式管理工具，可以讓你的 MCP 永遠在背景運行，不會因為關螢幕或終端機關閉而停止。</p>
+<h3 id="安裝-pm2"><a href="#安裝-pm2" class="headerlink" title="安裝 pm2"></a>安裝 pm2</h3><pre><code class="bash">npm install -g pm2
+</code></pre>
+<h3 id="用-pm2-啟動-MCP"><a href="#用-pm2-啟動-MCP" class="headerlink" title="用 pm2 啟動 MCP"></a>用 pm2 啟動 MCP</h3><pre><code class="bash">pm2 start ~/mcp-gateway/gateway.mjs --name mcp-gateway
+</code></pre>
+<h3 id="查看狀態"><a href="#查看狀態" class="headerlink" title="查看狀態"></a>查看狀態</h3><pre><code class="bash">pm2 list
+</code></pre>
+<h3 id="停止-MCP"><a href="#停止-MCP" class="headerlink" title="停止 MCP"></a>停止 MCP</h3><pre><code class="bash">pm2 stop mcp-gateway
+</code></pre>
+<h3 id="讓-pm2-開機自動啟動"><a href="#讓-pm2-開機自動啟動" class="headerlink" title="讓 pm2 開機自動啟動"></a>讓 pm2 開機自動啟動</h3><pre><code class="bash">pm2 startup
+pm2 save
+</code></pre>
+<blockquote>
+<p>這樣 Mac B 開機後，MCP 會自動在背景啟動。</p>
+</blockquote>
+<hr>
+<h2 id="2️⃣-關螢幕設定"><a href="#2️⃣-關螢幕設定" class="headerlink" title="2️⃣ 關螢幕設定"></a>2️⃣ 關螢幕設定</h2><ul>
+<li><p><strong>MacBook 預設</strong>：合上螢幕會進入睡眠模式 → Node.js 程式會停止。</p>
+</li>
+<li><p><strong>解決方法</strong>：</p>
+<ol>
+<li><strong>System Settings → Battery → Prevent computer from sleeping automatically when the display is off</strong>（macOS Monterey &#x2F; Ventura 位置可能略不同）</li>
+<li>或使用工具：<code>Amphetamine</code>（App Store 免費） → 設定合上螢幕時保持喚醒。</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>建議用 <strong>pm2 + Prevent sleep</strong>，確保 MCP Gateway 即使關螢幕也能運行。</p>
+</blockquote>
+<hr>
+<h2 id="3️⃣-驗收方式"><a href="#3️⃣-驗收方式" class="headerlink" title="3️⃣ 驗收方式"></a>3️⃣ 驗收方式</h2><ul>
+<li>開啟 MCP gateway</li>
+<li>合上 MacBook 螢幕或鎖螢幕</li>
+<li>用 Windows 前端送問題 → 仍收到回覆</li>
+</ul>
+<hr>
+<p>如果你要，我可以幫你寫 <strong>完整指令列表</strong>，讓 Mac B 可以 <strong>開機 → 自動啟動 MCP → 合螢幕仍可跑</strong>，全部一步到位。</p>
+<p>你希望我整理這份指令嗎？</p>

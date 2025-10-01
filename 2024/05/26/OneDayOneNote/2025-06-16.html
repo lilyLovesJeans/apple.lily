@@ -1,0 +1,30 @@
+<hr>
+<h2 id="title-2025-06-16-檢查-Mac-B（MCP-Server-機）-上的-Node-js-版本date-2025-10-01-23-15-48categories-OneDayOneNotetags-MVP-MCP-Node-description-2025-06-16-檢查-Mac-B（MCP-Server-機）-上的-Node-js-版本"><a href="#title-2025-06-16-檢查-Mac-B（MCP-Server-機）-上的-Node-js-版本date-2025-10-01-23-15-48categories-OneDayOneNotetags-MVP-MCP-Node-description-2025-06-16-檢查-Mac-B（MCP-Server-機）-上的-Node-js-版本" class="headerlink" title="title: 2025-06-16 檢查 Mac B（MCP Server 機） 上的 Node.js 版本date: 2025-10-01 23:15:48categories: OneDayOneNotetags:  [MVP,MCP,Node]description: 2025-06-16 檢查 Mac B（MCP Server 機） 上的 Node.js 版本"></a>title: 2025-06-16 檢查 Mac B（MCP Server 機） 上的 Node.js 版本<br>date: 2025-10-01 23:15:48<br>categories: OneDayOneNote<br>tags:  [MVP,MCP,Node]<br>description: 2025-06-16 檢查 Mac B（MCP Server 機） 上的 Node.js 版本</h2><h2 id="2025-06-16-檢查-Mac-B（MCP-Server-機）-上的-Node-js-版本"><a href="#2025-06-16-檢查-Mac-B（MCP-Server-機）-上的-Node-js-版本" class="headerlink" title="2025-06-16 檢查 Mac B（MCP Server 機） 上的 Node.js 版本"></a>2025-06-16 檢查 Mac B（MCP Server 機） 上的 Node.js 版本</h2><p>很好 👍 我來一步一步帶你檢查 <strong>Mac B（MCP Server 機）</strong> 上的 Node.js 版本，確認你是否能直接用 <code>fetch()</code>。</p>
+<hr>
+<h2 id="Step-1-—-開啟終端機"><a href="#Step-1-—-開啟終端機" class="headerlink" title="Step 1 — 開啟終端機"></a>Step 1 — 開啟終端機</h2><p>在你的 <strong>Mac B</strong> 上，打開 <strong>Terminal（終端機）</strong>。</p>
+<hr>
+<h2 id="Step-2-—-檢查-Node-js-版本"><a href="#Step-2-—-檢查-Node-js-版本" class="headerlink" title="Step 2 — 檢查 Node.js 版本"></a>Step 2 — 檢查 Node.js 版本</h2><p>在終端機輸入：</p>
+<pre><code class="bash">node -v
+</code></pre>
+<p>你會看到類似這樣的結果：</p>
+<pre><code>v20.11.1
+</code></pre>
+<hr>
+<h2 id="Step-3-—-判斷"><a href="#Step-3-—-判斷" class="headerlink" title="Step 3 — 判斷"></a>Step 3 — 判斷</h2><ul>
+<li><p>如果結果是 <strong>v18.x.x</strong> 或 <strong>v20.x.x</strong>（或更新的版本） → ✅ 可以直接用 <code>fetch()</code>。</p>
+</li>
+<li><p>如果結果是 <strong>v16.x.x</strong> 或更舊 → ❌ 沒有內建 <code>fetch()</code>，要額外安裝：</p>
+<pre><code class="bash">npm install node-fetch
+</code></pre>
+</li>
+</ul>
+<hr>
+<h2 id="Step-4-—-驗證-fetch-是否可用（選做）"><a href="#Step-4-—-驗證-fetch-是否可用（選做）" class="headerlink" title="Step 4 — 驗證 fetch 是否可用（選做）"></a>Step 4 — 驗證 fetch 是否可用（選做）</h2><p>你也可以在終端機輸入：</p>
+<pre><code class="bash">node
+</code></pre>
+<p>進入互動模式，然後輸入：</p>
+<pre><code class="js">await fetch(&quot;https://example.com&quot;).then(r =&gt; r.text());
+</code></pre>
+<p>如果能順利顯示網頁內容 → 表示 <code>fetch()</code> 可用。</p>
+<hr>
+<p>要不要你先幫我在 <strong>Mac B</strong> 跑 <code>node -v</code>，告訴我結果，我再告訴你下一步要怎麼做？</p>
