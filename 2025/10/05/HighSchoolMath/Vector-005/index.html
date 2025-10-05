@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="Vector-005 在△ABC中,AD交BCD點,BE交AD於E點,且∠ACB &#x3D; 30°,∠EDB &#x3D; 60°,∠AEB &#x3D;120°。若CD&#x3D;15,ED&#x3D;7,則AB&#x3D;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vector-005 在△ABC中,AD交BCD點,BE交AD於E點,且∠ACB &#x3D; 30°,∠EDB &#x3D; 60°,∠AEB &#x3D;120°。若CD&#x3D;15,ED&#x3D;7,則AB&#x3D;">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/10/05/HighSchoolMath/Vector-005/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="Vector-005 在△ABC中,AD交BCD點,BE交AD於E點,且∠ACB &#x3D; 30°,∠EDB &#x3D; 60°,∠AEB &#x3D;120°。若CD&#x3D;15,ED&#x3D;7,則AB&#x3D;">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://lilylovesjeans.github.io/apple.lily/2025/10/05/HighSchoolMath/Vector-005/triangle_geometry_solution_english_titles.png">
+<meta property="article:published_time" content="2025-10-05T15:21:34.000Z">
+<meta property="article:modified_time" content="2025-10-05T15:29:35.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="高中數學">
+<meta property="article:tag" content="向量">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lilylovesjeans.github.io/apple.lily/2025/10/05/HighSchoolMath/Vector-005/triangle_geometry_solution_english_titles.png">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2025/10/05/HighSchoolMath/Vector-005/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2025/10/05/HighSchoolMath/Vector-005/","path":"2025/10/05/HighSchoolMath/Vector-005/","title":"Vector-005 在△ABC中,AD交BCD點,BE交AD於E點,且∠ACB = 30°,∠EDB = 60°,∠AEB =120°。若CD=15,ED=7,則AB="}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Vector-005 在△ABC中,AD交BCD點,BE交AD於E點,且∠ACB = 30°,∠EDB = 60°,∠AEB =120°。若CD=15,ED=7,則AB= | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+<style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Vector-005-%E5%9C%A8%E2%96%B3ABC%E4%B8%AD-AD%E4%BA%A4BCD%E9%BB%9E-BE%E4%BA%A4AD%E6%96%BCE%E9%BB%9E-%E4%B8%94%E2%88%A0ACB-30%C2%B0-%E2%88%A0EDB-60%C2%B0-%E2%88%A0AEB-120%C2%B0%E3%80%82%E8%8B%A5CD-15-ED-7-%E5%89%87AB"><span class="nav-number">1.</span> <span class="nav-text">Vector-005 在△ABC中,AD交BCD點,BE交AD於E點,且∠ACB &#x3D; 30°,∠EDB &#x3D; 60°,∠AEB &#x3D;120°。若CD&#x3D;15,ED&#x3D;7,則AB&#x3D;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AD%A5%E9%A9%9F-1%EF%BC%9A%E5%BA%A7%E6%A8%99%E5%8C%96-%E5%88%A9%E7%94%A8%E5%B7%B2%E7%9F%A5%E8%A7%92%E5%BA%A6%E6%89%BE-A-%EF%BC%88%E5%9C%96-1%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">步驟 1：座標化 + 利用已知角度找 (A)（圖 1）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AD%A5%E9%A9%9F-2%EF%BC%9A%E5%88%A9%E7%94%A8-AD-%E7%9A%84%E6%96%B9%E5%90%91%E6%89%BE-E-%EF%BC%88%E5%9C%96-2%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">步驟 2：利用 (AD) 的方向找 (E)（圖 2）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AD%A5%E9%A9%9F-3%EF%BC%9A%E4%BB%A5-angle-AEB-120-circ-%E6%B1%82-B-%EF%BC%88%E5%9C%96-3%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">步驟 3：以 (\angle AEB&#x3D;120^\circ) 求 (B)（圖 3）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AD%A5%E9%A9%9F-4%EF%BC%9A%E8%A8%88%E7%AE%97-overline-AB-%EF%BC%88%E5%9C%96-4%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">步驟 4：計算 (\overline{AB})（圖 4）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B8%BD%E7%B5%90%EF%BC%88%E5%8C%85%E6%8B%AC%E5%90%91%E9%87%8F%E8%88%87%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B8%E7%9A%84%E7%B0%A1%E5%96%AE%E8%AA%AA%E6%98%8E%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">總結（包括向量與三角函數的簡單說明）</span></a></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">486</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2025/10/05/HighSchoolMath/Vector-005/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Vector-005 在△ABC中,AD交BCD點,BE交AD於E點,且∠ACB = 30°,∠EDB = 60°,∠AEB =120°。若CD=15,ED=7,則AB= | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Vector-005 在△ABC中,AD交BCD點,BE交AD於E點,且∠ACB = 30°,∠EDB = 60°,∠AEB =120°。若CD=15,ED=7,則AB=">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Vector-005 在△ABC中,AD交BCD點,BE交AD於E點,且∠ACB = 30°,∠EDB = 60°,∠AEB =120°。若CD=15,ED=7,則AB=
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2025-10-05 23:21:34 / 修改時間：23:29:35" itemprop="dateCreated datePublished" datetime="2025-10-05T23:21:34+08:00">2025-10-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/%E9%AB%98%E4%B8%AD%E6%95%B8%E5%AD%B8/" itemprop="url" rel="index"><span itemprop="name">高中數學</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">Vector-005 在△ABC中,AD交BCD點,BE交AD於E點,且∠ACB = 30°,∠EDB = 60°,∠AEB =120°。若CD=15,ED=7,則AB=</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="Vector-005-在△ABC中-AD交BCD點-BE交AD於E點-且∠ACB-30°-∠EDB-60°-∠AEB-120°。若CD-15-ED-7-則AB"><a href="#Vector-005-在△ABC中-AD交BCD點-BE交AD於E點-且∠ACB-30°-∠EDB-60°-∠AEB-120°。若CD-15-ED-7-則AB" class="headerlink" title="Vector-005 在△ABC中,AD交BCD點,BE交AD於E點,且∠ACB = 30°,∠EDB = 60°,∠AEB =120°。若CD=15,ED=7,則AB="></a>Vector-005 在△ABC中,AD交BCD點,BE交AD於E點,且∠ACB = 30°,∠EDB = 60°,∠AEB =120°。若CD=15,ED=7,則AB=</h2><p>結論：**(\overline{AB}=13)**。$</p>
+<p>最後的綜合圖：<br><img src="/apple.lily/2025/10/05/HighSchoolMath/Vector-005/triangle_geometry_solution_english_titles.png"></p>
+<hr>
+<h1 id="步驟-1：座標化-利用已知角度找-A-（圖-1）"><a href="#步驟-1：座標化-利用已知角度找-A-（圖-1）" class="headerlink" title="步驟 1：座標化 + 利用已知角度找 (A)（圖 1）"></a>步驟 1：座標化 + 利用已知角度找 (A)（圖 1）</h1><p><strong>想法（為什麼要這樣做）</strong>：把 (C) 放在原點，將 (BC) 放在 (x)-軸上，可以把角度轉成直線斜率或方程式，使幾何問題變成解代數方程，計算方便且系統化。<br>$</p>
+<ul>
+<li>設<br>[<br>C=(0,0),\qquad D=(15,0)<br>]<br>（因為題目給 (\overline{CD}=15)，且 (D) 在 (BC) 上，我把 (C) 放在原點， (BC) 在 (x)-軸上）<br><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="0.036ex" height="0.036ex" role="img" focusable="false" viewBox="0 0 16 16"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"></g></g></svg></mjx-container></li>
+<li>由 (\angle ACB=30^\circ)，所以直線 (CA) 的方向角為 (30^\circ)，其斜率為<br>[<br>\tan 30^\circ=\frac{1}{\sqrt3}.<br>]<br>因此直線 (CA) 的方程為<br>[<br>y=\frac{1}{\sqrt3},x. \tag{1}<br>]<br>$</li>
+<li>由 (\angle EDB=60^\circ) 且 (E) 在 (AD) 上（注意：(\angle EDB) 其實是 (AD) 與 (DB) 的夾角），可得 (AD) 通過 (D(15,0))，且方向角為 (60^\circ)。所以直線 (AD) 的方程為<br>[<br>y=\sqrt3,(x-15). \tag{2}<br>]</li>
+<li>將 (1) 與 (2) 聯立求交點（即 (A)）：<br>[<br>\frac{1}{\sqrt3}x=\sqrt3(x-15)\quad\Longrightarrow\quad x=3(x-15)\quad\Longrightarrow\quad 2x=45<br>]<br>[<br>\Rightarrow\ x=\frac{45}{2}=22.5.<br>]<br>再代回 (1)：<br>[<br>y=\frac{1}{\sqrt3}\cdot\frac{45}{2}=\frac{45}{2\sqrt3}=\frac{15\sqrt3}{2}.<br>]</li>
+<li>所以<br>[<br>A=\Big(\tfrac{45}{2},\ \tfrac{15\sqrt3}{2}\Big).<br>]</li>
+</ul>
+<p>（<strong>圖 1</strong>：顯示 (C) 為原點，從 (C) 作 (30^\circ) 射線、從 (D) 作 (60^\circ) 射線，二者交點為 (A)。）</p>
+<p><strong>補充計算</strong>（檢查長度）：<br>[<br>AC=\sqrt{\Big(\tfrac{45}{2}\Big)^2+\Big(\tfrac{15\sqrt3}{2}\Big)^2}<br>=\tfrac{1}{2}\sqrt{45^2+15^2\cdot3}<br>=\tfrac{1}{2}\sqrt{2700}=\tfrac{1}{2}\cdot30\sqrt3=15\sqrt3.<br>]</p>
+<hr>
+<h1 id="步驟-2：利用-AD-的方向找-E-（圖-2）"><a href="#步驟-2：利用-AD-的方向找-E-（圖-2）" class="headerlink" title="步驟 2：利用 (AD) 的方向找 (E)（圖 2）"></a>步驟 2：利用 (AD) 的方向找 (E)（圖 2）</h1><p><strong>已知</strong>： (ED=7)，且 (E) 在 (AD) 上，且我們已知 (AD) 的方向是 (60^\circ)。<br><strong>為什麼這樣做</strong>：沿已知方向走固定距離即可得到 (E) 的座標。</p>
+<ul>
+<li>由前步驟 (A) 與 (D) 的座標，可求得 (AD) 長度（檢查）：<br>[<br>AD=\sqrt{\Big(\tfrac{45}{2}-15\Big)^2+\Big(\tfrac{15\sqrt3}{2}-0\Big)^2}<br>=\sqrt{\Big(\tfrac{15}{2}\Big)^2+\Big(\tfrac{15\sqrt3}{2}\Big)^2}<br>=\tfrac{15}{2}\sqrt{1+3}=15.<br>]</li>
+<li>因為 (AD=15)，且 (ED=7)，所以 (AE=AD-ED=15-7=8)（數值檢查一致）。</li>
+<li>(AD) 的單位方向向量是 ((\cos60^\circ,\sin60^\circ)=(\tfrac12,\tfrac{\sqrt3}{2}))。由 (D) 往上量 (7) 得到 (E)：<br>[<br>E=D+7\big(\tfrac12,\tfrac{\sqrt3}{2}\big)=\Big(15+\tfrac{7}{2},\ \tfrac{7\sqrt3}{2}\Big)=\Big(\tfrac{37}{2},\ \tfrac{7\sqrt3}{2}\Big).<br>]</li>
+<li>檢查 (AE) 向量（從 (E) 指向 (A)）：<br>[<br>\overrightarrow{EA}=A-E=\Big(\tfrac{45}{2}-\tfrac{37}{2},\ \tfrac{15\sqrt3}{2}-\tfrac{7\sqrt3}{2}\Big)=(4,\ 4\sqrt3),<br>]<br>長度 (|\overrightarrow{EA}|=\sqrt{4^2+(4\sqrt3)^2}=\sqrt{16+48}= \sqrt{64}=8)，與上面 (AE=8) 相符。</li>
+</ul>
+<p>（<strong>圖 2</strong>：顯示 (A,D,E) 在同一直線上，標明 (AD=15,,ED=7,,AE=8)。）</p>
+<hr>
+<h1 id="步驟-3：以-angle-AEB-120-circ-求-B-（圖-3）"><a href="#步驟-3：以-angle-AEB-120-circ-求-B-（圖-3）" class="headerlink" title="步驟 3：以 (\angle AEB=120^\circ) 求 (B)（圖 3）"></a>步驟 3：以 (\angle AEB=120^\circ) 求 (B)（圖 3）</h1><p><strong>為什麼採用向量/內積</strong>：角度條件 (\angle AEB=120^\circ) 可以用「兩向量的內積（點積）」公式轉成代數方程，容易代數求解出 (B) 的 (x)-座標（因為我們已把 (B) 放在 (x)-軸上）。</p>
+<ul>
+<li>設 (B=(b,0))。則<br>[<br>\overrightarrow{EA}=(4,\ 4\sqrt3),\qquad \overrightarrow{EB}=\big(b-\tfrac{37}{2},\ -\tfrac{7\sqrt3}{2}\big).<br>]</li>
+<li>兩向量的內積（dot product）公式（高中應會見到）：<br>[<br>\overrightarrow{u}\cdot\overrightarrow{v}=|\overrightarrow{u}|,|\overrightarrow{v}|\cos\theta,<br>]<br>其中 (\theta) 為兩向量夾角。應用在這裡，(\theta=120^\circ,\ \cos120^\circ=-\tfrac12)。</li>
+<li>先計算內積的代數式：<br>[<br>\overrightarrow{EA}\cdot\overrightarrow{EB}<br>=4\cdot\frac{2b-37}{2}+(4\sqrt3)\cdot\Big(-\frac{7\sqrt3}{2}\Big)<br>=2(2b-37)-42<br>=4b-116.<br>]<br>（中間項：((4\sqrt3)(-7\sqrt3/2)=-28\cdot\frac{3}{2}=-42)。）</li>
+<li>兩向量的長度：<br>[<br>|\overrightarrow{EA}|=8,\qquad<br>|\overrightarrow{EB}|=\tfrac{1}{2}\sqrt{(2b-37)^2+147}.<br>]<br>（因為平方和：((-\tfrac{7\sqrt3}{2})^2=\tfrac{147}{4})。）</li>
+<li>內積等式變成<br>[<br>\overrightarrow{EA}\cdot\overrightarrow{EB}=|\overrightarrow{EA}|,|\overrightarrow{EB}|\cos120^\circ<br>]<br>即<br>[<br>4b-116=8\cdot\frac{1}{2}\sqrt{(2b-37)^2+147}\cdot\big(-\tfrac12\big).<br>]<br>簡化：<br>[<br>\frac{4b-116}{4}=-\frac{1}{2}\sqrt{(2b-37)^2+147}<br>\quad\Longrightarrow\quad 4b-116=-2\sqrt{(2b-37)^2+147}.<br>]<br>兩邊同乘 (-1)，得<br>[<br>116-4b=2\sqrt{(2b-37)^2+147}.<br>]</li>
+<li>把等式平方（注意：平方會引入可能的符號，但由圖形的方向與座標可以排除負根）：<br>[<br>(116-4b)^2=4\big((2b-37)^2+147\big).<br>]<br>展開整理（逐步計算）：<br>[<br>(116-4b)^2=16b^2-928b+13456,<br>]<br>[<br>4\big((2b-37)^2+147\big)=4(4b^2-148b+1369+147)=16b^2-592b+6064.<br>]<br>等式兩邊相等得到：<br>[<br>16b^2-928b+13456=16b^2-592b+6064.<br>]<br>消去 (16b^2)，整理：<br>[<br>-928b+13456=-592b+6064 \quad\Longrightarrow\quad -336b+7392=0,<br>]<br>[<br>\Rightarrow b=\frac{7392}{336}=22.<br>]</li>
+<li>因此 (B=(22,0))。所以<br>[<br>BC=b=22,\qquad BD=BC-CD=22-15=7.<br>]<br>（這裡會發現 (BD=7=ED) — 幾何上是一個漂亮的對稱數值結果。）</li>
+</ul>
+<p>（<strong>圖 3</strong>：畫出 (E) 與 (B(22,0)) 連線，並示 (\angle AEB=120^\circ) 的位置說明。）</p>
+<hr>
+<h1 id="步驟-4：計算-overline-AB-（圖-4）"><a href="#步驟-4：計算-overline-AB-（圖-4）" class="headerlink" title="步驟 4：計算 (\overline{AB})（圖 4）"></a>步驟 4：計算 (\overline{AB})（圖 4）</h1><ul>
+<li>現在有 (A=\big(\tfrac{45}{2},\tfrac{15\sqrt3}{2}\big)) 與 (B=(22,0))。計算距離：<br>[<br>AB^2=\Big(\tfrac{45}{2}-22\Big)^2+\Big(\tfrac{15\sqrt3}{2}-0\Big)^2<br>=\Big(\tfrac{1}{2}\Big)^2+\Big(\tfrac{15\sqrt3}{2}\Big)^2<br>=\tfrac{1}{4}+\tfrac{675}{4}=\tfrac{676}{4}=169.<br>]<br>[<br>\Rightarrow AB=\sqrt{169}=13.<br>]</li>
+</ul>
+<p>（<strong>圖 4</strong>：完整三角形 (ABC)，標示 (AB=13)）</p>
+<hr>
+<h1 id="總結（包括向量與三角函數的簡單說明）"><a href="#總結（包括向量與三角函數的簡單說明）" class="headerlink" title="總結（包括向量與三角函數的簡單說明）"></a>總結（包括向量與三角函數的簡單說明）</h1><p><strong>最終答案</strong>：(\boxed{AB=13})。</p>
+<p><strong>解題思路（快速回顧）</strong>：</p>
+<ol>
+<li>用座標化（把 (C) 設原點、 (BC) 放 (x)-軸）把角度條件轉成直線方程（使用斜率 (\tan)），找到 (A)。</li>
+<li>用 (AD) 的方向與已知 (ED) 的長度定位 (E)。</li>
+<li>用角度條件 (\angle AEB=120^\circ) 把「角度」轉成「向量內積（dot product）」的代數式，解出 (B) 的 (x)-座標。</li>
+<li>最後計算兩點距離得 (AB)。</li>
+</ol>
+<p><strong>向量（簡單概念）</strong>：</p>
+<ul>
+<li>向量就是有大小與方向的量，在平面常用 ((x,y)) 來表示；兩點 (P(x_1,y_1)) 與 (Q(x_2,y_2)) 的向量 (\overrightarrow{PQ}=(x_2-x_1,\ y_2-y_1))。</li>
+<li>兩向量 (\vec u=(u_x,u_y)) 與 (\vec v=(v_x,v_y)) 的內積：<br>[<br>\vec u\cdot\vec v=u_xv_x+u_yv_y,<br>]<br>同時有<br>[<br>\vec u\cdot\vec v=|\vec u|,|\vec v|\cos\theta,<br>]<br>其中 (\theta) 是兩向量的夾角。這條公式常用於把「角度」變成「代數方程」，是本題求 (B) 的關鍵。</li>
+</ul>
+<p><strong>三角函數（簡單概念）</strong>：</p>
+<ul>
+<li>在直角三角形中：<br>[<br>\sin\theta=\frac{\text{對邊}}{\text{斜邊}},\qquad<br>\cos\theta=\frac{\text{鄰邊}}{\text{斜邊}},\qquad<br>\tan\theta=\frac{\sin\theta}{\cos\theta}=\frac{\text{對邊}}{\text{鄰邊}}.<br>]</li>
+<li>在座標上，角度 (\theta) 的方向向量可以寫成 ((\cos\theta,\sin\theta))，因此知道直線與 (x)-軸的角度就能給出方向向量與斜率（(\tan\theta)），常用來寫出直線方程。</li>
+</ul>
+<hr>
+<p>如果你願意，我可以：</p>
+<ul>
+<li>把<strong>每張圖單獨匯出成 PNG</strong> 供你逐張下載（目前已把最終圖存到 <code>/mnt/data/triangle_geometry_solution.png</code>），或把四張步驟圖分別另存；</li>
+<li>或把上面代數推導整理成可打印的 PDF（我可以幫你產生）。</li>
+</ul>
+<p>你要我把每一步的<strong>高解析度 PNG</strong>一併存下來並提供下載連結嗎？（我可以直接把四張圖都放在 <code>/mnt/data/</code> 供你下載。）</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/%E9%AB%98%E4%B8%AD%E6%95%B8%E5%AD%B8/" rel="tag"># 高中數學</a>
+              <a href="/apple.lily/tags/%E5%90%91%E9%87%8F/" rel="tag"># 向量</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/10/03/OneDayOneNote/2025-06-21/" rel="prev" title="2025-06-21  問GPT 數學">
+                  <i class="fa fa-angle-left"></i> 2025-06-21  問GPT 數學
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/apple.lily/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
