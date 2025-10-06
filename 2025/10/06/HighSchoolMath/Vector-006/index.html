@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="用梯子、單位圓和小故事，把 sin&#x2F;cos&#x2F;tan 和其他三角函數整理，附數值範例與記憶口訣。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="三角函數直觀整理">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/10/06/HighSchoolMath/Vector-006/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="用梯子、單位圓和小故事，把 sin&#x2F;cos&#x2F;tan 和其他三角函數整理，附數值範例與記憶口訣。">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-10-05T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-10-06T00:59:59.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="高中數學">
+<meta property="article:tag" content="三角函數">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2025/10/06/HighSchoolMath/Vector-006/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2025/10/06/HighSchoolMath/Vector-006/","path":"2025/10/06/HighSchoolMath/Vector-006/","title":"三角函數直觀整理"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>三角函數直觀整理 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+<style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%83%85%E5%A2%83%EF%BC%9A%E6%83%B3%E5%83%8F%E4%B8%80%E6%8A%8A%E6%A2%AF%E5%AD%90%E9%9D%A0%E7%89%86"><span class="nav-number">1.</span> <span class="nav-text">基本情境：想像一把梯子靠牆</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%B4%E8%A7%80%E5%AE%9A%E7%BE%A9%EF%BC%88%E7%94%A8%E6%A2%AF%E5%AD%90%E8%AA%AA%E8%A9%B1%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">直觀定義（用梯子說話）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B8%E7%9A%84%E5%85%B6%E4%BB%96%E6%88%90%E5%93%A1%EF%BC%88%E7%B0%A1%E5%96%AE%E8%AA%AA%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">三角函數的其他成員（簡單說）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%96%AE%E4%BD%8D%E5%9C%93%E7%9A%84%E7%9B%B4%E8%A7%80%EF%BC%88%E7%82%BA%E4%BB%80%E9%BA%BC-sin-cos-%E6%9C%83%E6%98%AF%E5%BA%A7%E6%A8%99%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">單位圓的直觀（為什麼 sin&#x2F;cos 會是座標）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%83%B3%E5%83%8F%E4%B8%80%E5%80%8B%E5%8D%8A%E5%BE%91%E7%82%BA-1-%E7%9A%84%E5%9C%93%EF%BC%88%E5%96%AE%E4%BD%8D%E5%9C%93%EF%BC%89%EF%BC%8C%E5%9C%A8%E5%9C%93%E4%B8%8A%E9%81%B8%E4%B8%80%E5%80%8B%E8%A7%92-theta-%EF%BC%88%E5%BE%9E%E6%AD%A3-x-%E8%BB%B8%E9%80%86%E6%99%82%E9%87%9D%E9%87%8F%EF%BC%89%E3%80%82%E5%BE%9E%E5%9C%93%E5%BF%83%E5%90%91%E5%A4%96%E7%95%AB%E4%B8%80%E6%A2%9D%E7%B7%9A%E5%88%B0%E5%9C%93%E5%91%A8%EF%BC%8C%E7%B7%9A%E8%88%87-x-%E8%BB%B8%E5%A4%BE%E8%A7%92%E6%98%AF-theta-%E3%80%82%E9%82%A3%E6%A2%9D%E8%88%87%E5%9C%93%E4%BA%A4%E9%BB%9E%E7%9A%84%E5%BA%A7%E6%A8%99%E5%89%9B%E5%A5%BD%E6%98%AF-cos-theta-sin-theta-%E7%9B%B4%E8%A7%80%EF%BC%9A%E6%B2%BF%E8%91%97%E8%A7%92%E5%BA%A6%E6%96%B9%E5%90%91%E8%B5%B0%E5%88%B0%E5%9C%93%E4%B8%8A%EF%BC%8Cx%EF%BC%88%E6%A9%AB%EF%BC%89%E6%98%AF-cos%EF%BC%8Cy%EF%BC%88%E7%9B%B4%EF%BC%89%E6%98%AF-sin%E3%80%82%E5%9B%A0%E7%82%BA%E5%8D%8A%E5%BE%91%E6%98%AF-1%EF%BC%8Csin-%E8%88%87-cos-%E5%B0%B1%E6%88%90%E4%BA%86%E3%80%8C%E6%AF%94%E4%BE%8B%E3%80%8D%E6%88%96%E3%80%8C%E5%BA%A7%E6%A8%99%E3%80%8D%E3%80%82"><span class="nav-number">4.1.</span> <span class="nav-text">想像一個半徑為 1 的圓（單位圓），在圓上選一個角 (\theta)（從正 x 軸逆時針量）。從圓心向外畫一條線到圓周，線與 x 軸夾角是 (\theta)。那條與圓交點的座標剛好是[(\cos\theta,\ \sin\theta).]直觀：沿著角度方向走到圓上，x（橫）是 cos，y（直）是 sin。因為半徑是 1，sin 與 cos 就成了「比例」或「座標」。$$</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B9%BE%E5%80%8B%E5%B8%B8%E8%A6%8B%E8%A7%92%E5%BA%A6%EF%BC%88%E6%95%B8%E5%80%BC%E7%AF%84%E4%BE%8B%EF%BC%8C%E5%AE%B9%E6%98%93%E8%A8%98%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">幾個常見角度（數值範例，容易記）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%87%8D%E8%A6%81%E9%97%9C%E4%BF%82%EF%BC%88%E7%94%A8%E7%B0%A1%E5%96%AE%E8%A9%B1%E8%AA%AA%EF%BC%89"><span class="nav-number">6.</span> <span class="nav-text">重要關係（用簡單話說）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">6.1.</span> <span class="nav-text">$$</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%8F%E7%B7%B4%E7%BF%92%EF%BC%88%E7%B7%B4%E7%BF%92%E7%9C%8B%E6%87%82%EF%BC%89"><span class="nav-number">7.</span> <span class="nav-text">小練習（練習看懂）</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">487</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">42</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2025/10/06/HighSchoolMath/Vector-006/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="三角函數直觀整理 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="用梯子、單位圓和小故事，把 sin/cos/tan 和其他三角函數整理，附數值範例與記憶口訣。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          三角函數直觀整理
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2025-10-06 00:00:00 / 修改時間：08:59:59" itemprop="dateCreated datePublished" datetime="2025-10-06T00:00:00+08:00">2025-10-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/%E9%AB%98%E4%B8%AD%E6%95%B8%E5%AD%B8/" itemprop="url" rel="index"><span itemprop="name">高中數學</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">用梯子、單位圓和小故事，把 sin/cos/tan 和其他三角函數整理，附數值範例與記憶口訣。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="基本情境：想像一把梯子靠牆"><a href="#基本情境：想像一把梯子靠牆" class="headerlink" title="基本情境：想像一把梯子靠牆"></a>基本情境：想像一把梯子靠牆</h1><p>把一把梯子靠在牆上，梯子的底端在地面上、頂端靠牆。把形成的直角三角形想清楚：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(牆)</span><br><span class="line"> |</span><br><span class="line"> |   ▲  (頂端)</span><br><span class="line"> |   |\</span><br><span class="line"> |   | \</span><br><span class="line"> |   |  \  &lt;- 梯子（斜邊）</span><br><span class="line"> |   |   \</span><br><span class="line"> |   |    \</span><br><span class="line"> +---+-----+ (地面)</span><br><span class="line">  底端  向前走（run）</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>斜邊（hypotenuse）</strong>：梯子的整段長度。</li>
+<li><strong>對邊（opposite）</strong>：跟我們關心的角（比如梯子與地面的角）正對著的那一邊（就是牆上高度）。</li>
+<li><strong>鄰邊（adjacent）</strong>：跟那個角相鄰、在地面上的那一段（就是我們往前走的距離）。</li>
+</ul>
+<hr>
+<h1 id="直觀定義（用梯子說話）"><a href="#直觀定義（用梯子說話）" class="headerlink" title="直觀定義（用梯子說話）"></a>直觀定義（用梯子說話）</h1><p>$$<br>設我們看一個角 (\theta)（就是梯子和地面成的角），那麼：</p>
+<ul>
+<li><p>(\displaystyle \sin\theta=\frac{\text{對邊}}{\text{斜邊}})<br>→ 「sin」告訴你：梯子頂端離地面有多高，佔整把梯子長度的幾分之幾。<br>試想：梯子越直（角越大），頂端越高，sin 越大。</p>
+</li>
+<li><p>(\displaystyle \cos\theta=\frac{\text{鄰邊}}{\text{斜邊}})<br>→ 「cos」告訴你：你從底端往前走的長度，佔整把梯子長度的幾分之幾。<br>試想：角越小（梯子趴得平），cos 越接近 1。</p>
+</li>
+<li><p>(\displaystyle \tan\theta=\frac{\text{對邊}}{\text{鄰邊}}=\frac{\sin\theta}{\cos\theta})<br>→ 「tan」告訴你：每向前走 1 步（run），會上升多少步（rise）。（這就是我們說的 slope／斜率）</p>
+</li>
+</ul>
+<p>記憶口訣：<strong>SOH CAH TOA</strong></p>
+<ul>
+<li>SOH: ( \sin = \dfrac{Opp}{Hyp})</li>
+<li>CAH: ( \cos = \dfrac{Adj}{Hyp})</li>
+<li>TOA: ( \tan = \dfrac{Opp}{Adj})</li>
+</ul>
+<hr>
+<h1 id="三角函數的其他成員（簡單說）"><a href="#三角函數的其他成員（簡單說）" class="headerlink" title="三角函數的其他成員（簡單說）"></a>三角函數的其他成員（簡單說）</h1><ul>
+<li>(\displaystyle \csc\theta=\frac{1}{\sin\theta}=\frac{\text{斜邊}}{\text{對邊}})（csc = cosecant）<br>→ 如果 ( \sin ) 很小，( \csc ) 很大（因為是倒數）。</li>
+<li>(\displaystyle \sec\theta=\frac{1}{\cos\theta}=\frac{\text{斜邊}}{\text{鄰邊}})（sec = secant）</li>
+<li>(\displaystyle \cot\theta=\frac{1}{\tan\theta}=\frac{\text{鄰邊}}{\text{對邊}})（cot = cotangent）</li>
+</ul>
+<p>這三個就是 sin, cos, tan 的「倒數朋友」。</p>
+<hr>
+<h1 id="單位圓的直觀（為什麼-sin-cos-會是座標）"><a href="#單位圓的直觀（為什麼-sin-cos-會是座標）" class="headerlink" title="單位圓的直觀（為什麼 sin/cos 會是座標）"></a>單位圓的直觀（為什麼 sin/cos 會是座標）</h1><h2 id="想像一個半徑為-1-的圓（單位圓），在圓上選一個角-theta-（從正-x-軸逆時針量）。從圓心向外畫一條線到圓周，線與-x-軸夾角是-theta-。那條與圓交點的座標剛好是-cos-theta-sin-theta-直觀：沿著角度方向走到圓上，x（橫）是-cos，y（直）是-sin。因為半徑是-1，sin-與-cos-就成了「比例」或「座標」。"><a href="#想像一個半徑為-1-的圓（單位圓），在圓上選一個角-theta-（從正-x-軸逆時針量）。從圓心向外畫一條線到圓周，線與-x-軸夾角是-theta-。那條與圓交點的座標剛好是-cos-theta-sin-theta-直觀：沿著角度方向走到圓上，x（橫）是-cos，y（直）是-sin。因為半徑是-1，sin-與-cos-就成了「比例」或「座標」。" class="headerlink" title="想像一個半徑為 1 的圓（單位圓），在圓上選一個角 (\theta)（從正 x 軸逆時針量）。從圓心向外畫一條線到圓周，線與 x 軸夾角是 (\theta)。那條與圓交點的座標剛好是[(\cos\theta,\ \sin\theta).]直觀：沿著角度方向走到圓上，x（橫）是 cos，y（直）是 sin。因為半徑是 1，sin 與 cos 就成了「比例」或「座標」。$$"></a>想像一個半徑為 1 的圓（單位圓），在圓上選一個角 (\theta)（從正 x 軸逆時針量）。從圓心向外畫一條線到圓周，線與 x 軸夾角是 (\theta)。那條與圓交點的座標剛好是<br>[<br>(\cos\theta,\ \sin\theta).<br>]<br>直觀：沿著角度方向走到圓上，x（橫）是 cos，y（直）是 sin。因為半徑是 1，sin 與 cos 就成了「比例」或「座標」。<br>$$</h2><h1 id="幾個常見角度（數值範例，容易記）"><a href="#幾個常見角度（數值範例，容易記）" class="headerlink" title="幾個常見角度（數值範例，容易記）"></a>幾個常見角度（數值範例，容易記）</h1><p>$$<br>把下面記起來，常在考試出現：</p>
+<table>
+<thead>
+<tr>
+<th>角度</th>
+<th>(\sin)</th>
+<th>(\cos)</th>
+<th>(\tan)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>(30^\circ)</td>
+<td>(\tfrac{1}{2})</td>
+<td>(\tfrac{\sqrt3}{2})</td>
+<td>(\tfrac{1}{\sqrt3})（約 0.577）</td>
+</tr>
+<tr>
+<td>(45^\circ)</td>
+<td>(\tfrac{\sqrt2}{2})</td>
+<td>(\tfrac{\sqrt2}{2})</td>
+<td>(1)</td>
+</tr>
+<tr>
+<td>(60^\circ)</td>
+<td>(\tfrac{\sqrt3}{2})</td>
+<td>(\tfrac{1}{2})</td>
+<td>(\sqrt3)（約 1.732）</td>
+</tr>
+</tbody></table>
+<p>小故事幫記憶：</p>
+<ul>
+<li>30°：想像一把很斜、接近地面的梯子，頂端高度剛好是梯子長的一半（sin ＝ 1/2）。</li>
+<li>45°：斜上與前進一樣多（rise = run），所以 sin = cos，tan = 1。</li>
+<li>60°：比 30° 更直（高度較大），sin60 = √3/2。</li>
+</ul>
+<hr>
+<h1 id="重要關係（用簡單話說）"><a href="#重要關係（用簡單話說）" class="headerlink" title="重要關係（用簡單話說）"></a>重要關係（用簡單話說）</h1><ul>
+<li><p><strong>畢氏恒等式</strong>（很重要、常用）：<br>[<br>\sin^2\theta+\cos^2\theta=1.<br>]<br>這句話可以想成：「在單位圓上，x²+y²=1」。因為 ((x=\cos\theta), (y=\sin\theta))，所以自然成立。</p>
+</li>
+<li><p><strong>tan 與 sin, cos 的關係</strong>：<br>[<br>\tan\theta=\frac{\sin\theta}{\cos\theta}.<br>]<br>（也就是 slope = rise/run）。</p>
+</li>
+<li><p><strong>範圍</strong>：(\sin) 與 (\cos) 的值永遠在 ([-1,1]) 之內；(\tan) 可以是任何實數（但在 (\cos\theta=0) 時沒定義，例如 (90^\circ)）。</p>
+</li>
+<li><p><strong>符號</strong>（簡單）：</p>
+<ul>
+<li>(\cos(-\theta)=\cos\theta)（cos 是「偶函數」，負角度不改變 cos）</li>
+<li>(\sin(-\theta)=-\sin\theta)（sin 是「奇函數」，負角會把方向翻轉）</li>
+</ul>
+</li>
+</ul>
+<h2 id=""><a href="#" class="headerlink" title="$$"></a>$$</h2><p>$$</p>
+<h1 id="小練習（練習看懂）"><a href="#小練習（練習看懂）" class="headerlink" title="小練習（練習看懂）"></a>小練習（練習看懂）</h1><ol>
+<li><p>一把長 10 的梯子，和地面夾角 30°，梯子頂端高度是多高？<br>(\displaystyle \text{高度}=10\cdot\sin30^\circ=10\cdot\frac12=5)。</p>
+</li>
+<li><p>同一把梯子，底端向前走了多少？（run）<br>(\displaystyle \text{run}=10\cdot\cos30^\circ=10\cdot\frac{\sqrt3}{2}=5\sqrt3)。</p>
+</li>
+<li><p>斜率（每向前 1 步上升多少）是多少？<br>(\tan30^\circ=\dfrac{1}{\sqrt3})（約 0.577）。<br>$$</p>
+</li>
+</ol>
+<hr>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/%E9%AB%98%E4%B8%AD%E6%95%B8%E5%AD%B8/" rel="tag"># 高中數學</a>
+              <a href="/apple.lily/tags/%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B8/" rel="tag"># 三角函數</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/10/05/HighSchoolMath/Vector-005/" rel="prev" title="Vector-005 在△ABC中,AD交BCD點,BE交AD於E點,且∠ACB = 30°,∠EDB = 60°,∠AEB =120°。若CD=15,ED=7,則AB=">
+                  <i class="fa fa-angle-left"></i> Vector-005 在△ABC中,AD交BCD點,BE交AD於E點,且∠ACB = 30°,∠EDB = 60°,∠AEB =120°。若CD=15,ED=7,則AB=
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/apple.lily/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
