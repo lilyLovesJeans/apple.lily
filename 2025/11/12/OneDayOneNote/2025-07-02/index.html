@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2025-07-02 Line 訂單系統-即時互動聊天機器人 MongoDB  Redis 能同時併用嗎?">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025-07-02 Line 訂單系統-即時互動聊天機器人 MongoDB  Redis 能同時併用嗎?">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/11/12/OneDayOneNote/2025-07-02/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2025-07-02 Line 訂單系統-即時互動聊天機器人 MongoDB  Redis 能同時併用嗎?">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://lilylovesjeans.github.io/apple.lily/2024/05/26/OneDayOneNote/2025-07-02/20250702.png">
+<meta property="article:published_time" content="2025-11-12T14:03:52.000Z">
+<meta property="article:modified_time" content="2025-11-12T14:09:15.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="OneNote">
+<meta property="article:tag" content="Line訂單系統">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lilylovesjeans.github.io/apple.lily/2024/05/26/OneDayOneNote/2025-07-02/20250702.png">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2025/11/12/OneDayOneNote/2025-07-02/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2025/11/12/OneDayOneNote/2025-07-02/","path":"2025/11/12/OneDayOneNote/2025-07-02/","title":"2025-07-02 Line 訂單系統-即時互動聊天機器人 MongoDB  Redis 能同時併用嗎?"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2025-07-02 Line 訂單系統-即時互動聊天機器人 MongoDB  Redis 能同時併用嗎? | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2025-07-02-Line-%E8%A8%82%E5%96%AE%E7%B3%BB%E7%B5%B1-%E5%8D%B3%E6%99%82%E4%BA%92%E5%8B%95%E8%81%8A%E5%A4%A9%E6%A9%9F%E5%99%A8%E4%BA%BA-MongoDB-Redis-%E8%83%BD%E5%90%8C%E6%99%82%E4%BD%B5%E7%94%A8%E5%97%8E"><span class="nav-number">1.</span> <span class="nav-text">2025-07-02 Line 訂單系統-即時互動聊天機器人 MongoDB  Redis 能同時併用嗎?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%A1-%E4%B8%80%E5%8F%A5%E8%A9%B1%E7%B5%90%E8%AB%96%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">💡 一句話結論：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%A7%B1-%E6%9E%B6%E6%A7%8B%E7%AF%84%E4%BE%8B%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">🧱 架構範例：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%97%83%EF%B8%8F-MongoDB-%E7%9A%84%E8%A7%92%E8%89%B2%EF%BC%9A%E4%B8%BB%E8%A6%81%E8%B3%87%E6%96%99%E5%84%B2%E5%AD%98%EF%BC%88%E9%95%B7%E6%9C%9F%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">🗃️ MongoDB 的角色：主要資料儲存（長期）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9A%A1-Redis-%E7%9A%84%E8%A7%92%E8%89%B2%EF%BC%9A%E6%9A%AB%E5%AD%98%E8%88%87%E5%8D%B3%E6%99%82%E9%80%9A%E7%9F%A5%EF%BC%88%E7%9F%AD%E6%9C%9F%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">⚡ Redis 的角色：暫存與即時通知（短期）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%94%84-%E5%85%A9%E8%80%85%E6%90%AD%E9%85%8D%E6%96%B9%E5%BC%8F%EF%BC%88%E5%AF%A6%E5%8B%99%E5%81%9A%E6%B3%95%EF%BC%89"><span class="nav-number">6.</span> <span class="nav-text">🔄 兩者搭配方式（實務做法）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%A7%A0-%E5%BB%B6%E4%BC%B8%E6%80%9D%E7%B6%AD%EF%BC%9A%E7%82%BA%E4%BB%80%E9%BA%BC%E8%A6%81%E4%BD%B5%E7%94%A8%EF%BC%9F"><span class="nav-number">7.</span> <span class="nav-text">🧠 延伸思維：為什麼要併用？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%94%A7-%E5%AF%A6%E4%BD%9C%E6%8A%80%E8%A1%93%E5%BB%BA%E8%AD%B0"><span class="nav-number">8.</span> <span class="nav-text">🔧 實作技術建議</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%A3%E7%B7%9A%E8%A8%AD%E5%AE%9A%EF%BC%9A"><span class="nav-number">8.1.</span> <span class="nav-text">連線設定：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%A6%E9%9A%9B%E9%82%8F%E8%BC%AF%EF%BC%9A"><span class="nav-number">8.2.</span> <span class="nav-text">實際邏輯：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%85-%E7%B8%BD%E7%B5%90%E9%87%8D%E9%BB%9E"><span class="nav-number">9.</span> <span class="nav-text">✅ 總結重點</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">498</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2025/11/12/OneDayOneNote/2025-07-02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2025-07-02 Line 訂單系統-即時互動聊天機器人 MongoDB  Redis 能同時併用嗎? | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2025-07-02 Line 訂單系統-即時互動聊天機器人 MongoDB  Redis 能同時併用嗎?">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2025-07-02 Line 訂單系統-即時互動聊天機器人 MongoDB  Redis 能同時併用嗎?
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2025-11-12 22:03:52 / 修改時間：22:09:15" itemprop="dateCreated datePublished" datetime="2025-11-12T22:03:52+08:00">2025-11-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2025-07-02 Line 訂單系統-即時互動聊天機器人 MongoDB  Redis 能同時併用嗎?</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2025-07-02-Line-訂單系統-即時互動聊天機器人-MongoDB-Redis-能同時併用嗎"><a href="#2025-07-02-Line-訂單系統-即時互動聊天機器人-MongoDB-Redis-能同時併用嗎" class="headerlink" title="2025-07-02 Line 訂單系統-即時互動聊天機器人 MongoDB  Redis 能同時併用嗎?"></a>2025-07-02 Line 訂單系統-即時互動聊天機器人 MongoDB  Redis 能同時併用嗎?</h2><p>非常棒 👏👏<br>你問到的這一點 ——「<strong>MongoDB + Redis 能否同時併用？</strong>」——<br>是很多進階架構師在設計「高效即時系統」時會採用的策略。<br>✅ 答案是：<strong>不但可以，而且實務上經常是一起用的！</strong></p>
+<hr>
+<h2 id="💡-一句話結論："><a href="#💡-一句話結論：" class="headerlink" title="💡 一句話結論："></a>💡 一句話結論：</h2><blockquote>
+<p>MongoDB 負責「<strong>儲存資料（長期、彈性）</strong>」，<br>Redis 負責「<strong>暫存資料（即時、快速）</strong>」。</p>
+</blockquote>
+<p>👉 它們角色不同，彼此互補，而不是競爭。<br>這種組合在 LINE 機器人、聊天室、訂單通知系統都非常常見。</p>
+<hr>
+<h2 id="🧱-架構範例："><a href="#🧱-架構範例：" class="headerlink" title="🧱 架構範例："></a>🧱 架構範例：</h2><p>以你的「LINE 線上訂單系統」為例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">使用者（LINE）</span><br><span class="line">   ↓</span><br><span class="line">LINE Webhook → Node.js Server</span><br><span class="line">   ↓</span><br><span class="line"> ┌────────────────────────────┐</span><br><span class="line"> │     資料層（雙系統）       │</span><br><span class="line"> │                            │</span><br><span class="line"> │ MongoDB：儲存完整對話紀錄 │</span><br><span class="line"> │ Redis：快取訂單狀態、通知 │</span><br><span class="line"> └────────────────────────────┘</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="🗃️-MongoDB-的角色：主要資料儲存（長期）"><a href="#🗃️-MongoDB-的角色：主要資料儲存（長期）" class="headerlink" title="🗃️ MongoDB 的角色：主要資料儲存（長期）"></a>🗃️ MongoDB 的角色：主要資料儲存（長期）</h2><p><strong>用途</strong>：儲存彈性結構的資料，例如：</p>
+<ul>
+<li>使用者對話紀錄</li>
+<li>LINE webhook 事件資料（JSON 結構）</li>
+<li>使用者資料、訂單記錄（可查詢歷史）</li>
+</ul>
+<p><strong>特點</strong></p>
+<ul>
+<li>支援 JSON 物件格式，跟 LINE SDK 結構很搭</li>
+<li>資料能永久保存、可查詢</li>
+<li>適合用來訓練後續 AI 回覆或分析使用者行為</li>
+</ul>
+<p><strong>範例結構：</strong></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;userId&quot;</span><span class="punctuation">:</span> <span class="string">&quot;U123456&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;message&quot;</span><span class="punctuation">:</span> <span class="string">&quot;我要查訂單&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;reply&quot;</span><span class="punctuation">:</span> <span class="string">&quot;您的訂單編號 A001 已出貨&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;timestamp&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2025-11-10T21:45:00Z&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="⚡-Redis-的角色：暫存與即時通知（短期）"><a href="#⚡-Redis-的角色：暫存與即時通知（短期）" class="headerlink" title="⚡ Redis 的角色：暫存與即時通知（短期）"></a>⚡ Redis 的角色：暫存與即時通知（短期）</h2><p><strong>用途</strong>：儲存「需要高效存取」但「不必永久保存」的資料，例如：</p>
+<ul>
+<li>訂單的即時狀態（未處理 → 出貨中 → 完成）</li>
+<li>使用者暫時狀態（目前在點餐哪一步）</li>
+<li>暫存最近 10 筆對話</li>
+<li>推播佇列（通知即時發送）</li>
+</ul>
+<p><strong>特點</strong></p>
+<ul>
+<li>所有資料存在記憶體，速度極快（微秒級）</li>
+<li>適合高頻查詢、短期更新資料</li>
+<li>可設定自動過期（TTL），例如 10 分鐘內自動刪除</li>
+</ul>
+<p><strong>範例：</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 設定訂單狀態快取</span></span><br><span class="line">redis.<span class="title function_">set</span>(<span class="string">&quot;order:A001:status&quot;</span>, <span class="string">&quot;出貨中&quot;</span>, <span class="string">&quot;EX&quot;</span>, <span class="number">600</span>); <span class="comment">// 有效 10 分鐘</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 快速查詢訂單狀態</span></span><br><span class="line"><span class="keyword">const</span> status = <span class="keyword">await</span> redis.<span class="title function_">get</span>(<span class="string">&quot;order:A001:status&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="🔄-兩者搭配方式（實務做法）"><a href="#🔄-兩者搭配方式（實務做法）" class="headerlink" title="🔄 兩者搭配方式（實務做法）"></a>🔄 兩者搭配方式（實務做法）</h2><table>
+<thead>
+<tr>
+<th>階段</th>
+<th>動作</th>
+<th>儲存位置</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>使用者建立訂單</td>
+<td>同時寫入 MongoDB（正式資料）</td>
+<td>MongoDB</td>
+</tr>
+<tr>
+<td>訂單狀態更新</td>
+<td>同時更新 Redis（即時顯示）</td>
+<td>Redis</td>
+</tr>
+<tr>
+<td>使用者查詢訂單</td>
+<td>先查 Redis，有就回覆，沒有再查 MongoDB</td>
+<td>Redis → MongoDB</td>
+</tr>
+<tr>
+<td>系統閒置時</td>
+<td>Redis 到期自動清理</td>
+<td>Redis 自動處理</td>
+</tr>
+</tbody></table>
+<p>這樣可以：<br>✅ 讓「查詢訂單狀態」反應幾乎即時（Redis 超快）<br>✅ 又能保留完整歷史記錄（MongoDB 永久存）</p>
+<hr>
+<h2 id="🧠-延伸思維：為什麼要併用？"><a href="#🧠-延伸思維：為什麼要併用？" class="headerlink" title="🧠 延伸思維：為什麼要併用？"></a>🧠 延伸思維：為什麼要併用？</h2><table>
+<thead>
+<tr>
+<th>需求</th>
+<th>只用 MongoDB</th>
+<th>加上 Redis 後</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>速度</td>
+<td>需要查 DB，數百毫秒</td>
+<td>即時回覆（&lt;5ms）</td>
+</tr>
+<tr>
+<td>成本</td>
+<td>硬碟存取，IO 高</td>
+<td>記憶體暫存，快且輕</td>
+</tr>
+<tr>
+<td>可擴充性</td>
+<td>查詢越多越慢</td>
+<td>熱門資料保存在 Redis</td>
+</tr>
+<tr>
+<td>適合用途</td>
+<td>歷史資料、分析</td>
+<td>即時通知、快取、狀態同步</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🔧-實作技術建議"><a href="#🔧-實作技術建議" class="headerlink" title="🔧 實作技術建議"></a>🔧 實作技術建議</h2><p>你可以用這組常見組合：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install mongoose ioredis</span><br></pre></td></tr></table></figure>
+
+<h3 id="連線設定："><a href="#連線設定：" class="headerlink" title="連線設定："></a>連線設定：</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> mongoose <span class="keyword">from</span> <span class="string">&quot;mongoose&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Redis</span> <span class="keyword">from</span> <span class="string">&quot;ioredis&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// MongoDB</span></span><br><span class="line">mongoose.<span class="title function_">connect</span>(<span class="string">&quot;mongodb://localhost:27017/line_orders&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Redis</span></span><br><span class="line"><span class="keyword">const</span> redis = <span class="keyword">new</span> <span class="title class_">Redis</span>(); <span class="comment">// 預設 localhost:6379</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="實際邏輯："><a href="#實際邏輯：" class="headerlink" title="實際邏輯："></a>實際邏輯：</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 儲存聊天紀錄</span></span><br><span class="line"><span class="keyword">await</span> <span class="title class_">Chat</span>.<span class="title function_">create</span>(&#123; userId, message, reply &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 暫存訂單狀態</span></span><br><span class="line"><span class="keyword">await</span> redis.<span class="title function_">set</span>(<span class="string">`order:<span class="subst">$&#123;orderId&#125;</span>:status`</span>, <span class="string">&quot;pending&quot;</span>, <span class="string">&quot;EX&quot;</span>, <span class="number">600</span>);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="✅-總結重點"><a href="#✅-總結重點" class="headerlink" title="✅ 總結重點"></a>✅ 總結重點</h2><table>
+<thead>
+<tr>
+<th>功能</th>
+<th>建議資料庫</th>
+<th>優勢</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>對話紀錄、歷史訂單</td>
+<td>MongoDB</td>
+<td>結構彈性、可永久保存</td>
+</tr>
+<tr>
+<td>即時狀態、快取、通知</td>
+<td>Redis</td>
+<td>超高速讀寫、自動過期</td>
+</tr>
+<tr>
+<td>兩者併用</td>
+<td>✅ 可行且常見</td>
+<td>快又穩，兼顧效率與可靠性</td>
+</tr>
+</tbody></table>
+<hr>
+<p>📊「MongoDB + Redis 雙資料層 LINE 訂單系統架構圖」<br>？<br><img src="/apple.lily/2024/05/26/OneDayOneNote/2025-07-02/20250702.png"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/OneNote/" rel="tag"># OneNote</a>
+              <a href="/apple.lily/tags/Line%E8%A8%82%E5%96%AE%E7%B3%BB%E7%B5%B1/" rel="tag"># Line訂單系統</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/11/12/OneDayOneNote/2025-07-01/" rel="prev" title="2025-07-01 Line 訂單系統-階段G">
+                  <i class="fa fa-angle-left"></i> 2025-07-01 Line 訂單系統-階段G
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/apple.lily/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
