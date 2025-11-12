@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2025-07-07 Line 訂單系統-C 階段（LINE 訂單整合：前端 + 後端串接）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025-07-07 Line 訂單系統-C 階段（LINE 訂單整合：前端 + 後端串接）">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/11/12/OneDayOneNote/2025-07-07/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2025-07-07 Line 訂單系統-C 階段（LINE 訂單整合：前端 + 後端串接）">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-11-12T15:17:22.000Z">
+<meta property="article:modified_time" content="2025-11-12T15:18:36.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="OneNote">
+<meta property="article:tag" content="Line訂單系統">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2025/11/12/OneDayOneNote/2025-07-07/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2025/11/12/OneDayOneNote/2025-07-07/","path":"2025/11/12/OneDayOneNote/2025-07-07/","title":"2025-07-07 Line 訂單系統-C 階段（LINE 訂單整合：前端 + 後端串接）"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2025-07-07 Line 訂單系統-C 階段（LINE 訂單整合：前端 + 後端串接） | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2025-07-07-Line-%E8%A8%82%E5%96%AE%E7%B3%BB%E7%B5%B1-C-%E9%9A%8E%E6%AE%B5%EF%BC%88LINE-%E8%A8%82%E5%96%AE%E6%95%B4%E5%90%88%EF%BC%9A%E5%89%8D%E7%AB%AF-%E5%BE%8C%E7%AB%AF%E4%B8%B2%E6%8E%A5%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">2025-07-07 Line 訂單系統-C 階段（LINE 訂單整合：前端 + 後端串接）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E7%94%A8%E6%88%B6%E4%B8%8B%E5%96%AE%E6%B5%81%E7%A8%8B%EF%BC%88UX-%E7%B0%A1%E8%BF%B0%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">一、用戶下單流程（UX 簡述）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E8%B3%87%E6%96%99%E5%BA%AB%EF%BC%88MySQL%EF%BC%89%E8%AE%8A%E6%9B%B4%E8%88%87%E6%96%B0%E5%A2%9E%E8%A1%A8"><span class="nav-number"></span> <span class="nav-text">二、資料庫（MySQL）變更與新增表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%BE%8C%E7%AB%AF%EF%BC%88Node-js%EF%BC%89%E5%AF%A6%E4%BD%9C%E9%87%8D%E9%BB%9E"><span class="nav-number"></span> <span class="nav-text">三、後端（Node.js）實作重點</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%96%B0%E5%A2%9E-%E4%BF%AE%E6%94%B9%E5%BE%8C%E7%AB%AF%E8%B7%AF%E7%94%B1%E6%AA%94%E6%A1%88"><span class="nav-number">1.</span> <span class="nav-text">1) 新增 &#x2F; 修改後端路由檔案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#backend-routes-orders-js"><span class="nav-number">1.1.</span> <span class="nav-text">backend&#x2F;routes&#x2F;orders.js</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E4%BF%AE%E6%94%B9-backend-routes-line-js%EF%BC%9A%E8%99%95%E7%90%86-postback-%E8%88%87-message-%E6%8C%87%E4%BB%A4"><span class="nav-number">2.</span> <span class="nav-text">2) 修改 backend&#x2F;routes&#x2F;line.js：處理 postback 與 message 指令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%89%8D%E7%AB%AF%EF%BC%88%E7%AE%A1%E7%90%86%E5%BE%8C%E5%8F%B0%EF%BC%89%E6%94%B9%E9%80%A0%EF%BC%9A%E9%A1%AF%E7%A4%BA%E8%A8%82%E5%96%AE%E8%A9%B3%E6%83%85%E8%88%87%E7%8B%80%E6%85%8B%E9%80%9A%E7%9F%A5"><span class="nav-number"></span> <span class="nav-text">四、前端（管理後台）改造：顯示訂單詳情與狀態通知</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E5%BE%8C%E7%AB%AF%EF%BC%9A%E5%A2%9E%E5%8A%A0%E9%80%9A%E7%9F%A5-API%EF%BC%88%E7%AE%A1%E7%90%86%E8%80%85%E6%8C%89%E9%88%95%E5%91%BC%E5%8F%AB%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">五、後端：增加通知 API（管理者按鈕呼叫）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E6%B8%AC%E8%A9%A6%E6%96%B9%E6%B3%95%EF%BC%88%E9%80%90%E6%AD%A5%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">六、測試方法（逐步）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E5%8F%AF%E9%9D%A0%E6%80%A7%E3%80%81%E5%AE%89%E5%85%A8%E8%88%87%E5%AF%A6%E5%8B%99%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A0%85"><span class="nav-number"></span> <span class="nav-text">七、可靠性、安全與實務注意事項</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E6%93%B4%E5%85%85%E5%BB%BA%E8%AD%B0%EF%BC%88%E4%B8%8B%E4%B8%80%E6%AD%A5%E5%8F%AF%E4%BB%A5%E5%81%9A%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">八、擴充建議（下一步可以做）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B9%9D%E3%80%81Checkpoint%EF%BC%88C-%E9%9A%8E%E6%AE%B5%E5%AE%8C%E6%88%90%E5%88%A4%E5%AE%9A%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">九、Checkpoint（C 階段完成判定）</span></a></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">505</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2025/11/12/OneDayOneNote/2025-07-07/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2025-07-07 Line 訂單系統-C 階段（LINE 訂單整合：前端 + 後端串接） | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2025-07-07 Line 訂單系統-C 階段（LINE 訂單整合：前端 + 後端串接）">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2025-07-07 Line 訂單系統-C 階段（LINE 訂單整合：前端 + 後端串接）
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2025-11-12 23:17:22 / 修改時間：23:18:36" itemprop="dateCreated datePublished" datetime="2025-11-12T23:17:22+08:00">2025-11-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2025-07-07 Line 訂單系統-C 階段（LINE 訂單整合：前端 + 後端串接）</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2025-07-07-Line-訂單系統-C-階段（LINE-訂單整合：前端-後端串接）"><a href="#2025-07-07-Line-訂單系統-C-階段（LINE-訂單整合：前端-後端串接）" class="headerlink" title="2025-07-07 Line 訂單系統-C 階段（LINE 訂單整合：前端 + 後端串接）"></a>2025-07-07 Line 訂單系統-C 階段（LINE 訂單整合：前端 + 後端串接）</h2><p>把 <strong>C 階段（LINE 訂單整合：前端 + 後端串接）</strong> 的設計與完整實作步驟交給你。<br>我會從「用戶在 LINE 下單的 UX 流程」開始，接著給出<strong>資料庫變更、後端（Node.js）實作、前端（Vue3）如何顯示訂單、LINE webhook 處理 postback 的範例</strong>，並補上測試、例外處理、以及實務要注意的安全&#x2F;可靠性建議。你可以直接複製貼上程式碼並執行。</p>
+<hr>
+<h1 id="一、用戶下單流程（UX-簡述）"><a href="#一、用戶下單流程（UX-簡述）" class="headerlink" title="一、用戶下單流程（UX 簡述）"></a>一、用戶下單流程（UX 簡述）</h1><ol>
+<li>使用者在 LINE 傳「我要點餐」或按主選單 → Bot 回傳商品清單（Flex Carousel，每件商品含「購買」按鈕）。</li>
+<li>使用者按「購買」按鈕（postback），按鈕會送出 <code>action=buy&amp;productId=XXX&amp;qty=1</code>（或 <code>showConfirm</code> 先顯示確認視窗）。</li>
+<li>Bot 接收到 postback → 後端建立訂單（orders + order_items） → 回覆「訂單已建立（編號：A0001）」並顯示訂單明細。</li>
+<li>管理後台（Vue）即時或短輪詢取得新訂單，可變更訂單狀態（pending → confirmed → shipped）。</li>
+<li>狀態更新時，後端可用 LINE push&#x2F;message 回覆給訂購用戶（或用 reply when possible）。</li>
+</ol>
+<blockquote>
+<p>設計重點：盡量用 postback 與 payload 包資料，減少「逐步輸入暫存狀態」的複雜性；必要時可用 Redis 保存臨時狀態。</p>
+</blockquote>
+<hr>
+<h1 id="二、資料庫（MySQL）變更與新增表"><a href="#二、資料庫（MySQL）變更與新增表" class="headerlink" title="二、資料庫（MySQL）變更與新增表"></a>二、資料庫（MySQL）變更與新增表</h1><p>在 <code>backend/db_init.sql</code>（或新增 migration）加入：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">USE line_order_db;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 商品 (若尚未建立)</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> products (</span><br><span class="line">  id <span class="type">INT</span> AUTO_INCREMENT <span class="keyword">PRIMARY</span> KEY,</span><br><span class="line">  name <span class="type">VARCHAR</span>(<span class="number">100</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  price <span class="type">DECIMAL</span>(<span class="number">10</span>,<span class="number">2</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  description TEXT,</span><br><span class="line">  image_url <span class="type">VARCHAR</span>(<span class="number">255</span>),</span><br><span class="line">  stock <span class="type">INT</span> <span class="keyword">DEFAULT</span> <span class="number">0</span>,</span><br><span class="line">  created_at <span class="type">TIMESTAMP</span> <span class="keyword">DEFAULT</span> <span class="built_in">CURRENT_TIMESTAMP</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 訂單主表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> orders (</span><br><span class="line">  id <span class="type">INT</span> AUTO_INCREMENT <span class="keyword">PRIMARY</span> KEY,</span><br><span class="line">  order_no <span class="type">VARCHAR</span>(<span class="number">30</span>) <span class="keyword">UNIQUE</span>,</span><br><span class="line">  user_line_id <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">  customer_name <span class="type">VARCHAR</span>(<span class="number">100</span>),</span><br><span class="line">  phone <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">  total_price <span class="type">DECIMAL</span>(<span class="number">10</span>,<span class="number">2</span>),</span><br><span class="line">  status ENUM(<span class="string">&#x27;pending&#x27;</span>,<span class="string">&#x27;confirmed&#x27;</span>,<span class="string">&#x27;cancelled&#x27;</span>,<span class="string">&#x27;paid&#x27;</span>,<span class="string">&#x27;shipped&#x27;</span>,<span class="string">&#x27;completed&#x27;</span>) <span class="keyword">DEFAULT</span> <span class="string">&#x27;pending&#x27;</span>,</span><br><span class="line">  created_at <span class="type">TIMESTAMP</span> <span class="keyword">DEFAULT</span> <span class="built_in">CURRENT_TIMESTAMP</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 訂單明細</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> order_items (</span><br><span class="line">  id <span class="type">INT</span> AUTO_INCREMENT <span class="keyword">PRIMARY</span> KEY,</span><br><span class="line">  order_id <span class="type">INT</span>,</span><br><span class="line">  product_id <span class="type">INT</span>,</span><br><span class="line">  product_name <span class="type">VARCHAR</span>(<span class="number">200</span>),</span><br><span class="line">  qty <span class="type">INT</span> <span class="keyword">DEFAULT</span> <span class="number">1</span>,</span><br><span class="line">  unit_price <span class="type">DECIMAL</span>(<span class="number">10</span>,<span class="number">2</span>),</span><br><span class="line">  subtotal <span class="type">DECIMAL</span>(<span class="number">10</span>,<span class="number">2</span>),</span><br><span class="line">  <span class="keyword">FOREIGN</span> KEY (order_id) <span class="keyword">REFERENCES</span> orders(id) <span class="keyword">ON</span> <span class="keyword">DELETE</span> CASCADE</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 訂單狀態歷程（選用）</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> order_status_history (</span><br><span class="line">  id <span class="type">INT</span> AUTO_INCREMENT <span class="keyword">PRIMARY</span> KEY,</span><br><span class="line">  order_id <span class="type">INT</span>,</span><br><span class="line">  old_status <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">  new_status <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">  changed_at <span class="type">TIMESTAMP</span> <span class="keyword">DEFAULT</span> <span class="built_in">CURRENT_TIMESTAMP</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p><strong>order_no</strong> 的生成策略：<code>YYYYMMDD-XXXX</code> 或 <code>A0001</code> 類型（下文會示範簡單生成器）。</p>
+<hr>
+<h1 id="三、後端（Node-js）實作重點"><a href="#三、後端（Node-js）實作重點" class="headerlink" title="三、後端（Node.js）實作重點"></a>三、後端（Node.js）實作重點</h1><h2 id="1-新增-修改後端路由檔案"><a href="#1-新增-修改後端路由檔案" class="headerlink" title="1) 新增 &#x2F; 修改後端路由檔案"></a>1) 新增 &#x2F; 修改後端路由檔案</h2><p>在 <code>backend/routes/</code> 加兩個檔： <code>products.js</code>（若已存在）與 <code>orders.js</code>（更完善） — 我會把 <code>orders.js</code> 的重點流程示範出來，並在 <code>line.js</code> 中加上處理 <code>postback</code> 的邏輯。</p>
+<h3 id="backend-routes-orders-js"><a href="#backend-routes-orders-js" class="headerlink" title="backend/routes/orders.js"></a><code>backend/routes/orders.js</code></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// backend/routes/orders.js</span></span><br><span class="line"><span class="keyword">import</span> express <span class="keyword">from</span> <span class="string">&quot;express&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; pool &#125; <span class="keyword">from</span> <span class="string">&quot;../db.js&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> router = express.<span class="title class_">Router</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 產生簡單 order_no（建議可改成更穩定的序號服務）</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">genOrderNo</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> d = <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line">  <span class="keyword">const</span> y = d.<span class="title function_">getFullYear</span>().<span class="title function_">toString</span>().<span class="title function_">slice</span>(-<span class="number">2</span>);</span><br><span class="line">  <span class="keyword">const</span> m = <span class="title class_">String</span>(d.<span class="title function_">getMonth</span>()+<span class="number">1</span>).<span class="title function_">padStart</span>(<span class="number">2</span>,<span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">  <span class="keyword">const</span> day = <span class="title class_">String</span>(d.<span class="title function_">getDate</span>()).<span class="title function_">padStart</span>(<span class="number">2</span>,<span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">  <span class="keyword">const</span> r = <span class="title class_">Math</span>.<span class="title function_">floor</span>(<span class="number">1000</span> + <span class="title class_">Math</span>.<span class="title function_">random</span>() * <span class="number">9000</span>); <span class="comment">// 4-digit random</span></span><br><span class="line">  <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;y&#125;</span><span class="subst">$&#123;m&#125;</span><span class="subst">$&#123;day&#125;</span>-<span class="subst">$&#123;r&#125;</span>`</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 取得所有訂單（包含明細）</span></span><br><span class="line">router.<span class="title function_">get</span>(<span class="string">&quot;/&quot;</span>, <span class="keyword">async</span> (req, res) =&gt; &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> [orders] = <span class="keyword">await</span> pool.<span class="title function_">query</span>(</span><br><span class="line">      <span class="string">`SELECT o.*, (SELECT JSON_ARRAYAGG(JSON_OBJECT(&#x27;product_id&#x27;, oi.product_id, &#x27;product_name&#x27;, oi.product_name, &#x27;qty&#x27;, oi.qty, &#x27;unit_price&#x27;, oi.unit_price, &#x27;subtotal&#x27;, oi.subtotal)) FROM order_items oi WHERE oi.order_id = o.id) AS items</span></span><br><span class="line"><span class="string">       FROM orders o ORDER BY o.id DESC`</span></span><br><span class="line">    );</span><br><span class="line">    res.<span class="title function_">json</span>(orders);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(err);</span><br><span class="line">    res.<span class="title function_">status</span>(<span class="number">500</span>).<span class="title function_">json</span>(&#123; <span class="attr">error</span>: <span class="string">&quot;Server error&quot;</span> &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 建立訂單（給 LINE or 前端 呼叫）</span></span><br><span class="line">router.<span class="title function_">post</span>(<span class="string">&quot;/&quot;</span>, <span class="keyword">async</span> (req, res) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; user_line_id, customer_name, phone, items &#125; = req.<span class="property">body</span>;</span><br><span class="line">  <span class="comment">// items = [&#123;product_id, qty&#125;, ...]</span></span><br><span class="line">  <span class="keyword">if</span> (!items || !<span class="title class_">Array</span>.<span class="title function_">isArray</span>(items) || items.<span class="property">length</span> === <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> res.<span class="title function_">status</span>(<span class="number">400</span>).<span class="title function_">json</span>(&#123; <span class="attr">error</span>: <span class="string">&quot;No items&quot;</span> &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> conn = <span class="keyword">await</span> pool.<span class="title function_">getConnection</span>();</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">await</span> conn.<span class="title function_">beginTransaction</span>();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 計算總價並準備明細</span></span><br><span class="line">    <span class="keyword">let</span> total = <span class="number">0.0</span>;</span><br><span class="line">    <span class="keyword">const</span> itemRows = [];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> it <span class="keyword">of</span> items) &#123;</span><br><span class="line">      <span class="keyword">const</span> [rows] = <span class="keyword">await</span> conn.<span class="title function_">query</span>(<span class="string">&quot;SELECT id, name, price FROM products WHERE id = ?&quot;</span>, [it.<span class="property">product_id</span>]);</span><br><span class="line">      <span class="keyword">if</span> (!rows || rows.<span class="property">length</span> === <span class="number">0</span>) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&quot;Product not found: &quot;</span> + it.<span class="property">product_id</span>);</span><br><span class="line">      <span class="keyword">const</span> p = rows[<span class="number">0</span>];</span><br><span class="line">      <span class="keyword">const</span> qty = <span class="built_in">parseInt</span>(it.<span class="property">qty</span> || <span class="number">1</span>);</span><br><span class="line">      <span class="keyword">const</span> subtotal = <span class="title class_">Number</span>(p.<span class="property">price</span>) * qty;</span><br><span class="line">      total += subtotal;</span><br><span class="line">      itemRows.<span class="title function_">push</span>(&#123;</span><br><span class="line">        <span class="attr">product_id</span>: p.<span class="property">id</span>,</span><br><span class="line">        <span class="attr">product_name</span>: p.<span class="property">name</span>,</span><br><span class="line">        qty,</span><br><span class="line">        <span class="attr">unit_price</span>: p.<span class="property">price</span>,</span><br><span class="line">        subtotal</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> orderNo = <span class="title function_">genOrderNo</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> [result] = <span class="keyword">await</span> conn.<span class="title function_">query</span>(</span><br><span class="line">      <span class="string">&quot;INSERT INTO orders (order_no, user_line_id, customer_name, phone, total_price) VALUES (?, ?, ?, ?, ?)&quot;</span>,</span><br><span class="line">      [orderNo, user_line_id || <span class="literal">null</span>, customer_name || <span class="literal">null</span>, phone || <span class="literal">null</span>, total]</span><br><span class="line">    );</span><br><span class="line">    <span class="keyword">const</span> orderId = result.<span class="property">insertId</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// insert order_items</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> ir <span class="keyword">of</span> itemRows) &#123;</span><br><span class="line">      <span class="keyword">await</span> conn.<span class="title function_">query</span>(</span><br><span class="line">        <span class="string">&quot;INSERT INTO order_items (order_id, product_id, product_name, qty, unit_price, subtotal) VALUES (?, ?, ?, ?, ?, ?)&quot;</span>,</span><br><span class="line">        [orderId, ir.<span class="property">product_id</span>, ir.<span class="property">product_name</span>, ir.<span class="property">qty</span>, ir.<span class="property">unit_price</span>, ir.<span class="property">subtotal</span>]</span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">await</span> conn.<span class="title function_">commit</span>();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 回傳訂單資料</span></span><br><span class="line">    res.<span class="title function_">json</span>(&#123; orderId, orderNo, total, <span class="attr">items</span>: itemRows &#125;);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    <span class="keyword">await</span> conn.<span class="title function_">rollback</span>();</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&quot;Create order error:&quot;</span>, err);</span><br><span class="line">    res.<span class="title function_">status</span>(<span class="number">500</span>).<span class="title function_">json</span>(&#123; <span class="attr">error</span>: <span class="string">&quot;Create order failed&quot;</span> &#125;);</span><br><span class="line">  &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    conn.<span class="title function_">release</span>();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 更新訂單狀態</span></span><br><span class="line">router.<span class="title function_">put</span>(<span class="string">&quot;/:id/status&quot;</span>, <span class="keyword">async</span> (req, res) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> id = req.<span class="property">params</span>.<span class="property">id</span>;</span><br><span class="line">  <span class="keyword">const</span> &#123; status &#125; = req.<span class="property">body</span>;</span><br><span class="line">  <span class="keyword">const</span> conn = <span class="keyword">await</span> pool.<span class="title function_">getConnection</span>();</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">await</span> conn.<span class="title function_">beginTransaction</span>();</span><br><span class="line">    <span class="keyword">const</span> [[cur]] = <span class="keyword">await</span> conn.<span class="title function_">query</span>(<span class="string">&quot;SELECT status FROM orders WHERE id = ?&quot;</span>, [id]);</span><br><span class="line">    <span class="keyword">await</span> conn.<span class="title function_">query</span>(<span class="string">&quot;UPDATE orders SET status = ? WHERE id = ?&quot;</span>, [status, id]);</span><br><span class="line">    <span class="keyword">await</span> conn.<span class="title function_">query</span>(<span class="string">&quot;INSERT INTO order_status_history (order_id, old_status, new_status) VALUES (?, ?, ?)&quot;</span>, [id, cur.<span class="property">status</span>, status]);</span><br><span class="line">    <span class="keyword">await</span> conn.<span class="title function_">commit</span>();</span><br><span class="line">    res.<span class="title function_">json</span>(&#123; <span class="attr">message</span>: <span class="string">&quot;Status updated&quot;</span> &#125;);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    <span class="keyword">await</span> conn.<span class="title function_">rollback</span>();</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(err);</span><br><span class="line">    res.<span class="title function_">status</span>(<span class="number">500</span>).<span class="title function_">json</span>(&#123; <span class="attr">error</span>: <span class="string">&quot;Update failed&quot;</span> &#125;);</span><br><span class="line">  &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    conn.<span class="title function_">release</span>();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> router;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：這段用 transaction（事務）保證 orders 與 order_items 的一致性。</p>
+</blockquote>
+<hr>
+<h2 id="2-修改-backend-routes-line-js：處理-postback-與-message-指令"><a href="#2-修改-backend-routes-line-js：處理-postback-與-message-指令" class="headerlink" title="2) 修改 backend/routes/line.js：處理 postback 與 message 指令"></a>2) 修改 <code>backend/routes/line.js</code>：處理 postback 與 message 指令</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// backend/routes/line.js （重點段）</span></span><br><span class="line"><span class="keyword">import</span> express <span class="keyword">from</span> <span class="string">&quot;express&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; middleware, <span class="title class_">Client</span> &#125; <span class="keyword">from</span> <span class="string">&quot;@line/bot-sdk&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> dotenv <span class="keyword">from</span> <span class="string">&quot;dotenv&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; pool &#125; <span class="keyword">from</span> <span class="string">&quot;../db.js&quot;</span>;</span><br><span class="line">dotenv.<span class="title function_">config</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> router = express.<span class="title class_">Router</span>();</span><br><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">  <span class="attr">channelAccessToken</span>: process.<span class="property">env</span>.<span class="property">LINE_CHANNEL_ACCESS_TOKEN</span>,</span><br><span class="line">  <span class="attr">channelSecret</span>: process.<span class="property">env</span>.<span class="property">LINE_CHANNEL_SECRET</span>,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> client = <span class="keyword">new</span> <span class="title class_">Client</span>(config);</span><br><span class="line">router.<span class="title function_">post</span>(<span class="string">&#x27;/webhook&#x27;</span>, <span class="title function_">middleware</span>(config), <span class="keyword">async</span> (req, res) =&gt; &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> events = req.<span class="property">body</span>.<span class="property">events</span> || [];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> event <span class="keyword">of</span> events) &#123;</span><br><span class="line">      <span class="comment">// 文字訊息：啟動選單</span></span><br><span class="line">      <span class="keyword">if</span> (event.<span class="property">type</span> === <span class="string">&#x27;message&#x27;</span> &amp;&amp; event.<span class="property">message</span>.<span class="property">type</span> === <span class="string">&#x27;text&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> text = event.<span class="property">message</span>.<span class="property">text</span>.<span class="title function_">trim</span>();</span><br><span class="line">        <span class="keyword">if</span> (text === <span class="string">&#x27;我要點餐&#x27;</span> || text === <span class="string">&#x27;點餐&#x27;</span>) &#123;</span><br><span class="line">          <span class="comment">// 讀取商品並送 Flex carousel</span></span><br><span class="line">          <span class="keyword">const</span> [products] = <span class="keyword">await</span> pool.<span class="title function_">query</span>(<span class="string">&#x27;SELECT id, name, price, description, image_url FROM products WHERE stock &gt; 0 LIMIT 10&#x27;</span>);</span><br><span class="line">          <span class="keyword">const</span> bubbles = products.<span class="title function_">map</span>(<span class="function"><span class="params">p</span> =&gt;</span> (&#123;</span><br><span class="line">            <span class="attr">type</span>: <span class="string">&#x27;bubble&#x27;</span>,</span><br><span class="line">            <span class="attr">hero</span>: p.<span class="property">image_url</span> ? &#123; <span class="attr">type</span>: <span class="string">&#x27;image&#x27;</span>, <span class="attr">url</span>: p.<span class="property">image_url</span>, <span class="attr">size</span>: <span class="string">&#x27;full&#x27;</span>, <span class="attr">aspectRatio</span>: <span class="string">&#x27;20:13&#x27;</span>, <span class="attr">aspectMode</span>: <span class="string">&#x27;cover&#x27;</span> &#125; : <span class="literal">undefined</span>,</span><br><span class="line">            <span class="attr">body</span>: &#123;</span><br><span class="line">              <span class="attr">type</span>: <span class="string">&#x27;box&#x27;</span>,</span><br><span class="line">              <span class="attr">layout</span>: <span class="string">&#x27;vertical&#x27;</span>,</span><br><span class="line">              <span class="attr">contents</span>: [</span><br><span class="line">                &#123; <span class="attr">type</span>: <span class="string">&#x27;text&#x27;</span>, <span class="attr">text</span>: p.<span class="property">name</span>, <span class="attr">weight</span>: <span class="string">&#x27;bold&#x27;</span>, <span class="attr">size</span>: <span class="string">&#x27;lg&#x27;</span>, <span class="attr">wrap</span>: <span class="literal">true</span> &#125;,</span><br><span class="line">                &#123; <span class="attr">type</span>: <span class="string">&#x27;text&#x27;</span>, <span class="attr">text</span>: <span class="string">`價格：$<span class="subst">$&#123;p.price&#125;</span>`</span>, <span class="attr">size</span>: <span class="string">&#x27;sm&#x27;</span>, <span class="attr">wrap</span>: <span class="literal">true</span>, <span class="attr">margin</span>: <span class="string">&#x27;md&#x27;</span> &#125;,</span><br><span class="line">                &#123; <span class="attr">type</span>: <span class="string">&#x27;text&#x27;</span>, <span class="attr">text</span>: p.<span class="property">description</span> || <span class="string">&#x27;&#x27;</span>, <span class="attr">size</span>: <span class="string">&#x27;sm&#x27;</span>, <span class="attr">wrap</span>: <span class="literal">true</span>, <span class="attr">margin</span>: <span class="string">&#x27;md&#x27;</span> &#125;</span><br><span class="line">              ]</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">footer</span>: &#123;</span><br><span class="line">              <span class="attr">type</span>: <span class="string">&#x27;box&#x27;</span>,</span><br><span class="line">              <span class="attr">layout</span>: <span class="string">&#x27;vertical&#x27;</span>,</span><br><span class="line">              <span class="attr">spacing</span>: <span class="string">&#x27;sm&#x27;</span>,</span><br><span class="line">              <span class="attr">contents</span>: [</span><br><span class="line">                &#123; <span class="attr">type</span>: <span class="string">&#x27;button&#x27;</span>, <span class="attr">style</span>: <span class="string">&#x27;primary&#x27;</span>, <span class="attr">action</span>: &#123; <span class="attr">type</span>: <span class="string">&#x27;postback&#x27;</span>, <span class="attr">label</span>: <span class="string">&#x27;購買&#x27;</span>, <span class="attr">data</span>: <span class="string">`action=buy&amp;productId=<span class="subst">$&#123;p.id&#125;</span>&amp;qty=1`</span> &#125; &#125;</span><br><span class="line">              ]</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;));</span><br><span class="line">          <span class="keyword">const</span> flex = &#123; <span class="attr">type</span>: <span class="string">&#x27;carousel&#x27;</span>, <span class="attr">contents</span>: bubbles.<span class="property">length</span> ? bubbles : [&#123; <span class="attr">type</span>: <span class="string">&#x27;bubble&#x27;</span>, <span class="attr">body</span>: &#123; <span class="attr">type</span>: <span class="string">&#x27;box&#x27;</span>, <span class="attr">layout</span>: <span class="string">&#x27;vertical&#x27;</span>, <span class="attr">contents</span>: [&#123; <span class="attr">type</span>: <span class="string">&#x27;text&#x27;</span>, <span class="attr">text</span>: <span class="string">&#x27;目前無商品&#x27;</span> &#125;] &#125; &#125;] &#125;;</span><br><span class="line">          <span class="keyword">await</span> client.<span class="title function_">replyMessage</span>(event.<span class="property">replyToken</span>, &#123; <span class="attr">type</span>: <span class="string">&#x27;flex&#x27;</span>, <span class="attr">altText</span>: <span class="string">&#x27;商品列表&#x27;</span>, <span class="attr">contents</span>: flex &#125;);</span><br><span class="line">          <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 其他文字預設回覆</span></span><br><span class="line">        <span class="keyword">await</span> client.<span class="title function_">replyMessage</span>(event.<span class="property">replyToken</span>, &#123; <span class="attr">type</span>: <span class="string">&#x27;text&#x27;</span>, <span class="attr">text</span>: <span class="string">&#x27;輸入「我要點餐」開始點餐流程&#x27;</span> &#125;);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// postback event（按購買）</span></span><br><span class="line">      <span class="keyword">else</span> <span class="keyword">if</span> (event.<span class="property">type</span> === <span class="string">&#x27;postback&#x27;</span>) &#123;</span><br><span class="line">        <span class="comment">// postback.data 會是 URL style query string</span></span><br><span class="line">        <span class="keyword">const</span> qs = <span class="keyword">new</span> <span class="title class_">URLSearchParams</span>(event.<span class="property">postback</span>.<span class="property">data</span>);</span><br><span class="line">        <span class="keyword">const</span> action = qs.<span class="title function_">get</span>(<span class="string">&#x27;action&#x27;</span>);</span><br><span class="line">        <span class="keyword">if</span> (action === <span class="string">&#x27;buy&#x27;</span>) &#123;</span><br><span class="line">          <span class="keyword">const</span> productId = <span class="built_in">parseInt</span>(qs.<span class="title function_">get</span>(<span class="string">&#x27;productId&#x27;</span>));</span><br><span class="line">          <span class="keyword">const</span> qty = <span class="built_in">parseInt</span>(qs.<span class="title function_">get</span>(<span class="string">&#x27;qty&#x27;</span>) || <span class="string">&#x27;1&#x27;</span>);</span><br><span class="line">          <span class="keyword">const</span> userId = event.<span class="property">source</span>.<span class="property">userId</span>;</span><br><span class="line"></span><br><span class="line">          <span class="comment">// 從 DB 取得產品資訊</span></span><br><span class="line">          <span class="keyword">const</span> [[prod]] = <span class="keyword">await</span> pool.<span class="title function_">query</span>(<span class="string">&#x27;SELECT id, name, price FROM products WHERE id = ?&#x27;</span>, [productId]);</span><br><span class="line">          <span class="keyword">if</span> (!prod) &#123;</span><br><span class="line">            <span class="keyword">await</span> client.<span class="title function_">replyMessage</span>(event.<span class="property">replyToken</span>, &#123; <span class="attr">type</span>: <span class="string">&#x27;text&#x27;</span>, <span class="attr">text</span>: <span class="string">&#x27;找不到該商品，請稍後再試。&#x27;</span> &#125;);</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          <span class="comment">// 建立訂單（簡單版，customer info 為 null）</span></span><br><span class="line">          <span class="keyword">const</span> conn = <span class="keyword">await</span> pool.<span class="title function_">getConnection</span>();</span><br><span class="line">          <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">await</span> conn.<span class="title function_">beginTransaction</span>();</span><br><span class="line">            <span class="keyword">const</span> subtotal = <span class="title class_">Number</span>(prod.<span class="property">price</span>) * qty;</span><br><span class="line">            <span class="keyword">const</span> orderNo = <span class="string">`L<span class="subst">$&#123;<span class="built_in">Date</span>.now().toString().slice(-<span class="number">6</span>)&#125;</span>`</span>;</span><br><span class="line">            <span class="keyword">const</span> [r] = <span class="keyword">await</span> conn.<span class="title function_">query</span>(<span class="string">&#x27;INSERT INTO orders (order_no, user_line_id, total_price) VALUES (?, ?, ?)&#x27;</span>, [orderNo, userId, subtotal]);</span><br><span class="line">            <span class="keyword">const</span> orderId = r.<span class="property">insertId</span>;</span><br><span class="line">            <span class="keyword">await</span> conn.<span class="title function_">query</span>(<span class="string">&#x27;INSERT INTO order_items (order_id, product_id, product_name, qty, unit_price, subtotal) VALUES (?, ?, ?, ?, ?, ?)&#x27;</span>, [orderId, prod.<span class="property">id</span>, prod.<span class="property">name</span>, qty, prod.<span class="property">price</span>, subtotal]);</span><br><span class="line">            <span class="keyword">await</span> conn.<span class="title function_">commit</span>();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 回覆使用者 order info</span></span><br><span class="line">            <span class="keyword">const</span> text = <span class="string">`已建立訂單\n編號：<span class="subst">$&#123;orderNo&#125;</span>\n商品：<span class="subst">$&#123;prod.name&#125;</span>\n數量：<span class="subst">$&#123;qty&#125;</span>\n總價：$<span class="subst">$&#123;subtotal&#125;</span>\n我們將盡快聯絡您。`</span>;</span><br><span class="line">            <span class="keyword">await</span> client.<span class="title function_">replyMessage</span>(event.<span class="property">replyToken</span>, &#123; <span class="attr">type</span>: <span class="string">&#x27;text&#x27;</span>, text &#125;);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 可選：通知管理者（若你在 .env 放 ADMIN_LINE_ID）</span></span><br><span class="line">            <span class="keyword">const</span> adminId = process.<span class="property">env</span>.<span class="property">ADMIN_LINE_ID</span>;</span><br><span class="line">            <span class="keyword">if</span> (adminId) &#123;</span><br><span class="line">              <span class="keyword">await</span> client.<span class="title function_">pushMessage</span>(adminId, &#123; <span class="attr">type</span>: <span class="string">&#x27;text&#x27;</span>, <span class="attr">text</span>: <span class="string">`新訂單：<span class="subst">$&#123;orderNo&#125;</span>，買家:<span class="subst">$&#123;userId&#125;</span>，商品:<span class="subst">$&#123;prod.name&#125;</span> x<span class="subst">$&#123;qty&#125;</span>`</span> &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">          &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">            <span class="keyword">await</span> conn.<span class="title function_">rollback</span>();</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">error</span>(err);</span><br><span class="line">            <span class="keyword">await</span> client.<span class="title function_">replyMessage</span>(event.<span class="property">replyToken</span>, &#123; <span class="attr">type</span>: <span class="string">&#x27;text&#x27;</span>, <span class="attr">text</span>: <span class="string">&#x27;建立訂單失敗，請稍後再試。&#x27;</span> &#125;);</span><br><span class="line">          &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            conn.<span class="title function_">release</span>();</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="comment">// end for events</span></span><br><span class="line"></span><br><span class="line">    res.<span class="title function_">status</span>(<span class="number">200</span>).<span class="title function_">send</span>(<span class="string">&#x27;OK&#x27;</span>);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&#x27;Webhook error&#x27;</span>, err);</span><br><span class="line">    res.<span class="title function_">status</span>(<span class="number">500</span>).<span class="title function_">end</span>();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> router;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>重點：<code>postback.data</code> 常用 URLQuery 格式來傳遞 <code>action</code> &#x2F; <code>productId</code> &#x2F; <code>qty</code>，接到就做事。</p>
+</blockquote>
+<hr>
+<h1 id="四、前端（管理後台）改造：顯示訂單詳情與狀態通知"><a href="#四、前端（管理後台）改造：顯示訂單詳情與狀態通知" class="headerlink" title="四、前端（管理後台）改造：顯示訂單詳情與狀態通知"></a>四、前端（管理後台）改造：顯示訂單詳情與狀態通知</h1><p>前面 B 階段已有 <code>Orders.vue</code>。補強要點：</p>
+<ul>
+<li>顯示 <code>items</code>（從 orders API 中取得 JSON Array）</li>
+<li>新增「通知買家」按鈕（call backend route 更新狀態並推送 LINE message）</li>
+<li>若想即時呈現新訂單：可採短輪詢（每 5–10 秒請求 <code>/orders</code>）或 WebSocket（進階）。</li>
+</ul>
+<p>簡單的 <code>Orders.vue</code> 擴充範例（只顯示 items）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;h2&gt;訂單管理&lt;/h2&gt;</span><br><span class="line">    &lt;table&gt;</span><br><span class="line">      &lt;tr&gt;&lt;th&gt;ID&lt;/th&gt;&lt;th&gt;編號&lt;/th&gt;&lt;th&gt;總價&lt;/th&gt;&lt;th&gt;狀態&lt;/th&gt;&lt;th&gt;明細&lt;/th&gt;&lt;th&gt;操作&lt;/th&gt;&lt;/tr&gt;</span><br><span class="line">      &lt;tr v-for=&quot;o in orders&quot; :key=&quot;o.id&quot;&gt;</span><br><span class="line">        &lt;td&gt;&#123;&#123; o.id &#125;&#125;&lt;/td&gt;</span><br><span class="line">        &lt;td&gt;&#123;&#123; o.order_no &#125;&#125;&lt;/td&gt;</span><br><span class="line">        &lt;td&gt;&#123;&#123; o.total_price &#125;&#125;&lt;/td&gt;</span><br><span class="line">        &lt;td&gt;&#123;&#123; o.status &#125;&#125;&lt;/td&gt;</span><br><span class="line">        &lt;td&gt;</span><br><span class="line">          &lt;ul&gt;</span><br><span class="line">            &lt;li v-for=&quot;it in JSON.parse(o.items || &#x27;[]&#x27;)&quot; :key=&quot;it.product_id&quot;&gt;</span><br><span class="line">              &#123;&#123; it.product_name &#125;&#125; x&#123;&#123; it.qty &#125;&#125; ($&#123; &#123; it.unit_price &#125; &#125;) 小計:&#123;&#123; it.subtotal &#125;&#125;</span><br><span class="line">            &lt;/li&gt;</span><br><span class="line">          &lt;/ul&gt;</span><br><span class="line">        &lt;/td&gt;</span><br><span class="line">        &lt;td&gt;</span><br><span class="line">          &lt;button @click=&quot;updateStatus(o.id,&#x27;confirmed&#x27;)&quot;&gt;確認&lt;/button&gt;</span><br><span class="line">          &lt;button @click=&quot;notifyUser(o.id)&quot;&gt;通知用戶&lt;/button&gt;</span><br><span class="line">        &lt;/td&gt;</span><br><span class="line">      &lt;/tr&gt;</span><br><span class="line">    &lt;/table&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">import &#123; ref, onMounted &#125; from &#x27;vue&#x27;;</span><br><span class="line">import axios from &#x27;axios&#x27;;</span><br><span class="line">const api = &quot;http://localhost:3000/orders&quot;;</span><br><span class="line">const orders = ref([]);</span><br><span class="line">async function load() &#123; const res = await axios.get(api); orders.value = res.data; &#125;</span><br><span class="line">async function updateStatus(id, status) &#123; await axios.put(`$&#123;api&#125;/$&#123;id&#125;/status`, &#123; status &#125;); await load(); &#125;</span><br><span class="line">async function notifyUser(id) &#123; await axios.post(`http://localhost:3000/orders/$&#123;id&#125;/notify`); alert(&#x27;已通知&#x27;); &#125;</span><br><span class="line">onMounted(() =&gt; &#123; load(); setInterval(load, 10000); &#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：<code>o.items</code> 在 <code>orders</code> route 我用 JSON_ARRAYAGG 回傳為 JSON 字串；前端須 parse。</p>
+</blockquote>
+<hr>
+<h1 id="五、後端：增加通知-API（管理者按鈕呼叫）"><a href="#五、後端：增加通知-API（管理者按鈕呼叫）" class="headerlink" title="五、後端：增加通知 API（管理者按鈕呼叫）"></a>五、後端：增加通知 API（管理者按鈕呼叫）</h1><p>在 <code>orders.js</code> 增加通知 route：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// notify endpoint</span></span><br><span class="line">router.<span class="title function_">post</span>(<span class="string">&quot;/:id/notify&quot;</span>, <span class="keyword">async</span> (req, res) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> id = req.<span class="property">params</span>.<span class="property">id</span>;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> [[order]] = <span class="keyword">await</span> pool.<span class="title function_">query</span>(<span class="string">&quot;SELECT * FROM orders WHERE id = ?&quot;</span>, [id]);</span><br><span class="line">    <span class="keyword">if</span> (!order) <span class="keyword">return</span> res.<span class="title function_">status</span>(<span class="number">404</span>).<span class="title function_">json</span>(&#123; <span class="attr">error</span>: <span class="string">&quot;not found&quot;</span> &#125;);</span><br><span class="line">    <span class="comment">// 取得買家 user_line_id 與訂單明細</span></span><br><span class="line">    <span class="keyword">const</span> [items] = <span class="keyword">await</span> pool.<span class="title function_">query</span>(<span class="string">&quot;SELECT * FROM order_items WHERE order_id = ?&quot;</span>, [id]);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 準備訊息</span></span><br><span class="line">    <span class="keyword">const</span> text = <span class="string">`您的訂單 <span class="subst">$&#123;order.order_no&#125;</span> 已更新。狀態：<span class="subst">$&#123;order.status&#125;</span>。`</span>;</span><br><span class="line">    <span class="comment">// 使用 client.pushMessage（需在 route 取得 client 或在更高層注入）</span></span><br><span class="line">    <span class="comment">// 這裡假設你把 LINE client export 或在此檔 require</span></span><br><span class="line">    <span class="keyword">import</span> &#123; <span class="title class_">Client</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;@line/bot-sdk&#x27;</span>; <span class="comment">// 需放在檔案頂端</span></span><br><span class="line">    <span class="keyword">const</span> client = <span class="keyword">new</span> <span class="title class_">Client</span>(&#123; <span class="attr">channelAccessToken</span>: process.<span class="property">env</span>.<span class="property">LINE_CHANNEL_ACCESS_TOKEN</span> &#125;);</span><br><span class="line">    <span class="keyword">if</span> (order.<span class="property">user_line_id</span>) &#123;</span><br><span class="line">      <span class="keyword">await</span> client.<span class="title function_">pushMessage</span>(order.<span class="property">user_line_id</span>, &#123; <span class="attr">type</span>: <span class="string">&#x27;text&#x27;</span>, text &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    res.<span class="title function_">json</span>(&#123; <span class="attr">message</span>: <span class="string">&#x27;Notified&#x27;</span> &#125;);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(err);</span><br><span class="line">    res.<span class="title function_">status</span>(<span class="number">500</span>).<span class="title function_">json</span>(&#123; <span class="attr">error</span>: <span class="string">&quot;Notify fail&quot;</span> &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>（實際請把 <code>Client</code> 建在共用檔或 <code>index.js</code>，不要每次新建）</p>
+<hr>
+<h1 id="六、測試方法（逐步）"><a href="#六、測試方法（逐步）" class="headerlink" title="六、測試方法（逐步）"></a>六、測試方法（逐步）</h1><ol>
+<li>啟動 MySQL、後端（<code>npm run dev</code>）、ngrok（<code>ngrok http 3000</code>）並把 webhook 設好。</li>
+<li>在後台 <code>Products</code> 新增一兩個測試商品（或直接在 MySQL insert）。</li>
+<li>用手機在 LINE 發「我要點餐」 → 應收到 Flex 商品清單（含「購買」）。</li>
+<li>按「購買」→ Bot 回覆「已建立訂單」與訂單編號。</li>
+<li>後台 <code>/orders</code> 應立即可見該訂單（或短輪詢後出現）。</li>
+<li>在後台將狀態改為 <code>confirmed</code> → 點「通知用戶」→ 檢查 LINE 使用者是否收到推播。</li>
+</ol>
+<p><strong>模擬 postback 測試（curl）</strong>：<br>你可以用 curl 模擬 LINE 的 postback event（開發時）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST http://localhost:3000/line/webhook \</span><br><span class="line"> -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line"> -d <span class="string">&#x27;&#123;&quot;events&quot;:[&#123;&quot;type&quot;:&quot;postback&quot;,&quot;replyToken&quot;:&quot;000&quot;,&quot;source&quot;:&#123;&quot;userId&quot;:&quot;U111&quot;&#125;,&quot;postback&quot;:&#123;&quot;data&quot;:&quot;action=buy&amp;productId=1&amp;qty=1&quot;&#125;&#125;]&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：<code>@line/bot-sdk</code> middleware 會驗證簽章，真實 LINE 事件會有 signature。為本地測試可臨時用 route 不帶 middleware（僅測功能），或用工具繞過。</p>
+</blockquote>
+<hr>
+<h1 id="七、可靠性、安全與實務注意事項"><a href="#七、可靠性、安全與實務注意事項" class="headerlink" title="七、可靠性、安全與實務注意事項"></a>七、可靠性、安全與實務注意事項</h1><ul>
+<li><strong>Webhook 驗簽</strong>：在開發（公開測試）時使用 <code>middleware(config)</code>；部署時絕對不要關掉驗簽。</li>
+<li><strong>事務處理</strong>：建立訂單時使用 DB transaction（範例已示）。</li>
+<li><strong>重複請求</strong>：postback 或 webhook 可能重送。建議在 <code>orders</code> 表用 <code>order_no</code> 或提供 <code>client_request_id</code> 來做去重檢查（idempotency key）。</li>
+<li><strong>資料驗證</strong>：在後端對 <code>items</code>、<code>product_id</code>、<code>qty</code> 做型別與範圍檢查。</li>
+<li><strong>資安</strong>：<code>LINE_CHANNEL_ACCESS_TOKEN</code> &#x2F; <code>LINE_CHANNEL_SECRET</code> &#x2F; DB 密碼 放 <code>.env</code>，不管測試或上線都不要提交到 Git。</li>
+<li><strong>錯誤回補</strong>：如果 DB 寫入成功但回覆失敗，須有 logging 與重試機制（排程或 queue）。</li>
+<li><strong>異地通知</strong>：若想把通知給管理者或多個 admin，可把 admin list 存到 DB 或 env 中並迴圈 push。</li>
+<li><strong>效能</strong>：高頻查詢訂單狀態時可將熱門欄位快取到 Redis（例如 order status, last 50 orders）。</li>
+<li><strong>使用者資料</strong>：建議把 LINE user profile（displayName、picture）存於 <code>users</code> 表，第一次互動用 <code>client.getProfile(userId)</code> 取得並儲存。</li>
+</ul>
+<hr>
+<h1 id="八、擴充建議（下一步可以做）"><a href="#八、擴充建議（下一步可以做）" class="headerlink" title="八、擴充建議（下一步可以做）"></a>八、擴充建議（下一步可以做）</h1><ul>
+<li><strong>付款整合（LINE Pay &#x2F;第三方）</strong>：建立 <code>payments</code> 表並把付款狀態與訂單關聯。</li>
+<li><strong>多商品一次下單</strong>：目前示例是單一 product buy，可擴展為購物車（multiple items）流程 (要設計「選擇數量」「加入購物車」「結帳畫面」)。</li>
+<li><strong>狀態 WebSocket 即時推送管理後台</strong>：用 Socket.io 把新訂單即時推給管理者頁面。</li>
+<li><strong>自然語言解析</strong>：用簡單關鍵字或 webhook 傳到 NLP（例如 Rasa）解析複雜句子（「我要兩個紅豆麵包明天 10 點取貨」），再轉成結構化 order payload。</li>
+<li><strong>測試自動化</strong>：用 Postman collection + Newman 或 Jest + Supertest 做 webhook 與 API 自動測試。</li>
+</ul>
+<hr>
+<h1 id="九、Checkpoint（C-階段完成判定）"><a href="#九、Checkpoint（C-階段完成判定）" class="headerlink" title="九、Checkpoint（C 階段完成判定）"></a>九、Checkpoint（C 階段完成判定）</h1><ul>
+<li><input disabled="" type="checkbox"> LINE <code>我要點餐</code> 能回傳商品 Flex carousel。</li>
+<li><input disabled="" type="checkbox"> 使用者按「購買」後，後端在 <code>orders</code>、<code>order_items</code> 生成正確資料。</li>
+<li><input disabled="" type="checkbox"> 後台 Orders 頁能看到新訂單與明細（items）。</li>
+<li><input disabled="" type="checkbox"> 管理後台可改狀態並通知使用者（LINE push）。</li>
+<li><input disabled="" type="checkbox"> 有錯誤處理與 DB 事務保證，不會造成半成品訂單。</li>
+</ul>
+<hr>
+<p>如果你願意，我可以<strong>立刻幫你產出</strong>：</p>
+<ol>
+<li>已修改好的 <code>backend/routes/orders.js</code> 與 <code>backend/routes/line.js</code> 完整檔案（可直接放入你 repo）。</li>
+<li>一個簡易的 <code>Products</code> seed SQL（幾筆商品）與 <code>Orders</code> 測試腳本（curl 範例）。</li>
+<li>前端 <code>Orders.vue</code> 的完整可直接替換版本，包含 notify 按鈕對應的 API 呼叫。</li>
+</ol>
+<p>你要我先把哪一份檔案內容直接貼給你（或打包成可以 <code>git clone</code> 的 commit 範例）？</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/OneNote/" rel="tag"># OneNote</a>
+              <a href="/apple.lily/tags/Line%E8%A8%82%E5%96%AE%E7%B3%BB%E7%B5%B1/" rel="tag"># Line訂單系統</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/11/12/OneDayOneNote/2025-07-06/" rel="prev" title="2025-07-06 Line 訂單系統-B 階段：商品與訂單管理 API + Vue3 後台管理 UI（初版">
+                  <i class="fa fa-angle-left"></i> 2025-07-06 Line 訂單系統-B 階段：商品與訂單管理 API + Vue3 後台管理 UI（初版
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/11/12/OneDayOneNote/2025-07-08/" rel="next" title="2025-07-08 Line 訂單系統-C 階段程式範例">
+                  2025-07-08 Line 訂單系統-C 階段程式範例 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/apple.lily/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

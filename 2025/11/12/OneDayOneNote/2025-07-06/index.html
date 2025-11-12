@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2025-07-06 Line 訂單系統-B 階段：商品與訂單管理 API + Vue3 後台管理 UI（初版">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025-07-06 Line 訂單系統-B 階段：商品與訂單管理 API + Vue3 後台管理 UI（初版">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/11/12/OneDayOneNote/2025-07-06/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2025-07-06 Line 訂單系統-B 階段：商品與訂單管理 API + Vue3 後台管理 UI（初版">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-11-12T15:12:36.000Z">
+<meta property="article:modified_time" content="2025-11-12T15:13:19.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="OneNote">
+<meta property="article:tag" content="Line訂單系統">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2025/11/12/OneDayOneNote/2025-07-06/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2025/11/12/OneDayOneNote/2025-07-06/","path":"2025/11/12/OneDayOneNote/2025-07-06/","title":"2025-07-06 Line 訂單系統-B 階段：商品與訂單管理 API + Vue3 後台管理 UI（初版"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2025-07-06 Line 訂單系統-B 階段：商品與訂單管理 API + Vue3 後台管理 UI（初版 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2025-07-06-Line-%E8%A8%82%E5%96%AE%E7%B3%BB%E7%B5%B1-B-%E9%9A%8E%E6%AE%B5%EF%BC%9A%E5%95%86%E5%93%81%E8%88%87%E8%A8%82%E5%96%AE%E7%AE%A1%E7%90%86-API-Vue3-%E5%BE%8C%E5%8F%B0%E7%AE%A1%E7%90%86-UI%EF%BC%88%E5%88%9D%E7%89%88"><span class="nav-number">1.</span> <span class="nav-text">2025-07-06 Line 訂單系統-B 階段：商品與訂單管理 API + Vue3 後台管理 UI（初版</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%A7%AD-B-%E9%9A%8E%E6%AE%B5%E6%95%B4%E9%AB%94%E7%B5%90%E6%A7%8B"><span class="nav-number">2.</span> <span class="nav-text">🧭 B 階段整體結構</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%A7%A9-%E5%BE%8C%E7%AB%AF%E8%A8%AD%E8%A8%88%EF%BC%88Node-js-Express%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">🧩 後端設計（Node.js &#x2F; Express）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%A7%B1-1%EF%B8%8F%E2%83%A3-%E8%B3%87%E6%96%99%E5%BA%AB-%E2%80%94-db-init-sql-%E6%96%B0%E5%A2%9E"><span class="nav-number">3.1.</span> <span class="nav-text">🧱 1️⃣ 資料庫 — db_init.sql 新增</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%A7%B1-2%EF%B8%8F%E2%83%A3-%E6%96%B0%E5%A2%9E-backend-routes-products-js"><span class="nav-number">3.2.</span> <span class="nav-text">🧱 2️⃣ 新增 backend&#x2F;routes&#x2F;products.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%A7%B1-3%EF%B8%8F%E2%83%A3-%E6%96%B0%E5%A2%9E-backend-routes-orders-js"><span class="nav-number">3.3.</span> <span class="nav-text">🧱 3️⃣ 新增 backend&#x2F;routes&#x2F;orders.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%A7%B1-4%EF%B8%8F%E2%83%A3-%E4%BF%AE%E6%94%B9-backend-index-js"><span class="nav-number">3.4.</span> <span class="nav-text">🧱 4️⃣ 修改 backend&#x2F;index.js</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%8E%A8-%E5%89%8D%E7%AB%AF%EF%BC%88Vue3-Vite%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">🎨 前端（Vue3 + Vite）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%A7%B1-1%EF%B8%8F%E2%83%A3-%E5%BB%BA%E7%AB%8B%E5%B0%88%E6%A1%88%EF%BC%88%E5%9C%A8-MacAir-1%EF%BC%89"><span class="nav-number">4.1.</span> <span class="nav-text">🧱 1️⃣ 建立專案（在 MacAir #1）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%A7%B1-2%EF%B8%8F%E2%83%A3-src-main-js"><span class="nav-number">4.2.</span> <span class="nav-text">🧱 2️⃣ src&#x2F;main.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%A7%B1-3%EF%B8%8F%E2%83%A3-src-App-vue"><span class="nav-number">4.3.</span> <span class="nav-text">🧱 3️⃣ src&#x2F;App.vue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%A7%B1-4%EF%B8%8F%E2%83%A3-src-pages-Products-vue"><span class="nav-number">4.4.</span> <span class="nav-text">🧱 4️⃣ src&#x2F;pages&#x2F;Products.vue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%A7%B1-5%EF%B8%8F%E2%83%A3-src-pages-Orders-vue"><span class="nav-number">4.5.</span> <span class="nav-text">🧱 5️⃣ src&#x2F;pages&#x2F;Orders.vue</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%9A%80-B-%E9%9A%8E%E6%AE%B5%E5%AE%8C%E6%88%90%E5%BE%8C%EF%BC%8C%E4%BD%A0%E8%83%BD%E5%81%9A%E5%88%B0%EF%BC%9A"><span class="nav-number">5.</span> <span class="nav-text">🚀 B 階段完成後，你能做到：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%93%98-%E4%B8%8B%E4%B8%80%E6%AD%A5%EF%BC%88C-%E9%9A%8E%E6%AE%B5%E9%A0%90%E5%91%8A%EF%BC%89"><span class="nav-number">6.</span> <span class="nav-text">📘 下一步（C 階段預告）</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">505</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2025/11/12/OneDayOneNote/2025-07-06/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2025-07-06 Line 訂單系統-B 階段：商品與訂單管理 API + Vue3 後台管理 UI（初版 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2025-07-06 Line 訂單系統-B 階段：商品與訂單管理 API + Vue3 後台管理 UI（初版">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2025-07-06 Line 訂單系統-B 階段：商品與訂單管理 API + Vue3 後台管理 UI（初版
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2025-11-12 23:12:36 / 修改時間：23:13:19" itemprop="dateCreated datePublished" datetime="2025-11-12T23:12:36+08:00">2025-11-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2025-07-06 Line 訂單系統-B 階段：商品與訂單管理 API + Vue3 後台管理 UI（初版</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2025-07-06-Line-訂單系統-B-階段：商品與訂單管理-API-Vue3-後台管理-UI（初版"><a href="#2025-07-06-Line-訂單系統-B-階段：商品與訂單管理-API-Vue3-後台管理-UI（初版" class="headerlink" title="2025-07-06 Line 訂單系統-B 階段：商品與訂單管理 API + Vue3 後台管理 UI（初版"></a>2025-07-06 Line 訂單系統-B 階段：商品與訂單管理 API + Vue3 後台管理 UI（初版</h2><p>完成 <strong>A 階段（Line webhook + MySQL + Node.js base）</strong>，<br>現在進入下一階段 —— <strong>📗 B 階段：商品與訂單管理 API + Vue3 後台管理 UI（初版）</strong>。</p>
+<p>這個階段的目標是讓你可以在電腦上建立一個<strong>簡單可操作的訂單管理後台</strong>，<br>可以用瀏覽器新增商品、查看訂單、確認訂單。<br>LINE 用戶未來送出訂單時，這些商品與訂單會連動到這裡。</p>
+<hr>
+<h2 id="🧭-B-階段整體結構"><a href="#🧭-B-階段整體結構" class="headerlink" title="🧭 B 階段整體結構"></a>🧭 B 階段整體結構</h2><p>📁 line-order-system</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">line-order-system/</span><br><span class="line">├─ backend/            ← 已完成 (A階段)</span><br><span class="line">│  ├─ routes/</span><br><span class="line">│  │   ├─ line.js</span><br><span class="line">│  │   ├─ products.js  ← 新增</span><br><span class="line">│  │   └─ orders.js    ← 新增</span><br><span class="line">│  ├─ db_init.sql       ← 新增商品/訂單表</span><br><span class="line">│  └─ ...</span><br><span class="line">└─ frontend/           ← 新增 Vue3 (Vite) 專案</span><br><span class="line">   ├─ src/</span><br><span class="line">   │  ├─ pages/</span><br><span class="line">   │  │   ├─ Products.vue</span><br><span class="line">   │  │   ├─ Orders.vue</span><br><span class="line">   │  │   └─ Dashboard.vue</span><br><span class="line">   │  ├─ components/</span><br><span class="line">   │  │   ├─ ProductForm.vue</span><br><span class="line">   │  │   └─ OrderTable.vue</span><br><span class="line">   │  ├─ App.vue</span><br><span class="line">   │  └─ main.js</span><br><span class="line">   └─ package.json</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="🧩-後端設計（Node-js-Express）"><a href="#🧩-後端設計（Node-js-Express）" class="headerlink" title="🧩 後端設計（Node.js &#x2F; Express）"></a>🧩 後端設計（Node.js &#x2F; Express）</h2><h3 id="🧱-1️⃣-資料庫-—-db-init-sql-新增"><a href="#🧱-1️⃣-資料庫-—-db-init-sql-新增" class="headerlink" title="🧱 1️⃣ 資料庫 — db_init.sql 新增"></a>🧱 1️⃣ 資料庫 — <code>db_init.sql</code> 新增</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">USE line_order_db;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> products (</span><br><span class="line">  id <span class="type">INT</span> AUTO_INCREMENT <span class="keyword">PRIMARY</span> KEY,</span><br><span class="line">  name <span class="type">VARCHAR</span>(<span class="number">100</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  price <span class="type">DECIMAL</span>(<span class="number">10</span>,<span class="number">2</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  description TEXT,</span><br><span class="line">  created_at <span class="type">TIMESTAMP</span> <span class="keyword">DEFAULT</span> <span class="built_in">CURRENT_TIMESTAMP</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> orders (</span><br><span class="line">  id <span class="type">INT</span> AUTO_INCREMENT <span class="keyword">PRIMARY</span> KEY,</span><br><span class="line">  product_id <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  quantity <span class="type">INT</span> <span class="keyword">DEFAULT</span> <span class="number">1</span>,</span><br><span class="line">  customer_name <span class="type">VARCHAR</span>(<span class="number">100</span>),</span><br><span class="line">  status ENUM(<span class="string">&#x27;pending&#x27;</span>, <span class="string">&#x27;confirmed&#x27;</span>, <span class="string">&#x27;cancelled&#x27;</span>) <span class="keyword">DEFAULT</span> <span class="string">&#x27;pending&#x27;</span>,</span><br><span class="line">  created_at <span class="type">TIMESTAMP</span> <span class="keyword">DEFAULT</span> <span class="built_in">CURRENT_TIMESTAMP</span>,</span><br><span class="line">  <span class="keyword">FOREIGN</span> KEY (product_id) <span class="keyword">REFERENCES</span> products(id)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="🧱-2️⃣-新增-backend-routes-products-js"><a href="#🧱-2️⃣-新增-backend-routes-products-js" class="headerlink" title="🧱 2️⃣ 新增 backend/routes/products.js"></a>🧱 2️⃣ 新增 <code>backend/routes/products.js</code></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> express <span class="keyword">from</span> <span class="string">&quot;express&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; pool &#125; <span class="keyword">from</span> <span class="string">&quot;../db.js&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> router = express.<span class="title class_">Router</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 取得所有商品</span></span><br><span class="line">router.<span class="title function_">get</span>(<span class="string">&quot;/&quot;</span>, <span class="keyword">async</span> (req, res) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> [rows] = <span class="keyword">await</span> pool.<span class="title function_">query</span>(<span class="string">&quot;SELECT * FROM products ORDER BY id DESC&quot;</span>);</span><br><span class="line">  res.<span class="title function_">json</span>(rows);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 新增商品</span></span><br><span class="line">router.<span class="title function_">post</span>(<span class="string">&quot;/&quot;</span>, <span class="keyword">async</span> (req, res) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; name, price, description &#125; = req.<span class="property">body</span>;</span><br><span class="line">  <span class="keyword">await</span> pool.<span class="title function_">query</span>(</span><br><span class="line">    <span class="string">&quot;INSERT INTO products (name, price, description) VALUES (?, ?, ?)&quot;</span>,</span><br><span class="line">    [name, price, description]</span><br><span class="line">  );</span><br><span class="line">  res.<span class="title function_">json</span>(&#123; <span class="attr">message</span>: <span class="string">&quot;Product added&quot;</span> &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 刪除商品</span></span><br><span class="line">router.<span class="title function_">delete</span>(<span class="string">&quot;/:id&quot;</span>, <span class="keyword">async</span> (req, res) =&gt; &#123;</span><br><span class="line">  <span class="keyword">await</span> pool.<span class="title function_">query</span>(<span class="string">&quot;DELETE FROM products WHERE id = ?&quot;</span>, [req.<span class="property">params</span>.<span class="property">id</span>]);</span><br><span class="line">  res.<span class="title function_">json</span>(&#123; <span class="attr">message</span>: <span class="string">&quot;Product deleted&quot;</span> &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> router;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="🧱-3️⃣-新增-backend-routes-orders-js"><a href="#🧱-3️⃣-新增-backend-routes-orders-js" class="headerlink" title="🧱 3️⃣ 新增 backend/routes/orders.js"></a>🧱 3️⃣ 新增 <code>backend/routes/orders.js</code></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> express <span class="keyword">from</span> <span class="string">&quot;express&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; pool &#125; <span class="keyword">from</span> <span class="string">&quot;../db.js&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> router = express.<span class="title class_">Router</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 取得所有訂單</span></span><br><span class="line">router.<span class="title function_">get</span>(<span class="string">&quot;/&quot;</span>, <span class="keyword">async</span> (req, res) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> [rows] = <span class="keyword">await</span> pool.<span class="title function_">query</span>(</span><br><span class="line">    <span class="string">`SELECT o.*, p.name AS product_name </span></span><br><span class="line"><span class="string">     FROM orders o </span></span><br><span class="line"><span class="string">     JOIN products p ON o.product_id = p.id </span></span><br><span class="line"><span class="string">     ORDER BY o.id DESC`</span></span><br><span class="line">  );</span><br><span class="line">  res.<span class="title function_">json</span>(rows);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 新增訂單（未來 LINE 也會用這個）</span></span><br><span class="line">router.<span class="title function_">post</span>(<span class="string">&quot;/&quot;</span>, <span class="keyword">async</span> (req, res) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; product_id, quantity, customer_name &#125; = req.<span class="property">body</span>;</span><br><span class="line">  <span class="keyword">await</span> pool.<span class="title function_">query</span>(</span><br><span class="line">    <span class="string">&quot;INSERT INTO orders (product_id, quantity, customer_name) VALUES (?, ?, ?)&quot;</span>,</span><br><span class="line">    [product_id, quantity, customer_name]</span><br><span class="line">  );</span><br><span class="line">  res.<span class="title function_">json</span>(&#123; <span class="attr">message</span>: <span class="string">&quot;Order created&quot;</span> &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 更新訂單狀態</span></span><br><span class="line">router.<span class="title function_">put</span>(<span class="string">&quot;/:id/status&quot;</span>, <span class="keyword">async</span> (req, res) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; status &#125; = req.<span class="property">body</span>;</span><br><span class="line">  <span class="keyword">await</span> pool.<span class="title function_">query</span>(<span class="string">&quot;UPDATE orders SET status = ? WHERE id = ?&quot;</span>, [</span><br><span class="line">    status,</span><br><span class="line">    req.<span class="property">params</span>.<span class="property">id</span>,</span><br><span class="line">  ]);</span><br><span class="line">  res.<span class="title function_">json</span>(&#123; <span class="attr">message</span>: <span class="string">&quot;Status updated&quot;</span> &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> router;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="🧱-4️⃣-修改-backend-index-js"><a href="#🧱-4️⃣-修改-backend-index-js" class="headerlink" title="🧱 4️⃣ 修改 backend/index.js"></a>🧱 4️⃣ 修改 <code>backend/index.js</code></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> express <span class="keyword">from</span> <span class="string">&quot;express&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> cors <span class="keyword">from</span> <span class="string">&quot;cors&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> dotenv <span class="keyword">from</span> <span class="string">&quot;dotenv&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> lineRouter <span class="keyword">from</span> <span class="string">&quot;./routes/line.js&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> productRouter <span class="keyword">from</span> <span class="string">&quot;./routes/products.js&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> orderRouter <span class="keyword">from</span> <span class="string">&quot;./routes/orders.js&quot;</span>;</span><br><span class="line"></span><br><span class="line">dotenv.<span class="title function_">config</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="title function_">express</span>();</span><br><span class="line">app.<span class="title function_">use</span>(<span class="title function_">cors</span>());</span><br><span class="line">app.<span class="title function_">use</span>(express.<span class="title function_">json</span>());</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&quot;/&quot;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> res.<span class="title function_">send</span>(<span class="string">&quot;Line Order Backend - B Stage Ready&quot;</span>));</span><br><span class="line">app.<span class="title function_">use</span>(<span class="string">&quot;/line&quot;</span>, lineRouter);</span><br><span class="line">app.<span class="title function_">use</span>(<span class="string">&quot;/products&quot;</span>, productRouter);</span><br><span class="line">app.<span class="title function_">use</span>(<span class="string">&quot;/orders&quot;</span>, orderRouter);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">PORT</span> = process.<span class="property">env</span>.<span class="property">PORT</span> || <span class="number">3000</span>;</span><br><span class="line">app.<span class="title function_">listen</span>(<span class="variable constant_">PORT</span>, <span class="function">() =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`🚀 Server running on port <span class="subst">$&#123;PORT&#125;</span>`</span>));</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="🎨-前端（Vue3-Vite）"><a href="#🎨-前端（Vue3-Vite）" class="headerlink" title="🎨 前端（Vue3 + Vite）"></a>🎨 前端（Vue3 + Vite）</h2><h3 id="🧱-1️⃣-建立專案（在-MacAir-1）"><a href="#🧱-1️⃣-建立專案（在-MacAir-1）" class="headerlink" title="🧱 1️⃣ 建立專案（在 MacAir #1）"></a>🧱 1️⃣ 建立專案（在 MacAir #1）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> line-order-system</span><br><span class="line">npm create vite@latest frontend -- --template vue</span><br><span class="line"><span class="built_in">cd</span> frontend</span><br><span class="line">npm install axios</span><br><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="🧱-2️⃣-src-main-js"><a href="#🧱-2️⃣-src-main-js" class="headerlink" title="🧱 2️⃣ src/main.js"></a>🧱 2️⃣ <code>src/main.js</code></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createApp &#125; <span class="keyword">from</span> <span class="string">&quot;vue&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">App</span> <span class="keyword">from</span> <span class="string">&quot;./App.vue&quot;</span>;</span><br><span class="line"><span class="title function_">createApp</span>(<span class="title class_">App</span>).<span class="title function_">mount</span>(<span class="string">&quot;#app&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="🧱-3️⃣-src-App-vue"><a href="#🧱-3️⃣-src-App-vue" class="headerlink" title="🧱 3️⃣ src/App.vue"></a>🧱 3️⃣ <code>src/App.vue</code></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;p-4 font-sans&quot;&gt;</span><br><span class="line">    &lt;h1 class=&quot;text-2xl font-bold mb-4&quot;&gt;📦 Line Order System - Admin&lt;/h1&gt;</span><br><span class="line">    &lt;div class=&quot;space-x-4 mb-4&quot;&gt;</span><br><span class="line">      &lt;button @click=&quot;page = &#x27;products&#x27;&quot;&gt;商品管理&lt;/button&gt;</span><br><span class="line">      &lt;button @click=&quot;page = &#x27;orders&#x27;&quot;&gt;訂單管理&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;Products v-if=&quot;page === &#x27;products&#x27;&quot; /&gt;</span><br><span class="line">    &lt;Orders v-else /&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">import &#123; ref &#125; from &quot;vue&quot;;</span><br><span class="line">import Products from &quot;./pages/Products.vue&quot;;</span><br><span class="line">import Orders from &quot;./pages/Orders.vue&quot;;</span><br><span class="line"></span><br><span class="line">const page = ref(&quot;products&quot;);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">button &#123;</span><br><span class="line">  background: #007bff;</span><br><span class="line">  color: white;</span><br><span class="line">  border: none;</span><br><span class="line">  padding: 6px 10px;</span><br><span class="line">  border-radius: 6px;</span><br><span class="line">  cursor: pointer;</span><br><span class="line">&#125;</span><br><span class="line">button:hover &#123;</span><br><span class="line">  background: #0056b3;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="🧱-4️⃣-src-pages-Products-vue"><a href="#🧱-4️⃣-src-pages-Products-vue" class="headerlink" title="🧱 4️⃣ src/pages/Products.vue"></a>🧱 4️⃣ <code>src/pages/Products.vue</code></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;h2&gt;商品管理&lt;/h2&gt;</span><br><span class="line">    &lt;form @submit.prevent=&quot;addProduct&quot; class=&quot;mb-3&quot;&gt;</span><br><span class="line">      &lt;input v-model=&quot;name&quot; placeholder=&quot;商品名稱&quot; /&gt;</span><br><span class="line">      &lt;input v-model.number=&quot;price&quot; placeholder=&quot;價格&quot; type=&quot;number&quot; /&gt;</span><br><span class="line">      &lt;input v-model=&quot;description&quot; placeholder=&quot;描述&quot; /&gt;</span><br><span class="line">      &lt;button&gt;新增商品&lt;/button&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line"></span><br><span class="line">    &lt;table border=&quot;1&quot; cellspacing=&quot;0&quot; cellpadding=&quot;5&quot;&gt;</span><br><span class="line">      &lt;tr&gt;</span><br><span class="line">        &lt;th&gt;ID&lt;/th&gt;&lt;th&gt;名稱&lt;/th&gt;&lt;th&gt;價格&lt;/th&gt;&lt;th&gt;描述&lt;/th&gt;&lt;th&gt;操作&lt;/th&gt;</span><br><span class="line">      &lt;/tr&gt;</span><br><span class="line">      &lt;tr v-for=&quot;p in products&quot; :key=&quot;p.id&quot;&gt;</span><br><span class="line">        &lt;td&gt;&#123;&#123; p.id &#125;&#125;&lt;/td&gt;</span><br><span class="line">        &lt;td&gt;&#123;&#123; p.name &#125;&#125;&lt;/td&gt;</span><br><span class="line">        &lt;td&gt;&#123;&#123; p.price &#125;&#125;&lt;/td&gt;</span><br><span class="line">        &lt;td&gt;&#123;&#123; p.description &#125;&#125;&lt;/td&gt;</span><br><span class="line">        &lt;td&gt;&lt;button @click=&quot;removeProduct(p.id)&quot;&gt;刪除&lt;/button&gt;&lt;/td&gt;</span><br><span class="line">      &lt;/tr&gt;</span><br><span class="line">    &lt;/table&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">import &#123; ref, onMounted &#125; from &quot;vue&quot;;</span><br><span class="line">import axios from &quot;axios&quot;;</span><br><span class="line">const api = &quot;http://localhost:3000/products&quot;;</span><br><span class="line"></span><br><span class="line">const products = ref([]);</span><br><span class="line">const name = ref(&quot;&quot;);</span><br><span class="line">const price = ref(&quot;&quot;);</span><br><span class="line">const description = ref(&quot;&quot;);</span><br><span class="line"></span><br><span class="line">async function loadProducts() &#123;</span><br><span class="line">  const res = await axios.get(api);</span><br><span class="line">  products.value = res.data;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">async function addProduct() &#123;</span><br><span class="line">  await axios.post(api, &#123; name: name.value, price: price.value, description: description.value &#125;);</span><br><span class="line">  name.value = price.value = description.value = &quot;&quot;;</span><br><span class="line">  await loadProducts();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">async function removeProduct(id) &#123;</span><br><span class="line">  await axios.delete(`$&#123;api&#125;/$&#123;id&#125;`);</span><br><span class="line">  await loadProducts();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">onMounted(loadProducts);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="🧱-5️⃣-src-pages-Orders-vue"><a href="#🧱-5️⃣-src-pages-Orders-vue" class="headerlink" title="🧱 5️⃣ src/pages/Orders.vue"></a>🧱 5️⃣ <code>src/pages/Orders.vue</code></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;h2&gt;訂單管理&lt;/h2&gt;</span><br><span class="line">    &lt;table border=&quot;1&quot; cellspacing=&quot;0&quot; cellpadding=&quot;5&quot;&gt;</span><br><span class="line">      &lt;tr&gt;</span><br><span class="line">        &lt;th&gt;ID&lt;/th&gt;&lt;th&gt;商品&lt;/th&gt;&lt;th&gt;數量&lt;/th&gt;&lt;th&gt;顧客&lt;/th&gt;&lt;th&gt;狀態&lt;/th&gt;&lt;th&gt;操作&lt;/th&gt;</span><br><span class="line">      &lt;/tr&gt;</span><br><span class="line">      &lt;tr v-for=&quot;o in orders&quot; :key=&quot;o.id&quot;&gt;</span><br><span class="line">        &lt;td&gt;&#123;&#123; o.id &#125;&#125;&lt;/td&gt;</span><br><span class="line">        &lt;td&gt;&#123;&#123; o.product_name &#125;&#125;&lt;/td&gt;</span><br><span class="line">        &lt;td&gt;&#123;&#123; o.quantity &#125;&#125;&lt;/td&gt;</span><br><span class="line">        &lt;td&gt;&#123;&#123; o.customer_name &#125;&#125;&lt;/td&gt;</span><br><span class="line">        &lt;td&gt;&#123;&#123; o.status &#125;&#125;&lt;/td&gt;</span><br><span class="line">        &lt;td&gt;</span><br><span class="line">          &lt;select v-model=&quot;o.status&quot; @change=&quot;updateStatus(o.id, o.status)&quot;&gt;</span><br><span class="line">            &lt;option value=&quot;pending&quot;&gt;待處理&lt;/option&gt;</span><br><span class="line">            &lt;option value=&quot;confirmed&quot;&gt;已確認&lt;/option&gt;</span><br><span class="line">            &lt;option value=&quot;cancelled&quot;&gt;已取消&lt;/option&gt;</span><br><span class="line">          &lt;/select&gt;</span><br><span class="line">        &lt;/td&gt;</span><br><span class="line">      &lt;/tr&gt;</span><br><span class="line">    &lt;/table&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">import &#123; ref, onMounted &#125; from &quot;vue&quot;;</span><br><span class="line">import axios from &quot;axios&quot;;</span><br><span class="line">const api = &quot;http://localhost:3000/orders&quot;;</span><br><span class="line"></span><br><span class="line">const orders = ref([]);</span><br><span class="line"></span><br><span class="line">async function loadOrders() &#123;</span><br><span class="line">  const res = await axios.get(api);</span><br><span class="line">  orders.value = res.data;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">async function updateStatus(id, status) &#123;</span><br><span class="line">  await axios.put(`$&#123;api&#125;/$&#123;id&#125;/status`, &#123; status &#125;);</span><br><span class="line">  await loadOrders();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">onMounted(loadOrders);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="🚀-B-階段完成後，你能做到："><a href="#🚀-B-階段完成後，你能做到：" class="headerlink" title="🚀 B 階段完成後，你能做到："></a>🚀 B 階段完成後，你能做到：</h2><p>✅ 用 Vue3 後台新增 &#x2F; 刪除商品<br>✅ 查看 &#x2F; 修改訂單狀態<br>✅ 前後端資料同步於 MySQL<br>✅ 為未來「LINE 用戶下單」功能做好準備（C 階段）</p>
+<hr>
+<h2 id="📘-下一步（C-階段預告）"><a href="#📘-下一步（C-階段預告）" class="headerlink" title="📘 下一步（C 階段預告）"></a>📘 下一步（C 階段預告）</h2><blockquote>
+<p>「C 階段 — LINE 訂單整合」<br>讓 LINE 用戶在對話中輸入 “我要買 XX”，<br>→ LINE Bot 自動建立 <code>orders</code> 資料<br>→ 後台即時出現訂單。</p>
+</blockquote>
+<hr>
+<p>是否要我接著為你撰寫「📘 C 階段 — LINE 訂單整合（前端＋後端連動）」的詳細設計與實作？<br>這會讓整個流程從「LINE 對話 → MySQL → Vue 後台」完整串接起來。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/OneNote/" rel="tag"># OneNote</a>
+              <a href="/apple.lily/tags/Line%E8%A8%82%E5%96%AE%E7%B3%BB%E7%B5%B1/" rel="tag"># Line訂單系統</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/11/12/OneDayOneNote/2025-07-05/" rel="prev" title="2025-07-05 Line 訂單系統-A階 A1 在 GitHub 上保存與同步專案版本；A2 在 Lenovo 上快速重建或重新安裝測試環境">
+                  <i class="fa fa-angle-left"></i> 2025-07-05 Line 訂單系統-A階 A1 在 GitHub 上保存與同步專案版本；A2 在 Lenovo 上快速重建或重新安裝測試環境
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/11/12/OneDayOneNote/2025-07-07/" rel="next" title="2025-07-07 Line 訂單系統-C 階段（LINE 訂單整合：前端 + 後端串接）">
+                  2025-07-07 Line 訂單系統-C 階段（LINE 訂單整合：前端 + 後端串接） <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/apple.lily/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

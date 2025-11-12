@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2025-07-04 Line A 階段：LINE webhook + Node.js + MySQL（最小可行版本）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025-07-04 Line A 階段：LINE webhook + Node.js + MySQL（最小可行版本）">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/11/12/OneDayOneNote/2025-07-04/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2025-07-04 Line A 階段：LINE webhook + Node.js + MySQL（最小可行版本）">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-11-12T14:46:14.000Z">
+<meta property="article:modified_time" content="2025-11-12T14:46:59.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="OneNote">
+<meta property="article:tag" content="Line訂單系統">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2025/11/12/OneDayOneNote/2025-07-04/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2025/11/12/OneDayOneNote/2025-07-04/","path":"2025/11/12/OneDayOneNote/2025-07-04/","title":"2025-07-04 Line A 階段：LINE webhook + Node.js + MySQL（最小可行版本）"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2025-07-04 Line A 階段：LINE webhook + Node.js + MySQL（最小可行版本） | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2025-07-04-Line-A-%E9%9A%8E%E6%AE%B5%EF%BC%9ALINE-webhook-Node-js-MySQL%EF%BC%88%E6%9C%80%E5%B0%8F%E5%8F%AF%E8%A1%8C%E7%89%88%E6%9C%AC%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">2025-07-04 Line A 階段：LINE webhook + Node.js + MySQL（最小可行版本）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#A-%E9%9A%8E%E6%AE%B5%EF%BC%9ALINE-webhook-Node-js-MySQL%EF%BC%88%E6%9C%80%E5%B0%8F%E5%8F%AF%E8%A1%8C%E7%89%88%E6%9C%AC%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">A 階段：LINE webhook + Node.js + MySQL（最小可行版本）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E7%BD%AE%E6%A2%9D%E4%BB%B6%EF%BC%88%E8%AB%8B%E5%85%88%E5%AE%8C%E6%88%90%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">前置條件（請先完成）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AA%94%E6%A1%88%E7%B5%90%E6%A7%8B%EF%BC%88%E6%9C%80%E7%B5%82%E6%9C%83%E9%95%B7%E9%80%99%E6%A8%A3%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">檔案結構（最終會長這樣）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step-0-%E2%80%94-%E5%BB%BA-GitHub-repo%EF%BC%88%E8%8B%A5%E5%B0%9A%E6%9C%AA%E5%BB%BA%E7%AB%8B%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">Step 0 — 建 GitHub repo（若尚未建立）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step-1-%E2%80%94-%E5%BB%BA%E8%B3%87%E6%96%99%E5%BA%AB%E8%88%87%E5%88%9D%E5%A7%8B%E5%8C%96-SQL"><span class="nav-number">4.</span> <span class="nav-text">Step 1 — 建資料庫與初始化 SQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step-2-%E2%80%94-%E5%BB%BA%E7%AB%8B%E5%BE%8C%E7%AB%AF%E5%B0%88%E6%A1%88-%E5%AE%89%E8%A3%9D%E5%A5%97%E4%BB%B6%EF%BC%88%E5%9C%A8-backend-%E7%9B%AE%E9%8C%84%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">Step 2 — 建立後端專案 &amp; 安裝套件（在 backend 目錄）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step-3-%E2%80%94-%E5%BB%BA%E7%BD%AE-env-example-%E8%88%87-gitignore"><span class="nav-number">6.</span> <span class="nav-text">Step 3 — 建置 .env.example 與 .gitignore</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step-4-%E2%80%94-%E5%AF%AB%E7%A8%8B%E5%BC%8F%E7%A2%BC%EF%BC%88%E8%B2%BC%E5%A5%BD%E6%AA%94%E6%A1%88%EF%BC%89"><span class="nav-number">7.</span> <span class="nav-text">Step 4 — 寫程式碼（貼好檔案）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#backend-db-js"><span class="nav-number">7.1.</span> <span class="nav-text">backend&#x2F;db.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#backend-routes-line-js"><span class="nav-number">7.2.</span> <span class="nav-text">backend&#x2F;routes&#x2F;line.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#backend-index-js"><span class="nav-number">7.3.</span> <span class="nav-text">backend&#x2F;index.js</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step-5-%E2%80%94-%E5%BB%BA%E7%AB%8B%E6%9C%AC%E6%A9%9F-env%EF%BC%88%E4%B8%8D%E8%A6%81%E4%B8%8A%E5%82%B3%EF%BC%89"><span class="nav-number">8.</span> <span class="nav-text">Step 5 — 建立本機 .env（不要上傳）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step-6-%E2%80%94-%E5%95%9F%E5%8B%95%E4%BC%BA%E6%9C%8D%E5%99%A8%E4%B8%A6%E6%B8%AC%E8%A9%A6%E6%9C%AC%E6%A9%9F"><span class="nav-number">9.</span> <span class="nav-text">Step 6 — 啟動伺服器並測試本機</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step-7-%E2%80%94-%E7%94%A8-ngrok-%E6%9A%B4%E9%9C%B2-webhook%EF%BC%88%E5%9C%A8-Lenovo%EF%BC%89"><span class="nav-number">10.</span> <span class="nav-text">Step 7 — 用 ngrok 暴露 webhook（在 Lenovo）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step-8-%E2%80%94-%E5%9C%A8-LINE-Developers-%E8%A8%AD%E5%AE%9A-Webhook%EF%BC%88%E5%BB%BA%E7%AB%8B-Channel%EF%BC%89"><span class="nav-number">11.</span> <span class="nav-text">Step 8 — 在 LINE Developers 設定 Webhook（建立 Channel）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step-9-%E2%80%94-%E5%AF%A6%E6%A9%9F%E6%B8%AC%E8%A9%A6%EF%BC%88%E6%89%8B%E6%A9%9F-LINE%EF%BC%89"><span class="nav-number">12.</span> <span class="nav-text">Step 9 — 實機測試（手機 LINE）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step-10-%E2%80%94-%E6%8E%A8%E5%88%B0-GitHub%EF%BC%88%E4%B8%8D%E5%8C%85%E5%90%AB-env%EF%BC%89"><span class="nav-number">13.</span> <span class="nav-text">Step 10 — 推到 GitHub（不包含 .env）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Checkpoints%EF%BC%88%E9%A9%97%E6%94%B6%EF%BC%89"><span class="nav-number">14.</span> <span class="nav-text">Checkpoints（驗收）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A6%8B%E5%95%8F%E9%A1%8C%E8%88%87%E6%8E%92%E9%8C%AF%E5%BB%BA%E8%AD%B0"><span class="nav-number">15.</span> <span class="nav-text">常見問題與排錯建議</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E6%8F%90%E7%A4%BA%EF%BC%88%E9%96%8B%E7%99%BC%E9%9A%8E%E6%AE%B5%E5%B0%B1%E6%87%89%E9%81%B5%E5%AE%88%EF%BC%89"><span class="nav-number">16.</span> <span class="nav-text">安全提示（開發階段就應遵守）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E4%B8%80%E6%AD%A5%E5%BB%BA%E8%AD%B0%EF%BC%88A-%E9%9A%8E%E6%AE%B5%E5%AE%8C%E6%88%90%E5%BE%8C%EF%BC%89"><span class="nav-number">17.</span> <span class="nav-text">下一步建議（A 階段完成後）</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">505</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2025/11/12/OneDayOneNote/2025-07-04/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2025-07-04 Line A 階段：LINE webhook + Node.js + MySQL（最小可行版本） | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2025-07-04 Line A 階段：LINE webhook + Node.js + MySQL（最小可行版本）">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2025-07-04 Line A 階段：LINE webhook + Node.js + MySQL（最小可行版本）
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2025-11-12 22:46:14 / 修改時間：22:46:59" itemprop="dateCreated datePublished" datetime="2025-11-12T22:46:14+08:00">2025-11-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2025-07-04 Line A 階段：LINE webhook + Node.js + MySQL（最小可行版本）</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2025-07-04-Line-A-階段：LINE-webhook-Node-js-MySQL（最小可行版本）"><a href="#2025-07-04-Line-A-階段：LINE-webhook-Node-js-MySQL（最小可行版本）" class="headerlink" title="2025-07-04 Line A 階段：LINE webhook + Node.js + MySQL（最小可行版本）"></a>2025-07-04 Line A 階段：LINE webhook + Node.js + MySQL（最小可行版本）</h2><p>從 <strong>A 階段（最小可行原型）</strong> 立刻開始：目標是建立可接收 LINE Webhook 的 Node.js 伺服器，並把來自使用者的訊息寫入 MySQL（後端跑在你的 Lenovo）。整個流程會包含：資料庫初始化、後端程式碼、環境變數設定、用 ngrok 曝露 webhook、以及實測步驟與檢查點。<br>下面是一步一步的操作手冊——可直接複製貼上執行。</p>
+<hr>
+<h1 id="A-階段：LINE-webhook-Node-js-MySQL（最小可行版本）"><a href="#A-階段：LINE-webhook-Node-js-MySQL（最小可行版本）" class="headerlink" title="A 階段：LINE webhook + Node.js + MySQL（最小可行版本）"></a>A 階段：LINE webhook + Node.js + MySQL（最小可行版本）</h1><p><strong>目標成果</strong></p>
+<ul>
+<li>Node.js 後端能接收 LINE Webhook，回覆訊息並把訊息寫入 MySQL <code>messages_log</code>。</li>
+<li>能用 ngrok 把本機 <code>http://localhost:3000/line/webhook</code> 暴露給 LINE 並測試。</li>
+<li>程式碼存到 GitHub（不含 <code>.env</code>）。</li>
+</ul>
+<hr>
+<h2 id="前置條件（請先完成）"><a href="#前置條件（請先完成）" class="headerlink" title="前置條件（請先完成）"></a>前置條件（請先完成）</h2><ul>
+<li>Lenovo（開發主機）已安裝 Node.js（建議 v18+）與 npm。若沒安裝，請用 nvm-windows 或官網安裝器。</li>
+<li>Lenovo 已安裝 MySQL Server，知道 root 或其他使用者密碼。或已註冊 PlanetScale（若使用雲端 DB，請準備好連線字串）。</li>
+<li>已有 GitHub 帳號（會推 code 到 repo）。</li>
+<li>已安裝 ngrok 並完成驗證（ngrok authtoken）或準備安裝。</li>
+<li>已註冊 LINE Developers 帳號（稍後要建立 channel）。</li>
+</ul>
+<hr>
+<h2 id="檔案結構（最終會長這樣）"><a href="#檔案結構（最終會長這樣）" class="headerlink" title="檔案結構（最終會長這樣）"></a>檔案結構（最終會長這樣）</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">line-order-system/</span><br><span class="line">├─ backend/</span><br><span class="line">│  ├─ index.js</span><br><span class="line">│  ├─ db.js</span><br><span class="line">│  ├─ routes/</span><br><span class="line">│  │   └─ line.js</span><br><span class="line">│  ├─ package.json</span><br><span class="line">│  ├─ .env.example</span><br><span class="line">│  └─ db_init.sql</span><br><span class="line">└─ README.md</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="Step-0-—-建-GitHub-repo（若尚未建立）"><a href="#Step-0-—-建-GitHub-repo（若尚未建立）" class="headerlink" title="Step 0 — 建 GitHub repo（若尚未建立）"></a>Step 0 — 建 GitHub repo（若尚未建立）</h2><ol>
+<li>在 GitHub 建 repo：<code>line-order-system</code>（Private 或 Public 都可）。</li>
+<li>clone 到 Lenovo：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> D:\Projects</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/&lt;你的帳號&gt;/line-order-system.git</span><br><span class="line"><span class="built_in">cd</span> line-order-system</span><br><span class="line"><span class="built_in">mkdir</span> backend</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="Step-1-—-建資料庫與初始化-SQL"><a href="#Step-1-—-建資料庫與初始化-SQL" class="headerlink" title="Step 1 — 建資料庫與初始化 SQL"></a>Step 1 — 建資料庫與初始化 SQL</h2><p>在 <code>backend/db_init.sql</code> 放以下內容（複製整段）：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- db_init.sql</span></span><br><span class="line"><span class="keyword">CREATE</span> DATABASE IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> line_order_db <span class="type">CHARACTER</span> <span class="keyword">SET</span> utf8mb4 <span class="keyword">COLLATE</span> utf8mb4_unicode_ci;</span><br><span class="line">USE line_order_db;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> users (</span><br><span class="line">  id <span class="type">INT</span> AUTO_INCREMENT <span class="keyword">PRIMARY</span> KEY,</span><br><span class="line">  line_user_id <span class="type">VARCHAR</span>(<span class="number">50</span>) <span class="keyword">UNIQUE</span>,</span><br><span class="line">  display_name <span class="type">VARCHAR</span>(<span class="number">100</span>),</span><br><span class="line">  phone <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">  created_at <span class="type">TIMESTAMP</span> <span class="keyword">DEFAULT</span> <span class="built_in">CURRENT_TIMESTAMP</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> messages_log (</span><br><span class="line">  id <span class="type">INT</span> AUTO_INCREMENT <span class="keyword">PRIMARY</span> KEY,</span><br><span class="line">  line_user_id <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">  event_type <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">  message_type <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">  message_text TEXT,</span><br><span class="line">  raw_event JSON,</span><br><span class="line">  created_at <span class="type">TIMESTAMP</span> <span class="keyword">DEFAULT</span> <span class="built_in">CURRENT_TIMESTAMP</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p><strong>執行 SQL（若在本機 MySQL）</strong></p>
+<ol>
+<li>用 MySQL Workbench 或命令列匯入：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br><span class="line">-- 輸入密碼，然後在 mysql&gt; 提示符輸入：</span><br><span class="line">SOURCE /path/to/line-order-system/backend/db_init.sql;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>確認：</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">USE line_order_db;</span><br><span class="line"><span class="keyword">SHOW</span> TABLES;</span><br><span class="line"><span class="comment">-- 應會看到 users、messages_log</span></span><br></pre></td></tr></table></figure>
+
+<p>如果你用 PlanetScale，使用其 Console 的 「Run schema」 或者透過 CLI 執行相同 SQL。</p>
+<hr>
+<h2 id="Step-2-—-建立後端專案-安裝套件（在-backend-目錄）"><a href="#Step-2-—-建立後端專案-安裝套件（在-backend-目錄）" class="headerlink" title="Step 2 — 建立後端專案 &amp; 安裝套件（在 backend 目錄）"></a>Step 2 — 建立後端專案 &amp; 安裝套件（在 backend 目錄）</h2><p>在 <code>line-order-system/backend</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> backend</span><br><span class="line">npm init -y</span><br><span class="line"><span class="comment"># 設為 ES module</span></span><br><span class="line"><span class="comment"># 編輯 package.json，加入 &quot;type&quot;: &quot;module&quot; （或用下面指令）</span></span><br></pre></td></tr></table></figure>
+
+<p>編輯 <code>package.json</code>（加入 scripts 與 type）：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;line-order-backend&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1.0.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;module&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;start&quot;</span><span class="punctuation">:</span> <span class="string">&quot;node index.js&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;dev&quot;</span><span class="punctuation">:</span> <span class="string">&quot;nodemon index.js&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;dependencies&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;@line/bot-sdk&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^7.6.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;cors&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^2.8.5&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;dotenv&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^16.0.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;express&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^4.18.2&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;mysql2&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^3.3.0&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;devDependencies&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;nodemon&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^2.0.22&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>安裝套件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install express cors dotenv mysql2 @line/bot-sdk</span><br><span class="line">npm install -D nodemon</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="Step-3-—-建置-env-example-與-gitignore"><a href="#Step-3-—-建置-env-example-與-gitignore" class="headerlink" title="Step 3 — 建置 .env.example 與 .gitignore"></a>Step 3 — 建置 .env.example 與 .gitignore</h2><p>在 <code>backend/.env.example</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># LINE</span><br><span class="line">LINE_CHANNEL_SECRET=your_channel_secret_here</span><br><span class="line">LINE_CHANNEL_ACCESS_TOKEN=your_channel_access_token_here</span><br><span class="line"></span><br><span class="line"># MySQL</span><br><span class="line">DB_HOST=localhost</span><br><span class="line">DB_USER=root</span><br><span class="line">DB_PASS=your_db_password</span><br><span class="line">DB_NAME=line_order_db</span><br><span class="line"></span><br><span class="line"># Server</span><br><span class="line">PORT=3000</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>backend/.gitignore</code>（或 repo 根目錄）加入：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">node_modules/</span><br><span class="line">.env</span><br><span class="line">.DS_Store</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>注意</strong>：不要把實際 <code>.env</code> 推到 GitHub。使用 <code>.env.example</code> 讓其他開發者知道要填何種變數。</p>
+</blockquote>
+<hr>
+<h2 id="Step-4-—-寫程式碼（貼好檔案）"><a href="#Step-4-—-寫程式碼（貼好檔案）" class="headerlink" title="Step 4 — 寫程式碼（貼好檔案）"></a>Step 4 — 寫程式碼（貼好檔案）</h2><h3 id="backend-db-js"><a href="#backend-db-js" class="headerlink" title="backend&#x2F;db.js"></a>backend&#x2F;db.js</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// backend/db.js</span></span><br><span class="line"><span class="keyword">import</span> mysql <span class="keyword">from</span> <span class="string">&#x27;mysql2/promise&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> dotenv <span class="keyword">from</span> <span class="string">&#x27;dotenv&#x27;</span>;</span><br><span class="line">dotenv.<span class="title function_">config</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> pool = mysql.<span class="title function_">createPool</span>(&#123;</span><br><span class="line">  <span class="attr">host</span>: process.<span class="property">env</span>.<span class="property">DB_HOST</span> || <span class="string">&#x27;localhost&#x27;</span>,</span><br><span class="line">  <span class="attr">user</span>: process.<span class="property">env</span>.<span class="property">DB_USER</span> || <span class="string">&#x27;root&#x27;</span>,</span><br><span class="line">  <span class="attr">password</span>: process.<span class="property">env</span>.<span class="property">DB_PASS</span> || <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">  <span class="attr">database</span>: process.<span class="property">env</span>.<span class="property">DB_NAME</span> || <span class="string">&#x27;line_order_db&#x27;</span>,</span><br><span class="line">  <span class="attr">waitForConnections</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">connectionLimit</span>: <span class="number">10</span>,</span><br><span class="line">  <span class="attr">queueLimit</span>: <span class="number">0</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="backend-routes-line-js"><a href="#backend-routes-line-js" class="headerlink" title="backend&#x2F;routes&#x2F;line.js"></a>backend&#x2F;routes&#x2F;line.js</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// backend/routes/line.js</span></span><br><span class="line"><span class="keyword">import</span> express <span class="keyword">from</span> <span class="string">&#x27;express&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; middleware, <span class="title class_">Client</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;@line/bot-sdk&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> dotenv <span class="keyword">from</span> <span class="string">&#x27;dotenv&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; pool &#125; <span class="keyword">from</span> <span class="string">&#x27;../db.js&#x27;</span>;</span><br><span class="line">dotenv.<span class="title function_">config</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> router = express.<span class="title class_">Router</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">  <span class="attr">channelAccessToken</span>: process.<span class="property">env</span>.<span class="property">LINE_CHANNEL_ACCESS_TOKEN</span>,</span><br><span class="line">  <span class="attr">channelSecret</span>: process.<span class="property">env</span>.<span class="property">LINE_CHANNEL_SECRET</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> client = <span class="keyword">new</span> <span class="title class_">Client</span>(config);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用 SDK middleware 驗證 signature</span></span><br><span class="line">router.<span class="title function_">post</span>(<span class="string">&#x27;/webhook&#x27;</span>, <span class="title function_">middleware</span>(config), <span class="keyword">async</span> (req, res) =&gt; &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> events = req.<span class="property">body</span>.<span class="property">events</span> || [];</span><br><span class="line">    <span class="comment">// 處理每個 event</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> event <span class="keyword">of</span> events) &#123;</span><br><span class="line">      <span class="comment">// 範例：只處理文字訊息並回覆</span></span><br><span class="line">      <span class="keyword">if</span> (event.<span class="property">type</span> === <span class="string">&#x27;message&#x27;</span> &amp;&amp; event.<span class="property">message</span>.<span class="property">type</span> === <span class="string">&#x27;text&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> userId = event.<span class="property">source</span>?.<span class="property">userId</span> || <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">const</span> text = event.<span class="property">message</span>.<span class="property">text</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 1) 儲存到 MySQL messages_log</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">          <span class="keyword">await</span> pool.<span class="title function_">query</span>(</span><br><span class="line">            <span class="string">&#x27;INSERT INTO messages_log (line_user_id, event_type, message_type, message_text, raw_event) VALUES (?, ?, ?, ?, ?)&#x27;</span>,</span><br><span class="line">            [userId, event.<span class="property">type</span>, event.<span class="property">message</span>.<span class="property">type</span>, text, <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(event)]</span><br><span class="line">          );</span><br><span class="line">        &#125; <span class="keyword">catch</span> (dbErr) &#123;</span><br><span class="line">          <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&#x27;DB insert error&#x27;</span>, dbErr);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2) 回覆使用者</span></span><br><span class="line">        <span class="keyword">const</span> replyText = <span class="string">`收到：<span class="subst">$&#123;text&#125;</span>\n（這是測試回覆）`</span>;</span><br><span class="line">        <span class="keyword">await</span> client.<span class="title function_">replyMessage</span>(event.<span class="property">replyToken</span>, &#123;</span><br><span class="line">          <span class="attr">type</span>: <span class="string">&#x27;text&#x27;</span>,</span><br><span class="line">          <span class="attr">text</span>: replyText</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 處理非文字訊息或其他事件時，僅回 200</span></span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Unhandled event type:&#x27;</span>, event.<span class="property">type</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    res.<span class="title function_">status</span>(<span class="number">200</span>).<span class="title function_">send</span>(<span class="string">&#x27;OK&#x27;</span>);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&#x27;Webhook processing error&#x27;</span>, err);</span><br><span class="line">    res.<span class="title function_">status</span>(<span class="number">500</span>).<span class="title function_">end</span>();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> router;</span><br></pre></td></tr></table></figure>
+
+<h3 id="backend-index-js"><a href="#backend-index-js" class="headerlink" title="backend&#x2F;index.js"></a>backend&#x2F;index.js</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// backend/index.js</span></span><br><span class="line"><span class="keyword">import</span> express <span class="keyword">from</span> <span class="string">&#x27;express&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> cors <span class="keyword">from</span> <span class="string">&#x27;cors&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> dotenv <span class="keyword">from</span> <span class="string">&#x27;dotenv&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> lineRouter <span class="keyword">from</span> <span class="string">&#x27;./routes/line.js&#x27;</span>;</span><br><span class="line"></span><br><span class="line">dotenv.<span class="title function_">config</span>();</span><br><span class="line"><span class="keyword">const</span> app = <span class="title function_">express</span>();</span><br><span class="line">app.<span class="title function_">use</span>(<span class="title function_">cors</span>());</span><br><span class="line">app.<span class="title function_">use</span>(express.<span class="title function_">json</span>(&#123; <span class="attr">limit</span>: <span class="string">&#x27;1mb&#x27;</span> &#125;));</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> res.<span class="title function_">send</span>(<span class="string">&#x27;Line Order Backend - OK&#x27;</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 註冊 route</span></span><br><span class="line">app.<span class="title function_">use</span>(<span class="string">&#x27;/line&#x27;</span>, lineRouter);</span><br><span class="line"></span><br><span class="line"><span class="comment">// optional: health check</span></span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/health&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> res.<span class="title function_">json</span>(&#123; <span class="attr">status</span>: <span class="string">&#x27;ok&#x27;</span> &#125;));</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">PORT</span> = process.<span class="property">env</span>.<span class="property">PORT</span> || <span class="number">3000</span>;</span><br><span class="line">app.<span class="title function_">listen</span>(<span class="variable constant_">PORT</span>, <span class="function">() =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`Server running on port <span class="subst">$&#123;PORT&#125;</span>`</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// Export app for testing (if needed)</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> app;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="Step-5-—-建立本機-env（不要上傳）"><a href="#Step-5-—-建立本機-env（不要上傳）" class="headerlink" title="Step 5 — 建立本機 .env（不要上傳）"></a>Step 5 — 建立本機 <code>.env</code>（不要上傳）</h2><p>在 <code>backend</code> 建 <code> .env</code>，填入你的真實值（不要推上 GitHub）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">LINE_CHANNEL_SECRET=xxxx</span><br><span class="line">LINE_CHANNEL_ACCESS_TOKEN=yyyy</span><br><span class="line">DB_HOST=localhost</span><br><span class="line">DB_USER=root</span><br><span class="line">DB_PASS=your_mysql_password</span><br><span class="line">DB_NAME=line_order_db</span><br><span class="line">PORT=3000</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="Step-6-—-啟動伺服器並測試本機"><a href="#Step-6-—-啟動伺服器並測試本機" class="headerlink" title="Step 6 — 啟動伺服器並測試本機"></a>Step 6 — 啟動伺服器並測試本機</h2><p>在 backend 目錄啟動：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm run dev</span><br><span class="line"><span class="comment"># 或</span></span><br><span class="line">node index.js</span><br></pre></td></tr></table></figure>
+
+<p>在瀏覽器開 <code>http://localhost:3000/</code> 應顯示 <code>Line Order Backend - OK</code>。<br>在 <code>http://localhost:3000/health</code> 看到 <code>&#123;status: &quot;ok&quot;&#125;</code>。</p>
+<hr>
+<h2 id="Step-7-—-用-ngrok-暴露-webhook（在-Lenovo）"><a href="#Step-7-—-用-ngrok-暴露-webhook（在-Lenovo）" class="headerlink" title="Step 7 — 用 ngrok 暴露 webhook（在 Lenovo）"></a>Step 7 — 用 ngrok 暴露 webhook（在 Lenovo）</h2><ol>
+<li>啟動 ngrok（假設你已安裝且驗證過）：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ngrok http 3000</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>ngrok 會顯示一個公開 URL，例如：<br><code>https://a1b2c3d4.ngrok.io</code></li>
+<li>你的 LINE webhook 完整 URL 路徑會是：<br><code>https://a1b2c3d4.ngrok.io/line/webhook</code></li>
+</ol>
+<hr>
+<h2 id="Step-8-—-在-LINE-Developers-設定-Webhook（建立-Channel）"><a href="#Step-8-—-在-LINE-Developers-設定-Webhook（建立-Channel）" class="headerlink" title="Step 8 — 在 LINE Developers 設定 Webhook（建立 Channel）"></a>Step 8 — 在 LINE Developers 設定 Webhook（建立 Channel）</h2><ol>
+<li><p>登入 LINE Developers → 建立 Provider → 建立 Channel (Messaging API)。</p>
+</li>
+<li><p>在 Channel 設定頁填入 <code>Channel name</code>、選類別、上傳 Icon（非必要）。</p>
+</li>
+<li><p>取得 <code>Channel secret</code> 與 <code>Channel access token</code>（存進你的 <code>backend/.env</code>）。</p>
+</li>
+<li><p>在 Channel 的 Messaging API 設定區塊：</p>
+<ul>
+<li>Webhook URL：貼上 <code>https://&lt;your-ngrok&gt;/line/webhook</code></li>
+<li>點「Verify」應該顯示成功（若顯示失敗，檢查伺服器有沒有運行與 ngrok URL 是否正確）。</li>
+<li>啟用「Use webhook」。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="Step-9-—-實機測試（手機-LINE）"><a href="#Step-9-—-實機測試（手機-LINE）" class="headerlink" title="Step 9 — 實機測試（手機 LINE）"></a>Step 9 — 實機測試（手機 LINE）</h2><ol>
+<li>在 Channel 裡的「Messaging API」頁面找到「QR Code」或「Add as friend」方式，把你的 LINE Official Account 加為好友（或把 Developer Channel 的測試號加入）。</li>
+<li>用手機對帳號傳文字（比如 <code>測試</code> 或 <code>Hello</code>）。</li>
+<li>預期：Bot 回覆 <code>收到：Hello（這是測試回覆）</code>，而且 MySQL <code>messages_log</code> 會多一筆紀錄。</li>
+<li>確認 DB：</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> id, line_user_id, message_text, created_at <span class="keyword">FROM</span> messages_log <span class="keyword">ORDER</span> <span class="keyword">BY</span> id <span class="keyword">DESC</span> LIMIT <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="Step-10-—-推到-GitHub（不包含-env）"><a href="#Step-10-—-推到-GitHub（不包含-env）" class="headerlink" title="Step 10 — 推到 GitHub（不包含 .env）"></a>Step 10 — 推到 GitHub（不包含 .env）</h2><p>在 repo 根目錄：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ../   <span class="comment"># 回到 line-order-system 根</span></span><br><span class="line">git add backend</span><br><span class="line">git commit -m <span class="string">&quot;A-stage: backend webhook + save messages to MySQL&quot;</span></span><br><span class="line">git push origin main</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>確認 <code>.gitignore</code> 有 <code>.env</code> 並且沒有把 <code>.env</code> 推上去。</p>
+</blockquote>
+<hr>
+<h2 id="Checkpoints（驗收）"><a href="#Checkpoints（驗收）" class="headerlink" title="Checkpoints（驗收）"></a>Checkpoints（驗收）</h2><ul>
+<li><input disabled="" type="checkbox"> <code>http://localhost:3000/</code> 顯示 OK。</li>
+<li><input disabled="" type="checkbox"> ngrok 提供的公開 URL 可以 <code>POST</code> 到 <code>/line/webhook</code>（LINE Verify 成功）。</li>
+<li><input disabled="" type="checkbox"> 手機傳文字給 LINE 帳號，Bot 會回覆。</li>
+<li><input disabled="" type="checkbox"> MySQL <code>messages_log</code> 能看到該訊息的紀錄（raw_event 欄位有 JSON）。</li>
+<li><input disabled="" type="checkbox"> 程式碼已 push 到 GitHub（但 <code>.env</code> 未上傳）。</li>
+</ul>
+<hr>
+<h2 id="常見問題與排錯建議"><a href="#常見問題與排錯建議" class="headerlink" title="常見問題與排錯建議"></a>常見問題與排錯建議</h2><ul>
+<li>ngrok 驗證失敗 → 確認本機 server 有運行且能在 <code>http://localhost:3000/line/webhook</code> 回 200。用 curl 測試：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST http://localhost:3000/line/webhook -H <span class="string">&quot;Content-Type: application/json&quot;</span> -d <span class="string">&#x27;&#123;&quot;events&quot;:[]&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>LINE Verify 顯示「Invalid signature」→ 檢查 <code>.env</code> 的 <code>LINE_CHANNEL_SECRET</code> 是否正確；<code>@line/bot-sdk</code> middleware 會驗證簽章。</li>
+<li>MySQL 寫入失敗 → 檢查 <code>backend/db.js</code> 的連線參數與 DB 是否已建立 <code>line_order_db</code>、table 是否存在。</li>
+<li>若使用 PlanetScale → 連線字串與普通 MySQL 會有差異（需使用 TLS 與特殊用戶名），請參考 PlanetScale 的連線說明並把值放到 <code>.env</code>。</li>
+</ul>
+<hr>
+<h2 id="安全提示（開發階段就應遵守）"><a href="#安全提示（開發階段就應遵守）" class="headerlink" title="安全提示（開發階段就應遵守）"></a>安全提示（開發階段就應遵守）</h2><ul>
+<li>不要在任何公開地方（Slack、聊天室、GitHub）貼 <code>LINE_CHANNEL_ACCESS_TOKEN</code> 或 <code>.env</code> 內容。</li>
+<li>在 GitHub 設置 Branch 保護、PR 流程（未來）。</li>
+<li>若要多人協作，把 <code>.env.example</code> 提供給其他人，讓他們在本地建立各自的 <code>.env</code>。</li>
+</ul>
+<hr>
+<h2 id="下一步建議（A-階段完成後）"><a href="#下一步建議（A-階段完成後）" class="headerlink" title="下一步建議（A 階段完成後）"></a>下一步建議（A 階段完成後）</h2><p>如果你通過 A 階段檢查點，我建議接下來做：</p>
+<ol>
+<li>在後端新增「簡單指令解析」：<code>我要點餐</code> → 回傳商品清單（從 MySQL 讀取）。</li>
+<li>新增 <code>orders</code>、<code>order_items</code> SQL schema（我們的 full 手冊 B 階段內容）。</li>
+<li>在 frontend 開始做管理後台的最小 UI（顯示 messages_log 與商品列表）。</li>
+</ol>
+<hr>
+<p>如果你要，我可以：</p>
+<ul>
+<li>立刻幫你把 <code>backend</code> 的這一套檔案 <strong>打包成可以直接 <code>git clone</code> 並執行</strong> 的 starter repo（包含 <code>README</code>、<code>db_init.sql</code> 與所有檔案），或</li>
+<li>以你現在的環境給出<strong>逐步的命令行輸入腳本</strong>（PowerShell &#x2F; CMD）來在 Lenovo 一鍵建立這個後端與 DB（包含範例 seed 資料）。</li>
+</ul>
+<p>你要先哪一個？（我會直接給出 repo 的檔案清單或一鍵腳本，供你拷貝執行）</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/OneNote/" rel="tag"># OneNote</a>
+              <a href="/apple.lily/tags/Line%E8%A8%82%E5%96%AE%E7%B3%BB%E7%B5%B1/" rel="tag"># Line訂單系統</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/11/12/OneDayOneNote/2025-07-03/" rel="prev" title="2025-07-03 探討 line 線上系統如何設計, 包括 系統規劃，資料庫規劃，資源分配">
+                  <i class="fa fa-angle-left"></i> 2025-07-03 探討 line 線上系統如何設計, 包括 系統規劃，資料庫規劃，資源分配
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/11/12/OneDayOneNote/2025-07-05/" rel="next" title="2025-07-05 Line 訂單系統-A階 A1 在 GitHub 上保存與同步專案版本；A2 在 Lenovo 上快速重建或重新安裝測試環境">
+                  2025-07-05 Line 訂單系統-A階 A1 在 GitHub 上保存與同步專案版本；A2 在 Lenovo 上快速重建或重新安裝測試環境 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/apple.lily/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

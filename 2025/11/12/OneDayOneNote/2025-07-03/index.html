@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2025-07-03 探討 line 線上系統如何設計, 包括 系統規劃，資料庫規劃，資源分配">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025-07-03 探討 line 線上系統如何設計, 包括 系統規劃，資料庫規劃，資源分配">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/11/12/OneDayOneNote/2025-07-03/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2025-07-03 探討 line 線上系統如何設計, 包括 系統規劃，資料庫規劃，資源分配">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-11-12T14:27:15.000Z">
+<meta property="article:modified_time" content="2025-11-12T14:29:20.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="OneNote">
+<meta property="article:tag" content="Line訂單系統">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2025/11/12/OneDayOneNote/2025-07-03/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2025/11/12/OneDayOneNote/2025-07-03/","path":"2025/11/12/OneDayOneNote/2025-07-03/","title":"2025-07-03 探討 line 線上系統如何設計, 包括 系統規劃，資料庫規劃，資源分配"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2025-07-03 探討 line 線上系統如何設計, 包括 系統規劃，資料庫規劃，資源分配 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2025-07-03-%E6%8E%A2%E8%A8%8E-line-%E7%B7%9A%E4%B8%8A%E7%B3%BB%E7%B5%B1%E5%A6%82%E4%BD%95%E8%A8%AD%E8%A8%88-%E5%8C%85%E6%8B%AC-%E7%B3%BB%E7%B5%B1%E8%A6%8F%E5%8A%83%EF%BC%8C%E8%B3%87%E6%96%99%E5%BA%AB%E8%A6%8F%E5%8A%83%EF%BC%8C%E8%B3%87%E6%BA%90%E5%88%86%E9%85%8D"><span class="nav-number">1.</span> <span class="nav-text">2025-07-03 探討 line 線上系統如何設計, 包括 系統規劃，資料庫規劃，資源分配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%A7%AD-%E4%B8%80%E3%80%81%E6%95%B4%E9%AB%94%E7%B3%BB%E7%B5%B1%E6%A6%82%E5%BF%B5%E8%88%87%E8%A8%AD%E8%A8%88%E7%9B%AE%E6%A8%99"><span class="nav-number">2.</span> <span class="nav-text">🧭 一、整體系統概念與設計目標</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%8E%AF-%E7%9B%AE%E6%A8%99"><span class="nav-number">2.1.</span> <span class="nav-text">🎯 目標</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%8F%97%EF%B8%8F-%E4%BA%8C%E3%80%81%E7%B3%BB%E7%B5%B1%E6%9E%B6%E6%A7%8B%E8%A6%8F%E5%8A%83%EF%BC%88%E5%AE%8F%E8%A7%80%E8%A8%AD%E8%A8%88%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">🏗️ 二、系統架構規劃（宏觀設計）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%A7%A9-%E4%B8%89%E3%80%81%E6%A8%A1%E7%B5%84%E5%88%86%E5%B1%A4%E8%88%87%E5%8A%9F%E8%83%BD%E8%A6%8F%E5%8A%83"><span class="nav-number">4.</span> <span class="nav-text">🧩 三、模組分層與功能規劃</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%A7%B1-%E5%9B%9B%E3%80%81%E8%B3%87%E6%96%99%E5%BA%AB%E8%A6%8F%E5%8A%83%EF%BC%88MySQL%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">🧱 四、資料庫規劃（MySQL）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9A%99%EF%B8%8F-%E4%BA%94%E3%80%81%E8%B3%87%E6%BA%90%E8%88%87%E4%BA%BA%E5%8A%9B%E5%88%86%E9%85%8D%EF%BC%88%E4%BD%A0%E7%9B%AE%E5%89%8D%E7%9A%843%E5%8F%B0%E9%9B%BB%E8%85%A6%EF%BC%89"><span class="nav-number">6.</span> <span class="nav-text">⚙️ 五、資源與人力分配（你目前的3台電腦）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%94%A7-%E5%85%AD%E3%80%81%E5%88%86%E9%9A%8E%E6%AE%B5%E9%96%8B%E7%99%BC%E5%BB%BA%E8%AD%B0%EF%BC%88%E7%94%B1%E7%B0%A1%E5%85%A5%E7%B9%81%EF%BC%89"><span class="nav-number">7.</span> <span class="nav-text">🔧 六、分階段開發建議（由簡入繁）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%9B%A1%EF%B8%8F-%E4%B8%83%E3%80%81%E5%AE%89%E5%85%A8%E6%80%A7%E8%88%87%E5%8F%AF%E7%B6%AD%E8%AD%B7%E6%80%A7%E8%80%83%E9%87%8F"><span class="nav-number">8.</span> <span class="nav-text">🛡️ 七、安全性與可維護性考量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%AA%84-%E5%85%AB%E3%80%81%E7%B3%BB%E7%B5%B1%E5%8F%AF%E6%93%B4%E5%85%85%E6%96%B9%E5%90%91"><span class="nav-number">9.</span> <span class="nav-text">🪄 八、系統可擴充方向</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">505</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2025/11/12/OneDayOneNote/2025-07-03/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2025-07-03 探討 line 線上系統如何設計, 包括 系統規劃，資料庫規劃，資源分配 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2025-07-03 探討 line 線上系統如何設計, 包括 系統規劃，資料庫規劃，資源分配">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2025-07-03 探討 line 線上系統如何設計, 包括 系統規劃，資料庫規劃，資源分配
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2025-11-12 22:27:15 / 修改時間：22:29:20" itemprop="dateCreated datePublished" datetime="2025-11-12T22:27:15+08:00">2025-11-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2025-07-03 探討 line 線上系統如何設計, 包括 系統規劃，資料庫規劃，資源分配</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2025-07-03-探討-line-線上系統如何設計-包括-系統規劃，資料庫規劃，資源分配"><a href="#2025-07-03-探討-line-線上系統如何設計-包括-系統規劃，資料庫規劃，資源分配" class="headerlink" title="2025-07-03 探討 line 線上系統如何設計, 包括 系統規劃，資料庫規劃，資源分配"></a>2025-07-03 探討 line 線上系統如何設計, 包括 系統規劃，資料庫規劃，資源分配</h2><p>非常好 👏 Lily，這一步就是正式進入「架構設計階段」。<br>我們現在要為你的 <strong>LINE 線上訂單系統</strong> 建立一個完整的「可擴充藍圖」——<br>讓它不只是「一個 LINE 點餐系統」，而是能靈活改造成各類「線上交易／互動服務」的通用平台。</p>
+<hr>
+<h2 id="🧭-一、整體系統概念與設計目標"><a href="#🧭-一、整體系統概念與設計目標" class="headerlink" title="🧭 一、整體系統概念與設計目標"></a>🧭 一、整體系統概念與設計目標</h2><h3 id="🎯-目標"><a href="#🎯-目標" class="headerlink" title="🎯 目標"></a>🎯 目標</h3><p>建立一個：</p>
+<ul>
+<li>可透過 <strong>LINE 聊天介面</strong> 進行「點單、付款、查詢、通知」的系統</li>
+<li>使用 <strong>Node.js + MySQL + Vue3</strong> 架構</li>
+<li>可模組化擴充成其他應用（預約系統、客服問答、會員兌換系統）</li>
+</ul>
+<hr>
+<h2 id="🏗️-二、系統架構規劃（宏觀設計）"><a href="#🏗️-二、系統架構規劃（宏觀設計）" class="headerlink" title="🏗️ 二、系統架構規劃（宏觀設計）"></a>🏗️ 二、系統架構規劃（宏觀設計）</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[ 使用者(Line App) ]</span><br><span class="line">        │</span><br><span class="line">        ▼</span><br><span class="line">[ LINE Platform (Webhook) ]</span><br><span class="line">        │</span><br><span class="line">        ▼</span><br><span class="line">[ Node.js Backend Server ]</span><br><span class="line"> ├─ LineBot 模組 (Webhook處理、回覆訊息)</span><br><span class="line"> ├─ API 層 (處理訂單、用戶、商品)</span><br><span class="line"> ├─ DB 層 (與 MySQL / Redis / MongoDB 溝通)</span><br><span class="line"> └─ Log / Security / Scheduler 模組</span><br><span class="line">        │</span><br><span class="line">        ▼</span><br><span class="line">[ MySQL Database ]</span><br><span class="line">        │</span><br><span class="line">        ▼</span><br><span class="line">[ Vue3 前端 (管理後台 / 報表 / 訂單追蹤) ]</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="🧩-三、模組分層與功能規劃"><a href="#🧩-三、模組分層與功能規劃" class="headerlink" title="🧩 三、模組分層與功能規劃"></a>🧩 三、模組分層與功能規劃</h2><table>
+<thead>
+<tr>
+<th>層級</th>
+<th>模組</th>
+<th>功能說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>🔹 LINE Bot 層</td>
+<td>webhook, reply, flex message</td>
+<td>處理來自 LINE 的事件、生成回覆訊息</td>
+</tr>
+<tr>
+<td>🔹 API 層</td>
+<td>order, product, user, notify</td>
+<td>提供 RESTful API 給 LINE Bot 與前端使用</td>
+</tr>
+<tr>
+<td>🔹 資料層</td>
+<td>db (MySQL ORM)、cache (Redis)</td>
+<td>資料存取與快取層</td>
+</tr>
+<tr>
+<td>🔹 前端層 (Vue3)</td>
+<td>管理平台</td>
+<td>商品管理、訂單列表、報表</td>
+</tr>
+<tr>
+<td>🔹 工具層</td>
+<td>logger, scheduler, dotenv, config</td>
+<td>系統公用元件（安全設定、排程任務）</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🧱-四、資料庫規劃（MySQL）"><a href="#🧱-四、資料庫規劃（MySQL）" class="headerlink" title="🧱 四、資料庫規劃（MySQL）"></a>🧱 四、資料庫規劃（MySQL）</h2><table>
+<thead>
+<tr>
+<th>資料表</th>
+<th>主要欄位</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>users</code></td>
+<td>id, line_user_id, name, phone, joined_at</td>
+<td>儲存 LINE 使用者</td>
+</tr>
+<tr>
+<td><code>products</code></td>
+<td>id, name, price, stock, category</td>
+<td>商品資料</td>
+</tr>
+<tr>
+<td><code>orders</code></td>
+<td>id, user_id, total_price, status, created_at</td>
+<td>訂單主表</td>
+</tr>
+<tr>
+<td><code>order_items</code></td>
+<td>id, order_id, product_id, qty, price</td>
+<td>訂單明細</td>
+</tr>
+<tr>
+<td><code>messages_log</code></td>
+<td>id, user_id, message_text, created_at</td>
+<td>記錄 LINE 對話（分析&#x2F;客服用）</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>✅ 可後續加上 <code>payments</code>, <code>coupons</code>, <code>delivery</code> 等表進階擴充。</p>
+</blockquote>
+<hr>
+<h2 id="⚙️-五、資源與人力分配（你目前的3台電腦）"><a href="#⚙️-五、資源與人力分配（你目前的3台電腦）" class="headerlink" title="⚙️ 五、資源與人力分配（你目前的3台電腦）"></a>⚙️ 五、資源與人力分配（你目前的3台電腦）</h2><table>
+<thead>
+<tr>
+<th>機器</th>
+<th>系統</th>
+<th>功能定位</th>
+<th>任務</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>🖥️ Lenovo（主機）</td>
+<td>Windows + Node.js + MySQL</td>
+<td><strong>後端主伺服器</strong></td>
+<td>開發與運行 Node.js、MySQL 資料庫</td>
+</tr>
+<tr>
+<td>💻 MacAir #1</td>
+<td>macOS + Vite + Vue3</td>
+<td><strong>前端開發機</strong></td>
+<td>建立 Vue3 管理介面、測試 UI</td>
+</tr>
+<tr>
+<td>💻 MacAir #2</td>
+<td>macOS</td>
+<td><strong>文件與測試／備援機</strong></td>
+<td>系統文件撰寫、Webhook 測試、備份 git</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🔧-六、分階段開發建議（由簡入繁）"><a href="#🔧-六、分階段開發建議（由簡入繁）" class="headerlink" title="🔧 六、分階段開發建議（由簡入繁）"></a>🔧 六、分階段開發建議（由簡入繁）</h2><table>
+<thead>
+<tr>
+<th>階段</th>
+<th>目標</th>
+<th>主要任務</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>A. 原型階段</strong></td>
+<td>能透過 LINE Bot 收到使用者訊息並回覆</td>
+<td>✅ 設定 LINE Developer、建立 webhook server</td>
+</tr>
+<tr>
+<td><strong>B. 資料儲存階段</strong></td>
+<td>能記錄使用者與訊息</td>
+<td>✅ Node.js + MySQL 寫入訊息紀錄</td>
+</tr>
+<tr>
+<td><strong>C. 商品管理階段</strong></td>
+<td>能管理與查詢商品</td>
+<td>✅ Vue3 後台管理畫面 + API</td>
+</tr>
+<tr>
+<td><strong>D. 訂單流程階段</strong></td>
+<td>能完成下單流程（選擇商品→確認→付款）</td>
+<td>✅ LINE Flex Message + Order API</td>
+</tr>
+<tr>
+<td><strong>E. 通知與查詢階段</strong></td>
+<td>使用者能查訂單狀態</td>
+<td>✅ 查詢 API + Redis 快取</td>
+</tr>
+<tr>
+<td><strong>F. 擴充階段</strong></td>
+<td>加上付款、推播、報表</td>
+<td>✅ 結合第三方支付、Scheduler</td>
+</tr>
+<tr>
+<td><strong>G. 雲端部署階段</strong></td>
+<td>上線到 Render &#x2F; Vercel</td>
+<td>✅ HTTPS、環境變數設定、安全性測試</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🛡️-七、安全性與可維護性考量"><a href="#🛡️-七、安全性與可維護性考量" class="headerlink" title="🛡️ 七、安全性與可維護性考量"></a>🛡️ 七、安全性與可維護性考量</h2><ol>
+<li><strong>環境變數管理</strong>：使用 <code>.env</code> 保存 LINE token、DB 密碼</li>
+<li><strong>API 驗證</strong>：使用 JWT 或 LINE User ID 驗證請求來源</li>
+<li><strong>日誌紀錄</strong>：紀錄錯誤、Webhook 回覆、API 呼叫</li>
+<li><strong>模組化設計</strong>：每個功能拆分成獨立模組（易維護、易替換）</li>
+<li><strong>測試機制</strong>：使用 MacAir #2 進行 webhook 與功能測試</li>
+<li><strong>備份策略</strong>：MySQL dump + GitHub 定期 commit</li>
+</ol>
+<hr>
+<h2 id="🪄-八、系統可擴充方向"><a href="#🪄-八、系統可擴充方向" class="headerlink" title="🪄 八、系統可擴充方向"></a>🪄 八、系統可擴充方向</h2><table>
+<thead>
+<tr>
+<th>模組</th>
+<th>擴充方向</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>使用者系統</td>
+<td>加會員積分、推薦碼</td>
+</tr>
+<tr>
+<td>商品模組</td>
+<td>多層分類、庫存警報</td>
+</tr>
+<tr>
+<td>訂單模組</td>
+<td>支援預約取貨、線上付款</td>
+</tr>
+<tr>
+<td>訊息模組</td>
+<td>AI 自動回覆、問答紀錄</td>
+</tr>
+<tr>
+<td>前端</td>
+<td>加上報表、RWD 設計、Vue Router</td>
+</tr>
+</tbody></table>
+<hr>
+<p>如果你願意，我可以接下來幫你寫出：</p>
+<blockquote>
+<p>📘《A 階段：LINE webhook + Node.js + MySQL 最小可用版本》<br>（能收到 LINE 訊息並回覆、同時把訊息寫進 MySQL）</p>
+</blockquote>
+<p>是否要我現在幫你從「A 階段」開始設計與實作步驟？</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/OneNote/" rel="tag"># OneNote</a>
+              <a href="/apple.lily/tags/Line%E8%A8%82%E5%96%AE%E7%B3%BB%E7%B5%B1/" rel="tag"># Line訂單系統</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/11/12/OneDayOneNote/2025-07-02/" rel="prev" title="2025-07-02 Line 訂單系統-即時互動聊天機器人 MongoDB  Redis 能同時併用嗎?">
+                  <i class="fa fa-angle-left"></i> 2025-07-02 Line 訂單系統-即時互動聊天機器人 MongoDB  Redis 能同時併用嗎?
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/11/12/OneDayOneNote/2025-07-04/" rel="next" title="2025-07-04 Line A 階段：LINE webhook + Node.js + MySQL（最小可行版本）">
+                  2025-07-04 Line A 階段：LINE webhook + Node.js + MySQL（最小可行版本） <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/apple.lily/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
