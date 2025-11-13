@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2025-07-12 Line 訂單系統-C 階段 建立兩個實際可執行的核心檔案 Webhookhook後端 Vue前端訂單記錄頁面">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025-07-12 Line 訂單系統-C 階段 建立兩個實際可執行的核心檔案 Webhookhook後端 Vue前端訂單記錄頁面">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/11/13/OneDayOneNote/2025-07-12/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2025-07-12 Line 訂單系統-C 階段 建立兩個實際可執行的核心檔案 Webhookhook後端 Vue前端訂單記錄頁面">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-11-13T15:14:49.000Z">
+<meta property="article:modified_time" content="2025-11-13T15:16:40.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="OneNote">
+<meta property="article:tag" content="Line訂單系統">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2025/11/13/OneDayOneNote/2025-07-12/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2025/11/13/OneDayOneNote/2025-07-12/","path":"2025/11/13/OneDayOneNote/2025-07-12/","title":"2025-07-12 Line 訂單系統-C 階段 建立兩個實際可執行的核心檔案 Webhookhook後端 Vue前端訂單記錄頁面"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2025-07-12 Line 訂單系統-C 階段 建立兩個實際可執行的核心檔案 Webhookhook後端 Vue前端訂單記錄頁面 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2025-07-12-Line-%E8%A8%82%E5%96%AE%E7%B3%BB%E7%B5%B1-C-%E9%9A%8E%E6%AE%B5-%E5%BB%BA%E7%AB%8B%E5%85%A9%E5%80%8B%E5%AF%A6%E9%9A%9B%E5%8F%AF%E5%9F%B7%E8%A1%8C%E7%9A%84%E6%A0%B8%E5%BF%83%E6%AA%94%E6%A1%88-Webhookhook%E5%BE%8C%E7%AB%AF-Vue%E5%89%8D%E7%AB%AF%E8%A8%82%E5%96%AE%E8%A8%98%E9%8C%84%E9%A0%81%E9%9D%A2"><span class="nav-number">1.</span> <span class="nav-text">2025-07-12 Line 訂單系統-C 階段 建立兩個實際可執行的核心檔案 Webhookhook後端 Vue前端訂單記錄頁面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%A7%A9-%E4%B8%80%E3%80%81Node-js-%E5%BE%8C%E7%AB%AF-%E2%80%94-backend-routes-lineWebhook-js"><span class="nav-number">2.</span> <span class="nav-text">🧩 一、Node.js 後端 — backend&#x2F;routes&#x2F;lineWebhook.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%93%81-%E6%AA%94%E6%A1%88%E6%95%B4%E5%90%88%E8%AA%AA%E6%98%8E"><span class="nav-number">3.</span> <span class="nav-text">📁 檔案整合說明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%A7%A9-%E4%BA%8C%E3%80%81Vue3-%E5%89%8D%E7%AB%AF-%E2%80%94-frontend-src-views-LineOrders-vue"><span class="nav-number">4.</span> <span class="nav-text">🧩 二、Vue3 前端 — frontend&#x2F;src&#x2F;views&#x2F;LineOrders.vue</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9A%99%EF%B8%8F-%E5%89%8D%E5%BE%8C%E7%AB%AF%E9%80%A3%E5%8B%95%E6%B8%AC%E8%A9%A6%E6%B5%81%E7%A8%8B"><span class="nav-number">5.</span> <span class="nav-text">⚙️ 前後端連動測試流程</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">510</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2025/11/13/OneDayOneNote/2025-07-12/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2025-07-12 Line 訂單系統-C 階段 建立兩個實際可執行的核心檔案 Webhookhook後端 Vue前端訂單記錄頁面 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2025-07-12 Line 訂單系統-C 階段 建立兩個實際可執行的核心檔案 Webhookhook後端 Vue前端訂單記錄頁面">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2025-07-12 Line 訂單系統-C 階段 建立兩個實際可執行的核心檔案 Webhookhook後端 Vue前端訂單記錄頁面
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2025-11-13 23:14:49 / 修改時間：23:16:40" itemprop="dateCreated datePublished" datetime="2025-11-13T23:14:49+08:00">2025-11-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2025-07-12 Line 訂單系統-C 階段 建立兩個實際可執行的核心檔案 Webhookhook後端 Vue前端訂單記錄頁面</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2025-07-12-Line-訂單系統-C-階段-建立兩個實際可執行的核心檔案-Webhookhook後端-Vue前端訂單記錄頁面"><a href="#2025-07-12-Line-訂單系統-C-階段-建立兩個實際可執行的核心檔案-Webhookhook後端-Vue前端訂單記錄頁面" class="headerlink" title="2025-07-12 Line 訂單系統-C 階段 建立兩個實際可執行的核心檔案 Webhookhook後端 Vue前端訂單記錄頁面"></a>2025-07-12 Line 訂單系統-C 階段 建立兩個實際可執行的核心檔案 Webhookhook後端 Vue前端訂單記錄頁面</h2><p>我們現在就完整進入 <strong>📘 階段 C — LINE 訂單整合（前端＋後端連動）</strong> 的實作階段。</p>
+<p>接下來我會幫你建立兩個實際可執行的核心檔案：<br>1️⃣ <code>backend/routes/lineWebhook.js</code> — Node.js Webhook 後端<br>2️⃣ <code>frontend/src/views/LineOrders.vue</code> — Vue3 前端訂單紀錄頁面</p>
+<hr>
+<h2 id="🧩-一、Node-js-後端-—-backend-routes-lineWebhook-js"><a href="#🧩-一、Node-js-後端-—-backend-routes-lineWebhook-js" class="headerlink" title="🧩 一、Node.js 後端 — backend/routes/lineWebhook.js"></a>🧩 一、Node.js 後端 — <code>backend/routes/lineWebhook.js</code></h2><p>這個檔案的作用是：</p>
+<blockquote>
+<p>讓 LINE Bot 把使用者訊息（例如輸入「商品123」）傳到你的後端，<br>後端查 MySQL 回傳商品資料，再用 LINE API 回覆給使用者。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// backend/routes/lineWebhook.js</span></span><br><span class="line"><span class="keyword">import</span> express <span class="keyword">from</span> <span class="string">&quot;express&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&quot;axios&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> crypto <span class="keyword">from</span> <span class="string">&quot;crypto&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> mysql <span class="keyword">from</span> <span class="string">&quot;mysql2/promise&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> router = express.<span class="title class_">Router</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 建立 MySQL 連線池</span></span><br><span class="line"><span class="keyword">const</span> pool = mysql.<span class="title function_">createPool</span>(&#123;</span><br><span class="line">  <span class="attr">host</span>: process.<span class="property">env</span>.<span class="property">DB_HOST</span>,</span><br><span class="line">  <span class="attr">user</span>: process.<span class="property">env</span>.<span class="property">DB_USER</span>,</span><br><span class="line">  <span class="attr">password</span>: process.<span class="property">env</span>.<span class="property">DB_PASSWORD</span>,</span><br><span class="line">  <span class="attr">database</span>: process.<span class="property">env</span>.<span class="property">DB_NAME</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 驗證 LINE webhook 簽章</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">validateSignature</span>(<span class="params">body, signature</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> hash = crypto</span><br><span class="line">    .<span class="title function_">createHmac</span>(<span class="string">&quot;SHA256&quot;</span>, process.<span class="property">env</span>.<span class="property">LINE_CHANNEL_SECRET</span>)</span><br><span class="line">    .<span class="title function_">update</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(body))</span><br><span class="line">    .<span class="title function_">digest</span>(<span class="string">&quot;base64&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> hash === signature;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 處理 Webhook</span></span><br><span class="line">router.<span class="title function_">post</span>(<span class="string">&quot;/webhook&quot;</span>, <span class="keyword">async</span> (req, res) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> signature = req.<span class="property">headers</span>[<span class="string">&quot;x-line-signature&quot;</span>];</span><br><span class="line">  <span class="keyword">if</span> (!<span class="title function_">validateSignature</span>(req.<span class="property">body</span>, signature)) &#123;</span><br><span class="line">    <span class="keyword">return</span> res.<span class="title function_">status</span>(<span class="number">401</span>).<span class="title function_">send</span>(<span class="string">&quot;Invalid signature&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> events = req.<span class="property">body</span>.<span class="property">events</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> event <span class="keyword">of</span> events) &#123;</span><br><span class="line">    <span class="keyword">if</span> (event.<span class="property">type</span> === <span class="string">&quot;message&quot;</span> &amp;&amp; event.<span class="property">message</span>.<span class="property">type</span> === <span class="string">&quot;text&quot;</span>) &#123;</span><br><span class="line">      <span class="keyword">const</span> userText = event.<span class="property">message</span>.<span class="property">text</span>.<span class="title function_">trim</span>();</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 檢查是否為查詢商品</span></span><br><span class="line">      <span class="keyword">if</span> (userText.<span class="title function_">startsWith</span>(<span class="string">&quot;商品&quot;</span>)) &#123;</span><br><span class="line">        <span class="keyword">const</span> itemCode = userText.<span class="title function_">replace</span>(<span class="string">&quot;商品&quot;</span>, <span class="string">&quot;&quot;</span>).<span class="title function_">trim</span>();</span><br><span class="line">        <span class="keyword">const</span> [rows] = <span class="keyword">await</span> pool.<span class="title function_">query</span>(</span><br><span class="line">          <span class="string">&quot;SELECT name, price, description FROM products WHERE id = ?&quot;</span>,</span><br><span class="line">          [itemCode]</span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> replyMessage = <span class="string">&quot;&quot;</span>;</span><br><span class="line">        <span class="keyword">if</span> (rows.<span class="property">length</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">          <span class="keyword">const</span> product = rows[<span class="number">0</span>];</span><br><span class="line">          replyMessage = <span class="string">`📦 商品名稱：<span class="subst">$&#123;product.name&#125;</span>\n💲 價格：<span class="subst">$&#123;product.price&#125;</span>\n📝 說明：<span class="subst">$&#123;product.description&#125;</span>`</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          replyMessage = <span class="string">&quot;查無此商品，請確認代號是否正確。&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">await</span> axios.<span class="title function_">post</span>(</span><br><span class="line">          <span class="string">&quot;https://api.line.me/v2/bot/message/reply&quot;</span>,</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="attr">replyToken</span>: event.<span class="property">replyToken</span>,</span><br><span class="line">            <span class="attr">messages</span>: [&#123; <span class="attr">type</span>: <span class="string">&quot;text&quot;</span>, <span class="attr">text</span>: replyMessage &#125;],</span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="attr">headers</span>: &#123;</span><br><span class="line">              <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;application/json&quot;</span>,</span><br><span class="line">              <span class="title class_">Authorization</span>: <span class="string">`Bearer <span class="subst">$&#123;process.env.LINE_CHANNEL_ACCESS_TOKEN&#125;</span>`</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">          &#125;</span><br><span class="line">        );</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  res.<span class="title function_">status</span>(<span class="number">200</span>).<span class="title function_">end</span>();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> router;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="📁-檔案整合說明"><a href="#📁-檔案整合說明" class="headerlink" title="📁 檔案整合說明"></a>📁 檔案整合說明</h2><p>請確認 <code>backend/server.js</code> 中有加入這段：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lineWebhook <span class="keyword">from</span> <span class="string">&quot;./routes/lineWebhook.js&quot;</span>;</span><br><span class="line">app.<span class="title function_">use</span>(express.<span class="title function_">json</span>());</span><br><span class="line">app.<span class="title function_">use</span>(<span class="string">&quot;/api&quot;</span>, lineWebhook);</span><br></pre></td></tr></table></figure>
+
+<p>然後 <code>.env</code> 需有以下參數：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LINE_CHANNEL_SECRET=你的LINE_CHANNEL_SECRET</span><br><span class="line">LINE_CHANNEL_ACCESS_TOKEN=你的LINE_CHANNEL_ACCESS_TOKEN</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="🧩-二、Vue3-前端-—-frontend-src-views-LineOrders-vue"><a href="#🧩-二、Vue3-前端-—-frontend-src-views-LineOrders-vue" class="headerlink" title="🧩 二、Vue3 前端 — frontend/src/views/LineOrders.vue"></a>🧩 二、Vue3 前端 — <code>frontend/src/views/LineOrders.vue</code></h2><p>這個頁面主要讓管理者在後台看到所有來自 LINE 的訂單紀錄。</p>
+<p>假設你的後端有一個 <code>/api/orders</code> API，可以回傳 LINE 送進資料庫的訂單資料。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;line-orders&quot;&gt;</span><br><span class="line">    &lt;h1&gt;📱 LINE 訂單紀錄&lt;/h1&gt;</span><br><span class="line"></span><br><span class="line">    &lt;div v-if=&quot;loading&quot;&gt;讀取中...&lt;/div&gt;</span><br><span class="line">    &lt;div v-else&gt;</span><br><span class="line">      &lt;table&gt;</span><br><span class="line">        &lt;thead&gt;</span><br><span class="line">          &lt;tr&gt;</span><br><span class="line">            &lt;th&gt;訂單編號&lt;/th&gt;</span><br><span class="line">            &lt;th&gt;用戶名稱&lt;/th&gt;</span><br><span class="line">            &lt;th&gt;商品名稱&lt;/th&gt;</span><br><span class="line">            &lt;th&gt;數量&lt;/th&gt;</span><br><span class="line">            &lt;th&gt;狀態&lt;/th&gt;</span><br><span class="line">            &lt;th&gt;建立時間&lt;/th&gt;</span><br><span class="line">          &lt;/tr&gt;</span><br><span class="line">        &lt;/thead&gt;</span><br><span class="line">        &lt;tbody&gt;</span><br><span class="line">          &lt;tr v-for=&quot;order in orders&quot; :key=&quot;order.id&quot;&gt;</span><br><span class="line">            &lt;td&gt;&#123;&#123; order.id &#125;&#125;&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;&#123;&#123; order.user_name &#125;&#125;&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;&#123;&#123; order.product_name &#125;&#125;&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;&#123;&#123; order.quantity &#125;&#125;&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;&#123;&#123; order.status &#125;&#125;&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;&#123;&#123; new Date(order.created_at).toLocaleString() &#125;&#125;&lt;/td&gt;</span><br><span class="line">          &lt;/tr&gt;</span><br><span class="line">        &lt;/tbody&gt;</span><br><span class="line">      &lt;/table&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">import &#123; ref, onMounted &#125; from &quot;vue&quot;;</span><br><span class="line">import axios from &quot;axios&quot;;</span><br><span class="line"></span><br><span class="line">const orders = ref([]);</span><br><span class="line">const loading = ref(true);</span><br><span class="line"></span><br><span class="line">onMounted(async () =&gt; &#123;</span><br><span class="line">  try &#123;</span><br><span class="line">    const res = await axios.get(&quot;http://localhost:3000/api/orders&quot;);</span><br><span class="line">    orders.value = res.data;</span><br><span class="line">  &#125; catch (err) &#123;</span><br><span class="line">    console.error(&quot;無法取得訂單資料：&quot;, err);</span><br><span class="line">  &#125; finally &#123;</span><br><span class="line">    loading.value = false;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">.line-orders &#123;</span><br><span class="line">  padding: 1.5rem;</span><br><span class="line">&#125;</span><br><span class="line">table &#123;</span><br><span class="line">  width: 100%;</span><br><span class="line">  border-collapse: collapse;</span><br><span class="line">&#125;</span><br><span class="line">th, td &#123;</span><br><span class="line">  border: 1px solid #ddd;</span><br><span class="line">  padding: 8px;</span><br><span class="line">&#125;</span><br><span class="line">th &#123;</span><br><span class="line">  background: #f5f5f5;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="⚙️-前後端連動測試流程"><a href="#⚙️-前後端連動測試流程" class="headerlink" title="⚙️ 前後端連動測試流程"></a>⚙️ 前後端連動測試流程</h2><table>
+<thead>
+<tr>
+<th>步驟</th>
+<th>動作</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>①</td>
+<td>啟動 MySQL、Node.js (<code>npm run dev</code>)</td>
+<td>確保 <code>/api/webhook</code> 可以接收請求</td>
+</tr>
+<tr>
+<td>②</td>
+<td>使用 ngrok 將你的 port 3000 對外公開</td>
+<td><code>ngrok http 3000</code></td>
+</tr>
+<tr>
+<td>③</td>
+<td>在 LINE Developers → Messaging API → Webhook URL 設定 <code>https://&lt;ngrok-url&gt;/api/webhook</code></td>
+<td>測試訊息傳遞</td>
+</tr>
+<tr>
+<td>④</td>
+<td>在 LINE 輸入「商品 1」</td>
+<td>後端查 MySQL，回傳商品資訊</td>
+</tr>
+<tr>
+<td>⑤</td>
+<td>在 Vue3 後台 <code>LineOrders.vue</code> 檢視訂單紀錄</td>
+<td>驗證資料流是否完整</td>
+</tr>
+</tbody></table>
+<hr>
+<p>是否要我幫你繼續產生：<br>👉 對應的 <code>/api/orders</code> 後端 API（讓 <code>LineOrders.vue</code> 可以正常顯示訂單）？<br>這會是 <strong>C4 子階段</strong> 的最後一塊拼圖。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/OneNote/" rel="tag"># OneNote</a>
+              <a href="/apple.lily/tags/Line%E8%A8%82%E5%96%AE%E7%B3%BB%E7%B5%B1/" rel="tag"># Line訂單系統</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/11/13/OneDayOneNote/2025-07-11/" rel="prev" title="2025-07-11 Line 訂單系統-C 階段 LINE 訂單系統的三大核心路由">
+                  <i class="fa fa-angle-left"></i> 2025-07-11 Line 訂單系統-C 階段 LINE 訂單系統的三大核心路由
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/11/13/OneDayOneNote/2025-07-13/" rel="next" title="2025-07-13 Line 訂單系統-C 階段 C4 子階段 — LINE 訂單紀錄後端 API 建立">
+                  2025-07-13 Line 訂單系統-C 階段 C4 子階段 — LINE 訂單紀錄後端 API 建立 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/apple.lily/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
