@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2025-07-15 Line 訂單系統-D 階段 — Redis 快取與訂單狀態通知設計與實作">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025-07-15 Line 訂單系統-D 階段 — Redis 快取與訂單狀態通知設計與實作">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/11/13/OneDayOneNote/2025-07-15/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2025-07-15 Line 訂單系統-D 階段 — Redis 快取與訂單狀態通知設計與實作">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-11-13T15:37:32.000Z">
+<meta property="article:modified_time" content="2025-11-13T15:42:09.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="OneNote">
+<meta property="article:tag" content="Line訂單系統">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2025/11/13/OneDayOneNote/2025-07-15/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2025/11/13/OneDayOneNote/2025-07-15/","path":"2025/11/13/OneDayOneNote/2025-07-15/","title":"2025-07-15 Line 訂單系統-D 階段 — Redis 快取與訂單狀態通知設計與實作"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2025-07-15 Line 訂單系統-D 階段 — Redis 快取與訂單狀態通知設計與實作 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2025-07-15-Line-%E8%A8%82%E5%96%AE%E7%B3%BB%E7%B5%B1-D-%E9%9A%8E%E6%AE%B5-%E2%80%94-Redis-%E5%BF%AB%E5%8F%96%E8%88%87%E8%A8%82%E5%96%AE%E7%8B%80%E6%85%8B%E9%80%9A%E7%9F%A5%E8%A8%AD%E8%A8%88%E8%88%87%E5%AF%A6%E4%BD%9C"><span class="nav-number">1.</span> <span class="nav-text">2025-07-15 Line 訂單系統-D 階段 — Redis 快取與訂單狀態通知設計與實作</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%93%92-D-%E9%9A%8E%E6%AE%B5-%E2%80%94-Redis-%E5%BF%AB%E5%8F%96%E8%88%87%E8%A8%82%E5%96%AE%E7%8B%80%E6%85%8B%E9%80%9A%E7%9F%A5%E8%A8%AD%E8%A8%88%E8%88%87%E5%AF%A6%E4%BD%9C"><span class="nav-number"></span> <span class="nav-text">📒 D 階段 — Redis 快取與訂單狀態通知設計與實作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%A7%AD-D-%E9%9A%8E%E6%AE%B5%E7%9B%AE%E6%A8%99%E7%B8%BD%E8%A6%BD"><span class="nav-number">1.</span> <span class="nav-text">🧭 D 階段目標總覽</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9A%99%EF%B8%8F-%E7%B3%BB%E7%B5%B1%E6%9E%B6%E6%A7%8B%E6%A6%82%E5%BF%B5%E5%9C%96%EF%BC%88D-%E9%9A%8E%E6%AE%B5%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">⚙️ 系統架構概念圖（D 階段）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%A7%B1-%E5%AF%A6%E4%BD%9C%E6%AD%A5%E9%A9%9F"><span class="nav-number">3.</span> <span class="nav-text">🧱 實作步驟</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B9-D1-%E2%80%94-%E5%AE%89%E8%A3%9D-Redis-%E8%88%87%E8%A8%AD%E5%AE%9A%E9%80%A3%E7%B7%9A"><span class="nav-number">3.1.</span> <span class="nav-text">🔹 D1 — 安裝 Redis 與設定連線</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%9C%85-%E5%9C%A8%E6%9C%AC%E6%A9%9F%E6%88%96%E9%9B%B2%E7%AB%AF%E5%AE%89%E8%A3%9D-Redis"><span class="nav-number">3.1.1.</span> <span class="nav-text">✅ 在本機或雲端安裝 Redis</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%9C%85-%E5%AE%89%E8%A3%9D-Node-js-%E5%A5%97%E4%BB%B6"><span class="nav-number">3.1.2.</span> <span class="nav-text">✅ 安裝 Node.js 套件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%9C%85-%E6%96%B0%E5%A2%9E-env-%E8%AE%8A%E6%95%B8"><span class="nav-number">3.1.3.</span> <span class="nav-text">✅ 新增 .env 變數</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B9-D2-%E2%80%94-%E5%BB%BA%E7%AB%8B-Redis-%E9%80%A3%E7%B7%9A%E5%B7%A5%E5%85%B7"><span class="nav-number">3.2.</span> <span class="nav-text">🔹 D2 — 建立 Redis 連線工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B9-D3-%E2%80%94-%E4%BF%AE%E6%94%B9-orders-js-%E6%94%AF%E6%8F%B4-Redis-%E5%BF%AB%E5%8F%96"><span class="nav-number">3.3.</span> <span class="nav-text">🔹 D3 — 修改 orders.js 支援 Redis 快取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B9-D4-%E2%80%94-Vue3-%E5%BE%8C%E5%8F%B0%E6%8C%89%E9%88%95%E8%A7%B8%E7%99%BC%E6%9B%B4%E6%96%B0"><span class="nav-number">3.4.</span> <span class="nav-text">🔹 D4 — Vue3 後台按鈕觸發更新</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%A7%AA-%E6%B8%AC%E8%A9%A6%E6%B5%81%E7%A8%8B"><span class="nav-number">4.</span> <span class="nav-text">🧪 測試流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%85-D-%E9%9A%8E%E6%AE%B5%E5%AE%8C%E6%88%90%E6%88%90%E6%9E%9C"><span class="nav-number">5.</span> <span class="nav-text">✅ D 階段完成成果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%9A%80-%E4%B8%8B%E4%B8%80%E6%AD%A5%EF%BC%88%F0%9F%93%95-E-%E9%9A%8E%E6%AE%B5%E9%A0%90%E5%91%8A%EF%BC%89"><span class="nav-number">6.</span> <span class="nav-text">🚀 下一步（📕 E 階段預告）</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">514</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2025/11/13/OneDayOneNote/2025-07-15/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2025-07-15 Line 訂單系統-D 階段 — Redis 快取與訂單狀態通知設計與實作 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2025-07-15 Line 訂單系統-D 階段 — Redis 快取與訂單狀態通知設計與實作">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2025-07-15 Line 訂單系統-D 階段 — Redis 快取與訂單狀態通知設計與實作
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2025-11-13 23:37:32 / 修改時間：23:42:09" itemprop="dateCreated datePublished" datetime="2025-11-13T23:37:32+08:00">2025-11-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2025-07-15 Line 訂單系統-D 階段 — Redis 快取與訂單狀態通知設計與實作</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2025-07-15-Line-訂單系統-D-階段-—-Redis-快取與訂單狀態通知設計與實作"><a href="#2025-07-15-Line-訂單系統-D-階段-—-Redis-快取與訂單狀態通知設計與實作" class="headerlink" title="2025-07-15 Line 訂單系統-D 階段 — Redis 快取與訂單狀態通知設計與實作"></a>2025-07-15 Line 訂單系統-D 階段 — Redis 快取與訂單狀態通知設計與實作</h2><p>現在正式進入：</p>
+<h1 id="📒-D-階段-—-Redis-快取與訂單狀態通知設計與實作"><a href="#📒-D-階段-—-Redis-快取與訂單狀態通知設計與實作" class="headerlink" title="📒 D 階段 — Redis 快取與訂單狀態通知設計與實作"></a>📒 D 階段 — Redis 快取與訂單狀態通知設計與實作</h1><p>這是整個 LINE 訂單系統的「智慧化」階段，<br>讓你的系統不僅能收單，還能<strong>即時更新訂單狀態</strong>、<strong>減少資料庫負擔</strong>、<strong>推播通知使用者</strong>。</p>
+<hr>
+<h2 id="🧭-D-階段目標總覽"><a href="#🧭-D-階段目標總覽" class="headerlink" title="🧭 D 階段目標總覽"></a>🧭 D 階段目標總覽</h2><table>
+<thead>
+<tr>
+<th>目標</th>
+<th>功能說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>⚡ 引入 Redis</td>
+<td>作為訂單快取，減少頻繁的 MySQL 查詢</td>
+</tr>
+<tr>
+<td>🔔 即時通知機制</td>
+<td>當訂單狀態改變時（例如「已接單」、「配送中」），LINE 即時通知使用者</td>
+</tr>
+<tr>
+<td>🧩 API 整合</td>
+<td>提供 <code>/api/orders/:id/status</code> 更新訂單狀態的後端端點</td>
+</tr>
+<tr>
+<td>🖥️ Vue3 後台</td>
+<td>管理者可在後台點擊按鈕更新狀態（並觸發推播）</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="⚙️-系統架構概念圖（D-階段）"><a href="#⚙️-系統架構概念圖（D-階段）" class="headerlink" title="⚙️ 系統架構概念圖（D 階段）"></a>⚙️ 系統架構概念圖（D 階段）</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">LINE 使用者</span><br><span class="line">      ↓</span><br><span class="line"> LINE Messaging API</span><br><span class="line">      ↓</span><br><span class="line"> Node.js (Webhook) </span><br><span class="line">      ↕</span><br><span class="line"> Redis ←→ MySQL</span><br><span class="line">      ↕</span><br><span class="line"> Vue3 後台 (管理者更新訂單狀態)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Redis：快速暫存訂單狀態，避免重查 MySQL。</li>
+<li>MySQL：正式持久儲存。</li>
+<li>Vue 後台更新狀態 → Redis + MySQL 更新 → LINE 即時通知。</li>
+</ul>
+<hr>
+<h2 id="🧱-實作步驟"><a href="#🧱-實作步驟" class="headerlink" title="🧱 實作步驟"></a>🧱 實作步驟</h2><hr>
+<h3 id="🔹-D1-—-安裝-Redis-與設定連線"><a href="#🔹-D1-—-安裝-Redis-與設定連線" class="headerlink" title="🔹 D1 — 安裝 Redis 與設定連線"></a>🔹 D1 — 安裝 Redis 與設定連線</h3><h4 id="✅-在本機或雲端安裝-Redis"><a href="#✅-在本機或雲端安裝-Redis" class="headerlink" title="✅ 在本機或雲端安裝 Redis"></a>✅ 在本機或雲端安裝 Redis</h4><p>在 <strong>Lenovo（Windows）</strong> 或 <strong>Mac Air</strong> 上都可用 Docker：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name redis -p 6379:6379 -d redis</span><br></pre></td></tr></table></figure>
+
+<h4 id="✅-安裝-Node-js-套件"><a href="#✅-安裝-Node-js-套件" class="headerlink" title="✅ 安裝 Node.js 套件"></a>✅ 安裝 Node.js 套件</h4><p>在你的 backend 專案中：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install redis</span><br></pre></td></tr></table></figure>
+
+<h4 id="✅-新增-env-變數"><a href="#✅-新增-env-變數" class="headerlink" title="✅ 新增 .env 變數"></a>✅ 新增 <code>.env</code> 變數</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">REDIS_HOST=127.0.0.1</span><br><span class="line">REDIS_PORT=6379</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="🔹-D2-—-建立-Redis-連線工具"><a href="#🔹-D2-—-建立-Redis-連線工具" class="headerlink" title="🔹 D2 — 建立 Redis 連線工具"></a>🔹 D2 — 建立 Redis 連線工具</h3><p>📁 <code>backend/utils/redisClient.js</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createClient &#125; <span class="keyword">from</span> <span class="string">&quot;redis&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> client = <span class="title function_">createClient</span>(&#123;</span><br><span class="line">  <span class="attr">socket</span>: &#123;</span><br><span class="line">    <span class="attr">host</span>: process.<span class="property">env</span>.<span class="property">REDIS_HOST</span>,</span><br><span class="line">    <span class="attr">port</span>: process.<span class="property">env</span>.<span class="property">REDIS_PORT</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">client.<span class="title function_">on</span>(<span class="string">&quot;error&quot;</span>, <span class="function">(<span class="params">err</span>) =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&quot;❌ Redis 錯誤:&quot;</span>, err));</span><br><span class="line">client.<span class="title function_">connect</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> client;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="🔹-D3-—-修改-orders-js-支援-Redis-快取"><a href="#🔹-D3-—-修改-orders-js-支援-Redis-快取" class="headerlink" title="🔹 D3 — 修改 orders.js 支援 Redis 快取"></a>🔹 D3 — 修改 <code>orders.js</code> 支援 Redis 快取</h3><p>當查詢訂單列表時，會先查 Redis，沒有才查 MySQL。<br>更新訂單時，Redis 與 MySQL 會同步更新。</p>
+<p>📁 <code>backend/routes/orders.js</code>（更新後版本）：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> express <span class="keyword">from</span> <span class="string">&quot;express&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> mysql <span class="keyword">from</span> <span class="string">&quot;mysql2/promise&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> redisClient <span class="keyword">from</span> <span class="string">&quot;../utils/redisClient.js&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&quot;axios&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> router = express.<span class="title class_">Router</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> pool = mysql.<span class="title function_">createPool</span>(&#123;</span><br><span class="line">  <span class="attr">host</span>: process.<span class="property">env</span>.<span class="property">DB_HOST</span>,</span><br><span class="line">  <span class="attr">user</span>: process.<span class="property">env</span>.<span class="property">DB_USER</span>,</span><br><span class="line">  <span class="attr">password</span>: process.<span class="property">env</span>.<span class="property">DB_PASSWORD</span>,</span><br><span class="line">  <span class="attr">database</span>: process.<span class="property">env</span>.<span class="property">DB_NAME</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// ✅ 查詢所有訂單（含 Redis 快取）</span></span><br><span class="line">router.<span class="title function_">get</span>(<span class="string">&quot;/orders&quot;</span>, <span class="keyword">async</span> (req, res) =&gt; &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">// 嘗試從 Redis 取得快取</span></span><br><span class="line">    <span class="keyword">const</span> cachedOrders = <span class="keyword">await</span> redisClient.<span class="title function_">get</span>(<span class="string">&quot;orders&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (cachedOrders) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;📦 從 Redis 取得訂單資料&quot;</span>);</span><br><span class="line">      <span class="keyword">return</span> res.<span class="title function_">json</span>(<span class="title class_">JSON</span>.<span class="title function_">parse</span>(cachedOrders));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 查詢 MySQL</span></span><br><span class="line">    <span class="keyword">const</span> [rows] = <span class="keyword">await</span> pool.<span class="title function_">query</span>(</span><br><span class="line">      <span class="string">`SELECT o.id, o.user_name, p.name AS product_name, o.quantity, o.status, o.created_at</span></span><br><span class="line"><span class="string">       FROM orders o</span></span><br><span class="line"><span class="string">       LEFT JOIN products p ON o.product_id = p.id</span></span><br><span class="line"><span class="string">       ORDER BY o.created_at DESC`</span></span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 寫入 Redis 快取（存活 60 秒）</span></span><br><span class="line">    <span class="keyword">await</span> redisClient.<span class="title function_">setEx</span>(<span class="string">&quot;orders&quot;</span>, <span class="number">60</span>, <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(rows));</span><br><span class="line"></span><br><span class="line">    res.<span class="title function_">json</span>(rows);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&quot;查詢訂單錯誤:&quot;</span>, err);</span><br><span class="line">    res.<span class="title function_">status</span>(<span class="number">500</span>).<span class="title function_">json</span>(&#123; <span class="attr">error</span>: <span class="string">&quot;伺服器錯誤&quot;</span> &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// ✅ 更新訂單狀態（並推播 LINE）</span></span><br><span class="line">router.<span class="title function_">put</span>(<span class="string">&quot;/orders/:id/status&quot;</span>, <span class="keyword">async</span> (req, res) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> orderId = req.<span class="property">params</span>.<span class="property">id</span>;</span><br><span class="line">  <span class="keyword">const</span> &#123; newStatus, userName &#125; = req.<span class="property">body</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">// 更新 MySQL</span></span><br><span class="line">    <span class="keyword">await</span> pool.<span class="title function_">query</span>(<span class="string">`UPDATE orders SET status = ? WHERE id = ?`</span>, [</span><br><span class="line">      newStatus,</span><br><span class="line">      orderId,</span><br><span class="line">    ]);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 更新 Redis 快取</span></span><br><span class="line">    <span class="keyword">await</span> redisClient.<span class="title function_">del</span>(<span class="string">&quot;orders&quot;</span>); <span class="comment">// 清掉舊快取</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 查找 LINE 使用者（假設 userName 對應 LINE userId）</span></span><br><span class="line">    <span class="keyword">const</span> lineUserId = userName;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 傳送 LINE 通知</span></span><br><span class="line">    <span class="keyword">if</span> (lineUserId) &#123;</span><br><span class="line">      <span class="keyword">await</span> axios.<span class="title function_">post</span>(</span><br><span class="line">        <span class="string">&quot;https://api.line.me/v2/bot/message/push&quot;</span>,</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">to</span>: lineUserId,</span><br><span class="line">          <span class="attr">messages</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">              <span class="attr">type</span>: <span class="string">&quot;text&quot;</span>,</span><br><span class="line">              <span class="attr">text</span>: <span class="string">`📢 您的訂單（#<span class="subst">$&#123;orderId&#125;</span>）狀態已更新為：「<span class="subst">$&#123;newStatus&#125;</span>」`</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">          ],</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">headers</span>: &#123;</span><br><span class="line">            <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;application/json&quot;</span>,</span><br><span class="line">            <span class="title class_">Authorization</span>: <span class="string">`Bearer <span class="subst">$&#123;process.env.LINE_CHANNEL_ACCESS_TOKEN&#125;</span>`</span>,</span><br><span class="line">          &#125;,</span><br><span class="line">        &#125;</span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    res.<span class="title function_">json</span>(&#123; <span class="attr">success</span>: <span class="literal">true</span> &#125;);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&quot;更新訂單狀態錯誤:&quot;</span>, err);</span><br><span class="line">    res.<span class="title function_">status</span>(<span class="number">500</span>).<span class="title function_">json</span>(&#123; <span class="attr">error</span>: <span class="string">&quot;伺服器錯誤&quot;</span> &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> router;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="🔹-D4-—-Vue3-後台按鈕觸發更新"><a href="#🔹-D4-—-Vue3-後台按鈕觸發更新" class="headerlink" title="🔹 D4 — Vue3 後台按鈕觸發更新"></a>🔹 D4 — Vue3 後台按鈕觸發更新</h3><p>📁 <code>frontend/src/views/LineOrders.vue</code>（部分新增內容）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;td&gt;</span><br><span class="line">  &lt;select v-model=&quot;order.status&quot; @change=&quot;updateStatus(order)&quot;&gt;</span><br><span class="line">    &lt;option&gt;新訂單&lt;/option&gt;</span><br><span class="line">    &lt;option&gt;已接單&lt;/option&gt;</span><br><span class="line">    &lt;option&gt;配送中&lt;/option&gt;</span><br><span class="line">    &lt;option&gt;已完成&lt;/option&gt;</span><br><span class="line">  &lt;/select&gt;</span><br><span class="line">&lt;/td&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">updateStatus</span> = <span class="keyword">async</span> (<span class="params">order</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">await</span> axios.<span class="title function_">put</span>(<span class="string">`http://localhost:3000/api/orders/<span class="subst">$&#123;order.id&#125;</span>/status`</span>, &#123;</span><br><span class="line">      <span class="attr">newStatus</span>: order.<span class="property">status</span>,</span><br><span class="line">      <span class="attr">userName</span>: order.<span class="property">user_name</span>, <span class="comment">// 對應 LINE userId</span></span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">`訂單 #<span class="subst">$&#123;order.id&#125;</span> 狀態已更新為「<span class="subst">$&#123;order.status&#125;</span>」`</span>);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&quot;更新狀態錯誤:&quot;</span>, err);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="🧪-測試流程"><a href="#🧪-測試流程" class="headerlink" title="🧪 測試流程"></a>🧪 測試流程</h2><table>
+<thead>
+<tr>
+<th>步驟</th>
+<th>動作</th>
+<th>結果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1️⃣</td>
+<td>啟動 Redis + Node.js</td>
+<td>Redis 客戶端連線成功</td>
+</tr>
+<tr>
+<td>2️⃣</td>
+<td>Vue3 後台載入訂單清單</td>
+<td>第一次從 MySQL 查詢，之後從 Redis 快取</td>
+</tr>
+<tr>
+<td>3️⃣</td>
+<td>改變訂單狀態（例如改為「已接單」）</td>
+<td>Redis 清快取、MySQL 更新、LINE 推播通知</td>
+</tr>
+<tr>
+<td>4️⃣</td>
+<td>回到 LINE App 檢查訊息</td>
+<td>收到「您的訂單已更新」通知 ✅</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="✅-D-階段完成成果"><a href="#✅-D-階段完成成果" class="headerlink" title="✅ D 階段完成成果"></a>✅ D 階段完成成果</h2><table>
+<thead>
+<tr>
+<th>模組</th>
+<th>狀態</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Redis 快取導入</td>
+<td>✅ 已完成</td>
+</tr>
+<tr>
+<td>訂單狀態即時更新</td>
+<td>✅ 已完成</td>
+</tr>
+<tr>
+<td>LINE 推播通知</td>
+<td>✅ 已完成</td>
+</tr>
+<tr>
+<td>前端管理介面</td>
+<td>✅ 已整合</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🚀-下一步（📕-E-階段預告）"><a href="#🚀-下一步（📕-E-階段預告）" class="headerlink" title="🚀 下一步（📕 E 階段預告）"></a>🚀 下一步（📕 E 階段預告）</h2><p>接下來的 <strong>E 階段</strong> 將會進入：</p>
+<blockquote>
+<p>「前端介面優化（RWD + UI&#x2F;UX）」</p>
+</blockquote>
+<p>內容包括：</p>
+<ul>
+<li>美化 <code>LineOrders.vue</code>（RWD、自動更新、進度條）</li>
+<li>新增「即時刷新」或「Socket 實時訂單」</li>
+<li>強化前端的「使用者體驗」</li>
+</ul>
+<hr>
+<p>是否要我接下來幫你進入 📕 <strong>E 階段 — Vue3 前端優化（RWD＋UI&#x2F;UX 改版與即時刷新設計）</strong>？</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/OneNote/" rel="tag"># OneNote</a>
+              <a href="/apple.lily/tags/Line%E8%A8%82%E5%96%AE%E7%B3%BB%E7%B5%B1/" rel="tag"># Line訂單系統</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/11/13/OneDayOneNote/2025-07-14/" rel="prev" title="2025-07-14 Line 訂單系統-C 階段 「LINE 訂單整合」">
+                  <i class="fa fa-angle-left"></i> 2025-07-14 Line 訂單系統-C 階段 「LINE 訂單整合」
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/11/13/OneDayOneNote/2025-07-16/" rel="next" title="2025-07-16 Line 訂單系統-E 階段：Vue3 前端優化">
+                  2025-07-16 Line 訂單系統-E 階段：Vue3 前端優化 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/apple.lily/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

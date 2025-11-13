@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2025-07-18 Redis 是什麼">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025-07-18 Redis 是什麼">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/11/13/OneDayOneNote/2025-07-18/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2025-07-18 Redis 是什麼">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-11-13T15:56:13.000Z">
+<meta property="article:modified_time" content="2025-11-13T15:57:03.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="OneNote">
+<meta property="article:tag" content="Line訂單系統">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2025/11/13/OneDayOneNote/2025-07-18/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2025/11/13/OneDayOneNote/2025-07-18/","path":"2025/11/13/OneDayOneNote/2025-07-18/","title":"2025-07-18 Redis 是什麼"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2025-07-18 Redis 是什麼 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2025-07-18-Redis-%E6%98%AF%E4%BB%80%E9%BA%BC"><span class="nav-number">1.</span> <span class="nav-text">2025-07-18 Redis 是什麼</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%A7%A0-Redis-%E6%98%AF%E4%BB%80%E9%BA%BC%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">🧠 Redis 是什麼？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%9A%80-Redis-%E7%9A%84%E4%B8%BB%E8%A6%81%E7%94%A8%E9%80%94"><span class="nav-number">3.</span> <span class="nav-text">🚀 Redis 的主要用途</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%A7%A9-Redis-%E8%88%87%E5%82%B3%E7%B5%B1%E8%B3%87%E6%96%99%E5%BA%AB%E7%9A%84%E5%B7%AE%E7%95%B0"><span class="nav-number">4.</span> <span class="nav-text">🧩 Redis 與傳統資料庫的差異</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%94%91-Redis-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%EF%BC%9AKey-Value-%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B"><span class="nav-number">5.</span> <span class="nav-text">🔑 Redis 的基本概念：Key-Value 資料結構</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%A7%B0-Redis-%E7%AF%84%E4%BE%8B%E6%8C%87%E4%BB%A4%EF%BC%88%E9%AB%94%E9%A9%97%E6%84%9F%EF%BC%89"><span class="nav-number">6.</span> <span class="nav-text">🧰 Redis 範例指令（體驗感）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%A7%B1-Redis-%E5%9C%A8%E4%BD%A0%E7%9A%84%E7%B3%BB%E7%B5%B1%E4%B8%AD%E6%89%AE%E6%BC%94%E7%9A%84%E8%A7%92%E8%89%B2%EF%BC%88%E4%BB%A5%E4%BD%A0%E7%9A%84%E5%B0%88%E6%A1%88%E7%82%BA%E4%BE%8B%EF%BC%89"><span class="nav-number">7.</span> <span class="nav-text">🧱 Redis 在你的系統中扮演的角色（以你的專案為例）</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">514</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2025/11/13/OneDayOneNote/2025-07-18/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2025-07-18 Redis 是什麼 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2025-07-18 Redis 是什麼">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2025-07-18 Redis 是什麼
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2025-11-13 23:56:13 / 修改時間：23:57:03" itemprop="dateCreated datePublished" datetime="2025-11-13T23:56:13+08:00">2025-11-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2025-07-18 Redis 是什麼</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2025-07-18-Redis-是什麼"><a href="#2025-07-18-Redis-是什麼" class="headerlink" title="2025-07-18 Redis 是什麼"></a>2025-07-18 Redis 是什麼</h2><hr>
+<h2 id="🧠-Redis-是什麼？"><a href="#🧠-Redis-是什麼？" class="headerlink" title="🧠 Redis 是什麼？"></a>🧠 Redis 是什麼？</h2><p><strong>Redis</strong> 是一種<strong>超快速的記憶體資料庫（In-memory Database）</strong>，名字全稱是：</p>
+<blockquote>
+<p><strong>REmote DIctionary Server</strong></p>
+</blockquote>
+<p>它最早是為了解決「資料庫查詢太慢」的問題而誕生的。<br>一般的資料庫（像 Oracle、MySQL）把資料存放在硬碟上；<br>而 <strong>Redis 把資料放在記憶體裡（RAM）</strong>，所以速度可以快上 <strong>數百倍以上</strong>。</p>
+<hr>
+<h2 id="🚀-Redis-的主要用途"><a href="#🚀-Redis-的主要用途" class="headerlink" title="🚀 Redis 的主要用途"></a>🚀 Redis 的主要用途</h2><p>Redis 通常不會單獨使用，而是搭配主要的資料庫一起使用。<br>它最常見的用途有：</p>
+<table>
+<thead>
+<tr>
+<th>用途</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>🔹 <strong>快取（Cache）</strong></td>
+<td>將常用資料暫存在記憶體中，減少資料庫查詢負擔。<br>例：熱門商品清單、使用者登入資訊、查詢結果。</td>
+</tr>
+<tr>
+<td>🔹 <strong>Session 儲存</strong></td>
+<td>Web 系統可以把使用者登入狀態存在 Redis 裡。</td>
+</tr>
+<tr>
+<td>🔹 <strong>即時排行榜 &#x2F; 計數器</strong></td>
+<td>Redis 提供像 <code>INCR</code>（遞增）等指令，很適合做「點讚數、瀏覽次數」這類功能。</td>
+</tr>
+<tr>
+<td>🔹 <strong>訊息佇列（Message Queue）</strong></td>
+<td>使用 <code>List</code> 或 <code>Stream</code> 來暫存工作任務（像訂單通知、郵件發送）。</td>
+</tr>
+<tr>
+<td>🔹 <strong>Pub&#x2F;Sub（發佈 &#x2F; 訂閱）</strong></td>
+<td>做即時通訊或通知系統。</td>
+</tr>
+<tr>
+<td>🔹 <strong>快取訂單狀態</strong></td>
+<td>電商系統會先在 Redis 中保存訂單的暫時狀態，再寫入資料庫。</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🧩-Redis-與傳統資料庫的差異"><a href="#🧩-Redis-與傳統資料庫的差異" class="headerlink" title="🧩 Redis 與傳統資料庫的差異"></a>🧩 Redis 與傳統資料庫的差異</h2><table>
+<thead>
+<tr>
+<th>比較項目</th>
+<th>Redis</th>
+<th>Oracle &#x2F; MySQL 等傳統資料庫</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>資料存放位置</td>
+<td>記憶體（RAM）</td>
+<td>硬碟</td>
+</tr>
+<tr>
+<td>存取速度</td>
+<td>極快（微秒等級）</td>
+<td>較慢（毫秒等級）</td>
+</tr>
+<tr>
+<td>資料型態</td>
+<td>鍵值對（Key-Value）結構</td>
+<td>關聯式資料表</td>
+</tr>
+<tr>
+<td>適合場景</td>
+<td>快取、即時資料</td>
+<td>長期保存資料</td>
+</tr>
+<tr>
+<td>是否持久化</td>
+<td>可選（支援快照或 AOF 持久化）</td>
+<td>預設永久保存</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🔑-Redis-的基本概念：Key-Value-資料結構"><a href="#🔑-Redis-的基本概念：Key-Value-資料結構" class="headerlink" title="🔑 Redis 的基本概念：Key-Value 資料結構"></a>🔑 Redis 的基本概念：Key-Value 資料結構</h2><p>Redis 的每筆資料都是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">key → value</span><br></pre></td></tr></table></figure>
+
+<p>常見型態有：</p>
+<table>
+<thead>
+<tr>
+<th>型態</th>
+<th>範例用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>String</strong></td>
+<td>簡單字串或數字，例如 <code>user:1:name = &quot;Lily&quot;</code></td>
+</tr>
+<tr>
+<td><strong>Hash</strong></td>
+<td>類似物件，例如 <code>user:1 = &#123;name: &quot;Lily&quot;, age: 20&#125;</code></td>
+</tr>
+<tr>
+<td><strong>List</strong></td>
+<td>有序串列（像佇列），例如待處理訂單列表</td>
+</tr>
+<tr>
+<td><strong>Set</strong></td>
+<td>無序集合（不重複），例如使用者標籤</td>
+</tr>
+<tr>
+<td><strong>Sorted Set (ZSet)</strong></td>
+<td>排序集合，例如排行榜</td>
+</tr>
+<tr>
+<td><strong>Stream</strong></td>
+<td>用來處理訊息串流或事件記錄</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🧰-Redis-範例指令（體驗感）"><a href="#🧰-Redis-範例指令（體驗感）" class="headerlink" title="🧰 Redis 範例指令（體驗感）"></a>🧰 Redis 範例指令（體驗感）</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">SET name <span class="string">&quot;Lily&quot;</span></span><br><span class="line">GET name</span><br><span class="line"><span class="comment"># 回傳: &quot;Lily&quot;</span></span><br><span class="line"></span><br><span class="line">INCR counter</span><br><span class="line"><span class="comment"># counter +1</span></span><br><span class="line"></span><br><span class="line">LPUSH queue <span class="string">&quot;task1&quot;</span></span><br><span class="line">LPUSH queue <span class="string">&quot;task2&quot;</span></span><br><span class="line">LRANGE queue 0 -1</span><br><span class="line"><span class="comment"># 回傳 [&quot;task2&quot;, &quot;task1&quot;]</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="🧱-Redis-在你的系統中扮演的角色（以你的專案為例）"><a href="#🧱-Redis-在你的系統中扮演的角色（以你的專案為例）" class="headerlink" title="🧱 Redis 在你的系統中扮演的角色（以你的專案為例）"></a>🧱 Redis 在你的系統中扮演的角色（以你的專案為例）</h2><p>你的 Web API-based 財會系統或 LINE 訂單系統中，Redis 可能會：</p>
+<ol>
+<li>暫存使用者的購物車或登入狀態</li>
+<li>快取常查詢的資料（例如產品清單或客戶資訊）</li>
+<li>快速更新訂單狀態並通知使用者（例如 LINE bot 訊息）</li>
+<li>作為暫時的訊息佇列，讓訂單處理流程更順暢</li>
+</ol>
+<hr>
+<p>是否希望我幫你畫一張圖，說明 <strong>Redis 與 Oracle 在整個系統中的資料流關係</strong>？<br>（例如使用者下訂單 → Redis → Oracle → LINE 通知）</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/OneNote/" rel="tag"># OneNote</a>
+              <a href="/apple.lily/tags/Line%E8%A8%82%E5%96%AE%E7%B3%BB%E7%B5%B1/" rel="tag"># Line訂單系統</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/11/13/OneDayOneNote/2025-07-17/" rel="prev" title="2025-07-17 Line 訂單系統- F 階段 — 部署與持續整合">
+                  <i class="fa fa-angle-left"></i> 2025-07-17 Line 訂單系統- F 階段 — 部署與持續整合
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/apple.lily/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
