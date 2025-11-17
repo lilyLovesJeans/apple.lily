@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2025-07-22 Line 訂單系統- NestJS 介紹">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025-07-22 Line 訂單系統- NestJS 介紹">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/11/17/OneDayOneNote/2025-07-22/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2025-07-22 Line 訂單系統- NestJS 介紹">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-11-17T12:34:14.000Z">
+<meta property="article:modified_time" content="2025-11-17T12:42:09.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="OneNote">
+<meta property="article:tag" content="Line訂單系統">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2025/11/17/OneDayOneNote/2025-07-22/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2025/11/17/OneDayOneNote/2025-07-22/","path":"2025/11/17/OneDayOneNote/2025-07-22/","title":"2025-07-22 Line 訂單系統- NestJS 介紹"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2025-07-22 Line 訂單系統- NestJS 介紹 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#NestJS-%E4%BB%8B%E7%B4%B9"><span class="nav-number">1.</span> <span class="nav-text">NestJS 介紹</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%9C%85-NestJS-%E6%98%AF%E4%BB%80%E9%BA%BC%EF%BC%9F%E4%B8%80%E5%8F%A5%E8%A9%B1%E8%AA%AA%E6%98%8E"><span class="nav-number"></span> <span class="nav-text">✅ NestJS 是什麼？一句話說明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%AD%90-NestJS-%E7%9A%84%E6%A0%B8%E5%BF%83%E7%89%B9%E9%BB%9E%EF%BC%88%E7%82%BA%E4%BB%80%E9%BA%BC%E5%A4%A7%E5%AE%B6%E9%83%BD%E7%94%A8-Nest%EF%BC%9F%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">⭐ NestJS 的核心特點（為什麼大家都用 Nest？）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%BD%BF%E7%94%A8-TypeScript%EF%BC%8C%E5%AF%AB%E6%B3%95%E6%B8%85%E6%A5%9A%E5%8F%88%E5%AE%89%E5%85%A8"><span class="nav-number">1.</span> <span class="nav-text">1. 使用 TypeScript，寫法清楚又安全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%BC%B7%E8%AA%BF%E6%9E%B6%E6%A7%8B%EF%BC%88%E8%B7%9F-Angular-%E5%BE%88%E5%83%8F%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">2. 強調架構（跟 Angular 很像）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E9%81%A9%E5%90%88%E5%81%9A-Web-API"><span class="nav-number">3.</span> <span class="nav-text">3. 適合做 Web API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%85%A7%E5%BB%BA%E4%BE%9D%E8%B3%B4%E6%B3%A8%E5%85%A5%EF%BC%88Dependency-Injection%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">4. 內建依賴注入（Dependency Injection）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E6%94%AF%E6%8F%B4%E8%B3%87%E6%96%99%E5%BA%AB%EF%BC%88MySQL%E3%80%81PostgreSQL%E3%80%81Oracle%E3%80%81MongoDB-%E4%BD%A0%E9%83%BD%E5%8F%AF%E4%BB%A5%E7%94%A8%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">5. 支援資料庫（MySQL、PostgreSQL、Oracle、MongoDB 你都可以用）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E5%BF%AB%E9%80%9F%E7%94%9F%E6%88%90%E5%B0%88%E6%A1%88%EF%BC%88CLI-%E5%BE%88%E5%BC%B7%EF%BC%89"><span class="nav-number">6.</span> <span class="nav-text">6. 快速生成專案（CLI 很強）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%AD%90-NestJS-%E5%8F%AF%E4%BB%A5%E6%8B%BF%E4%BE%86%E5%81%9A%E4%BB%80%E9%BA%BC%EF%BC%9F"><span class="nav-number"></span> <span class="nav-text">⭐ NestJS 可以拿來做什麼？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%94-%E5%BB%BA%E7%AB%8B-RESTful-API"><span class="nav-number">1.</span> <span class="nav-text">✔ 建立 RESTful API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%94-%E5%BE%8C%E5%8F%B0%E7%AE%A1%E7%90%86%E7%B3%BB%E7%B5%B1%E7%9A%84-API%EF%BC%88%E4%BD%A0%E6%9C%AA%E4%BE%86%E5%81%9A%E5%BA%97%E5%AE%B6%E5%BE%8C%E5%8F%B0%E4%B8%80%E5%AE%9A%E6%9C%83%E7%94%A8%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">✔ 後台管理系統的 API（你未來做店家後台一定會用）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%94-%E5%8D%B3%E6%99%82-Websocket"><span class="nav-number">3.</span> <span class="nav-text">✔ 即時 Websocket</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%94-Microservices-%E5%BE%AE%E6%9C%8D%E5%8B%99%E6%9E%B6%E6%A7%8B"><span class="nav-number">4.</span> <span class="nav-text">✔ Microservices 微服務架構</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%A7%A0-%E7%94%A8%E6%9B%B4%E7%B0%A1%E5%96%AE%E7%9A%84%E6%AF%94%E5%96%BB"><span class="nav-number"></span> <span class="nav-text">🧠 用更簡單的比喻</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E4%BD%A0%E9%A1%98%E6%84%8F%EF%BC%8C%E6%88%91%E5%8F%AF%E4%BB%A5%E6%95%99%E4%BD%A0%EF%BC%9A"><span class="nav-number"></span> <span class="nav-text">如果你願意，我可以教你：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%94-%E7%94%A8%E6%9C%80%E7%B0%A1%E5%96%AE%E7%9A%84%E6%96%B9%E5%BC%8F%E9%96%8B%E5%A7%8B-NestJS"><span class="nav-number">1.</span> <span class="nav-text">✔ 用最簡單的方式開始 NestJS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%94-%E5%BB%BA%E7%AC%AC%E4%B8%80%E5%80%8B-API%EF%BC%88Hello-World%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">✔ 建第一個 API（Hello World）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%94-%E9%80%A3%E6%8E%A5%E8%B3%87%E6%96%99%E5%BA%AB%EF%BC%88%E7%94%9A%E8%87%B3Oracle%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">✔ 連接資料庫（甚至Oracle）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%94-%E5%AF%AB%E4%B8%80%E5%80%8B%E7%B5%A6%E4%BD%A0%E7%9A%84-Vue-app-%E4%BD%BF%E7%94%A8%E7%9A%84%E5%BE%8C%E7%AB%AF"><span class="nav-number">4.</span> <span class="nav-text">✔ 寫一個給你的 Vue app 使用的後端</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">522</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2025/11/17/OneDayOneNote/2025-07-22/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2025-07-22 Line 訂單系統- NestJS 介紹 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2025-07-22 Line 訂單系統- NestJS 介紹">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2025-07-22 Line 訂單系統- NestJS 介紹
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2025-11-17 20:34:14 / 修改時間：20:42:09" itemprop="dateCreated datePublished" datetime="2025-11-17T20:34:14+08:00">2025-11-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2025-07-22 Line 訂單系統- NestJS 介紹</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="NestJS-介紹"><a href="#NestJS-介紹" class="headerlink" title="NestJS 介紹"></a>NestJS 介紹</h2><p>NestJS（簡稱 <strong>Nest</strong>）是一個用 <strong>TypeScript</strong> 撰寫的 <strong>後端框架</strong>，用來開發 <strong>Server（伺服器）端的應用程式</strong>。<br>如果你將 <strong>Vue</strong> 想成是前端框架，那 <strong>NestJS 就是後端的 Vue（或 Angular）</strong> —— 它提供一致的結構、模組化的設計、容易維護，特別適合中大型專案。</p>
+<hr>
+<h1 id="✅-NestJS-是什麼？一句話說明"><a href="#✅-NestJS-是什麼？一句話說明" class="headerlink" title="✅ NestJS 是什麼？一句話說明"></a>✅ NestJS 是什麼？一句話說明</h1><p><strong>NestJS 是一個基於 Node.js、使用 TypeScript 的後端框架，用來快速建立可維護、可擴充、架構清晰的 Web API。</strong></p>
+<hr>
+<h1 id="⭐-NestJS-的核心特點（為什麼大家都用-Nest？）"><a href="#⭐-NestJS-的核心特點（為什麼大家都用-Nest？）" class="headerlink" title="⭐ NestJS 的核心特點（為什麼大家都用 Nest？）"></a>⭐ NestJS 的核心特點（為什麼大家都用 Nest？）</h1><h2 id="1-使用-TypeScript，寫法清楚又安全"><a href="#1-使用-TypeScript，寫法清楚又安全" class="headerlink" title="1. 使用 TypeScript，寫法清楚又安全"></a>1. <strong>使用 TypeScript，寫法清楚又安全</strong></h2><p>你已經在學 TypeScript，所以 NestJS 對你來說會更容易上手。</p>
+<h2 id="2-強調架構（跟-Angular-很像）"><a href="#2-強調架構（跟-Angular-很像）" class="headerlink" title="2. 強調架構（跟 Angular 很像）"></a>2. <strong>強調架構（跟 Angular 很像）</strong></h2><p>NestJS 使用 <strong>模組（module）</strong> + <strong>控制器（controller）</strong> + <strong>服務（service）</strong> 的方式來組織程式碼。</p>
+<ul>
+<li>Controller：接收前端的請求</li>
+<li>Service：寫邏輯（資料處理、呼叫資料庫等）</li>
+<li>Module：把相關功能包成一個不可或缺的功能模組</li>
+</ul>
+<p>這樣你專案越大越不會亂。</p>
+<h2 id="3-適合做-Web-API"><a href="#3-適合做-Web-API" class="headerlink" title="3. 適合做 Web API"></a>3. <strong>適合做 Web API</strong></h2><p>你現在常寫：</p>
+<ul>
+<li>Vue 前端</li>
+<li>旅遊分帳 app</li>
+<li>天氣查詢 app</li>
+<li>行事曆 app<br>未來你一定會需要「自己的後端 API」<br>▶ <strong>NestJS 就是最適合你做後端 API 的框架。</strong></li>
+</ul>
+<h2 id="4-內建依賴注入（Dependency-Injection）"><a href="#4-內建依賴注入（Dependency-Injection）" class="headerlink" title="4. 內建依賴注入（Dependency Injection）"></a>4. <strong>內建依賴注入（Dependency Injection）</strong></h2><p>這是大型後端系統很重要的概念（你以前用 D2K Oracle Form 時其實也有類似概念）。<br>NestJS 幫你自動處理這些複雜的東西，程式可維護性大幅提高。</p>
+<h2 id="5-支援資料庫（MySQL、PostgreSQL、Oracle、MongoDB-你都可以用）"><a href="#5-支援資料庫（MySQL、PostgreSQL、Oracle、MongoDB-你都可以用）" class="headerlink" title="5. 支援資料庫（MySQL、PostgreSQL、Oracle、MongoDB 你都可以用）"></a>5. <strong>支援資料庫（MySQL、PostgreSQL、Oracle、MongoDB 你都可以用）</strong></h2><p>你以前做過 Oracle，很棒！NestJS 能輕鬆整合 TypeORM，甚至能用 Oracle 資料庫。</p>
+<h2 id="6-快速生成專案（CLI-很強）"><a href="#6-快速生成專案（CLI-很強）" class="headerlink" title="6. 快速生成專案（CLI 很強）"></a>6. <strong>快速生成專案（CLI 很強）</strong></h2><p>你只需要一行指令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nest new project-name</span><br></pre></td></tr></table></figure>
+
+<p>就能建立一整套後端架構（跟 Vue CLI &#x2F; Vite 類似）。</p>
+<hr>
+<h1 id="⭐-NestJS-可以拿來做什麼？"><a href="#⭐-NestJS-可以拿來做什麼？" class="headerlink" title="⭐ NestJS 可以拿來做什麼？"></a>⭐ NestJS 可以拿來做什麼？</h1><h2 id="✔-建立-RESTful-API"><a href="#✔-建立-RESTful-API" class="headerlink" title="✔ 建立 RESTful API"></a>✔ 建立 RESTful API</h2><p>例如你常做的：</p>
+<ul>
+<li>天氣查詢 API</li>
+<li>分帳 app 的會員／記帳 API</li>
+<li>行事曆事件 API<br>NestJS 都非常適合。</li>
+</ul>
+<h2 id="✔-後台管理系統的-API（你未來做店家後台一定會用）"><a href="#✔-後台管理系統的-API（你未來做店家後台一定會用）" class="headerlink" title="✔ 後台管理系統的 API（你未來做店家後台一定會用）"></a>✔ 後台管理系統的 API（你未來做店家後台一定會用）</h2><h2 id="✔-即時-Websocket"><a href="#✔-即時-Websocket" class="headerlink" title="✔ 即時 Websocket"></a>✔ 即時 Websocket</h2><p>例如聊天室、推播通知。</p>
+<h2 id="✔-Microservices-微服務架構"><a href="#✔-Microservices-微服務架構" class="headerlink" title="✔ Microservices 微服務架構"></a>✔ Microservices 微服務架構</h2><p>如果你未來當 Software Architect，微服務是必學。NestJS 原生支援。</p>
+<hr>
+<h1 id="🧠-用更簡單的比喻"><a href="#🧠-用更簡單的比喻" class="headerlink" title="🧠 用更簡單的比喻"></a>🧠 用更簡單的比喻</h1><p>如果 <strong>Node.js + Express</strong> 是蓋房子的「積木」<br><strong>NestJS 就是一整套工法 + 標準化流程 + 工具箱</strong></p>
+<p>讓你建後端更快也更整齊。</p>
+<hr>
+<h1 id="如果你願意，我可以教你："><a href="#如果你願意，我可以教你：" class="headerlink" title="如果你願意，我可以教你："></a>如果你願意，我可以教你：</h1><h2 id="✔-用最簡單的方式開始-NestJS"><a href="#✔-用最簡單的方式開始-NestJS" class="headerlink" title="✔ 用最簡單的方式開始 NestJS"></a>✔ 用最簡單的方式開始 NestJS</h2><p>（像你學 Vue 一樣 step-by-step）</p>
+<h2 id="✔-建第一個-API（Hello-World）"><a href="#✔-建第一個-API（Hello-World）" class="headerlink" title="✔ 建第一個 API（Hello World）"></a>✔ 建第一個 API（Hello World）</h2><h2 id="✔-連接資料庫（甚至Oracle）"><a href="#✔-連接資料庫（甚至Oracle）" class="headerlink" title="✔ 連接資料庫（甚至Oracle）"></a>✔ 連接資料庫（甚至Oracle）</h2><h2 id="✔-寫一個給你的-Vue-app-使用的後端"><a href="#✔-寫一個給你的-Vue-app-使用的後端" class="headerlink" title="✔ 寫一個給你的 Vue app 使用的後端"></a>✔ 寫一個給你的 Vue app 使用的後端</h2><p>你想從哪裡開始？😊</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/OneNote/" rel="tag"># OneNote</a>
+              <a href="/apple.lily/tags/Line%E8%A8%82%E5%96%AE%E7%B3%BB%E7%B5%B1/" rel="tag"># Line訂單系統</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/11/17/OneDayOneNote/2025-07-21/" rel="prev" title="2025-07-21 Line 訂單系統- AI模式來建議，建議如何架構 Line訂單系統">
+                  <i class="fa fa-angle-left"></i> 2025-07-21 Line 訂單系統- AI模式來建議，建議如何架構 Line訂單系統
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/11/17/OneDayOneNote/2025-07-23/" rel="next" title="2025-07-23 Line 訂單系統- 用 NestJS 開發 = 用積木堆一棟可長大的房子">
+                  2025-07-23 Line 訂單系統- 用 NestJS 開發 = 用積木堆一棟可長大的房子 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/apple.lily/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

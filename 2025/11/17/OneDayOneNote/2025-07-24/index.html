@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2025-07-24 Line 訂單系統- NestJS 成本高 是什麼意思，成本會花在那裹？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025-07-24 Line 訂單系統- NestJS 成本高 是什麼意思，成本會花在那裹？">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/11/17/OneDayOneNote/2025-07-24/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2025-07-24 Line 訂單系統- NestJS 成本高 是什麼意思，成本會花在那裹？">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-11-17T12:49:57.000Z">
+<meta property="article:modified_time" content="2025-11-17T12:50:56.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="OneNote">
+<meta property="article:tag" content="Line訂單系統">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2025/11/17/OneDayOneNote/2025-07-24/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2025/11/17/OneDayOneNote/2025-07-24/","path":"2025/11/17/OneDayOneNote/2025-07-24/","title":"2025-07-24 Line 訂單系統- NestJS 成本高 是什麼意思，成本會花在那裹？"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2025-07-24 Line 訂單系統- NestJS 成本高 是什麼意思，成本會花在那裹？ | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2025-07-24-Line-%E8%A8%82%E5%96%AE%E7%B3%BB%E7%B5%B1-NestJS-%E6%88%90%E6%9C%AC%E9%AB%98-%E6%98%AF%E4%BB%80%E9%BA%BC%E6%84%8F%E6%80%9D%EF%BC%8C%E6%88%90%E6%9C%AC%E6%9C%83%E8%8A%B1%E5%9C%A8%E9%82%A3%E8%A3%B9%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">2025-07-24 Line 訂單系統- NestJS 成本高 是什麼意思，成本會花在那裹？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%91%89-%E4%BD%A0%E9%9C%80%E8%A6%81%E6%8A%95%E5%85%A5%E7%9A%84%E6%99%82%E9%96%93%E3%80%81%E7%B2%BE%E5%8A%9B%E8%88%87%E5%AD%B8%E7%BF%92%E6%9B%B2%E7%B7%9A%E6%AF%94%E8%BC%83%E9%AB%98%E3%80%82"><span class="nav-number"></span> <span class="nav-text">👉 你需要投入的時間、精力與學習曲線比較高。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%93%8C-NestJS-%E6%88%90%E6%9C%AC%E4%B8%BB%E8%A6%81%E8%8A%B1%E5%9C%A8-3-%E5%A4%A7%E5%9C%B0%E6%96%B9"><span class="nav-number"></span> <span class="nav-text">📌 NestJS 成本主要花在 3 大地方</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1%EF%B8%8F%E2%83%A3-%E5%AD%B8%E7%BF%92%E6%88%90%E6%9C%AC%EF%BC%88Learning-Cost%EF%BC%89%E2%80%94-%E9%80%99%E6%98%AF%E6%9C%80%E5%A4%A7%E5%AE%97"><span class="nav-number"></span> <span class="nav-text">1️⃣ 學習成本（Learning Cost）— 這是最大宗</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2%EF%B8%8F%E2%83%A3-%E5%88%9D%E6%9C%9F%E9%96%8B%E7%99%BC%E6%88%90%E6%9C%AC%EF%BC%88Development-Cost%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">2️⃣ 初期開發成本（Development Cost）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3%EF%B8%8F%E2%83%A3-%E5%B0%88%E6%A1%88%E7%B6%AD%E8%AD%B7%E6%88%90%E6%9C%AC%EF%BC%88Maintenance-Cost%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">3️⃣ 專案維護成本（Maintenance Cost）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%93%8C-%E9%82%A3%E7%82%BA%E4%BB%80%E9%BA%BC%E4%BC%81%E6%A5%AD%E9%A1%98%E6%84%8F%E6%89%BF%E6%93%94-NestJS-%E6%88%90%E6%9C%AC%EF%BC%9F"><span class="nav-number"></span> <span class="nav-text">📌 那為什麼企業願意承擔 NestJS 成本？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%93%8C-%E4%BD%86%E4%BD%A0%E6%98%AF%E5%96%AE%E4%BA%BA%E9%96%8B%E7%99%BC%EF%BC%8CNestJS-%E6%88%90%E6%9C%AC%E6%9C%83%E5%9C%A8%E5%93%AA%E8%A3%A1%EF%BC%9F"><span class="nav-number"></span> <span class="nav-text">📌 但你是單人開發，NestJS 成本會在哪裡？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%93%8C-%E6%9C%80%E6%9C%80%E7%B0%A1%E5%96%AE%E7%9A%84%E4%B8%80%E5%8F%A5%E8%A9%B1%EF%BC%9A"><span class="nav-number"></span> <span class="nav-text">📌 最最簡單的一句話：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E4%BD%A0%E9%A1%98%E6%84%8F%EF%BC%8C%E6%88%91%E5%8F%AF%E4%BB%A5%E5%B8%B6%E4%BD%A0%EF%BC%9A"><span class="nav-number"></span> <span class="nav-text">如果你願意，我可以帶你：</span></a></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">522</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2025/11/17/OneDayOneNote/2025-07-24/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2025-07-24 Line 訂單系統- NestJS 成本高 是什麼意思，成本會花在那裹？ | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2025-07-24 Line 訂單系統- NestJS 成本高 是什麼意思，成本會花在那裹？">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2025-07-24 Line 訂單系統- NestJS 成本高 是什麼意思，成本會花在那裹？
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2025-11-17 20:49:57 / 修改時間：20:50:56" itemprop="dateCreated datePublished" datetime="2025-11-17T20:49:57+08:00">2025-11-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2025-07-24 Line 訂單系統- NestJS 成本高 是什麼意思，成本會花在那裹？</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2025-07-24-Line-訂單系統-NestJS-成本高-是什麼意思，成本會花在那裹？"><a href="#2025-07-24-Line-訂單系統-NestJS-成本高-是什麼意思，成本會花在那裹？" class="headerlink" title="2025-07-24 Line 訂單系統- NestJS 成本高 是什麼意思，成本會花在那裹？"></a>2025-07-24 Line 訂單系統- NestJS 成本高 是什麼意思，成本會花在那裹？</h2><p>當別人說 <strong>「NestJS 成本比較高」</strong> 時，<br>真正的意思不是錢，而是：</p>
+<h1 id="👉-你需要投入的時間、精力與學習曲線比較高。"><a href="#👉-你需要投入的時間、精力與學習曲線比較高。" class="headerlink" title="👉 你需要投入的時間、精力與學習曲線比較高。"></a>👉 <strong>你需要投入的時間、精力與學習曲線比較高。</strong></h1><p>NestJS 本身是免費的（MIT License），成本不是金錢，是以下這些「開發成本」。</p>
+<hr>
+<h1 id="📌-NestJS-成本主要花在-3-大地方"><a href="#📌-NestJS-成本主要花在-3-大地方" class="headerlink" title="📌 NestJS 成本主要花在 3 大地方"></a>📌 NestJS 成本主要花在 3 大地方</h1><h1 id="1️⃣-學習成本（Learning-Cost）—-這是最大宗"><a href="#1️⃣-學習成本（Learning-Cost）—-這是最大宗" class="headerlink" title="1️⃣ 學習成本（Learning Cost）— 這是最大宗"></a>1️⃣ <strong>學習成本（Learning Cost）— 這是最大宗</strong></h1><p>NestJS 不是寫一個 <code>server.js</code> 就能跑的框架，它有：</p>
+<ul>
+<li>Module（模組化概念）</li>
+<li>Controller</li>
+<li>Service</li>
+<li>Provider &#x2F; DI 注入</li>
+<li>Decorator 語法</li>
+<li>Middleware &#x2F; Guard &#x2F; Pipe &#x2F; Filter</li>
+<li>TypeORM &#x2F; Prisma 整合</li>
+<li>多層架構（clean architecture 風格）</li>
+</ul>
+<p>對「沒有接觸過大型後端架構的人」來說：</p>
+<p>✔ 光了解 DI<br>✔ 就比 Express 難上 5 倍<br>✔ 知道每個檔案應該放哪裡<br>✔ 又比 Koa、Express 需要更多概念</p>
+<p><strong>所以 NestJS 看起來很美，但剛開始寫會卡非常久。</strong></p>
+<hr>
+<h1 id="2️⃣-初期開發成本（Development-Cost）"><a href="#2️⃣-初期開發成本（Development-Cost）" class="headerlink" title="2️⃣ 初期開發成本（Development Cost）"></a>2️⃣ <strong>初期開發成本（Development Cost）</strong></h1><p>Express：<br>你可以 10 分鐘把 API 寫好。</p>
+<p>NestJS：<br>你可能要：</p>
+<ul>
+<li>建 module</li>
+<li>建 controller</li>
+<li>建 service</li>
+<li>DI 注入</li>
+<li>DTO 加 validation</li>
+<li>Service 不能直接回應，要 return 給 controller</li>
+<li>還要寫 interface 或 entity</li>
+</ul>
+<p>等你熟悉之後會很快，但<strong>初期超慢</strong>。</p>
+<p>像這樣架構：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">products/</span><br><span class="line"> ├── products.module.ts</span><br><span class="line"> ├── products.controller.ts</span><br><span class="line"> ├── products.service.ts</span><br><span class="line"> ├── dto/create-product.dto.ts</span><br><span class="line"> └── entities/product.entity.ts</span><br></pre></td></tr></table></figure>
+
+<p>你要寫比 Express 多一倍以上的檔案。</p>
+<p>➡ <strong>這就是「開發成本」比較高</strong>。</p>
+<hr>
+<h1 id="3️⃣-專案維護成本（Maintenance-Cost）"><a href="#3️⃣-專案維護成本（Maintenance-Cost）" class="headerlink" title="3️⃣ 專案維護成本（Maintenance Cost）"></a>3️⃣ <strong>專案維護成本（Maintenance Cost）</strong></h1><p>這不是說 NestJS 難維護。</p>
+<p>相反，它的架構非常好維護。</p>
+<p>但它：</p>
+<ul>
+<li>多檔案</li>
+<li>多層抽象</li>
+<li>嚴謹</li>
+<li>大型專案才顯示優勢</li>
+</ul>
+<p>如果你只是做小專案（像簡單 api + 顯示資料），<br>NestJS 會顯得比較笨重、有機槍打蚊子的感覺。</p>
+<hr>
+<h1 id="📌-那為什麼企業願意承擔-NestJS-成本？"><a href="#📌-那為什麼企業願意承擔-NestJS-成本？" class="headerlink" title="📌 那為什麼企業願意承擔 NestJS 成本？"></a>📌 那為什麼企業願意承擔 NestJS 成本？</h1><p>因為企業看的是：</p>
+<ul>
+<li>10 個人一起開發 → 統一架構</li>
+<li>100 個 API → 模組化</li>
+<li>長期維護 5–10 年 → 清晰</li>
+<li>減少爛 code → 架構強制乾淨</li>
+<li>新人進來很快懂 → 文件完整</li>
+</ul>
+<p><strong>大量人力 × 長期專案</strong><br>NestJS 的優勢遠大於成本。</p>
+<hr>
+<h1 id="📌-但你是單人開發，NestJS-成本會在哪裡？"><a href="#📌-但你是單人開發，NestJS-成本會在哪裡？" class="headerlink" title="📌 但你是單人開發，NestJS 成本會在哪裡？"></a>📌 但你是單人開發，NestJS 成本會在哪裡？</h1><p>✔ 初期學習：時間成本<br>✔ 寫一個 API：需要寫更多檔案（開發成本）<br>✔ 建立資料夾結構：需要學習專案架構（認知成本）</p>
+<p>但你的需求是：</p>
+<blockquote>
+<p>你想慢慢堆積木<br>想打造自己的藍圖<br>時程悠閒、可以慢慢寫<br>想做一個能長大的系統（訂單 + 後台 + AI）</p>
+</blockquote>
+<p>所以 <strong>NestJS 的成本是你願意承擔的，而且最終會回收。</strong></p>
+<hr>
+<h1 id="📌-最最簡單的一句話："><a href="#📌-最最簡單的一句話：" class="headerlink" title="📌 最最簡單的一句話："></a>📌 最最簡單的一句話：</h1><p><strong>NestJS 成本高 &#x3D; 初期需要多花時間，但長期省掉你大量維護與重寫的時間。</strong></p>
+<p>就像蓋房子：</p>
+<ul>
+<li>Express：臨時工寮</li>
+<li>NestJS：地基、鋼骨、水電全部標準化的房子</li>
+</ul>
+<p>初期蓋得慢，但後期不用重做。</p>
+<hr>
+<h1 id="如果你願意，我可以帶你："><a href="#如果你願意，我可以帶你：" class="headerlink" title="如果你願意，我可以帶你："></a>如果你願意，我可以帶你：</h1><p>✔ 寫第一個 NestJS module<br>✔ 用超簡單、適合你的方式解釋 module &#x2F; controller &#x2F; service<br>✔ 一步一步建立你的 LINE 訂單系統骨架</p>
+<p>你想開始“第一塊積木”嗎？</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/OneNote/" rel="tag"># OneNote</a>
+              <a href="/apple.lily/tags/Line%E8%A8%82%E5%96%AE%E7%B3%BB%E7%B5%B1/" rel="tag"># Line訂單系統</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/11/17/OneDayOneNote/2025-07-23/" rel="prev" title="2025-07-23 Line 訂單系統- 用 NestJS 開發 = 用積木堆一棟可長大的房子">
+                  <i class="fa fa-angle-left"></i> 2025-07-23 Line 訂單系統- 用 NestJS 開發 = 用積木堆一棟可長大的房子
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/11/17/OneDayOneNote/2025-07-25/" rel="next" title="2025-07-25 Line 訂單系統- NestJS 第1 ～7步驟">
+                  2025-07-25 Line 訂單系統- NestJS 第1 ～7步驟 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/apple.lily/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

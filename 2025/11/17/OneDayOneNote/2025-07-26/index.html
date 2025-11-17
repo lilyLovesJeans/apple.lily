@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2025-07-26 Line 訂單系統- 先做「NestJS 第一個練習（Products 模組）」">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025-07-26 Line 訂單系統- 先做「NestJS 第一個練習（Products 模組）」">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/11/17/OneDayOneNote/2025-07-26/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2025-07-26 Line 訂單系統- 先做「NestJS 第一個練習（Products 模組）」">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-11-17T13:02:56.000Z">
+<meta property="article:modified_time" content="2025-11-17T13:04:17.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="OneNote">
+<meta property="article:tag" content="Line訂單系統">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2025/11/17/OneDayOneNote/2025-07-26/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2025/11/17/OneDayOneNote/2025-07-26/","path":"2025/11/17/OneDayOneNote/2025-07-26/","title":"2025-07-26 Line 訂單系統- 先做「NestJS 第一個練習（Products 模組）」"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2025-07-26 Line 訂單系統- 先做「NestJS 第一個練習（Products 模組）」 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2025-07-26-Line-%E8%A8%82%E5%96%AE%E7%B3%BB%E7%B5%B1-%E5%85%88%E5%81%9A%E3%80%8CNestJS-%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B7%B4%E7%BF%92%EF%BC%88Products-%E6%A8%A1%E7%B5%84%EF%BC%89%E3%80%8D"><span class="nav-number">1.</span> <span class="nav-text">2025-07-26 Line 訂單系統- 先做「NestJS 第一個練習（Products 模組）」</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0-%E5%89%8D%E7%BD%AE%EF%BC%9A%E7%92%B0%E5%A2%83%E9%9C%80%E6%B1%82"><span class="nav-number"></span> <span class="nav-text">0) 前置：環境需求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E5%BB%BA%E7%AB%8B-NestJS-%E5%B0%88%E6%A1%88%EF%BC%88%E9%AA%A8%E6%9E%B6%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">1) 建立 NestJS 專案（骨架）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E5%B0%88%E6%A1%88%E4%B8%BB%E8%A6%81%E6%AA%94%E6%A1%88%E8%88%87%E7%B5%90%E6%A7%8B%EF%BC%88%E6%88%91%E6%9C%83%E9%80%90%E4%B8%80%E7%B5%A6%E5%87%BA%E5%85%A7%E5%AE%B9%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">2) 專案主要檔案與結構（我會逐一給出內容）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#src-main-ts"><span class="nav-number">1.</span> <span class="nav-text">src&#x2F;main.ts</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#src-app-module-ts"><span class="nav-number">2.</span> <span class="nav-text">src&#x2F;app.module.ts</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#src-config-configuration-ts"><span class="nav-number">3.</span> <span class="nav-text">src&#x2F;config&#x2F;configuration.ts</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#src-database-database-module-ts"><span class="nav-number">4.</span> <span class="nav-text">src&#x2F;database&#x2F;database.module.ts</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Products-%E6%A8%A1%E7%B5%84%EF%BC%88%E5%AE%8C%E6%95%B4%E6%AA%94%E6%A1%88%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">Products 模組（完整檔案）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#src-products-entities-product-entity-ts"><span class="nav-number">1.</span> <span class="nav-text">src&#x2F;products&#x2F;entities&#x2F;product.entity.ts</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#src-products-dto-create-product-dto-ts"><span class="nav-number">2.</span> <span class="nav-text">src&#x2F;products&#x2F;dto&#x2F;create-product.dto.ts</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#src-products-products-service-ts"><span class="nav-number">3.</span> <span class="nav-text">src&#x2F;products&#x2F;products.service.ts</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#src-products-products-controller-ts"><span class="nav-number">4.</span> <span class="nav-text">src&#x2F;products&#x2F;products.controller.ts</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#src-products-products-module-ts"><span class="nav-number">5.</span> <span class="nav-text">src&#x2F;products&#x2F;products.module.ts</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-env-example%EF%BC%88%E6%94%BE%E5%9C%A8%E5%B0%88%E6%A1%88%E6%A0%B9%E7%9B%AE%E9%8C%84%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">3) .env.example（放在專案根目錄）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-package-json-scripts%EF%BC%88%E8%8B%A5-nest-new-%E5%B7%B2%E5%BB%BA%E7%AB%8B%EF%BC%8C%E7%A2%BA%E8%AA%8D-scripts-%E5%8C%85%E5%90%AB%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">4) package.json scripts（若 nest new 已建立，確認 scripts 包含）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-%E5%9F%B7%E8%A1%8C%E8%88%87%E6%B8%AC%E8%A9%A6"><span class="nav-number"></span> <span class="nav-text">5) 執行與測試</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-%E4%B8%8B%E4%B8%80%E6%AD%A5%E5%BB%BA%E8%AD%B0%EF%BC%88%E4%BD%A0%E8%A6%81%E6%88%91%E5%B8%B6%E7%9A%84%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">6) 下一步建議（你要我帶的）</span></a></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">522</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2025/11/17/OneDayOneNote/2025-07-26/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2025-07-26 Line 訂單系統- 先做「NestJS 第一個練習（Products 模組）」 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2025-07-26 Line 訂單系統- 先做「NestJS 第一個練習（Products 模組）」">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2025-07-26 Line 訂單系統- 先做「NestJS 第一個練習（Products 模組）」
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2025-11-17 21:02:56 / 修改時間：21:04:17" itemprop="dateCreated datePublished" datetime="2025-11-17T21:02:56+08:00">2025-11-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2025-07-26 Line 訂單系統- 先做「NestJS 第一個練習（Products 模組）」</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2025-07-26-Line-訂單系統-先做「NestJS-第一個練習（Products-模組）」"><a href="#2025-07-26-Line-訂單系統-先做「NestJS-第一個練習（Products-模組）」" class="headerlink" title="2025-07-26 Line 訂單系統- 先做「NestJS 第一個練習（Products 模組）」"></a>2025-07-26 Line 訂單系統- 先做「NestJS 第一個練習（Products 模組）」</h2><p>先做「NestJS 第一個練習（Products 模組）」</p>
+<p>我會一步步帶你從 0 建出 <strong>可運行、可擴充的 NestJS 專案骨架</strong>，並把 <strong>Products Module（含 Controller&#x2F;Service&#x2F;DTO&#x2F;Entity&#x2F;DI）</strong> 實作好，讓你能像「堆積木」一樣繼續往 Orders、Webhook、Redis 等積木擴充。</p>
+<p>下面的流程分兩部分：</p>
+<ol>
+<li><strong>建立專案骨架（用 Nest CLI）</strong></li>
+<li><strong>把 Products Module 的所有檔案都寫好（可直接執行）</strong></li>
+</ol>
+<p>我會給你完整命令與每個檔案的程式碼——你只要複製貼上即可啟動。</p>
+<hr>
+<h1 id="0-前置：環境需求"><a href="#0-前置：環境需求" class="headerlink" title="0) 前置：環境需求"></a>0) 前置：環境需求</h1><p>確保你系統有 Node.js（&gt;&#x3D;16）、npm&#x2F;yarn。<br>建議用 <code>npm</code>。</p>
+<hr>
+<h1 id="1-建立-NestJS-專案（骨架）"><a href="#1-建立-NestJS-專案（骨架）" class="headerlink" title="1) 建立 NestJS 專案（骨架）"></a>1) 建立 NestJS 專案（骨架）</h1><p>在終端機執行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 全域安裝 Nest CLI（若尚未安裝）</span></span><br><span class="line">npm install -g @nestjs/cli</span><br><span class="line"></span><br><span class="line"><span class="comment"># 建新專案（選 TypeScript）</span></span><br><span class="line">nest new line-order-backend</span><br><span class="line"><span class="comment"># 選 npm 作為 package manager（或 yarn）</span></span><br></pre></td></tr></table></figure>
+
+<p>進入專案目錄：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> line-order-backend</span><br></pre></td></tr></table></figure>
+
+<p>接著安裝我們會用到的套件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 核心 + typeorm + validation + sqlite (簡單起步)</span></span><br><span class="line">npm install @nestjs/typeorm typeorm reflect-metadata sqlite3 @nestjs/config class-validator class-transformer</span><br><span class="line"></span><br><span class="line"><span class="comment"># 若你以後要用 MySQL，還要安裝 mysql2：</span></span><br><span class="line"><span class="comment"># npm install mysql2</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="2-專案主要檔案與結構（我會逐一給出內容）"><a href="#2-專案主要檔案與結構（我會逐一給出內容）" class="headerlink" title="2) 專案主要檔案與結構（我會逐一給出內容）"></a>2) 專案主要檔案與結構（我會逐一給出內容）</h1><p>建議最終專案結構（重點）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">line-order-backend/</span><br><span class="line">├─ src/</span><br><span class="line">│  ├─ main.ts</span><br><span class="line">│  ├─ app.module.ts</span><br><span class="line">│  ├─ config/</span><br><span class="line">│  │   └─ configuration.ts</span><br><span class="line">│  ├─ database/</span><br><span class="line">│  │   └─ database.module.ts</span><br><span class="line">│  └─ products/</span><br><span class="line">│      ├─ products.module.ts</span><br><span class="line">│      ├─ products.controller.ts</span><br><span class="line">│      ├─ products.service.ts</span><br><span class="line">│      ├─ dto/</span><br><span class="line">│      │   └─ create-product.dto.ts</span><br><span class="line">│      └─ entities/</span><br><span class="line">│          └─ product.entity.ts</span><br><span class="line">├─ .env</span><br><span class="line">├─ .env.example</span><br><span class="line">├─ package.json</span><br><span class="line">└─ tsconfig.json</span><br></pre></td></tr></table></figure>
+
+<p>下面是每個檔案的範本（請把檔案內容貼入相對路徑檔案）：</p>
+<hr>
+<h2 id="src-main-ts"><a href="#src-main-ts" class="headerlink" title="src&#x2F;main.ts"></a>src&#x2F;main.ts</h2><p>啟動並加入全域 ValidationPipe。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">ValidationPipe</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;@nestjs/common&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">NestFactory</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;@nestjs/core&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">AppModule</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;./app.module&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">bootstrap</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> app = <span class="keyword">await</span> <span class="title class_">NestFactory</span>.<span class="title function_">create</span>(<span class="title class_">AppModule</span>);</span><br><span class="line">  app.<span class="title function_">useGlobalPipes</span>(<span class="keyword">new</span> <span class="title class_">ValidationPipe</span>(&#123;</span><br><span class="line">    <span class="attr">whitelist</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">transform</span>: <span class="literal">true</span>,</span><br><span class="line">  &#125;));</span><br><span class="line">  <span class="keyword">await</span> app.<span class="title function_">listen</span>(process.<span class="property">env</span>.<span class="property">PORT</span> ? +process.<span class="property">env</span>.<span class="property">PORT</span> : <span class="number">3000</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`🚀 Application running on: <span class="subst">$&#123;<span class="keyword">await</span> app.getUrl()&#125;</span>`</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">bootstrap</span>();</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="src-app-module-ts"><a href="#src-app-module-ts" class="headerlink" title="src&#x2F;app.module.ts"></a>src&#x2F;app.module.ts</h2><p>主模組，載入 Config + Database + Products。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Module</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;@nestjs/common&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">ConfigModule</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;@nestjs/config&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> configuration <span class="keyword">from</span> <span class="string">&#x27;./config/configuration&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">DatabaseModule</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;./database/database.module&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">ProductsModule</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;./products/products.module&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Module</span>(&#123;</span><br><span class="line">  <span class="attr">imports</span>: [</span><br><span class="line">    <span class="title class_">ConfigModule</span>.<span class="title function_">forRoot</span>(&#123;</span><br><span class="line">      <span class="attr">isGlobal</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">load</span>: [configuration],</span><br><span class="line">    &#125;),</span><br><span class="line">    <span class="title class_">DatabaseModule</span>,</span><br><span class="line">    <span class="title class_">ProductsModule</span>,</span><br><span class="line">  ],</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">AppModule</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="src-config-configuration-ts"><a href="#src-config-configuration-ts" class="headerlink" title="src&#x2F;config&#x2F;configuration.ts"></a>src&#x2F;config&#x2F;configuration.ts</h2><p>使用 <code>@nestjs/config</code> 讀 env。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> () =&gt; (&#123;</span><br><span class="line">  <span class="attr">port</span>: <span class="built_in">parseInt</span>(process.<span class="property">env</span>.<span class="property">PORT</span>, <span class="number">10</span>) || <span class="number">3000</span>,</span><br><span class="line">  <span class="attr">database</span>: &#123;</span><br><span class="line">    <span class="attr">type</span>: process.<span class="property">env</span>.<span class="property">DB_TYPE</span> || <span class="string">&#x27;sqlite&#x27;</span>, <span class="comment">// sqlite or mysql</span></span><br><span class="line">    <span class="attr">host</span>: process.<span class="property">env</span>.<span class="property">DB_HOST</span> || <span class="string">&#x27;localhost&#x27;</span>,</span><br><span class="line">    <span class="attr">port</span>: <span class="built_in">parseInt</span>(process.<span class="property">env</span>.<span class="property">DB_PORT</span> || <span class="string">&#x27;3306&#x27;</span>, <span class="number">10</span>),</span><br><span class="line">    <span class="attr">username</span>: process.<span class="property">env</span>.<span class="property">DB_USER</span> || <span class="string">&#x27;root&#x27;</span>,</span><br><span class="line">    <span class="attr">password</span>: process.<span class="property">env</span>.<span class="property">DB_PASSWORD</span> || <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    <span class="attr">database</span>: process.<span class="property">env</span>.<span class="property">DB_NAME</span> || <span class="string">&#x27;line_order_db&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="src-database-database-module-ts"><a href="#src-database-database-module-ts" class="headerlink" title="src&#x2F;database&#x2F;database.module.ts"></a>src&#x2F;database&#x2F;database.module.ts</h2><p>TypeORM 連線模組（預設使用 SQLite，無需額外安裝 DB）。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Module</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;@nestjs/common&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">TypeOrmModule</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;@nestjs/typeorm&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> configuration <span class="keyword">from</span> <span class="string">&#x27;../config/configuration&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">ConfigModule</span>, <span class="title class_">ConfigService</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;@nestjs/config&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Product</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;../products/entities/product.entity&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Module</span>(&#123;</span><br><span class="line">  <span class="attr">imports</span>: [</span><br><span class="line">    <span class="title class_">ConfigModule</span>,</span><br><span class="line">    <span class="title class_">TypeOrmModule</span>.<span class="title function_">forRootAsync</span>(&#123;</span><br><span class="line">      <span class="attr">imports</span>: [<span class="title class_">ConfigModule</span>],</span><br><span class="line">      <span class="attr">useFactory</span>: <span class="keyword">async</span> (<span class="attr">configService</span>: <span class="title class_">ConfigService</span>) =&gt; &#123;</span><br><span class="line">        <span class="keyword">const</span> dbConfig = configService.<span class="title function_">get</span>(<span class="string">&#x27;database&#x27;</span>);</span><br><span class="line">        <span class="keyword">if</span> (dbConfig.<span class="property">type</span> === <span class="string">&#x27;mysql&#x27;</span>) &#123;</span><br><span class="line">          <span class="keyword">return</span> &#123;</span><br><span class="line">            <span class="attr">type</span>: <span class="string">&#x27;mysql&#x27;</span> <span class="keyword">as</span> <span class="keyword">const</span>,</span><br><span class="line">            <span class="attr">host</span>: dbConfig.<span class="property">host</span>,</span><br><span class="line">            <span class="attr">port</span>: dbConfig.<span class="property">port</span>,</span><br><span class="line">            <span class="attr">username</span>: dbConfig.<span class="property">username</span>,</span><br><span class="line">            <span class="attr">password</span>: dbConfig.<span class="property">password</span>,</span><br><span class="line">            <span class="attr">database</span>: dbConfig.<span class="property">database</span>,</span><br><span class="line">            <span class="attr">entities</span>: [<span class="title class_">Product</span>],</span><br><span class="line">            <span class="attr">synchronize</span>: <span class="literal">true</span>, <span class="comment">// dev only; use migrations in prod</span></span><br><span class="line">          &#125;;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          <span class="comment">// default sqlite for quick local dev</span></span><br><span class="line">          <span class="keyword">return</span> &#123;</span><br><span class="line">            <span class="attr">type</span>: <span class="string">&#x27;sqlite&#x27;</span> <span class="keyword">as</span> <span class="keyword">const</span>,</span><br><span class="line">            <span class="attr">database</span>: <span class="string">&#x27;data/sqlite.db&#x27;</span>,</span><br><span class="line">            <span class="attr">entities</span>: [<span class="title class_">Product</span>],</span><br><span class="line">            <span class="attr">synchronize</span>: <span class="literal">true</span>,</span><br><span class="line">          &#125;;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">inject</span>: [<span class="title class_">ConfigService</span>],</span><br><span class="line">    &#125;),</span><br><span class="line">  ],</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">DatabaseModule</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：<code>synchronize: true</code> 僅用於開發；上線用 migration。</p>
+</blockquote>
+<hr>
+<h1 id="Products-模組（完整檔案）"><a href="#Products-模組（完整檔案）" class="headerlink" title="Products 模組（完整檔案）"></a>Products 模組（完整檔案）</h1><h2 id="src-products-entities-product-entity-ts"><a href="#src-products-entities-product-entity-ts" class="headerlink" title="src&#x2F;products&#x2F;entities&#x2F;product.entity.ts"></a>src&#x2F;products&#x2F;entities&#x2F;product.entity.ts</h2><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Entity</span>, <span class="title class_">PrimaryGeneratedColumn</span>, <span class="title class_">Column</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;typeorm&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Entity</span>(&#123; <span class="attr">name</span>: <span class="string">&#x27;products&#x27;</span> &#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">Product</span> &#123;</span><br><span class="line">  <span class="meta">@PrimaryGeneratedColumn</span>()</span><br><span class="line">  <span class="attr">id</span>: <span class="built_in">number</span>;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Column</span>(&#123; <span class="attr">length</span>: <span class="number">150</span> &#125;)</span><br><span class="line">  <span class="attr">name</span>: <span class="built_in">string</span>;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Column</span>(<span class="string">&#x27;decimal&#x27;</span>, &#123; <span class="attr">precision</span>: <span class="number">10</span>, <span class="attr">scale</span>: <span class="number">2</span>, <span class="attr">default</span>: <span class="number">0</span> &#125;)</span><br><span class="line">  <span class="attr">price</span>: <span class="built_in">number</span>;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Column</span>(&#123; <span class="attr">default</span>: <span class="number">0</span> &#125;)</span><br><span class="line">  <span class="attr">stock</span>: <span class="built_in">number</span>;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Column</span>(&#123; <span class="attr">type</span>: <span class="string">&#x27;text&#x27;</span>, <span class="attr">nullable</span>: <span class="literal">true</span> &#125;)</span><br><span class="line">  description?: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="src-products-dto-create-product-dto-ts"><a href="#src-products-dto-create-product-dto-ts" class="headerlink" title="src&#x2F;products&#x2F;dto&#x2F;create-product.dto.ts"></a>src&#x2F;products&#x2F;dto&#x2F;create-product.dto.ts</h2><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">IsString</span>, <span class="title class_">IsNotEmpty</span>, <span class="title class_">IsNumber</span>, <span class="title class_">IsOptional</span>, <span class="title class_">Min</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;class-validator&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Type</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;class-transformer&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">CreateProductDto</span> &#123;</span><br><span class="line">  <span class="meta">@IsString</span>()</span><br><span class="line">  <span class="meta">@IsNotEmpty</span>()</span><br><span class="line">  <span class="attr">name</span>: <span class="built_in">string</span>;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Type</span>(<span class="function">() =&gt;</span> <span class="title class_">Number</span>)</span><br><span class="line">  <span class="meta">@IsNumber</span>()</span><br><span class="line">  <span class="meta">@Min</span>(<span class="number">0</span>)</span><br><span class="line">  <span class="attr">price</span>: <span class="built_in">number</span>;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Type</span>(<span class="function">() =&gt;</span> <span class="title class_">Number</span>)</span><br><span class="line">  <span class="meta">@IsNumber</span>()</span><br><span class="line">  <span class="meta">@Min</span>(<span class="number">0</span>)</span><br><span class="line">  <span class="attr">stock</span>: <span class="built_in">number</span>;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@IsOptional</span>()</span><br><span class="line">  <span class="meta">@IsString</span>()</span><br><span class="line">  description?: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="src-products-products-service-ts"><a href="#src-products-products-service-ts" class="headerlink" title="src&#x2F;products&#x2F;products.service.ts"></a>src&#x2F;products&#x2F;products.service.ts</h2><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Injectable</span>, <span class="title class_">NotFoundException</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;@nestjs/common&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">InjectRepository</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;@nestjs/typeorm&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Repository</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;typeorm&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Product</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;./entities/product.entity&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">CreateProductDto</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;./dto/create-product.dto&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">ProductsService</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span></span><br><span class="line"><span class="params">    <span class="meta">@InjectRepository</span>(Product)</span></span><br><span class="line"><span class="params">    <span class="keyword">private</span> <span class="keyword">readonly</span> repo: Repository&lt;Product&gt;,</span></span><br><span class="line"><span class="params">  </span>) &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">async</span> <span class="title function_">findAll</span>(): <span class="title class_">Promise</span>&lt;<span class="title class_">Product</span>[]&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">repo</span>.<span class="title function_">find</span>(&#123; <span class="attr">order</span>: &#123; <span class="attr">id</span>: <span class="string">&#x27;DESC&#x27;</span> &#125; &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">async</span> <span class="title function_">findOne</span>(<span class="attr">id</span>: <span class="built_in">number</span>): <span class="title class_">Promise</span>&lt;<span class="title class_">Product</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> p = <span class="keyword">await</span> <span class="variable language_">this</span>.<span class="property">repo</span>.<span class="title function_">findOneBy</span>(&#123; id &#125;);</span><br><span class="line">    <span class="keyword">if</span> (!p) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">NotFoundException</span>(<span class="string">&#x27;Product not found&#x27;</span>);</span><br><span class="line">    <span class="keyword">return</span> p;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">async</span> <span class="title function_">create</span>(<span class="attr">dto</span>: <span class="title class_">CreateProductDto</span>): <span class="title class_">Promise</span>&lt;<span class="title class_">Product</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> p = <span class="variable language_">this</span>.<span class="property">repo</span>.<span class="title function_">create</span>(dto <span class="keyword">as</span> <span class="built_in">any</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">repo</span>.<span class="title function_">save</span>(p);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">async</span> <span class="title function_">remove</span>(<span class="attr">id</span>: <span class="built_in">number</span>): <span class="title class_">Promise</span>&lt;<span class="built_in">void</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> r = <span class="keyword">await</span> <span class="variable language_">this</span>.<span class="property">repo</span>.<span class="title function_">delete</span>(id);</span><br><span class="line">    <span class="keyword">if</span> (r.<span class="property">affected</span> === <span class="number">0</span>) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">NotFoundException</span>(<span class="string">&#x27;Product not found&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="src-products-products-controller-ts"><a href="#src-products-products-controller-ts" class="headerlink" title="src&#x2F;products&#x2F;products.controller.ts"></a>src&#x2F;products&#x2F;products.controller.ts</h2><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Controller</span>, <span class="title class_">Get</span>, <span class="title class_">Post</span>, <span class="title class_">Body</span>, <span class="title class_">Param</span>, <span class="title class_">Delete</span>, <span class="title class_">ParseIntPipe</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;@nestjs/common&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">ProductsService</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;./products.service&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">CreateProductDto</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;./dto/create-product.dto&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span>(<span class="string">&#x27;products&#x27;</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">ProductsController</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"><span class="keyword">private</span> <span class="keyword">readonly</span> svc: ProductsService</span>) &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Get</span>()</span><br><span class="line">  <span class="keyword">async</span> <span class="title function_">findAll</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">svc</span>.<span class="title function_">findAll</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Get</span>(<span class="string">&#x27;:id&#x27;</span>)</span><br><span class="line">  <span class="keyword">async</span> <span class="title function_">findOne</span>(<span class="params"><span class="meta">@Param</span>(<span class="string">&#x27;id&#x27;</span>, ParseIntPipe) id: <span class="built_in">number</span></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">svc</span>.<span class="title function_">findOne</span>(id);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Post</span>()</span><br><span class="line">  <span class="keyword">async</span> <span class="title function_">create</span>(<span class="params"><span class="meta">@Body</span>() dto: CreateProductDto</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">svc</span>.<span class="title function_">create</span>(dto);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Delete</span>(<span class="string">&#x27;:id&#x27;</span>)</span><br><span class="line">  <span class="keyword">async</span> <span class="title function_">remove</span>(<span class="params"><span class="meta">@Param</span>(<span class="string">&#x27;id&#x27;</span>, ParseIntPipe) id: <span class="built_in">number</span></span>) &#123;</span><br><span class="line">    <span class="keyword">await</span> <span class="variable language_">this</span>.<span class="property">svc</span>.<span class="title function_">remove</span>(id);</span><br><span class="line">    <span class="keyword">return</span> &#123; <span class="attr">message</span>: <span class="string">&#x27;deleted&#x27;</span> &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="src-products-products-module-ts"><a href="#src-products-products-module-ts" class="headerlink" title="src&#x2F;products&#x2F;products.module.ts"></a>src&#x2F;products&#x2F;products.module.ts</h2><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Module</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;@nestjs/common&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">TypeOrmModule</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;@nestjs/typeorm&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">ProductsService</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;./products.service&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">ProductsController</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;./products.controller&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Product</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;./entities/product.entity&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Module</span>(&#123;</span><br><span class="line">  <span class="attr">imports</span>: [<span class="title class_">TypeOrmModule</span>.<span class="title function_">forFeature</span>([<span class="title class_">Product</span>])],</span><br><span class="line">  <span class="attr">providers</span>: [<span class="title class_">ProductsService</span>],</span><br><span class="line">  <span class="attr">controllers</span>: [<span class="title class_">ProductsController</span>],</span><br><span class="line">  <span class="attr">exports</span>: [<span class="title class_">ProductsService</span>],</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">ProductsModule</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="3-env-example（放在專案根目錄）"><a href="#3-env-example（放在專案根目錄）" class="headerlink" title="3) .env.example（放在專案根目錄）"></a>3) .env.example（放在專案根目錄）</h1><p>建立 <code>.env</code> 或先複製 <code>.env.example</code>：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># .env.example</span></span><br><span class="line"><span class="attr">PORT</span>=<span class="number">3000</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># DB: use sqlite by default. To use mysql change DB_TYPE to &#x27;mysql&#x27; and fill DB_* values</span></span><br><span class="line"><span class="attr">DB_TYPE</span>=sqlite</span><br><span class="line"><span class="attr">DB_HOST</span>=localhost</span><br><span class="line"><span class="attr">DB_PORT</span>=<span class="number">3306</span></span><br><span class="line"><span class="attr">DB_USER</span>=root</span><br><span class="line"><span class="attr">DB_PASSWORD</span>=</span><br><span class="line"><span class="attr">DB_NAME</span>=line_order_db</span><br></pre></td></tr></table></figure>
+
+<p>若要使用 MySQL（本機或 PlanetScale），把 <code>DB_TYPE=mysql</code> 並安裝 <code>mysql2</code>。</p>
+<hr>
+<h1 id="4-package-json-scripts（若-nest-new-已建立，確認-scripts-包含）"><a href="#4-package-json-scripts（若-nest-new-已建立，確認-scripts-包含）" class="headerlink" title="4) package.json scripts（若 nest new 已建立，確認 scripts 包含）"></a>4) package.json scripts（若 nest new 已建立，確認 scripts 包含）</h1><p><code>package.json</code> 中應有：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;start&quot;</span><span class="punctuation">:</span> <span class="string">&quot;nest start&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;start:dev&quot;</span><span class="punctuation">:</span> <span class="string">&quot;nest start --watch&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;build&quot;</span><span class="punctuation">:</span> <span class="string">&quot;nest build&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;format&quot;</span><span class="punctuation">:</span> <span class="string">&quot;prettier --write \&quot;src/**/*.ts\&quot;&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="5-執行與測試"><a href="#5-執行與測試" class="headerlink" title="5) 執行與測試"></a>5) 執行與測試</h1><p>啟動（dev）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 建議先建立 SQLite 資料夾</span></span><br><span class="line"><span class="built_in">mkdir</span> -p data</span><br><span class="line"></span><br><span class="line"><span class="comment"># 啟動開發模式</span></span><br><span class="line">npm run start:dev</span><br></pre></td></tr></table></figure>
+
+<p>測試 API（curl 或 Postman）：</p>
+<ul>
+<li>取得空列表</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl http://localhost:3000/products</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>建立商品</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST http://localhost:3000/products \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;&quot;name&quot;:&quot;紅豆麵包&quot;,&quot;price&quot;:35,&quot;stock&quot;:20,&quot;description&quot;:&quot;手作紅豆&quot;&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>取得商品</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl http://localhost:3000/products/1</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="6-下一步建議（你要我帶的）"><a href="#6-下一步建議（你要我帶的）" class="headerlink" title="6) 下一步建議（你要我帶的）"></a>6) 下一步建議（你要我帶的）</h1><p>現在你已經有「第一塊積木」。你可以選接下來哪塊：</p>
+<ul>
+<li><strong>A. Orders Module</strong>（我會給你完整 OrdersModule 範例，含 DTO、Entity、Service 事務處理）</li>
+<li><strong>B. 把 Products 改成 MySQL（TypeORM + mysql2）並示範 migration</strong></li>
+<li><strong>C. LineWebhook Module（整合 OrdersService）</strong></li>
+<li><strong>D. 加入 Queue（Bull + Redis）並示範 webhook 非同步處理</strong></li>
+</ul>
+<p>你剛說要我「1 及 2（建立專案 + 告訴你每步該做什麼）」——已完成。<br>現在請選你想要我<strong>下一塊積木</strong>（A&#x2F;B&#x2F;C&#x2F;D）中的哪一項，我將馬上幫你生成完整程式碼與執行指令。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/OneNote/" rel="tag"># OneNote</a>
+              <a href="/apple.lily/tags/Line%E8%A8%82%E5%96%AE%E7%B3%BB%E7%B5%B1/" rel="tag"># Line訂單系統</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/11/17/OneDayOneNote/2025-07-25/" rel="prev" title="2025-07-25 Line 訂單系統- NestJS 第1 ～7步驟">
+                  <i class="fa fa-angle-left"></i> 2025-07-25 Line 訂單系統- NestJS 第1 ～7步驟
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/apple.lily/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

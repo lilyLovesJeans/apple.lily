@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2025-07-19 Line 訂單系統- G 階段 — 擴充與多平台版本">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025-07-19 Line 訂單系統- G 階段 — 擴充與多平台版本">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/11/14/OneDayOneNote/2025-07-19/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2025-07-19 Line 訂單系統- G 階段 — 擴充與多平台版本">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-11-13T23:12:44.000Z">
+<meta property="article:modified_time" content="2025-11-13T23:13:41.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="OneNote">
+<meta property="article:tag" content="Line訂單系統">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2025/11/14/OneDayOneNote/2025-07-19/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2025/11/14/OneDayOneNote/2025-07-19/","path":"2025/11/14/OneDayOneNote/2025-07-19/","title":"2025-07-19 Line 訂單系統- G 階段 — 擴充與多平台版本"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2025-07-19 Line 訂單系統- G 階段 — 擴充與多平台版本 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2025-07-19-Line-%E8%A8%82%E5%96%AE%E7%B3%BB%E7%B5%B1-G-%E9%9A%8E%E6%AE%B5-%E2%80%94-%E6%93%B4%E5%85%85%E8%88%87%E5%A4%9A%E5%B9%B3%E5%8F%B0%E7%89%88%E6%9C%AC"><span class="nav-number">1.</span> <span class="nav-text">2025-07-19 Line 訂單系統- G 階段 — 擴充與多平台版本</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%93%92-G-%E9%9A%8E%E6%AE%B5-%E2%80%94-%E6%93%B4%E5%85%85%E8%88%87%E5%A4%9A%E5%B9%B3%E5%8F%B0%E7%89%88%E6%9C%AC"><span class="nav-number"></span> <span class="nav-text">📒 G 階段 — 擴充與多平台版本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%8E%AF-G-%E9%9A%8E%E6%AE%B5%E7%B8%BD%E7%9B%AE%E6%A8%99"><span class="nav-number"></span> <span class="nav-text">🎯 G 階段總目標</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%A7%A9-%E5%8A%9F%E8%83%BD%E6%96%B9%E5%90%91"><span class="nav-number">0.1.</span> <span class="nav-text">🧩 功能方向</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%B6-G-%E9%9A%8E%E6%AE%B5%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B%EF%BC%88%E5%BB%BA%E8%AD%B0%E9%A0%86%E5%BA%8F%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">🔶 G 階段完整流程（建議順序）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%93"><span class="nav-number"></span> <span class="nav-text">——————————————–</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%93%98-G1-%E2%80%94-%E8%A8%AD%E8%A8%88%E5%BA%97%E5%AE%B6%E5%BE%8C%E5%8F%B0%EF%BC%88Vue3-Vite%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">📘 G1 — 設計店家後台（Vue3 + Vite）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%93-1"><span class="nav-number"></span> <span class="nav-text">——————————————–</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%8E%A8-%E5%BE%8C%E5%8F%B0%E9%A0%81%E9%9D%A2%E6%9E%B6%E6%A7%8B%EF%BC%88Vue-Router%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">🎨 後台頁面架構（Vue Router）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%93%81-%E5%BB%BA%E8%AD%B0%E7%9B%AE%E9%8C%84"><span class="nav-number">1.1.</span> <span class="nav-text">📁 建議目錄</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%93-2"><span class="nav-number"></span> <span class="nav-text">——————————————–</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%93%98-G2-%E2%80%94-%E5%BE%8C%E7%AB%AF%E7%99%BB%E5%85%A5%E8%88%87-RBAC%EF%BC%88%E8%A7%92%E8%89%B2%E6%AC%8A%E9%99%90%E7%AE%A1%E7%90%86%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">📘 G2 — 後端登入與 RBAC（角色權限管理）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%93-3"><span class="nav-number"></span> <span class="nav-text">——————————————–</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B3%87%E6%96%99%E5%BA%AB%EF%BC%88%E6%96%B0%E5%A2%9E%E4%B8%80%E5%BC%B5%E8%A1%A8-users%EF%BC%89"><span class="nav-number">0.1.</span> <span class="nav-text">資料庫（新增一張表 users）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JWT-%E6%AC%8A%E9%99%90%E9%A9%97%E8%AD%89"><span class="nav-number">0.2.</span> <span class="nav-text">JWT 權限驗證</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%93-4"><span class="nav-number"></span> <span class="nav-text">——————————————–</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%93%98-G3-%E2%80%94-%E5%A4%9A%E5%95%86%E5%AE%B6%EF%BC%88Multi-Tenant%EF%BC%89%E6%9E%B6%E6%A7%8B"><span class="nav-number"></span> <span class="nav-text">📘 G3 — 多商家（Multi-Tenant）架構</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%93-5"><span class="nav-number"></span> <span class="nav-text">——————————————–</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E8%B3%87%E6%96%99%E8%A1%A8"><span class="nav-number">0.1.</span> <span class="nav-text">修改資料表</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%93-6"><span class="nav-number"></span> <span class="nav-text">——————————————–</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%93%98-G4-%E2%80%94-%E8%A1%8C%E5%8B%95-App%EF%BC%88PWA%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">📘 G4 — 行動 App（PWA）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%93-7"><span class="nav-number"></span> <span class="nav-text">——————————————–</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%93-8"><span class="nav-number"></span> <span class="nav-text">——————————————–</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%93%98-G5-%E2%80%94-Capacitor-%E6%89%93%E5%8C%85-iOS-Android"><span class="nav-number"></span> <span class="nav-text">📘 G5 — Capacitor 打包 iOS&#x2F;Android</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%93-9"><span class="nav-number"></span> <span class="nav-text">——————————————–</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%9D-Capacitor"><span class="nav-number">0.1.</span> <span class="nav-text">安裝 Capacitor</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%93-10"><span class="nav-number"></span> <span class="nav-text">——————————————–</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%93%98-G6-%E2%80%94-AI-%E6%99%BA%E6%85%A7%E5%AE%A2%E6%9C%8D%EF%BC%88ChatGPT-LINE-Bot%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">📘 G6 — AI 智慧客服（ChatGPT + LINE Bot）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%93-11"><span class="nav-number"></span> <span class="nav-text">——————————————–</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Webhook-%E6%B5%81%E7%A8%8B%EF%BC%9A"><span class="nav-number">0.1.</span> <span class="nav-text">Webhook 流程：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Node-js-%E4%B8%B2%E6%8E%A5-OpenAI-API"><span class="nav-number">0.2.</span> <span class="nav-text">Node.js 串接 OpenAI API</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%93-12"><span class="nav-number"></span> <span class="nav-text">——————————————–</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%93%98-G7-%E2%80%94-%E5%8D%B3%E6%99%82%E6%8E%A8%E6%92%AD%EF%BC%88WebSocket-SSE%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">📘 G7 — 即時推播（WebSocket &#x2F; SSE）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%93-13"><span class="nav-number"></span> <span class="nav-text">——————————————–</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%B3%E6%99%82%E8%B3%87%E6%96%99%E6%8E%A8%E6%92%AD%E5%8E%9F%E7%90%86%EF%BC%9A"><span class="nav-number">0.1.</span> <span class="nav-text">即時資料推播原理：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%93-14"><span class="nav-number"></span> <span class="nav-text">——————————————–</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%93%98-G8-%E2%80%94-Dashboard-%E5%84%80%E8%A1%A8%E6%9D%BF"><span class="nav-number"></span> <span class="nav-text">📘 G8 — Dashboard 儀表板</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%93-15"><span class="nav-number"></span> <span class="nav-text">——————————————–</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%93-16"><span class="nav-number"></span> <span class="nav-text">——————————————–</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%93%98-G9-%E2%80%94-%E5%95%86%E7%94%A8%E5%8C%96%E6%BA%96%E5%82%99"><span class="nav-number"></span> <span class="nav-text">📘 G9 — 商用化準備</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%93-17"><span class="nav-number"></span> <span class="nav-text">——————————————–</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%8E%89-%E6%81%AD%E5%96%9C%EF%BC%81"><span class="nav-number"></span> <span class="nav-text">🎉 恭喜！</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%9C%94-%E7%94%9F%E6%88%90-G-%E9%9A%8E%E6%AE%B5%E5%AE%8C%E6%95%B4%E6%9E%B6%E6%A7%8B%E5%9C%96%EF%BC%88PNG%EF%BC%89"><span class="nav-number">0.1.</span> <span class="nav-text">✔ 生成 G 階段完整架構圖（PNG）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%9C%94-%E7%94%9F%E6%88%90%E5%BA%97%E5%AE%B6%E5%BE%8C%E5%8F%B0-UI-Wireframe%EF%BC%88%E8%8D%89%E5%9C%96%EF%BC%89"><span class="nav-number">0.2.</span> <span class="nav-text">✔ 生成店家後台 UI Wireframe（草圖）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%9C%94-%E7%94%9F%E6%88%90-PWA-Capacitor-%E5%AF%A6%E4%BD%9C%E7%AF%84%E4%BE%8B%E7%A2%BC"><span class="nav-number">0.3.</span> <span class="nav-text">✔ 生成 PWA + Capacitor 實作範例碼</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%9C%94-%E7%94%9F%E6%88%90-AI-%E6%99%BA%E6%85%A7%E5%AE%A2%E6%9C%8D%E5%AE%8C%E6%95%B4%E7%A8%8B%E5%BC%8F%E7%A2%BC"><span class="nav-number">0.4.</span> <span class="nav-text">✔ 生成 AI 智慧客服完整程式碼</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%9C%94-%E7%94%9F%E6%88%90%E5%A4%9A%E5%95%86%E5%AE%B6%EF%BC%88shop-id%EF%BC%89%E8%B3%87%E6%96%99%E8%A1%A8%E6%94%B9%E9%80%A0%E8%85%B3%E6%9C%AC"><span class="nav-number">0.5.</span> <span class="nav-text">✔ 生成多商家（shop_id）資料表改造腳本</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">522</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2025/11/14/OneDayOneNote/2025-07-19/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2025-07-19 Line 訂單系統- G 階段 — 擴充與多平台版本 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2025-07-19 Line 訂單系統- G 階段 — 擴充與多平台版本">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2025-07-19 Line 訂單系統- G 階段 — 擴充與多平台版本
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2025-11-14 07:12:44 / 修改時間：07:13:41" itemprop="dateCreated datePublished" datetime="2025-11-14T07:12:44+08:00">2025-11-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2025-07-19 Line 訂單系統- G 階段 — 擴充與多平台版本</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2025-07-19-Line-訂單系統-G-階段-—-擴充與多平台版本"><a href="#2025-07-19-Line-訂單系統-G-階段-—-擴充與多平台版本" class="headerlink" title="2025-07-19 Line 訂單系統- G 階段 — 擴充與多平台版本"></a>2025-07-19 Line 訂單系統- G 階段 — 擴充與多平台版本</h2><h1 id="📒-G-階段-—-擴充與多平台版本"><a href="#📒-G-階段-—-擴充與多平台版本" class="headerlink" title="📒 G 階段 — 擴充與多平台版本"></a>📒 G 階段 — 擴充與多平台版本</h1><p>（行動 App + 店家後台 + 多商家架構 + AI 智慧客服）</p>
+<p>這一階段將你的 LINE 訂單系統，從「能用」提升成「可商用」、「可擴充」、「可成為大型產品」。</p>
+<hr>
+<h1 id="🎯-G-階段總目標"><a href="#🎯-G-階段總目標" class="headerlink" title="🎯 G 階段總目標"></a>🎯 G 階段總目標</h1><h3 id="🧩-功能方向"><a href="#🧩-功能方向" class="headerlink" title="🧩 功能方向"></a>🧩 功能方向</h3><table>
+<thead>
+<tr>
+<th>模組</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>📱 <strong>行動 App（PWA + Capacitor）</strong></td>
+<td>讓客戶可以安裝 App 使用 LINE 以外的入口。</td>
+</tr>
+<tr>
+<td>🧾 <strong>店家後台（角色&#x2F;權限）</strong></td>
+<td>登入、員工管理、訂單管理、商品管理。</td>
+</tr>
+<tr>
+<td>🏬 <strong>多商家架構（Marketplace）</strong></td>
+<td>支援「A 店」「B 店」多商家獨立管理商品與訂單。</td>
+</tr>
+<tr>
+<td>🤖 <strong>AI 智慧客服（ChatGPT + LINE Bot）</strong></td>
+<td>自動回答詢問、推薦商品、查訂單狀態。</td>
+</tr>
+<tr>
+<td>📊 <strong>儀表板提供營運數據</strong></td>
+<td>今日營收、熱銷商品、流量來源。</td>
+</tr>
+<tr>
+<td>📡 <strong>WebSocket&#x2F;Server-Sent Events 即時推播</strong></td>
+<td>後台訂單列表秒級更新。</td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="🔶-G-階段完整流程（建議順序）"><a href="#🔶-G-階段完整流程（建議順序）" class="headerlink" title="🔶 G 階段完整流程（建議順序）"></a>🔶 G 階段完整流程（建議順序）</h1><table>
+<thead>
+<tr>
+<th>步驟</th>
+<th>名稱</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>G1</td>
+<td>店家後台架構</td>
+<td>Vue3 + 路由 + 管理者登入</td>
+</tr>
+<tr>
+<td>G2</td>
+<td>RBAC 角色權限</td>
+<td>Admin &#x2F; Staff 權限控管</td>
+</tr>
+<tr>
+<td>G3</td>
+<td>多商家（Tenants）資料庫改造</td>
+<td>加入 shop_id，一套系統支援多店家</td>
+</tr>
+<tr>
+<td>G4</td>
+<td>行動 App（PWA）</td>
+<td>直接由前端產生可安裝 App</td>
+</tr>
+<tr>
+<td>G5</td>
+<td>Capacitor 打包 iOS&#x2F;Android</td>
+<td>轉成真正 App（低成本）</td>
+</tr>
+<tr>
+<td>G6</td>
+<td>AI 智慧客服流程</td>
+<td>LINE Bot → AI 回覆 &#x2F; 推薦商品</td>
+</tr>
+<tr>
+<td>G7</td>
+<td>即時系統（WebSocket）</td>
+<td>訂單建立時後台即時彈出通知</td>
+</tr>
+<tr>
+<td>G8</td>
+<td>儀表板（Dashboard）</td>
+<td>營運指標：訂單量、推播、熱賣品</td>
+</tr>
+<tr>
+<td>G9</td>
+<td>測試、優化、準備正式商用</td>
+<td>壓力測試、使用者測試</td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="——————————————–"><a href="#——————————————–" class="headerlink" title="——————————————–"></a>——————————————–</h1><h1 id="📘-G1-—-設計店家後台（Vue3-Vite）"><a href="#📘-G1-—-設計店家後台（Vue3-Vite）" class="headerlink" title="📘 G1 — 設計店家後台（Vue3 + Vite）"></a>📘 G1 — 設計店家後台（Vue3 + Vite）</h1><h1 id="——————————————–-1"><a href="#——————————————–-1" class="headerlink" title="——————————————–"></a>——————————————–</h1><p>你的現有前端是訂單列表與測試頁面，現在要延伸為：</p>
+<h2 id="🎨-後台頁面架構（Vue-Router）"><a href="#🎨-後台頁面架構（Vue-Router）" class="headerlink" title="🎨 後台頁面架構（Vue Router）"></a>🎨 後台頁面架構（Vue Router）</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/admin/login</span><br><span class="line">/admin/dashboard</span><br><span class="line">/admin/orders</span><br><span class="line">/admin/products</span><br><span class="line">/admin/members</span><br><span class="line">/admin/settings</span><br></pre></td></tr></table></figure>
+
+<h3 id="📁-建議目錄"><a href="#📁-建議目錄" class="headerlink" title="📁 建議目錄"></a>📁 建議目錄</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">frontend/</span><br><span class="line">└── src/</span><br><span class="line">    ├── views/</span><br><span class="line">    │   ├── AdminLogin.vue</span><br><span class="line">    │   ├── AdminDashboard.vue</span><br><span class="line">    │   ├── AdminOrders.vue</span><br><span class="line">    │   ├── AdminProducts.vue</span><br><span class="line">    │   ├── AdminMembers.vue</span><br><span class="line">    │   └── AdminSettings.vue</span><br><span class="line">    ├── components/</span><br><span class="line">    │   ├── Sidebar.vue</span><br><span class="line">    │   ├── Navbar.vue</span><br><span class="line">    │   └── DataTable.vue</span><br><span class="line">    └── router/</span><br><span class="line">        └── index.js</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="——————————————–-2"><a href="#——————————————–-2" class="headerlink" title="——————————————–"></a>——————————————–</h1><h1 id="📘-G2-—-後端登入與-RBAC（角色權限管理）"><a href="#📘-G2-—-後端登入與-RBAC（角色權限管理）" class="headerlink" title="📘 G2 — 後端登入與 RBAC（角色權限管理）"></a>📘 G2 — 後端登入與 RBAC（角色權限管理）</h1><h1 id="——————————————–-3"><a href="#——————————————–-3" class="headerlink" title="——————————————–"></a>——————————————–</h1><p>你需要角色分級：</p>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>能做什麼</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Admin</td>
+<td>新增商品、刪除訂單、管理員工</td>
+</tr>
+<tr>
+<td>Staff</td>
+<td>看訂單、更新訂單狀態</td>
+</tr>
+</tbody></table>
+<h3 id="資料庫（新增一張表-users）"><a href="#資料庫（新增一張表-users）" class="headerlink" title="資料庫（新增一張表 users）"></a>資料庫（新增一張表 <code>users</code>）</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> users (</span><br><span class="line">  id <span class="type">INT</span> AUTO_INCREMENT <span class="keyword">PRIMARY</span> KEY,</span><br><span class="line">  username <span class="type">VARCHAR</span>(<span class="number">50</span>) <span class="keyword">UNIQUE</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  password_hash <span class="type">VARCHAR</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  role ENUM(<span class="string">&#x27;admin&#x27;</span>, <span class="string">&#x27;staff&#x27;</span>) <span class="keyword">DEFAULT</span> <span class="string">&#x27;staff&#x27;</span>,</span><br><span class="line">  shop_id <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h3 id="JWT-權限驗證"><a href="#JWT-權限驗證" class="headerlink" title="JWT 權限驗證"></a>JWT 權限驗證</h3><p>後端 API：</p>
+<table>
+<thead>
+<tr>
+<th>API</th>
+<th>說明</th>
+<th>權限</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>POST <code>/auth/login</code></td>
+<td>登入取得 JWT</td>
+<td>All</td>
+</tr>
+<tr>
+<td>GET <code>/admin/orders</code></td>
+<td>店家訂單列表</td>
+<td>admin&#x2F;staff</td>
+</tr>
+<tr>
+<td>POST <code>/admin/products</code></td>
+<td>新增商品</td>
+<td>admin</td>
+</tr>
+</tbody></table>
+<p>後端 middleware：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">requireRole</span>(<span class="params">role</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function">(<span class="params">req, res, next</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (req.<span class="property">user</span>.<span class="property">role</span> !== role) <span class="keyword">return</span> res.<span class="title function_">status</span>(<span class="number">403</span>).<span class="title function_">json</span>(&#123;<span class="attr">error</span>:<span class="string">&#x27;forbidden&#x27;</span>&#125;)</span><br><span class="line">    <span class="title function_">next</span>()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Example 使用：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.<span class="title function_">post</span>(<span class="string">&#x27;/admin/products&#x27;</span>, requireRole(<span class="string">&#x27;admin&#x27;</span>), createProduct)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="——————————————–-4"><a href="#——————————————–-4" class="headerlink" title="——————————————–"></a>——————————————–</h1><h1 id="📘-G3-—-多商家（Multi-Tenant）架構"><a href="#📘-G3-—-多商家（Multi-Tenant）架構" class="headerlink" title="📘 G3 — 多商家（Multi-Tenant）架構"></a>📘 G3 — 多商家（Multi-Tenant）架構</h1><h1 id="——————————————–-5"><a href="#——————————————–-5" class="headerlink" title="——————————————–"></a>——————————————–</h1><p>為什麼要做多商家？<br>因為你這個系統將來可以賣給 A 店、B 店、C 店，<br>每一家店：</p>
+<ul>
+<li>商品不同</li>
+<li>訂單不同</li>
+<li>LINE Bot token 不同</li>
+</ul>
+<p>所以資料庫要加入 <code>shop_id</code>。</p>
+<h3 id="修改資料表"><a href="#修改資料表" class="headerlink" title="修改資料表"></a>修改資料表</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> products <span class="keyword">ADD</span> <span class="keyword">COLUMN</span> shop_id <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>;</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> orders <span class="keyword">ADD</span> <span class="keyword">COLUMN</span> shop_id <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>;</span><br></pre></td></tr></table></figure>
+
+<p>登入後：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">req.user.shop_id</span><br></pre></td></tr></table></figure>
+
+<p>用來過濾所有查詢：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> orders <span class="keyword">WHERE</span> shop_id <span class="operator">=</span> ?</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="——————————————–-6"><a href="#——————————————–-6" class="headerlink" title="——————————————–"></a>——————————————–</h1><h1 id="📘-G4-—-行動-App（PWA）"><a href="#📘-G4-—-行動-App（PWA）" class="headerlink" title="📘 G4 — 行動 App（PWA）"></a>📘 G4 — 行動 App（PWA）</h1><h1 id="——————————————–-7"><a href="#——————————————–-7" class="headerlink" title="——————————————–"></a>——————————————–</h1><p>Vue + Vite 支援超簡單的 PWA。</p>
+<p>安裝：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vite-plugin-pwa --save-dev</span><br></pre></td></tr></table></figure>
+
+<p>新增到 <code>vite.config.js</code>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">VitePWA</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;vite-plugin-pwa&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">plugins</span>: [</span><br><span class="line">  <span class="title class_">VitePWA</span>(&#123;</span><br><span class="line">    <span class="attr">registerType</span>: <span class="string">&#x27;autoUpdate&#x27;</span>,</span><br><span class="line">    <span class="attr">manifest</span>: &#123;</span><br><span class="line">      <span class="attr">name</span>: <span class="string">&#x27;Line Order System&#x27;</span>,</span><br><span class="line">      <span class="attr">short_name</span>: <span class="string">&#x27;OrderApp&#x27;</span>,</span><br><span class="line">      <span class="attr">icons</span>: [...]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>部署後，你的網頁會出現：</p>
+<p>👉「加入主畫面」</p>
+<p>等於真正 App。</p>
+<hr>
+<h1 id="——————————————–-8"><a href="#——————————————–-8" class="headerlink" title="——————————————–"></a>——————————————–</h1><h1 id="📘-G5-—-Capacitor-打包-iOS-Android"><a href="#📘-G5-—-Capacitor-打包-iOS-Android" class="headerlink" title="📘 G5 — Capacitor 打包 iOS&#x2F;Android"></a>📘 G5 — Capacitor 打包 iOS&#x2F;Android</h1><h1 id="——————————————–-9"><a href="#——————————————–-9" class="headerlink" title="——————————————–"></a>——————————————–</h1><h3 id="安裝-Capacitor"><a href="#安裝-Capacitor" class="headerlink" title="安裝 Capacitor"></a>安裝 Capacitor</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install @capacitor/core</span><br><span class="line">npm install @capacitor/ios @capacitor/android</span><br><span class="line">npx cap init</span><br></pre></td></tr></table></figure>
+
+<p>然後：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm run build</span><br><span class="line">npx cap copy</span><br><span class="line">npx cap open ios</span><br></pre></td></tr></table></figure>
+
+<p>你就可以把 Vue 網頁包成 iOS App<br>（相同方式產生 Android APK）。</p>
+<hr>
+<h1 id="——————————————–-10"><a href="#——————————————–-10" class="headerlink" title="——————————————–"></a>——————————————–</h1><h1 id="📘-G6-—-AI-智慧客服（ChatGPT-LINE-Bot）"><a href="#📘-G6-—-AI-智慧客服（ChatGPT-LINE-Bot）" class="headerlink" title="📘 G6 — AI 智慧客服（ChatGPT + LINE Bot）"></a>📘 G6 — AI 智慧客服（ChatGPT + LINE Bot）</h1><h1 id="——————————————–-11"><a href="#——————————————–-11" class="headerlink" title="——————————————–"></a>——————————————–</h1><p>你的目標：</p>
+<p>使用者在 LINE 問：</p>
+<ul>
+<li>「營業時間？」</li>
+<li>「幫我推薦商品」</li>
+<li>「我想查訂單 20」</li>
+</ul>
+<p>你的後端自動用 GPT 回應。</p>
+<h3 id="Webhook-流程："><a href="#Webhook-流程：" class="headerlink" title="Webhook 流程："></a>Webhook 流程：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">使用者訊息 → Webhook → 後端 → AI API → 回覆 → LINE</span><br></pre></td></tr></table></figure>
+
+<h3 id="Node-js-串接-OpenAI-API"><a href="#Node-js-串接-OpenAI-API" class="headerlink" title="Node.js 串接 OpenAI API"></a>Node.js 串接 OpenAI API</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">OpenAI</span> <span class="keyword">from</span> <span class="string">&quot;openai&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> client = <span class="keyword">new</span> <span class="title class_">OpenAI</span>(&#123; <span class="attr">apiKey</span>: process.<span class="property">env</span>.<span class="property">OPENAI_KEY</span> &#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">askAI</span>(<span class="params">text</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> res = <span class="keyword">await</span> client.<span class="property">chat</span>.<span class="property">completions</span>.<span class="title function_">create</span>(&#123;</span><br><span class="line">    <span class="attr">model</span>: <span class="string">&quot;gpt-4o-mini&quot;</span>,</span><br><span class="line">    <span class="attr">messages</span>: [&#123; <span class="attr">role</span>: <span class="string">&quot;user&quot;</span>, <span class="attr">content</span>: text &#125;]</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">return</span> res.<span class="property">choices</span>[<span class="number">0</span>].<span class="property">message</span>.<span class="property">content</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Webhook 使用：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (message.<span class="property">text</span>.<span class="title function_">includes</span>(<span class="string">&quot;查訂單&quot;</span>)) &#123;</span><br><span class="line">  <span class="keyword">const</span> reply = <span class="keyword">await</span> <span class="title function_">askAI</span>(<span class="string">`使用者問：<span class="subst">$&#123;message.text&#125;</span>，店家資訊如下...`</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="——————————————–-12"><a href="#——————————————–-12" class="headerlink" title="——————————————–"></a>——————————————–</h1><h1 id="📘-G7-—-即時推播（WebSocket-SSE）"><a href="#📘-G7-—-即時推播（WebSocket-SSE）" class="headerlink" title="📘 G7 — 即時推播（WebSocket &#x2F; SSE）"></a>📘 G7 — 即時推播（WebSocket &#x2F; SSE）</h1><h1 id="——————————————–-13"><a href="#——————————————–-13" class="headerlink" title="——————————————–"></a>——————————————–</h1><p>當 LINE 使用者建立訂單後：</p>
+<p>→ 後台管理頁面「馬上」出現彈窗！<br>→ 用戶不用重整頁面就能看到更新。</p>
+<p>推薦技術：</p>
+<ul>
+<li>Server-Sent Events（簡單）</li>
+<li>WebSocket（彈性高）</li>
+<li>使用 Redis Pub&#x2F;Sub（系統可水平擴充）</li>
+</ul>
+<h3 id="即時資料推播原理："><a href="#即時資料推播原理：" class="headerlink" title="即時資料推播原理："></a>即時資料推播原理：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Webhook → Create Order → Publish(&quot;order:new&quot;) → Frontend 接收 → 即時顯示</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="——————————————–-14"><a href="#——————————————–-14" class="headerlink" title="——————————————–"></a>——————————————–</h1><h1 id="📘-G8-—-Dashboard-儀表板"><a href="#📘-G8-—-Dashboard-儀表板" class="headerlink" title="📘 G8 — Dashboard 儀表板"></a>📘 G8 — Dashboard 儀表板</h1><h1 id="——————————————–-15"><a href="#——————————————–-15" class="headerlink" title="——————————————–"></a>——————————————–</h1><p>店家後台顯示關鍵數據：</p>
+<table>
+<thead>
+<tr>
+<th>指標</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>今日訂單數</td>
+<td>COUNT(*) WHERE date &#x3D; today</td>
+</tr>
+<tr>
+<td>今日營收</td>
+<td>SUM(order_total)</td>
+</tr>
+<tr>
+<td>熱賣商品</td>
+<td>GROUP BY product_id</td>
+</tr>
+<tr>
+<td>未處理訂單數</td>
+<td>status&#x3D;’pending’</td>
+</tr>
+<tr>
+<td>使用者查詢次數</td>
+<td>AI 客服統計</td>
+</tr>
+</tbody></table>
+<p>前端使用：</p>
+<ul>
+<li>Echarts</li>
+<li>Chart.js</li>
+</ul>
+<hr>
+<h1 id="——————————————–-16"><a href="#——————————————–-16" class="headerlink" title="——————————————–"></a>——————————————–</h1><h1 id="📘-G9-—-商用化準備"><a href="#📘-G9-—-商用化準備" class="headerlink" title="📘 G9 — 商用化準備"></a>📘 G9 — 商用化準備</h1><h1 id="——————————————–-17"><a href="#——————————————–-17" class="headerlink" title="——————————————–"></a>——————————————–</h1><p>最後階段：</p>
+<ul>
+<li>API 壓力測試（k6）</li>
+<li>自動備援排程（PlanetScale Branch）</li>
+<li>錯誤記錄（Sentry）</li>
+<li>後台操作記錄（Audit Log）</li>
+<li>權限漏洞檢查</li>
+</ul>
+<p>此時你的系統就真正可以：<br>✔ 提供店家使用<br>✔ 支援多人、不同商家<br>✔ 支援行動 App 安裝<br>✔ 支援 AI 智慧客服<br>✔ 支援即時更新</p>
+<hr>
+<h1 id="🎉-恭喜！"><a href="#🎉-恭喜！" class="headerlink" title="🎉 恭喜！"></a>🎉 恭喜！</h1><p>你已到達「LINE 商用訂單系統」的最終階段 G！</p>
+<hr>
+<p>如果你願意，我可以幫你：</p>
+<h3 id="✔-生成-G-階段完整架構圖（PNG）"><a href="#✔-生成-G-階段完整架構圖（PNG）" class="headerlink" title="✔ 生成 G 階段完整架構圖（PNG）"></a>✔ 生成 G 階段完整架構圖（PNG）</h3><h3 id="✔-生成店家後台-UI-Wireframe（草圖）"><a href="#✔-生成店家後台-UI-Wireframe（草圖）" class="headerlink" title="✔ 生成店家後台 UI Wireframe（草圖）"></a>✔ 生成店家後台 UI Wireframe（草圖）</h3><h3 id="✔-生成-PWA-Capacitor-實作範例碼"><a href="#✔-生成-PWA-Capacitor-實作範例碼" class="headerlink" title="✔ 生成 PWA + Capacitor 實作範例碼"></a>✔ 生成 PWA + Capacitor 實作範例碼</h3><h3 id="✔-生成-AI-智慧客服完整程式碼"><a href="#✔-生成-AI-智慧客服完整程式碼" class="headerlink" title="✔ 生成 AI 智慧客服完整程式碼"></a>✔ 生成 AI 智慧客服完整程式碼</h3><h3 id="✔-生成多商家（shop-id）資料表改造腳本"><a href="#✔-生成多商家（shop-id）資料表改造腳本" class="headerlink" title="✔ 生成多商家（shop_id）資料表改造腳本"></a>✔ 生成多商家（shop_id）資料表改造腳本</h3><p>你要哪一個？</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/OneNote/" rel="tag"># OneNote</a>
+              <a href="/apple.lily/tags/Line%E8%A8%82%E5%96%AE%E7%B3%BB%E7%B5%B1/" rel="tag"># Line訂單系統</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/11/13/OneDayOneNote/2025-07-18/" rel="prev" title="2025-07-18 Redis 是什麼">
+                  <i class="fa fa-angle-left"></i> 2025-07-18 Redis 是什麼
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/11/17/OneDayOneNote/2025-07-20/" rel="next" title="2025-07-20 Line 訂單系統- 探討如何構思 line 訂單系統的 系統架構，構思架構時該如何思考">
+                  2025-07-20 Line 訂單系統- 探討如何構思 line 訂單系統的 系統架構，構思架構時該如何思考 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/apple.lily/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
