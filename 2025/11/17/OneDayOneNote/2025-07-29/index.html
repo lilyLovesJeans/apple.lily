@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2025-07-29 Line 訂單系統- 要開始「第一塊積木」，NestJS Products Module 完整程式碼">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025-07-29 Line 訂單系統- 要開始「第一塊積木」，NestJS Products Module 完整程式碼">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/11/17/OneDayOneNote/2025-07-29/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2025-07-29 Line 訂單系統- 要開始「第一塊積木」，NestJS Products Module 完整程式碼">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-11-17T14:06:31.000Z">
+<meta property="article:modified_time" content="2025-11-17T14:07:17.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="OneNote">
+<meta property="article:tag" content="Line訂單系統">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2025/11/17/OneDayOneNote/2025-07-29/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2025/11/17/OneDayOneNote/2025-07-29/","path":"2025/11/17/OneDayOneNote/2025-07-29/","title":"2025-07-29 Line 訂單系統- 要開始「第一塊積木」，NestJS Products Module 完整程式碼"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2025-07-29 Line 訂單系統- 要開始「第一塊積木」，NestJS Products Module 完整程式碼 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%9C%85-NestJS-Products-Module-%E5%AE%8C%E6%95%B4%E7%A8%8B%E5%BC%8F%E7%A2%BC%EF%BC%88%E5%90%AB-CRUD-DTO-Validation-Service%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">✅ NestJS Products Module 完整程式碼（含 CRUD + DTO + Validation + Service）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%A7%B1-%E7%94%A2%E5%93%81%E6%A8%A1%E7%B5%84%E5%AE%8C%E6%95%B4%E7%9B%AE%E9%8C%84%EF%BC%88%E8%AB%8B%E5%85%88%E5%BB%BA%E7%AB%8B%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">🧱 產品模組完整目錄（請先建立）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94"><span class="nav-number">3.</span> <span class="nav-text">———————————————————-</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%93%8C-1-products-module-ts"><span class="nav-number">4.</span> <span class="nav-text">📌 1. products.module.ts</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94-1"><span class="nav-number">5.</span> <span class="nav-text">———————————————————-</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94-2"><span class="nav-number">6.</span> <span class="nav-text">———————————————————-</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%93%8C-2-products-service-ts"><span class="nav-number">7.</span> <span class="nav-text">📌 2. products.service.ts</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94-3"><span class="nav-number">8.</span> <span class="nav-text">———————————————————-</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94-4"><span class="nav-number">9.</span> <span class="nav-text">———————————————————-</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%93%8C-3-products-controller-ts"><span class="nav-number">10.</span> <span class="nav-text">📌 3. products.controller.ts</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94-5"><span class="nav-number">11.</span> <span class="nav-text">———————————————————-</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94-6"><span class="nav-number">12.</span> <span class="nav-text">———————————————————-</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%93%8C-4-create-product-dto-ts"><span class="nav-number">13.</span> <span class="nav-text">📌 4. create-product.dto.ts</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94-7"><span class="nav-number">14.</span> <span class="nav-text">———————————————————-</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94-8"><span class="nav-number">15.</span> <span class="nav-text">———————————————————-</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%93%8C-5-update-product-dto-ts"><span class="nav-number">16.</span> <span class="nav-text">📌 5. update-product.dto.ts</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94-9"><span class="nav-number">17.</span> <span class="nav-text">———————————————————-</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94-10"><span class="nav-number">18.</span> <span class="nav-text">———————————————————-</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%9A%80-%E5%A6%82%E4%BD%95%E5%95%9F%E5%8B%95%E4%B8%A6%E6%B8%AC%E8%A9%A6%EF%BC%88%E4%BD%A0%E7%8F%BE%E5%9C%A8%E5%B0%B1%E8%83%BD%E7%94%A8%EF%BC%89"><span class="nav-number">19.</span> <span class="nav-text">🚀 如何啟動並測試（你現在就能用）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94-11"><span class="nav-number">20.</span> <span class="nav-text">———————————————————-</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%95%9F%E5%8B%95%EF%BC%9A"><span class="nav-number">20.1.</span> <span class="nav-text">啟動：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%AC%E8%A9%A6-API%EF%BC%88Postman-Thunder-Client%EF%BC%89%EF%BC%9A"><span class="nav-number">20.2.</span> <span class="nav-text">測試 API（Postman &#x2F; Thunder Client）：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%EF%B8%8F%E2%83%A3-GET-%E6%89%80%E6%9C%89%E7%94%A2%E5%93%81"><span class="nav-number">20.2.1.</span> <span class="nav-text">1️⃣ GET 所有產品</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%EF%B8%8F%E2%83%A3-%E6%96%B0%E5%A2%9E%E7%94%A2%E5%93%81"><span class="nav-number">20.2.2.</span> <span class="nav-text">2️⃣ 新增產品</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%EF%B8%8F%E2%83%A3-%E6%9F%A5%E8%A9%A2%E5%96%AE%E4%B8%80%E7%94%A2%E5%93%81"><span class="nav-number">20.2.3.</span> <span class="nav-text">3️⃣ 查詢單一產品</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%EF%B8%8F%E2%83%A3-%E6%9B%B4%E6%96%B0"><span class="nav-number">20.2.4.</span> <span class="nav-text">4️⃣ 更新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5%EF%B8%8F%E2%83%A3-%E5%88%AA%E9%99%A4"><span class="nav-number">20.2.5.</span> <span class="nav-text">5️⃣ 刪除</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%8E%89-%E6%81%AD%E5%96%9C%EF%BC%81"><span class="nav-number">21.</span> <span class="nav-text">🎉 恭喜！</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%8E%AF-%E4%B8%8B%E4%B8%80%E6%AD%A5%E4%BD%A0%E6%83%B3%E5%81%9A%E5%93%AA%E4%B8%80%E5%80%8B%EF%BC%9F"><span class="nav-number">22.</span> <span class="nav-text">🎯 下一步你想做哪一個？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#A-%E6%88%91%E8%A6%81%E6%8A%8A-ProductsModule-%E6%8F%9B%E6%88%90%E9%80%A3-MySQL-Prisma"><span class="nav-number">22.1.</span> <span class="nav-text">A. 我要把 ProductsModule 換成連 MySQL &#x2F; Prisma</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-%E6%88%91%E8%A6%81%E5%81%9A%E7%AC%AC%E4%BA%8C%E5%A1%8A%E7%A9%8D%E6%9C%A8%EF%BC%9AOrdersModule%EF%BC%88%E5%90%AB-order-items%EF%BC%89"><span class="nav-number">22.2.</span> <span class="nav-text">B. 我要做第二塊積木：OrdersModule（含 order_items）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-%E6%88%91%E8%A6%81%E9%96%8B%E5%A7%8B%E5%81%9A-LINE-Webhook-%E6%A8%A1%E7%B5%84%EF%BC%88%E9%9A%8E%E6%AE%B5-C%EF%BC%89"><span class="nav-number">22.3.</span> <span class="nav-text">C. 我要開始做 LINE Webhook 模組（階段 C）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#D-%E5%B9%AB%E6%88%91%E7%95%AB%E9%80%99%E5%80%8B-NestJS-%E5%B0%88%E6%A1%88%E7%9A%84%E6%9E%B6%E6%A7%8B%E5%9C%96%EF%BC%88%E5%BE%8C%E7%AB%AF%E5%B0%88%E7%94%A8%EF%BC%89"><span class="nav-number">22.4.</span> <span class="nav-text">D. 幫我畫這個 NestJS 專案的架構圖（後端專用）</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">527</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2025/11/17/OneDayOneNote/2025-07-29/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2025-07-29 Line 訂單系統- 要開始「第一塊積木」，NestJS Products Module 完整程式碼 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2025-07-29 Line 訂單系統- 要開始「第一塊積木」，NestJS Products Module 完整程式碼">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2025-07-29 Line 訂單系統- 要開始「第一塊積木」，NestJS Products Module 完整程式碼
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2025-11-17 22:06:31 / 修改時間：22:07:17" itemprop="dateCreated datePublished" datetime="2025-11-17T22:06:31+08:00">2025-11-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2025-07-29 Line 訂單系統- 要開始「第一塊積木」，NestJS Products Module 完整程式碼</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>下面我會直接給你<strong>可立即貼進你的 NestJS 專案、可運作、結構正確、符合企業級設計</strong>的：</p>
+<h1 id="✅-NestJS-Products-Module-完整程式碼（含-CRUD-DTO-Validation-Service）"><a href="#✅-NestJS-Products-Module-完整程式碼（含-CRUD-DTO-Validation-Service）" class="headerlink" title="✅ NestJS Products Module 完整程式碼（含 CRUD + DTO + Validation + Service）"></a>✅ <strong>NestJS Products Module 完整程式碼（含 CRUD + DTO + Validation + Service）</strong></h1><p>內容包含：</p>
+<ul>
+<li><code>products.module.ts</code></li>
+<li><code>products.controller.ts</code></li>
+<li><code>products.service.ts</code></li>
+<li><code>dto/create-product.dto.ts</code></li>
+<li><code>dto/update-product.dto.ts</code></li>
+<li><strong>使用 In-Memory（第一塊積木）</strong><br>下一階段才能開始串 MySQL &#x2F; Prisma</li>
+</ul>
+<p>這份程式碼是「乾淨、最佳實務、積木化架構」，<br>你之後擴充 Orders、LINE、Redis 都可以依這個模式複製。</p>
+<hr>
+<h1 id="🧱-產品模組完整目錄（請先建立）"><a href="#🧱-產品模組完整目錄（請先建立）" class="headerlink" title="🧱 產品模組完整目錄（請先建立）"></a>🧱 產品模組完整目錄（請先建立）</h1><p>在 <code>src/products/</code> 建：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">products/</span><br><span class="line"> ├─ dto/</span><br><span class="line"> │   ├─ create-product.dto.ts</span><br><span class="line"> │   └─ update-product.dto.ts</span><br><span class="line"> ├─ products.controller.ts</span><br><span class="line"> ├─ products.service.ts</span><br><span class="line"> └─ products.module.ts</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="———————————————————"><a href="#———————————————————" class="headerlink" title="———————————————————-"></a>———————————————————-</h1><h1 id="📌-1-products-module-ts"><a href="#📌-1-products-module-ts" class="headerlink" title="📌 1. products.module.ts"></a>📌 <strong>1. products.module.ts</strong></h1><h1 id="———————————————————-1"><a href="#———————————————————-1" class="headerlink" title="———————————————————-"></a>———————————————————-</h1><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Module</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;@nestjs/common&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">ProductsService</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;./products.service&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">ProductsController</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;./products.controller&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Module</span>(&#123;</span><br><span class="line">  <span class="attr">controllers</span>: [<span class="title class_">ProductsController</span>],</span><br><span class="line">  <span class="attr">providers</span>: [<span class="title class_">ProductsService</span>],</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">ProductsModule</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這是「積木」—— module 是可獨立拆出部署的最小單位。</p>
+<hr>
+<h1 id="———————————————————-2"><a href="#———————————————————-2" class="headerlink" title="———————————————————-"></a>———————————————————-</h1><h1 id="📌-2-products-service-ts"><a href="#📌-2-products-service-ts" class="headerlink" title="📌 2. products.service.ts"></a>📌 <strong>2. products.service.ts</strong></h1><h1 id="———————————————————-3"><a href="#———————————————————-3" class="headerlink" title="———————————————————-"></a>———————————————————-</h1><p>目前為 in-memory 模式（第一塊積木）<br>之後會改 Prisma 連 MySQL。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Injectable</span>, <span class="title class_">NotFoundException</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;@nestjs/common&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">CreateProductDto</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;./dto/create-product.dto&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">UpdateProductDto</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;./dto/update-product.dto&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">ProductsService</span> &#123;</span><br><span class="line">  <span class="keyword">private</span> products = [];</span><br><span class="line">  <span class="keyword">private</span> nextId = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">findAll</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">products</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">findOne</span>(<span class="params">id: <span class="built_in">number</span></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> product = <span class="variable language_">this</span>.<span class="property">products</span>.<span class="title function_">find</span>(<span class="function">(<span class="params">p</span>) =&gt;</span> p.<span class="property">id</span> === id);</span><br><span class="line">    <span class="keyword">if</span> (!product) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">NotFoundException</span>(<span class="string">`Product #<span class="subst">$&#123;id&#125;</span> not found`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> product;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">create</span>(<span class="params">dto: CreateProductDto</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> newProduct = &#123;</span><br><span class="line">      <span class="attr">id</span>: <span class="variable language_">this</span>.<span class="property">nextId</span>++,</span><br><span class="line">      <span class="attr">name</span>: dto.<span class="property">name</span>,</span><br><span class="line">      <span class="attr">price</span>: dto.<span class="property">price</span>,</span><br><span class="line">      <span class="attr">description</span>: dto.<span class="property">description</span> ?? <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">products</span>.<span class="title function_">push</span>(newProduct);</span><br><span class="line">    <span class="keyword">return</span> newProduct;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">update</span>(<span class="params">id: <span class="built_in">number</span>, dto: UpdateProductDto</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> product = <span class="variable language_">this</span>.<span class="title function_">findOne</span>(id);</span><br><span class="line">    <span class="title class_">Object</span>.<span class="title function_">assign</span>(product, dto);</span><br><span class="line">    <span class="keyword">return</span> product;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">remove</span>(<span class="params">id: <span class="built_in">number</span></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> index = <span class="variable language_">this</span>.<span class="property">products</span>.<span class="title function_">findIndex</span>(<span class="function">(<span class="params">p</span>) =&gt;</span> p.<span class="property">id</span> === id);</span><br><span class="line">    <span class="keyword">if</span> (index === -<span class="number">1</span>) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">NotFoundException</span>(<span class="string">&#x27;Product not found&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">products</span>.<span class="title function_">splice</span>(index, <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> &#123; <span class="attr">success</span>: <span class="literal">true</span> &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="———————————————————-4"><a href="#———————————————————-4" class="headerlink" title="———————————————————-"></a>———————————————————-</h1><h1 id="📌-3-products-controller-ts"><a href="#📌-3-products-controller-ts" class="headerlink" title="📌 3. products.controller.ts"></a>📌 <strong>3. products.controller.ts</strong></h1><h1 id="———————————————————-5"><a href="#———————————————————-5" class="headerlink" title="———————————————————-"></a>———————————————————-</h1><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">  <span class="title class_">Controller</span>,</span><br><span class="line">  <span class="title class_">Get</span>,</span><br><span class="line">  <span class="title class_">Post</span>,</span><br><span class="line">  <span class="title class_">Body</span>,</span><br><span class="line">  <span class="title class_">Patch</span>,</span><br><span class="line">  <span class="title class_">Param</span>,</span><br><span class="line">  <span class="title class_">Delete</span>,</span><br><span class="line">  <span class="title class_">ParseIntPipe</span>,</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">&#x27;@nestjs/common&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">ProductsService</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;./products.service&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">CreateProductDto</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;./dto/create-product.dto&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">UpdateProductDto</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;./dto/update-product.dto&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span>(<span class="string">&#x27;products&#x27;</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">ProductsController</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"><span class="keyword">private</span> <span class="keyword">readonly</span> productsService: ProductsService</span>) &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Get</span>()</span><br><span class="line">  <span class="title function_">findAll</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">productsService</span>.<span class="title function_">findAll</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Get</span>(<span class="string">&#x27;:id&#x27;</span>)</span><br><span class="line">  <span class="title function_">findOne</span>(<span class="params"><span class="meta">@Param</span>(<span class="string">&#x27;id&#x27;</span>, ParseIntPipe) id: <span class="built_in">number</span></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">productsService</span>.<span class="title function_">findOne</span>(id);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Post</span>()</span><br><span class="line">  <span class="title function_">create</span>(<span class="params"><span class="meta">@Body</span>() dto: CreateProductDto</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">productsService</span>.<span class="title function_">create</span>(dto);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Patch</span>(<span class="string">&#x27;:id&#x27;</span>)</span><br><span class="line">  <span class="title function_">update</span>(<span class="params"></span></span><br><span class="line"><span class="params">    <span class="meta">@Param</span>(<span class="string">&#x27;id&#x27;</span>, ParseIntPipe) id: <span class="built_in">number</span>,</span></span><br><span class="line"><span class="params">    <span class="meta">@Body</span>() dto: UpdateProductDto,</span></span><br><span class="line"><span class="params">  </span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">productsService</span>.<span class="title function_">update</span>(id, dto);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Delete</span>(<span class="string">&#x27;:id&#x27;</span>)</span><br><span class="line">  <span class="title function_">remove</span>(<span class="params"><span class="meta">@Param</span>(<span class="string">&#x27;id&#x27;</span>, ParseIntPipe) id: <span class="built_in">number</span></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">productsService</span>.<span class="title function_">remove</span>(id);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="———————————————————-6"><a href="#———————————————————-6" class="headerlink" title="———————————————————-"></a>———————————————————-</h1><h1 id="📌-4-create-product-dto-ts"><a href="#📌-4-create-product-dto-ts" class="headerlink" title="📌 4. create-product.dto.ts"></a>📌 <strong>4. create-product.dto.ts</strong></h1><h1 id="———————————————————-7"><a href="#———————————————————-7" class="headerlink" title="———————————————————-"></a>———————————————————-</h1><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">IsNotEmpty</span>, <span class="title class_">IsNumber</span>, <span class="title class_">IsOptional</span>, <span class="title class_">IsString</span>, <span class="title class_">Min</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;class-validator&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">CreateProductDto</span> &#123;</span><br><span class="line">  <span class="meta">@IsString</span>()</span><br><span class="line">  <span class="meta">@IsNotEmpty</span>()</span><br><span class="line">  <span class="attr">name</span>: <span class="built_in">string</span>;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@IsNumber</span>()</span><br><span class="line">  <span class="meta">@Min</span>(<span class="number">0</span>)</span><br><span class="line">  <span class="attr">price</span>: <span class="built_in">number</span>;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@IsOptional</span>()</span><br><span class="line">  <span class="meta">@IsString</span>()</span><br><span class="line">  description?: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="———————————————————-8"><a href="#———————————————————-8" class="headerlink" title="———————————————————-"></a>———————————————————-</h1><h1 id="📌-5-update-product-dto-ts"><a href="#📌-5-update-product-dto-ts" class="headerlink" title="📌 5. update-product.dto.ts"></a>📌 <strong>5. update-product.dto.ts</strong></h1><h1 id="———————————————————-9"><a href="#———————————————————-9" class="headerlink" title="———————————————————-"></a>———————————————————-</h1><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">PartialType</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;@nestjs/mapped-types&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">CreateProductDto</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;./create-product.dto&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">UpdateProductDto</span> <span class="keyword">extends</span> <span class="title class_ inherited__">PartialType</span>(<span class="title class_">CreateProductDto</span>) &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這樣你就不需要重寫欄位，完全符合 DRY 原則。</p>
+<hr>
+<h1 id="———————————————————-10"><a href="#———————————————————-10" class="headerlink" title="———————————————————-"></a>———————————————————-</h1><h1 id="🚀-如何啟動並測試（你現在就能用）"><a href="#🚀-如何啟動並測試（你現在就能用）" class="headerlink" title="🚀 如何啟動並測試（你現在就能用）"></a>🚀 如何啟動並測試（你現在就能用）</h1><h1 id="———————————————————-11"><a href="#———————————————————-11" class="headerlink" title="———————————————————-"></a>———————————————————-</h1><h2 id="啟動："><a href="#啟動：" class="headerlink" title="啟動："></a>啟動：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run start:dev</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="測試-API（Postman-Thunder-Client）："><a href="#測試-API（Postman-Thunder-Client）：" class="headerlink" title="測試 API（Postman &#x2F; Thunder Client）："></a>測試 API（Postman &#x2F; Thunder Client）：</h2><h3 id="1️⃣-GET-所有產品"><a href="#1️⃣-GET-所有產品" class="headerlink" title="1️⃣ GET 所有產品"></a>1️⃣ GET 所有產品</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET http://localhost:3000/products</span><br></pre></td></tr></table></figure>
+
+<h3 id="2️⃣-新增產品"><a href="#2️⃣-新增產品" class="headerlink" title="2️⃣ 新增產品"></a>2️⃣ 新增產品</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">POST http://localhost:3000/products</span><br><span class="line">Content-Type: application/json</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;綠茶&quot;,</span><br><span class="line">  &quot;price&quot;: 35,</span><br><span class="line">  &quot;description&quot;: &quot;清爽無糖&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3️⃣-查詢單一產品"><a href="#3️⃣-查詢單一產品" class="headerlink" title="3️⃣ 查詢單一產品"></a>3️⃣ 查詢單一產品</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET http://localhost:3000/products/1</span><br></pre></td></tr></table></figure>
+
+<h3 id="4️⃣-更新"><a href="#4️⃣-更新" class="headerlink" title="4️⃣ 更新"></a>4️⃣ 更新</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">PATCH http://localhost:3000/products/1</span><br><span class="line">&#123;</span><br><span class="line">  &quot;price&quot;: 40</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5️⃣-刪除"><a href="#5️⃣-刪除" class="headerlink" title="5️⃣ 刪除"></a>5️⃣ 刪除</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELETE http://localhost:3000/products/1</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="🎉-恭喜！"><a href="#🎉-恭喜！" class="headerlink" title="🎉 恭喜！"></a>🎉 恭喜！</h1><p>你已經完成：</p>
+<ul>
+<li><strong>第一塊積木（Products Module）</strong></li>
+<li>正確的 NestJS 模組化架構</li>
+<li>DTO + Validation</li>
+<li>Controller &#x2F; Service 分層</li>
+<li>DI 注入</li>
+<li>In-memory CRUD（後面換成 MySQL 只需更改 service）</li>
+</ul>
+<p>之後 A～G 階段都會基於這塊積木擴充下去。</p>
+<hr>
+<h1 id="🎯-下一步你想做哪一個？"><a href="#🎯-下一步你想做哪一個？" class="headerlink" title="🎯 下一步你想做哪一個？"></a>🎯 下一步你想做哪一個？</h1><h2 id="A-我要把-ProductsModule-換成連-MySQL-Prisma"><a href="#A-我要把-ProductsModule-換成連-MySQL-Prisma" class="headerlink" title="A. 我要把 ProductsModule 換成連 MySQL &#x2F; Prisma"></a>A. 我要把 ProductsModule 換成連 MySQL &#x2F; Prisma</h2><p>→ 完整程式碼我可立即提供</p>
+<h2 id="B-我要做第二塊積木：OrdersModule（含-order-items）"><a href="#B-我要做第二塊積木：OrdersModule（含-order-items）" class="headerlink" title="B. 我要做第二塊積木：OrdersModule（含 order_items）"></a>B. 我要做第二塊積木：OrdersModule（含 order_items）</h2><p>→ 直接生成完整 CRUD</p>
+<h2 id="C-我要開始做-LINE-Webhook-模組（階段-C）"><a href="#C-我要開始做-LINE-Webhook-模組（階段-C）" class="headerlink" title="C. 我要開始做 LINE Webhook 模組（階段 C）"></a>C. 我要開始做 LINE Webhook 模組（階段 C）</h2><p>→ 完整 webhook + replies + 事件 parser</p>
+<h2 id="D-幫我畫這個-NestJS-專案的架構圖（後端專用）"><a href="#D-幫我畫這個-NestJS-專案的架構圖（後端專用）" class="headerlink" title="D. 幫我畫這個 NestJS 專案的架構圖（後端專用）"></a>D. 幫我畫這個 NestJS 專案的架構圖（後端專用）</h2><p>選一個，我立即開始。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/OneNote/" rel="tag"># OneNote</a>
+              <a href="/apple.lily/tags/Line%E8%A8%82%E5%96%AE%E7%B3%BB%E7%B5%B1/" rel="tag"># Line訂單系統</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/11/17/OneDayOneNote/2025-07-28/" rel="prev" title="2025-07-28 Line 訂單系統- 要開始「第一塊積木」，建立三台電腦的「完整 Setup 操作手冊」">
+                  <i class="fa fa-angle-left"></i> 2025-07-28 Line 訂單系統- 要開始「第一塊積木」，建立三台電腦的「完整 Setup 操作手冊」
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/11/17/OneDayOneNote/2025-07-30/" rel="next" title="2025-07-30 Line 訂單系統- 要開始「第一塊積木」，三台 notebook 的系統架構圖（UML)">
+                  2025-07-30 Line 訂單系統- 要開始「第一塊積木」，三台 notebook 的系統架構圖（UML) <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/apple.lily/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
