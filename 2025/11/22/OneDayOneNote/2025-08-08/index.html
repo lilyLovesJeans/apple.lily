@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2025-08-08 Line 訂單系統- git Rebase">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025-08-08 Line 訂單系統- git Rebase">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/11/22/OneDayOneNote/2025-08-08/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2025-08-08 Line 訂單系統- git Rebase">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-11-22T15:31:33.000Z">
+<meta property="article:modified_time" content="2025-11-22T15:32:57.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="OneNote">
+<meta property="article:tag" content="Line訂單系統">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2025/11/22/OneDayOneNote/2025-08-08/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2025/11/22/OneDayOneNote/2025-08-08/","path":"2025/11/22/OneDayOneNote/2025-08-08/","title":"2025-08-08 Line 訂單系統- git Rebase"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2025-08-08 Line 訂單系統- git Rebase | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2025-08-08-Line-%E8%A8%82%E5%96%AE%E7%B3%BB%E7%B5%B1-git-Rebase"><span class="nav-number">1.</span> <span class="nav-text">2025-08-08 Line 訂單系統- git Rebase</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1%EF%B8%8F%E2%83%A3-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">2.</span> <span class="nav-text">1️⃣ 基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%EF%B8%8F%E2%83%A3-Rebase-vs-Merge"><span class="nav-number">3.</span> <span class="nav-text">2️⃣ Rebase vs Merge</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%EF%B8%8F%E2%83%A3-%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4"><span class="nav-number">4.</span> <span class="nav-text">3️⃣ 常用指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4%EF%B8%8F%E2%83%A3-%E4%BD%BF%E7%94%A8%E5%A0%B4%E6%99%AF"><span class="nav-number">5.</span> <span class="nav-text">4️⃣ 使用場景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1%EF%B8%8F%E2%83%A3-%E6%83%85%E5%A2%83-1%EF%BC%9A%E5%B0%8F%E7%B5%84%E9%96%8B%E7%99%BC%E6%96%B0%E5%8A%9F%E8%83%BD%EF%BC%88%E5%BB%BA%E8%AD%B0%E7%94%A8-rebase%EF%BC%89"><span class="nav-number">6.</span> <span class="nav-text">1️⃣ 情境 1：小組開發新功能（建議用 rebase）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%83%85%E5%A2%83%EF%BC%9A"><span class="nav-number">6.1.</span> <span class="nav-text">情境：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9A%E6%B3%95%EF%BC%9A"><span class="nav-number">6.2.</span> <span class="nav-text">做法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%88%E6%9E%9C%EF%BC%9A"><span class="nav-number">6.3.</span> <span class="nav-text">效果：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%EF%B8%8F%E2%83%A3-%E6%83%85%E5%A2%83-2%EF%BC%9A%E5%AE%8C%E6%88%90-feature%EF%BC%8C%E8%A6%81%E5%90%88%E4%BD%B5%E5%9B%9E-main%EF%BC%88%E5%BB%BA%E8%AD%B0%E7%94%A8-merge%EF%BC%89"><span class="nav-number">7.</span> <span class="nav-text">2️⃣ 情境 2：完成 feature，要合併回 main（建議用 merge）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%83%85%E5%A2%83%EF%BC%9A-1"><span class="nav-number">7.1.</span> <span class="nav-text">情境：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9A%E6%B3%95%EF%BC%9A-1"><span class="nav-number">7.2.</span> <span class="nav-text">做法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%88%E6%9E%9C%EF%BC%9A-1"><span class="nav-number">7.3.</span> <span class="nav-text">效果：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%EF%B8%8F%E2%83%A3-%E6%83%85%E5%A2%83-3%EF%BC%9A%E5%A4%9A%E4%BA%BA%E9%95%B7%E6%9C%9F%E9%96%8B%E7%99%BC%E5%90%8C%E4%B8%80%E5%88%86%E6%94%AF%EF%BC%88%E6%B7%B7%E5%90%88%E7%AD%96%E7%95%A5%EF%BC%89"><span class="nav-number">8.</span> <span class="nav-text">3️⃣ 情境 3：多人長期開發同一分支（混合策略）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%83%85%E5%A2%83%E8%A8%AD%E5%AE%9A%EF%BC%9A"><span class="nav-number">9.</span> <span class="nav-text">情境設定：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1%EF%B8%8F%E2%83%A3-%E6%83%85%E5%A2%83%EF%BC%9Amain-%E6%9C%89%E6%96%B0%E4%BA%8B%E6%83%85%EF%BC%8C%E4%BD%A0%E8%A6%81%E6%9B%B4%E6%96%B0-feature%EF%BC%88%E7%94%A8-rebase%EF%BC%89"><span class="nav-number">10.</span> <span class="nav-text">1️⃣ 情境：main 有新事情，你要更新 feature（用 rebase）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%EF%B8%8F%E2%83%A3-%E6%83%85%E5%A2%83%EF%BC%9Afeature-%E5%81%9A%E5%AE%8C%EF%BC%8C%E8%A6%81%E5%9B%9E%E5%88%B0-main%EF%BC%88%E7%94%A8-merge%EF%BC%89"><span class="nav-number">11.</span> <span class="nav-text">2️⃣ 情境：feature 做完，要回到 main（用 merge）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B0%A1%E5%96%AE%E7%90%86%E8%A7%A3%EF%BC%9A"><span class="nav-number">11.1.</span> <span class="nav-text">簡單理解：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E9%87%8B%E5%9C%96%EF%BC%9A"><span class="nav-number">11.2.</span> <span class="nav-text">解釋圖：</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">535</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2025/11/22/OneDayOneNote/2025-08-08/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2025-08-08 Line 訂單系統- git Rebase | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2025-08-08 Line 訂單系統- git Rebase">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2025-08-08 Line 訂單系統- git Rebase
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2025-11-22 23:31:33 / 修改時間：23:32:57" itemprop="dateCreated datePublished" datetime="2025-11-22T23:31:33+08:00">2025-11-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2025-08-08 Line 訂單系統- git Rebase</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2025-08-08-Line-訂單系統-git-Rebase"><a href="#2025-08-08-Line-訂單系統-git-Rebase" class="headerlink" title="2025-08-08 Line 訂單系統- git Rebase"></a>2025-08-08 Line 訂單系統- git Rebase</h2><p>好的，我來詳細解釋 **<code>git rebase</code>**，並用簡單的方式讓你理解它跟 <code>git merge</code> 的差別。</p>
+<hr>
+<h2 id="1️⃣-基本概念"><a href="#1️⃣-基本概念" class="headerlink" title="1️⃣ 基本概念"></a>1️⃣ 基本概念</h2><p><code>git rebase</code> 的作用是 <strong>把一個分支的修改「搬到」另一個分支的最前面</strong>。<br>換句話說，它不是把分支「合併」在一起，而是 <strong>改寫提交歷史</strong>，讓它看起來像是在目標分支之後直接做的修改。</p>
+<p>簡單比喻：</p>
+<ul>
+<li>假設你在 <code>main</code> 分支上有提交 A → B → C</li>
+<li>你從 <code>main</code> 分出一個 <code>feature</code> 分支，做了提交 D → E</li>
+</ul>
+<p>歷史：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">main:    A---B---C</span><br><span class="line">                 \</span><br><span class="line">feature:           D---E</span><br></pre></td></tr></table></figure>
+
+<p>如果你現在做 **<code>git rebase main</code>**：</p>
+<ul>
+<li><code>feature</code> 分支會把 D、E 移到 C 之後</li>
+<li>最終歷史變成：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">main:    A---B---C</span><br><span class="line">feature:           D&#x27;---E&#x27;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：D 和 E 被重新生成了（變成 D’、E’），所以 commit hash 會變。</p>
+</blockquote>
+<hr>
+<h2 id="2️⃣-Rebase-vs-Merge"><a href="#2️⃣-Rebase-vs-Merge" class="headerlink" title="2️⃣ Rebase vs Merge"></a>2️⃣ Rebase vs Merge</h2><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>Merge</th>
+<th>Rebase</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>歷史</td>
+<td>保留所有分支歷史，會出現 merge commit</td>
+<td>重新寫歷史，保持線性，不會產生 merge commit</td>
+</tr>
+<tr>
+<td>視覺上</td>
+<td>分支歷史會分叉</td>
+<td>分支歷史線性，看起來像直接接在 main 後面</td>
+</tr>
+<tr>
+<td>衝突解決</td>
+<td>merge 時解決一次衝突</td>
+<td>每個 commit 都可能需要解決衝突</td>
+</tr>
+</tbody></table>
+<p>例子：</p>
+<ul>
+<li>Merge:</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">A---B---C---M</span><br><span class="line">     \     /</span><br><span class="line">      D---E</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Rebase:</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A---B---C---D&#x27;---E&#x27;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="3️⃣-常用指令"><a href="#3️⃣-常用指令" class="headerlink" title="3️⃣ 常用指令"></a>3️⃣ 常用指令</h2><ol>
+<li>讓當前分支重放到 <code>main</code> 之後：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout feature</span><br><span class="line">git rebase main</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>如果衝突，Git 會提示你，解決衝突後：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add &lt;file&gt;</span><br><span class="line">git rebase --<span class="built_in">continue</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>中斷 rebase：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rebase --abort</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>互動式 rebase（整理 commit）：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rebase -i main</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="4️⃣-使用場景"><a href="#4️⃣-使用場景" class="headerlink" title="4️⃣ 使用場景"></a>4️⃣ 使用場景</h2><ul>
+<li><strong>保持提交歷史乾淨</strong>：讓歷史看起來線性，不出現太多 merge commit。</li>
+<li><strong>把 feature 分支更新到最新 main</strong>：在 push 前用 rebase，避免 merge commit。</li>
+</ul>
+<blockquote>
+<p>⚠️ 注意：<strong>不要對已經推送到遠端的分支做 rebase</strong>，會改變 commit hash，可能導致別人 pull 出問題。</p>
+</blockquote>
+<hr>
+<p>如果你要，我可以幫你畫一張 <strong>圖解 Git Rebase vs Merge</strong>，一眼就能看懂兩者差別。</p>
+<p>你想要我畫嗎？</p>
+<p>好的，我用 <strong>真實開發情境</strong>來說明何時用 <code>rebase</code>、何時用 <code>merge</code>，讓你容易理解兩者的使用場景。</p>
+<hr>
+<h2 id="1️⃣-情境-1：小組開發新功能（建議用-rebase）"><a href="#1️⃣-情境-1：小組開發新功能（建議用-rebase）" class="headerlink" title="1️⃣ 情境 1：小組開發新功能（建議用 rebase）"></a>1️⃣ 情境 1：小組開發新功能（建議用 <strong>rebase</strong>）</h2><h3 id="情境："><a href="#情境：" class="headerlink" title="情境："></a>情境：</h3><ul>
+<li>你在 <code>feature/login</code> 分支開發登入功能。</li>
+<li>你的同事在 <code>main</code> 分支做了更新（例如修正了 API URL）。</li>
+<li>你想把最新的 <code>main</code> 更新拿到你的 <code>feature/login</code> 分支上，保持分支乾淨。</li>
+</ul>
+<h3 id="做法："><a href="#做法：" class="headerlink" title="做法："></a>做法：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout feature/login</span><br><span class="line">git rebase main</span><br></pre></td></tr></table></figure>
+
+<h3 id="效果："><a href="#效果：" class="headerlink" title="效果："></a>效果：</h3><ul>
+<li>你的 feature 分支會「搬到最新 main 後面」，歷史線性。</li>
+<li>不會出現 merge commit，git log 乾淨。</li>
+</ul>
+<blockquote>
+<p>✅ 適用時機：你還沒把 feature 分支推到遠端，或團隊允許改寫分支歷史。</p>
+</blockquote>
+<hr>
+<h2 id="2️⃣-情境-2：完成-feature，要合併回-main（建議用-merge）"><a href="#2️⃣-情境-2：完成-feature，要合併回-main（建議用-merge）" class="headerlink" title="2️⃣ 情境 2：完成 feature，要合併回 main（建議用 merge）"></a>2️⃣ 情境 2：完成 feature，要合併回 main（建議用 <strong>merge</strong>）</h2><h3 id="情境：-1"><a href="#情境：-1" class="headerlink" title="情境："></a>情境：</h3><ul>
+<li>你開發的 feature 分支已完成，經過測試。</li>
+<li>你要把 <code>feature/login</code> 分支合併回 <code>main</code>，保留開發過程的歷史。</li>
+</ul>
+<h3 id="做法：-1"><a href="#做法：-1" class="headerlink" title="做法："></a>做法：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout main</span><br><span class="line">git merge feature/login</span><br></pre></td></tr></table></figure>
+
+<h3 id="效果：-1"><a href="#效果：-1" class="headerlink" title="效果："></a>效果：</h3><ul>
+<li>會產生一個 merge commit，把 feature 分支完整合併回 main。</li>
+<li>歷史保留原本分叉過程，方便追蹤誰在何時做了什麼。</li>
+</ul>
+<blockquote>
+<p>✅ 適用時機：feature 分支已經推送給團隊，或你想保留分支歷史。</p>
+</blockquote>
+<hr>
+<h2 id="3️⃣-情境-3：多人長期開發同一分支（混合策略）"><a href="#3️⃣-情境-3：多人長期開發同一分支（混合策略）" class="headerlink" title="3️⃣ 情境 3：多人長期開發同一分支（混合策略）"></a>3️⃣ 情境 3：多人長期開發同一分支（混合策略）</h2><ul>
+<li>每個人先 <strong>rebase</strong> 自己的 feature 分支到最新 main，保持線性、避免衝突。</li>
+<li>最後再用 <strong>merge</strong> 將完成的 feature 分支合併回 main，保留完整歷史。</li>
+</ul>
+<p>這樣可以兼顧「線性歷史」與「完整紀錄」。</p>
+<hr>
+<p>💡 <strong>簡單記憶法：</strong></p>
+<ul>
+<li><strong>Rebase &#x3D; 更新你的分支</strong>（搬到最新 main 之後，乾淨線性）</li>
+<li><strong>Merge &#x3D; 合併完成的分支回主線</strong>（保留歷史，出現 merge commit）</li>
+</ul>
+<hr>
+<p>如果你想，我可以幫你畫一張 <strong>圖解三種情境的 Git Rebase vs Merge 流程圖</strong>，用線條表示 commit 移動和 merge，這樣一眼就能看懂。</p>
+<p>你希望我畫嗎？<br>好，我用 <strong>最簡單、生活化的例子</strong>來說明 <code>rebase</code> 和 <code>merge</code>，保證你一看就懂。</p>
+<hr>
+<h2 id="情境設定："><a href="#情境設定：" class="headerlink" title="情境設定："></a>情境設定：</h2><ul>
+<li>你有一本「工作筆記本」，主線是 <code>main</code> 分支。</li>
+<li>你想加一個「新功能」，就從主線複製出一本副本，叫 <code>feature</code> 分支。</li>
+</ul>
+<p>主線（main）有事件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A: 今天吃早餐</span><br><span class="line">B: 今天喝咖啡</span><br></pre></td></tr></table></figure>
+
+<p>你從 B 分出副本做 feature：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">feature:</span><br><span class="line">C: 寫程式</span><br><span class="line">D: 測試程式</span><br></pre></td></tr></table></figure>
+
+<p>歷史看起來像這樣：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">main:    A --- B</span><br><span class="line">feature:        C --- D</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="1️⃣-情境：main-有新事情，你要更新-feature（用-rebase）"><a href="#1️⃣-情境：main-有新事情，你要更新-feature（用-rebase）" class="headerlink" title="1️⃣ 情境：main 有新事情，你要更新 feature（用 rebase）"></a>1️⃣ 情境：main 有新事情，你要更新 feature（用 <strong>rebase</strong>）</h2><ul>
+<li>main 又更新了 E: 去跑步</li>
+<li>你希望 feature 分支在最新 main 之後繼續</li>
+</ul>
+<p><strong>做法</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout feature</span><br><span class="line">git rebase main</span><br></pre></td></tr></table></figure>
+
+<p>結果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">main:    A --- B --- E</span><br><span class="line">feature:                C&#x27; --- D&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>✅ 好處：</p>
+<ul>
+<li>歷史變線性，好像你的 feature 從最新 main 開始</li>
+<li>沒有多餘的 merge commit</li>
+</ul>
+<hr>
+<h2 id="2️⃣-情境：feature-做完，要回到-main（用-merge）"><a href="#2️⃣-情境：feature-做完，要回到-main（用-merge）" class="headerlink" title="2️⃣ 情境：feature 做完，要回到 main（用 merge）"></a>2️⃣ 情境：feature 做完，要回到 main（用 <strong>merge</strong>）</h2><ul>
+<li>你 feature 做完了 C、D</li>
+<li>想把 feature 合併回 main</li>
+</ul>
+<p><strong>做法</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout main</span><br><span class="line">git merge feature</span><br></pre></td></tr></table></figure>
+
+<p>結果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">main:    A --- B --- E --- M</span><br><span class="line">                    \</span><br><span class="line">feature:             C --- D</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>M 是 merge commit</li>
+<li>歷史保留誰做了什麼，不改寫原本的 commit</li>
+</ul>
+<p>✅ 好處：</p>
+<ul>
+<li>安全，不會改變已經推到遠端的 commit</li>
+<li>可以保留完整開發歷史</li>
+</ul>
+<hr>
+<h3 id="簡單理解："><a href="#簡單理解：" class="headerlink" title="簡單理解："></a>簡單理解：</h3><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>類比</th>
+<th>結果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Rebase</td>
+<td>把你的 feature 分支搬到最新的主線後面</td>
+<td>歷史線性、乾淨</td>
+</tr>
+<tr>
+<td>Merge</td>
+<td>把 feature 分支合回主線，保留分叉歷史</td>
+<td>歷史有分叉和 merge commit</td>
+</tr>
+</tbody></table>
+<hr>
+<p>如果你願意，我可以幫你畫一個 <strong>小圖，把早餐、咖啡、跑步、寫程式、測試程式</strong> 都畫在 commit 線上，視覺化 rebase 和 merge，保證一眼就懂。</p>
+<p>你想要我畫這個圖嗎？</p>
+<p>好的，我幫你用 <strong>Mermaid</strong> 畫出剛才那個生活化例子的 <strong>rebase</strong> 與 <strong>merge</strong> 流程圖。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">flowchart LR</span><br><span class="line">    %% 主線 main 的 commit</span><br><span class="line">    A[&quot;A: 吃早餐&quot;] --&gt; B[&quot;B: 喝咖啡&quot;]</span><br><span class="line">    B --&gt; E[&quot;E: 跑步&quot;]</span><br><span class="line"></span><br><span class="line">    %% feature 分支原始 commit</span><br><span class="line">    B --&gt; C[&quot;C: 寫程式&quot;]</span><br><span class="line">    C --&gt; D[&quot;D: 測試程式&quot;]</span><br><span class="line"></span><br><span class="line">    %% Merge 的結果</span><br><span class="line">    E --&gt; M[&quot;M: merge feature&quot;]</span><br><span class="line"></span><br><span class="line">    %% Rebase 的結果 (用虛線表示重放 commit)</span><br><span class="line">    E --&gt; C_prime[&quot;C&#x27;: 寫程式&quot;]</span><br><span class="line">    C_prime --&gt; D_prime[&quot;D&#x27;: 測試程式&quot;]</span><br><span class="line"></span><br><span class="line">    %% 標註</span><br><span class="line">    classDef main fill:#f9f,stroke:#333,stroke-width:1px;</span><br><span class="line">    classDef feature fill:#9f9,stroke:#333,stroke-width:1px,stroke-dasharray: 5 5;</span><br><span class="line">    class A,B,E main;</span><br><span class="line">    class C,D,M feature;</span><br><span class="line">    class C_prime,D_prime feature;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="解釋圖："><a href="#解釋圖：" class="headerlink" title="解釋圖："></a>解釋圖：</h3><ol>
+<li><strong>主線 main</strong>：A → B → E</li>
+<li><strong>feature 分支原本</strong>：從 B 分出 C → D</li>
+<li><strong>Merge</strong>：M commit 將 feature 分支合回 main，歷史保留分叉</li>
+<li><strong>Rebase</strong>：C’ → D’ 重新放到最新 main E 後面，線性歷史</li>
+</ol>
+<ul>
+<li>虛線表示 <strong>rebase 之後的 commit</strong>，有新 commit hash</li>
+<li>Merge commit M 保留原本分支歷史，不改寫 commit</li>
+</ul>
+<hr>
+<p>如果你想，我可以幫你做 <strong>一個更直觀的 Mermaid 動態流程圖</strong>，把 <strong>Merge 和 Rebase 比較在同一張圖</strong>，用不同顏色標示，視覺更清楚。</p>
+<p>你希望我做嗎？</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/OneNote/" rel="tag"># OneNote</a>
+              <a href="/apple.lily/tags/Line%E8%A8%82%E5%96%AE%E7%B3%BB%E7%B5%B1/" rel="tag"># Line訂單系統</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/11/22/OneDayOneNote/2025-08-07/" rel="prev" title="2025-08-07 Line 訂單系統-Git for Windows 安裝選項解釋（逐條）h">
+                  <i class="fa fa-angle-left"></i> 2025-08-07 Line 訂單系統-Git for Windows 安裝選項解釋（逐條）h
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/apple.lily/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
