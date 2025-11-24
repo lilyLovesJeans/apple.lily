@@ -6,7 +6,7 @@
 <p>  subgraph API[Backend — NestJS]<br>    W1[Webhook 接收訊息]<br>    O1[OrdersController]<br>    O2[OrdersService]<br>    P1[ProductsService]<br>    R1[Redis 快取]<br>  end</p>
 <p>  subgraph DB[MySQL Database]<br>    T1[(products)]<br>    T2[(orders)]<br>  end</p>
 <p>  subgraph FRONT[Vue3 Admin 後台]<br>    A1[商品管理頁]<br>    A2[訂單管理頁]<br>  end</p>
-<p>  %% 流程<br>  L1 –&gt;|文字訊息: “購買 1”| W1<br>  W1 –&gt; O1<br>  O1 –&gt;|validate| O2<br>  O2 –&gt;|查商品| P1<br>  P1 –&gt; T1<br>  O2 –&gt;|建立訂單| T2<br>  O2 –&gt;|寫入快取| R1<br>  O2 –&gt;|回覆 LINE User| L1</p>
+<p>   流程<br>  L1 –&gt;|文字訊息: “購買 1”| W1<br>  W1 –&gt; O1<br>  O1 –&gt;|validate| O2<br>  O2 –&gt;|查商品| P1<br>  P1 –&gt; T1<br>  O2 –&gt;|建立訂單| T2<br>  O2 –&gt;|寫入快取| R1<br>  O2 –&gt;|回覆 LINE User| L1</p>
 <p>  A1 –&gt;|CRUD 商品| P1<br>  A2 –&gt;|查&#x2F;改訂單| O2<br>  P1 –&gt; T1<br>  O2 –&gt; T2<br>{% endmermaid %}</p>
 <hr>
 <h1 id="✅-2-Admin-後台-Wireframe（Mermaid-原始碼）"><a href="#✅-2-Admin-後台-Wireframe（Mermaid-原始碼）" class="headerlink" title="✅ 2) Admin 後台 Wireframe（Mermaid 原始碼）"></a>✅ 2) Admin 後台 Wireframe（Mermaid 原始碼）</h1><blockquote>
