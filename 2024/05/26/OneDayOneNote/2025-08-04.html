@@ -2,44 +2,12 @@
 <h2 id="title-2025-08-04-Line-訂單系統-LINE-訂單系統-Flowchartdate-2025-11-22-21-30-23categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-08-04-Line-訂單系統-LINE-訂單系統-Flowchart"><a href="#title-2025-08-04-Line-訂單系統-LINE-訂單系統-Flowchartdate-2025-11-22-21-30-23categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-08-04-Line-訂單系統-LINE-訂單系統-Flowchart" class="headerlink" title="title: 2025-08-04 Line 訂單系統- LINE 訂單系統 Flowchartdate: 2025-11-22 21:30:23categories: OneDayOneNotetags:  [OneNote, Line訂單系統]description:  2025-08-04 Line 訂單系統- LINE 訂單系統 Flowchart"></a>title: 2025-08-04 Line 訂單系統- LINE 訂單系統 Flowchart<br>date: 2025-11-22 21:30:23<br>categories: OneDayOneNote<br>tags:  [OneNote, Line訂單系統]<br>description:  2025-08-04 Line 訂單系統- LINE 訂單系統 Flowchart</h2><h2 id="2025-08-04-Line-訂單系統-LINE-訂單系統-Flowchart"><a href="#2025-08-04-Line-訂單系統-LINE-訂單系統-Flowchart" class="headerlink" title="2025-08-04 Line 訂單系統- LINE 訂單系統 Flowchart"></a>2025-08-04 Line 訂單系統- LINE 訂單系統 Flowchart</h2><p>LINE 訂單系統 Flowchart</p>
 <p>以下是 <strong>可直接貼到 GitHub、Notion、Obsidian、Typora</strong> 的 <strong>Mermaid 原始碼版本</strong>。<br>分成兩份：</p>
 <hr>
-<h1 id="✅-1-LINE-訂單系統-Flowchart（Mermaid-原始碼）"><a href="#✅-1-LINE-訂單系統-Flowchart（Mermaid-原始碼）" class="headerlink" title="✅ 1) LINE 訂單系統 Flowchart（Mermaid 原始碼）"></a>✅ 1) LINE 訂單系統 Flowchart（Mermaid 原始碼）</h1><pre><code class="mermaid">flowchart LR
-  subgraph LINE[LINE Messaging API（使用者端）]
-    L1(LINE User)
-  end
-
-  subgraph API[Backend — NestJS]
-    W1[Webhook 接收訊息]
-    O1[OrdersController]
-    O2[OrdersService]
-    P1[ProductsService]
-    R1[Redis 快取]
-  end
-
-  subgraph DB[MySQL Database]
-    T1[(products)]
-    T2[(orders)]
-  end
-
-  subgraph FRONT[Vue3 Admin 後台]
-    A1[商品管理頁]
-    A2[訂單管理頁]
-  end
-
-  %% 流程
-  L1 --&gt;|文字訊息: &quot;購買 1&quot;| W1
-  W1 --&gt; O1
-  O1 --&gt;|validate| O2
-  O2 --&gt;|查商品| P1
-  P1 --&gt; T1
-  O2 --&gt;|建立訂單| T2
-  O2 --&gt;|寫入快取| R1
-  O2 --&gt;|回覆 LINE User| L1
-
-  A1 --&gt;|CRUD 商品| P1
-  A2 --&gt;|查/改訂單| O2
-  P1 --&gt; T1
-  O2 --&gt; T2
-</code></pre>
+<h1 id="✅-1-LINE-訂單系統-Flowchart（Mermaid-原始碼）"><a href="#✅-1-LINE-訂單系統-Flowchart（Mermaid-原始碼）" class="headerlink" title="✅ 1) LINE 訂單系統 Flowchart（Mermaid 原始碼）"></a>✅ 1) LINE 訂單系統 Flowchart（Mermaid 原始碼）</h1><p>{% mermaid %}<br>flowchart LR<br>  subgraph LINE[LINE Messaging API（使用者端）]<br>    L1(LINE User)<br>  end</p>
+<p>  subgraph API[Backend — NestJS]<br>    W1[Webhook 接收訊息]<br>    O1[OrdersController]<br>    O2[OrdersService]<br>    P1[ProductsService]<br>    R1[Redis 快取]<br>  end</p>
+<p>  subgraph DB[MySQL Database]<br>    T1[(products)]<br>    T2[(orders)]<br>  end</p>
+<p>  subgraph FRONT[Vue3 Admin 後台]<br>    A1[商品管理頁]<br>    A2[訂單管理頁]<br>  end</p>
+<p>  %% 流程<br>  L1 –&gt;|文字訊息: “購買 1”| W1<br>  W1 –&gt; O1<br>  O1 –&gt;|validate| O2<br>  O2 –&gt;|查商品| P1<br>  P1 –&gt; T1<br>  O2 –&gt;|建立訂單| T2<br>  O2 –&gt;|寫入快取| R1<br>  O2 –&gt;|回覆 LINE User| L1</p>
+<p>  A1 –&gt;|CRUD 商品| P1<br>  A2 –&gt;|查&#x2F;改訂單| O2<br>  P1 –&gt; T1<br>  O2 –&gt; T2<br>{% endmermaid %}</p>
 <hr>
 <h1 id="✅-2-Admin-後台-Wireframe（Mermaid-原始碼）"><a href="#✅-2-Admin-後台-Wireframe（Mermaid-原始碼）" class="headerlink" title="✅ 2) Admin 後台 Wireframe（Mermaid 原始碼）"></a>✅ 2) Admin 後台 Wireframe（Mermaid 原始碼）</h1><blockquote>
 <p>Mermaid 支援 basic wireframe（不是真正 UI），以下用 flowchart 表示 UI 佈局。</p>
