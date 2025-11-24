@@ -12,23 +12,12 @@
 <h1 id="✅-2-Admin-後台-Wireframe（Mermaid-原始碼）"><a href="#✅-2-Admin-後台-Wireframe（Mermaid-原始碼）" class="headerlink" title="✅ 2) Admin 後台 Wireframe（Mermaid 原始碼）"></a>✅ 2) Admin 後台 Wireframe（Mermaid 原始碼）</h1><blockquote>
 <p>Mermaid 支援 basic wireframe（不是真正 UI），以下用 flowchart 表示 UI 佈局。</p>
 </blockquote>
-<p>{% mermaid %}<br>flowchart TB<br>  subgraph NAV[側邊欄 Navigation]<br>    N1[Dashboard]<br>    N2[Products]<br>    N3[Orders]<br>    N4[Settings]<br>  end</p>
-<p>  subgraph MAIN[主畫面]<br>    H1[Header: LOGO + 登入帳號 + 登出]</p>
-<pre><code>subgraph CONTENT[內容區]
-  C1[📦 Products List  
-      - 搜尋欄  
-      - 新增商品按鈕  
-      - 商品表格（ID, Name, Price, Stock）  
-      - 編輯 / 刪除按鈕]
-  C2[🧾 Orders List  
-      - 訂單查詢  
-      - 訂單編號 / 會員 / 金額  
-      - 狀態（待處理/已出貨）  
-      - 詳細按鈕]
-end
-</code></pre>
-<p>  end</p>
-<p>  NAV –&gt; MAIN<br>{% endmermaid %}</p>
+<p>{% mermaid %}<br>flowchart LR<br>  subgraph LINE[“LINE Messaging API（使用者端）”]<br>    L1(LINE User)<br>  end</p>
+<p>  subgraph API[“Backend — NestJS”]<br>    W1[Webhook 接收訊息]<br>    O1[OrdersController]<br>    O2[OrdersService]<br>    P1[ProductsService]<br>    R1[Redis 快取]<br>  end</p>
+<p>  subgraph DB[“MySQL Database”]<br>    T1[(products)]<br>    T2[(orders)]<br>  end</p>
+<p>  subgraph FRONT[“Vue3 Admin 後台”]<br>    A1[商品管理頁]<br>    A2[訂單管理頁]<br>  end</p>
+<p>  %% Flow<br>  L1 –&gt;|文字訊息: “購買 1”| W1<br>  W1 –&gt; O1<br>  O1 –&gt;|validate| O2<br>  O2 –&gt;|查商品| P1<br>  P1 –&gt; T1<br>  O2 –&gt;|建立訂單| T2<br>  O2 –&gt;|寫入快取| R1<br>  O2 –&gt;|回覆 LINE User| L1</p>
+<p>  A1 –&gt;|CRUD 商品| P1<br>  A2 –&gt;|查&#x2F;改訂單| O2<br>  P1 –&gt; T1<br>  O2 –&gt; T2<br>{% endmermaid %}</p>
 <hr>
 <h1 id="如果你想要的版本更多："><a href="#如果你想要的版本更多：" class="headerlink" title="如果你想要的版本更多："></a>如果你想要的版本更多：</h1><p>我可以再生成以下版本：</p>
 <table>
