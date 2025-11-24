@@ -1,0 +1,135 @@
+<hr>
+<h2 id="title-2025-07-13-Line-訂單系統-C-階段-C4-子階段-—-LINE-訂單紀錄後端-API-建立date-2025-11-13-23-19-37categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-13-Line-訂單系統-C-階段-C4-子階段-—-LINE-訂單紀錄後端-API-建立"><a href="#title-2025-07-13-Line-訂單系統-C-階段-C4-子階段-—-LINE-訂單紀錄後端-API-建立date-2025-11-13-23-19-37categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-13-Line-訂單系統-C-階段-C4-子階段-—-LINE-訂單紀錄後端-API-建立" class="headerlink" title="title: 2025-07-13 Line 訂單系統-C 階段 C4 子階段 — LINE 訂單紀錄後端 API 建立date: 2025-11-13 23:19:37categories: OneDayOneNotetags:  [OneNote, Line訂單系統]description: 2025-07-13 Line 訂單系統-C 階段 C4 子階段 — LINE 訂單紀錄後端 API 建立"></a>title: 2025-07-13 Line 訂單系統-C 階段 C4 子階段 — LINE 訂單紀錄後端 API 建立<br>date: 2025-11-13 23:19:37<br>categories: OneDayOneNote<br>tags:  [OneNote, Line訂單系統]<br>description: 2025-07-13 Line 訂單系統-C 階段 C4 子階段 — LINE 訂單紀錄後端 API 建立</h2><h2 id="2025-07-13-Line-訂單系統-C-階段-C4-子階段-—-LINE-訂單紀錄後端-API-建立"><a href="#2025-07-13-Line-訂單系統-C-階段-C4-子階段-—-LINE-訂單紀錄後端-API-建立" class="headerlink" title="2025-07-13 Line 訂單系統-C 階段 C4 子階段 — LINE 訂單紀錄後端 API 建立"></a>2025-07-13 Line 訂單系統-C 階段 C4 子階段 — LINE 訂單紀錄後端 API 建立</h2><p>我們現在進入 <strong>📘 C4 子階段 — LINE 訂單紀錄後端 API 建立</strong>，<br>這是整個 C 階段的最後一個部分，<br>完成後你就能在 <strong>Vue3 後台 (<code>LineOrders.vue</code>)</strong> 看到真實的 LINE 訂單資料。</p>
+<hr>
+<h2 id="🧩-新增檔案：backend-routes-orders-js"><a href="#🧩-新增檔案：backend-routes-orders-js" class="headerlink" title="🧩 新增檔案：backend/routes/orders.js"></a>🧩 新增檔案：<code>backend/routes/orders.js</code></h2><p>這個 API 將會：</p>
+<ul>
+<li>提供 <code>/api/orders</code> 路由，查詢所有訂單資料；</li>
+<li>讓前端（<code>LineOrders.vue</code>）可以取得並顯示；</li>
+<li>支援「新增訂單」功能（可由 LINE webhook 呼叫）。</li>
+</ul>
+<hr>
+<h3 id="✅-範例程式"><a href="#✅-範例程式" class="headerlink" title="✅ 範例程式"></a>✅ 範例程式</h3><pre><code class="js">// backend/routes/orders.js
+import express from &quot;express&quot;;
+import mysql from &quot;mysql2/promise&quot;;
+
+const router = express.Router();
+
+// 建立 MySQL 連線池
+const pool = mysql.createPool({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+});
+
+// ✅ 取得所有訂單
+router.get(&quot;/orders&quot;, async (req, res) =&gt; {
+  try {
+    const [rows] = await pool.query(
+      `SELECT o.id, o.user_name, p.name AS product_name, o.quantity, o.status, o.created_at
+       FROM orders o
+       LEFT JOIN products p ON o.product_id = p.id
+       ORDER BY o.created_at DESC`
+    );
+    res.json(rows);
+  } catch (err) {
+    console.error(&quot;取得訂單錯誤:&quot;, err);
+    res.status(500).json({ error: &quot;伺服器錯誤&quot; });
+  }
+});
+
+// ✅ 新增訂單（可由 LINE Webhook 呼叫）
+router.post(&quot;/orders&quot;, async (req, res) =&gt; {
+  const { user_name, product_id, quantity } = req.body;
+  try {
+    const [result] = await pool.query(
+      `INSERT INTO orders (user_name, product_id, quantity, status, created_at)
+       VALUES (?, ?, ?, &#39;新訂單&#39;, NOW())`,
+      [user_name, product_id, quantity]
+    );
+    res.json({ success: true, orderId: result.insertId });
+  } catch (err) {
+    console.error(&quot;新增訂單錯誤:&quot;, err);
+    res.status(500).json({ error: &quot;伺服器錯誤&quot; });
+  }
+});
+
+export default router;
+</code></pre>
+<hr>
+<h2 id="🧱-在-server-js-中整合"><a href="#🧱-在-server-js-中整合" class="headerlink" title="🧱 在 server.js 中整合"></a>🧱 在 <code>server.js</code> 中整合</h2><p>請確認你在 <code>backend/server.js</code> 中有這段設定：</p>
+<pre><code class="js">import express from &quot;express&quot;;
+import cors from &quot;cors&quot;;
+import dotenv from &quot;dotenv&quot;;
+import lineWebhook from &quot;./routes/lineWebhook.js&quot;;
+import ordersRoute from &quot;./routes/orders.js&quot;;
+
+dotenv.config();
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+app.use(&quot;/api&quot;, lineWebhook);
+app.use(&quot;/api&quot;, ordersRoute);
+
+app.get(&quot;/&quot;, (req, res) =&gt; {
+  res.send(&quot;LINE 訂單系統後端運行中 🚀&quot;);
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () =&gt; console.log(`✅ Server 運行於 http://localhost:${PORT}`));
+</code></pre>
+<hr>
+<h2 id="🗂️-資料庫結構確認"><a href="#🗂️-資料庫結構確認" class="headerlink" title="🗂️ 資料庫結構確認"></a>🗂️ 資料庫結構確認</h2><p>確保你的 <code>db_init.sql</code> 至少包含以下三個表格：</p>
+<pre><code class="sql">CREATE TABLE products (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100),
+  description TEXT,
+  price DECIMAL(10,2)
+);
+
+CREATE TABLE orders (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_name VARCHAR(100),
+  product_id INT,
+  quantity INT DEFAULT 1,
+  status VARCHAR(50) DEFAULT &#39;新訂單&#39;,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (product_id) REFERENCES products(id)
+);
+</code></pre>
+<hr>
+<h2 id="🔄-整體流程示意"><a href="#🔄-整體流程示意" class="headerlink" title="🔄 整體流程示意"></a>🔄 整體流程示意</h2><table>
+<thead>
+<tr>
+<th>階段</th>
+<th>動作</th>
+<th>系統反應</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1️⃣</td>
+<td>使用者在 LINE 輸入：「商品 1」</td>
+<td>Bot 回傳商品資訊</td>
+</tr>
+<tr>
+<td>2️⃣</td>
+<td>使用者輸入：「購買 1」</td>
+<td>webhook 觸發 <code>/api/orders</code> → 新增訂單</td>
+</tr>
+<tr>
+<td>3️⃣</td>
+<td>後端寫入 MySQL → <code>orders</code> 表</td>
+<td>儲存訂單紀錄</td>
+</tr>
+<tr>
+<td>4️⃣</td>
+<td>Vue3 後台 <code>LineOrders.vue</code> 呼叫 <code>/api/orders</code></td>
+<td>顯示訂單清單（自動更新）</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🚀-本階段完成後你將擁有"><a href="#🚀-本階段完成後你將擁有" class="headerlink" title="🚀 本階段完成後你將擁有"></a>🚀 本階段完成後你將擁有</h2><p>✅ LINE 訊息事件接收與回覆（webhook）<br>✅ 自動新增訂單紀錄至 MySQL<br>✅ 後台 Vue3 頁面可查詢訂單<br>✅ Node.js API 結構清晰，方便擴充</p>
+<hr>
+<p>是否要我幫你繼續：<br>👉 整合 webhook 與 <code>/orders</code> API，讓「使用者輸入『購買 1』時自動建立訂單」？<br>（這會讓整個 LINE ↔ 後端 ↔ 資料庫 ↔ Vue 前端流程完全打通）</p>

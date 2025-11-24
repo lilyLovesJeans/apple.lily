@@ -1,0 +1,164 @@
+<hr>
+<h2 id="title-2025-07-31-Line-訂單系統-「第一塊積木」-進入-A-階段真正實作date-2025-11-17-22-24-01categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-31-Line-訂單系統-「第一塊積木」-進入-A-階段真正實作"><a href="#title-2025-07-31-Line-訂單系統-「第一塊積木」-進入-A-階段真正實作date-2025-11-17-22-24-01categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-31-Line-訂單系統-「第一塊積木」-進入-A-階段真正實作" class="headerlink" title="title: 2025-07-31 Line 訂單系統-「第一塊積木」 進入 A 階段真正實作date: 2025-11-17 22:24:01categories: OneDayOneNotetags:  [OneNote, Line訂單系統]description:  2025-07-31 Line 訂單系統-「第一塊積木」 進入 A 階段真正實作"></a>title: 2025-07-31 Line 訂單系統-「第一塊積木」 進入 A 階段真正實作<br>date: 2025-11-17 22:24:01<br>categories: OneDayOneNote<br>tags:  [OneNote, Line訂單系統]<br>description:  2025-07-31 Line 訂單系統-「第一塊積木」 進入 A 階段真正實作</h2><p>進入 A 階段真正實作</p>
+<p> <strong>📗 A 階段 — 系統最小可運作核心（MVP）真正實作</strong>。</p>
+<p>我會用你「單人、慢慢堆積木」的方式，從最小、最簡單、最乾淨、最不會出錯」的 <strong>第一塊積木</strong> 開始：</p>
+<hr>
+<h1 id="📗-A-階段-—-實作開始"><a href="#📗-A-階段-—-實作開始" class="headerlink" title="📗 A 階段 — 實作開始"></a>📗 A 階段 — 實作開始</h1><p>以下內容是「真的可以跑起來的第一階段」，並且會一步步堆這個後端系統。</p>
+<hr>
+<h1 id="✅-A-1：建立後端專案（NestJS）"><a href="#✅-A-1：建立後端專案（NestJS）" class="headerlink" title="✅ A-1：建立後端專案（NestJS）"></a>✅ A-1：建立後端專案（NestJS）</h1><p>你現在的第一個實作目標只有兩個：</p>
+<ol>
+<li><strong>跑得起來的 NestJS 專案</strong></li>
+<li><strong>最基本的 Products 模組（CRUD）</strong></li>
+</ol>
+<p>這些會是整個系統的基底。</p>
+<hr>
+<h1 id="▶️-A-1-1-建立-Nest-專案"><a href="#▶️-A-1-1-建立-Nest-專案" class="headerlink" title="▶️ A-1-1 建立 Nest 專案"></a>▶️ A-1-1 建立 Nest 專案</h1><pre><code class="bash">npm i -g @nestjs/cli
+nest new line-order-backend
+</code></pre>
+<p>選：<strong>npm</strong></p>
+<p>然後進入專案：</p>
+<pre><code class="bash">cd line-order-backend
+npm run start:dev
+</code></pre>
+<p>看到：</p>
+<pre><code>[Nest] ... Listening on port 3000
+</code></pre>
+<p>表示成功。</p>
+<hr>
+<h1 id="▶️-A-1-2-建立-Products-Module（第一塊積木）"><a href="#▶️-A-1-2-建立-Products-Module（第一塊積木）" class="headerlink" title="▶️ A-1-2 建立 Products Module（第一塊積木）"></a>▶️ A-1-2 建立 Products Module（第一塊積木）</h1><p>我們建立以下檔案：</p>
+<pre><code>src/
+ └── products/
+      ├── products.module.ts
+      ├── products.service.ts
+      ├── products.controller.ts
+      ├── dto/
+      │     └── create-product.dto.ts
+      └── entities/
+            └── product.entity.ts
+</code></pre>
+<p>我直接產生「完整版、可執行」的程式碼給你。</p>
+<hr>
+<h1 id="📦-Products-Module-完整程式碼（A-階段正式開始）"><a href="#📦-Products-Module-完整程式碼（A-階段正式開始）" class="headerlink" title="📦 Products Module 完整程式碼（A 階段正式開始）"></a>📦 Products Module 完整程式碼（A 階段正式開始）</h1><h2 id="1️⃣-product-entity-ts"><a href="#1️⃣-product-entity-ts" class="headerlink" title="1️⃣ product.entity.ts"></a>1️⃣ product.entity.ts</h2><pre><code class="ts">export class Product {
+  id: number;
+  name: string;
+  price: number;
+}
+</code></pre>
+<hr>
+<h2 id="2️⃣-create-product-dto-ts"><a href="#2️⃣-create-product-dto-ts" class="headerlink" title="2️⃣ create-product.dto.ts"></a>2️⃣ create-product.dto.ts</h2><pre><code class="ts">import { IsString, IsNumber } from &#39;class-validator&#39;;
+
+export class CreateProductDto {
+  @IsString()
+  name: string;
+
+  @IsNumber()
+  price: number;
+}
+</code></pre>
+<hr>
+<h2 id="3️⃣-products-service-ts"><a href="#3️⃣-products-service-ts" class="headerlink" title="3️⃣ products.service.ts"></a>3️⃣ products.service.ts</h2><pre><code class="ts">import { Injectable } from &#39;@nestjs/common&#39;;
+import { Product } from &#39;./entities/product.entity&#39;;
+import { CreateProductDto } from &#39;./dto/create-product.dto&#39;;
+
+@Injectable()
+export class ProductsService {
+  private products: Product[] = [];
+  private idCounter = 1;
+
+  findAll(): Product[] {
+    return this.products;
+  }
+
+  create(dto: CreateProductDto): Product {
+    const newProduct: Product = {
+      id: this.idCounter++,
+      ...dto,
+    };
+
+    this.products.push(newProduct);
+    return newProduct;
+  }
+}
+</code></pre>
+<hr>
+<h2 id="4️⃣-products-controller-ts"><a href="#4️⃣-products-controller-ts" class="headerlink" title="4️⃣ products.controller.ts"></a>4️⃣ products.controller.ts</h2><pre><code class="ts">import { Controller, Get, Post, Body } from &#39;@nestjs/common&#39;;
+import { ProductsService } from &#39;./products.service&#39;;
+import { CreateProductDto } from &#39;./dto/create-product.dto&#39;;
+
+@Controller(&#39;products&#39;)
+export class ProductsController {
+  constructor(private readonly productsService: ProductsService) {}
+
+  @Get()
+  findAll() {
+    return this.productsService.findAll();
+  }
+
+  @Post()
+  create(@Body() dto: CreateProductDto) {
+    return this.productsService.create(dto);
+  }
+}
+</code></pre>
+<hr>
+<h2 id="5️⃣-products-module-ts"><a href="#5️⃣-products-module-ts" class="headerlink" title="5️⃣ products.module.ts"></a>5️⃣ products.module.ts</h2><pre><code class="ts">import { Module } from &#39;@nestjs/common&#39;;
+import { ProductsService } from &#39;./products.service&#39;;
+import { ProductsController } from &#39;./products.controller&#39;;
+
+@Module({
+  controllers: [ProductsController],
+  providers: [ProductsService],
+})
+export class ProductsModule {}
+</code></pre>
+<hr>
+<h2 id="6️⃣-把-ProductsModule-加入-AppModule"><a href="#6️⃣-把-ProductsModule-加入-AppModule" class="headerlink" title="6️⃣ 把 ProductsModule 加入 AppModule"></a>6️⃣ 把 ProductsModule 加入 AppModule</h2><p><code>app.module.ts</code> 加一行：</p>
+<pre><code class="ts">import { ProductsModule } from &#39;./products/products.module&#39;;
+
+@Module({
+  imports: [ProductsModule],
+})
+export class AppModule {}
+</code></pre>
+<hr>
+<h1 id="▶️-A-1-完成後你可以測試"><a href="#▶️-A-1-完成後你可以測試" class="headerlink" title="▶️ A-1 完成後你可以測試"></a>▶️ A-1 完成後你可以測試</h1><h3 id="GET-http-localhost-3000-products"><a href="#GET-http-localhost-3000-products" class="headerlink" title="GET http://localhost:3000/products"></a><code>GET http://localhost:3000/products</code></h3><p>回應：</p>
+<pre><code class="json">[]
+</code></pre>
+<h3 id="POST-http-localhost-3000-products"><a href="#POST-http-localhost-3000-products" class="headerlink" title="POST http://localhost:3000/products"></a><code>POST http://localhost:3000/products</code></h3><p>Body：</p>
+<pre><code class="json">{
+  &quot;name&quot;: &quot;Latte&quot;,
+  &quot;price&quot;: 120
+}
+</code></pre>
+<p>回應：</p>
+<pre><code class="json">{
+  &quot;id&quot;: 1,
+  &quot;name&quot;: &quot;Latte&quot;,
+  &quot;price&quot;: 120
+}
+</code></pre>
+<hr>
+<h1 id="🎉-恭喜：A-階段「第一塊積木」正式完成！"><a href="#🎉-恭喜：A-階段「第一塊積木」正式完成！" class="headerlink" title="🎉 恭喜：A 階段「第一塊積木」正式完成！"></a>🎉 恭喜：A 階段「第一塊積木」正式完成！</h1><p>到這裡為止，你已經成功建立：</p>
+<ul>
+<li>✔ NestJS 專案</li>
+<li>✔ 第一個 Products 模組（CRUD）</li>
+<li>✔ DTO、Validation、Service、Controller、Module 的基本架構</li>
+<li>✔ 可運作 API</li>
+</ul>
+<p>這是所有後續 LINE webhook、訂單管理、Redis queue、前端 Vue3、整個 A~G 階段的基礎。</p>
+<hr>
+<h1 id="📘-接下來該做什麼？"><a href="#📘-接下來該做什麼？" class="headerlink" title="📘 接下來該做什麼？"></a>📘 接下來該做什麼？</h1><p>下一個步驟（A 階段的第二塊積木）有兩個選擇：</p>
+<h2 id="A-2（後端路線）"><a href="#A-2（後端路線）" class="headerlink" title="A-2（後端路線）"></a>A-2（後端路線）</h2><p>➜ 建立 <strong>Orders Module</strong></p>
+<ul>
+<li>create-order</li>
+<li>find-all-orders</li>
+<li>內部假資料（不用 DB）</li>
+</ul>
+<h2 id="A-3（資料庫路線）"><a href="#A-3（資料庫路線）" class="headerlink" title="A-3（資料庫路線）"></a>A-3（資料庫路線）</h2><p>➜ 加入 <strong>MySQL + TypeORM（或 Prisma）</strong></p>
+<ul>
+<li>建 product table</li>
+<li>建 order table</li>
+<li>把 A 階段產品 + 訂單 CRUD 跑到真資料庫</li>
+</ul>
+<hr>
+<p>👉 <strong>你要先走 A-2（繼續後端），還是 A-3（加入資料庫）？</strong></p>

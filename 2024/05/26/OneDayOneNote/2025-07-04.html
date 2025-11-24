@@ -1,0 +1,334 @@
+<hr>
+<h2 id="title-2025-07-04-Line-A-階段：LINE-webhook-Node-js-MySQL（最小可行版本）date-2025-11-12-22-46-14categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-04-Line-A-階段：LINE-webhook-Node-js-MySQL（最小可行版本）"><a href="#title-2025-07-04-Line-A-階段：LINE-webhook-Node-js-MySQL（最小可行版本）date-2025-11-12-22-46-14categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-04-Line-A-階段：LINE-webhook-Node-js-MySQL（最小可行版本）" class="headerlink" title="title: 2025-07-04 Line A 階段：LINE webhook + Node.js + MySQL（最小可行版本）date: 2025-11-12 22:46:14categories: OneDayOneNotetags:  [OneNote, Line訂單系統]description:   2025-07-04 Line A 階段：LINE webhook + Node.js + MySQL（最小可行版本）"></a>title: 2025-07-04 Line A 階段：LINE webhook + Node.js + MySQL（最小可行版本）<br>date: 2025-11-12 22:46:14<br>categories: OneDayOneNote<br>tags:  [OneNote, Line訂單系統]<br>description:   2025-07-04 Line A 階段：LINE webhook + Node.js + MySQL（最小可行版本）</h2><h2 id="2025-07-04-Line-A-階段：LINE-webhook-Node-js-MySQL（最小可行版本）"><a href="#2025-07-04-Line-A-階段：LINE-webhook-Node-js-MySQL（最小可行版本）" class="headerlink" title="2025-07-04 Line A 階段：LINE webhook + Node.js + MySQL（最小可行版本）"></a>2025-07-04 Line A 階段：LINE webhook + Node.js + MySQL（最小可行版本）</h2><p>從 <strong>A 階段（最小可行原型）</strong> 立刻開始：目標是建立可接收 LINE Webhook 的 Node.js 伺服器，並把來自使用者的訊息寫入 MySQL（後端跑在你的 Lenovo）。整個流程會包含：資料庫初始化、後端程式碼、環境變數設定、用 ngrok 曝露 webhook、以及實測步驟與檢查點。<br>下面是一步一步的操作手冊——可直接複製貼上執行。</p>
+<hr>
+<h1 id="A-階段：LINE-webhook-Node-js-MySQL（最小可行版本）"><a href="#A-階段：LINE-webhook-Node-js-MySQL（最小可行版本）" class="headerlink" title="A 階段：LINE webhook + Node.js + MySQL（最小可行版本）"></a>A 階段：LINE webhook + Node.js + MySQL（最小可行版本）</h1><p><strong>目標成果</strong></p>
+<ul>
+<li>Node.js 後端能接收 LINE Webhook，回覆訊息並把訊息寫入 MySQL <code>messages_log</code>。</li>
+<li>能用 ngrok 把本機 <code>http://localhost:3000/line/webhook</code> 暴露給 LINE 並測試。</li>
+<li>程式碼存到 GitHub（不含 <code>.env</code>）。</li>
+</ul>
+<hr>
+<h2 id="前置條件（請先完成）"><a href="#前置條件（請先完成）" class="headerlink" title="前置條件（請先完成）"></a>前置條件（請先完成）</h2><ul>
+<li>Lenovo（開發主機）已安裝 Node.js（建議 v18+）與 npm。若沒安裝，請用 nvm-windows 或官網安裝器。</li>
+<li>Lenovo 已安裝 MySQL Server，知道 root 或其他使用者密碼。或已註冊 PlanetScale（若使用雲端 DB，請準備好連線字串）。</li>
+<li>已有 GitHub 帳號（會推 code 到 repo）。</li>
+<li>已安裝 ngrok 並完成驗證（ngrok authtoken）或準備安裝。</li>
+<li>已註冊 LINE Developers 帳號（稍後要建立 channel）。</li>
+</ul>
+<hr>
+<h2 id="檔案結構（最終會長這樣）"><a href="#檔案結構（最終會長這樣）" class="headerlink" title="檔案結構（最終會長這樣）"></a>檔案結構（最終會長這樣）</h2><pre><code>line-order-system/
+├─ backend/
+│  ├─ index.js
+│  ├─ db.js
+│  ├─ routes/
+│  │   └─ line.js
+│  ├─ package.json
+│  ├─ .env.example
+│  └─ db_init.sql
+└─ README.md
+</code></pre>
+<hr>
+<h2 id="Step-0-—-建-GitHub-repo（若尚未建立）"><a href="#Step-0-—-建-GitHub-repo（若尚未建立）" class="headerlink" title="Step 0 — 建 GitHub repo（若尚未建立）"></a>Step 0 — 建 GitHub repo（若尚未建立）</h2><ol>
+<li>在 GitHub 建 repo：<code>line-order-system</code>（Private 或 Public 都可）。</li>
+<li>clone 到 Lenovo：</li>
+</ol>
+<pre><code class="bash">cd D:\Projects
+git clone https://github.com/&lt;你的帳號&gt;/line-order-system.git
+cd line-order-system
+mkdir backend
+</code></pre>
+<hr>
+<h2 id="Step-1-—-建資料庫與初始化-SQL"><a href="#Step-1-—-建資料庫與初始化-SQL" class="headerlink" title="Step 1 — 建資料庫與初始化 SQL"></a>Step 1 — 建資料庫與初始化 SQL</h2><p>在 <code>backend/db_init.sql</code> 放以下內容（複製整段）：</p>
+<pre><code class="sql">-- db_init.sql
+CREATE DATABASE IF NOT EXISTS line_order_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE line_order_db;
+
+CREATE TABLE IF NOT EXISTS users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  line_user_id VARCHAR(50) UNIQUE,
+  display_name VARCHAR(100),
+  phone VARCHAR(50),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS messages_log (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  line_user_id VARCHAR(50),
+  event_type VARCHAR(50),
+  message_type VARCHAR(50),
+  message_text TEXT,
+  raw_event JSON,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+</code></pre>
+<p><strong>執行 SQL（若在本機 MySQL）</strong></p>
+<ol>
+<li>用 MySQL Workbench 或命令列匯入：</li>
+</ol>
+<pre><code class="bash">mysql -u root -p
+-- 輸入密碼，然後在 mysql&gt; 提示符輸入：
+SOURCE /path/to/line-order-system/backend/db_init.sql;
+</code></pre>
+<ol start="2">
+<li>確認：</li>
+</ol>
+<pre><code class="sql">USE line_order_db;
+SHOW TABLES;
+-- 應會看到 users、messages_log
+</code></pre>
+<p>如果你用 PlanetScale，使用其 Console 的 「Run schema」 或者透過 CLI 執行相同 SQL。</p>
+<hr>
+<h2 id="Step-2-—-建立後端專案-安裝套件（在-backend-目錄）"><a href="#Step-2-—-建立後端專案-安裝套件（在-backend-目錄）" class="headerlink" title="Step 2 — 建立後端專案 &amp; 安裝套件（在 backend 目錄）"></a>Step 2 — 建立後端專案 &amp; 安裝套件（在 backend 目錄）</h2><p>在 <code>line-order-system/backend</code>：</p>
+<pre><code class="bash">cd backend
+npm init -y
+# 設為 ES module
+# 編輯 package.json，加入 &quot;type&quot;: &quot;module&quot; （或用下面指令）
+</code></pre>
+<p>編輯 <code>package.json</code>（加入 scripts 與 type）：</p>
+<pre><code class="json">{
+  &quot;name&quot;: &quot;line-order-backend&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;type&quot;: &quot;module&quot;,
+  &quot;scripts&quot;: {
+    &quot;start&quot;: &quot;node index.js&quot;,
+    &quot;dev&quot;: &quot;nodemon index.js&quot;
+  },
+  &quot;dependencies&quot;: {
+    &quot;@line/bot-sdk&quot;: &quot;^7.6.0&quot;,
+    &quot;cors&quot;: &quot;^2.8.5&quot;,
+    &quot;dotenv&quot;: &quot;^16.0.0&quot;,
+    &quot;express&quot;: &quot;^4.18.2&quot;,
+    &quot;mysql2&quot;: &quot;^3.3.0&quot;
+  },
+  &quot;devDependencies&quot;: {
+    &quot;nodemon&quot;: &quot;^2.0.22&quot;
+  }
+}
+</code></pre>
+<p>安裝套件：</p>
+<pre><code class="bash">npm install express cors dotenv mysql2 @line/bot-sdk
+npm install -D nodemon
+</code></pre>
+<hr>
+<h2 id="Step-3-—-建置-env-example-與-gitignore"><a href="#Step-3-—-建置-env-example-與-gitignore" class="headerlink" title="Step 3 — 建置 .env.example 與 .gitignore"></a>Step 3 — 建置 .env.example 與 .gitignore</h2><p>在 <code>backend/.env.example</code>：</p>
+<pre><code># LINE
+LINE_CHANNEL_SECRET=your_channel_secret_here
+LINE_CHANNEL_ACCESS_TOKEN=your_channel_access_token_here
+
+# MySQL
+DB_HOST=localhost
+DB_USER=root
+DB_PASS=your_db_password
+DB_NAME=line_order_db
+
+# Server
+PORT=3000
+</code></pre>
+<p>在 <code>backend/.gitignore</code>（或 repo 根目錄）加入：</p>
+<pre><code>node_modules/
+.env
+.DS_Store
+</code></pre>
+<blockquote>
+<p><strong>注意</strong>：不要把實際 <code>.env</code> 推到 GitHub。使用 <code>.env.example</code> 讓其他開發者知道要填何種變數。</p>
+</blockquote>
+<hr>
+<h2 id="Step-4-—-寫程式碼（貼好檔案）"><a href="#Step-4-—-寫程式碼（貼好檔案）" class="headerlink" title="Step 4 — 寫程式碼（貼好檔案）"></a>Step 4 — 寫程式碼（貼好檔案）</h2><h3 id="backend-db-js"><a href="#backend-db-js" class="headerlink" title="backend&#x2F;db.js"></a>backend&#x2F;db.js</h3><pre><code class="js">// backend/db.js
+import mysql from &#39;mysql2/promise&#39;;
+import dotenv from &#39;dotenv&#39;;
+dotenv.config();
+
+export const pool = mysql.createPool({
+  host: process.env.DB_HOST || &#39;localhost&#39;,
+  user: process.env.DB_USER || &#39;root&#39;,
+  password: process.env.DB_PASS || &#39;&#39;,
+  database: process.env.DB_NAME || &#39;line_order_db&#39;,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
+});
+</code></pre>
+<h3 id="backend-routes-line-js"><a href="#backend-routes-line-js" class="headerlink" title="backend&#x2F;routes&#x2F;line.js"></a>backend&#x2F;routes&#x2F;line.js</h3><pre><code class="js">// backend/routes/line.js
+import express from &#39;express&#39;;
+import { middleware, Client } from &#39;@line/bot-sdk&#39;;
+import dotenv from &#39;dotenv&#39;;
+import { pool } from &#39;../db.js&#39;;
+dotenv.config();
+
+const router = express.Router();
+
+const config = {
+  channelAccessToken: process.env.LINE_CHANNEL_ACCESS_TOKEN,
+  channelSecret: process.env.LINE_CHANNEL_SECRET,
+};
+
+const client = new Client(config);
+
+// 使用 SDK middleware 驗證 signature
+router.post(&#39;/webhook&#39;, middleware(config), async (req, res) =&gt; {
+  try {
+    const events = req.body.events || [];
+    // 處理每個 event
+    for (const event of events) {
+      // 範例：只處理文字訊息並回覆
+      if (event.type === &#39;message&#39; &amp;&amp; event.message.type === &#39;text&#39;) {
+        const userId = event.source?.userId || null;
+        const text = event.message.text;
+
+        // 1) 儲存到 MySQL messages_log
+        try {
+          await pool.query(
+            &#39;INSERT INTO messages_log (line_user_id, event_type, message_type, message_text, raw_event) VALUES (?, ?, ?, ?, ?)&#39;,
+            [userId, event.type, event.message.type, text, JSON.stringify(event)]
+          );
+        } catch (dbErr) {
+          console.error(&#39;DB insert error&#39;, dbErr);
+        }
+
+        // 2) 回覆使用者
+        const replyText = `收到：${text}\n（這是測試回覆）`;
+        await client.replyMessage(event.replyToken, {
+          type: &#39;text&#39;,
+          text: replyText
+        });
+      } else {
+        // 處理非文字訊息或其他事件時，僅回 200
+        console.log(&#39;Unhandled event type:&#39;, event.type);
+      }
+    }
+
+    res.status(200).send(&#39;OK&#39;);
+  } catch (err) {
+    console.error(&#39;Webhook processing error&#39;, err);
+    res.status(500).end();
+  }
+});
+
+export default router;
+</code></pre>
+<h3 id="backend-index-js"><a href="#backend-index-js" class="headerlink" title="backend&#x2F;index.js"></a>backend&#x2F;index.js</h3><pre><code class="js">// backend/index.js
+import express from &#39;express&#39;;
+import cors from &#39;cors&#39;;
+import dotenv from &#39;dotenv&#39;;
+import lineRouter from &#39;./routes/line.js&#39;;
+
+dotenv.config();
+const app = express();
+app.use(cors());
+app.use(express.json({ limit: &#39;1mb&#39; }));
+
+app.get(&#39;/&#39;, (req, res) =&gt; res.send(&#39;Line Order Backend - OK&#39;));
+
+// 註冊 route
+app.use(&#39;/line&#39;, lineRouter);
+
+// optional: health check
+app.get(&#39;/health&#39;, (req, res) =&gt; res.json({ status: &#39;ok&#39; }));
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () =&gt; console.log(`Server running on port ${PORT}`));
+
+// Export app for testing (if needed)
+export default app;
+</code></pre>
+<hr>
+<h2 id="Step-5-—-建立本機-env（不要上傳）"><a href="#Step-5-—-建立本機-env（不要上傳）" class="headerlink" title="Step 5 — 建立本機 .env（不要上傳）"></a>Step 5 — 建立本機 <code>.env</code>（不要上傳）</h2><p>在 <code>backend</code> 建 <code> .env</code>，填入你的真實值（不要推上 GitHub）：</p>
+<pre><code>LINE_CHANNEL_SECRET=xxxx
+LINE_CHANNEL_ACCESS_TOKEN=yyyy
+DB_HOST=localhost
+DB_USER=root
+DB_PASS=your_mysql_password
+DB_NAME=line_order_db
+PORT=3000
+</code></pre>
+<hr>
+<h2 id="Step-6-—-啟動伺服器並測試本機"><a href="#Step-6-—-啟動伺服器並測試本機" class="headerlink" title="Step 6 — 啟動伺服器並測試本機"></a>Step 6 — 啟動伺服器並測試本機</h2><p>在 backend 目錄啟動：</p>
+<pre><code class="bash">npm run dev
+# 或
+node index.js
+</code></pre>
+<p>在瀏覽器開 <code>http://localhost:3000/</code> 應顯示 <code>Line Order Backend - OK</code>。<br>在 <code>http://localhost:3000/health</code> 看到 <code>{status: &quot;ok&quot;}</code>。</p>
+<hr>
+<h2 id="Step-7-—-用-ngrok-暴露-webhook（在-Lenovo）"><a href="#Step-7-—-用-ngrok-暴露-webhook（在-Lenovo）" class="headerlink" title="Step 7 — 用 ngrok 暴露 webhook（在 Lenovo）"></a>Step 7 — 用 ngrok 暴露 webhook（在 Lenovo）</h2><ol>
+<li>啟動 ngrok（假設你已安裝且驗證過）：</li>
+</ol>
+<pre><code class="bash">ngrok http 3000
+</code></pre>
+<ol start="2">
+<li>ngrok 會顯示一個公開 URL，例如：<br><code>https://a1b2c3d4.ngrok.io</code></li>
+<li>你的 LINE webhook 完整 URL 路徑會是：<br><code>https://a1b2c3d4.ngrok.io/line/webhook</code></li>
+</ol>
+<hr>
+<h2 id="Step-8-—-在-LINE-Developers-設定-Webhook（建立-Channel）"><a href="#Step-8-—-在-LINE-Developers-設定-Webhook（建立-Channel）" class="headerlink" title="Step 8 — 在 LINE Developers 設定 Webhook（建立 Channel）"></a>Step 8 — 在 LINE Developers 設定 Webhook（建立 Channel）</h2><ol>
+<li><p>登入 LINE Developers → 建立 Provider → 建立 Channel (Messaging API)。</p>
+</li>
+<li><p>在 Channel 設定頁填入 <code>Channel name</code>、選類別、上傳 Icon（非必要）。</p>
+</li>
+<li><p>取得 <code>Channel secret</code> 與 <code>Channel access token</code>（存進你的 <code>backend/.env</code>）。</p>
+</li>
+<li><p>在 Channel 的 Messaging API 設定區塊：</p>
+<ul>
+<li>Webhook URL：貼上 <code>https://&lt;your-ngrok&gt;/line/webhook</code></li>
+<li>點「Verify」應該顯示成功（若顯示失敗，檢查伺服器有沒有運行與 ngrok URL 是否正確）。</li>
+<li>啟用「Use webhook」。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="Step-9-—-實機測試（手機-LINE）"><a href="#Step-9-—-實機測試（手機-LINE）" class="headerlink" title="Step 9 — 實機測試（手機 LINE）"></a>Step 9 — 實機測試（手機 LINE）</h2><ol>
+<li>在 Channel 裡的「Messaging API」頁面找到「QR Code」或「Add as friend」方式，把你的 LINE Official Account 加為好友（或把 Developer Channel 的測試號加入）。</li>
+<li>用手機對帳號傳文字（比如 <code>測試</code> 或 <code>Hello</code>）。</li>
+<li>預期：Bot 回覆 <code>收到：Hello（這是測試回覆）</code>，而且 MySQL <code>messages_log</code> 會多一筆紀錄。</li>
+<li>確認 DB：</li>
+</ol>
+<pre><code class="sql">SELECT id, line_user_id, message_text, created_at FROM messages_log ORDER BY id DESC LIMIT 5;
+</code></pre>
+<hr>
+<h2 id="Step-10-—-推到-GitHub（不包含-env）"><a href="#Step-10-—-推到-GitHub（不包含-env）" class="headerlink" title="Step 10 — 推到 GitHub（不包含 .env）"></a>Step 10 — 推到 GitHub（不包含 .env）</h2><p>在 repo 根目錄：</p>
+<pre><code class="bash">cd ../   # 回到 line-order-system 根
+git add backend
+git commit -m &quot;A-stage: backend webhook + save messages to MySQL&quot;
+git push origin main
+</code></pre>
+<blockquote>
+<p>確認 <code>.gitignore</code> 有 <code>.env</code> 並且沒有把 <code>.env</code> 推上去。</p>
+</blockquote>
+<hr>
+<h2 id="Checkpoints（驗收）"><a href="#Checkpoints（驗收）" class="headerlink" title="Checkpoints（驗收）"></a>Checkpoints（驗收）</h2><ul>
+<li><input disabled="" type="checkbox"> <code>http://localhost:3000/</code> 顯示 OK。</li>
+<li><input disabled="" type="checkbox"> ngrok 提供的公開 URL 可以 <code>POST</code> 到 <code>/line/webhook</code>（LINE Verify 成功）。</li>
+<li><input disabled="" type="checkbox"> 手機傳文字給 LINE 帳號，Bot 會回覆。</li>
+<li><input disabled="" type="checkbox"> MySQL <code>messages_log</code> 能看到該訊息的紀錄（raw_event 欄位有 JSON）。</li>
+<li><input disabled="" type="checkbox"> 程式碼已 push 到 GitHub（但 <code>.env</code> 未上傳）。</li>
+</ul>
+<hr>
+<h2 id="常見問題與排錯建議"><a href="#常見問題與排錯建議" class="headerlink" title="常見問題與排錯建議"></a>常見問題與排錯建議</h2><ul>
+<li>ngrok 驗證失敗 → 確認本機 server 有運行且能在 <code>http://localhost:3000/line/webhook</code> 回 200。用 curl 測試：</li>
+</ul>
+<pre><code class="bash">curl -X POST http://localhost:3000/line/webhook -H &quot;Content-Type: application/json&quot; -d &#39;{&quot;events&quot;:[]}&#39;
+</code></pre>
+<ul>
+<li>LINE Verify 顯示「Invalid signature」→ 檢查 <code>.env</code> 的 <code>LINE_CHANNEL_SECRET</code> 是否正確；<code>@line/bot-sdk</code> middleware 會驗證簽章。</li>
+<li>MySQL 寫入失敗 → 檢查 <code>backend/db.js</code> 的連線參數與 DB 是否已建立 <code>line_order_db</code>、table 是否存在。</li>
+<li>若使用 PlanetScale → 連線字串與普通 MySQL 會有差異（需使用 TLS 與特殊用戶名），請參考 PlanetScale 的連線說明並把值放到 <code>.env</code>。</li>
+</ul>
+<hr>
+<h2 id="安全提示（開發階段就應遵守）"><a href="#安全提示（開發階段就應遵守）" class="headerlink" title="安全提示（開發階段就應遵守）"></a>安全提示（開發階段就應遵守）</h2><ul>
+<li>不要在任何公開地方（Slack、聊天室、GitHub）貼 <code>LINE_CHANNEL_ACCESS_TOKEN</code> 或 <code>.env</code> 內容。</li>
+<li>在 GitHub 設置 Branch 保護、PR 流程（未來）。</li>
+<li>若要多人協作，把 <code>.env.example</code> 提供給其他人，讓他們在本地建立各自的 <code>.env</code>。</li>
+</ul>
+<hr>
+<h2 id="下一步建議（A-階段完成後）"><a href="#下一步建議（A-階段完成後）" class="headerlink" title="下一步建議（A 階段完成後）"></a>下一步建議（A 階段完成後）</h2><p>如果你通過 A 階段檢查點，我建議接下來做：</p>
+<ol>
+<li>在後端新增「簡單指令解析」：<code>我要點餐</code> → 回傳商品清單（從 MySQL 讀取）。</li>
+<li>新增 <code>orders</code>、<code>order_items</code> SQL schema（我們的 full 手冊 B 階段內容）。</li>
+<li>在 frontend 開始做管理後台的最小 UI（顯示 messages_log 與商品列表）。</li>
+</ol>
+<hr>
+<p>如果你要，我可以：</p>
+<ul>
+<li>立刻幫你把 <code>backend</code> 的這一套檔案 <strong>打包成可以直接 <code>git clone</code> 並執行</strong> 的 starter repo（包含 <code>README</code>、<code>db_init.sql</code> 與所有檔案），或</li>
+<li>以你現在的環境給出<strong>逐步的命令行輸入腳本</strong>（PowerShell &#x2F; CMD）來在 Lenovo 一鍵建立這個後端與 DB（包含範例 seed 資料）。</li>
+</ul>
+<p>你要先哪一個？（我會直接給出 repo 的檔案清單或一鍵腳本，供你拷貝執行）</p>

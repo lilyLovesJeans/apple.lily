@@ -1,0 +1,294 @@
+<hr>
+<h2 id="title-2025-07-06-Line-訂單系統-B-階段：商品與訂單管理-API-Vue3-後台管理-UI（初版date-2025-11-12-23-12-36categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-06-Line-訂單系統-B-階段：商品與訂單管理-API-Vue3-後台管理-UI（初版"><a href="#title-2025-07-06-Line-訂單系統-B-階段：商品與訂單管理-API-Vue3-後台管理-UI（初版date-2025-11-12-23-12-36categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-06-Line-訂單系統-B-階段：商品與訂單管理-API-Vue3-後台管理-UI（初版" class="headerlink" title="title: 2025-07-06 Line 訂單系統-B 階段：商品與訂單管理 API + Vue3 後台管理 UI（初版date: 2025-11-12 23:12:36categories: OneDayOneNotetags:  [OneNote, Line訂單系統]description:   2025-07-06 Line 訂單系統-B 階段：商品與訂單管理 API + Vue3 後台管理 UI（初版"></a>title: 2025-07-06 Line 訂單系統-B 階段：商品與訂單管理 API + Vue3 後台管理 UI（初版<br>date: 2025-11-12 23:12:36<br>categories: OneDayOneNote<br>tags:  [OneNote, Line訂單系統]<br>description:   2025-07-06 Line 訂單系統-B 階段：商品與訂單管理 API + Vue3 後台管理 UI（初版</h2><h2 id="2025-07-06-Line-訂單系統-B-階段：商品與訂單管理-API-Vue3-後台管理-UI（初版"><a href="#2025-07-06-Line-訂單系統-B-階段：商品與訂單管理-API-Vue3-後台管理-UI（初版" class="headerlink" title="2025-07-06 Line 訂單系統-B 階段：商品與訂單管理 API + Vue3 後台管理 UI（初版"></a>2025-07-06 Line 訂單系統-B 階段：商品與訂單管理 API + Vue3 後台管理 UI（初版</h2><p>完成 <strong>A 階段（Line webhook + MySQL + Node.js base）</strong>，<br>現在進入下一階段 —— <strong>📗 B 階段：商品與訂單管理 API + Vue3 後台管理 UI（初版）</strong>。</p>
+<p>這個階段的目標是讓你可以在電腦上建立一個<strong>簡單可操作的訂單管理後台</strong>，<br>可以用瀏覽器新增商品、查看訂單、確認訂單。<br>LINE 用戶未來送出訂單時，這些商品與訂單會連動到這裡。</p>
+<hr>
+<h2 id="🧭-B-階段整體結構"><a href="#🧭-B-階段整體結構" class="headerlink" title="🧭 B 階段整體結構"></a>🧭 B 階段整體結構</h2><p>📁 line-order-system</p>
+<pre><code>line-order-system/
+├─ backend/            ← 已完成 (A階段)
+│  ├─ routes/
+│  │   ├─ line.js
+│  │   ├─ products.js  ← 新增
+│  │   └─ orders.js    ← 新增
+│  ├─ db_init.sql       ← 新增商品/訂單表
+│  └─ ...
+└─ frontend/           ← 新增 Vue3 (Vite) 專案
+   ├─ src/
+   │  ├─ pages/
+   │  │   ├─ Products.vue
+   │  │   ├─ Orders.vue
+   │  │   └─ Dashboard.vue
+   │  ├─ components/
+   │  │   ├─ ProductForm.vue
+   │  │   └─ OrderTable.vue
+   │  ├─ App.vue
+   │  └─ main.js
+   └─ package.json
+</code></pre>
+<hr>
+<h2 id="🧩-後端設計（Node-js-Express）"><a href="#🧩-後端設計（Node-js-Express）" class="headerlink" title="🧩 後端設計（Node.js &#x2F; Express）"></a>🧩 後端設計（Node.js &#x2F; Express）</h2><h3 id="🧱-1️⃣-資料庫-—-db-init-sql-新增"><a href="#🧱-1️⃣-資料庫-—-db-init-sql-新增" class="headerlink" title="🧱 1️⃣ 資料庫 — db_init.sql 新增"></a>🧱 1️⃣ 資料庫 — <code>db_init.sql</code> 新增</h3><pre><code class="sql">USE line_order_db;
+
+CREATE TABLE IF NOT EXISTS products (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  price DECIMAL(10,2) NOT NULL,
+  description TEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS orders (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  product_id INT NOT NULL,
+  quantity INT DEFAULT 1,
+  customer_name VARCHAR(100),
+  status ENUM(&#39;pending&#39;, &#39;confirmed&#39;, &#39;cancelled&#39;) DEFAULT &#39;pending&#39;,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (product_id) REFERENCES products(id)
+);
+</code></pre>
+<hr>
+<h3 id="🧱-2️⃣-新增-backend-routes-products-js"><a href="#🧱-2️⃣-新增-backend-routes-products-js" class="headerlink" title="🧱 2️⃣ 新增 backend/routes/products.js"></a>🧱 2️⃣ 新增 <code>backend/routes/products.js</code></h3><pre><code class="js">import express from &quot;express&quot;;
+import { pool } from &quot;../db.js&quot;;
+
+const router = express.Router();
+
+// 取得所有商品
+router.get(&quot;/&quot;, async (req, res) =&gt; {
+  const [rows] = await pool.query(&quot;SELECT * FROM products ORDER BY id DESC&quot;);
+  res.json(rows);
+});
+
+// 新增商品
+router.post(&quot;/&quot;, async (req, res) =&gt; {
+  const { name, price, description } = req.body;
+  await pool.query(
+    &quot;INSERT INTO products (name, price, description) VALUES (?, ?, ?)&quot;,
+    [name, price, description]
+  );
+  res.json({ message: &quot;Product added&quot; });
+});
+
+// 刪除商品
+router.delete(&quot;/:id&quot;, async (req, res) =&gt; {
+  await pool.query(&quot;DELETE FROM products WHERE id = ?&quot;, [req.params.id]);
+  res.json({ message: &quot;Product deleted&quot; });
+});
+
+export default router;
+</code></pre>
+<hr>
+<h3 id="🧱-3️⃣-新增-backend-routes-orders-js"><a href="#🧱-3️⃣-新增-backend-routes-orders-js" class="headerlink" title="🧱 3️⃣ 新增 backend/routes/orders.js"></a>🧱 3️⃣ 新增 <code>backend/routes/orders.js</code></h3><pre><code class="js">import express from &quot;express&quot;;
+import { pool } from &quot;../db.js&quot;;
+
+const router = express.Router();
+
+// 取得所有訂單
+router.get(&quot;/&quot;, async (req, res) =&gt; {
+  const [rows] = await pool.query(
+    `SELECT o.*, p.name AS product_name 
+     FROM orders o 
+     JOIN products p ON o.product_id = p.id 
+     ORDER BY o.id DESC`
+  );
+  res.json(rows);
+});
+
+// 新增訂單（未來 LINE 也會用這個）
+router.post(&quot;/&quot;, async (req, res) =&gt; {
+  const { product_id, quantity, customer_name } = req.body;
+  await pool.query(
+    &quot;INSERT INTO orders (product_id, quantity, customer_name) VALUES (?, ?, ?)&quot;,
+    [product_id, quantity, customer_name]
+  );
+  res.json({ message: &quot;Order created&quot; });
+});
+
+// 更新訂單狀態
+router.put(&quot;/:id/status&quot;, async (req, res) =&gt; {
+  const { status } = req.body;
+  await pool.query(&quot;UPDATE orders SET status = ? WHERE id = ?&quot;, [
+    status,
+    req.params.id,
+  ]);
+  res.json({ message: &quot;Status updated&quot; });
+});
+
+export default router;
+</code></pre>
+<hr>
+<h3 id="🧱-4️⃣-修改-backend-index-js"><a href="#🧱-4️⃣-修改-backend-index-js" class="headerlink" title="🧱 4️⃣ 修改 backend/index.js"></a>🧱 4️⃣ 修改 <code>backend/index.js</code></h3><pre><code class="js">import express from &quot;express&quot;;
+import cors from &quot;cors&quot;;
+import dotenv from &quot;dotenv&quot;;
+import lineRouter from &quot;./routes/line.js&quot;;
+import productRouter from &quot;./routes/products.js&quot;;
+import orderRouter from &quot;./routes/orders.js&quot;;
+
+dotenv.config();
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+app.get(&quot;/&quot;, (req, res) =&gt; res.send(&quot;Line Order Backend - B Stage Ready&quot;));
+app.use(&quot;/line&quot;, lineRouter);
+app.use(&quot;/products&quot;, productRouter);
+app.use(&quot;/orders&quot;, orderRouter);
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () =&gt; console.log(`🚀 Server running on port ${PORT}`));
+</code></pre>
+<hr>
+<h2 id="🎨-前端（Vue3-Vite）"><a href="#🎨-前端（Vue3-Vite）" class="headerlink" title="🎨 前端（Vue3 + Vite）"></a>🎨 前端（Vue3 + Vite）</h2><h3 id="🧱-1️⃣-建立專案（在-MacAir-1）"><a href="#🧱-1️⃣-建立專案（在-MacAir-1）" class="headerlink" title="🧱 1️⃣ 建立專案（在 MacAir #1）"></a>🧱 1️⃣ 建立專案（在 MacAir #1）</h3><pre><code class="bash">cd line-order-system
+npm create vite@latest frontend -- --template vue
+cd frontend
+npm install axios
+npm run dev
+</code></pre>
+<hr>
+<h3 id="🧱-2️⃣-src-main-js"><a href="#🧱-2️⃣-src-main-js" class="headerlink" title="🧱 2️⃣ src/main.js"></a>🧱 2️⃣ <code>src/main.js</code></h3><pre><code class="js">import { createApp } from &quot;vue&quot;;
+import App from &quot;./App.vue&quot;;
+createApp(App).mount(&quot;#app&quot;);
+</code></pre>
+<hr>
+<h3 id="🧱-3️⃣-src-App-vue"><a href="#🧱-3️⃣-src-App-vue" class="headerlink" title="🧱 3️⃣ src/App.vue"></a>🧱 3️⃣ <code>src/App.vue</code></h3><pre><code class="vue">&lt;template&gt;
+  &lt;div class=&quot;p-4 font-sans&quot;&gt;
+    &lt;h1 class=&quot;text-2xl font-bold mb-4&quot;&gt;📦 Line Order System - Admin&lt;/h1&gt;
+    &lt;div class=&quot;space-x-4 mb-4&quot;&gt;
+      &lt;button @click=&quot;page = &#39;products&#39;&quot;&gt;商品管理&lt;/button&gt;
+      &lt;button @click=&quot;page = &#39;orders&#39;&quot;&gt;訂單管理&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;Products v-if=&quot;page === &#39;products&#39;&quot; /&gt;
+    &lt;Orders v-else /&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { ref } from &quot;vue&quot;;
+import Products from &quot;./pages/Products.vue&quot;;
+import Orders from &quot;./pages/Orders.vue&quot;;
+
+const page = ref(&quot;products&quot;);
+&lt;/script&gt;
+
+&lt;style&gt;
+button {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+button:hover {
+  background: #0056b3;
+}
+&lt;/style&gt;
+</code></pre>
+<hr>
+<h3 id="🧱-4️⃣-src-pages-Products-vue"><a href="#🧱-4️⃣-src-pages-Products-vue" class="headerlink" title="🧱 4️⃣ src/pages/Products.vue"></a>🧱 4️⃣ <code>src/pages/Products.vue</code></h3><pre><code class="vue">&lt;template&gt;
+  &lt;div&gt;
+    &lt;h2&gt;商品管理&lt;/h2&gt;
+    &lt;form @submit.prevent=&quot;addProduct&quot; class=&quot;mb-3&quot;&gt;
+      &lt;input v-model=&quot;name&quot; placeholder=&quot;商品名稱&quot; /&gt;
+      &lt;input v-model.number=&quot;price&quot; placeholder=&quot;價格&quot; type=&quot;number&quot; /&gt;
+      &lt;input v-model=&quot;description&quot; placeholder=&quot;描述&quot; /&gt;
+      &lt;button&gt;新增商品&lt;/button&gt;
+    &lt;/form&gt;
+
+    &lt;table border=&quot;1&quot; cellspacing=&quot;0&quot; cellpadding=&quot;5&quot;&gt;
+      &lt;tr&gt;
+        &lt;th&gt;ID&lt;/th&gt;&lt;th&gt;名稱&lt;/th&gt;&lt;th&gt;價格&lt;/th&gt;&lt;th&gt;描述&lt;/th&gt;&lt;th&gt;操作&lt;/th&gt;
+      &lt;/tr&gt;
+      &lt;tr v-for=&quot;p in products&quot; :key=&quot;p.id&quot;&gt;
+        &lt;td&gt;{{ p.id }}&lt;/td&gt;
+        &lt;td&gt;{{ p.name }}&lt;/td&gt;
+        &lt;td&gt;{{ p.price }}&lt;/td&gt;
+        &lt;td&gt;{{ p.description }}&lt;/td&gt;
+        &lt;td&gt;&lt;button @click=&quot;removeProduct(p.id)&quot;&gt;刪除&lt;/button&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/table&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { ref, onMounted } from &quot;vue&quot;;
+import axios from &quot;axios&quot;;
+const api = &quot;http://localhost:3000/products&quot;;
+
+const products = ref([]);
+const name = ref(&quot;&quot;);
+const price = ref(&quot;&quot;);
+const description = ref(&quot;&quot;);
+
+async function loadProducts() {
+  const res = await axios.get(api);
+  products.value = res.data;
+}
+
+async function addProduct() {
+  await axios.post(api, { name: name.value, price: price.value, description: description.value });
+  name.value = price.value = description.value = &quot;&quot;;
+  await loadProducts();
+}
+
+async function removeProduct(id) {
+  await axios.delete(`${api}/${id}`);
+  await loadProducts();
+}
+
+onMounted(loadProducts);
+&lt;/script&gt;
+</code></pre>
+<hr>
+<h3 id="🧱-5️⃣-src-pages-Orders-vue"><a href="#🧱-5️⃣-src-pages-Orders-vue" class="headerlink" title="🧱 5️⃣ src/pages/Orders.vue"></a>🧱 5️⃣ <code>src/pages/Orders.vue</code></h3><pre><code class="vue">&lt;template&gt;
+  &lt;div&gt;
+    &lt;h2&gt;訂單管理&lt;/h2&gt;
+    &lt;table border=&quot;1&quot; cellspacing=&quot;0&quot; cellpadding=&quot;5&quot;&gt;
+      &lt;tr&gt;
+        &lt;th&gt;ID&lt;/th&gt;&lt;th&gt;商品&lt;/th&gt;&lt;th&gt;數量&lt;/th&gt;&lt;th&gt;顧客&lt;/th&gt;&lt;th&gt;狀態&lt;/th&gt;&lt;th&gt;操作&lt;/th&gt;
+      &lt;/tr&gt;
+      &lt;tr v-for=&quot;o in orders&quot; :key=&quot;o.id&quot;&gt;
+        &lt;td&gt;{{ o.id }}&lt;/td&gt;
+        &lt;td&gt;{{ o.product_name }}&lt;/td&gt;
+        &lt;td&gt;{{ o.quantity }}&lt;/td&gt;
+        &lt;td&gt;{{ o.customer_name }}&lt;/td&gt;
+        &lt;td&gt;{{ o.status }}&lt;/td&gt;
+        &lt;td&gt;
+          &lt;select v-model=&quot;o.status&quot; @change=&quot;updateStatus(o.id, o.status)&quot;&gt;
+            &lt;option value=&quot;pending&quot;&gt;待處理&lt;/option&gt;
+            &lt;option value=&quot;confirmed&quot;&gt;已確認&lt;/option&gt;
+            &lt;option value=&quot;cancelled&quot;&gt;已取消&lt;/option&gt;
+          &lt;/select&gt;
+        &lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/table&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { ref, onMounted } from &quot;vue&quot;;
+import axios from &quot;axios&quot;;
+const api = &quot;http://localhost:3000/orders&quot;;
+
+const orders = ref([]);
+
+async function loadOrders() {
+  const res = await axios.get(api);
+  orders.value = res.data;
+}
+
+async function updateStatus(id, status) {
+  await axios.put(`${api}/${id}/status`, { status });
+  await loadOrders();
+}
+
+onMounted(loadOrders);
+&lt;/script&gt;
+</code></pre>
+<hr>
+<h2 id="🚀-B-階段完成後，你能做到："><a href="#🚀-B-階段完成後，你能做到：" class="headerlink" title="🚀 B 階段完成後，你能做到："></a>🚀 B 階段完成後，你能做到：</h2><p>✅ 用 Vue3 後台新增 &#x2F; 刪除商品<br>✅ 查看 &#x2F; 修改訂單狀態<br>✅ 前後端資料同步於 MySQL<br>✅ 為未來「LINE 用戶下單」功能做好準備（C 階段）</p>
+<hr>
+<h2 id="📘-下一步（C-階段預告）"><a href="#📘-下一步（C-階段預告）" class="headerlink" title="📘 下一步（C 階段預告）"></a>📘 下一步（C 階段預告）</h2><blockquote>
+<p>「C 階段 — LINE 訂單整合」<br>讓 LINE 用戶在對話中輸入 “我要買 XX”，<br>→ LINE Bot 自動建立 <code>orders</code> 資料<br>→ 後台即時出現訂單。</p>
+</blockquote>
+<hr>
+<p>是否要我接著為你撰寫「📘 C 階段 — LINE 訂單整合（前端＋後端連動）」的詳細設計與實作？<br>這會讓整個流程從「LINE 對話 → MySQL → Vue 後台」完整串接起來。</p>

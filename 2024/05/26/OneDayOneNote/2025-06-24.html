@@ -1,0 +1,174 @@
+<hr>
+<h2 id="title-2025-06-24-Line-訂單系統-三個起始任務（建置開發骨架與資料庫）date-2025-11-12-21-17-51categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-06-24-Line-訂單系統-三個起始任務（建置開發骨架與資料庫）"><a href="#title-2025-06-24-Line-訂單系統-三個起始任務（建置開發骨架與資料庫）date-2025-11-12-21-17-51categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-06-24-Line-訂單系統-三個起始任務（建置開發骨架與資料庫）" class="headerlink" title="title: 2025-06-24 Line 訂單系統-三個起始任務（建置開發骨架與資料庫）date: 2025-11-12 21:17:51categories: OneDayOneNotetags:  [OneNote, Line訂單系統]description:  2025-06-24 Line 訂單系統-三個起始任務（建置開發骨架與資料庫）"></a>title: 2025-06-24 Line 訂單系統-三個起始任務（建置開發骨架與資料庫）<br>date: 2025-11-12 21:17:51<br>categories: OneDayOneNote<br>tags:  [OneNote, Line訂單系統]<br>description:  2025-06-24 Line 訂單系統-三個起始任務（建置開發骨架與資料庫）</h2><h2 id="2025-06-24-Line-訂單系統-三個起始任務（建置開發骨架與資料庫）"><a href="#2025-06-24-Line-訂單系統-三個起始任務（建置開發骨架與資料庫）" class="headerlink" title="2025-06-24 Line 訂單系統-三個起始任務（建置開發骨架與資料庫）"></a>2025-06-24 Line 訂單系統-三個起始任務（建置開發骨架與資料庫）</h2><p>你已經正式進入 LINE 線上訂單系統的「實作啟動階段」。<br>我們會 <strong>先完成三個起始任務（建置開發骨架與資料庫）</strong>，<br>然後我再幫你準備 <strong>階段 A–G 的完整操作手冊</strong>（每一步都有實際指令與範例）。</p>
+<hr>
+<h1 id="🧭-第一部分：三件起始任務的詳細步驟"><a href="#🧭-第一部分：三件起始任務的詳細步驟" class="headerlink" title="🧭 第一部分：三件起始任務的詳細步驟"></a>🧭 第一部分：三件起始任務的詳細步驟</h1><hr>
+<h2 id="✅-1️⃣-建立-GitHub-repo，並建立-backend-frontend-的基本骨架"><a href="#✅-1️⃣-建立-GitHub-repo，並建立-backend-frontend-的基本骨架" class="headerlink" title="✅ 1️⃣ 建立 GitHub repo，並建立 backend + frontend 的基本骨架"></a>✅ 1️⃣ 建立 GitHub repo，並建立 backend + frontend 的基本骨架</h2><h3 id="💡-目的："><a href="#💡-目的：" class="headerlink" title="💡 目的："></a>💡 目的：</h3><p>建立專案版本控制基礎，讓三台電腦都能協作（push&#x2F;pull），前後端清楚分離。</p>
+<hr>
+<h3 id="🔧-步驟："><a href="#🔧-步驟：" class="headerlink" title="🔧 步驟："></a>🔧 步驟：</h3><h4 id="➤（1）在-GitHub-建立新-repo"><a href="#➤（1）在-GitHub-建立新-repo" class="headerlink" title="➤（1）在 GitHub 建立新 repo"></a>➤（1）在 GitHub 建立新 repo</h4><ol>
+<li>登入 <a href="https://github.com/">GitHub</a></li>
+<li>點右上角「➕ → New repository」</li>
+<li>輸入名稱（例如）：<code>line-order-system</code></li>
+<li>選 Public（或 Private）</li>
+<li>不用勾選 Initialize README（我們自己建）</li>
+<li>點「Create repository」</li>
+</ol>
+<hr>
+<h4 id="➤（2）在-Lenovo-電腦上-clone-專案"><a href="#➤（2）在-Lenovo-電腦上-clone-專案" class="headerlink" title="➤（2）在 Lenovo 電腦上 clone 專案"></a>➤（2）在 Lenovo 電腦上 clone 專案</h4><pre><code class="bash"># 開啟 Terminal 或 PowerShell
+cd D:\Projects   # 或你想放的位置
+git clone https://github.com/你的帳號/line-order-system.git
+cd line-order-system
+</code></pre>
+<hr>
+<h4 id="➤（3）建立資料夾結構"><a href="#➤（3）建立資料夾結構" class="headerlink" title="➤（3）建立資料夾結構"></a>➤（3）建立資料夾結構</h4><pre><code class="bash">mkdir backend frontend db
+cd backend
+npm init -y          # 建立 Node.js 專案
+npm install express cors dotenv mysql2
+echo &quot;console.log(&#39;Backend running&#39;);&quot; &gt; index.js
+cd ..
+
+cd frontend
+npm create vite@latest
+# 專案名稱輸入 frontend
+# 選擇 Vue → JavaScript
+cd ..
+</code></pre>
+<hr>
+<h4 id="➤（4）建立-gitignore"><a href="#➤（4）建立-gitignore" class="headerlink" title="➤（4）建立 .gitignore"></a>➤（4）建立 <code>.gitignore</code></h4><p>在專案根目錄（line-order-system&#x2F;）建立一個 <code>.gitignore</code></p>
+<pre><code class="bash"># .gitignore
+node_modules/
+.env
+.DS_Store
+dist/
+</code></pre>
+<hr>
+<h4 id="➤（5）初始化-Git-並-push"><a href="#➤（5）初始化-Git-並-push" class="headerlink" title="➤（5）初始化 Git 並 push"></a>➤（5）初始化 Git 並 push</h4><pre><code class="bash">git add .
+git commit -m &quot;Initial project structure with backend and frontend folders&quot;
+git push origin main
+</code></pre>
+<p>✅ <strong>檢查點</strong>：</p>
+<ul>
+<li><p>GitHub repo 上應該看到：</p>
+<pre><code>backend/
+frontend/
+db/
+.gitignore
+</code></pre>
+</li>
+</ul>
+<hr>
+<h2 id="✅-2️⃣-在-Lenovo-安裝-MySQL（或-PlanetScale-雲端資料庫）"><a href="#✅-2️⃣-在-Lenovo-安裝-MySQL（或-PlanetScale-雲端資料庫）" class="headerlink" title="✅ 2️⃣ 在 Lenovo 安裝 MySQL（或 PlanetScale 雲端資料庫）"></a>✅ 2️⃣ 在 Lenovo 安裝 MySQL（或 PlanetScale 雲端資料庫）</h2><h3 id="🧩-選項-A：本機安裝-MySQL"><a href="#🧩-選項-A：本機安裝-MySQL" class="headerlink" title="🧩 選項 A：本機安裝 MySQL"></a>🧩 選項 A：本機安裝 MySQL</h3><p>（適合性能較好的 Lenovo）</p>
+<h4 id="➤（1）安裝-MySQL（Windows）"><a href="#➤（1）安裝-MySQL（Windows）" class="headerlink" title="➤（1）安裝 MySQL（Windows）"></a>➤（1）安裝 MySQL（Windows）</h4><ol>
+<li><p>到 <a href="https://dev.mysql.com/downloads/installer/">MySQL Installer</a></p>
+</li>
+<li><p>選擇「MySQL Installer for Windows」</p>
+</li>
+<li><p>安裝時選：</p>
+<ul>
+<li>MySQL Server</li>
+<li>MySQL Workbench（可視化管理工具）</li>
+</ul>
+</li>
+<li><p>安裝完後設定：</p>
+<ul>
+<li>root 密碼（例如 <code>root1234</code>）</li>
+<li>Port：3306（預設即可）</li>
+</ul>
+</li>
+</ol>
+<h4 id="➤（2）建立資料庫與使用者"><a href="#➤（2）建立資料庫與使用者" class="headerlink" title="➤（2）建立資料庫與使用者"></a>➤（2）建立資料庫與使用者</h4><p>進入 MySQL Workbench 或命令列：</p>
+<pre><code class="sql">CREATE DATABASE line_order_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+CREATE USER &#39;line_user&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;password123&#39;;
+GRANT ALL PRIVILEGES ON line_order_db.* TO &#39;line_user&#39;@&#39;localhost&#39;;
+FLUSH PRIVILEGES;
+</code></pre>
+<hr>
+<h3 id="🧩-選項-B：註冊-PlanetScale（雲端-MySQL）"><a href="#🧩-選項-B：註冊-PlanetScale（雲端-MySQL）" class="headerlink" title="🧩 選項 B：註冊 PlanetScale（雲端 MySQL）"></a>🧩 選項 B：註冊 PlanetScale（雲端 MySQL）</h3><p>（推薦給老 Mac 無法跑 MySQL 的情況）</p>
+<h4 id="➤（1）前往-https-planetscale-com"><a href="#➤（1）前往-https-planetscale-com" class="headerlink" title="➤（1）前往 https://planetscale.com"></a>➤（1）前往 <a href="https://planetscale.com/">https://planetscale.com</a></h4><ol>
+<li><p>用 GitHub 登入</p>
+</li>
+<li><p>點「New Database」→ 輸入名稱 <code>line_order_db</code></p>
+</li>
+<li><p>Region 選最近的（例如 Asia）</p>
+</li>
+<li><p>點「Create Database」</p>
+</li>
+<li><p>點「Connect」→ 複製連線字串（格式如下）：</p>
+<pre><code>mysql --host aws.connect.psdb.cloud --user ******* --password
+</code></pre>
+</li>
+</ol>
+<h4 id="➤（2）設定環境變數（在-backend-env）"><a href="#➤（2）設定環境變數（在-backend-env）" class="headerlink" title="➤（2）設定環境變數（在 backend&#x2F;.env）"></a>➤（2）設定環境變數（在 backend&#x2F;.env）</h4><pre><code class="bash">DB_HOST=aws.connect.psdb.cloud
+DB_USER=你的帳號
+DB_PASS=你的密碼
+DB_NAME=line_order_db
+</code></pre>
+<hr>
+<h3 id="➤（3）建立-db-init-sql（不論是本機或雲端）"><a href="#➤（3）建立-db-init-sql（不論是本機或雲端）" class="headerlink" title="➤（3）建立 db&#x2F;init.sql（不論是本機或雲端）"></a>➤（3）建立 db&#x2F;init.sql（不論是本機或雲端）</h3><p>在 <code>db/init.sql</code> 放入初始化資料表：</p>
+<pre><code class="sql">CREATE TABLE IF NOT EXISTS products (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  price DECIMAL(10,2) NOT NULL,
+  stock INT DEFAULT 0,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS orders (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  product_id INT NOT NULL,
+  quantity INT NOT NULL,
+  total_price DECIMAL(10,2) NOT NULL,
+  status ENUM(&#39;pending&#39;, &#39;paid&#39;, &#39;shipped&#39;, &#39;completed&#39;) DEFAULT &#39;pending&#39;,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (product_id) REFERENCES products(id)
+);
+</code></pre>
+<p>✅ <strong>檢查點</strong>：</p>
+<ul>
+<li><p>執行 <code>source db/init.sql</code>（或用 MySQL Workbench 匯入）後，能查到兩張表：</p>
+<pre><code class="sql">SHOW TABLES;
+</code></pre>
+</li>
+</ul>
+<hr>
+<h2 id="✅-3️⃣-MacAir-1-建立-Vue3-專案（Vite）"><a href="#✅-3️⃣-MacAir-1-建立-Vue3-專案（Vite）" class="headerlink" title="✅ 3️⃣ MacAir #1 建立 Vue3 專案（Vite）"></a>✅ 3️⃣ MacAir #1 建立 Vue3 專案（Vite）</h2><h3 id="💡-目的：-1"><a href="#💡-目的：-1" class="headerlink" title="💡 目的："></a>💡 目的：</h3><p>在前端建立管理介面，未來用於商品管理、訂單查詢。</p>
+<hr>
+<h4 id="➤（1）安裝-Node-js（用-nvm）"><a href="#➤（1）安裝-Node-js（用-nvm）" class="headerlink" title="➤（1）安裝 Node.js（用 nvm）"></a>➤（1）安裝 Node.js（用 nvm）</h4><p>（建議版本 18 或 20）</p>
+<pre><code class="bash">brew install nvm
+nvm install 20
+nvm use 20
+</code></pre>
+<hr>
+<h4 id="➤（2）建立-Vue3-專案"><a href="#➤（2）建立-Vue3-專案" class="headerlink" title="➤（2）建立 Vue3 專案"></a>➤（2）建立 Vue3 專案</h4><pre><code class="bash">mkdir line-order-system
+cd line-order-system
+npm create vite@latest
+# 輸入專案名稱 frontend
+# 選 Vue
+# 選 JavaScript
+cd frontend
+npm install
+npm run dev
+</code></pre>
+<p>執行後，瀏覽器開啟 <a href="http://localhost:5173/">http://localhost:5173</a><br>→ 出現「Vite + Vue」頁面代表成功 🎉</p>
+<hr>
+<h4 id="➤（3）將專案推上-GitHub"><a href="#➤（3）將專案推上-GitHub" class="headerlink" title="➤（3）將專案推上 GitHub"></a>➤（3）將專案推上 GitHub</h4><pre><code class="bash">git remote add origin https://github.com/你的帳號/line-order-system.git
+git pull origin main --allow-unrelated-histories
+git add .
+git commit -m &quot;Add frontend Vue3 project&quot;
+git push origin main
+</code></pre>
+<p>✅ <strong>檢查點：</strong></p>
+<ul>
+<li>GitHub repo 現在包含 backend、frontend、db 三個資料夾</li>
+<li>MacAir #2 可 <code>git clone</code> 並打開 README 文件進行測試</li>
+</ul>
+<hr>
+<h1 id="✅-接下來你會得到："><a href="#✅-接下來你會得到：" class="headerlink" title="✅ 接下來你會得到："></a>✅ 接下來你會得到：</h1><p>下一步是完整的 <strong>A → G 操作手冊</strong>，每一階段都包含：</p>
+<ul>
+<li>明確目標與產出</li>
+<li>實際指令與程式範例</li>
+<li>檢查點（確認成功條件）</li>
+<li>推薦工具與注意事項</li>
+</ul>
+<hr>
+<p>是否要我現在開始幫你編寫這份「A–G 詳細操作手冊」？<br>我會用同樣的格式（步驟 + 程式範例 + 檢查清單）編排，讓你可以照著一階段一階段執行。</p>

@@ -1,0 +1,25 @@
+<hr>
+<h2 id="title-2025-06-30-Line-訂單系統-階段Fdate-2025-11-12-21-57-22categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-06-30-Line-訂單系統-階段F"><a href="#title-2025-06-30-Line-訂單系統-階段Fdate-2025-11-12-21-57-22categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-06-30-Line-訂單系統-階段F" class="headerlink" title="title: 2025-06-30 Line 訂單系統-階段Fdate: 2025-11-12 21:57:22categories: OneDayOneNotetags:  [OneNote, Line訂單系統]description:  2025-06-30 Line 訂單系統-階段F"></a>title: 2025-06-30 Line 訂單系統-階段F<br>date: 2025-11-12 21:57:22<br>categories: OneDayOneNote<br>tags:  [OneNote, Line訂單系統]<br>description:  2025-06-30 Line 訂單系統-階段F</h2><h2 id="2025-06-30-Line-訂單系統-階段F"><a href="#2025-06-30-Line-訂單系統-階段F" class="headerlink" title="2025-06-30 Line 訂單系統-階段F"></a>2025-06-30 Line 訂單系統-階段F</h2><h2 id="🅵-階段-F：加入-Redis-MongoDB"><a href="#🅵-階段-F：加入-Redis-MongoDB" class="headerlink" title="🅵 階段 F：加入 Redis &#x2F; MongoDB"></a>🅵 階段 F：加入 Redis &#x2F; MongoDB</h2><h3 id="🎯-目標"><a href="#🎯-目標" class="headerlink" title="🎯 目標"></a>🎯 目標</h3><p>改善效能與聊天紀錄保存。</p>
+<hr>
+<h3 id="🔧-步驟"><a href="#🔧-步驟" class="headerlink" title="🔧 步驟"></a>🔧 步驟</h3><h4 id="Redis（訂單狀態快取）"><a href="#Redis（訂單狀態快取）" class="headerlink" title="Redis（訂單狀態快取）"></a>Redis（訂單狀態快取）</h4><pre><code class="bash">npm install redis
+</code></pre>
+<pre><code class="js">import { createClient } from &#39;redis&#39;;
+const redis = createClient();
+await redis.connect();
+await redis.set(&#39;order:1&#39;, &#39;pending&#39;);
+</code></pre>
+<h4 id="MongoDB（聊天紀錄）"><a href="#MongoDB（聊天紀錄）" class="headerlink" title="MongoDB（聊天紀錄）"></a>MongoDB（聊天紀錄）</h4><pre><code class="bash">npm install mongoose
+</code></pre>
+<pre><code class="js">import mongoose from &#39;mongoose&#39;;
+await mongoose.connect(process.env.MONGO_URL);
+
+const chatSchema = new mongoose.Schema({
+  userId: String,
+  message: String,
+  timestamp: Date
+});
+export const Chat = mongoose.model(&#39;Chat&#39;, chatSchema);
+</code></pre>
+<hr>
+<h3 id="🧪-Checkpoint"><a href="#🧪-Checkpoint" class="headerlink" title="🧪 Checkpoint"></a>🧪 Checkpoint</h3><p>✅ 訂單狀態能快取於 Redis<br>✅ 聊天紀錄存進 MongoDB</p>
+<hr>

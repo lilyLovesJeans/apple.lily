@@ -1,0 +1,29 @@
+<hr>
+<h2 id="title-2025-07-01-Line-訂單系統-階段Gdate-2025-11-12-21-58-47categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-01-Line-訂單系統-階段G"><a href="#title-2025-07-01-Line-訂單系統-階段Gdate-2025-11-12-21-58-47categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-01-Line-訂單系統-階段G" class="headerlink" title="title: 2025-07-01 Line 訂單系統-階段Gdate: 2025-11-12 21:58:47categories: OneDayOneNotetags:  [OneNote, Line訂單系統]description:   2025-07-01 Line 訂單系統-階段G"></a>title: 2025-07-01 Line 訂單系統-階段G<br>date: 2025-11-12 21:58:47<br>categories: OneDayOneNote<br>tags:  [OneNote, Line訂單系統]<br>description:   2025-07-01 Line 訂單系統-階段G</h2><h2 id="2025-07-01-Line-訂單系統-階段G"><a href="#2025-07-01-Line-訂單系統-階段G" class="headerlink" title="2025-07-01 Line 訂單系統-階段G"></a>2025-07-01 Line 訂單系統-階段G</h2><h2 id="🅶-階段-G：上線與部署"><a href="#🅶-階段-G：上線與部署" class="headerlink" title="🅶 階段 G：上線與部署"></a>🅶 階段 G：上線與部署</h2><h3 id="🎯-目標"><a href="#🎯-目標" class="headerlink" title="🎯 目標"></a>🎯 目標</h3><p>將專案上線（Render &#x2F; Railway &#x2F; PlanetScale &#x2F; MongoDB Atlas）。</p>
+<hr>
+<h3 id="🔧-步驟"><a href="#🔧-步驟" class="headerlink" title="🔧 步驟"></a>🔧 步驟</h3><h4 id="1️⃣-部署後端到-Render"><a href="#1️⃣-部署後端到-Render" class="headerlink" title="1️⃣ 部署後端到 Render"></a>1️⃣ 部署後端到 Render</h4><ol>
+<li>登入 <a href="https://render.com/">Render</a></li>
+<li>點「New → Web Service」</li>
+<li>連接你的 GitHub 專案</li>
+<li>選 root 路徑為 <code>backend/</code></li>
+<li>Build Command: <code>npm install</code><br>Start Command: <code>node index.js</code></li>
+</ol>
+<hr>
+<h4 id="2️⃣-部署前端到-Netlify"><a href="#2️⃣-部署前端到-Netlify" class="headerlink" title="2️⃣ 部署前端到 Netlify"></a>2️⃣ 部署前端到 Netlify</h4><ol>
+<li>到 <a href="https://app.netlify.com/">Netlify</a></li>
+<li>Import from GitHub → 指定 <code>frontend</code> 資料夾</li>
+<li>Build Command：<code>npm run build</code></li>
+<li>Publish Directory：<code>dist</code></li>
+</ol>
+<hr>
+<h4 id="3️⃣-改-Webhook-URL-為正式網址"><a href="#3️⃣-改-Webhook-URL-為正式網址" class="headerlink" title="3️⃣ 改 Webhook URL 為正式網址"></a>3️⃣ 改 Webhook URL 為正式網址</h4><p>LINE Developers → Webhook → <code>https://你的Render網址/line/webhook</code></p>
+<hr>
+<h3 id="🧪-Checkpoint"><a href="#🧪-Checkpoint" class="headerlink" title="🧪 Checkpoint"></a>🧪 Checkpoint</h3><p>✅ LINE 訊息 → 後端回覆 → DB 寫入成功<br>✅ 管理後台能顯示正式資料<br>✅ HTTPS 安全運作</p>
+<hr>
+<h1 id="✅-完成後成果"><a href="#✅-完成後成果" class="headerlink" title="✅ 完成後成果"></a>✅ 完成後成果</h1><p>🎉 你將擁有一個：</p>
+<ul>
+<li>Vue3 + Node.js + MySQL 的完整 LINE 訂單系統</li>
+<li>支援雲端部署（Render &#x2F; Netlify &#x2F; PlanetScale）</li>
+<li>可擴展聊天記錄（MongoDB）與快取（Redis）</li>
+<li>可複製、改成其他業種（如外送、預約、服務登記）</li>
+</ul>

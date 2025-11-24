@@ -1,0 +1,281 @@
+<hr>
+<h2 id="title-2025-07-16-Line-訂單系統-E-階段：Vue3-前端優化date-2025-11-13-23-45-25categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-16-Line-訂單系統-E-階段：Vue3-前端優化"><a href="#title-2025-07-16-Line-訂單系統-E-階段：Vue3-前端優化date-2025-11-13-23-45-25categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-16-Line-訂單系統-E-階段：Vue3-前端優化" class="headerlink" title="title: 2025-07-16 Line 訂單系統-E 階段：Vue3 前端優化date: 2025-11-13 23:45:25categories: OneDayOneNotetags:  [OneNote, Line訂單系統]description: 2025-07-16 Line 訂單系統-E 階段：Vue3 前端優化"></a>title: 2025-07-16 Line 訂單系統-E 階段：Vue3 前端優化<br>date: 2025-11-13 23:45:25<br>categories: OneDayOneNote<br>tags:  [OneNote, Line訂單系統]<br>description: 2025-07-16 Line 訂單系統-E 階段：Vue3 前端優化</h2><h2 id="2025-07-16-Line-訂單系統-E-階段：Vue3-前端優化"><a href="#2025-07-16-Line-訂單系統-E-階段：Vue3-前端優化" class="headerlink" title="2025-07-16 Line 訂單系統-E 階段：Vue3 前端優化"></a>2025-07-16 Line 訂單系統-E 階段：Vue3 前端優化</h2><p>正式進入 ——</p>
+<h1 id="📕-E-階段：Vue3-前端優化（RWD＋UI-UX-改版與即時刷新設計）"><a href="#📕-E-階段：Vue3-前端優化（RWD＋UI-UX-改版與即時刷新設計）" class="headerlink" title="📕 E 階段：Vue3 前端優化（RWD＋UI&#x2F;UX 改版與即時刷新設計）"></a>📕 E 階段：Vue3 前端優化（RWD＋UI&#x2F;UX 改版與即時刷新設計）</h1><p>這一階段的重點是：</p>
+<blockquote>
+<p>讓管理後台從「能用」→「好用」→「即時互動」<br>提升操作體驗、介面響應速度、視覺一致性與行動裝置適配。</p>
+</blockquote>
+<hr>
+<h2 id="🧭-E-階段目標總覽"><a href="#🧭-E-階段目標總覽" class="headerlink" title="🧭 E 階段目標總覽"></a>🧭 E 階段目標總覽</h2><table>
+<thead>
+<tr>
+<th>目標</th>
+<th>功能說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>🖥️ 響應式設計（RWD）</td>
+<td>讓後台能在桌機、平板、手機上自適應排版</td>
+</tr>
+<tr>
+<td>🎨 UI&#x2F;UX 美化</td>
+<td>加入卡片式設計、標籤色彩、狀態圖示、進度條等</td>
+</tr>
+<tr>
+<td>🔄 自動更新</td>
+<td>使用輪詢（polling）或 WebSocket 實時更新訂單狀態</td>
+</tr>
+<tr>
+<td>🔔 訂單變動提示</td>
+<td>有新訂單時，畫面自動顯示並播放提示音</td>
+</tr>
+<tr>
+<td>💡 使用者體驗優化</td>
+<td>提示動畫、loading 狀態、錯誤提示改善</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="⚙️-系統架構概念（E-階段）"><a href="#⚙️-系統架構概念（E-階段）" class="headerlink" title="⚙️ 系統架構概念（E 階段）"></a>⚙️ 系統架構概念（E 階段）</h2><pre><code>Vue3 + Vite 前端
+  ↕
+Axios / WebSocket
+  ↕
+Node.js API（orders + webhook）
+  ↕
+Redis + MySQL
+</code></pre>
+<p>前端會：</p>
+<ul>
+<li>定時（或即時）更新訂單列表。</li>
+<li>讓使用者直覺看到每筆訂單的狀態。</li>
+<li>能在手機瀏覽器中舒適使用。</li>
+</ul>
+<hr>
+<h2 id="🧩-實作步驟總覽"><a href="#🧩-實作步驟總覽" class="headerlink" title="🧩 實作步驟總覽"></a>🧩 實作步驟總覽</h2><ol>
+<li>🎨 <strong>E1 — 改版 Vue3 UI：使用卡片式 RWD 設計</strong></li>
+<li>🕓 <strong>E2 — 自動刷新訂單列表（輪詢 &#x2F; WebSocket）</strong></li>
+<li>🔔 <strong>E3 — 新訂單提示音與動畫提醒</strong></li>
+<li>📱 <strong>E4 — 手機 &#x2F; 平板 RWD 優化</strong></li>
+</ol>
+<hr>
+<h2 id="🎨-E1-—-改版-Vue3-UI：卡片式-狀態顏色化"><a href="#🎨-E1-—-改版-Vue3-UI：卡片式-狀態顏色化" class="headerlink" title="🎨 E1 — 改版 Vue3 UI：卡片式 + 狀態顏色化"></a>🎨 E1 — 改版 Vue3 UI：卡片式 + 狀態顏色化</h2><p>📁 <code>frontend/src/views/LineOrders.vue</code></p>
+<pre><code class="vue">&lt;template&gt;
+  &lt;div class=&quot;p-4 bg-gray-100 min-h-screen&quot;&gt;
+    &lt;h1 class=&quot;text-2xl font-bold text-center mb-6&quot;&gt;📦 訂單管理後台&lt;/h1&gt;
+
+    &lt;div v-if=&quot;loading&quot; class=&quot;text-center text-gray-500&quot;&gt;載入中...&lt;/div&gt;
+
+    &lt;div
+      v-else
+      class=&quot;grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4&quot;
+    &gt;
+      &lt;div
+        v-for=&quot;order in orders&quot;
+        :key=&quot;order.id&quot;
+        class=&quot;bg-white p-4 rounded-2xl shadow-md transition-transform hover:scale-[1.02]&quot;
+      &gt;
+        &lt;div class=&quot;flex justify-between items-center mb-2&quot;&gt;
+          &lt;h2 class=&quot;font-semibold text-lg&quot;&gt;#{{ order.id }}&lt;/h2&gt;
+          &lt;span
+            class=&quot;text-sm px-3 py-1 rounded-full text-white&quot;
+            :class=&quot;statusColor(order.status)&quot;
+          &gt;
+            {{ order.status }}
+          &lt;/span&gt;
+        &lt;/div&gt;
+
+        &lt;p&gt;👤 {{ order.user_name }}&lt;/p&gt;
+        &lt;p&gt;🛍️ {{ order.product_name }}&lt;/p&gt;
+        &lt;p&gt;📦 數量：{{ order.quantity }}&lt;/p&gt;
+        &lt;p class=&quot;text-sm text-gray-500&quot;&gt;
+          🕒 {{ new Date(order.created_at).toLocaleString() }}
+        &lt;/p&gt;
+
+        &lt;div class=&quot;mt-3&quot;&gt;
+          &lt;select
+            v-model=&quot;order.status&quot;
+            class=&quot;w-full p-2 border rounded-lg&quot;
+            @change=&quot;updateStatus(order)&quot;
+          &gt;
+            &lt;option&gt;新訂單&lt;/option&gt;
+            &lt;option&gt;已接單&lt;/option&gt;
+            &lt;option&gt;配送中&lt;/option&gt;
+            &lt;option&gt;已完成&lt;/option&gt;
+          &lt;/select&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { ref, onMounted } from &quot;vue&quot;;
+import axios from &quot;axios&quot;;
+
+const orders = ref([]);
+const loading = ref(true);
+
+// 狀態顏色對應
+const statusColor = (status) =&gt; {
+  switch (status) {
+    case &quot;新訂單&quot;:
+      return &quot;bg-red-500&quot;;
+    case &quot;已接單&quot;:
+      return &quot;bg-yellow-500&quot;;
+    case &quot;配送中&quot;:
+      return &quot;bg-blue-500&quot;;
+    case &quot;已完成&quot;:
+      return &quot;bg-green-500&quot;;
+    default:
+      return &quot;bg-gray-400&quot;;
+  }
+};
+
+// 載入訂單資料
+const loadOrders = async () =&gt; {
+  try {
+    const res = await axios.get(&quot;http://localhost:3000/api/orders&quot;);
+    orders.value = res.data;
+  } catch (err) {
+    console.error(&quot;載入訂單錯誤:&quot;, err);
+  } finally {
+    loading.value = false;
+  }
+};
+
+// 更新訂單狀態
+const updateStatus = async (order) =&gt; {
+  try {
+    await axios.put(`http://localhost:3000/api/orders/${order.id}/status`, {
+      newStatus: order.status,
+      userName: order.user_name,
+    });
+  } catch (err) {
+    console.error(&quot;更新狀態錯誤:&quot;, err);
+  }
+};
+
+onMounted(() =&gt; {
+  loadOrders();
+});
+&lt;/script&gt;
+
+&lt;style&gt;
+@media (max-width: 640px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+}
+&lt;/style&gt;
+</code></pre>
+<hr>
+<h2 id="🕓-E2-—-自動刷新訂單列表（輪詢版）"><a href="#🕓-E2-—-自動刷新訂單列表（輪詢版）" class="headerlink" title="🕓 E2 — 自動刷新訂單列表（輪詢版）"></a>🕓 E2 — 自動刷新訂單列表（輪詢版）</h2><p>為了即時顯示新訂單，可先用簡單的輪詢（polling）實作。</p>
+<p>在 <code>onMounted()</code> 內加入：</p>
+<pre><code class="js">onMounted(() =&gt; {
+  loadOrders();
+  setInterval(loadOrders, 5000); // 每5秒自動刷新
+});
+</code></pre>
+<blockquote>
+<p>✅ 可後續升級為 WebSocket，達到「伺服器推播」。</p>
+</blockquote>
+<hr>
+<h2 id="🔔-E3-—-新訂單提示音與動畫"><a href="#🔔-E3-—-新訂單提示音與動畫" class="headerlink" title="🔔 E3 — 新訂單提示音與動畫"></a>🔔 E3 — 新訂單提示音與動畫</h2><p>新增提示音效果：</p>
+<p>📁 <code>frontend/public/notify.mp3</code><br>（放一個輕柔的提示音）</p>
+<p>在 <code>loadOrders()</code> 中加入判斷：</p>
+<pre><code class="js">let lastOrderCount = 0;
+
+const loadOrders = async () =&gt; {
+  try {
+    const res = await axios.get(&quot;http://localhost:3000/api/orders&quot;);
+    if (orders.value.length &amp;&amp; res.data.length &gt; orders.value.length) {
+      new Audio(&quot;/notify.mp3&quot;).play();
+    }
+    orders.value = res.data;
+    lastOrderCount = res.data.length;
+  } catch (err) {
+    console.error(&quot;載入訂單錯誤:&quot;, err);
+  } finally {
+    loading.value = false;
+  }
+};
+</code></pre>
+<blockquote>
+<p>📢 當有新訂單時，自動播放提示音。</p>
+</blockquote>
+<hr>
+<h2 id="📱-E4-—-RWD-手機與平板優化"><a href="#📱-E4-—-RWD-手機與平板優化" class="headerlink" title="📱 E4 — RWD 手機與平板優化"></a>📱 E4 — RWD 手機與平板優化</h2><p>使用 Tailwind 已有基礎 RWD 支援，可再加：</p>
+<pre><code class="css">@media (max-width: 480px) {
+  .order-card {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+  select {
+    font-size: 0.9rem;
+  }
+}
+</code></pre>
+<hr>
+<h2 id="🧪-測試流程"><a href="#🧪-測試流程" class="headerlink" title="🧪 測試流程"></a>🧪 測試流程</h2><table>
+<thead>
+<tr>
+<th>步驟</th>
+<th>測試內容</th>
+<th>預期結果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1️⃣</td>
+<td>在桌機、平板、手機上打開後台</td>
+<td>版面自適應</td>
+</tr>
+<tr>
+<td>2️⃣</td>
+<td>LINE 使用者送出新訂單</td>
+<td>5 秒內後台刷新、提示音響起</td>
+</tr>
+<tr>
+<td>3️⃣</td>
+<td>改變訂單狀態</td>
+<td>即時更新 + 顏色改變</td>
+</tr>
+<tr>
+<td>4️⃣</td>
+<td>多人同時操作</td>
+<td>Redis + API 同步正常運作</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="✅-E-階段成果"><a href="#✅-E-階段成果" class="headerlink" title="✅ E 階段成果"></a>✅ E 階段成果</h2><table>
+<thead>
+<tr>
+<th>模組</th>
+<th>狀態</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>RWD 響應式設計</td>
+<td>✅ 已完成</td>
+</tr>
+<tr>
+<td>卡片式 UI</td>
+<td>✅ 已完成</td>
+</tr>
+<tr>
+<td>自動更新 &#x2F; 提示音</td>
+<td>✅ 已完成</td>
+</tr>
+<tr>
+<td>狀態顏色化與操作提示</td>
+<td>✅ 已完成</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🚀-下一步（📙-F-階段預告）"><a href="#🚀-下一步（📙-F-階段預告）" class="headerlink" title="🚀 下一步（📙 F 階段預告）"></a>🚀 下一步（📙 F 階段預告）</h2><p>📙 <strong>F 階段 — 部署與持續整合（CI&#x2F;CD + 免費雲端方案）</strong></p>
+<p>你將學到如何：</p>
+<ul>
+<li>把 <strong>Node.js 後端</strong> 部署到 Render 或 Railway</li>
+<li>把 <strong>Vue3 前端</strong> 部署到 Vercel 或 Netlify</li>
+<li>把 <strong>Redis + MySQL（PlanetScale）</strong> 串接上線</li>
+<li>實現線上 LINE Bot 真實訂單系統運作 💬</li>
+</ul>
+<hr>
+<p>是否要我幫你接著進入 📙 <strong>F 階段 — 部署與持續整合（CI&#x2F;CD + 免費雲端方案）</strong>？</p>

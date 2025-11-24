@@ -1,0 +1,318 @@
+<hr>
+<h2 id="title-2025-07-11-Line-訂單系統-C-階段-LINE-訂單系統的三大核心路由date-2025-11-13-22-46-54categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-11-Line-訂單系統-C-階段-LINE-訂單系統的三大核心路由"><a href="#title-2025-07-11-Line-訂單系統-C-階段-LINE-訂單系統的三大核心路由date-2025-11-13-22-46-54categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-11-Line-訂單系統-C-階段-LINE-訂單系統的三大核心路由" class="headerlink" title="title: 2025-07-11 Line 訂單系統-C 階段 LINE 訂單系統的三大核心路由date: 2025-11-13 22:46:54categories: OneDayOneNotetags:  [OneNote, Line訂單系統]description: 2025-07-11 Line 訂單系統-C 階段 LINE 訂單系統的三大核心路由"></a>title: 2025-07-11 Line 訂單系統-C 階段 LINE 訂單系統的三大核心路由<br>date: 2025-11-13 22:46:54<br>categories: OneDayOneNote<br>tags:  [OneNote, Line訂單系統]<br>description: 2025-07-11 Line 訂單系統-C 階段 LINE 訂單系統的三大核心路由</h2><h2 id="2025-07-11-Line-訂單系統-C-階段-LINE-訂單系統的三大核心路由"><a href="#2025-07-11-Line-訂單系統-C-階段-LINE-訂單系統的三大核心路由" class="headerlink" title="2025-07-11 Line 訂單系統-C 階段 LINE 訂單系統的三大核心路由"></a>2025-07-11 Line 訂單系統-C 階段 LINE 訂單系統的三大核心路由</h2><p>現在我們要補齊整個 LINE 訂單系統的三大核心路由：</p>
+<blockquote>
+<p>📘 <code>/routes/productRoutes.js</code><br>📘 <code>/routes/userRoutes.js</code><br>📘 <code>/routes/lineWebhook.js</code></p>
+</blockquote>
+<p>這三個檔案完成後，你的 Node.js 專案就能：</p>
+<ul>
+<li>管理商品與使用者</li>
+<li>接收 LINE webhook 事件</li>
+<li>與訂單 API 串接完成「可互動的 LINE 訂單系統」🎯</li>
+</ul>
+<hr>
+<h2 id="🛍️-一、productRoutes-js"><a href="#🛍️-一、productRoutes-js" class="headerlink" title="🛍️ 一、productRoutes.js"></a>🛍️ 一、<code>productRoutes.js</code></h2><blockquote>
+<p>📁 路徑：<code>/backend/routes/productRoutes.js</code></p>
+</blockquote>
+<pre><code class="js">// ===============================
+// 🛍️ productRoutes.js
+// 商品管理 API
+// ===============================
+import express from &quot;express&quot;;
+import { query } from &quot;../db.js&quot;;
+
+const router = express.Router();
+
+// ✅ 取得所有商品
+router.get(&quot;/&quot;, async (req, res) =&gt; {
+  try {
+    const products = await query(&quot;SELECT * FROM products ORDER BY id DESC&quot;);
+    res.json(products);
+  } catch (err) {
+    console.error(&quot;Error fetching products:&quot;, err);
+    res.status(500).json({ error: &quot;Server error while fetching products&quot; });
+  }
+});
+
+// ✅ 新增商品
+router.post(&quot;/&quot;, async (req, res) =&gt; {
+  try {
+    const { name, description, price, stock, category } = req.body;
+    await query(
+      &quot;INSERT INTO products (name, description, price, stock, category) VALUES (?, ?, ?, ?, ?)&quot;,
+      [name, description, price, stock, category]
+    );
+    res.status(201).json({ message: &quot;Product created successfully&quot; });
+  } catch (err) {
+    console.error(&quot;Error adding product:&quot;, err);
+    res.status(500).json({ error: &quot;Server error while adding product&quot; });
+  }
+});
+
+// ✅ 更新商品
+router.patch(&quot;/:id&quot;, async (req, res) =&gt; {
+  try {
+    const id = req.params.id;
+    const { name, description, price, stock, category } = req.body;
+    await query(
+      &quot;UPDATE products SET name=?, description=?, price=?, stock=?, category=? WHERE id=?&quot;,
+      [name, description, price, stock, category, id]
+    );
+    res.json({ message: &quot;Product updated successfully&quot; });
+  } catch (err) {
+    console.error(&quot;Error updating product:&quot;, err);
+    res.status(500).json({ error: &quot;Failed to update product&quot; });
+  }
+});
+
+// ✅ 刪除商品
+router.delete(&quot;/:id&quot;, async (req, res) =&gt; {
+  try {
+    const id = req.params.id;
+    await query(&quot;DELETE FROM products WHERE id=?&quot;, [id]);
+    res.json({ message: &quot;Product deleted successfully&quot; });
+  } catch (err) {
+    console.error(&quot;Error deleting product:&quot;, err);
+    res.status(500).json({ error: &quot;Failed to delete product&quot; });
+  }
+});
+
+export default router;
+</code></pre>
+<hr>
+<h2 id="👤-二、userRoutes-js"><a href="#👤-二、userRoutes-js" class="headerlink" title="👤 二、userRoutes.js"></a>👤 二、<code>userRoutes.js</code></h2><blockquote>
+<p>📁 路徑：<code>/backend/routes/userRoutes.js</code></p>
+</blockquote>
+<p>這裡的使用者主要是 <strong>LINE 使用者</strong>，<br>我們讓他能夠查詢、註冊與更新個人資料。</p>
+<pre><code class="js">// ===============================
+// 👤 userRoutes.js
+// 使用者管理 API
+// ===============================
+import express from &quot;express&quot;;
+import { query } from &quot;../db.js&quot;;
+
+const router = express.Router();
+
+// ✅ 查詢所有使用者
+router.get(&quot;/&quot;, async (req, res) =&gt; {
+  try {
+    const users = await query(&quot;SELECT * FROM users ORDER BY id DESC&quot;);
+    res.json(users);
+  } catch (err) {
+    console.error(&quot;Error fetching users:&quot;, err);
+    res.status(500).json({ error: &quot;Server error while fetching users&quot; });
+  }
+});
+
+// ✅ 新增或更新 LINE 使用者
+router.post(&quot;/register&quot;, async (req, res) =&gt; {
+  try {
+    const { line_user_id, display_name, phone, email } = req.body;
+
+    const existing = await query(
+      &quot;SELECT id FROM users WHERE line_user_id = ?&quot;,
+      [line_user_id]
+    );
+
+    if (existing.length &gt; 0) {
+      // 更新資料
+      await query(
+        &quot;UPDATE users SET display_name=?, phone=?, email=? WHERE line_user_id=?&quot;,
+        [display_name, phone, email, line_user_id]
+      );
+      res.json({ message: &quot;User updated&quot; });
+    } else {
+      // 新增使用者
+      await query(
+        &quot;INSERT INTO users (line_user_id, display_name, phone, email) VALUES (?, ?, ?, ?)&quot;,
+        [line_user_id, display_name, phone, email]
+      );
+      res.status(201).json({ message: &quot;User registered&quot; });
+    }
+  } catch (err) {
+    console.error(&quot;Error registering user:&quot;, err);
+    res.status(500).json({ error: &quot;Failed to register user&quot; });
+  }
+});
+
+export default router;
+</code></pre>
+<hr>
+<h2 id="💬-三、lineWebhook-js"><a href="#💬-三、lineWebhook-js" class="headerlink" title="💬 三、lineWebhook.js"></a>💬 三、<code>lineWebhook.js</code></h2><blockquote>
+<p>📁 路徑：<code>/backend/routes/lineWebhook.js</code></p>
+</blockquote>
+<p>這是整個 LINE Bot 的核心入口：</p>
+<ul>
+<li>接收使用者訊息事件</li>
+<li>儲存訊息到 DB</li>
+<li>可回覆訊息或觸發訂單流程</li>
+</ul>
+<p>請先安裝 LINE SDK：</p>
+<pre><code class="bash">npm install @line/bot-sdk
+</code></pre>
+<p>然後建立以下內容👇</p>
+<pre><code class="js">// ===============================
+// 💬 lineWebhook.js
+// LINE Bot Webhook API
+// ===============================
+import express from &quot;express&quot;;
+import line from &quot;@line/bot-sdk&quot;;
+import { query } from &quot;../db.js&quot;;
+import config from &quot;../config.js&quot;;
+
+const router = express.Router();
+
+// LINE SDK 設定
+const lineConfig = {
+  channelSecret: config.line.channelSecret,
+  channelAccessToken: config.line.channelAccessToken,
+};
+
+const client = new line.Client(lineConfig);
+
+// ✅ 接收 LINE webhook
+router.post(config.line.webhookPath, line.middleware(lineConfig), async (req, res) =&gt; {
+  Promise.all(req.body.events.map(handleEvent))
+    .then((result) =&gt; res.json(result))
+    .catch((err) =&gt; {
+      console.error(&quot;❌ Webhook Error:&quot;, err);
+      res.status(500).end();
+    });
+});
+
+// 處理各類事件
+async function handleEvent(event) {
+  console.log(&quot;🔹 Received Event:&quot;, event);
+
+  // 只處理 message 事件
+  if (event.type !== &quot;message&quot; || event.message.type !== &quot;text&quot;) {
+    return Promise.resolve(null);
+  }
+
+  const userId = event.source.userId;
+  const messageText = event.message.text;
+
+  // 儲存訊息到 DB
+  await saveMessage(userId, messageText);
+
+  // 範例：當使用者輸入「菜單」時，列出商品
+  if (messageText === &quot;菜單&quot; || messageText === &quot;menu&quot;) {
+    const products = await query(&quot;SELECT name, price FROM products&quot;);
+    const replyText = products
+      .map((p) =&gt; `${p.name} - $${p.price}`)
+      .join(&quot;\n&quot;);
+
+    return client.replyMessage(event.replyToken, {
+      type: &quot;text&quot;,
+      text: `📋 今日菜單：\n${replyText}`,
+    });
+  }
+
+  // 範例：回覆收到訊息
+  return client.replyMessage(event.replyToken, {
+    type: &quot;text&quot;,
+    text: `你說了：「${messageText}」`,
+  });
+}
+
+// 儲存訊息到資料庫
+async function saveMessage(line_user_id, text) {
+  try {
+    // 確保使用者存在
+    const user = await query(&quot;SELECT id FROM users WHERE line_user_id=?&quot;, [line_user_id]);
+    let userId;
+    if (user.length === 0) {
+      const res = await query(
+        &quot;INSERT INTO users (line_user_id, display_name) VALUES (?, ?)&quot;,
+        [line_user_id, &quot;LINE_USER&quot;]
+      );
+      userId = res.insertId;
+    } else {
+      userId = user[0].id;
+    }
+
+    // 儲存訊息
+    await query(&quot;INSERT INTO message_log (user_id, message_text, message_type) VALUES (?, ?, &#39;text&#39;)&quot;, [
+      userId,
+      text,
+    ]);
+  } catch (err) {
+    console.error(&quot;Error saving message:&quot;, err);
+  }
+}
+
+export default router;
+</code></pre>
+<hr>
+<h2 id="⚙️-四、整合到主伺服器-server-js"><a href="#⚙️-四、整合到主伺服器-server-js" class="headerlink" title="⚙️ 四、整合到主伺服器 server.js"></a>⚙️ 四、整合到主伺服器 <code>server.js</code></h2><pre><code class="js">import express from &quot;express&quot;;
+import cors from &quot;cors&quot;;
+import config from &quot;./config.js&quot;;
+import { initDB } from &quot;./db.js&quot;;
+
+import productRoutes from &quot;./routes/productRoutes.js&quot;;
+import orderRoutes from &quot;./routes/orderRoutes.js&quot;;
+import userRoutes from &quot;./routes/userRoutes.js&quot;;
+import lineWebhook from &quot;./routes/lineWebhook.js&quot;;
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+// 註冊路由
+app.use(&quot;/api/products&quot;, productRoutes);
+app.use(&quot;/api/orders&quot;, orderRoutes);
+app.use(&quot;/api/users&quot;, userRoutes);
+app.use(&quot;/&quot;, lineWebhook); // webhook 路由必須放在根目錄
+
+// 啟動伺服器
+initDB().then(() =&gt; {
+  app.listen(config.port, () =&gt; {
+    console.log(`🚀 Server running on http://localhost:${config.port}`);
+  });
+});
+</code></pre>
+<hr>
+<h2 id="✅-測試重點整理"><a href="#✅-測試重點整理" class="headerlink" title="✅ 測試重點整理"></a>✅ 測試重點整理</h2><table>
+<thead>
+<tr>
+<th>測試項目</th>
+<th>方法</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>測試 LINE webhook</td>
+<td>LINE Developer → Webhook Test</td>
+<td>檢查伺服器能收到事件</td>
+</tr>
+<tr>
+<td>查詢商品</td>
+<td>GET &#x2F;api&#x2F;products</td>
+<td>應回傳商品列表</td>
+</tr>
+<tr>
+<td>新增商品</td>
+<td>POST &#x2F;api&#x2F;products</td>
+<td>應建立新商品</td>
+</tr>
+<tr>
+<td>查詢訂單</td>
+<td>GET &#x2F;api&#x2F;orders</td>
+<td>應回傳訂單列表</td>
+</tr>
+<tr>
+<td>建立訂單</td>
+<td>POST &#x2F;api&#x2F;orders</td>
+<td>建立新訂單與明細</td>
+</tr>
+<tr>
+<td>註冊使用者</td>
+<td>POST &#x2F;api&#x2F;users&#x2F;register</td>
+<td>新增或更新 LINE user</td>
+</tr>
+</tbody></table>
+<hr>
+<p>如果你願意，我可以幫你接著建立：</p>
+<blockquote>
+<p>📗 <code>frontend (Vue3)</code> 對應的管理介面模組<br>包含：商品管理頁、訂單列表、LINE Bot 訊息模擬器（方便開發時測試）</p>
+</blockquote>
+<p>是否要我接著幫你生成 Vue3 前端部分？</p>

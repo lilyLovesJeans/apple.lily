@@ -413,7 +413,15 @@ mjx-container[display="true"] + br {
 <li>投偏了 → 內積變小 → 命中率下降。</li>
 </ul>
 <hr>
-<h2 id="精確坐標圖示意（Mermaid）"><a href="#精確坐標圖示意（Mermaid）" class="headerlink" title="精確坐標圖示意（Mermaid）"></a>精確坐標圖示意（Mermaid）</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">graph TD</span><br><span class="line">    O[O(-1,2)]</span><br><span class="line">    A[A(3,-1)]</span><br><span class="line">    C[圓C:(x+1)^2+(y-2)^2=5]</span><br><span class="line">    P[P(切點)]</span><br><span class="line">    Q[Q(圓上任意點)]</span><br><span class="line">    A --&gt;|AP| P</span><br><span class="line">    A --&gt;|AQ| Q</span><br><span class="line">    A ---|AO=5| O</span><br></pre></td></tr></table></figure>
+<h2 id="精確坐標圖示意（Mermaid）"><a href="#精確坐標圖示意（Mermaid）" class="headerlink" title="精確坐標圖示意（Mermaid）"></a>精確坐標圖示意（Mermaid）</h2><pre class="mermaid">graph TD
+    O[O(-1,2)]
+    A[A(3,-1)]
+    C[圓C:(x+1)^2+(y-2)^2=5]
+    P[P(切點)]
+    Q[Q(圓上任意點)]
+    A --&gt;|AP| P
+    A --&gt;|AQ| Q
+    A ---|AO=5| O</pre>
 
 <hr>
 
@@ -511,6 +519,8 @@ mjx-container[display="true"] + br {
 
   
 
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.0/mermaid.min.js","integrity":"sha256-stuqcu2FrjYCXDOytWFA5SoUE/r3nkp6gTglzNSlavU="}}</script>
+  <script src="/apple.lily/js/third-party/tags/mermaid.js"></script>
 
 
 

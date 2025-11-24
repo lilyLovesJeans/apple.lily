@@ -1,0 +1,469 @@
+<hr>
+<h2 id="title-2025-07-07-Line-訂單系統-C-階段（LINE-訂單整合：前端-後端串接）date-2025-11-12-23-17-22categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-07-Line-訂單系統-C-階段（LINE-訂單整合：前端-後端串接）"><a href="#title-2025-07-07-Line-訂單系統-C-階段（LINE-訂單整合：前端-後端串接）date-2025-11-12-23-17-22categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-07-Line-訂單系統-C-階段（LINE-訂單整合：前端-後端串接）" class="headerlink" title="title: 2025-07-07 Line 訂單系統-C 階段（LINE 訂單整合：前端 + 後端串接）date: 2025-11-12 23:17:22categories: OneDayOneNotetags:  [OneNote, Line訂單系統]description:  2025-07-07 Line 訂單系統-C 階段（LINE 訂單整合：前端 + 後端串接）"></a>title: 2025-07-07 Line 訂單系統-C 階段（LINE 訂單整合：前端 + 後端串接）<br>date: 2025-11-12 23:17:22<br>categories: OneDayOneNote<br>tags:  [OneNote, Line訂單系統]<br>description:  2025-07-07 Line 訂單系統-C 階段（LINE 訂單整合：前端 + 後端串接）</h2><h2 id="2025-07-07-Line-訂單系統-C-階段（LINE-訂單整合：前端-後端串接）"><a href="#2025-07-07-Line-訂單系統-C-階段（LINE-訂單整合：前端-後端串接）" class="headerlink" title="2025-07-07 Line 訂單系統-C 階段（LINE 訂單整合：前端 + 後端串接）"></a>2025-07-07 Line 訂單系統-C 階段（LINE 訂單整合：前端 + 後端串接）</h2><p>把 <strong>C 階段（LINE 訂單整合：前端 + 後端串接）</strong> 的設計與完整實作步驟交給你。<br>我會從「用戶在 LINE 下單的 UX 流程」開始，接著給出<strong>資料庫變更、後端（Node.js）實作、前端（Vue3）如何顯示訂單、LINE webhook 處理 postback 的範例</strong>，並補上測試、例外處理、以及實務要注意的安全&#x2F;可靠性建議。你可以直接複製貼上程式碼並執行。</p>
+<hr>
+<h1 id="一、用戶下單流程（UX-簡述）"><a href="#一、用戶下單流程（UX-簡述）" class="headerlink" title="一、用戶下單流程（UX 簡述）"></a>一、用戶下單流程（UX 簡述）</h1><ol>
+<li>使用者在 LINE 傳「我要點餐」或按主選單 → Bot 回傳商品清單（Flex Carousel，每件商品含「購買」按鈕）。</li>
+<li>使用者按「購買」按鈕（postback），按鈕會送出 <code>action=buy&amp;productId=XXX&amp;qty=1</code>（或 <code>showConfirm</code> 先顯示確認視窗）。</li>
+<li>Bot 接收到 postback → 後端建立訂單（orders + order_items） → 回覆「訂單已建立（編號：A0001）」並顯示訂單明細。</li>
+<li>管理後台（Vue）即時或短輪詢取得新訂單，可變更訂單狀態（pending → confirmed → shipped）。</li>
+<li>狀態更新時，後端可用 LINE push&#x2F;message 回覆給訂購用戶（或用 reply when possible）。</li>
+</ol>
+<blockquote>
+<p>設計重點：盡量用 postback 與 payload 包資料，減少「逐步輸入暫存狀態」的複雜性；必要時可用 Redis 保存臨時狀態。</p>
+</blockquote>
+<hr>
+<h1 id="二、資料庫（MySQL）變更與新增表"><a href="#二、資料庫（MySQL）變更與新增表" class="headerlink" title="二、資料庫（MySQL）變更與新增表"></a>二、資料庫（MySQL）變更與新增表</h1><p>在 <code>backend/db_init.sql</code>（或新增 migration）加入：</p>
+<pre><code class="sql">USE line_order_db;
+
+-- 商品 (若尚未建立)
+CREATE TABLE IF NOT EXISTS products (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  price DECIMAL(10,2) NOT NULL,
+  description TEXT,
+  image_url VARCHAR(255),
+  stock INT DEFAULT 0,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 訂單主表
+CREATE TABLE IF NOT EXISTS orders (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  order_no VARCHAR(30) UNIQUE,
+  user_line_id VARCHAR(50),
+  customer_name VARCHAR(100),
+  phone VARCHAR(50),
+  total_price DECIMAL(10,2),
+  status ENUM(&#39;pending&#39;,&#39;confirmed&#39;,&#39;cancelled&#39;,&#39;paid&#39;,&#39;shipped&#39;,&#39;completed&#39;) DEFAULT &#39;pending&#39;,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 訂單明細
+CREATE TABLE IF NOT EXISTS order_items (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  order_id INT,
+  product_id INT,
+  product_name VARCHAR(200),
+  qty INT DEFAULT 1,
+  unit_price DECIMAL(10,2),
+  subtotal DECIMAL(10,2),
+  FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE
+);
+
+-- 訂單狀態歷程（選用）
+CREATE TABLE IF NOT EXISTS order_status_history (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  order_id INT,
+  old_status VARCHAR(50),
+  new_status VARCHAR(50),
+  changed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+</code></pre>
+<p><strong>order_no</strong> 的生成策略：<code>YYYYMMDD-XXXX</code> 或 <code>A0001</code> 類型（下文會示範簡單生成器）。</p>
+<hr>
+<h1 id="三、後端（Node-js）實作重點"><a href="#三、後端（Node-js）實作重點" class="headerlink" title="三、後端（Node.js）實作重點"></a>三、後端（Node.js）實作重點</h1><h2 id="1-新增-修改後端路由檔案"><a href="#1-新增-修改後端路由檔案" class="headerlink" title="1) 新增 &#x2F; 修改後端路由檔案"></a>1) 新增 &#x2F; 修改後端路由檔案</h2><p>在 <code>backend/routes/</code> 加兩個檔： <code>products.js</code>（若已存在）與 <code>orders.js</code>（更完善） — 我會把 <code>orders.js</code> 的重點流程示範出來，並在 <code>line.js</code> 中加上處理 <code>postback</code> 的邏輯。</p>
+<h3 id="backend-routes-orders-js"><a href="#backend-routes-orders-js" class="headerlink" title="backend/routes/orders.js"></a><code>backend/routes/orders.js</code></h3><pre><code class="js">// backend/routes/orders.js
+import express from &quot;express&quot;;
+import { pool } from &quot;../db.js&quot;;
+
+const router = express.Router();
+
+// 產生簡單 order_no（建議可改成更穩定的序號服務）
+function genOrderNo() {
+  const d = new Date();
+  const y = d.getFullYear().toString().slice(-2);
+  const m = String(d.getMonth()+1).padStart(2,&#39;0&#39;);
+  const day = String(d.getDate()).padStart(2,&#39;0&#39;);
+  const r = Math.floor(1000 + Math.random() * 9000); // 4-digit random
+  return `${y}${m}${day}-${r}`;
+}
+
+// 取得所有訂單（包含明細）
+router.get(&quot;/&quot;, async (req, res) =&gt; {
+  try {
+    const [orders] = await pool.query(
+      `SELECT o.*, (SELECT JSON_ARRAYAGG(JSON_OBJECT(&#39;product_id&#39;, oi.product_id, &#39;product_name&#39;, oi.product_name, &#39;qty&#39;, oi.qty, &#39;unit_price&#39;, oi.unit_price, &#39;subtotal&#39;, oi.subtotal)) FROM order_items oi WHERE oi.order_id = o.id) AS items
+       FROM orders o ORDER BY o.id DESC`
+    );
+    res.json(orders);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: &quot;Server error&quot; });
+  }
+});
+
+// 建立訂單（給 LINE or 前端 呼叫）
+router.post(&quot;/&quot;, async (req, res) =&gt; {
+  const { user_line_id, customer_name, phone, items } = req.body;
+  // items = [{product_id, qty}, ...]
+  if (!items || !Array.isArray(items) || items.length === 0) {
+    return res.status(400).json({ error: &quot;No items&quot; });
+  }
+
+  const conn = await pool.getConnection();
+  try {
+    await conn.beginTransaction();
+
+    // 計算總價並準備明細
+    let total = 0.0;
+    const itemRows = [];
+    for (const it of items) {
+      const [rows] = await conn.query(&quot;SELECT id, name, price FROM products WHERE id = ?&quot;, [it.product_id]);
+      if (!rows || rows.length === 0) throw new Error(&quot;Product not found: &quot; + it.product_id);
+      const p = rows[0];
+      const qty = parseInt(it.qty || 1);
+      const subtotal = Number(p.price) * qty;
+      total += subtotal;
+      itemRows.push({
+        product_id: p.id,
+        product_name: p.name,
+        qty,
+        unit_price: p.price,
+        subtotal
+      });
+    }
+
+    const orderNo = genOrderNo();
+
+    const [result] = await conn.query(
+      &quot;INSERT INTO orders (order_no, user_line_id, customer_name, phone, total_price) VALUES (?, ?, ?, ?, ?)&quot;,
+      [orderNo, user_line_id || null, customer_name || null, phone || null, total]
+    );
+    const orderId = result.insertId;
+
+    // insert order_items
+    for (const ir of itemRows) {
+      await conn.query(
+        &quot;INSERT INTO order_items (order_id, product_id, product_name, qty, unit_price, subtotal) VALUES (?, ?, ?, ?, ?, ?)&quot;,
+        [orderId, ir.product_id, ir.product_name, ir.qty, ir.unit_price, ir.subtotal]
+      );
+    }
+
+    await conn.commit();
+
+    // 回傳訂單資料
+    res.json({ orderId, orderNo, total, items: itemRows });
+  } catch (err) {
+    await conn.rollback();
+    console.error(&quot;Create order error:&quot;, err);
+    res.status(500).json({ error: &quot;Create order failed&quot; });
+  } finally {
+    conn.release();
+  }
+});
+
+// 更新訂單狀態
+router.put(&quot;/:id/status&quot;, async (req, res) =&gt; {
+  const id = req.params.id;
+  const { status } = req.body;
+  const conn = await pool.getConnection();
+  try {
+    await conn.beginTransaction();
+    const [[cur]] = await conn.query(&quot;SELECT status FROM orders WHERE id = ?&quot;, [id]);
+    await conn.query(&quot;UPDATE orders SET status = ? WHERE id = ?&quot;, [status, id]);
+    await conn.query(&quot;INSERT INTO order_status_history (order_id, old_status, new_status) VALUES (?, ?, ?)&quot;, [id, cur.status, status]);
+    await conn.commit();
+    res.json({ message: &quot;Status updated&quot; });
+  } catch (err) {
+    await conn.rollback();
+    console.error(err);
+    res.status(500).json({ error: &quot;Update failed&quot; });
+  } finally {
+    conn.release();
+  }
+});
+
+export default router;
+</code></pre>
+<blockquote>
+<p>注意：這段用 transaction（事務）保證 orders 與 order_items 的一致性。</p>
+</blockquote>
+<hr>
+<h2 id="2-修改-backend-routes-line-js：處理-postback-與-message-指令"><a href="#2-修改-backend-routes-line-js：處理-postback-與-message-指令" class="headerlink" title="2) 修改 backend/routes/line.js：處理 postback 與 message 指令"></a>2) 修改 <code>backend/routes/line.js</code>：處理 postback 與 message 指令</h2><pre><code class="js">// backend/routes/line.js （重點段）
+import express from &quot;express&quot;;
+import { middleware, Client } from &quot;@line/bot-sdk&quot;;
+import dotenv from &quot;dotenv&quot;;
+import { pool } from &quot;../db.js&quot;;
+dotenv.config();
+
+const router = express.Router();
+const config = {
+  channelAccessToken: process.env.LINE_CHANNEL_ACCESS_TOKEN,
+  channelSecret: process.env.LINE_CHANNEL_SECRET,
+};
+const client = new Client(config);
+router.post(&#39;/webhook&#39;, middleware(config), async (req, res) =&gt; {
+  try {
+    const events = req.body.events || [];
+    for (const event of events) {
+      // 文字訊息：啟動選單
+      if (event.type === &#39;message&#39; &amp;&amp; event.message.type === &#39;text&#39;) {
+        const text = event.message.text.trim();
+        if (text === &#39;我要點餐&#39; || text === &#39;點餐&#39;) {
+          // 讀取商品並送 Flex carousel
+          const [products] = await pool.query(&#39;SELECT id, name, price, description, image_url FROM products WHERE stock &gt; 0 LIMIT 10&#39;);
+          const bubbles = products.map(p =&gt; ({
+            type: &#39;bubble&#39;,
+            hero: p.image_url ? { type: &#39;image&#39;, url: p.image_url, size: &#39;full&#39;, aspectRatio: &#39;20:13&#39;, aspectMode: &#39;cover&#39; } : undefined,
+            body: {
+              type: &#39;box&#39;,
+              layout: &#39;vertical&#39;,
+              contents: [
+                { type: &#39;text&#39;, text: p.name, weight: &#39;bold&#39;, size: &#39;lg&#39;, wrap: true },
+                { type: &#39;text&#39;, text: `價格：$${p.price}`, size: &#39;sm&#39;, wrap: true, margin: &#39;md&#39; },
+                { type: &#39;text&#39;, text: p.description || &#39;&#39;, size: &#39;sm&#39;, wrap: true, margin: &#39;md&#39; }
+              ]
+            },
+            footer: {
+              type: &#39;box&#39;,
+              layout: &#39;vertical&#39;,
+              spacing: &#39;sm&#39;,
+              contents: [
+                { type: &#39;button&#39;, style: &#39;primary&#39;, action: { type: &#39;postback&#39;, label: &#39;購買&#39;, data: `action=buy&amp;productId=${p.id}&amp;qty=1` } }
+              ]
+            }
+          }));
+          const flex = { type: &#39;carousel&#39;, contents: bubbles.length ? bubbles : [{ type: &#39;bubble&#39;, body: { type: &#39;box&#39;, layout: &#39;vertical&#39;, contents: [{ type: &#39;text&#39;, text: &#39;目前無商品&#39; }] } }] };
+          await client.replyMessage(event.replyToken, { type: &#39;flex&#39;, altText: &#39;商品列表&#39;, contents: flex });
+          continue;
+        }
+        // 其他文字預設回覆
+        await client.replyMessage(event.replyToken, { type: &#39;text&#39;, text: &#39;輸入「我要點餐」開始點餐流程&#39; });
+      }
+
+      // postback event（按購買）
+      else if (event.type === &#39;postback&#39;) {
+        // postback.data 會是 URL style query string
+        const qs = new URLSearchParams(event.postback.data);
+        const action = qs.get(&#39;action&#39;);
+        if (action === &#39;buy&#39;) {
+          const productId = parseInt(qs.get(&#39;productId&#39;));
+          const qty = parseInt(qs.get(&#39;qty&#39;) || &#39;1&#39;);
+          const userId = event.source.userId;
+
+          // 從 DB 取得產品資訊
+          const [[prod]] = await pool.query(&#39;SELECT id, name, price FROM products WHERE id = ?&#39;, [productId]);
+          if (!prod) {
+            await client.replyMessage(event.replyToken, { type: &#39;text&#39;, text: &#39;找不到該商品，請稍後再試。&#39; });
+            continue;
+          }
+
+          // 建立訂單（簡單版，customer info 為 null）
+          const conn = await pool.getConnection();
+          try {
+            await conn.beginTransaction();
+            const subtotal = Number(prod.price) * qty;
+            const orderNo = `L${Date.now().toString().slice(-6)}`;
+            const [r] = await conn.query(&#39;INSERT INTO orders (order_no, user_line_id, total_price) VALUES (?, ?, ?)&#39;, [orderNo, userId, subtotal]);
+            const orderId = r.insertId;
+            await conn.query(&#39;INSERT INTO order_items (order_id, product_id, product_name, qty, unit_price, subtotal) VALUES (?, ?, ?, ?, ?, ?)&#39;, [orderId, prod.id, prod.name, qty, prod.price, subtotal]);
+            await conn.commit();
+
+            // 回覆使用者 order info
+            const text = `已建立訂單\n編號：${orderNo}\n商品：${prod.name}\n數量：${qty}\n總價：$${subtotal}\n我們將盡快聯絡您。`;
+            await client.replyMessage(event.replyToken, { type: &#39;text&#39;, text });
+
+            // 可選：通知管理者（若你在 .env 放 ADMIN_LINE_ID）
+            const adminId = process.env.ADMIN_LINE_ID;
+            if (adminId) {
+              await client.pushMessage(adminId, { type: &#39;text&#39;, text: `新訂單：${orderNo}，買家:${userId}，商品:${prod.name} x${qty}` });
+            }
+          } catch (err) {
+            await conn.rollback();
+            console.error(err);
+            await client.replyMessage(event.replyToken, { type: &#39;text&#39;, text: &#39;建立訂單失敗，請稍後再試。&#39; });
+          } finally {
+            conn.release();
+          }
+        }
+      }
+    } // end for events
+
+    res.status(200).send(&#39;OK&#39;);
+  } catch (err) {
+    console.error(&#39;Webhook error&#39;, err);
+    res.status(500).end();
+  }
+});
+
+export default router;
+</code></pre>
+<blockquote>
+<p>重點：<code>postback.data</code> 常用 URLQuery 格式來傳遞 <code>action</code> &#x2F; <code>productId</code> &#x2F; <code>qty</code>，接到就做事。</p>
+</blockquote>
+<hr>
+<h1 id="四、前端（管理後台）改造：顯示訂單詳情與狀態通知"><a href="#四、前端（管理後台）改造：顯示訂單詳情與狀態通知" class="headerlink" title="四、前端（管理後台）改造：顯示訂單詳情與狀態通知"></a>四、前端（管理後台）改造：顯示訂單詳情與狀態通知</h1><p>前面 B 階段已有 <code>Orders.vue</code>。補強要點：</p>
+<ul>
+<li>顯示 <code>items</code>（從 orders API 中取得 JSON Array）</li>
+<li>新增「通知買家」按鈕（call backend route 更新狀態並推送 LINE message）</li>
+<li>若想即時呈現新訂單：可採短輪詢（每 5–10 秒請求 <code>/orders</code>）或 WebSocket（進階）。</li>
+</ul>
+<p>簡單的 <code>Orders.vue</code> 擴充範例（只顯示 items）：</p>
+<pre><code class="vue">&lt;template&gt;
+  &lt;div&gt;
+    &lt;h2&gt;訂單管理&lt;/h2&gt;
+    &lt;table&gt;
+      &lt;tr&gt;&lt;th&gt;ID&lt;/th&gt;&lt;th&gt;編號&lt;/th&gt;&lt;th&gt;總價&lt;/th&gt;&lt;th&gt;狀態&lt;/th&gt;&lt;th&gt;明細&lt;/th&gt;&lt;th&gt;操作&lt;/th&gt;&lt;/tr&gt;
+      &lt;tr v-for=&quot;o in orders&quot; :key=&quot;o.id&quot;&gt;
+        &lt;td&gt;{{ o.id }}&lt;/td&gt;
+        &lt;td&gt;{{ o.order_no }}&lt;/td&gt;
+        &lt;td&gt;{{ o.total_price }}&lt;/td&gt;
+        &lt;td&gt;{{ o.status }}&lt;/td&gt;
+        &lt;td&gt;
+          &lt;ul&gt;
+            &lt;li v-for=&quot;it in JSON.parse(o.items || &#39;[]&#39;)&quot; :key=&quot;it.product_id&quot;&gt;
+              {{ it.product_name }} x{{ it.qty }} (${ { it.unit_price } }) 小計:{{ it.subtotal }}
+            &lt;/li&gt;
+          &lt;/ul&gt;
+        &lt;/td&gt;
+        &lt;td&gt;
+          &lt;button @click=&quot;updateStatus(o.id,&#39;confirmed&#39;)&quot;&gt;確認&lt;/button&gt;
+          &lt;button @click=&quot;notifyUser(o.id)&quot;&gt;通知用戶&lt;/button&gt;
+        &lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/table&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { ref, onMounted } from &#39;vue&#39;;
+import axios from &#39;axios&#39;;
+const api = &quot;http://localhost:3000/orders&quot;;
+const orders = ref([]);
+async function load() { const res = await axios.get(api); orders.value = res.data; }
+async function updateStatus(id, status) { await axios.put(`${api}/${id}/status`, { status }); await load(); }
+async function notifyUser(id) { await axios.post(`http://localhost:3000/orders/${id}/notify`); alert(&#39;已通知&#39;); }
+onMounted(() =&gt; { load(); setInterval(load, 10000); });
+&lt;/script&gt;
+</code></pre>
+<blockquote>
+<p>注意：<code>o.items</code> 在 <code>orders</code> route 我用 JSON_ARRAYAGG 回傳為 JSON 字串；前端須 parse。</p>
+</blockquote>
+<hr>
+<h1 id="五、後端：增加通知-API（管理者按鈕呼叫）"><a href="#五、後端：增加通知-API（管理者按鈕呼叫）" class="headerlink" title="五、後端：增加通知 API（管理者按鈕呼叫）"></a>五、後端：增加通知 API（管理者按鈕呼叫）</h1><p>在 <code>orders.js</code> 增加通知 route：</p>
+<pre><code class="js">// notify endpoint
+router.post(&quot;/:id/notify&quot;, async (req, res) =&gt; {
+  const id = req.params.id;
+  try {
+    const [[order]] = await pool.query(&quot;SELECT * FROM orders WHERE id = ?&quot;, [id]);
+    if (!order) return res.status(404).json({ error: &quot;not found&quot; });
+    // 取得買家 user_line_id 與訂單明細
+    const [items] = await pool.query(&quot;SELECT * FROM order_items WHERE order_id = ?&quot;, [id]);
+
+    // 準備訊息
+    const text = `您的訂單 ${order.order_no} 已更新。狀態：${order.status}。`;
+    // 使用 client.pushMessage（需在 route 取得 client 或在更高層注入）
+    // 這裡假設你把 LINE client export 或在此檔 require
+    import { Client } from &#39;@line/bot-sdk&#39;; // 需放在檔案頂端
+    const client = new Client({ channelAccessToken: process.env.LINE_CHANNEL_ACCESS_TOKEN });
+    if (order.user_line_id) {
+      await client.pushMessage(order.user_line_id, { type: &#39;text&#39;, text });
+    }
+
+    res.json({ message: &#39;Notified&#39; });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: &quot;Notify fail&quot; });
+  }
+});
+</code></pre>
+<p>（實際請把 <code>Client</code> 建在共用檔或 <code>index.js</code>，不要每次新建）</p>
+<hr>
+<h1 id="六、測試方法（逐步）"><a href="#六、測試方法（逐步）" class="headerlink" title="六、測試方法（逐步）"></a>六、測試方法（逐步）</h1><ol>
+<li>啟動 MySQL、後端（<code>npm run dev</code>）、ngrok（<code>ngrok http 3000</code>）並把 webhook 設好。</li>
+<li>在後台 <code>Products</code> 新增一兩個測試商品（或直接在 MySQL insert）。</li>
+<li>用手機在 LINE 發「我要點餐」 → 應收到 Flex 商品清單（含「購買」）。</li>
+<li>按「購買」→ Bot 回覆「已建立訂單」與訂單編號。</li>
+<li>後台 <code>/orders</code> 應立即可見該訂單（或短輪詢後出現）。</li>
+<li>在後台將狀態改為 <code>confirmed</code> → 點「通知用戶」→ 檢查 LINE 使用者是否收到推播。</li>
+</ol>
+<p><strong>模擬 postback 測試（curl）</strong>：<br>你可以用 curl 模擬 LINE 的 postback event（開發時）：</p>
+<pre><code class="bash">curl -X POST http://localhost:3000/line/webhook \
+ -H &quot;Content-Type: application/json&quot; \
+ -d &#39;{&quot;events&quot;:[{&quot;type&quot;:&quot;postback&quot;,&quot;replyToken&quot;:&quot;000&quot;,&quot;source&quot;:{&quot;userId&quot;:&quot;U111&quot;},&quot;postback&quot;:{&quot;data&quot;:&quot;action=buy&amp;productId=1&amp;qty=1&quot;}}]}&#39;
+</code></pre>
+<blockquote>
+<p>注意：<code>@line/bot-sdk</code> middleware 會驗證簽章，真實 LINE 事件會有 signature。為本地測試可臨時用 route 不帶 middleware（僅測功能），或用工具繞過。</p>
+</blockquote>
+<hr>
+<h1 id="七、可靠性、安全與實務注意事項"><a href="#七、可靠性、安全與實務注意事項" class="headerlink" title="七、可靠性、安全與實務注意事項"></a>七、可靠性、安全與實務注意事項</h1><ul>
+<li><strong>Webhook 驗簽</strong>：在開發（公開測試）時使用 <code>middleware(config)</code>；部署時絕對不要關掉驗簽。</li>
+<li><strong>事務處理</strong>：建立訂單時使用 DB transaction（範例已示）。</li>
+<li><strong>重複請求</strong>：postback 或 webhook 可能重送。建議在 <code>orders</code> 表用 <code>order_no</code> 或提供 <code>client_request_id</code> 來做去重檢查（idempotency key）。</li>
+<li><strong>資料驗證</strong>：在後端對 <code>items</code>、<code>product_id</code>、<code>qty</code> 做型別與範圍檢查。</li>
+<li><strong>資安</strong>：<code>LINE_CHANNEL_ACCESS_TOKEN</code> &#x2F; <code>LINE_CHANNEL_SECRET</code> &#x2F; DB 密碼 放 <code>.env</code>，不管測試或上線都不要提交到 Git。</li>
+<li><strong>錯誤回補</strong>：如果 DB 寫入成功但回覆失敗，須有 logging 與重試機制（排程或 queue）。</li>
+<li><strong>異地通知</strong>：若想把通知給管理者或多個 admin，可把 admin list 存到 DB 或 env 中並迴圈 push。</li>
+<li><strong>效能</strong>：高頻查詢訂單狀態時可將熱門欄位快取到 Redis（例如 order status, last 50 orders）。</li>
+<li><strong>使用者資料</strong>：建議把 LINE user profile（displayName、picture）存於 <code>users</code> 表，第一次互動用 <code>client.getProfile(userId)</code> 取得並儲存。</li>
+</ul>
+<hr>
+<h1 id="八、擴充建議（下一步可以做）"><a href="#八、擴充建議（下一步可以做）" class="headerlink" title="八、擴充建議（下一步可以做）"></a>八、擴充建議（下一步可以做）</h1><ul>
+<li><strong>付款整合（LINE Pay &#x2F;第三方）</strong>：建立 <code>payments</code> 表並把付款狀態與訂單關聯。</li>
+<li><strong>多商品一次下單</strong>：目前示例是單一 product buy，可擴展為購物車（multiple items）流程 (要設計「選擇數量」「加入購物車」「結帳畫面」)。</li>
+<li><strong>狀態 WebSocket 即時推送管理後台</strong>：用 Socket.io 把新訂單即時推給管理者頁面。</li>
+<li><strong>自然語言解析</strong>：用簡單關鍵字或 webhook 傳到 NLP（例如 Rasa）解析複雜句子（「我要兩個紅豆麵包明天 10 點取貨」），再轉成結構化 order payload。</li>
+<li><strong>測試自動化</strong>：用 Postman collection + Newman 或 Jest + Supertest 做 webhook 與 API 自動測試。</li>
+</ul>
+<hr>
+<h1 id="九、Checkpoint（C-階段完成判定）"><a href="#九、Checkpoint（C-階段完成判定）" class="headerlink" title="九、Checkpoint（C 階段完成判定）"></a>九、Checkpoint（C 階段完成判定）</h1><ul>
+<li><input disabled="" type="checkbox"> LINE <code>我要點餐</code> 能回傳商品 Flex carousel。</li>
+<li><input disabled="" type="checkbox"> 使用者按「購買」後，後端在 <code>orders</code>、<code>order_items</code> 生成正確資料。</li>
+<li><input disabled="" type="checkbox"> 後台 Orders 頁能看到新訂單與明細（items）。</li>
+<li><input disabled="" type="checkbox"> 管理後台可改狀態並通知使用者（LINE push）。</li>
+<li><input disabled="" type="checkbox"> 有錯誤處理與 DB 事務保證，不會造成半成品訂單。</li>
+</ul>
+<hr>
+<h2 id="📘-階段-C-主要任務（你目前所在的位置）"><a href="#📘-階段-C-主要任務（你目前所在的位置）" class="headerlink" title="📘 階段 C 主要任務（你目前所在的位置）"></a>📘 階段 C 主要任務（你目前所在的位置）</h2><p>這個階段的重點是：</p>
+<blockquote>
+<p>讓 LINE Bot 能和你的後端、前端真正「串起來」，自動處理訂單。</p>
+</blockquote>
+<h3 id="✅-已準備完成的內容"><a href="#✅-已準備完成的內容" class="headerlink" title="✅ 已準備完成的內容"></a>✅ 已準備完成的內容</h3><ul>
+<li><code>.env</code> 範例 ✅</li>
+<li><code>db_init.sql</code> ✅</li>
+<li>專案資料夾結構（backend + frontend）✅</li>
+</ul>
+<hr>
+<h2 id="🧩-下一步實作建議（C-階段要做的-4-大步）"><a href="#🧩-下一步實作建議（C-階段要做的-4-大步）" class="headerlink" title="🧩 下一步實作建議（C 階段要做的 4 大步）"></a>🧩 下一步實作建議（C 階段要做的 4 大步）</h2><table>
+<thead>
+<tr>
+<th>步驟</th>
+<th>名稱</th>
+<th>任務內容</th>
+<th>目的</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>C1</strong></td>
+<td>設定 LINE Webhook</td>
+<td>LINE Developers 建立 Messaging API、設 webhook URL、設定 channel token&#x2F;secret</td>
+<td>讓 LINE 傳訊息能送到你的 Node.js 伺服器</td>
+</tr>
+<tr>
+<td><strong>C2</strong></td>
+<td>Node.js webhook 處理</td>
+<td>建立 <code>/webhook</code> 路由，驗證 LINE 簽章，接收訊息事件</td>
+<td>能處理使用者的 LINE 訊息（例如「查詢商品」）</td>
+</tr>
+<tr>
+<td><strong>C3</strong></td>
+<td>訂單整合邏輯</td>
+<td>使用者輸入商品代號 → Node.js 查詢 MySQL → 回傳訂單資訊</td>
+<td>讓 Bot 可以真實回覆商品資料</td>
+</tr>
+<tr>
+<td><strong>C4</strong></td>
+<td>Vue3 後台整合顯示</td>
+<td>新增「LINE 訂單紀錄」頁面，顯示 MySQL 訂單狀態</td>
+<td>讓管理者在前端後台看到來自 LINE 的訂單紀錄</td>
+</tr>
+</tbody></table>
+<hr>
+<hr>
+<p>如果你願意，我可以<strong>立刻幫你產出</strong>：</p>
+<ol>
+<li>已修改好的 <code>backend/routes/orders.js</code> 與 <code>backend/routes/line.js</code> 完整檔案（可直接放入你 repo）。</li>
+<li>一個簡易的 <code>Products</code> seed SQL（幾筆商品）與 <code>Orders</code> 測試腳本（curl 範例）。</li>
+<li>前端 <code>Orders.vue</code> 的完整可直接替換版本，包含 notify 按鈕對應的 API 呼叫。</li>
+</ol>
+<p>你要我先把哪一份檔案內容直接貼給你（或打包成可以 <code>git clone</code> 的 commit 範例）？</p>

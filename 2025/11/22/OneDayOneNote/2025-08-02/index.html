@@ -437,7 +437,30 @@
 <li>完成「購買 1」→ 自動建立訂單</li>
 </ul>
 <hr>
-<h1 id="📌-第七章：三台電腦整體架構（Mermaid）"><a href="#📌-第七章：三台電腦整體架構（Mermaid）" class="headerlink" title="📌 第七章：三台電腦整體架構（Mermaid）"></a>📌 第七章：三台電腦整體架構（Mermaid）</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">flowchart LR</span><br><span class="line"></span><br><span class="line">  subgraph Mac1[MacBook Air #1 - 前端開發機]</span><br><span class="line">    F1[Vue3 Admin\nVite Dev Server]</span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line">  subgraph Mac2[MacBook Air #2 - 文件 / 設計機]</span><br><span class="line">    D1[Mermaid 架構圖]</span><br><span class="line">    D2[Wireframe]</span><br><span class="line">    D3[Notion 文件]</span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line">  subgraph Lenovo[Lenovo - 後端 / DB 主機]</span><br><span class="line">    B1[NestJS API]</span><br><span class="line">    B2[MySQL]</span><br><span class="line">    B3[Redis]</span><br><span class="line">    B4[LINE Webhook Server]</span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line">  F1 --&gt;|REST API| B1</span><br><span class="line">  B1 --&gt; B2</span><br><span class="line">  B1 --&gt; B3</span><br><span class="line">  D1 -.-&gt; B1</span><br><span class="line">  D3 -.-&gt; F1</span><br></pre></td></tr></table></figure>
+<h1 id="📌-第七章：三台電腦整體架構（Mermaid）"><a href="#📌-第七章：三台電腦整體架構（Mermaid）" class="headerlink" title="📌 第七章：三台電腦整體架構（Mermaid）"></a>📌 第七章：三台電腦整體架構（Mermaid）</h1><pre class="mermaid">flowchart LR
+
+  subgraph Mac1[MacBook Air #1 - 前端開發機]
+    F1[Vue3 Admin\nVite Dev Server]
+  end
+
+  subgraph Mac2[MacBook Air #2 - 文件 / 設計機]
+    D1[Mermaid 架構圖]
+    D2[Wireframe]
+    D3[Notion 文件]
+  end
+
+  subgraph Lenovo[Lenovo - 後端 / DB 主機]
+    B1[NestJS API]
+    B2[MySQL]
+    B3[Redis]
+    B4[LINE Webhook Server]
+  end
+
+  F1 -->|REST API| B1
+  B1 --> B2
+  B1 --> B3
+  D1 -.-> B1
+  D3 -.-> F1</pre>
 
 <hr>
 <h1 id="🎉-最終完成！"><a href="#🎉-最終完成！" class="headerlink" title="🎉 最終完成！"></a>🎉 最終完成！</h1><p>如果你需要我再產生：</p>
@@ -538,6 +561,8 @@
 
   
 
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.0/mermaid.min.js","integrity":"sha256-stuqcu2FrjYCXDOytWFA5SoUE/r3nkp6gTglzNSlavU="}}</script>
+  <script src="/apple.lily/js/third-party/tags/mermaid.js"></script>
 
 
 

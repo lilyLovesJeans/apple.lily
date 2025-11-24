@@ -249,7 +249,40 @@
 
 <hr>
 <h2 id="2-Mermaid（若你偏好-Mermaid）"><a href="#2-Mermaid（若你偏好-Mermaid）" class="headerlink" title="2) Mermaid（若你偏好 Mermaid）"></a>2) Mermaid（若你偏好 Mermaid）</h2><p>（也可貼到 GitHub markdown 或 Mermaid Live Editor）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">flowchart LR</span><br><span class="line">  subgraph LINE[LINE Messaging API (外部使用者)]</span><br><span class="line">    L1(LINE Users)</span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line">  subgraph MAC1[&quot;MacBook Air #1\n(Backend - NestJS)&quot;]</span><br><span class="line">    B1[NestJS App\n(Products, Orders, Webhook, QueueClient)]</span><br><span class="line">    NG[ngrok / Dev Tunnel]</span><br><span class="line">    IDE1[VSCode / CLI]</span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line">  subgraph LENOVO[&quot;Lenovo (Windows)\n(MySQL / Redis / Test)&quot;]</span><br><span class="line">    DB[(MySQL - line_order_db)]</span><br><span class="line">    RD[(Redis - Bull Queue)]</span><br><span class="line">    POST[Postman / Workbench]</span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line">  subgraph MAC2[&quot;MacBook Air #2\n(Frontend + Docs)&quot;]</span><br><span class="line">    FE[Vue3 Frontend (Vite)]</span><br><span class="line">    DOC[Docs / Notion]</span><br><span class="line">    IDE2[VSCode / Browser]</span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line">  L1 --&gt;|Webhook| NG</span><br><span class="line">  NG --&gt; B1</span><br><span class="line">  B1 --&gt;|TypeORM / SQL| DB</span><br><span class="line">  B1 --&gt;|Redis Client| RD</span><br><span class="line">  FE --&gt;|HTTP API| B1</span><br><span class="line">  IDE1 --&gt;|dev / push| B1</span><br><span class="line">  IDE2 --&gt;|dev / push| FE</span><br><span class="line">  POST --&gt;|API tests| B1</span><br><span class="line">  POST --&gt;|DB tools| DB</span><br><span class="line">  B1 --&gt;|git push| GITHUB[(GitHub)]</span><br><span class="line">  FE --&gt;|git push| GITHUB</span><br></pre></td></tr></table></figure>
+<pre class="mermaid">flowchart LR
+  subgraph LINE[LINE Messaging API (外部使用者)]
+    L1(LINE Users)
+  end
+
+  subgraph MAC1["MacBook Air #1\n(Backend - NestJS)"]
+    B1[NestJS App\n(Products, Orders, Webhook, QueueClient)]
+    NG[ngrok / Dev Tunnel]
+    IDE1[VSCode / CLI]
+  end
+
+  subgraph LENOVO["Lenovo (Windows)\n(MySQL / Redis / Test)"]
+    DB[(MySQL - line_order_db)]
+    RD[(Redis - Bull Queue)]
+    POST[Postman / Workbench]
+  end
+
+  subgraph MAC2["MacBook Air #2\n(Frontend + Docs)"]
+    FE[Vue3 Frontend (Vite)]
+    DOC[Docs / Notion]
+    IDE2[VSCode / Browser]
+  end
+
+  L1 -->|Webhook| NG
+  NG --> B1
+  B1 -->|TypeORM / SQL| DB
+  B1 -->|Redis Client| RD
+  FE -->|HTTP API| B1
+  IDE1 -->|dev / push| B1
+  IDE2 -->|dev / push| FE
+  POST -->|API tests| B1
+  POST -->|DB tools| DB
+  B1 -->|git push| GITHUB[(GitHub)]
+  FE -->|git push| GITHUB</pre>
 
 <hr>
 <h2 id="圖中要點（解讀）"><a href="#圖中要點（解讀）" class="headerlink" title="圖中要點（解讀）"></a>圖中要點（解讀）</h2><ul>
@@ -367,6 +400,8 @@
 
   
 
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.0/mermaid.min.js","integrity":"sha256-stuqcu2FrjYCXDOytWFA5SoUE/r3nkp6gTglzNSlavU="}}</script>
+  <script src="/apple.lily/js/third-party/tags/mermaid.js"></script>
 
 
 

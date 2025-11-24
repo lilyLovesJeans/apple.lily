@@ -1,0 +1,273 @@
+<hr>
+<h2 id="title-2025-07-17-Line-訂單系統-F-階段-—-部署與持續整合date-2025-11-13-23-53-21categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-17-Line-訂單系統-F-階段-—-部署與持續整合"><a href="#title-2025-07-17-Line-訂單系統-F-階段-—-部署與持續整合date-2025-11-13-23-53-21categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-17-Line-訂單系統-F-階段-—-部署與持續整合" class="headerlink" title="title: 2025-07-17 Line 訂單系統- F 階段 — 部署與持續整合date: 2025-11-13 23:53:21categories: OneDayOneNotetags:  [OneNote, Line訂單系統]description: 2025-07-17 Line 訂單系統- F 階段 — 部署與持續整合"></a>title: 2025-07-17 Line 訂單系統- F 階段 — 部署與持續整合<br>date: 2025-11-13 23:53:21<br>categories: OneDayOneNote<br>tags:  [OneNote, Line訂單系統]<br>description: 2025-07-17 Line 訂單系統- F 階段 — 部署與持續整合</h2><h2 id="2025-07-17-Line-訂單系統-F-階段-—-部署與持續整合"><a href="#2025-07-17-Line-訂單系統-F-階段-—-部署與持續整合" class="headerlink" title="2025-07-17 Line 訂單系統- F 階段 — 部署與持續整合"></a>2025-07-17 Line 訂單系統- F 階段 — 部署與持續整合</h2><h1 id="📙-F-階段-—-部署與持續整合（CI-CD-免費雲端方案）"><a href="#📙-F-階段-—-部署與持續整合（CI-CD-免費雲端方案）" class="headerlink" title="📙 F 階段 — 部署與持續整合（CI&#x2F;CD + 免費雲端方案）"></a>📙 F 階段 — 部署與持續整合（CI&#x2F;CD + 免費雲端方案）</h1><p>這是把整個 LINE 線上訂單系統「搬上雲端、公開可用」的階段，<br>讓你的系統能夠 <strong>隨時更新、自動部署、對外服務。</strong></p>
+<hr>
+<h2 id="🎯-本階段目標"><a href="#🎯-本階段目標" class="headerlink" title="🎯 本階段目標"></a>🎯 本階段目標</h2><table>
+<thead>
+<tr>
+<th>模組</th>
+<th>目標</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>🌐 Node.js 後端</td>
+<td>部署到 Render &#x2F; Railway（免費層）</td>
+</tr>
+<tr>
+<td>💻 Vue3 前端</td>
+<td>部署到 Vercel &#x2F; Netlify（自動建置）</td>
+</tr>
+<tr>
+<td>🧮 MySQL 資料庫</td>
+<td>使用 PlanetScale（雲端版）</td>
+</tr>
+<tr>
+<td>⚡ Redis 快取</td>
+<td>使用 Upstash Redis（免維護雲端）</td>
+</tr>
+<tr>
+<td>🔄 CI&#x2F;CD</td>
+<td>GitHub push → 自動部署前後端</td>
+</tr>
+<tr>
+<td>🧩 LINE Webhook</td>
+<td>串接正式 URL，Bot 可運作於線上環境</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="📘-F1-—-建立-GitHub-專案結構"><a href="#📘-F1-—-建立-GitHub-專案結構" class="headerlink" title="📘 F1 — 建立 GitHub 專案結構"></a>📘 F1 — 建立 GitHub 專案結構</h2><p>專案架構（建議分兩個 repo）：</p>
+<pre><code>line-order-system/
+│
+├── backend/
+│   ├── package.json
+│   ├── server.js
+│   ├── routes/
+│   ├── .env.example
+│   └── db/
+│       └── init.sql
+│
+└── frontend/
+    ├── package.json
+    ├── vite.config.js
+    ├── src/
+    └── .env.example
+</code></pre>
+<p>你可以選擇：</p>
+<ul>
+<li>✅ 一 repo（含 backend + frontend）</li>
+<li>或 <strong>分成兩個 repo</strong>（方便部署）</li>
+</ul>
+<hr>
+<h2 id="☁️-F2-—-雲端帳號申請與準備"><a href="#☁️-F2-—-雲端帳號申請與準備" class="headerlink" title="☁️ F2 — 雲端帳號申請與準備"></a>☁️ F2 — 雲端帳號申請與準備</h2><table>
+<thead>
+<tr>
+<th>服務</th>
+<th>功能</th>
+<th>連結</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>🌐 <strong>Render</strong></td>
+<td>Node.js 後端</td>
+<td><a href="https://render.com/">https://render.com</a></td>
+</tr>
+<tr>
+<td>📦 <strong>Vercel</strong></td>
+<td>Vue3 前端</td>
+<td><a href="https://vercel.com/">https://vercel.com</a></td>
+</tr>
+<tr>
+<td>🧮 <strong>PlanetScale</strong></td>
+<td>雲端 MySQL</td>
+<td><a href="https://planetscale.com/">https://planetscale.com</a></td>
+</tr>
+<tr>
+<td>⚡ <strong>Upstash</strong></td>
+<td>Redis 快取</td>
+<td><a href="https://upstash.com/">https://upstash.com</a></td>
+</tr>
+<tr>
+<td>🪣 <strong>GitHub</strong></td>
+<td>版本控制</td>
+<td><a href="https://github.com/">https://github.com</a></td>
+</tr>
+<tr>
+<td>💬 <strong>LINE Developers</strong></td>
+<td>Webhook 入口</td>
+<td><a href="https://developers.line.biz/">https://developers.line.biz</a></td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🧮-F3-—-設定-PlanetScale（MySQL-雲端資料庫）"><a href="#🧮-F3-—-設定-PlanetScale（MySQL-雲端資料庫）" class="headerlink" title="🧮 F3 — 設定 PlanetScale（MySQL 雲端資料庫）"></a>🧮 F3 — 設定 PlanetScale（MySQL 雲端資料庫）</h2><ol>
+<li>登入 <a href="https://planetscale.com/">PlanetScale</a></li>
+<li>建立一個新資料庫 <code>line_order_system</code></li>
+<li>開啟 <strong>「Connect」→「Node.js」</strong>，取得連線字串</li>
+<li>複製 <code>.env</code> 設定：</li>
+</ol>
+<pre><code class="env">DB_HOST=aws.connect.psdb.cloud
+DB_USER=xxxx
+DB_PASSWORD=xxxx
+DB_NAME=line_order_system
+</code></pre>
+<ol start="5">
+<li>在本機執行 <code>mysql -h ...</code> 或使用 <strong>TablePlus</strong> 導入 <code>init.sql</code>。</li>
+</ol>
+<hr>
+<h2 id="⚡-F4-—-設定-Upstash-Redis"><a href="#⚡-F4-—-設定-Upstash-Redis" class="headerlink" title="⚡ F4 — 設定 Upstash Redis"></a>⚡ F4 — 設定 Upstash Redis</h2><ol>
+<li>登入 <a href="https://upstash.com/">https://upstash.com</a></li>
+<li>建立 Redis 專案，選擇 <strong>Free Tier</strong></li>
+<li>在「REST API」頁籤中，複製 URL 與 TOKEN</li>
+<li>放入 <code>.env</code>：</li>
+</ol>
+<pre><code class="env">REDIS_URL=https://us1-upstash-xxxx.upstash.io
+REDIS_TOKEN=xxxxxxxxxxxxxxxxx
+</code></pre>
+<hr>
+<h2 id="🔧-F5-—-部署後端（Render）"><a href="#🔧-F5-—-部署後端（Render）" class="headerlink" title="🔧 F5 — 部署後端（Render）"></a>🔧 F5 — 部署後端（Render）</h2><ol>
+<li><p>前往 <a href="https://render.com/">Render</a></p>
+</li>
+<li><p>建立 <strong>New Web Service</strong></p>
+</li>
+<li><p>連結 GitHub repo → 選擇 <code>backend</code> 目錄</p>
+</li>
+<li><p>設定：</p>
+<ul>
+<li><strong>Build Command</strong>：<code>npm install</code></li>
+<li><strong>Start Command</strong>：<code>npm start</code></li>
+</ul>
+</li>
+<li><p>加入環境變數（在 Render → Environment）：</p>
+<pre><code>PORT=10000
+DB_HOST=...
+DB_USER=...
+DB_PASSWORD=...
+DB_NAME=...
+REDIS_URL=...
+REDIS_TOKEN=...
+LINE_CHANNEL_ACCESS_TOKEN=...
+LINE_CHANNEL_SECRET=...
+</code></pre>
+</li>
+<li><p>部署完成後會得到一個網址，例如：</p>
+<pre><code>https://line-order-backend.onrender.com
+</code></pre>
+</li>
+</ol>
+<p>✅ 這個網址就是你正式的 API 與 LINE Webhook 入口！</p>
+<hr>
+<h2 id="💻-F6-—-部署前端（Vercel）"><a href="#💻-F6-—-部署前端（Vercel）" class="headerlink" title="💻 F6 — 部署前端（Vercel）"></a>💻 F6 — 部署前端（Vercel）</h2><ol>
+<li><p>登入 <a href="https://vercel.com/">https://vercel.com</a></p>
+</li>
+<li><p>連結你的 GitHub 專案 → 選擇 <code>frontend</code> 資料夾</p>
+</li>
+<li><p>設定：</p>
+<ul>
+<li><strong>Framework</strong>：Vite</li>
+<li><strong>Build Command</strong>：<code>npm run build</code></li>
+<li><strong>Output Directory</strong>：<code>dist</code></li>
+</ul>
+</li>
+<li><p>環境變數（在 Vercel → Settings → Environment Variables）：</p>
+<pre><code>VITE_API_BASE_URL=https://line-order-backend.onrender.com
+</code></pre>
+</li>
+<li><p>部署完成後，你會得到一個網址，例如：</p>
+<pre><code>https://line-order-frontend.vercel.app
+</code></pre>
+</li>
+</ol>
+<hr>
+<h2 id="🔄-F7-—-啟用-LINE-Webhook（正式環境）"><a href="#🔄-F7-—-啟用-LINE-Webhook（正式環境）" class="headerlink" title="🔄 F7 — 啟用 LINE Webhook（正式環境）"></a>🔄 F7 — 啟用 LINE Webhook（正式環境）</h2><ol>
+<li><p>登入 <a href="https://developers.line.biz/">LINE Developers</a></p>
+</li>
+<li><p>打開你現有的 Messaging API bot</p>
+</li>
+<li><p>在 Webhook URL 欄位填入：</p>
+<pre><code>https://line-order-backend.onrender.com/api/webhook
+</code></pre>
+</li>
+<li><p>點「Verify」確認成功。</p>
+</li>
+<li><p>開啟「Use webhook」開關。</p>
+</li>
+</ol>
+<p>✅ 現在 LINE Bot 正式連上雲端 API！</p>
+<hr>
+<h2 id="🧩-F8-—-CI-CD-自動部署流程"><a href="#🧩-F8-—-CI-CD-自動部署流程" class="headerlink" title="🧩 F8 — CI&#x2F;CD 自動部署流程"></a>🧩 F8 — CI&#x2F;CD 自動部署流程</h2><p>每次你在 GitHub：</p>
+<pre><code class="bash">git add .
+git commit -m &quot;update order API&quot;
+git push origin main
+</code></pre>
+<p>Vercel（前端）與 Render（後端）都會自動重新建置最新版本。<br>你可以在 dashboard 上看到自動部署紀錄。</p>
+<hr>
+<h2 id="🧪-F9-—-測試與驗證"><a href="#🧪-F9-—-測試與驗證" class="headerlink" title="🧪 F9 — 測試與驗證"></a>🧪 F9 — 測試與驗證</h2><table>
+<thead>
+<tr>
+<th>測試項目</th>
+<th>預期結果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>在 LINE 聊天輸入「商品 1」</td>
+<td>Bot 回覆商品資訊</td>
+</tr>
+<tr>
+<td>在 LINE 輸入「購買 1」</td>
+<td>成功建立訂單，後台即時更新</td>
+</tr>
+<tr>
+<td>開啟前端網址（Vercel）</td>
+<td>顯示所有訂單</td>
+</tr>
+<tr>
+<td>修改訂單狀態</td>
+<td>Redis 快取同步更新</td>
+</tr>
+<tr>
+<td>手機版瀏覽</td>
+<td>介面 RWD、可操作</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="✅-F-階段成果"><a href="#✅-F-階段成果" class="headerlink" title="✅ F 階段成果"></a>✅ F 階段成果</h2><table>
+<thead>
+<tr>
+<th>模組</th>
+<th>狀態</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Render 後端</td>
+<td>✅ 已上線</td>
+</tr>
+<tr>
+<td>Vercel 前端</td>
+<td>✅ 已上線</td>
+</tr>
+<tr>
+<td>PlanetScale MySQL</td>
+<td>✅ 已雲端化</td>
+</tr>
+<tr>
+<td>Upstash Redis</td>
+<td>✅ 已整合</td>
+</tr>
+<tr>
+<td>LINE Bot Webhook</td>
+<td>✅ 可實際運作</td>
+</tr>
+<tr>
+<td>GitHub CI&#x2F;CD</td>
+<td>✅ Push 自動部署</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🚀-下一步（📒-G-階段預告）"><a href="#🚀-下一步（📒-G-階段預告）" class="headerlink" title="🚀 下一步（📒 G 階段預告）"></a>🚀 下一步（📒 G 階段預告）</h2><p>📒 <strong>G 階段 — 擴充與多平台版本（行動 App + 店家後台）</strong></p>
+<p>目標將包括：</p>
+<ul>
+<li>📱 PWA + Capacitor 手機 App 化</li>
+<li>🧾 店家後台登入／角色分權</li>
+<li>🛒 多商家架構（Marketplace 模式）</li>
+<li>🧠 AI 智慧客服（ChatGPT + LINE Bot）</li>
+</ul>
+<hr>
+<p>是否要我幫你繼續進入 📒 <strong>G 階段 — 擴充與多平台版本（行動 App + 店家後台）</strong>？</p>

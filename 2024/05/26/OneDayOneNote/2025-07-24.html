@@ -1,0 +1,80 @@
+<hr>
+<h2 id="title-2025-07-24-Line-訂單系統-NestJS-成本高-是什麼意思，成本會花在那裹？date-2025-11-17-20-49-57categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-24-Line-訂單系統-NestJS-成本高-是什麼意思，成本會花在那裹？"><a href="#title-2025-07-24-Line-訂單系統-NestJS-成本高-是什麼意思，成本會花在那裹？date-2025-11-17-20-49-57categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-24-Line-訂單系統-NestJS-成本高-是什麼意思，成本會花在那裹？" class="headerlink" title="title: 2025-07-24 Line 訂單系統- NestJS 成本高 是什麼意思，成本會花在那裹？date: 2025-11-17 20:49:57categories: OneDayOneNotetags:  [OneNote, Line訂單系統]description:   2025-07-24 Line 訂單系統- NestJS 成本高 是什麼意思，成本會花在那裹？"></a>title: 2025-07-24 Line 訂單系統- NestJS 成本高 是什麼意思，成本會花在那裹？<br>date: 2025-11-17 20:49:57<br>categories: OneDayOneNote<br>tags:  [OneNote, Line訂單系統]<br>description:   2025-07-24 Line 訂單系統- NestJS 成本高 是什麼意思，成本會花在那裹？</h2><h2 id="2025-07-24-Line-訂單系統-NestJS-成本高-是什麼意思，成本會花在那裹？"><a href="#2025-07-24-Line-訂單系統-NestJS-成本高-是什麼意思，成本會花在那裹？" class="headerlink" title="2025-07-24 Line 訂單系統- NestJS 成本高 是什麼意思，成本會花在那裹？"></a>2025-07-24 Line 訂單系統- NestJS 成本高 是什麼意思，成本會花在那裹？</h2><p>當別人說 <strong>「NestJS 成本比較高」</strong> 時，<br>真正的意思不是錢，而是：</p>
+<h1 id="👉-你需要投入的時間、精力與學習曲線比較高。"><a href="#👉-你需要投入的時間、精力與學習曲線比較高。" class="headerlink" title="👉 你需要投入的時間、精力與學習曲線比較高。"></a>👉 <strong>你需要投入的時間、精力與學習曲線比較高。</strong></h1><p>NestJS 本身是免費的（MIT License），成本不是金錢，是以下這些「開發成本」。</p>
+<hr>
+<h1 id="📌-NestJS-成本主要花在-3-大地方"><a href="#📌-NestJS-成本主要花在-3-大地方" class="headerlink" title="📌 NestJS 成本主要花在 3 大地方"></a>📌 NestJS 成本主要花在 3 大地方</h1><h1 id="1️⃣-學習成本（Learning-Cost）—-這是最大宗"><a href="#1️⃣-學習成本（Learning-Cost）—-這是最大宗" class="headerlink" title="1️⃣ 學習成本（Learning Cost）— 這是最大宗"></a>1️⃣ <strong>學習成本（Learning Cost）— 這是最大宗</strong></h1><p>NestJS 不是寫一個 <code>server.js</code> 就能跑的框架，它有：</p>
+<ul>
+<li>Module（模組化概念）</li>
+<li>Controller</li>
+<li>Service</li>
+<li>Provider &#x2F; DI 注入</li>
+<li>Decorator 語法</li>
+<li>Middleware &#x2F; Guard &#x2F; Pipe &#x2F; Filter</li>
+<li>TypeORM &#x2F; Prisma 整合</li>
+<li>多層架構（clean architecture 風格）</li>
+</ul>
+<p>對「沒有接觸過大型後端架構的人」來說：</p>
+<p>✔ 光了解 DI<br>✔ 就比 Express 難上 5 倍<br>✔ 知道每個檔案應該放哪裡<br>✔ 又比 Koa、Express 需要更多概念</p>
+<p><strong>所以 NestJS 看起來很美，但剛開始寫會卡非常久。</strong></p>
+<hr>
+<h1 id="2️⃣-初期開發成本（Development-Cost）"><a href="#2️⃣-初期開發成本（Development-Cost）" class="headerlink" title="2️⃣ 初期開發成本（Development Cost）"></a>2️⃣ <strong>初期開發成本（Development Cost）</strong></h1><p>Express：<br>你可以 10 分鐘把 API 寫好。</p>
+<p>NestJS：<br>你可能要：</p>
+<ul>
+<li>建 module</li>
+<li>建 controller</li>
+<li>建 service</li>
+<li>DI 注入</li>
+<li>DTO 加 validation</li>
+<li>Service 不能直接回應，要 return 給 controller</li>
+<li>還要寫 interface 或 entity</li>
+</ul>
+<p>等你熟悉之後會很快，但<strong>初期超慢</strong>。</p>
+<p>像這樣架構：</p>
+<pre><code>products/
+ ├── products.module.ts
+ ├── products.controller.ts
+ ├── products.service.ts
+ ├── dto/create-product.dto.ts
+ └── entities/product.entity.ts
+</code></pre>
+<p>你要寫比 Express 多一倍以上的檔案。</p>
+<p>➡ <strong>這就是「開發成本」比較高</strong>。</p>
+<hr>
+<h1 id="3️⃣-專案維護成本（Maintenance-Cost）"><a href="#3️⃣-專案維護成本（Maintenance-Cost）" class="headerlink" title="3️⃣ 專案維護成本（Maintenance Cost）"></a>3️⃣ <strong>專案維護成本（Maintenance Cost）</strong></h1><p>這不是說 NestJS 難維護。</p>
+<p>相反，它的架構非常好維護。</p>
+<p>但它：</p>
+<ul>
+<li>多檔案</li>
+<li>多層抽象</li>
+<li>嚴謹</li>
+<li>大型專案才顯示優勢</li>
+</ul>
+<p>如果你只是做小專案（像簡單 api + 顯示資料），<br>NestJS 會顯得比較笨重、有機槍打蚊子的感覺。</p>
+<hr>
+<h1 id="📌-那為什麼企業願意承擔-NestJS-成本？"><a href="#📌-那為什麼企業願意承擔-NestJS-成本？" class="headerlink" title="📌 那為什麼企業願意承擔 NestJS 成本？"></a>📌 那為什麼企業願意承擔 NestJS 成本？</h1><p>因為企業看的是：</p>
+<ul>
+<li>10 個人一起開發 → 統一架構</li>
+<li>100 個 API → 模組化</li>
+<li>長期維護 5–10 年 → 清晰</li>
+<li>減少爛 code → 架構強制乾淨</li>
+<li>新人進來很快懂 → 文件完整</li>
+</ul>
+<p><strong>大量人力 × 長期專案</strong><br>NestJS 的優勢遠大於成本。</p>
+<hr>
+<h1 id="📌-但你是單人開發，NestJS-成本會在哪裡？"><a href="#📌-但你是單人開發，NestJS-成本會在哪裡？" class="headerlink" title="📌 但你是單人開發，NestJS 成本會在哪裡？"></a>📌 但你是單人開發，NestJS 成本會在哪裡？</h1><p>✔ 初期學習：時間成本<br>✔ 寫一個 API：需要寫更多檔案（開發成本）<br>✔ 建立資料夾結構：需要學習專案架構（認知成本）</p>
+<p>但你的需求是：</p>
+<blockquote>
+<p>你想慢慢堆積木<br>想打造自己的藍圖<br>時程悠閒、可以慢慢寫<br>想做一個能長大的系統（訂單 + 後台 + AI）</p>
+</blockquote>
+<p>所以 <strong>NestJS 的成本是你願意承擔的，而且最終會回收。</strong></p>
+<hr>
+<h1 id="📌-最最簡單的一句話："><a href="#📌-最最簡單的一句話：" class="headerlink" title="📌 最最簡單的一句話："></a>📌 最最簡單的一句話：</h1><p><strong>NestJS 成本高 &#x3D; 初期需要多花時間，但長期省掉你大量維護與重寫的時間。</strong></p>
+<p>就像蓋房子：</p>
+<ul>
+<li>Express：臨時工寮</li>
+<li>NestJS：地基、鋼骨、水電全部標準化的房子</li>
+</ul>
+<p>初期蓋得慢，但後期不用重做。</p>
+<hr>
+<h1 id="如果你願意，我可以帶你："><a href="#如果你願意，我可以帶你：" class="headerlink" title="如果你願意，我可以帶你："></a>如果你願意，我可以帶你：</h1><p>✔ 寫第一個 NestJS module<br>✔ 用超簡單、適合你的方式解釋 module &#x2F; controller &#x2F; service<br>✔ 一步一步建立你的 LINE 訂單系統骨架</p>
+<p>你想開始“第一塊積木”嗎？</p>

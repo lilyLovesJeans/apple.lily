@@ -1,0 +1,43 @@
+<hr>
+<h2 id="title-2025-06-28-Line-訂單系統-階段Ddate-2025-11-12-21-28-49categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-06-28-Line-訂單系統-階段D"><a href="#title-2025-06-28-Line-訂單系統-階段Ddate-2025-11-12-21-28-49categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-06-28-Line-訂單系統-階段D" class="headerlink" title="title: 2025-06-28 Line 訂單系統-階段Ddate: 2025-11-12 21:28:49categories: OneDayOneNotetags:  [OneNote, Line訂單系統]description:   2025-06-28 Line 訂單系統-階段D"></a>title: 2025-06-28 Line 訂單系統-階段D<br>date: 2025-11-12 21:28:49<br>categories: OneDayOneNote<br>tags:  [OneNote, Line訂單系統]<br>description:   2025-06-28 Line 訂單系統-階段D</h2><h2 id="2025-06-28-Line-訂單系統-階段D"><a href="#2025-06-28-Line-訂單系統-階段D" class="headerlink" title="2025-06-28 Line 訂單系統-階段D"></a>2025-06-28 Line 訂單系統-階段D</h2><h2 id="🅳-階段-D：Vue3-管理後台"><a href="#🅳-階段-D：Vue3-管理後台" class="headerlink" title="🅳 階段 D：Vue3 管理後台"></a>🅳 階段 D：Vue3 管理後台</h2><h3 id="🎯-目標"><a href="#🎯-目標" class="headerlink" title="🎯 目標"></a>🎯 目標</h3><p>建立管理者頁面，可新增商品、查看訂單。</p>
+<hr>
+<h3 id="🔧-步驟"><a href="#🔧-步驟" class="headerlink" title="🔧 步驟"></a>🔧 步驟</h3><h4 id="1️⃣-安裝-Element-Plus"><a href="#1️⃣-安裝-Element-Plus" class="headerlink" title="1️⃣ 安裝 Element Plus"></a>1️⃣ 安裝 Element Plus</h4><pre><code class="bash">cd frontend
+npm install element-plus
+</code></pre>
+<h4 id="2️⃣-在-src-main-js-加入"><a href="#2️⃣-在-src-main-js-加入" class="headerlink" title="2️⃣ 在 src/main.js 加入"></a>2️⃣ 在 <code>src/main.js</code> 加入</h4><pre><code class="js">import ElementPlus from &#39;element-plus&#39;
+import &#39;element-plus/dist/index.css&#39;
+app.use(ElementPlus)
+</code></pre>
+<hr>
+<h4 id="3️⃣-建立頁面（src-views-Products-vue）"><a href="#3️⃣-建立頁面（src-views-Products-vue）" class="headerlink" title="3️⃣ 建立頁面（src&#x2F;views&#x2F;Products.vue）"></a>3️⃣ 建立頁面（src&#x2F;views&#x2F;Products.vue）</h4><pre><code class="vue">&lt;template&gt;
+  &lt;div&gt;
+    &lt;h2&gt;商品管理&lt;/h2&gt;
+    &lt;el-table :data=&quot;products&quot;&gt;
+      &lt;el-table-column prop=&quot;name&quot; label=&quot;名稱&quot; /&gt;
+      &lt;el-table-column prop=&quot;price&quot; label=&quot;價格&quot; /&gt;
+    &lt;/el-table&gt;
+    &lt;el-button @click=&quot;loadProducts&quot;&gt;重新整理&lt;/el-button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { ref, onMounted } from &#39;vue&#39;
+import axios from &#39;axios&#39;
+
+const products = ref([])
+const loadProducts = async () =&gt; {
+  const res = await axios.get(&#39;http://localhost:3000/api/products&#39;)
+  products.value = res.data
+}
+
+onMounted(loadProducts)
+&lt;/script&gt;
+</code></pre>
+<hr>
+<h3 id="🧪-Checkpoint"><a href="#🧪-Checkpoint" class="headerlink" title="🧪 Checkpoint"></a>🧪 Checkpoint</h3><p>✅ 管理後台能顯示商品資料<br>✅ 新增商品後可即時顯示</p>
+<hr>
+<h3 id="💡-延伸"><a href="#💡-延伸" class="headerlink" title="💡 延伸"></a>💡 延伸</h3><ul>
+<li>增加登入驗證（簡單 JWT）</li>
+<li>增加訂單頁面</li>
+</ul>
+<hr>

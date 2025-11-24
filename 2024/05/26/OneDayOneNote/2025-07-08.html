@@ -1,0 +1,394 @@
+<hr>
+<h2 id="title-2025-07-08-Line-訂單系統-C-階段程式範例date-2025-11-12-23-25-03categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-08-Line-訂單系統-C-階段程式範例"><a href="#title-2025-07-08-Line-訂單系統-C-階段程式範例date-2025-11-12-23-25-03categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-08-Line-訂單系統-C-階段程式範例" class="headerlink" title="title: 2025-07-08 Line 訂單系統-C 階段程式範例date: 2025-11-12 23:25:03categories: OneDayOneNotetags:  [OneNote, Line訂單系統]description:  2025-07-08 Line 訂單系統-C 階段程式範例"></a>title: 2025-07-08 Line 訂單系統-C 階段程式範例<br>date: 2025-11-12 23:25:03<br>categories: OneDayOneNote<br>tags:  [OneNote, Line訂單系統]<br>description:  2025-07-08 Line 訂單系統-C 階段程式範例</h2><h2 id="2025-07-08-Line-訂單系統-C-階段程式範例"><a href="#2025-07-08-Line-訂單系統-C-階段程式範例" class="headerlink" title="2025-07-08 Line 訂單系統-C 階段程式範例"></a>2025-07-08 Line 訂單系統-C 階段程式範例</h2><p>這三份檔案，設計為<strong>可以直接放進你的現有 LINE + Vue 後台專案中執行</strong>：</p>
+<hr>
+<h2 id="📁-目錄結構（放置說明）"><a href="#📁-目錄結構（放置說明）" class="headerlink" title="📁 目錄結構（放置說明）"></a>📁 目錄結構（放置說明）</h2><pre><code>project-root/
+├─ backend/
+│  ├─ routes/
+│  │  ├─ line.js       ← (A) LINE webhook + 訂單建立整合
+│  │  ├─ orders.js     ← (B) 訂單 REST API（含通知功能）
+│  └─ db/
+│     └─ seed_products.sql ← (C) 商品測試資料
+│
+└─ frontend/
+   └─ src/
+      └─ views/
+         └─ Orders.vue  ← (D) Vue 後台訂單頁
+</code></pre>
+<hr>
+<h1 id="🧩-A-backend-routes-line-js"><a href="#🧩-A-backend-routes-line-js" class="headerlink" title="🧩 (A) backend/routes/line.js"></a>🧩 (A) <code>backend/routes/line.js</code></h1><p>👉 <strong>功能</strong>：<br>處理「我要點餐」文字訊息、回傳商品 Flex、接收 postback 購買事件、建立訂單、通知管理者。</p>
+<pre><code class="js">// backend/routes/line.js
+import express from &quot;express&quot;;
+import { middleware, Client } from &quot;@line/bot-sdk&quot;;
+import dotenv from &quot;dotenv&quot;;
+import { pool } from &quot;../db.js&quot;;
+
+dotenv.config();
+
+const router = express.Router();
+
+const config = {
+  channelAccessToken: process.env.LINE_CHANNEL_ACCESS_TOKEN,
+  channelSecret: process.env.LINE_CHANNEL_SECRET,
+};
+const client = new Client(config);
+
+// --- LINE Webhook 主入口 ---
+router.post(&quot;/webhook&quot;, middleware(config), async (req, res) =&gt; {
+  try {
+    const events = req.body.events || [];
+
+    for (const event of events) {
+      // 🎯 1️⃣ 使用者傳文字：我要點餐
+      if (event.type === &quot;message&quot; &amp;&amp; event.message.type === &quot;text&quot;) {
+        const text = event.message.text.trim();
+        if (text === &quot;我要點餐&quot; || text === &quot;點餐&quot;) {
+          const [products] = await pool.query(
+            &quot;SELECT id, name, price, description, image_url FROM products LIMIT 10&quot;
+          );
+
+          const bubbles = products.map((p) =&gt; ({
+            type: &quot;bubble&quot;,
+            hero: p.image_url
+              ? {
+                  type: &quot;image&quot;,
+                  url: p.image_url,
+                  size: &quot;full&quot;,
+                  aspectRatio: &quot;20:13&quot;,
+                  aspectMode: &quot;cover&quot;,
+                }
+              : undefined,
+            body: {
+              type: &quot;box&quot;,
+              layout: &quot;vertical&quot;,
+              contents: [
+                { type: &quot;text&quot;, text: p.name, weight: &quot;bold&quot;, size: &quot;lg&quot; },
+                { type: &quot;text&quot;, text: `價格：$${p.price}`, size: &quot;sm&quot; },
+                { type: &quot;text&quot;, text: p.description || &quot;&quot;, size: &quot;sm&quot;, wrap: true },
+              ],
+            },
+            footer: {
+              type: &quot;box&quot;,
+              layout: &quot;vertical&quot;,
+              contents: [
+                {
+                  type: &quot;button&quot;,
+                  style: &quot;primary&quot;,
+                  action: {
+                    type: &quot;postback&quot;,
+                    label: &quot;購買&quot;,
+                    data: `action=buy&amp;productId=${p.id}&amp;qty=1`,
+                  },
+                },
+              ],
+            },
+          }));
+
+          const flex = {
+            type: &quot;carousel&quot;,
+            contents: bubbles.length
+              ? bubbles
+              : [
+                  {
+                    type: &quot;bubble&quot;,
+                    body: {
+                      type: &quot;box&quot;,
+                      layout: &quot;vertical&quot;,
+                      contents: [{ type: &quot;text&quot;, text: &quot;目前無商品&quot; }],
+                    },
+                  },
+                ],
+          };
+
+          await client.replyMessage(event.replyToken, {
+            type: &quot;flex&quot;,
+            altText: &quot;商品列表&quot;,
+            contents: flex,
+          });
+          continue;
+        }
+
+        // 其他訊息回覆
+        await client.replyMessage(event.replyToken, {
+          type: &quot;text&quot;,
+          text: &quot;請輸入「我要點餐」開始下單流程。&quot;,
+        });
+      }
+
+      // 🎯 2️⃣ postback event（購買商品）
+      else if (event.type === &quot;postback&quot;) {
+        const qs = new URLSearchParams(event.postback.data);
+        const action = qs.get(&quot;action&quot;);
+        if (action === &quot;buy&quot;) {
+          const productId = parseInt(qs.get(&quot;productId&quot;));
+          const qty = parseInt(qs.get(&quot;qty&quot;) || &quot;1&quot;);
+          const userId = event.source.userId;
+
+          const [[prod]] = await pool.query(
+            &quot;SELECT id, name, price FROM products WHERE id = ?&quot;,
+            [productId]
+          );
+          if (!prod) {
+            await client.replyMessage(event.replyToken, {
+              type: &quot;text&quot;,
+              text: &quot;找不到該商品，請稍後再試。&quot;,
+            });
+            continue;
+          }
+
+          const conn = await pool.getConnection();
+          try {
+            await conn.beginTransaction();
+
+            const subtotal = Number(prod.price) * qty;
+            const orderNo = `L${Date.now().toString().slice(-6)}`;
+
+            const [r] = await conn.query(
+              &quot;INSERT INTO orders (order_no, user_line_id, total_price) VALUES (?, ?, ?)&quot;,
+              [orderNo, userId, subtotal]
+            );
+            const orderId = r.insertId;
+
+            await conn.query(
+              &quot;INSERT INTO order_items (order_id, product_id, product_name, qty, unit_price, subtotal) VALUES (?, ?, ?, ?, ?, ?)&quot;,
+              [orderId, prod.id, prod.name, qty, prod.price, subtotal]
+            );
+
+            await conn.commit();
+
+            await client.replyMessage(event.replyToken, {
+              type: &quot;text&quot;,
+              text: `✅ 已建立訂單\n編號：${orderNo}\n商品：${prod.name}\n數量：${qty}\n金額：$${subtotal}`,
+            });
+
+            // 通知管理者
+            if (process.env.ADMIN_LINE_ID) {
+              await client.pushMessage(process.env.ADMIN_LINE_ID, {
+                type: &quot;text&quot;,
+                text: `📦 新訂單：${orderNo}\n商品：${prod.name} x${qty}`,
+              });
+            }
+          } catch (err) {
+            await conn.rollback();
+            console.error(&quot;Create order failed:&quot;, err);
+            await client.replyMessage(event.replyToken, {
+              type: &quot;text&quot;,
+              text: &quot;建立訂單失敗，請稍後再試。&quot;,
+            });
+          } finally {
+            conn.release();
+          }
+        }
+      }
+    }
+
+    res.status(200).send(&quot;OK&quot;);
+  } catch (err) {
+    console.error(&quot;Webhook error:&quot;, err);
+    res.status(500).end();
+  }
+});
+
+export default router;
+</code></pre>
+<hr>
+<h1 id="🧩-B-backend-routes-orders-js"><a href="#🧩-B-backend-routes-orders-js" class="headerlink" title="🧩 (B) backend/routes/orders.js"></a>🧩 (B) <code>backend/routes/orders.js</code></h1><p>👉 <strong>功能</strong>：<br>提供 REST API 給 Vue 後台使用（查詢訂單、修改狀態、通知買家）。</p>
+<pre><code class="js">// backend/routes/orders.js
+import express from &quot;express&quot;;
+import { pool } from &quot;../db.js&quot;;
+import { Client } from &quot;@line/bot-sdk&quot;;
+import dotenv from &quot;dotenv&quot;;
+dotenv.config();
+
+const router = express.Router();
+
+const client = new Client({
+  channelAccessToken: process.env.LINE_CHANNEL_ACCESS_TOKEN,
+});
+
+// 查詢所有訂單（含明細）
+router.get(&quot;/&quot;, async (req, res) =&gt; {
+  try {
+    const [orders] = await pool.query(`
+      SELECT o.*, (
+        SELECT JSON_ARRAYAGG(
+          JSON_OBJECT(
+            &#39;product_id&#39;, oi.product_id,
+            &#39;product_name&#39;, oi.product_name,
+            &#39;qty&#39;, oi.qty,
+            &#39;unit_price&#39;, oi.unit_price,
+            &#39;subtotal&#39;, oi.subtotal
+          )
+        )
+        FROM order_items oi WHERE oi.order_id = o.id
+      ) AS items
+      FROM orders o
+      ORDER BY o.id DESC
+    `);
+    res.json(orders);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: &quot;Server error&quot; });
+  }
+});
+
+// 修改訂單狀態
+router.put(&quot;/:id/status&quot;, async (req, res) =&gt; {
+  const id = req.params.id;
+  const { status } = req.body;
+  try {
+    await pool.query(&quot;UPDATE orders SET status = ? WHERE id = ?&quot;, [status, id]);
+    res.json({ message: &quot;狀態已更新&quot; });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: &quot;更新失敗&quot; });
+  }
+});
+
+// 通知買家
+router.post(&quot;/:id/notify&quot;, async (req, res) =&gt; {
+  const id = req.params.id;
+  try {
+    const [[order]] = await pool.query(&quot;SELECT * FROM orders WHERE id = ?&quot;, [id]);
+    if (!order || !order.user_line_id)
+      return res.status(404).json({ error: &quot;找不到訂單或用戶&quot; });
+
+    const text = `您的訂單 ${order.order_no} 狀態更新為：${order.status}`;
+    await client.pushMessage(order.user_line_id, { type: &quot;text&quot;, text });
+    res.json({ message: &quot;已通知用戶&quot; });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: &quot;通知失敗&quot; });
+  }
+});
+
+export default router;
+</code></pre>
+<hr>
+<h1 id="🧩-C-backend-db-seed-products-sql"><a href="#🧩-C-backend-db-seed-products-sql" class="headerlink" title="🧩 (C) backend/db/seed_products.sql"></a>🧩 (C) <code>backend/db/seed_products.sql</code></h1><p>👉 <strong>功能</strong>：<br>初始化測試用商品資料。</p>
+<pre><code class="sql">USE line_order_db;
+
+INSERT INTO products (name, price, description, image_url, stock)
+VALUES
+(&#39;紅豆麵包&#39;, 35.00, &#39;手作紅豆餡，每日新鮮出爐&#39;, &#39;https://i.imgur.com/LK8X4FJ.jpg&#39;, 20),
+(&#39;奶酥麵包&#39;, 30.00, &#39;香濃奶酥，入口即化&#39;, &#39;https://i.imgur.com/WR5qI1S.jpg&#39;, 20),
+(&#39;抹茶波蘿&#39;, 40.00, &#39;抹茶香氣濃郁，酥皮脆口&#39;, &#39;https://i.imgur.com/T5Y8Msv.jpg&#39;, 20),
+(&#39;可可貝果&#39;, 45.00, &#39;低糖健康可可貝果&#39;, &#39;https://i.imgur.com/W4IY1w1.jpg&#39;, 15);
+</code></pre>
+<hr>
+<h1 id="🧩-D-frontend-src-views-Orders-vue"><a href="#🧩-D-frontend-src-views-Orders-vue" class="headerlink" title="🧩 (D) frontend/src/views/Orders.vue"></a>🧩 (D) <code>frontend/src/views/Orders.vue</code></h1><p>👉 <strong>功能</strong>：<br>Vue 後台管理訂單，可顯示明細、修改狀態、通知買家。</p>
+<pre><code class="vue">&lt;template&gt;
+  &lt;div class=&quot;p-6&quot;&gt;
+    &lt;h2 class=&quot;text-xl font-bold mb-4&quot;&gt;📦 訂單管理&lt;/h2&gt;
+    &lt;table border=&quot;1&quot; cellpadding=&quot;8&quot;&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th&gt;編號&lt;/th&gt;
+          &lt;th&gt;總價&lt;/th&gt;
+          &lt;th&gt;狀態&lt;/th&gt;
+          &lt;th&gt;明細&lt;/th&gt;
+          &lt;th&gt;操作&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr v-for=&quot;o in orders&quot; :key=&quot;o.id&quot;&gt;
+          &lt;td&gt;{{ o.order_no }}&lt;/td&gt;
+          &lt;td&gt;${{ o.total_price }}&lt;/td&gt;
+          &lt;td&gt;{{ o.status }}&lt;/td&gt;
+          &lt;td&gt;
+            &lt;ul&gt;
+              &lt;li
+                v-for=&quot;it in JSON.parse(o.items || &#39;[]&#39;)&quot;
+                :key=&quot;it.product_id&quot;
+              &gt;
+                {{ it.product_name }} × {{ it.qty }} = ${{ it.subtotal }}
+              &lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/td&gt;
+          &lt;td&gt;
+            &lt;select v-model=&quot;o.newStatus&quot;&gt;
+              &lt;option&gt;pending&lt;/option&gt;
+              &lt;option&gt;confirmed&lt;/option&gt;
+              &lt;option&gt;paid&lt;/option&gt;
+              &lt;option&gt;shipped&lt;/option&gt;
+              &lt;option&gt;completed&lt;/option&gt;
+              &lt;option&gt;cancelled&lt;/option&gt;
+            &lt;/select&gt;
+            &lt;button @click=&quot;updateStatus(o)&quot; class=&quot;ml-2&quot;&gt;更新&lt;/button&gt;
+            &lt;button @click=&quot;notifyUser(o.id)&quot; class=&quot;ml-2&quot;&gt;通知&lt;/button&gt;
+          &lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { ref, onMounted } from &quot;vue&quot;;
+import axios from &quot;axios&quot;;
+
+const api = &quot;http://localhost:3000/orders&quot;;
+const orders = ref([]);
+
+async function loadOrders() {
+  const res = await axios.get(api);
+  orders.value = res.data.map((o) =&gt; ({
+    ...o,
+    newStatus: o.status,
+  }));
+}
+
+async function updateStatus(o) {
+  await axios.put(`${api}/${o.id}/status`, { status: o.newStatus });
+  await loadOrders();
+}
+
+async function notifyUser(id) {
+  await axios.post(`${api}/${id}/notify`);
+  alert(&quot;已通知用戶！&quot;);
+}
+
+onMounted(() =&gt; {
+  loadOrders();
+  setInterval(loadOrders, 10000);
+});
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th {
+  background: #f0f0f0;
+}
+button {
+  background: #4caf50;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+button:hover {
+  background: #45a049;
+}
+&lt;/style&gt;
+</code></pre>
+<hr>
+<h1 id="✅-測試步驟快速摘要"><a href="#✅-測試步驟快速摘要" class="headerlink" title="✅ 測試步驟快速摘要"></a>✅ 測試步驟快速摘要</h1><ol>
+<li><p>匯入 <code>seed_products.sql</code></p>
+<pre><code class="bash">mysql -u root -p line_order_db &lt; backend/db/seed_products.sql
+</code></pre>
+</li>
+<li><p>啟動後端 + 前端：</p>
+<pre><code class="bash">cd backend
+npm run dev
+ngrok http 3000   # 把 ngrok URL 填到 LINE webhook
+</code></pre>
+</li>
+<li><p>手機 LINE 輸入：「我要點餐」<br>→ 會出現商品列表<br>→ 按「購買」後自動在後台 Orders 出現新訂單。</p>
+</li>
+<li><p>打開前端 Orders.vue → 更新狀態 → 點「通知」 → LINE 用戶會收到推播。</p>
+</li>
+</ol>
+<hr>
+<p>是否要我幫你：<br>✅ 生成一份完整 <code>.env 範例 + db_init.sql</code><br>（讓你直接可在 Replit 或本機初始化 DB + LINE key）？</p>

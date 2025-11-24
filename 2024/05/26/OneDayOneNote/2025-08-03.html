@@ -1,0 +1,154 @@
+<hr>
+<h2 id="title-2025-08-03-Line-訂單系統-LINE-AI-訂單系統-的「完整流程date-2025-11-22-21-28-05categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-08-03-Line-訂單系統-LINE-AI-訂單系統-的「完整流程"><a href="#title-2025-08-03-Line-訂單系統-LINE-AI-訂單系統-的「完整流程date-2025-11-22-21-28-05categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-08-03-Line-訂單系統-LINE-AI-訂單系統-的「完整流程" class="headerlink" title="title: 2025-08-03 Line 訂單系統- LINE + AI 訂單系統 的「完整流程date: 2025-11-22 21:28:05categories: OneDayOneNotetags:  [OneNote, Line訂單系統]description:  2025-08-03 Line 訂單系統- LINE + AI 訂單系統 的「完整流程"></a>title: 2025-08-03 Line 訂單系統- LINE + AI 訂單系統 的「完整流程<br>date: 2025-11-22 21:28:05<br>categories: OneDayOneNote<br>tags:  [OneNote, Line訂單系統]<br>description:  2025-08-03 Line 訂單系統- LINE + AI 訂單系統 的「完整流程</h2><h2 id="2025-08-03-Line-訂單系統-LINE-AI-訂單系統-的「完整流程"><a href="#2025-08-03-Line-訂單系統-LINE-AI-訂單系統-的「完整流程" class="headerlink" title="2025-08-03 Line 訂單系統- LINE + AI 訂單系統 的「完整流程"></a>2025-08-03 Line 訂單系統- LINE + AI 訂單系統 的「完整流程</h2><p> <strong>LINE + AI 訂單系統</strong> 的「完整流程（從使用者輸入到後端處理，再到前端顯示）」整理清楚給你，並說明為什麼先前重點放在 webhook&#x2F;後端，以及<strong>前端輸入畫面應該長什麼樣子、何時加入</strong>。最後我會給你要做的優先順序與該實作的 UI 列表、API 範本、即時更新策略。</p>
+<p>如果想直接看我幫你畫好的<strong>後端流程圖</strong>與 <strong>後台 wireframe（草圖）</strong>，可以打開：</p>
+<ul>
+<li>流程圖（flowchart）: <code>/mnt/data/A_flowchart-style_digital_diagram_illustrates_a_LI.png</code></li>
+<li>後台 wireframe: <code>/mnt/data/A_wireframe_of_an_admin_dashboard_web_page_showcas.png</code></li>
+</ul>
+<hr>
+<h1 id="系統總覽（高階流程）"><a href="#系統總覽（高階流程）" class="headerlink" title="# 系統總覽（高階流程）"></a># 系統總覽（高階流程）</h1><p>使用者可以透過兩種主要入口下單：</p>
+<ol>
+<li><strong>LINE 對話（主要／預設）</strong> — 使用自然語言或按鈕（Flex Message &#x2F; Postback）下單</li>
+<li><strong>Web &#x2F; PWA 表單（次要／備援）</strong> — 傳統按表單下單，適合桌機或行動網頁</li>
+</ol>
+<p>整個系統的資料流（簡化）：</p>
+<pre><code>User (LINE / Web) 
+   ↓
+Ingress (LINE Webhook / Frontend HTTP)
+   ↓
+API Gateway / Webhook Receiver (stateless)
+   ↓
+Validation &amp; Auth
+   ↓
+Command Router → push event to Queue (Bull/Redis) OR handle sync
+   ↓
+Worker (create order, update inventory, call payment...)
+   ↓
+Database (MySQL)  ←→  Cache (Redis)
+   ↓
+Notification Service (LINE push / email / web socket)
+   ↓
+Admin Frontend (Vue3) ←— subscriptions (WebSocket / SSE / Polling)
+</code></pre>
+<hr>
+<h1 id="為什麼先前看起來沒「前端輸入畫面」？"><a href="#為什麼先前看起來沒「前端輸入畫面」？" class="headerlink" title="# 為什麼先前看起來沒「前端輸入畫面」？"></a># 為什麼先前看起來沒「前端輸入畫面」？</h1><p>因為我把第一個優先目標放在<strong>把 LINE 對話（Webhook）→ 後端 → DB → 後台 管道建立起來</strong>：</p>
+<ul>
+<li>LINE 是你系統的<strong>主要顧客入口</strong>（用戶習慣在 LINE 下單），因此先做 bot 流程能最快驗證核心流程（下單、建立訂單、通知）。</li>
+<li>後端的正確性（idempotency、交易、通知）比表單 UI 更重要——若後端沒穩定，前端做再漂亮也沒用。<br>所以我們先把「邏輯、API、資料模型、通知、即時更新」做穩，接著再做前端輸入頁面（PWA&#x2F;桌機表單）——這樣做能把錯誤面降到最低。</li>
+</ul>
+<hr>
+<h1 id="客戶端（輸入）選項：比較與-UX-建議"><a href="#客戶端（輸入）選項：比較與-UX-建議" class="headerlink" title="# 客戶端（輸入）選項：比較與 UX 建議"></a># 客戶端（輸入）選項：比較與 UX 建議</h1><h3 id="A-LINE-聊天-Flex-Postback（對話式-UI）"><a href="#A-LINE-聊天-Flex-Postback（對話式-UI）" class="headerlink" title="A. LINE 聊天 &#x2F; Flex &#x2F; Postback（對話式 UI）"></a>A. LINE 聊天 &#x2F; Flex &#x2F; Postback（對話式 UI）</h3><ul>
+<li>優點：使用者習慣，介面簡潔，互動式引導（按鈕、快速回覆）</li>
+<li>適用場景：快速點餐、固定選單、促銷</li>
+<li>輸入方式：關鍵字（「商品 1」）或按鈕（Flex — 購買 &#x2F; 加入購物車 &#x2F; 確認）</li>
+<li>注意：要有去重與確認步驟（例如：二次確認付款或數量）</li>
+</ul>
+<h3 id="B-Web-PWA-表單（傳統表單）"><a href="#B-Web-PWA-表單（傳統表單）" class="headerlink" title="B. Web &#x2F; PWA 表單（傳統表單）"></a>B. Web &#x2F; PWA 表單（傳統表單）</h3><ul>
+<li>優點：可展示更多資訊（商品圖、選項、折扣碼、送貨地址）</li>
+<li>適用場景：較複雜的訂單、多項選擇、桌機後台使用</li>
+<li>輸入方式：表單欄位、下拉、日曆、地點輸入</li>
+<li>注意：要把表單呼叫後端 API（POST &#x2F;api&#x2F;orders），並做良好錯誤處理</li>
+</ul>
+<h3 id="C-管理者後台（Vue3）"><a href="#C-管理者後台（Vue3）" class="headerlink" title="C. 管理者後台（Vue3）"></a>C. 管理者後台（Vue3）</h3><ul>
+<li>功能：商品管理、訂單查詢、訂單狀態更新、即時通知發送、報表</li>
+<li>輸入方式：管理 CRUD 表單、狀態下拉、搜尋、篩選</li>
+</ul>
+<hr>
+<h1 id="建議的具體「前端輸入畫面清單」"><a href="#建議的具體「前端輸入畫面清單」" class="headerlink" title="# 建議的具體「前端輸入畫面清單」"></a># 建議的具體「前端輸入畫面清單」</h1><p>（實作優先順序與必要欄位）</p>
+<h2 id="1-顧客訂單頁（PWA）-—-基本版（優先度：中）"><a href="#1-顧客訂單頁（PWA）-—-基本版（優先度：中）" class="headerlink" title="1. 顧客訂單頁（PWA） — 基本版（優先度：中）"></a>1. <strong>顧客訂單頁（PWA）</strong> — 基本版（優先度：中）</h2><ul>
+<li>欄位：商品清單（選擇數量）→ 購物車 → 姓名&#x2F;電話（或透過 LINE 綁定）→ 取貨／外送選項 → 下單按鈕</li>
+<li>API：GET &#x2F;api&#x2F;products、POST &#x2F;api&#x2F;orders</li>
+<li>UX：手機優先，加入 Loading、成功提示、錯誤提示</li>
+</ul>
+<h2 id="2-LINE-下單互動設計-—-已設計，需再優化"><a href="#2-LINE-下單互動設計-—-已設計，需再優化" class="headerlink" title="2. LINE 下單互動設計 — (已設計，需再優化)"></a>2. <strong>LINE 下單互動設計</strong> — (已設計，需再優化)</h2><ul>
+<li>文字指令：<code>商品 1</code>、<code>購買 1</code>、<code>購物車</code>、<code>結帳</code></li>
+<li>Flex Card：商品資訊 + 購買按鈕（postback 帶 productId, qty）</li>
+<li>若商品選項複雜，加入多步驟對話（Bot 問：數量？口味？）</li>
+</ul>
+<h2 id="3-管理者後台-—-訂單列表（Vue3）-—-優先度：高"><a href="#3-管理者後台-—-訂單列表（Vue3）-—-優先度：高" class="headerlink" title="3. 管理者後台 — 訂單列表（Vue3） — (優先度：高)"></a>3. <strong>管理者後台 — 訂單列表（Vue3）</strong> — (優先度：高)</h2><ul>
+<li>欄位：訂單編號、客戶、商品、總額、狀態、下單時間、通知按鈕</li>
+<li>操作：改狀態（下拉）→ 自動 push LINE 通知 &#x2F; WebSocket 推播</li>
+</ul>
+<h2 id="4-管理者後台-—-商品管理（Vue3）"><a href="#4-管理者後台-—-商品管理（Vue3）" class="headerlink" title="4. 管理者後台 — 商品管理（Vue3）"></a>4. <strong>管理者後台 — 商品管理（Vue3）</strong></h2><ul>
+<li>CRUD 表單（name, price, stock, image URL, category）</li>
+<li>API：GET&#x2F;POST&#x2F;PATCH&#x2F;DELETE &#x2F;api&#x2F;products</li>
+</ul>
+<h2 id="5-訂單詳情頁-出貨管理-報表（後期）"><a href="#5-訂單詳情頁-出貨管理-報表（後期）" class="headerlink" title="5. 訂單詳情頁 &#x2F; 出貨管理 &#x2F; 報表（後期）"></a>5. <strong>訂單詳情頁 &#x2F; 出貨管理 &#x2F; 報表</strong>（後期）</h2><hr>
+<h1 id="後端：必備的-API-與事件流程（範例）"><a href="#後端：必備的-API-與事件流程（範例）" class="headerlink" title="# 後端：必備的 API 與事件流程（範例）"></a># 後端：必備的 API 與事件流程（範例）</h1><h3 id="基本-API（同步呼叫）"><a href="#基本-API（同步呼叫）" class="headerlink" title="基本 API（同步呼叫）"></a>基本 API（同步呼叫）</h3><ul>
+<li><code>GET /api/products</code> — 列出商品</li>
+<li><code>GET /api/products/:id</code> — 商品詳情</li>
+<li><code>POST /api/orders</code> — 建立訂單（由 web 前端呼叫）</li>
+<li><code>GET /api/orders</code> — 後台查詢訂單</li>
+<li><code>PATCH /api/orders/:id/status</code> — 更新狀態（後台）</li>
+</ul>
+<h3 id="Webhook-LINE（事件流）"><a href="#Webhook-LINE（事件流）" class="headerlink" title="Webhook &#x2F; LINE（事件流）"></a>Webhook &#x2F; LINE（事件流）</h3><ul>
+<li><p><code>POST /api/line/webhook</code> — LINE webhook 接收（使用 line.middleware）</p>
+<ul>
+<li>驗章（X-Line-Signature） → 快速回 200 → 將事件 push 到 Queue 或直接處理</li>
+<li>解析 event（message &#x2F; postback）</li>
+<li>若是購買請求 → 呼叫 OrdersService.createFromLine(userId, productId, qty)</li>
+<li>回覆使用者（replyToken）或後續用 pushMessage</li>
+</ul>
+</li>
+</ul>
+<h3 id="背景-Worker（非同步建議）"><a href="#背景-Worker（非同步建議）" class="headerlink" title="背景 Worker（非同步建議）"></a>背景 Worker（非同步建議）</h3><ul>
+<li><p>Worker consume job:</p>
+<ul>
+<li>建立訂單（DB transaction）</li>
+<li>扣庫存（若不足回報）</li>
+<li>發送 LINE 通知給使用者與店家</li>
+<li>更新 cache &#x2F; 發 publish event（Redis pub&#x2F;sub）</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="即時更新（前端如何看到新訂單？）"><a href="#即時更新（前端如何看到新訂單？）" class="headerlink" title="# 即時更新（前端如何看到新訂單？）"></a># 即時更新（前端如何看到新訂單？）</h1><p>三種常見策略（推薦順序）：</p>
+<ol>
+<li><p><strong>WebSocket（建議）</strong></p>
+<ul>
+<li>後端推送事件（訂單新增 &#x2F; 狀態改變）到 connected admin clients</li>
+<li>用 socket.io 或 NestJS 的 WebSocketGateway</li>
+</ul>
+</li>
+<li><p><strong>Server-Sent Events (SSE)</strong></p>
+<ul>
+<li>單向從 server 推到 client，實作簡單且夠用</li>
+</ul>
+</li>
+<li><p><strong>Polling（最低門檻）</strong></p>
+<ul>
+<li>前端每 5 秒 GET &#x2F;api&#x2F;orders（雖簡單，但不優雅）</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>我建議 admin 後台用 WebSocket，customer PWA 用 Polling 或短連線刷新即可。</p>
+</blockquote>
+<hr>
+<h1 id="安全性、重入-idempotency-與可靠設計"><a href="#安全性、重入-idempotency-與可靠設計" class="headerlink" title="# 安全性、重入 (idempotency) 與可靠設計"></a># 安全性、重入 (idempotency) 與可靠設計</h1><ul>
+<li><strong>驗章</strong>：Webhook 必須驗證 X-Line-Signature。</li>
+<li><strong>去重</strong>：LINE event 可能重送 — 建立去重機制（例如：事件 id 存 Redis ，短期內檢查）。</li>
+<li><strong>交易</strong>：建立訂單與 order_items 要用 DB transaction。</li>
+<li><strong>Idempotency key</strong>：對於外部呼叫（如支付）使用 idempotency header。</li>
+<li><strong>輸入驗證</strong>：後端 DTO + ValidationPipe（NestJS）保證資料正確。</li>
+<li><strong>Queue（重試）</strong>：耗時操作（發訊息、第三方 API）放到 queue，有 retry 與 DLQ。</li>
+</ul>
+<hr>
+<h1 id="小結：流程一步步要怎麼做（實作優先順序）"><a href="#小結：流程一步步要怎麼做（實作優先順序）" class="headerlink" title="# 小結：流程一步步要怎麼做（實作優先順序）"></a># 小結：流程一步步要怎麼做（實作優先順序）</h1><ol>
+<li><strong>完成後端基本 API</strong>（你已做 Products Module）</li>
+<li><strong>建立 Orders Module（in-memory -&gt; DB）</strong>（下一塊積木）</li>
+<li><strong>建立 LINE webhook（可用 ngrok 測試）</strong>，把購買指令做成 postback → 呼叫 OrdersService（同步或入 queue）</li>
+<li><strong>建立 admin frontend（Vue3）訂單列表 + WebSocket</strong>（即時顯示）</li>
+<li><strong>把 in-memory 轉成 MySQL（TypeORM &#x2F; Prisma）</strong>，在 Lenovo 測試並持久化資料</li>
+<li><strong>加入 Redis + Queue（Bull）處理通知與耗時任務</strong></li>
+<li><strong>改良 LINE 互動 UX（Flex、multi-step）與 PWA 前端頁面</strong></li>
+<li><strong>部署（Render &#x2F; Vercel &#x2F; PlanetScale &#x2F; Upstash）</strong></li>
+</ol>
+<hr>
+<h1 id="我現在可以幫你做什麼（選一項）"><a href="#我現在可以幫你做什麼（選一項）" class="headerlink" title="# 我現在可以幫你做什麼（選一項）"></a># 我現在可以幫你做什麼（選一項）</h1><ol>
+<li>幫你生成 <strong>Orders Module</strong>（NestJS 完整程式碼 + DTO + 事務處理）</li>
+<li>幫你生成 <strong>LINE Webhook Module</strong>（含 postback 處理、商品 flex 回應、購買流程）</li>
+<li>幫你生成 <strong>Admin Vue3 訂單頁（含 WebSocket 範例）</strong></li>
+<li>幫你把上面兩張圖（流程圖 + wireframe）轉成 PlantUML sequence diagram（下單流程）</li>
+</ol>
+<p>你想先從哪一項開始？</p>

@@ -1,0 +1,101 @@
+<hr>
+<h2 id="title-2025-07-27-Line-訂單系統-要開始「第一塊積木」，然後我有三台notebook-二台macAir-一台聯想-改如何規劃？date-2025-11-17-21-20-32categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-27-Line-訂單系統-要開始「第一塊積木」，然後我有三台notebook-二台macAir-一台聯想-改如何規劃？"><a href="#title-2025-07-27-Line-訂單系統-要開始「第一塊積木」，然後我有三台notebook-二台macAir-一台聯想-改如何規劃？date-2025-11-17-21-20-32categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-27-Line-訂單系統-要開始「第一塊積木」，然後我有三台notebook-二台macAir-一台聯想-改如何規劃？" class="headerlink" title="title: 2025-07-27 Line 訂單系統- 要開始「第一塊積木」，然後我有三台notebook , 二台macAir , 一台聯想, 改如何規劃？date: 2025-11-17 21:20:32categories: OneDayOneNotetags:  [OneNote, Line訂單系統]description:    2025-07-27 Line 訂單系統- 要開始「第一塊積木」，然後我有三台notebook , 二台macAir , 一台聯想, 改如何規劃？"></a>title: 2025-07-27 Line 訂單系統- 要開始「第一塊積木」，然後我有三台notebook , 二台macAir , 一台聯想, 改如何規劃？<br>date: 2025-11-17 21:20:32<br>categories: OneDayOneNote<br>tags:  [OneNote, Line訂單系統]<br>description:    2025-07-27 Line 訂單系統- 要開始「第一塊積木」，然後我有三台notebook , 二台macAir , 一台聯想, 改如何規劃？</h2><p>下面我會直接給你<strong>最適合你目前開發階段</strong>、<strong>三台 notebook 的最佳資源配置</strong>，讓你開始做「第一塊積木」，並且未來可以無縫擴充 A～G 所有階段。</p>
+<hr>
+<h1 id="🎯-三台-notebook-怎麼最佳分工？（你的情況最有效率的配置）"><a href="#🎯-三台-notebook-怎麼最佳分工？（你的情況最有效率的配置）" class="headerlink" title="🎯 三台 notebook 怎麼最佳分工？（你的情況最有效率的配置）"></a>🎯 <strong>三台 notebook 怎麼最佳分工？（你的情況最有效率的配置）</strong></h1><h2 id="✔-MacBook-Air-1（主力開發機）"><a href="#✔-MacBook-Air-1（主力開發機）" class="headerlink" title="✔ MacBook Air #1（主力開發機）"></a>✔ <strong>MacBook Air #1（主力開發機）</strong></h2><p>→ <strong>主要做：NestJS 後端開發 + Git 操作 + 架構實作</strong></p>
+<p>使用理由：</p>
+<ul>
+<li>你習慣在 macOS 開發</li>
+<li>Node.js + NestJS 在 Mac 上環境最好</li>
+<li>VS Code 在 macOS 很順</li>
+<li>CLI 指令執行最穩</li>
+</ul>
+<p><strong>主要任務：</strong></p>
+<ol>
+<li>建立後端 repo（backend）</li>
+<li>建立 NestJS 專案</li>
+<li>寫第一個模組：ProductsModule（你的第一塊積木）</li>
+<li>實作 controller &#x2F; service &#x2F; DI &#x2F; DTO &#x2F; validation</li>
+<li>commit &amp; push 到 GitHub</li>
+</ol>
+<p>📌 <strong>未來 C 階段（LINE webhook）也在這台寫。</strong></p>
+<hr>
+<h2 id="✔-Lenovo-Windows（資料庫主機＋後端測試環境）"><a href="#✔-Lenovo-Windows（資料庫主機＋後端測試環境）" class="headerlink" title="✔ Lenovo Windows（資料庫主機＋後端測試環境）"></a>✔ <strong>Lenovo Windows（資料庫主機＋後端測試環境）</strong></h2><p>→ <strong>主要做：MySQL（或 PlanetScale）＋後端 API 測試</strong></p>
+<p>使用理由：</p>
+<ul>
+<li>Windows 裝 MySQL、Redis 很容易</li>
+<li>當作「本地伺服器」非常適合</li>
+<li>前後端分離實測最好用</li>
+</ul>
+<p><strong>主要任務：</strong></p>
+<ol>
+<li>安裝 MySQL 8</li>
+<li>建立資料庫 <code>line_order_system</code></li>
+<li>匯入 <code>db_init.sql</code></li>
+<li>開 Redis（之後 D 階段）</li>
+<li>開 Postman &#x2F; Thunder Client 練習 API</li>
+</ol>
+<p>📌 <strong>未來：你可以把 Nest 後端也跑在 Lenovo 上作測試。</strong></p>
+<hr>
+<h2 id="✔-MacBook-Air-2（文件機-前端機-測試機）"><a href="#✔-MacBook-Air-2（文件機-前端機-測試機）" class="headerlink" title="✔ MacBook Air #2（文件機 &#x2F; 前端機 &#x2F; 測試機）"></a>✔ <strong>MacBook Air #2（文件機 &#x2F; 前端機 &#x2F; 測試機）</strong></h2><p>→ <strong>主要做：Vue3 前端 + 文件管理 + 測試瀏覽器 UI</strong></p>
+<p>使用理由：</p>
+<ul>
+<li>輕鬆跑 Vite &#x2F; Vue CLI</li>
+<li>讓後端和前端分開在不同機器同時執行</li>
+<li>你可以邊看 API 文件邊開前端</li>
+</ul>
+<p><strong>主要任務：</strong></p>
+<ol>
+<li>建 frontend repo（Vue3 + Vite）</li>
+<li>撰寫 admin 後台 UI（後面 B 階段）</li>
+<li>測試呼叫 Lenovo Windows 上的後端 API</li>
+<li>專門用來寫文件（Notion &#x2F; Obsidian &#x2F; Google doc）</li>
+</ol>
+<hr>
+<h1 id="🧱-你的第一塊積木（超重要）-Products-Module（後端）"><a href="#🧱-你的第一塊積木（超重要）-Products-Module（後端）" class="headerlink" title="🧱 你的第一塊積木（超重要）&#x3D; Products Module（後端）"></a>🧱 <strong>你的第一塊積木（超重要）&#x3D; Products Module（後端）</strong></h1><p>這塊積木放在：</p>
+<p>👉 <strong>MacBook Air #1（主力開發機）</strong></p>
+<h3 id="要完成的技術："><a href="#要完成的技術：" class="headerlink" title="要完成的技術："></a>要完成的技術：</h3><ul>
+<li>NestJS 建專案</li>
+<li>建 module</li>
+<li>建 controller</li>
+<li>建 service</li>
+<li>DTO</li>
+<li>Validation</li>
+<li>DI 注入流程</li>
+<li>基本 CRUD</li>
+</ul>
+<p>完成之後你就會學會：</p>
+<p>🔥 如何堆積木（模組化）<br>🔥 如何讓系統長大<br>🔥 如何綁資料庫<br>🔥 如何綁 LINE webhook<br>🔥 如何加 Redis 快取<br>🔥 如何給前端 API</p>
+<p><strong>這是所有後續 A～G 的基礎。</strong></p>
+<hr>
+<h1 id="🎯-三台電腦日常運作示意圖（最清晰版本）"><a href="#🎯-三台電腦日常運作示意圖（最清晰版本）" class="headerlink" title="🎯 三台電腦日常運作示意圖（最清晰版本）"></a>🎯 <strong>三台電腦日常運作示意圖（最清晰版本）</strong></h1><pre><code>          +----------------------+
+          |   MacBook Air #1    |
+          |  NestJS 主力後端     |
+          |  Products module    |
+          |  Orders module      |
+          |  LINE webhook       |
+          +----------+----------+
+                     |
+                     | API
+                     v
+          +----------------------+
+          |   Lenovo Windows     |
+          | MySQL / Redis 主機   |
+          | Postman 測試 API      |
+          +----------+----------+
+                     |
+                     | API
+                     v
+          +----------------------+
+          |  MacBook Air #2     |
+          |    Vue3 前端         |
+          |    UI 設計 / 文件     |
+          +----------------------+
+</code></pre>
+<p>這是一個模擬「小型公司開發模式」的架構，<br>很適合你現在「單人但有多台設備」的情況。</p>
+<hr>
+<h1 id="🎯-接下來的工作順序（非常重要）"><a href="#🎯-接下來的工作順序（非常重要）" class="headerlink" title="🎯 接下來的工作順序（非常重要）"></a>🎯 <strong>接下來的工作順序（非常重要）</strong></h1><h2 id="Step-1（現在開始）"><a href="#Step-1（現在開始）" class="headerlink" title="Step 1（現在開始）"></a><strong>Step 1（現在開始）</strong></h2><p>👉 MacBook Air #1：建立 NestJS 專案<br>👉 寫 Products Module（你的第一塊積木）</p>
+<h2 id="Step-2"><a href="#Step-2" class="headerlink" title="Step 2"></a><strong>Step 2</strong></h2><p>👉 Lenovo：建立 MySQL 資料庫，匯入 <code>db_init.sql</code><br>👉 更新 backend <code>.env</code> 連接你的資料庫</p>
+<h2 id="Step-3"><a href="#Step-3" class="headerlink" title="Step 3"></a><strong>Step 3</strong></h2><p>👉 MacBook Air #2：建立 Vue3 專案<br>👉 測試呼叫後端 API</p>
+<h2 id="Step-4（正式進入-A～G-階段）"><a href="#Step-4（正式進入-A～G-階段）" class="headerlink" title="Step 4（正式進入 A～G 階段）"></a><strong>Step 4（正式進入 A～G 階段）</strong></h2><p>從 A → B → C → D 等等依序進行。</p>
+<hr>
+<h1 id="如果你願意，我可以馬上："><a href="#如果你願意，我可以馬上：" class="headerlink" title="如果你願意，我可以馬上："></a>如果你願意，我可以馬上：</h1><h3 id="✔-幫你建立三台電腦的「完整-Setup-操作手冊」"><a href="#✔-幫你建立三台電腦的「完整-Setup-操作手冊」" class="headerlink" title="✔ 幫你建立三台電腦的「完整 Setup 操作手冊」"></a>✔ 幫你建立三台電腦的「完整 Setup 操作手冊」</h3><h3 id="✔-幫你產生第一個-NestJS-Products-Module-的完整程式碼"><a href="#✔-幫你產生第一個-NestJS-Products-Module-的完整程式碼" class="headerlink" title="✔ 幫你產生第一個 NestJS Products Module 的完整程式碼"></a>✔ 幫你產生第一個 NestJS Products Module 的完整程式碼</h3><h3 id="✔-幫你畫好「你的三台-notebooks-的架構圖」"><a href="#✔-幫你畫好「你的三台-notebooks-的架構圖」" class="headerlink" title="✔ 幫你畫好「你的三台 notebooks 的架構圖」"></a>✔ 幫你畫好「你的三台 notebooks 的架構圖」</h3><h3 id="✔-幫你下一步進入-A-階段真正實作"><a href="#✔-幫你下一步進入-A-階段真正實作" class="headerlink" title="✔ 幫你下一步進入 A 階段真正實作"></a>✔ 幫你下一步進入 A 階段真正實作</h3><p>你想先做哪一個？</p>

@@ -1,0 +1,119 @@
+<hr>
+<h2 id="title-2025-08-01-C4-Model-是什麼date-2025-11-20-22-20-22categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-08-01-C4-Model-是什麼"><a href="#title-2025-08-01-C4-Model-是什麼date-2025-11-20-22-20-22categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-08-01-C4-Model-是什麼" class="headerlink" title="title: 2025-08-01 C4 Model 是什麼date: 2025-11-20 22:20:22categories: OneDayOneNotetags:  [OneNote, Line訂單系統]description:  2025-08-01 C4 Model 是什麼"></a>title: 2025-08-01 C4 Model 是什麼<br>date: 2025-11-20 22:20:22<br>categories: OneDayOneNote<br>tags:  [OneNote, Line訂單系統]<br>description:  2025-08-01 C4 Model 是什麼</h2><p>我用你最容易理解的方式來說明 <strong>C4 Model 的「容器圖（C4 Container Diagram）」</strong>，你馬上就懂，而且能立刻把你的三台 notebook 轉成專業架構圖。</p>
+<hr>
+<h1 id="🌟-C4-Model-是什麼？"><a href="#🌟-C4-Model-是什麼？" class="headerlink" title="🌟 C4 Model 是什麼？"></a>🌟 <strong>C4 Model 是什麼？</strong></h1><p>C4 &#x3D; 一套畫軟體架構的標準方法，由 4 個層級組成：</p>
+<table>
+<thead>
+<tr>
+<th>層級</th>
+<th>名稱</th>
+<th>它在畫什麼？</th>
+<th>適用對象</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>C1</strong></td>
+<td>System Context</td>
+<td>系統與外部的關係</td>
+<td>老闆、PM、客戶</td>
+</tr>
+<tr>
+<td><strong>C2</strong></td>
+<td><strong>Containers（容器圖）</strong></td>
+<td>系統的主要「運行單元」</td>
+<td>架構師、工程師</td>
+</tr>
+<tr>
+<td><strong>C3</strong></td>
+<td>Components</td>
+<td>每個容器裡的主要模組</td>
+<td>工程師</td>
+</tr>
+<tr>
+<td>C4</td>
+<td>Code</td>
+<td>程式碼層級</td>
+<td>開發、維運</td>
+</tr>
+</tbody></table>
+<p><strong>你現在要的是 C2：容器圖。</strong></p>
+<hr>
+<h1 id="🧩-那「容器（Container）」到底是什麼？"><a href="#🧩-那「容器（Container）」到底是什麼？" class="headerlink" title="🧩 那「容器（Container）」到底是什麼？"></a>🧩 <strong>那「容器（Container）」到底是什麼？</strong></h1><p>👉 <strong>不是 Docker！不是 VM！不是 Linux container！</strong></p>
+<p>在 C4 裡，<strong>Container &#x3D; 可獨立運行的應用或資料庫</strong>。</p>
+<p>例如：</p>
+<ul>
+<li>Web App</li>
+<li>Backend API</li>
+<li>Mobile App</li>
+<li>Database</li>
+<li>Message Queue（Redis）</li>
+<li>Lambda Function</li>
+<li>前端 SPA（Vue）</li>
+</ul>
+<p>只要是「獨立運作的東西」，都叫 Container。</p>
+<hr>
+<h1 id="🔥-你的專案有哪些-Container？"><a href="#🔥-你的專案有哪些-Container？" class="headerlink" title="🔥 你的專案有哪些 Container？"></a>🔥 你的專案有哪些 Container？</h1><p>非常清楚：</p>
+<h3 id="✔-外部使用者"><a href="#✔-外部使用者" class="headerlink" title="✔ 外部使用者"></a>✔ 外部使用者</h3><ul>
+<li>LINE Users</li>
+</ul>
+<h3 id="✔-Backend-Containers（Mac-1）"><a href="#✔-Backend-Containers（Mac-1）" class="headerlink" title="✔ Backend Containers（Mac #1）"></a>✔ Backend Containers（Mac #1）</h3><ul>
+<li><strong>NestJS App</strong>（主要後端 API + Webhook + QueueClient）</li>
+</ul>
+<h3 id="✔-Frontend-Containers（Mac-2）"><a href="#✔-Frontend-Containers（Mac-2）" class="headerlink" title="✔ Frontend Containers（Mac #2）"></a>✔ Frontend Containers（Mac #2）</h3><ul>
+<li><strong>Vue3 Frontend（Vite）</strong>（瀏覽器跑的 SPA）</li>
+</ul>
+<h3 id="✔-Infra-Containers（Lenovo）"><a href="#✔-Infra-Containers（Lenovo）" class="headerlink" title="✔ Infra Containers（Lenovo）"></a>✔ Infra Containers（Lenovo）</h3><ul>
+<li><strong>MySQL Database</strong></li>
+<li><strong>Redis Queue（Bull Queue）</strong></li>
+</ul>
+<hr>
+<h1 id="📌-C4-容器圖會長什麼樣？（簡易版）"><a href="#📌-C4-容器圖會長什麼樣？（簡易版）" class="headerlink" title="📌 C4 容器圖會長什麼樣？（簡易版）"></a>📌 <strong>C4 容器圖會長什麼樣？（簡易版）</strong></h1><p>我用「你的系統」畫給你（Mermaid 風格）：</p>
+<pre><code class="markdown">```mermaid
+flowchart LR
+
+%% 外部
+USER([&quot;LINE Users&quot;])
+
+%% Frontend
+FE[&quot;Vue3 Frontend (SPA)\nVite Build&quot;]
+
+%% Backend
+API[&quot;NestJS Backend API\nProducts, Orders, Webhook, Queue Client&quot;]
+
+%% Database
+DB[&quot;MySQL Database\nline_order_db&quot;]
+
+%% Queue
+RQ[&quot;Redis (Bull Queue)&quot;]
+
+%% Relationships
+USER --&gt;|Webhook| API
+FE --&gt;|HTTP API| API
+API --&gt;|SQL| DB
+API --&gt;|Publish/Consume Jobs| RQ
+```
+</code></pre>
+<hr>
+<h1 id="🧠-容器圖（C2）要表達的重點"><a href="#🧠-容器圖（C2）要表達的重點" class="headerlink" title="🧠 容器圖（C2）要表達的重點"></a>🧠 容器圖（C2）要表達的重點</h1><h3 id="1-有哪些容器（邏輯運作單位）？"><a href="#1-有哪些容器（邏輯運作單位）？" class="headerlink" title="1. 有哪些容器（邏輯運作單位）？"></a>1. <strong>有哪些容器（邏輯運作單位）？</strong></h3><ul>
+<li>Vue 前端</li>
+<li>NestJS 後端</li>
+<li>MySQL</li>
+<li>Redis</li>
+<li>外部系統（LINE）</li>
+</ul>
+<h3 id="2-容器之間如何互動？"><a href="#2-容器之間如何互動？" class="headerlink" title="2. 容器之間如何互動？"></a>2. <strong>容器之間如何互動？</strong></h3><ul>
+<li>LINE → Webhook → NestJS</li>
+<li>Vue → API → NestJS</li>
+<li>NestJS → MySQL</li>
+<li>NestJS → Redis Queue</li>
+</ul>
+<h3 id="3-不用畫-UI、類別、技術細節"><a href="#3-不用畫-UI、類別、技術細節" class="headerlink" title="3. 不用畫 UI、類別、技術細節"></a>3. <strong>不用畫 UI、類別、技術細節</strong></h3><p>只畫：<br>✔ 容器<br>✔ 資料流<br>✔ 相依性</p>
+<hr>
+<h1 id="🎯-重點總結（超好懂）"><a href="#🎯-重點總結（超好懂）" class="headerlink" title="🎯 重點總結（超好懂）"></a>🎯 重點總結（超好懂）</h1><ul>
+<li><strong>C2 &#x3D; 容器圖 &#x3D; 整個系統的骨架</strong></li>
+<li>用來溝通「有哪些服務、怎麼連、負責什麼」</li>
+<li>比你剛畫的 flowchart 更抽象、規則更標準、給架構師看的</li>
+</ul>
+<hr>
+<h1 id="🚀-想讓你的架構文件更專業？"><a href="#🚀-想讓你的架構文件更專業？" class="headerlink" title="🚀 想讓你的架構文件更專業？"></a>🚀 想讓你的架構文件更專業？</h1><p>我可以幫你接著產生：</p>
+<h3 id="✔-同一套系統的-C1（Context）"><a href="#✔-同一套系統的-C1（Context）" class="headerlink" title="✔ 同一套系統的 C1（Context）"></a>✔ 同一套系統的 C1（Context）</h3><h3 id="✔-C2（Container，你已經開始了）"><a href="#✔-C2（Container，你已經開始了）" class="headerlink" title="✔ C2（Container，你已經開始了）"></a>✔ C2（Container，你已經開始了）</h3><h3 id="✔-C3（NestJS-分成-Products-Orders-Webhook-Queue-的-Component-Diagram）"><a href="#✔-C3（NestJS-分成-Products-Orders-Webhook-Queue-的-Component-Diagram）" class="headerlink" title="✔ C3（NestJS 分成 Products &#x2F; Orders &#x2F; Webhook &#x2F; Queue 的 Component Diagram）"></a>✔ C3（NestJS 分成 Products &#x2F; Orders &#x2F; Webhook &#x2F; Queue 的 Component Diagram）</h3><h3 id="✔-C4（程式碼層級）"><a href="#✔-C4（程式碼層級）" class="headerlink" title="✔ C4（程式碼層級）"></a>✔ C4（程式碼層級）</h3><p>你要繼續畫 C1 還是進 C2 完整版？</p>

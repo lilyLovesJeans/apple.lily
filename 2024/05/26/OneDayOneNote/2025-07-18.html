@@ -1,0 +1,136 @@
+<hr>
+<h2 id="title-2025-07-18-Redis-是什麼date-2025-11-13-23-56-13categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-18-Redis-是什麼"><a href="#title-2025-07-18-Redis-是什麼date-2025-11-13-23-56-13categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-18-Redis-是什麼" class="headerlink" title="title: 2025-07-18 Redis 是什麼date: 2025-11-13 23:56:13categories: OneDayOneNotetags:  [OneNote, Line訂單系統]description: 2025-07-18 Redis 是什麼"></a>title: 2025-07-18 Redis 是什麼<br>date: 2025-11-13 23:56:13<br>categories: OneDayOneNote<br>tags:  [OneNote, Line訂單系統]<br>description: 2025-07-18 Redis 是什麼</h2><h2 id="2025-07-18-Redis-是什麼"><a href="#2025-07-18-Redis-是什麼" class="headerlink" title="2025-07-18 Redis 是什麼"></a>2025-07-18 Redis 是什麼</h2><hr>
+<h2 id="🧠-Redis-是什麼？"><a href="#🧠-Redis-是什麼？" class="headerlink" title="🧠 Redis 是什麼？"></a>🧠 Redis 是什麼？</h2><p><strong>Redis</strong> 是一種<strong>超快速的記憶體資料庫（In-memory Database）</strong>，名字全稱是：</p>
+<blockquote>
+<p><strong>REmote DIctionary Server</strong></p>
+</blockquote>
+<p>它最早是為了解決「資料庫查詢太慢」的問題而誕生的。<br>一般的資料庫（像 Oracle、MySQL）把資料存放在硬碟上；<br>而 <strong>Redis 把資料放在記憶體裡（RAM）</strong>，所以速度可以快上 <strong>數百倍以上</strong>。</p>
+<hr>
+<h2 id="🚀-Redis-的主要用途"><a href="#🚀-Redis-的主要用途" class="headerlink" title="🚀 Redis 的主要用途"></a>🚀 Redis 的主要用途</h2><p>Redis 通常不會單獨使用，而是搭配主要的資料庫一起使用。<br>它最常見的用途有：</p>
+<table>
+<thead>
+<tr>
+<th>用途</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>🔹 <strong>快取（Cache）</strong></td>
+<td>將常用資料暫存在記憶體中，減少資料庫查詢負擔。<br>例：熱門商品清單、使用者登入資訊、查詢結果。</td>
+</tr>
+<tr>
+<td>🔹 <strong>Session 儲存</strong></td>
+<td>Web 系統可以把使用者登入狀態存在 Redis 裡。</td>
+</tr>
+<tr>
+<td>🔹 <strong>即時排行榜 &#x2F; 計數器</strong></td>
+<td>Redis 提供像 <code>INCR</code>（遞增）等指令，很適合做「點讚數、瀏覽次數」這類功能。</td>
+</tr>
+<tr>
+<td>🔹 <strong>訊息佇列（Message Queue）</strong></td>
+<td>使用 <code>List</code> 或 <code>Stream</code> 來暫存工作任務（像訂單通知、郵件發送）。</td>
+</tr>
+<tr>
+<td>🔹 <strong>Pub&#x2F;Sub（發佈 &#x2F; 訂閱）</strong></td>
+<td>做即時通訊或通知系統。</td>
+</tr>
+<tr>
+<td>🔹 <strong>快取訂單狀態</strong></td>
+<td>電商系統會先在 Redis 中保存訂單的暫時狀態，再寫入資料庫。</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🧩-Redis-與傳統資料庫的差異"><a href="#🧩-Redis-與傳統資料庫的差異" class="headerlink" title="🧩 Redis 與傳統資料庫的差異"></a>🧩 Redis 與傳統資料庫的差異</h2><table>
+<thead>
+<tr>
+<th>比較項目</th>
+<th>Redis</th>
+<th>Oracle &#x2F; MySQL 等傳統資料庫</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>資料存放位置</td>
+<td>記憶體（RAM）</td>
+<td>硬碟</td>
+</tr>
+<tr>
+<td>存取速度</td>
+<td>極快（微秒等級）</td>
+<td>較慢（毫秒等級）</td>
+</tr>
+<tr>
+<td>資料型態</td>
+<td>鍵值對（Key-Value）結構</td>
+<td>關聯式資料表</td>
+</tr>
+<tr>
+<td>適合場景</td>
+<td>快取、即時資料</td>
+<td>長期保存資料</td>
+</tr>
+<tr>
+<td>是否持久化</td>
+<td>可選（支援快照或 AOF 持久化）</td>
+<td>預設永久保存</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🔑-Redis-的基本概念：Key-Value-資料結構"><a href="#🔑-Redis-的基本概念：Key-Value-資料結構" class="headerlink" title="🔑 Redis 的基本概念：Key-Value 資料結構"></a>🔑 Redis 的基本概念：Key-Value 資料結構</h2><p>Redis 的每筆資料都是：</p>
+<pre><code>key → value
+</code></pre>
+<p>常見型態有：</p>
+<table>
+<thead>
+<tr>
+<th>型態</th>
+<th>範例用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>String</strong></td>
+<td>簡單字串或數字，例如 <code>user:1:name = &quot;Lily&quot;</code></td>
+</tr>
+<tr>
+<td><strong>Hash</strong></td>
+<td>類似物件，例如 <code>user:1 = {name: &quot;Lily&quot;, age: 20}</code></td>
+</tr>
+<tr>
+<td><strong>List</strong></td>
+<td>有序串列（像佇列），例如待處理訂單列表</td>
+</tr>
+<tr>
+<td><strong>Set</strong></td>
+<td>無序集合（不重複），例如使用者標籤</td>
+</tr>
+<tr>
+<td><strong>Sorted Set (ZSet)</strong></td>
+<td>排序集合，例如排行榜</td>
+</tr>
+<tr>
+<td><strong>Stream</strong></td>
+<td>用來處理訊息串流或事件記錄</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🧰-Redis-範例指令（體驗感）"><a href="#🧰-Redis-範例指令（體驗感）" class="headerlink" title="🧰 Redis 範例指令（體驗感）"></a>🧰 Redis 範例指令（體驗感）</h2><pre><code class="bash">SET name &quot;Lily&quot;
+GET name
+# 回傳: &quot;Lily&quot;
+
+INCR counter
+# counter +1
+
+LPUSH queue &quot;task1&quot;
+LPUSH queue &quot;task2&quot;
+LRANGE queue 0 -1
+# 回傳 [&quot;task2&quot;, &quot;task1&quot;]
+</code></pre>
+<hr>
+<h2 id="🧱-Redis-在你的系統中扮演的角色（以你的專案為例）"><a href="#🧱-Redis-在你的系統中扮演的角色（以你的專案為例）" class="headerlink" title="🧱 Redis 在你的系統中扮演的角色（以你的專案為例）"></a>🧱 Redis 在你的系統中扮演的角色（以你的專案為例）</h2><p>你的 Web API-based 財會系統或 LINE 訂單系統中，Redis 可能會：</p>
+<ol>
+<li>暫存使用者的購物車或登入狀態</li>
+<li>快取常查詢的資料（例如產品清單或客戶資訊）</li>
+<li>快速更新訂單狀態並通知使用者（例如 LINE bot 訊息）</li>
+<li>作為暫時的訊息佇列，讓訂單處理流程更順暢</li>
+</ol>
+<hr>
+<p>是否希望我幫你畫一張圖，說明 <strong>Redis 與 Oracle 在整個系統中的資料流關係</strong>？<br>（例如使用者下訂單 → Redis → Oracle → LINE 通知）</p>

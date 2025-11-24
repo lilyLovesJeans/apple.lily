@@ -1,0 +1,166 @@
+<hr>
+<h2 id="title-2025-06-23-Line-訂單系統規劃A-G階段date-2025-11-12-21-08-22categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-06-23-Line-訂單系統規劃A-G階段"><a href="#title-2025-06-23-Line-訂單系統規劃A-G階段date-2025-11-12-21-08-22categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-06-23-Line-訂單系統規劃A-G階段" class="headerlink" title="title: 2025-06-23 Line 訂單系統規劃A-G階段date: 2025-11-12 21:08:22categories: OneDayOneNotetags:  [OneNote, Line訂單系統]description:  2025-06-23 Line 訂單系統規劃A-G階段"></a>title: 2025-06-23 Line 訂單系統規劃A-G階段<br>date: 2025-11-12 21:08:22<br>categories: OneDayOneNote<br>tags:  [OneNote, Line訂單系統]<br>description:  2025-06-23 Line 訂單系統規劃A-G階段</h2><h2 id="2025-06-23-Line-訂單系統規劃A-G階段"><a href="#2025-06-23-Line-訂單系統規劃A-G階段" class="headerlink" title="2025-06-23 Line 訂單系統規劃A-G階段"></a>2025-06-23 Line 訂單系統規劃A-G階段</h2><p>我幫你把整個專案拆成<strong>階段化、可測試、可逐步升級</strong>的計畫，並依你「三台電腦（兩台 MacAir、1 台較新 Lenovo Windows）」的資源做實務分工建議、備援與替代方案。目標是：先做出可運作的最小可行產品（MVP），再逐步加入彈性（例如改成其他類型訂單系統）、擴展 Redis&#x2F;MongoDB、上線與自動化測試。</p>
+<p>我直接給你一套<strong>可立即執行的分階段計畫 + 每階段的任務清單 + 三台機器分工建議 + 測試&#x2F;部署&#x2F;安全建議</strong>，你可以照著跑、完成一個 checkpoint 再往下。</p>
+<h1 id="一、總覽（高階分段）"><a href="#一、總覽（高階分段）" class="headerlink" title="一、總覽（高階分段）"></a>一、總覽（高階分段）</h1><ol>
+<li>階段 A — 環境準備與版本控制（最小可行）</li>
+<li>階段 B — 後端 API + 本機 MySQL（商品查詢、下單）</li>
+<li>階段 C — LINE Webhook 整合（Bot 可以接收訊息、回覆、建立訂單）</li>
+<li>階段 D — Vue3 管理後台（商品管理、訂單檢視）</li>
+<li>階段 E — 測試、自動化（單元 &#x2F; 集成 &#x2F; E2E）與 CI&#x2F;CD（GitHub Actions）</li>
+<li>階段 F — 加入 Redis &#x2F; MongoDB（即時狀態與對話紀錄）</li>
+<li>階段 G — 上線部署與遷移（雲 DB、域名、HTTPS）</li>
+</ol>
+<p>每階段完成後做「Checkpoint」：功能驗收清單、測試通過、程式碼合併到主分支。</p>
+<hr>
+<h1 id="二、三台機器分工（實用、彈性）"><a href="#二、三台機器分工（實用、彈性）" class="headerlink" title="二、三台機器分工（實用、彈性）"></a>二、三台機器分工（實用、彈性）</h1><blockquote>
+<p>注意：你提到兩台 MacAir（年代很舊）與一台較新的 Lenovo。老 Mac 可能跑 Docker &#x2F;本地 DB 會吃力。以下安排兼顧效能與穩定性。</p>
+</blockquote>
+<p><strong>首選配置（若老 Mac 無法穩定運行 Docker &#x2F; MySQL）：</strong></p>
+<ul>
+<li>Lenovo（較新，Windows） — 當作主要開發 &amp; 本地伺服器：跑 Node.js 開發伺服器、MySQL（或 Docker）、Redis（如有）與 ngrok。</li>
+<li>MacAir #1 — 前端（Vue3）開發、UI 與測試（Vite 開發伺服器非常輕量）。</li>
+<li>MacAir #2 — 文件、管理後台測試、或作為「測試裝置」模擬其他使用者；也可當作「遠端編輯&#x2F;檢視」機器。</li>
+</ul>
+<p><strong>替代（若你想盡量用兩台 MacAir）：</strong></p>
+<ul>
+<li>若 MacAir 能跑 MySQL：一台作 DB + Node，另一台作前端。</li>
+<li>若 MacAir 太慢：把 MySQL 改成雲端（PlanetScale &#x2F; ClearDB &#x2F; AWS RDS &#x2F; Supabase）→ 任何機器都能連線，省掉本機負擔。</li>
+</ul>
+<hr>
+<h1 id="三、每階段詳細步驟與檢核清單"><a href="#三、每階段詳細步驟與檢核清單" class="headerlink" title="三、每階段詳細步驟與檢核清單"></a>三、每階段詳細步驟與檢核清單</h1><h2 id="階段-A：環境與版本控制（Checkpoint：能啟動前後端，能推到-Git）"><a href="#階段-A：環境與版本控制（Checkpoint：能啟動前後端，能推到-Git）" class="headerlink" title="階段 A：環境與版本控制（Checkpoint：能啟動前後端，能推到 Git）"></a>階段 A：環境與版本控制（Checkpoint：能啟動前後端，能推到 Git）</h2><p>任務：</p>
+<ol>
+<li>建 repo（GitHub），建立 <code>.gitignore</code>（node_modules, .env）</li>
+<li>在每台機器安裝&#x2F;確認：Node (用 nvm 管理)、npm&#x2F;yarn、VS Code、Postman</li>
+<li>建立專案結構（root &#x2F; backend &#x2F; frontend）並推上 GitHub</li>
+<li>設定 branch 規範：<code>main</code>（穩定）、<code>develop</code>（整合）、<code>feature/*</code>（開發）</li>
+<li>建立基本 README、開發流程文件</li>
+</ol>
+<p>檢核：</p>
+<ul>
+<li><code>npm run dev</code> (frontend) 與 <code>node index.js</code> (backend) 都能在本機跑起來</li>
+<li>能從另一台機器 pull 並跑起來</li>
+</ul>
+<hr>
+<h2 id="階段-B：後端-API-MySQL（Checkpoint：API-可-CRUD-商品、儲存訂單）"><a href="#階段-B：後端-API-MySQL（Checkpoint：API-可-CRUD-商品、儲存訂單）" class="headerlink" title="階段 B：後端 API + MySQL（Checkpoint：API 可 CRUD 商品、儲存訂單）"></a>階段 B：後端 API + MySQL（Checkpoint：API 可 CRUD 商品、儲存訂單）</h2><p>任務：</p>
+<ol>
+<li>在 Lenovo（或雲端）安裝 MySQL（或使用 PlanetScale&#x2F;Supabase）</li>
+<li>設計資料庫基本 schema（products, orders, users, line_users）</li>
+<li>後端建立 REST API：<code>/api/products</code>、<code>/api/orders</code>（GET&#x2F;POST&#x2F;PUT&#x2F;DELETE）</li>
+<li>使用 <code>dotenv</code> 管理 DB 與 LINE token（<strong>不要硬編</strong>）</li>
+<li>撰寫簡單 DB 程式碼（<code>mysql2/promise</code> 或 ORM 如 <code>knex</code> &#x2F; <code>sequelize</code>）</li>
+</ol>
+<p>檢核：</p>
+<ul>
+<li>Postman 可以新增商品、建立訂單並從 DB 查到資料</li>
+<li>簡單 SQL migration script（如 <code>db/init.sql</code>）可讓新機器快速建立 DB</li>
+</ul>
+<hr>
+<h2 id="階段-C：整合-LINE-Webhook（Checkpoint：LINE-訊息可觸發建立訂單）"><a href="#階段-C：整合-LINE-Webhook（Checkpoint：LINE-訊息可觸發建立訂單）" class="headerlink" title="階段 C：整合 LINE Webhook（Checkpoint：LINE 訊息可觸發建立訂單）"></a>階段 C：整合 LINE Webhook（Checkpoint：LINE 訊息可觸發建立訂單）</h2><p>任務：</p>
+<ol>
+<li>申請 LINE Messaging API channel，取得 Channel Secret&#x2F;AccessToken</li>
+<li>在後端加入 <code>@line/bot-sdk</code>，建立 <code>/webhook</code> 路由並驗證簽章（middleware）</li>
+<li>用 ngrok 開公開網址，設定 LINE Webhook（開發階段）</li>
+<li>實作「簡易對話流程」：例如 <code>我要點餐</code> → 回傳商品清單（Carousel&#x2F;Flex） → 選擇商品 → 建立訂單</li>
+<li>每個事件同時寫入 DB（orders）與紀錄聊天紀錄（初期可存在 MySQL，後期搬到 MongoDB）</li>
+</ol>
+<p>檢核：</p>
+<ul>
+<li>用手機向官方帳號發訊息能收到預期回覆</li>
+<li>生成訂單在 DB 可見</li>
+</ul>
+<hr>
+<h2 id="階段-D：Vue3-管理後台（Checkpoint：管理者能上傳商品、查看訂單）"><a href="#階段-D：Vue3-管理後台（Checkpoint：管理者能上傳商品、查看訂單）" class="headerlink" title="階段 D：Vue3 管理後台（Checkpoint：管理者能上傳商品、查看訂單）"></a>階段 D：Vue3 管理後台（Checkpoint：管理者能上傳商品、查看訂單）</h2><p>任務：</p>
+<ol>
+<li>在 frontend 用 Vite 建 Vue3 (Composition API) + Pinia（或 Vuex）</li>
+<li>實作商品管理頁：新增&#x2F;編輯&#x2F;刪除（呼叫後端 API）</li>
+<li>訂單管理頁：查看訂單列表、更新狀態（如：待處理&#x2F;出貨&#x2F;完成）</li>
+<li>登入機制（簡單 admin 帳號或 JWT）</li>
+<li>畫面風格使用 Element Plus 或 Tailwind</li>
+</ol>
+<p>檢核：</p>
+<ul>
+<li>管理者登入後可新增商品並立即在 LINE Bot 查到</li>
+<li>修改訂單狀態會更新 DB 且（後續）觸發 LINE 通知給使用者</li>
+</ul>
+<hr>
+<h2 id="階段-E：測試與-CI-CD（Checkpoint：自動測試與-PR-流程）"><a href="#階段-E：測試與-CI-CD（Checkpoint：自動測試與-PR-流程）" class="headerlink" title="階段 E：測試與 CI&#x2F;CD（Checkpoint：自動測試與 PR 流程）"></a>階段 E：測試與 CI&#x2F;CD（Checkpoint：自動測試與 PR 流程）</h2><p>任務：</p>
+<ol>
+<li>單元測試：後端（Jest）、前端（Vitest）</li>
+<li>API 集成測試：使用 Supertest 或 Postman&#x2F;Newman</li>
+<li>E2E：Cypress（模擬管理後台操作）</li>
+<li>GitHub Actions：push → run test → build → deploy（Staging）</li>
+<li>建立 PR 流程（feature -&gt; develop -&gt; pull request -&gt; review -&gt; merge）</li>
+</ol>
+<p>檢核：</p>
+<ul>
+<li>所有測試通過 ↦ PR 才能合併</li>
+<li>GitHub Actions 成功執行測試流程</li>
+</ul>
+<hr>
+<h2 id="階段-F：加入-Redis-MongoDB（Checkpoint：訂單狀態快取與聊天紀錄落地）"><a href="#階段-F：加入-Redis-MongoDB（Checkpoint：訂單狀態快取與聊天紀錄落地）" class="headerlink" title="階段 F：加入 Redis &#x2F; MongoDB（Checkpoint：訂單狀態快取與聊天紀錄落地）"></a>階段 F：加入 Redis &#x2F; MongoDB（Checkpoint：訂單狀態快取與聊天紀錄落地）</h2><p>任務：</p>
+<ol>
+<li>在開發環境新增 Redis（如果本機無法跑，可用雲端 Redis 如 Upstash）</li>
+<li>加入 MongoDB（本機或 MongoDB Atlas）用於存聊天紀錄&#x2F;事件流</li>
+<li>後端邏輯：讀取訂單狀態優先查 Redis（沒有再查 DB），訂單變更同步更新 Redis 與主 DB（MySQL 或 Mongo）</li>
+<li>設定 TTL（短期快取）與資料一致性策略（寫 DB 同步刷新 Redis）</li>
+</ol>
+<p>檢核：</p>
+<ul>
+<li>更新訂單狀態會立刻反映在 Redis 並能快速讀取</li>
+<li>聊天紀錄能存到 MongoDB，且可查詢</li>
+</ul>
+<hr>
+<h2 id="階段-G：上線與遷移（Checkpoint：正式環境可訪問、資料備份與監控）"><a href="#階段-G：上線與遷移（Checkpoint：正式環境可訪問、資料備份與監控）" class="headerlink" title="階段 G：上線與遷移（Checkpoint：正式環境可訪問、資料備份與監控）"></a>階段 G：上線與遷移（Checkpoint：正式環境可訪問、資料備份與監控）</h2><p>任務：</p>
+<ol>
+<li>把後端部署到 Render &#x2F; Railway &#x2F; Heroku &#x2F; Azure（選一個，推薦 Render）</li>
+<li>資料庫遷移到雲端（PlanetScale &#x2F; AWS RDS &#x2F; MongoDB Atlas &#x2F; Redis Cloud）</li>
+<li>使用 HTTPS、設 domain、在 LINE Console 改成正式 Webhook URL</li>
+<li>實作監控（Log + 錯誤通知）與資料備份策略</li>
+<li>安全檢查（ENV secrets、Token rotation、DB 防火牆）</li>
+</ol>
+<p>檢核：</p>
+<ul>
+<li>正式使用者能夠下單並收到 LINE 通知</li>
+<li>定期備份工作正常</li>
+</ul>
+<hr>
+<h1 id="四、測試策略（建議的測試案例清單）"><a href="#四、測試策略（建議的測試案例清單）" class="headerlink" title="四、測試策略（建議的測試案例清單）"></a>四、測試策略（建議的測試案例清單）</h1><ul>
+<li>後端單元測試：API 輸入驗證、service 層邏輯</li>
+<li>API 集成測試：products&#x2F;orders 路徑、DB 狀態驗證</li>
+<li>LINE 流程測試：模擬 webhook event，測試 bot 對不同訊息的回覆</li>
+<li>前端 E2E：建立商品 → 從 LINE 下單 → 管理後台看到該筆訂單</li>
+<li>負載（可選）：模擬高併發查詢訂單時 Redis 快取表現</li>
+</ul>
+<hr>
+<h1 id="五、實務注意事項（安全-開發習慣）"><a href="#五、實務注意事項（安全-開發習慣）" class="headerlink" title="五、實務注意事項（安全 &#x2F; 開發習慣）"></a>五、實務注意事項（安全 &#x2F; 開發習慣）</h1><ul>
+<li><strong>不要把 secrets 推上 GitHub</strong>（用 GitHub Secrets + <code>.env</code>）</li>
+<li><strong>Webhook 驗證</strong>：驗證 LINE signature（<code>@line/bot-sdk</code> middleware 可處理）</li>
+<li>DB 連線資訊只放 env 並限制 IP（上線時）</li>
+<li>開發用 ngrok，不要公開 ngrok link；上線後改成真正域名&#x2F;SSL</li>
+<li>建議用 <code>nvm</code> 固定 node 版本以免不同機器版本差異</li>
+<li>若實機資源不足，轉用雲端 DB 或雲端 dev 環境（Codespaces、Replit）</li>
+</ul>
+<hr>
+<h1 id="六、專案管理-小團隊實務建議（你目前是小規模開發）"><a href="#六、專案管理-小團隊實務建議（你目前是小規模開發）" class="headerlink" title="六、專案管理 &amp; 小團隊實務建議（你目前是小規模開發）"></a>六、專案管理 &amp; 小團隊實務建議（你目前是小規模開發）</h1><ul>
+<li>使用 Issue 與 Project Board（GitHub Projects）管理任務與優先度（MVP、擴充）</li>
+<li>每完成一個 feature 就開 PR，並自己做 code review（若有第二人，互相 review）</li>
+<li>把大功能拆成小任務（例如「建立 product schema」→「GET API」→「POST API」→「前端顯示」）</li>
+<li>每個階段完成做一次「demo」，確認核心流程（LINE 下單 → DB 有資料 → 管理後台可看）</li>
+</ul>
+<hr>
+<h1 id="七、備援方案（如果老-Mac-跑不動）"><a href="#七、備援方案（如果老-Mac-跑不動）" class="headerlink" title="七、備援方案（如果老 Mac 跑不動）"></a>七、備援方案（如果老 Mac 跑不動）</h1><ul>
+<li>將 DB 放到雲端（PlanetScale &#x2F; Supabase &#x2F; MongoDB Atlas），只用 MacAir 做前端開發。</li>
+<li>把 Node 後端放到一台雲端 VM（或 Render），用本地機器當開發端與測試端。</li>
+<li>使用 GitHub Codespaces &#x2F; Replit 做開發（雲端 IDE），本地機器只用來瀏覽與測試。</li>
+</ul>
+<hr>
+<h1 id="八、小結（下一步該怎麼做）"><a href="#八、小結（下一步該怎麼做）" class="headerlink" title="八、小結（下一步該怎麼做）"></a>八、小結（下一步該怎麼做）</h1><p>我已把整體流程、機器分工、每階段檢核都列清楚。建議你立刻做的三件事（即可開始第一輪開發）：</p>
+<ol>
+<li>在 GitHub 建 repo，建立 <code>backend</code> + <code>frontend</code> 基本 boilerplate 並 push。</li>
+<li>在 Lenovo 上裝 MySQL（或註冊 PlanetScale），把 <code>db/init.sql</code> 放 repo。</li>
+<li>在 MacAir #1 建立 Vue3 專案（Vite）；MacAir #2 作為文件&#x2F;測試機或備援。</li>
+</ol>
+<p>如果你要，我現在可以：</p>
+<ul>
+<li>幫你產出「第一階段（A）操作手冊」，包含：在 Lenovo 上安裝 MySQL 的精準指令（或 PlanetScale 快速設定）、backend 最小範例程式（含 <code>.env</code> 範本）、frontend 最小範例。<br>或是直接開始幫你寫 <code>backend</code> 的 starter code（含 DB 連線與 <code>GET /api/products</code>）——你想先要哪一個？</li>
+</ul>

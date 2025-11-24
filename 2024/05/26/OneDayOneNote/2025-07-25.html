@@ -1,0 +1,135 @@
+<hr>
+<h2 id="title-2025-07-25-Line-訂單系統-NestJS-第1-～7步驟date-2025-11-17-20-56-40categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-25-Line-訂單系統-NestJS-第1-～7步驟"><a href="#title-2025-07-25-Line-訂單系統-NestJS-第1-～7步驟date-2025-11-17-20-56-40categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-25-Line-訂單系統-NestJS-第1-～7步驟" class="headerlink" title="title: 2025-07-25 Line 訂單系統- NestJS 第1 ～7步驟date: 2025-11-17 20:56:40categories: OneDayOneNotetags:  [OneNote, Line訂單系統]description:   2025-07-25 Line 訂單系統- NestJS 第1 ～7步驟"></a>title: 2025-07-25 Line 訂單系統- NestJS 第1 ～7步驟<br>date: 2025-11-17 20:56:40<br>categories: OneDayOneNote<br>tags:  [OneNote, Line訂單系統]<br>description:   2025-07-25 Line 訂單系統- NestJS 第1 ～7步驟</h2><h2 id="2025-07-25-Line-訂單系統-NestJS-第1-～7步驟"><a href="#2025-07-25-Line-訂單系統-NestJS-第1-～7步驟" class="headerlink" title="2025-07-25 Line 訂單系統- NestJS 第1 ～7步驟"></a>2025-07-25 Line 訂單系統- NestJS 第1 ～7步驟</h2><p>具備：<br>✔ 模組化概念<br>✔ Controller &#x2F; Service 分層的概念<br>✔ DTO<br>✔ DI 注入<br>✔ Entity &#x2F; Interface<br>✔ 響應流程從 Service → Controller 的規劃</p>
+<p>你已具備理解 NestJS 的最核心抽象能力。<br>現在只需要 <strong>把抽象變成具體</strong>，你就能真正用 NestJS 堆出你的藍圖。</p>
+<hr>
+<h1 id="🎉-那我們立即開始「第一塊積木」吧！"><a href="#🎉-那我們立即開始「第一塊積木」吧！" class="headerlink" title="🎉 那我們立即開始「第一塊積木」吧！"></a>🎉 那我們立即開始「第一塊積木」吧！</h1><p>我會帶你一步一步建：</p>
+<ol>
+<li><strong>Module</strong></li>
+<li><strong>Controller</strong></li>
+<li><strong>Service</strong></li>
+<li><strong>DTO（含 Validation）</strong></li>
+<li><strong>Entity</strong></li>
+<li><strong>DI 注入</strong></li>
+<li><strong>第一個 REST API：GET &#x2F;products</strong></li>
+</ol>
+<p>做完後，你會有一個 <strong>完整能用的 Products 資料夾架構</strong>，後續所有功能（Orders、LINE Webhook、AI客服、Dashboard…）都可以複製這個模式。</p>
+<hr>
+<h1 id="🧱【第一步】建立-Products-Module（積木-01）"><a href="#🧱【第一步】建立-Products-Module（積木-01）" class="headerlink" title="🧱【第一步】建立 Products Module（積木 01）"></a>🧱【第一步】建立 Products Module（積木 01）</h1><p>請在 NestJS 專案中執行：</p>
+<pre><code class="bash">nest g module products
+</code></pre>
+<p>這會建立：</p>
+<pre><code>src/products/products.module.ts
+</code></pre>
+<hr>
+<h1 id="🧱【第二步】建立-Controller（積木-02）"><a href="#🧱【第二步】建立-Controller（積木-02）" class="headerlink" title="🧱【第二步】建立 Controller（積木 02）"></a>🧱【第二步】建立 Controller（積木 02）</h1><pre><code class="bash">nest g controller products
+</code></pre>
+<p>建立：</p>
+<pre><code>src/products/products.controller.ts
+</code></pre>
+<hr>
+<h1 id="🧱【第三步】建立-Service（積木-03）"><a href="#🧱【第三步】建立-Service（積木-03）" class="headerlink" title="🧱【第三步】建立 Service（積木 03）"></a>🧱【第三步】建立 Service（積木 03）</h1><pre><code class="bash">nest g service products
+</code></pre>
+<p>建立：</p>
+<pre><code>src/products/products.service.ts
+</code></pre>
+<hr>
+<p>此時你的結構應該是：</p>
+<pre><code>src/products/
+ ├── products.module.ts
+ ├── products.controller.ts
+ └── products.service.ts
+</code></pre>
+<p>⚡ 已經是企業級架構的苗芽！</p>
+<hr>
+<h1 id="🧱【第四步】建立-Entity（積木-04）"><a href="#🧱【第四步】建立-Entity（積木-04）" class="headerlink" title="🧱【第四步】建立 Entity（積木 04）"></a>🧱【第四步】建立 Entity（積木 04）</h1><p>建立一個 <code>product.entity.ts</code></p>
+<pre><code class="ts">// src/products/entities/product.entity.ts
+export class Product {
+  id: number;
+  name: string;
+  price: number;
+  stock: number;
+}
+</code></pre>
+<hr>
+<h1 id="🧱【第五步】建立-DTO（積木-05）"><a href="#🧱【第五步】建立-DTO（積木-05）" class="headerlink" title="🧱【第五步】建立 DTO（積木 05）"></a>🧱【第五步】建立 DTO（積木 05）</h1><pre><code class="ts">// src/products/dto/create-product.dto.ts
+import { IsString, IsNumber, IsNotEmpty } from &#39;class-validator&#39;;
+
+export class CreateProductDto {
+  @IsString()
+  @IsNotEmpty()
+  name: string;
+
+  @IsNumber()
+  price: number;
+
+  @IsNumber()
+  stock: number;
+}
+</code></pre>
+<p>並記得在 <code>main.ts</code> 加 validation pipeline：</p>
+<pre><code class="ts">app.useGlobalPipes(new ValidationPipe());
+</code></pre>
+<hr>
+<h1 id="🧱【第六步】Service-商業邏輯（積木-06）"><a href="#🧱【第六步】Service-商業邏輯（積木-06）" class="headerlink" title="🧱【第六步】Service 商業邏輯（積木 06）"></a>🧱【第六步】Service 商業邏輯（積木 06）</h1><pre><code class="ts">// src/products/products.service.ts
+import { Injectable } from &#39;@nestjs/common&#39;;
+import { Product } from &#39;./entities/product.entity&#39;;
+import { CreateProductDto } from &#39;./dto/create-product.dto&#39;;
+
+@Injectable()
+export class ProductsService {
+  private products: Product[] = [];
+
+  findAll(): Product[] {
+    return this.products;
+  }
+
+  create(dto: CreateProductDto): Product {
+    const newProduct: Product = {
+      id: this.products.length + 1,
+      ...dto,
+    };
+
+    this.products.push(newProduct);
+    return newProduct;
+  }
+}
+</code></pre>
+<hr>
+<h1 id="🧱【第七步】Controller-定義-API（積木-07）"><a href="#🧱【第七步】Controller-定義-API（積木-07）" class="headerlink" title="🧱【第七步】Controller 定義 API（積木 07）"></a>🧱【第七步】Controller 定義 API（積木 07）</h1><pre><code class="ts">// src/products/products.controller.ts
+
+import { Controller, Get, Post, Body } from &#39;@nestjs/common&#39;;
+import { ProductsService } from &#39;./products.service&#39;;
+import { CreateProductDto } from &#39;./dto/create-product.dto&#39;;
+
+@Controller(&#39;products&#39;)
+export class ProductsController {
+  constructor(private readonly productsService: ProductsService) {}
+
+  @Get()
+  findAll() {
+    return this.productsService.findAll();
+  }
+
+  @Post()
+  create(@Body() dto: CreateProductDto) {
+    return this.productsService.create(dto);
+  }
+}
+</code></pre>
+<hr>
+<h1 id="🎉-恭喜！"><a href="#🎉-恭喜！" class="headerlink" title="🎉 恭喜！"></a>🎉 恭喜！</h1><p>你已完成第一塊完整的 NestJS 積木：</p>
+<pre><code>ProductsModule
+ProductsController
+ProductsService
+DTO + Validation
+Entity
+DI 完成
+API 完成
+</code></pre>
+<p>而且架構已經完全符合：</p>
+<p>✔ DI<br>✔ 分層<br>✔ 乾淨架構<br>✔ RESTful API<br>✔ 可擴展性</p>
+<hr>
+<h1 id="接下來你可以選擇："><a href="#接下來你可以選擇：" class="headerlink" title="接下來你可以選擇："></a>接下來你可以選擇：</h1><h3 id="A-我繼續帶你做「Orders-module」"><a href="#A-我繼續帶你做「Orders-module」" class="headerlink" title="A. 我繼續帶你做「Orders module」"></a>A. 我繼續帶你做「Orders module」</h3><p>（你會學到 service 互相注入、order → product 之間邏輯）</p>
+<h3 id="B-我帶你做「LINE-Webhook-module」"><a href="#B-我帶你做「LINE-Webhook-module」" class="headerlink" title="B. 我帶你做「LINE Webhook module」"></a>B. 我帶你做「LINE Webhook module」</h3><p>（開始整合 LINE bot）</p>
+<h3 id="C-我帶你做「資料庫-MySQL-版本（TypeORM-Prisma）」"><a href="#C-我帶你做「資料庫-MySQL-版本（TypeORM-Prisma）」" class="headerlink" title="C. 我帶你做「資料庫 MySQL 版本（TypeORM&#x2F;Prisma）」"></a>C. 我帶你做「資料庫 MySQL 版本（TypeORM&#x2F;Prisma）」</h3><p>（把 in-memory 改成真實 DB）</p>
+<h3 id="D-帶你做「後台管理-UI-API」"><a href="#D-帶你做「後台管理-UI-API」" class="headerlink" title="D. 帶你做「後台管理 UI + API」"></a>D. 帶你做「後台管理 UI + API」</h3><p>你想先堆哪一塊？</p>

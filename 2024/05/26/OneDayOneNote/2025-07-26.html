@@ -1,0 +1,330 @@
+<hr>
+<h2 id="title-2025-07-26-Line-訂單系統-先做「NestJS-第一個練習（Products-模組）」date-2025-11-17-21-02-56categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-26-Line-訂單系統-先做「NestJS-第一個練習（Products-模組）」"><a href="#title-2025-07-26-Line-訂單系統-先做「NestJS-第一個練習（Products-模組）」date-2025-11-17-21-02-56categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-26-Line-訂單系統-先做「NestJS-第一個練習（Products-模組）」" class="headerlink" title="title: 2025-07-26 Line 訂單系統- 先做「NestJS 第一個練習（Products 模組）」date: 2025-11-17 21:02:56categories: OneDayOneNotetags:  [OneNote, Line訂單系統]description:   2025-07-26 Line 訂單系統- 先做「NestJS 第一個練習（Products 模組）」"></a>title: 2025-07-26 Line 訂單系統- 先做「NestJS 第一個練習（Products 模組）」<br>date: 2025-11-17 21:02:56<br>categories: OneDayOneNote<br>tags:  [OneNote, Line訂單系統]<br>description:   2025-07-26 Line 訂單系統- 先做「NestJS 第一個練習（Products 模組）」</h2><h2 id="2025-07-26-Line-訂單系統-先做「NestJS-第一個練習（Products-模組）」"><a href="#2025-07-26-Line-訂單系統-先做「NestJS-第一個練習（Products-模組）」" class="headerlink" title="2025-07-26 Line 訂單系統- 先做「NestJS 第一個練習（Products 模組）」"></a>2025-07-26 Line 訂單系統- 先做「NestJS 第一個練習（Products 模組）」</h2><p>先做「NestJS 第一個練習（Products 模組）」</p>
+<p>我會一步步帶你從 0 建出 <strong>可運行、可擴充的 NestJS 專案骨架</strong>，並把 <strong>Products Module（含 Controller&#x2F;Service&#x2F;DTO&#x2F;Entity&#x2F;DI）</strong> 實作好，讓你能像「堆積木」一樣繼續往 Orders、Webhook、Redis 等積木擴充。</p>
+<p>下面的流程分兩部分：</p>
+<ol>
+<li><strong>建立專案骨架（用 Nest CLI）</strong></li>
+<li><strong>把 Products Module 的所有檔案都寫好（可直接執行）</strong></li>
+</ol>
+<p>我會給你完整命令與每個檔案的程式碼——你只要複製貼上即可啟動。</p>
+<hr>
+<h1 id="0-前置：環境需求"><a href="#0-前置：環境需求" class="headerlink" title="0) 前置：環境需求"></a>0) 前置：環境需求</h1><p>確保你系統有 Node.js（&gt;&#x3D;16）、npm&#x2F;yarn。<br>建議用 <code>npm</code>。</p>
+<hr>
+<h1 id="1-建立-NestJS-專案（骨架）"><a href="#1-建立-NestJS-專案（骨架）" class="headerlink" title="1) 建立 NestJS 專案（骨架）"></a>1) 建立 NestJS 專案（骨架）</h1><p>在終端機執行：</p>
+<pre><code class="bash"># 全域安裝 Nest CLI（若尚未安裝）
+npm install -g @nestjs/cli
+
+# 建新專案（選 TypeScript）
+nest new line-order-backend
+# 選 npm 作為 package manager（或 yarn）
+</code></pre>
+<p>進入專案目錄：</p>
+<pre><code class="bash">cd line-order-backend
+</code></pre>
+<p>接著安裝我們會用到的套件：</p>
+<pre><code class="bash"># 核心 + typeorm + validation + sqlite (簡單起步)
+npm install @nestjs/typeorm typeorm reflect-metadata sqlite3 @nestjs/config class-validator class-transformer
+
+# 若你以後要用 MySQL，還要安裝 mysql2：
+# npm install mysql2
+</code></pre>
+<hr>
+<h1 id="2-專案主要檔案與結構（我會逐一給出內容）"><a href="#2-專案主要檔案與結構（我會逐一給出內容）" class="headerlink" title="2) 專案主要檔案與結構（我會逐一給出內容）"></a>2) 專案主要檔案與結構（我會逐一給出內容）</h1><p>建議最終專案結構（重點）：</p>
+<pre><code>line-order-backend/
+├─ src/
+│  ├─ main.ts
+│  ├─ app.module.ts
+│  ├─ config/
+│  │   └─ configuration.ts
+│  ├─ database/
+│  │   └─ database.module.ts
+│  └─ products/
+│      ├─ products.module.ts
+│      ├─ products.controller.ts
+│      ├─ products.service.ts
+│      ├─ dto/
+│      │   └─ create-product.dto.ts
+│      └─ entities/
+│          └─ product.entity.ts
+├─ .env
+├─ .env.example
+├─ package.json
+└─ tsconfig.json
+</code></pre>
+<p>下面是每個檔案的範本（請把檔案內容貼入相對路徑檔案）：</p>
+<hr>
+<h2 id="src-main-ts"><a href="#src-main-ts" class="headerlink" title="src&#x2F;main.ts"></a>src&#x2F;main.ts</h2><p>啟動並加入全域 ValidationPipe。</p>
+<pre><code class="ts">import { ValidationPipe } from &#39;@nestjs/common&#39;;
+import { NestFactory } from &#39;@nestjs/core&#39;;
+import { AppModule } from &#39;./app.module&#39;;
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  app.useGlobalPipes(new ValidationPipe({
+    whitelist: true,
+    transform: true,
+  }));
+  await app.listen(process.env.PORT ? +process.env.PORT : 3000);
+  console.log(`🚀 Application running on: ${await app.getUrl()}`);
+}
+bootstrap();
+</code></pre>
+<hr>
+<h2 id="src-app-module-ts"><a href="#src-app-module-ts" class="headerlink" title="src&#x2F;app.module.ts"></a>src&#x2F;app.module.ts</h2><p>主模組，載入 Config + Database + Products。</p>
+<pre><code class="ts">import { Module } from &#39;@nestjs/common&#39;;
+import { ConfigModule } from &#39;@nestjs/config&#39;;
+import configuration from &#39;./config/configuration&#39;;
+import { DatabaseModule } from &#39;./database/database.module&#39;;
+import { ProductsModule } from &#39;./products/products.module&#39;;
+
+@Module({
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      load: [configuration],
+    }),
+    DatabaseModule,
+    ProductsModule,
+  ],
+})
+export class AppModule {}
+</code></pre>
+<hr>
+<h2 id="src-config-configuration-ts"><a href="#src-config-configuration-ts" class="headerlink" title="src&#x2F;config&#x2F;configuration.ts"></a>src&#x2F;config&#x2F;configuration.ts</h2><p>使用 <code>@nestjs/config</code> 讀 env。</p>
+<pre><code class="ts">export default () =&gt; ({
+  port: parseInt(process.env.PORT, 10) || 3000,
+  database: {
+    type: process.env.DB_TYPE || &#39;sqlite&#39;, // sqlite or mysql
+    host: process.env.DB_HOST || &#39;localhost&#39;,
+    port: parseInt(process.env.DB_PORT || &#39;3306&#39;, 10),
+    username: process.env.DB_USER || &#39;root&#39;,
+    password: process.env.DB_PASSWORD || &#39;&#39;,
+    database: process.env.DB_NAME || &#39;line_order_db&#39;,
+  },
+});
+</code></pre>
+<hr>
+<h2 id="src-database-database-module-ts"><a href="#src-database-database-module-ts" class="headerlink" title="src&#x2F;database&#x2F;database.module.ts"></a>src&#x2F;database&#x2F;database.module.ts</h2><p>TypeORM 連線模組（預設使用 SQLite，無需額外安裝 DB）。</p>
+<pre><code class="ts">import { Module } from &#39;@nestjs/common&#39;;
+import { TypeOrmModule } from &#39;@nestjs/typeorm&#39;;
+import configuration from &#39;../config/configuration&#39;;
+import { ConfigModule, ConfigService } from &#39;@nestjs/config&#39;;
+import { Product } from &#39;../products/entities/product.entity&#39;;
+
+@Module({
+  imports: [
+    ConfigModule,
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) =&gt; {
+        const dbConfig = configService.get(&#39;database&#39;);
+        if (dbConfig.type === &#39;mysql&#39;) {
+          return {
+            type: &#39;mysql&#39; as const,
+            host: dbConfig.host,
+            port: dbConfig.port,
+            username: dbConfig.username,
+            password: dbConfig.password,
+            database: dbConfig.database,
+            entities: [Product],
+            synchronize: true, // dev only; use migrations in prod
+          };
+        } else {
+          // default sqlite for quick local dev
+          return {
+            type: &#39;sqlite&#39; as const,
+            database: &#39;data/sqlite.db&#39;,
+            entities: [Product],
+            synchronize: true,
+          };
+        }
+      },
+      inject: [ConfigService],
+    }),
+  ],
+})
+export class DatabaseModule {}
+</code></pre>
+<blockquote>
+<p>注意：<code>synchronize: true</code> 僅用於開發；上線用 migration。</p>
+</blockquote>
+<hr>
+<h1 id="Products-模組（完整檔案）"><a href="#Products-模組（完整檔案）" class="headerlink" title="Products 模組（完整檔案）"></a>Products 模組（完整檔案）</h1><h2 id="src-products-entities-product-entity-ts"><a href="#src-products-entities-product-entity-ts" class="headerlink" title="src&#x2F;products&#x2F;entities&#x2F;product.entity.ts"></a>src&#x2F;products&#x2F;entities&#x2F;product.entity.ts</h2><pre><code class="ts">import { Entity, PrimaryGeneratedColumn, Column } from &#39;typeorm&#39;;
+
+@Entity({ name: &#39;products&#39; })
+export class Product {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column({ length: 150 })
+  name: string;
+
+  @Column(&#39;decimal&#39;, { precision: 10, scale: 2, default: 0 })
+  price: number;
+
+  @Column({ default: 0 })
+  stock: number;
+
+  @Column({ type: &#39;text&#39;, nullable: true })
+  description?: string;
+}
+</code></pre>
+<h2 id="src-products-dto-create-product-dto-ts"><a href="#src-products-dto-create-product-dto-ts" class="headerlink" title="src&#x2F;products&#x2F;dto&#x2F;create-product.dto.ts"></a>src&#x2F;products&#x2F;dto&#x2F;create-product.dto.ts</h2><pre><code class="ts">import { IsString, IsNotEmpty, IsNumber, IsOptional, Min } from &#39;class-validator&#39;;
+import { Type } from &#39;class-transformer&#39;;
+
+export class CreateProductDto {
+  @IsString()
+  @IsNotEmpty()
+  name: string;
+
+  @Type(() =&gt; Number)
+  @IsNumber()
+  @Min(0)
+  price: number;
+
+  @Type(() =&gt; Number)
+  @IsNumber()
+  @Min(0)
+  stock: number;
+
+  @IsOptional()
+  @IsString()
+  description?: string;
+}
+</code></pre>
+<h2 id="src-products-products-service-ts"><a href="#src-products-products-service-ts" class="headerlink" title="src&#x2F;products&#x2F;products.service.ts"></a>src&#x2F;products&#x2F;products.service.ts</h2><pre><code class="ts">import { Injectable, NotFoundException } from &#39;@nestjs/common&#39;;
+import { InjectRepository } from &#39;@nestjs/typeorm&#39;;
+import { Repository } from &#39;typeorm&#39;;
+import { Product } from &#39;./entities/product.entity&#39;;
+import { CreateProductDto } from &#39;./dto/create-product.dto&#39;;
+
+@Injectable()
+export class ProductsService {
+  constructor(
+    @InjectRepository(Product)
+    private readonly repo: Repository&lt;Product&gt;,
+  ) {}
+
+  async findAll(): Promise&lt;Product[]&gt; {
+    return this.repo.find({ order: { id: &#39;DESC&#39; } });
+  }
+
+  async findOne(id: number): Promise&lt;Product&gt; {
+    const p = await this.repo.findOneBy({ id });
+    if (!p) throw new NotFoundException(&#39;Product not found&#39;);
+    return p;
+  }
+
+  async create(dto: CreateProductDto): Promise&lt;Product&gt; {
+    const p = this.repo.create(dto as any);
+    return this.repo.save(p);
+  }
+
+  async remove(id: number): Promise&lt;void&gt; {
+    const r = await this.repo.delete(id);
+    if (r.affected === 0) throw new NotFoundException(&#39;Product not found&#39;);
+  }
+}
+</code></pre>
+<h2 id="src-products-products-controller-ts"><a href="#src-products-products-controller-ts" class="headerlink" title="src&#x2F;products&#x2F;products.controller.ts"></a>src&#x2F;products&#x2F;products.controller.ts</h2><pre><code class="ts">import { Controller, Get, Post, Body, Param, Delete, ParseIntPipe } from &#39;@nestjs/common&#39;;
+import { ProductsService } from &#39;./products.service&#39;;
+import { CreateProductDto } from &#39;./dto/create-product.dto&#39;;
+
+@Controller(&#39;products&#39;)
+export class ProductsController {
+  constructor(private readonly svc: ProductsService) {}
+
+  @Get()
+  async findAll() {
+    return this.svc.findAll();
+  }
+
+  @Get(&#39;:id&#39;)
+  async findOne(@Param(&#39;id&#39;, ParseIntPipe) id: number) {
+    return this.svc.findOne(id);
+  }
+
+  @Post()
+  async create(@Body() dto: CreateProductDto) {
+    return this.svc.create(dto);
+  }
+
+  @Delete(&#39;:id&#39;)
+  async remove(@Param(&#39;id&#39;, ParseIntPipe) id: number) {
+    await this.svc.remove(id);
+    return { message: &#39;deleted&#39; };
+  }
+}
+</code></pre>
+<h2 id="src-products-products-module-ts"><a href="#src-products-products-module-ts" class="headerlink" title="src&#x2F;products&#x2F;products.module.ts"></a>src&#x2F;products&#x2F;products.module.ts</h2><pre><code class="ts">import { Module } from &#39;@nestjs/common&#39;;
+import { TypeOrmModule } from &#39;@nestjs/typeorm&#39;;
+import { ProductsService } from &#39;./products.service&#39;;
+import { ProductsController } from &#39;./products.controller&#39;;
+import { Product } from &#39;./entities/product.entity&#39;;
+
+@Module({
+  imports: [TypeOrmModule.forFeature([Product])],
+  providers: [ProductsService],
+  controllers: [ProductsController],
+  exports: [ProductsService],
+})
+export class ProductsModule {}
+</code></pre>
+<hr>
+<h1 id="3-env-example（放在專案根目錄）"><a href="#3-env-example（放在專案根目錄）" class="headerlink" title="3) .env.example（放在專案根目錄）"></a>3) .env.example（放在專案根目錄）</h1><p>建立 <code>.env</code> 或先複製 <code>.env.example</code>：</p>
+<pre><code class="ini"># .env.example
+PORT=3000
+
+# DB: use sqlite by default. To use mysql change DB_TYPE to &#39;mysql&#39; and fill DB_* values
+DB_TYPE=sqlite
+DB_HOST=localhost
+DB_PORT=3306
+DB_USER=root
+DB_PASSWORD=
+DB_NAME=line_order_db
+</code></pre>
+<p>若要使用 MySQL（本機或 PlanetScale），把 <code>DB_TYPE=mysql</code> 並安裝 <code>mysql2</code>。</p>
+<hr>
+<h1 id="4-package-json-scripts（若-nest-new-已建立，確認-scripts-包含）"><a href="#4-package-json-scripts（若-nest-new-已建立，確認-scripts-包含）" class="headerlink" title="4) package.json scripts（若 nest new 已建立，確認 scripts 包含）"></a>4) package.json scripts（若 nest new 已建立，確認 scripts 包含）</h1><p><code>package.json</code> 中應有：</p>
+<pre><code class="json">&quot;scripts&quot;: {
+  &quot;start&quot;: &quot;nest start&quot;,
+  &quot;start:dev&quot;: &quot;nest start --watch&quot;,
+  &quot;build&quot;: &quot;nest build&quot;,
+  &quot;format&quot;: &quot;prettier --write \&quot;src/**/*.ts\&quot;&quot;
+}
+</code></pre>
+<hr>
+<h1 id="5-執行與測試"><a href="#5-執行與測試" class="headerlink" title="5) 執行與測試"></a>5) 執行與測試</h1><p>啟動（dev）：</p>
+<pre><code class="bash"># 建議先建立 SQLite 資料夾
+mkdir -p data
+
+# 啟動開發模式
+npm run start:dev
+</code></pre>
+<p>測試 API（curl 或 Postman）：</p>
+<ul>
+<li>取得空列表</li>
+</ul>
+<pre><code class="bash">curl http://localhost:3000/products
+</code></pre>
+<ul>
+<li>建立商品</li>
+</ul>
+<pre><code class="bash">curl -X POST http://localhost:3000/products \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#39;{&quot;name&quot;:&quot;紅豆麵包&quot;,&quot;price&quot;:35,&quot;stock&quot;:20,&quot;description&quot;:&quot;手作紅豆&quot;}&#39;
+</code></pre>
+<ul>
+<li>取得商品</li>
+</ul>
+<pre><code class="bash">curl http://localhost:3000/products/1
+</code></pre>
+<hr>
+<h1 id="6-下一步建議（你要我帶的）"><a href="#6-下一步建議（你要我帶的）" class="headerlink" title="6) 下一步建議（你要我帶的）"></a>6) 下一步建議（你要我帶的）</h1><p>現在你已經有「第一塊積木」。你可以選接下來哪塊：</p>
+<ul>
+<li><strong>A. Orders Module</strong>（我會給你完整 OrdersModule 範例，含 DTO、Entity、Service 事務處理）</li>
+<li><strong>B. 把 Products 改成 MySQL（TypeORM + mysql2）並示範 migration</strong></li>
+<li><strong>C. LineWebhook Module（整合 OrdersService）</strong></li>
+<li><strong>D. 加入 Queue（Bull + Redis）並示範 webhook 非同步處理</strong></li>
+</ul>
+<p>你剛說要我「1 及 2（建立專案 + 告訴你每步該做什麼）」——已完成。<br>現在請選你想要我<strong>下一塊積木</strong>（A&#x2F;B&#x2F;C&#x2F;D）中的哪一項，我將馬上幫你生成完整程式碼與執行指令。</p>

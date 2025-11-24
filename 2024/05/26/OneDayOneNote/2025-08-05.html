@@ -1,0 +1,133 @@
+<hr>
+<h2 id="title-2025-08-05-Line-訂單系統-LINE-Webhook-→-NestJS-→-驗證-Signature-的「完整生命週期」date-2025-11-22-21-35-14categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-08-05-Line-訂單系統-LINE-Webhook-→-NestJS-→-驗證-Signature-的「完整生命週期」"><a href="#title-2025-08-05-Line-訂單系統-LINE-Webhook-→-NestJS-→-驗證-Signature-的「完整生命週期」date-2025-11-22-21-35-14categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-08-05-Line-訂單系統-LINE-Webhook-→-NestJS-→-驗證-Signature-的「完整生命週期」" class="headerlink" title="title: 2025-08-05 Line 訂單系統- LINE Webhook → NestJS → 驗證 Signature 的「完整生命週期」date: 2025-11-22 21:35:14categories: OneDayOneNotetags:  [OneNote, Line訂單系統]description:  2025-08-05 Line 訂單系統- LINE Webhook → NestJS → 驗證 Signature 的「完整生命週期」"></a>title: 2025-08-05 Line 訂單系統- LINE Webhook → NestJS → 驗證 Signature 的「完整生命週期」<br>date: 2025-11-22 21:35:14<br>categories: OneDayOneNote<br>tags:  [OneNote, Line訂單系統]<br>description:  2025-08-05 Line 訂單系統- LINE Webhook → NestJS → 驗證 Signature 的「完整生命週期」</h2><h2 id="2025-08-05-Line-訂單系統-LINE-Webhook-→-NestJS-→-驗證-Signature-的「完整生命週期」"><a href="#2025-08-05-Line-訂單系統-LINE-Webhook-→-NestJS-→-驗證-Signature-的「完整生命週期」" class="headerlink" title="2025-08-05 Line 訂單系統- LINE Webhook → NestJS → 驗證 Signature 的「完整生命週期」"></a>2025-08-05 Line 訂單系統- LINE Webhook → NestJS → 驗證 Signature 的「完整生命週期」</h2><p>LINE Webhook → NestJS → 驗證 Signature 的「完整生命週期」</p>
+<p>你問得非常好，我下面用 <strong>LINE Webhook → NestJS → 驗證 Signature</strong> 的「完整生命週期」來解釋：<br><strong>到底是哪一個步驟產生 raw body？<br>為什麼一定要拿 raw body 才能驗證？<br>NestJS 什麼時候幫你處理 body？<br>Signature 驗證究竟是怎麼做？</strong></p>
+<p>看完你就會完全懂。</p>
+<hr>
+<h1 id="🧩-整體流程（重點：raw-body-在哪邊產生？）"><a href="#🧩-整體流程（重點：raw-body-在哪邊產生？）" class="headerlink" title="🧩 整體流程（重點：raw body 在哪邊產生？）"></a>🧩 <strong>整體流程（重點：raw body 在哪邊產生？）</strong></h1><h2 id="1️⃣-使用者在-LINE-打字-→-傳訊息給-LINE"><a href="#1️⃣-使用者在-LINE-打字-→-傳訊息給-LINE" class="headerlink" title="1️⃣ 使用者在 LINE 打字 → 傳訊息給 LINE"></a><strong>1️⃣ 使用者在 LINE 打字 → 傳訊息給 LINE</strong></h2><p>使用者：</p>
+<ul>
+<li>傳文字</li>
+<li>傳貼圖</li>
+<li>傳圖片</li>
+<li>點選 Flex Message 按鈕</li>
+<li>任何事件……</li>
+</ul>
+<p><strong>都會觸發 LINE → 你的 webhook endpoint</strong></p>
+<hr>
+<h2 id="2️⃣-LINE-伺服器收到訊息後，組成-JSON（raw-body）"><a href="#2️⃣-LINE-伺服器收到訊息後，組成-JSON（raw-body）" class="headerlink" title="2️⃣ LINE 伺服器收到訊息後，組成 JSON（raw body）"></a><strong>2️⃣ LINE 伺服器收到訊息後，組成 JSON（raw body）</strong></h2><p>這裡是關鍵：</p>
+<h3 id="✔-LINE-會把使用者輸入內容包成一段-JSON"><a href="#✔-LINE-會把使用者輸入內容包成一段-JSON" class="headerlink" title="✔ LINE 會把使用者輸入內容包成一段 JSON"></a>✔ LINE 會把使用者輸入內容<strong>包成一段 JSON</strong></h3><p>例如：</p>
+<pre><code class="json">{
+  &quot;events&quot;: [
+    {
+      &quot;type&quot;: &quot;message&quot;,
+      &quot;message&quot;: {
+        &quot;type&quot;: &quot;text&quot;,
+        &quot;text&quot;: &quot;hello&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+<h3 id="✔-然後將「這段-JSON（未解析的-bytes）」"><a href="#✔-然後將「這段-JSON（未解析的-bytes）」" class="headerlink" title="✔ 然後將「這段 JSON（未解析的 bytes）」"></a>✔ 然後將「這段 JSON（未解析的 bytes）」</h3><p><strong>直接用 UTF-8 編碼成 raw body（byte array）</strong></p>
+<p>例如：</p>
+<pre><code>7b 0a 20 20 22 65 76 65 6e 74 ...
+</code></pre>
+<p><strong>這就是 raw body</strong><br>（還沒有被 NestJS 解成物件）</p>
+<hr>
+<h2 id="3️⃣-LINE-使用-raw-body-channel-secret-計算-HMAC-SHA256-→-得到-signature"><a href="#3️⃣-LINE-使用-raw-body-channel-secret-計算-HMAC-SHA256-→-得到-signature" class="headerlink" title="3️⃣ LINE 使用 raw body + channel secret 計算 HMAC-SHA256 → 得到 signature"></a><strong>3️⃣ LINE 使用 raw body + channel secret 計算 HMAC-SHA256 → 得到 signature</strong></h2><p>LINE 做：</p>
+<pre><code>signature = HMAC_SHA256(rawBody, channelSecret)
+</code></pre>
+<p>然後把 signature 放進：</p>
+<pre><code>x-line-signature: &lt;signature&gt;
+</code></pre>
+<hr>
+<h2 id="4️⃣-LINE-將-raw-body-header-傳給你的-webhook-URL"><a href="#4️⃣-LINE-將-raw-body-header-傳給你的-webhook-URL" class="headerlink" title="4️⃣ LINE 將 raw body + header 傳給你的 webhook URL"></a><strong>4️⃣ LINE 將 raw body + header 傳給你的 webhook URL</strong></h2><pre><code>POST https://xxxx.ngrok-free.app/line/webhook
+headers:
+    x-line-signature: abcd1234...
+body:
+    { &quot;events&quot;: [...] }
+</code></pre>
+<p>這裡的 body <strong>還是 raw body</strong>。</p>
+<hr>
+<h1 id="🔥-raw-body-的重點來了（NestJS-的處理順序）"><a href="#🔥-raw-body-的重點來了（NestJS-的處理順序）" class="headerlink" title="🔥 raw body 的重點來了（NestJS 的處理順序）"></a>🔥 <strong>raw body 的重點來了（NestJS 的處理順序）</strong></h1><h2 id="🟦-步驟-5：NestJS-預設會先把-raw-body「解析成物件」"><a href="#🟦-步驟-5：NestJS-預設會先把-raw-body「解析成物件」" class="headerlink" title="🟦 步驟 5：NestJS 預設會先把 raw body「解析成物件」"></a>🟦 <strong>步驟 5：NestJS 預設會先把 raw body「解析成物件」</strong></h2><p>NestJS（底層是 Express&#x2F;Fastify）會：</p>
+<ol>
+<li>收到 raw body（byte stream）</li>
+<li>用 JSON.parse 解析成 object</li>
+<li>放進 <code>req.body</code></li>
+<li>丟掉原本 raw body（預設會丟掉）</li>
+</ol>
+<p>所以如果你這樣寫：</p>
+<pre><code class="ts">@Post(&#39;webhook&#39;)
+handleWebhook(@Body() body) {
+  console.log(body);
+}
+</code></pre>
+<p>你拿到的是：</p>
+<pre><code>已經解析成物件的 body，不是 raw body
+</code></pre>
+<p>⚠️ <strong>這時你的 raw body 已經被消耗掉，不能驗證 signature。</strong></p>
+<hr>
+<h1 id="🟥-所以-LINE-說：「一定要先取-raw-body」"><a href="#🟥-所以-LINE-說：「一定要先取-raw-body」" class="headerlink" title="🟥 所以 LINE 說：「一定要先取 raw body」"></a>🟥 <strong>所以 LINE 說：「一定要先取 raw body」</strong></h1><p>你要在 NestJS 解析 JSON 之前取得 raw body。</p>
+<hr>
+<h1 id="🟩-步驟-6：NestJS-如何保留-raw-body？（需要-middleware）"><a href="#🟩-步驟-6：NestJS-如何保留-raw-body？（需要-middleware）" class="headerlink" title="🟩 步驟 6：NestJS 如何保留 raw body？（需要 middleware）"></a>🟩 <strong>步驟 6：NestJS 如何保留 raw body？（需要 middleware）</strong></h1><p>你要告訴 Express：</p>
+<pre><code>請不要吃掉 raw body
+請在 request.rawBody 存一份 bytes 給我
+</code></pre>
+<p>例如：</p>
+<pre><code class="ts">app.use(
+  express.json({
+    verify: (req: any, res, buf) =&gt; {
+      req.rawBody = buf; // ★ 把 raw body 保存下來
+    },
+  }),
+);
+</code></pre>
+<p>這樣：</p>
+<pre><code>req.rawBody 就是 LINE 計算簽名的原始 bytes
+req.body     是 NestJS 解析後的 JSON 物件
+</code></pre>
+<hr>
+<h1 id="🟦-步驟-7：你的-webhook-handler-檢查-signature"><a href="#🟦-步驟-7：你的-webhook-handler-檢查-signature" class="headerlink" title="🟦 步驟 7：你的 webhook handler 檢查 signature"></a>🟦 <strong>步驟 7：你的 webhook handler 檢查 signature</strong></h1><pre><code class="ts">@Post(&#39;webhook&#39;)
+handleWebhook(
+  @Headers(&#39;x-line-signature&#39;) signature: string,
+  @Req() req: any
+) {
+  const raw = req.rawBody;   // raw body bytes
+  const secret = process.env.LINE_CHANNEL_SECRET;
+
+  const hash = createHmac(&#39;sha256&#39;, secret)
+    .update(raw)
+    .digest(&#39;base64&#39;);
+
+  if (hash !== signature) {
+    return &#39;Invalid signature&#39;;
+  }
+
+  return &#39;OK&#39;;
+}
+</code></pre>
+<hr>
+<h1 id="🎯-你的原始問題回答：raw-body-在哪邊產生？"><a href="#🎯-你的原始問題回答：raw-body-在哪邊產生？" class="headerlink" title="🎯 你的原始問題回答：raw body 在哪邊產生？"></a>🎯 <strong>你的原始問題回答：raw body 在哪邊產生？</strong></h1><h3 id="✔-raw-body-是-LINE-伺服器產生的，不是-NestJS-產生的"><a href="#✔-raw-body-是-LINE-伺服器產生的，不是-NestJS-產生的" class="headerlink" title="✔ raw body 是 LINE 伺服器產生的，不是 NestJS 產生的"></a>✔ raw body 是 LINE 伺服器產生的，不是 NestJS 產生的</h3><p>它是 LINE server 將 webhook payload <strong>轉成 bytes</strong> 後送給你。</p>
+<h3 id="✔-NestJS-預設會吃掉-raw-body"><a href="#✔-NestJS-預設會吃掉-raw-body" class="headerlink" title="✔ NestJS 預設會吃掉 raw body"></a>✔ NestJS 預設會吃掉 raw body</h3><p>所以你需要 middleware 把 raw body 留起來。</p>
+<h3 id="✔-使用者在-LINE-打字上傳，只是「觸發」LINE-server-產生-raw-body"><a href="#✔-使用者在-LINE-打字上傳，只是「觸發」LINE-server-產生-raw-body" class="headerlink" title="✔ 使用者在 LINE 打字上傳，只是「觸發」LINE server 產生 raw body"></a>✔ 使用者在 LINE 打字上傳，只是「觸發」LINE server 產生 raw body</h3><p>使用者 → LINE server（建立 JSON → raw body → HMAC → 傳給你）</p>
+<hr>
+<h1 id="🟦-用最白話講一次："><a href="#🟦-用最白話講一次：" class="headerlink" title="🟦 用最白話講一次："></a>🟦 用最白話講一次：</h1><ul>
+<li><strong>使用者傳訊息 → LINE server 產生 JSON</strong></li>
+<li></li>
+<li><strong>LINE server 把 JSON 轉成 bytes（這就是 raw body）</strong></li>
+<li></li>
+<li><strong>LINE 用 raw body 計算 HMAC-SHA256（signature）</strong></li>
+<li></li>
+<li><strong>LINE 把 raw body + signature 一起送到你的 webhook</strong></li>
+<li></li>
+<li><strong>NestJS 會吃掉 raw body（除非你先留）</strong></li>
+<li></li>
+<li><strong>你用 raw body 重算 HMAC 比對 signature → 才能驗證訊息真實性</strong></li>
+</ul>
+<hr>
+<h1 id="如果你願意，我可以馬上幫你："><a href="#如果你願意，我可以馬上幫你：" class="headerlink" title="如果你願意，我可以馬上幫你："></a>如果你願意，我可以馬上幫你：</h1><ol>
+<li>幫你寫好 NestJS 的 raw body middleware</li>
+<li>幫你寫好完整的 webhook controller</li>
+<li>幫你寫好 signature 驗證程式碼</li>
+<li>幫你用 Mermaid 畫出整個流程圖</li>
+</ol>
+<p>你要哪一個？</p>

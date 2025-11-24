@@ -1,0 +1,64 @@
+<hr>
+<h2 id="title-2025-06-26-Line-訂單系統-階段Bdate-2025-11-12-21-25-30categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-06-26-Line-訂單系統-階段B"><a href="#title-2025-06-26-Line-訂單系統-階段Bdate-2025-11-12-21-25-30categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-06-26-Line-訂單系統-階段B" class="headerlink" title="title: 2025-06-26 Line 訂單系統-階段Bdate: 2025-11-12 21:25:30categories: OneDayOneNotetags:  [OneNote, Line訂單系統]description:  2025-06-26 Line 訂單系統-階段B"></a>title: 2025-06-26 Line 訂單系統-階段B<br>date: 2025-11-12 21:25:30<br>categories: OneDayOneNote<br>tags:  [OneNote, Line訂單系統]<br>description:  2025-06-26 Line 訂單系統-階段B</h2><h2 id="2025-06-26-Line-訂單系統-階段B"><a href="#2025-06-26-Line-訂單系統-階段B" class="headerlink" title="2025-06-26 Line 訂單系統-階段B"></a>2025-06-26 Line 訂單系統-階段B</h2><h2 id="🅱️-階段-B：後端-API-MySQL"><a href="#🅱️-階段-B：後端-API-MySQL" class="headerlink" title="🅱️ 階段 B：後端 API + MySQL"></a>🅱️ 階段 B：後端 API + MySQL</h2><h3 id="🎯-目標"><a href="#🎯-目標" class="headerlink" title="🎯 目標"></a>🎯 目標</h3><p>建立商品與訂單的基本 CRUD API。</p>
+<hr>
+<h3 id="🔧-步驟"><a href="#🔧-步驟" class="headerlink" title="🔧 步驟"></a>🔧 步驟</h3><h4 id="1️⃣-建立資料庫連線模組（backend-db-js）"><a href="#1️⃣-建立資料庫連線模組（backend-db-js）" class="headerlink" title="1️⃣ 建立資料庫連線模組（backend&#x2F;db.js）"></a>1️⃣ 建立資料庫連線模組（backend&#x2F;db.js）</h4><pre><code class="js">import mysql from &#39;mysql2/promise&#39;;
+import dotenv from &#39;dotenv&#39;;
+dotenv.config();
+
+export const pool = mysql.createPool({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
+});
+</code></pre>
+<hr>
+<h4 id="2️⃣-建立商品-API（backend-routes-products-js）"><a href="#2️⃣-建立商品-API（backend-routes-products-js）" class="headerlink" title="2️⃣ 建立商品 API（backend&#x2F;routes&#x2F;products.js）"></a>2️⃣ 建立商品 API（backend&#x2F;routes&#x2F;products.js）</h4><pre><code class="js">import express from &#39;express&#39;;
+import { pool } from &#39;../db.js&#39;;
+const router = express.Router();
+
+router.get(&#39;/&#39;, async (req, res) =&gt; {
+  const [rows] = await pool.query(&#39;SELECT * FROM products&#39;);
+  res.json(rows);
+});
+
+router.post(&#39;/&#39;, async (req, res) =&gt; {
+  const { name, price, stock } = req.body;
+  await pool.query(&#39;INSERT INTO products (name, price, stock) VALUES (?, ?, ?)&#39;, [name, price, stock]);
+  res.json({ message: &#39;Product added&#39; });
+});
+
+export default router;
+</code></pre>
+<hr>
+<h4 id="3️⃣-主伺服器註冊路由（backend-index-js）"><a href="#3️⃣-主伺服器註冊路由（backend-index-js）" class="headerlink" title="3️⃣ 主伺服器註冊路由（backend&#x2F;index.js）"></a>3️⃣ 主伺服器註冊路由（backend&#x2F;index.js）</h4><pre><code class="js">import express from &#39;express&#39;;
+import cors from &#39;cors&#39;;
+import dotenv from &#39;dotenv&#39;;
+import productRoutes from &#39;./routes/products.js&#39;;
+dotenv.config();
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+app.use(&#39;/api/products&#39;, productRoutes);
+
+app.listen(3000, () =&gt; console.log(&#39;API running on port 3000&#39;));
+</code></pre>
+<hr>
+<h4 id="4️⃣-測試（Postman）"><a href="#4️⃣-測試（Postman）" class="headerlink" title="4️⃣ 測試（Postman）"></a>4️⃣ 測試（Postman）</h4><ul>
+<li><p><code>GET http://localhost:3000/api/products</code></p>
+</li>
+<li><p><code>POST http://localhost:3000/api/products</code></p>
+<pre><code class="json">{ &quot;name&quot;: &quot;Latte&quot;, &quot;price&quot;: 90, &quot;stock&quot;: 10 }
+</code></pre>
+</li>
+</ul>
+<hr>
+<h3 id="🧪-Checkpoint"><a href="#🧪-Checkpoint" class="headerlink" title="🧪 Checkpoint"></a>🧪 Checkpoint</h3><p>✅ 能新增、查詢商品<br>✅ DB 有正確資料</p>
+<hr>
+<h3 id="💡-延伸"><a href="#💡-延伸" class="headerlink" title="💡 延伸"></a>💡 延伸</h3><ul>
+<li>加入 <code>/api/orders</code> 路由。</li>
+<li>寫個 <code>db/init.sql</code> 匯入資料表（你已建立）。</li>
+</ul>
+<hr>

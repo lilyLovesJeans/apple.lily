@@ -1,0 +1,382 @@
+<hr>
+<h2 id="title-2025-07-05-Line-訂單系統-A階-A1-在-GitHub-上保存與同步專案版本；A2-在-Lenovo-上快速重建或重新安裝測試環境date-2025-11-12-23-02-56categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-05-Line-訂單系統-A階-A1-在-GitHub-上保存與同步專案版本；A2-在-Lenovo-上快速重建或重新安裝測試環境"><a href="#title-2025-07-05-Line-訂單系統-A階-A1-在-GitHub-上保存與同步專案版本；A2-在-Lenovo-上快速重建或重新安裝測試環境date-2025-11-12-23-02-56categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-05-Line-訂單系統-A階-A1-在-GitHub-上保存與同步專案版本；A2-在-Lenovo-上快速重建或重新安裝測試環境" class="headerlink" title="title: 2025-07-05 Line 訂單系統-A階 A1 在 GitHub 上保存與同步專案版本；A2 在 Lenovo 上快速重建或重新安裝測試環境date: 2025-11-12 23:02:56categories: OneDayOneNotetags:  [OneNote, Line訂單系統]description:   2025-07-05 Line 訂單系統-A階 A1 在 GitHub 上保存與同步專案版本；A2 在 Lenovo 上快速重建或重新安裝測試環境"></a>title: 2025-07-05 Line 訂單系統-A階 A1 在 GitHub 上保存與同步專案版本；A2 在 Lenovo 上快速重建或重新安裝測試環境<br>date: 2025-11-12 23:02:56<br>categories: OneDayOneNote<br>tags:  [OneNote, Line訂單系統]<br>description:   2025-07-05 Line 訂單系統-A階 A1 在 GitHub 上保存與同步專案版本；A2 在 Lenovo 上快速重建或重新安裝測試環境</h2><h2 id="2025-07-05-Line-訂單系統-A階-A1-在-GitHub-上保存與同步專案版本；A2-在-Lenovo-上快速重建或重新安裝測試環境"><a href="#2025-07-05-Line-訂單系統-A階-A1-在-GitHub-上保存與同步專案版本；A2-在-Lenovo-上快速重建或重新安裝測試環境" class="headerlink" title="2025-07-05 Line 訂單系統-A階 A1 在 GitHub 上保存與同步專案版本；A2 在 Lenovo 上快速重建或重新安裝測試環境"></a>2025-07-05 Line 訂單系統-A階 A1 在 GitHub 上保存與同步專案版本；A2 在 Lenovo 上快速重建或重新安裝測試環境</h2><p>同時準備兩份東西：</p>
+<p>1️⃣ <strong>GitHub-ready boilerplate</strong> — 可以直接放進 repo、clone 下來執行的完整目錄（含 README、db_init.sql、後端程式碼）。<br>2️⃣ <strong>Lenovo 一鍵建立腳本</strong> — 幫你在 Windows（PowerShell）上從零建立 backend 專案、安裝套件、建 DB、啟動測試。</p>
+<p>這兩份設計會完全一致，讓你可以：</p>
+<ul>
+<li>在 GitHub 上保存與同步專案版本；</li>
+<li>在 Lenovo 上快速重建或重新安裝測試環境。</li>
+</ul>
+<hr>
+<h2 id="🧱-Part-1：GitHub-ready-Boilerplate（檔案總覽）"><a href="#🧱-Part-1：GitHub-ready-Boilerplate（檔案總覽）" class="headerlink" title="🧱 Part 1：GitHub-ready Boilerplate（檔案總覽）"></a>🧱 Part 1：GitHub-ready Boilerplate（檔案總覽）</h2><p>📁 <strong>line-order-system&#x2F;</strong></p>
+<pre><code>line-order-system/
+├─ backend/
+│  ├─ index.js
+│  ├─ db.js
+│  ├─ routes/
+│  │   └─ line.js
+│  ├─ db_init.sql
+│  ├─ package.json
+│  ├─ .env.example
+│  └─ .gitignore
+└─ README.md
+</code></pre>
+<hr>
+<h3 id="✅-backend-db-init-sql"><a href="#✅-backend-db-init-sql" class="headerlink" title="✅ backend/db_init.sql"></a>✅ <code>backend/db_init.sql</code></h3><pre><code class="sql">-- Initialize database for LINE order system
+CREATE DATABASE IF NOT EXISTS line_order_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE line_order_db;
+
+CREATE TABLE IF NOT EXISTS users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  line_user_id VARCHAR(50) UNIQUE,
+  display_name VARCHAR(100),
+  phone VARCHAR(50),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS messages_log (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  line_user_id VARCHAR(50),
+  event_type VARCHAR(50),
+  message_type VARCHAR(50),
+  message_text TEXT,
+  raw_event JSON,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+</code></pre>
+<hr>
+<h3 id="✅-backend-db-js"><a href="#✅-backend-db-js" class="headerlink" title="✅ backend/db.js"></a>✅ <code>backend/db.js</code></h3><pre><code class="js">import mysql from &quot;mysql2/promise&quot;;
+import dotenv from &quot;dotenv&quot;;
+dotenv.config();
+
+export const pool = mysql.createPool({
+  host: process.env.DB_HOST || &quot;localhost&quot;,
+  user: process.env.DB_USER || &quot;root&quot;,
+  password: process.env.DB_PASS || &quot;&quot;,
+  database: process.env.DB_NAME || &quot;line_order_db&quot;,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
+});
+</code></pre>
+<hr>
+<h3 id="✅-backend-routes-line-js"><a href="#✅-backend-routes-line-js" class="headerlink" title="✅ backend/routes/line.js"></a>✅ <code>backend/routes/line.js</code></h3><pre><code class="js">import express from &quot;express&quot;;
+import { middleware, Client } from &quot;@line/bot-sdk&quot;;
+import dotenv from &quot;dotenv&quot;;
+import { pool } from &quot;../db.js&quot;;
+
+dotenv.config();
+
+const router = express.Router();
+
+const config = {
+  channelAccessToken: process.env.LINE_CHANNEL_ACCESS_TOKEN,
+  channelSecret: process.env.LINE_CHANNEL_SECRET,
+};
+
+const client = new Client(config);
+
+router.post(&quot;/webhook&quot;, middleware(config), async (req, res) =&gt; {
+  try {
+    const events = req.body.events || [];
+
+    for (const event of events) {
+      if (event.type === &quot;message&quot; &amp;&amp; event.message.type === &quot;text&quot;) {
+        const userId = event.source?.userId || null;
+        const text = event.message.text;
+
+        // 寫入資料庫
+        await pool.query(
+          &quot;INSERT INTO messages_log (line_user_id, event_type, message_type, message_text, raw_event) VALUES (?, ?, ?, ?, ?)&quot;,
+          [userId, event.type, event.message.type, text, JSON.stringify(event)]
+        );
+
+        // 回覆使用者
+        await client.replyMessage(event.replyToken, {
+          type: &quot;text&quot;,
+          text: `收到：「${text}」`,
+        });
+      }
+    }
+
+    res.status(200).send(&quot;OK&quot;);
+  } catch (err) {
+    console.error(&quot;Webhook error:&quot;, err);
+    res.status(500).end();
+  }
+});
+
+export default router;
+</code></pre>
+<hr>
+<h3 id="✅-backend-index-js"><a href="#✅-backend-index-js" class="headerlink" title="✅ backend/index.js"></a>✅ <code>backend/index.js</code></h3><pre><code class="js">import express from &quot;express&quot;;
+import cors from &quot;cors&quot;;
+import dotenv from &quot;dotenv&quot;;
+import lineRouter from &quot;./routes/line.js&quot;;
+
+dotenv.config();
+
+const app = express();
+app.use(cors());
+app.use(express.json({ limit: &quot;1mb&quot; }));
+
+app.get(&quot;/&quot;, (req, res) =&gt; res.send(&quot;Line Order Backend - OK&quot;));
+app.use(&quot;/line&quot;, lineRouter);
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () =&gt; console.log(`🚀 Server running on port ${PORT}`));
+</code></pre>
+<hr>
+<h3 id="✅-backend-env-example"><a href="#✅-backend-env-example" class="headerlink" title="✅ backend/.env.example"></a>✅ <code>backend/.env.example</code></h3><pre><code># LINE
+LINE_CHANNEL_SECRET=your_channel_secret_here
+LINE_CHANNEL_ACCESS_TOKEN=your_channel_access_token_here
+
+# MySQL
+DB_HOST=localhost
+DB_USER=root
+DB_PASS=your_db_password
+DB_NAME=line_order_db
+
+# Server
+PORT=3000
+</code></pre>
+<hr>
+<h3 id="✅-backend-package-json"><a href="#✅-backend-package-json" class="headerlink" title="✅ backend/package.json"></a>✅ <code>backend/package.json</code></h3><pre><code class="json">{
+  &quot;name&quot;: &quot;line-order-backend&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;type&quot;: &quot;module&quot;,
+  &quot;scripts&quot;: {
+    &quot;start&quot;: &quot;node index.js&quot;,
+    &quot;dev&quot;: &quot;nodemon index.js&quot;
+  },
+  &quot;dependencies&quot;: {
+    &quot;@line/bot-sdk&quot;: &quot;^7.6.0&quot;,
+    &quot;cors&quot;: &quot;^2.8.5&quot;,
+    &quot;dotenv&quot;: &quot;^16.0.0&quot;,
+    &quot;express&quot;: &quot;^4.18.2&quot;,
+    &quot;mysql2&quot;: &quot;^3.3.0&quot;
+  },
+  &quot;devDependencies&quot;: {
+    &quot;nodemon&quot;: &quot;^2.0.22&quot;
+  }
+}
+</code></pre>
+<hr>
+<h3 id="✅-gitignore"><a href="#✅-gitignore" class="headerlink" title="✅ .gitignore"></a>✅ <code>.gitignore</code></h3><pre><code>node_modules/
+.env
+.DS_Store
+</code></pre>
+<hr>
+<h3 id="✅-README-md（簡化版）"><a href="#✅-README-md（簡化版）" class="headerlink" title="✅ README.md（簡化版）"></a>✅ <code>README.md</code>（簡化版）</h3><pre><code class="markdown"># LINE Order System (A-Stage Prototype)
+
+## 功能
+- 透過 LINE Webhook 接收訊息並回覆
+- 將訊息記錄到 MySQL 資料庫
+
+## 啟動步驟
+1. 建立資料庫
+   ```bash
+   mysql -u root -p &lt; backend/db_init.sql
+</code></pre>
+<ol start="2">
+<li><p>複製 <code>.env.example</code> 為 <code>.env</code> 並填入 LINE &#x2F; DB 設定</p>
+</li>
+<li><p>安裝依賴與啟動伺服器</p>
+<pre><code class="bash">cd backend
+npm install
+npm run dev
+</code></pre>
+</li>
+<li><p>啟動 ngrok（開啟 webhook）</p>
+<pre><code class="bash">ngrok http 3000
+</code></pre>
+</li>
+<li><p>設定 LINE Developer 的 webhook URL 為 <code>https://xxxxx.ngrok.io/line/webhook</code></p>
+</li>
+<li><p>用 LINE 傳訊息測試（會收到回覆、資料寫入 MySQL）</p>
+</li>
+</ol>
+<pre><code>
+---
+
+## ⚙️ Part 2：Lenovo 一鍵建立腳本（PowerShell 版）
+
+你可以把以下內容存成 `setup_line_order.ps1`（放在任何目錄），  
+然後右鍵 → **以系統管理員身分執行**。
+
+&gt; 💡 假設你的 MySQL root 密碼是 `rootpass`（請自行改），GitHub 已登入過。
+
+```powershell
+# setup_line_order.ps1
+Write-Host &quot;=== 建立 LINE Order System Backend 專案 ===&quot; -ForegroundColor Cyan
+
+# 1️⃣ 建立資料夾結構
+$projectDir = &quot;D:\Projects\line-order-system&quot;
+$backendDir = &quot;$projectDir\backend&quot;
+Write-Host &quot;建立資料夾...&quot; 
+New-Item -ItemType Directory -Force -Path $backendDir | Out-Null
+New-Item -ItemType Directory -Force -Path &quot;$backendDir\routes&quot; | Out-Null
+
+# 2️⃣ 初始化 npm 專案
+Set-Location $backendDir
+npm init -y | Out-Null
+
+# 3️⃣ 安裝套件
+Write-Host &quot;安裝 Node.js 依賴...&quot;
+npm install express cors dotenv mysql2 @line/bot-sdk | Out-Null
+npm install -D nodemon | Out-Null
+
+# 4️⃣ 建立主要檔案
+Write-Host &quot;建立程式檔案...&quot;
+
+# index.js
+@&quot;
+import express from &quot;express&quot;;
+import cors from &quot;cors&quot;;
+import dotenv from &quot;dotenv&quot;;
+import lineRouter from &quot;./routes/line.js&quot;;
+
+dotenv.config();
+
+const app = express();
+app.use(cors());
+app.use(express.json({ limit: &quot;1mb&quot; }));
+
+app.get(&quot;/&quot;, (req, res) =&gt; res.send(&quot;Line Order Backend - OK&quot;));
+app.use(&quot;/line&quot;, lineRouter);
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () =&gt; console.log(`🚀 Server running on port ${PORT}`));
+&quot;@ | Set-Content &quot;$backendDir\index.js&quot;
+
+# db.js
+@&quot;
+import mysql from &quot;mysql2/promise&quot;;
+import dotenv from &quot;dotenv&quot;;
+dotenv.config();
+
+export const pool = mysql.createPool({
+  host: process.env.DB_HOST || &quot;localhost&quot;,
+  user: process.env.DB_USER || &quot;root&quot;,
+  password: process.env.DB_PASS || &quot;&quot;,
+  database: process.env.DB_NAME || &quot;line_order_db&quot;,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
+});
+&quot;@ | Set-Content &quot;$backendDir\db.js&quot;
+
+# routes/line.js
+@&quot;
+import express from &quot;express&quot;;
+import { middleware, Client } from &quot;@line/bot-sdk&quot;;
+import dotenv from &quot;dotenv&quot;;
+import { pool } from &quot;../db.js&quot;;
+dotenv.config();
+
+const router = express.Router();
+
+const config = {
+  channelAccessToken: process.env.LINE_CHANNEL_ACCESS_TOKEN,
+  channelSecret: process.env.LINE_CHANNEL_SECRET,
+};
+
+const client = new Client(config);
+
+router.post(&quot;/webhook&quot;, middleware(config), async (req, res) =&gt; {
+  try {
+    const events = req.body.events || [];
+    for (const event of events) {
+      if (event.type === &quot;message&quot; &amp;&amp; event.message.type === &quot;text&quot;) {
+        const userId = event.source?.userId || null;
+        const text = event.message.text;
+        await pool.query(
+          &quot;INSERT INTO messages_log (line_user_id, event_type, message_type, message_text, raw_event) VALUES (?, ?, ?, ?, ?)&quot;,
+          [userId, event.type, event.message.type, text, JSON.stringify(event)]
+        );
+        await client.replyMessage(event.replyToken, { type: &quot;text&quot;, text: `收到：「${text}」` });
+      }
+    }
+    res.status(200).send(&quot;OK&quot;);
+  } catch (err) {
+    console.error(&quot;Webhook error:&quot;, err);
+    res.status(500).end();
+  }
+});
+
+export default router;
+&quot;@ | Set-Content &quot;$backendDir\routes\line.js&quot;
+
+# db_init.sql
+@&quot;
+CREATE DATABASE IF NOT EXISTS line_order_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE line_order_db;
+CREATE TABLE IF NOT EXISTS users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  line_user_id VARCHAR(50) UNIQUE,
+  display_name VARCHAR(100),
+  phone VARCHAR(50),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE IF NOT EXISTS messages_log (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  line_user_id VARCHAR(50),
+  event_type VARCHAR(50),
+  message_type VARCHAR(50),
+  message_text TEXT,
+  raw_event JSON,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+&quot;@ | Set-Content &quot;$backendDir\db_init.sql&quot;
+
+# .env.example
+@&quot;
+LINE_CHANNEL_SECRET=your_channel_secret_here
+LINE_CHANNEL_ACCESS_TOKEN=your_channel_access_token_here
+DB_HOST=localhost
+DB_USER=root
+DB_PASS=rootpass
+DB_NAME=line_order_db
+PORT=3000
+&quot;@ | Set-Content &quot;$backendDir\.env.example&quot;
+
+# package.json 追加 scripts/type
+(Get-Content &quot;$backendDir\package.json&quot;) -replace &#39;&quot;test&quot;: &quot;echo.*&quot;&#39;, &#39;&quot;start&quot;: &quot;node index.js&quot;, &quot;dev&quot;: &quot;nodemon index.js&quot;&#39; | Set-Content &quot;$backendDir\package.json&quot;
+Add-Content &quot;$backendDir\package.json&quot; &quot;`n`&quot;&#39;&quot;type&quot;: &quot;module&quot;,&#39;
+
+# .gitignore
+@&quot;
+node_modules/
+.env
+.DS_Store
+&quot;@ | Set-Content &quot;$backendDir\.gitignore&quot;
+
+# 5️⃣ 建 DB
+Write-Host &quot;初始化 MySQL...&quot;
+&amp; mysql -u root -prootpass -e &quot;SOURCE $backendDir\db_init.sql&quot;
+
+# 6️⃣ 啟動測試
+Write-Host &quot;啟動伺服器測試...&quot;
+Start-Process powershell -ArgumentList &quot;cd $backendDir; npm run dev&quot;
+Write-Host &quot;伺服器啟動後請執行： ngrok http 3000&quot; -ForegroundColor Yellow
+Write-Host &quot;再到 LINE Developers 設定 Webhook URL -&gt; https://xxxxx.ngrok.io/line/webhook&quot;
+</code></pre>
+<hr>
+<h3 id="⚙️-執行方式"><a href="#⚙️-執行方式" class="headerlink" title="⚙️ 執行方式"></a>⚙️ 執行方式</h3><ol>
+<li><p>儲存為 <code>setup_line_order.ps1</code></p>
+</li>
+<li><p>以系統管理員身份打開 PowerShell，執行：</p>
+<pre><code class="powershell">Set-ExecutionPolicy Bypass -Scope Process
+.\setup_line_order.ps1
+</code></pre>
+</li>
+<li><p>等待安裝完成（約 2–5 分鐘）</p>
+</li>
+<li><p>執行 ngrok：</p>
+<pre><code class="bash">ngrok http 3000
+</code></pre>
+</li>
+<li><p>連結 webhook 測試即可。</p>
+</li>
+</ol>
+<hr>
+<p>是否要我幫你補上「📗 B 階段 — 商品與訂單管理 API 設計（含 Vue3 後台初版 UI）」的架構規劃與實作步驟？<br>（會接在這個 A 階段後直接可用，並且能查詢、管理訂單）</p>

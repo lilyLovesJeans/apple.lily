@@ -1,0 +1,139 @@
+<hr>
+<h2 id="title-2025-07-30-Line-訂單系統-要開始「第一塊積木」，三台-notebook-的系統架構圖（UML-date-2025-11-17-22-10-10categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-30-Line-訂單系統-要開始「第一塊積木」，三台-notebook-的系統架構圖（UML"><a href="#title-2025-07-30-Line-訂單系統-要開始「第一塊積木」，三台-notebook-的系統架構圖（UML-date-2025-11-17-22-10-10categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-30-Line-訂單系統-要開始「第一塊積木」，三台-notebook-的系統架構圖（UML" class="headerlink" title="title: 2025-07-30 Line 訂單系統- 要開始「第一塊積木」，三台 notebook 的系統架構圖（UML)date: 2025-11-17 22:10:10categories: OneDayOneNotetags:  [OneNote, Line訂單系統]description:   2025-07-30 Line 訂單系統- 要開始「第一塊積木」，三台 notebook 的系統架構圖（UML)"></a>title: 2025-07-30 Line 訂單系統- 要開始「第一塊積木」，三台 notebook 的系統架構圖（UML)<br>date: 2025-11-17 22:10:10<br>categories: OneDayOneNote<br>tags:  [OneNote, Line訂單系統]<br>description:   2025-07-30 Line 訂單系統- 要開始「第一塊積木」，三台 notebook 的系統架構圖（UML)</h2><p><strong>三台 notebook 的系統架構圖（UML）</strong>，並提供 <strong>可直接貼到 PlantUML 編輯器</strong> 的程式碼（文字版 UML）。你可以把這份文字貼到任何支援 PlantUML 的工具（VSCode + PlantUML 外掛、PlantUML server、PlantText、<a href="http://www.plantuml.com/plantuml%EF%BC%89%E7%9B%B4%E6%8E%A5%E6%B8%B2%E6%9F%93%E6%88%90%E5%9C%96%EF%BC%8C%E4%B8%8D%E7%94%A8%E6%8A%8A">www.plantuml.com/plantuml）直接渲染成圖，不用把</a> png&#x2F;jpg 傳來傳去。</p>
+<p>我會提供兩個版本：</p>
+<ul>
+<li><strong>PlantUML Component Diagram</strong>（推薦，結構清楚）</li>
+<li><strong>Mermaid (flowchart) 同等版本</strong>（若你偏好 Mermaid）</li>
+</ul>
+<hr>
+<h2 id="使用說明（快速）"><a href="#使用說明（快速）" class="headerlink" title="使用說明（快速）"></a>使用說明（快速）</h2><ol>
+<li>複製下面任一段程式碼。</li>
+<li>到 <a href="https://www.plantuml.com/plantuml/uml/">https://www.plantuml.com/plantuml/uml/</a>（或本機的 PlantUML）貼上並 render。</li>
+<li>或在 VSCode 安裝 PlantUML 外掛，把檔案存為 <code>arch.puml</code>，就能預覽與匯出。</li>
+</ol>
+<hr>
+<h2 id="1-PlantUML（Component-Diagram）-—-可直接渲染的程式碼"><a href="#1-PlantUML（Component-Diagram）-—-可直接渲染的程式碼" class="headerlink" title="1) PlantUML（Component Diagram） — 可直接渲染的程式碼"></a>1) PlantUML（Component Diagram） — 可直接渲染的程式碼</h2><pre><code class="plantuml">@startuml
+&#39; Title
+title 三台 Notebook 開發/測試 架構圖
+scale 1.1
+
+&#39; skin params for readability
+skinparam componentStyle rectangle
+skinparam handwritten false
+skinparam shadowing false
+
+&#39; External services
+cloud &quot;LINE Messaging API\n(外部使用者)&quot; as LINE
+rectangle &quot;GitHub&quot; as GITHUB
+
+&#39; MacBook Air #1 - Backend (主力開發機)
+package &quot;MacBook Air #1\n(Backend - 開發主機)&quot; #LightBlue {
+  component &quot;NestJS App\n(src/*)\n- ProductsModule\n- OrdersModule\n- WebhookModule\n- QueueClient&quot; as BACKEND
+  component &quot;ngrok (dev tunnel)\n(or Render/Heroku in prod)&quot; as NGROK
+  component &quot;VSCode / CLI&quot; as IDE1
+}
+
+&#39; Lenovo - DB &amp; Testing
+package &quot;Lenovo (Windows)\n(DB + Test Host)&quot; #LightYellow {
+  component &quot;MySQL\n- line_order_db&quot; as MYSQL
+  component &quot;Redis\n(Bull queue, cache)&quot; as REDIS
+  component &quot;Postman / Workbench\n(API 測試)&quot; as POSTMAN
+}
+
+&#39; MacBook Air #2 - Frontend / Docs
+package &quot;MacBook Air #2\n(Frontend + 文件機)&quot; #LightGreen {
+  component &quot;Vue3 Frontend\n(Vite)\n- Admin UI\n- LineOrders.vue&quot; as FRONTEND
+  component &quot;Docs / Notion / Obsidian&quot; as DOCS
+  component &quot;VSCode / Browser&quot; as IDE2
+}
+
+&#39; Relationships / Ports
+LINE --&gt; NGROK : webhook -&gt; https://&lt;ngrok&gt;/api/line/webhook (dev)
+NGROK --&gt; BACKEND : POST /api/line/webhook
+BACKEND --&gt; MYSQL : JDBC / TypeORM (3306)
+BACKEND --&gt; REDIS : Redis client (6379) / Bull queue
+FRONTEND --&gt; BACKEND : HTTP API (GET/POST /api/*)
+IDE1 --&gt; BACKEND : edit / run / git push
+IDE2 --&gt; FRONTEND : edit / run / git push
+BACKEND --&gt; GITHUB : git push
+FRONTEND --&gt; GITHUB : git push
+POSTMAN --&gt; BACKEND : API testing (calls)
+POSTMAN --&gt; MYSQL : DB direct (queries)
+GITHUB ..&gt; NGROK : CI / deploy (optional)
+
+&#39; Notes
+note left of BACKEND
+  - Run locally (npm run start:dev)
+  - Use env for DB/LINE keys
+  - Queue async tasks -&gt; Redis
+end note
+
+note right of MYSQL
+  - Option: PlanetScale (cloud) in prod
+  - Use migrations (TypeORM/Prisma)
+end note
+
+note right of REDIS
+  - Upstash / RedisCloud for production
+end note
+
+@enduml
+</code></pre>
+<hr>
+<h2 id="2-Mermaid（若你偏好-Mermaid）"><a href="#2-Mermaid（若你偏好-Mermaid）" class="headerlink" title="2) Mermaid（若你偏好 Mermaid）"></a>2) Mermaid（若你偏好 Mermaid）</h2><p>（也可貼到 GitHub markdown 或 Mermaid Live Editor）</p>
+<pre><code class="mermaid">flowchart LR
+  subgraph LINE[LINE Messaging API (外部使用者)]
+    L1(LINE Users)
+  end
+
+  subgraph MAC1[&quot;MacBook Air #1\n(Backend - NestJS)&quot;]
+    B1[NestJS App\n(Products, Orders, Webhook, QueueClient)]
+    NG[ngrok / Dev Tunnel]
+    IDE1[VSCode / CLI]
+  end
+
+  subgraph LENOVO[&quot;Lenovo (Windows)\n(MySQL / Redis / Test)&quot;]
+    DB[(MySQL - line_order_db)]
+    RD[(Redis - Bull Queue)]
+    POST[Postman / Workbench]
+  end
+
+  subgraph MAC2[&quot;MacBook Air #2\n(Frontend + Docs)&quot;]
+    FE[Vue3 Frontend (Vite)]
+    DOC[Docs / Notion]
+    IDE2[VSCode / Browser]
+  end
+
+  L1 --&gt;|Webhook| NG
+  NG --&gt; B1
+  B1 --&gt;|TypeORM / SQL| DB
+  B1 --&gt;|Redis Client| RD
+  FE --&gt;|HTTP API| B1
+  IDE1 --&gt;|dev / push| B1
+  IDE2 --&gt;|dev / push| FE
+  POST --&gt;|API tests| B1
+  POST --&gt;|DB tools| DB
+  B1 --&gt;|git push| GITHUB[(GitHub)]
+  FE --&gt;|git push| GITHUB
+</code></pre>
+<hr>
+<h2 id="圖中要點（解讀）"><a href="#圖中要點（解讀）" class="headerlink" title="圖中要點（解讀）"></a>圖中要點（解讀）</h2><ul>
+<li><strong>MacBook Air #1（主力）</strong>：開發並執行 NestJS 後端（包含 Webhook 處理、業務邏輯、Queue client）。用 ngrok 在開發階段把本機端點暴露給 LINE Developer Console。</li>
+<li><strong>Lenovo（資料庫 + 測試）</strong>：安裝 MySQL 與 Redis，做為系統的資料儲存、快取與 queue。也做為 Postman 測試站與 DB Management。</li>
+<li><strong>MacBook Air #2（前端與文件）</strong>：獨立開發 Vue3 前端、製作文檔、測試 UI。前端呼叫 MacAir#1 的 API。</li>
+<li><strong>GitHub</strong>：版控與 CI&#x2F;CD（部署到 Render&#x2F;Vercel&#x2F;Heroku）。在開發時用 git push，同步三台設備。</li>
+<li><strong>ngrok</strong>：開發時必要的工具（將本地 webhook 暴露給 LINE），部署後可改為正式 URL（Render&#x2F;Heroku 等）。</li>
+</ul>
+<hr>
+<h2 id="額外建議（可直接加入圖或後續擴充）"><a href="#額外建議（可直接加入圖或後續擴充）" class="headerlink" title="額外建議（可直接加入圖或後續擴充）"></a>額外建議（可直接加入圖或後續擴充）</h2><ul>
+<li>把 <strong>Worker</strong>（處理 queue）拆出來獨立運行（可以放在 Mac #1 另一個 process 或未來的 cloud instance）。</li>
+<li>生產環境：把 MySQL 換成 PlanetScale &#x2F; RDS、Redis 換成 Upstash &#x2F; RedisCloud、後端放到 Render&#x2F;Railway，前端放到 Vercel。</li>
+<li>加上監控（Prometheus&#x2F;Grafana）、錯誤追蹤（Sentry）、CI（GitHub Actions）。</li>
+</ul>
+<hr>
+<p>需要我幫你：</p>
+<ul>
+<li>把 PlantUML 轉成 <code>arch.puml</code> 檔案並推到你的 repo？</li>
+<li>或直接幫你產生更細的 Sequence Diagram（例如：LINE 下單 → webhook → create order → push notification）的 PlantUML 程式碼？</li>
+</ul>
+<p>你想要哪一個我就繼續產出。</p>

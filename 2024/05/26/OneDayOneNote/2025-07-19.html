@@ -1,0 +1,316 @@
+<hr>
+<h2 id="title-2025-07-19-Line-訂單系統-G-階段-—-擴充與多平台版本date-2025-11-14-07-12-44categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-19-Line-訂單系統-G-階段-—-擴充與多平台版本"><a href="#title-2025-07-19-Line-訂單系統-G-階段-—-擴充與多平台版本date-2025-11-14-07-12-44categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-19-Line-訂單系統-G-階段-—-擴充與多平台版本" class="headerlink" title="title: 2025-07-19 Line 訂單系統- G 階段 — 擴充與多平台版本date: 2025-11-14 07:12:44categories: OneDayOneNotetags:  [OneNote, Line訂單系統]description: 2025-07-19 Line 訂單系統- G 階段 — 擴充與多平台版本"></a>title: 2025-07-19 Line 訂單系統- G 階段 — 擴充與多平台版本<br>date: 2025-11-14 07:12:44<br>categories: OneDayOneNote<br>tags:  [OneNote, Line訂單系統]<br>description: 2025-07-19 Line 訂單系統- G 階段 — 擴充與多平台版本</h2><h2 id="2025-07-19-Line-訂單系統-G-階段-—-擴充與多平台版本"><a href="#2025-07-19-Line-訂單系統-G-階段-—-擴充與多平台版本" class="headerlink" title="2025-07-19 Line 訂單系統- G 階段 — 擴充與多平台版本"></a>2025-07-19 Line 訂單系統- G 階段 — 擴充與多平台版本</h2><h1 id="📒-G-階段-—-擴充與多平台版本"><a href="#📒-G-階段-—-擴充與多平台版本" class="headerlink" title="📒 G 階段 — 擴充與多平台版本"></a>📒 G 階段 — 擴充與多平台版本</h1><p>（行動 App + 店家後台 + 多商家架構 + AI 智慧客服）</p>
+<p>這一階段將你的 LINE 訂單系統，從「能用」提升成「可商用」、「可擴充」、「可成為大型產品」。</p>
+<hr>
+<h1 id="🎯-G-階段總目標"><a href="#🎯-G-階段總目標" class="headerlink" title="🎯 G 階段總目標"></a>🎯 G 階段總目標</h1><h3 id="🧩-功能方向"><a href="#🧩-功能方向" class="headerlink" title="🧩 功能方向"></a>🧩 功能方向</h3><table>
+<thead>
+<tr>
+<th>模組</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>📱 <strong>行動 App（PWA + Capacitor）</strong></td>
+<td>讓客戶可以安裝 App 使用 LINE 以外的入口。</td>
+</tr>
+<tr>
+<td>🧾 <strong>店家後台（角色&#x2F;權限）</strong></td>
+<td>登入、員工管理、訂單管理、商品管理。</td>
+</tr>
+<tr>
+<td>🏬 <strong>多商家架構（Marketplace）</strong></td>
+<td>支援「A 店」「B 店」多商家獨立管理商品與訂單。</td>
+</tr>
+<tr>
+<td>🤖 <strong>AI 智慧客服（ChatGPT + LINE Bot）</strong></td>
+<td>自動回答詢問、推薦商品、查訂單狀態。</td>
+</tr>
+<tr>
+<td>📊 <strong>儀表板提供營運數據</strong></td>
+<td>今日營收、熱銷商品、流量來源。</td>
+</tr>
+<tr>
+<td>📡 <strong>WebSocket&#x2F;Server-Sent Events 即時推播</strong></td>
+<td>後台訂單列表秒級更新。</td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="🔶-G-階段完整流程（建議順序）"><a href="#🔶-G-階段完整流程（建議順序）" class="headerlink" title="🔶 G 階段完整流程（建議順序）"></a>🔶 G 階段完整流程（建議順序）</h1><table>
+<thead>
+<tr>
+<th>步驟</th>
+<th>名稱</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>G1</td>
+<td>店家後台架構</td>
+<td>Vue3 + 路由 + 管理者登入</td>
+</tr>
+<tr>
+<td>G2</td>
+<td>RBAC 角色權限</td>
+<td>Admin &#x2F; Staff 權限控管</td>
+</tr>
+<tr>
+<td>G3</td>
+<td>多商家（Tenants）資料庫改造</td>
+<td>加入 shop_id，一套系統支援多店家</td>
+</tr>
+<tr>
+<td>G4</td>
+<td>行動 App（PWA）</td>
+<td>直接由前端產生可安裝 App</td>
+</tr>
+<tr>
+<td>G5</td>
+<td>Capacitor 打包 iOS&#x2F;Android</td>
+<td>轉成真正 App（低成本）</td>
+</tr>
+<tr>
+<td>G6</td>
+<td>AI 智慧客服流程</td>
+<td>LINE Bot → AI 回覆 &#x2F; 推薦商品</td>
+</tr>
+<tr>
+<td>G7</td>
+<td>即時系統（WebSocket）</td>
+<td>訂單建立時後台即時彈出通知</td>
+</tr>
+<tr>
+<td>G8</td>
+<td>儀表板（Dashboard）</td>
+<td>營運指標：訂單量、推播、熱賣品</td>
+</tr>
+<tr>
+<td>G9</td>
+<td>測試、優化、準備正式商用</td>
+<td>壓力測試、使用者測試</td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="——————————————–"><a href="#——————————————–" class="headerlink" title="——————————————–"></a>——————————————–</h1><h1 id="📘-G1-—-設計店家後台（Vue3-Vite）"><a href="#📘-G1-—-設計店家後台（Vue3-Vite）" class="headerlink" title="📘 G1 — 設計店家後台（Vue3 + Vite）"></a>📘 G1 — 設計店家後台（Vue3 + Vite）</h1><h1 id="——————————————–-1"><a href="#——————————————–-1" class="headerlink" title="——————————————–"></a>——————————————–</h1><p>你的現有前端是訂單列表與測試頁面，現在要延伸為：</p>
+<h2 id="🎨-後台頁面架構（Vue-Router）"><a href="#🎨-後台頁面架構（Vue-Router）" class="headerlink" title="🎨 後台頁面架構（Vue Router）"></a>🎨 後台頁面架構（Vue Router）</h2><pre><code>/admin/login
+/admin/dashboard
+/admin/orders
+/admin/products
+/admin/members
+/admin/settings
+</code></pre>
+<h3 id="📁-建議目錄"><a href="#📁-建議目錄" class="headerlink" title="📁 建議目錄"></a>📁 建議目錄</h3><pre><code>frontend/
+└── src/
+    ├── views/
+    │   ├── AdminLogin.vue
+    │   ├── AdminDashboard.vue
+    │   ├── AdminOrders.vue
+    │   ├── AdminProducts.vue
+    │   ├── AdminMembers.vue
+    │   └── AdminSettings.vue
+    ├── components/
+    │   ├── Sidebar.vue
+    │   ├── Navbar.vue
+    │   └── DataTable.vue
+    └── router/
+        └── index.js
+</code></pre>
+<hr>
+<h1 id="——————————————–-2"><a href="#——————————————–-2" class="headerlink" title="——————————————–"></a>——————————————–</h1><h1 id="📘-G2-—-後端登入與-RBAC（角色權限管理）"><a href="#📘-G2-—-後端登入與-RBAC（角色權限管理）" class="headerlink" title="📘 G2 — 後端登入與 RBAC（角色權限管理）"></a>📘 G2 — 後端登入與 RBAC（角色權限管理）</h1><h1 id="——————————————–-3"><a href="#——————————————–-3" class="headerlink" title="——————————————–"></a>——————————————–</h1><p>你需要角色分級：</p>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>能做什麼</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Admin</td>
+<td>新增商品、刪除訂單、管理員工</td>
+</tr>
+<tr>
+<td>Staff</td>
+<td>看訂單、更新訂單狀態</td>
+</tr>
+</tbody></table>
+<h3 id="資料庫（新增一張表-users）"><a href="#資料庫（新增一張表-users）" class="headerlink" title="資料庫（新增一張表 users）"></a>資料庫（新增一張表 <code>users</code>）</h3><pre><code class="sql">CREATE TABLE users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(50) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  role ENUM(&#39;admin&#39;, &#39;staff&#39;) DEFAULT &#39;staff&#39;,
+  shop_id INT NOT NULL
+);
+</code></pre>
+<h3 id="JWT-權限驗證"><a href="#JWT-權限驗證" class="headerlink" title="JWT 權限驗證"></a>JWT 權限驗證</h3><p>後端 API：</p>
+<table>
+<thead>
+<tr>
+<th>API</th>
+<th>說明</th>
+<th>權限</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>POST <code>/auth/login</code></td>
+<td>登入取得 JWT</td>
+<td>All</td>
+</tr>
+<tr>
+<td>GET <code>/admin/orders</code></td>
+<td>店家訂單列表</td>
+<td>admin&#x2F;staff</td>
+</tr>
+<tr>
+<td>POST <code>/admin/products</code></td>
+<td>新增商品</td>
+<td>admin</td>
+</tr>
+</tbody></table>
+<p>後端 middleware：</p>
+<pre><code class="js">function requireRole(role) {
+  return (req, res, next) =&gt; {
+    if (req.user.role !== role) return res.status(403).json({error:&#39;forbidden&#39;})
+    next()
+  }
+}
+</code></pre>
+<p>Example 使用：</p>
+<pre><code class="js">app.post(&#39;/admin/products&#39;, requireRole(&#39;admin&#39;), createProduct)
+</code></pre>
+<hr>
+<h1 id="——————————————–-4"><a href="#——————————————–-4" class="headerlink" title="——————————————–"></a>——————————————–</h1><h1 id="📘-G3-—-多商家（Multi-Tenant）架構"><a href="#📘-G3-—-多商家（Multi-Tenant）架構" class="headerlink" title="📘 G3 — 多商家（Multi-Tenant）架構"></a>📘 G3 — 多商家（Multi-Tenant）架構</h1><h1 id="——————————————–-5"><a href="#——————————————–-5" class="headerlink" title="——————————————–"></a>——————————————–</h1><p>為什麼要做多商家？<br>因為你這個系統將來可以賣給 A 店、B 店、C 店，<br>每一家店：</p>
+<ul>
+<li>商品不同</li>
+<li>訂單不同</li>
+<li>LINE Bot token 不同</li>
+</ul>
+<p>所以資料庫要加入 <code>shop_id</code>。</p>
+<h3 id="修改資料表"><a href="#修改資料表" class="headerlink" title="修改資料表"></a>修改資料表</h3><pre><code class="sql">ALTER TABLE products ADD COLUMN shop_id INT NOT NULL;
+ALTER TABLE orders ADD COLUMN shop_id INT NOT NULL;
+</code></pre>
+<p>登入後：</p>
+<pre><code>req.user.shop_id
+</code></pre>
+<p>用來過濾所有查詢：</p>
+<pre><code class="sql">SELECT * FROM orders WHERE shop_id = ?
+</code></pre>
+<hr>
+<h1 id="——————————————–-6"><a href="#——————————————–-6" class="headerlink" title="——————————————–"></a>——————————————–</h1><h1 id="📘-G4-—-行動-App（PWA）"><a href="#📘-G4-—-行動-App（PWA）" class="headerlink" title="📘 G4 — 行動 App（PWA）"></a>📘 G4 — 行動 App（PWA）</h1><h1 id="——————————————–-7"><a href="#——————————————–-7" class="headerlink" title="——————————————–"></a>——————————————–</h1><p>Vue + Vite 支援超簡單的 PWA。</p>
+<p>安裝：</p>
+<pre><code>npm install vite-plugin-pwa --save-dev
+</code></pre>
+<p>新增到 <code>vite.config.js</code>：</p>
+<pre><code class="js">import { VitePWA } from &#39;vite-plugin-pwa&#39;
+
+plugins: [
+  VitePWA({
+    registerType: &#39;autoUpdate&#39;,
+    manifest: {
+      name: &#39;Line Order System&#39;,
+      short_name: &#39;OrderApp&#39;,
+      icons: [...]
+    }
+  })
+]
+</code></pre>
+<p>部署後，你的網頁會出現：</p>
+<p>👉「加入主畫面」</p>
+<p>等於真正 App。</p>
+<hr>
+<h1 id="——————————————–-8"><a href="#——————————————–-8" class="headerlink" title="——————————————–"></a>——————————————–</h1><h1 id="📘-G5-—-Capacitor-打包-iOS-Android"><a href="#📘-G5-—-Capacitor-打包-iOS-Android" class="headerlink" title="📘 G5 — Capacitor 打包 iOS&#x2F;Android"></a>📘 G5 — Capacitor 打包 iOS&#x2F;Android</h1><h1 id="——————————————–-9"><a href="#——————————————–-9" class="headerlink" title="——————————————–"></a>——————————————–</h1><h3 id="安裝-Capacitor"><a href="#安裝-Capacitor" class="headerlink" title="安裝 Capacitor"></a>安裝 Capacitor</h3><pre><code>npm install @capacitor/core
+npm install @capacitor/ios @capacitor/android
+npx cap init
+</code></pre>
+<p>然後：</p>
+<pre><code>npm run build
+npx cap copy
+npx cap open ios
+</code></pre>
+<p>你就可以把 Vue 網頁包成 iOS App<br>（相同方式產生 Android APK）。</p>
+<hr>
+<h1 id="——————————————–-10"><a href="#——————————————–-10" class="headerlink" title="——————————————–"></a>——————————————–</h1><h1 id="📘-G6-—-AI-智慧客服（ChatGPT-LINE-Bot）"><a href="#📘-G6-—-AI-智慧客服（ChatGPT-LINE-Bot）" class="headerlink" title="📘 G6 — AI 智慧客服（ChatGPT + LINE Bot）"></a>📘 G6 — AI 智慧客服（ChatGPT + LINE Bot）</h1><h1 id="——————————————–-11"><a href="#——————————————–-11" class="headerlink" title="——————————————–"></a>——————————————–</h1><p>你的目標：</p>
+<p>使用者在 LINE 問：</p>
+<ul>
+<li>「營業時間？」</li>
+<li>「幫我推薦商品」</li>
+<li>「我想查訂單 20」</li>
+</ul>
+<p>你的後端自動用 GPT 回應。</p>
+<h3 id="Webhook-流程："><a href="#Webhook-流程：" class="headerlink" title="Webhook 流程："></a>Webhook 流程：</h3><pre><code>使用者訊息 → Webhook → 後端 → AI API → 回覆 → LINE
+</code></pre>
+<h3 id="Node-js-串接-OpenAI-API"><a href="#Node-js-串接-OpenAI-API" class="headerlink" title="Node.js 串接 OpenAI API"></a>Node.js 串接 OpenAI API</h3><pre><code class="js">import OpenAI from &quot;openai&quot;;
+const client = new OpenAI({ apiKey: process.env.OPENAI_KEY });
+
+async function askAI(text) {
+  const res = await client.chat.completions.create({
+    model: &quot;gpt-4o-mini&quot;,
+    messages: [{ role: &quot;user&quot;, content: text }]
+  })
+  return res.choices[0].message.content
+}
+</code></pre>
+<p>Webhook 使用：</p>
+<pre><code class="js">if (message.text.includes(&quot;查訂單&quot;)) {
+  const reply = await askAI(`使用者問：${message.text}，店家資訊如下...`)
+}
+</code></pre>
+<hr>
+<h1 id="——————————————–-12"><a href="#——————————————–-12" class="headerlink" title="——————————————–"></a>——————————————–</h1><h1 id="📘-G7-—-即時推播（WebSocket-SSE）"><a href="#📘-G7-—-即時推播（WebSocket-SSE）" class="headerlink" title="📘 G7 — 即時推播（WebSocket &#x2F; SSE）"></a>📘 G7 — 即時推播（WebSocket &#x2F; SSE）</h1><h1 id="——————————————–-13"><a href="#——————————————–-13" class="headerlink" title="——————————————–"></a>——————————————–</h1><p>當 LINE 使用者建立訂單後：</p>
+<p>→ 後台管理頁面「馬上」出現彈窗！<br>→ 用戶不用重整頁面就能看到更新。</p>
+<p>推薦技術：</p>
+<ul>
+<li>Server-Sent Events（簡單）</li>
+<li>WebSocket（彈性高）</li>
+<li>使用 Redis Pub&#x2F;Sub（系統可水平擴充）</li>
+</ul>
+<h3 id="即時資料推播原理："><a href="#即時資料推播原理：" class="headerlink" title="即時資料推播原理："></a>即時資料推播原理：</h3><pre><code>Webhook → Create Order → Publish(&quot;order:new&quot;) → Frontend 接收 → 即時顯示
+</code></pre>
+<hr>
+<h1 id="——————————————–-14"><a href="#——————————————–-14" class="headerlink" title="——————————————–"></a>——————————————–</h1><h1 id="📘-G8-—-Dashboard-儀表板"><a href="#📘-G8-—-Dashboard-儀表板" class="headerlink" title="📘 G8 — Dashboard 儀表板"></a>📘 G8 — Dashboard 儀表板</h1><h1 id="——————————————–-15"><a href="#——————————————–-15" class="headerlink" title="——————————————–"></a>——————————————–</h1><p>店家後台顯示關鍵數據：</p>
+<table>
+<thead>
+<tr>
+<th>指標</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>今日訂單數</td>
+<td>COUNT(*) WHERE date &#x3D; today</td>
+</tr>
+<tr>
+<td>今日營收</td>
+<td>SUM(order_total)</td>
+</tr>
+<tr>
+<td>熱賣商品</td>
+<td>GROUP BY product_id</td>
+</tr>
+<tr>
+<td>未處理訂單數</td>
+<td>status&#x3D;’pending’</td>
+</tr>
+<tr>
+<td>使用者查詢次數</td>
+<td>AI 客服統計</td>
+</tr>
+</tbody></table>
+<p>前端使用：</p>
+<ul>
+<li>Echarts</li>
+<li>Chart.js</li>
+</ul>
+<hr>
+<h1 id="——————————————–-16"><a href="#——————————————–-16" class="headerlink" title="——————————————–"></a>——————————————–</h1><h1 id="📘-G9-—-商用化準備"><a href="#📘-G9-—-商用化準備" class="headerlink" title="📘 G9 — 商用化準備"></a>📘 G9 — 商用化準備</h1><h1 id="——————————————–-17"><a href="#——————————————–-17" class="headerlink" title="——————————————–"></a>——————————————–</h1><p>最後階段：</p>
+<ul>
+<li>API 壓力測試（k6）</li>
+<li>自動備援排程（PlanetScale Branch）</li>
+<li>錯誤記錄（Sentry）</li>
+<li>後台操作記錄（Audit Log）</li>
+<li>權限漏洞檢查</li>
+</ul>
+<p>此時你的系統就真正可以：<br>✔ 提供店家使用<br>✔ 支援多人、不同商家<br>✔ 支援行動 App 安裝<br>✔ 支援 AI 智慧客服<br>✔ 支援即時更新</p>
+<hr>
+<h1 id="🎉-恭喜！"><a href="#🎉-恭喜！" class="headerlink" title="🎉 恭喜！"></a>🎉 恭喜！</h1><p>你已到達「LINE 商用訂單系統」的最終階段 G！</p>
+<hr>
+<p>如果你願意，我可以幫你：</p>
+<h3 id="✔-生成-G-階段完整架構圖（PNG）"><a href="#✔-生成-G-階段完整架構圖（PNG）" class="headerlink" title="✔ 生成 G 階段完整架構圖（PNG）"></a>✔ 生成 G 階段完整架構圖（PNG）</h3><h3 id="✔-生成店家後台-UI-Wireframe（草圖）"><a href="#✔-生成店家後台-UI-Wireframe（草圖）" class="headerlink" title="✔ 生成店家後台 UI Wireframe（草圖）"></a>✔ 生成店家後台 UI Wireframe（草圖）</h3><h3 id="✔-生成-PWA-Capacitor-實作範例碼"><a href="#✔-生成-PWA-Capacitor-實作範例碼" class="headerlink" title="✔ 生成 PWA + Capacitor 實作範例碼"></a>✔ 生成 PWA + Capacitor 實作範例碼</h3><h3 id="✔-生成-AI-智慧客服完整程式碼"><a href="#✔-生成-AI-智慧客服完整程式碼" class="headerlink" title="✔ 生成 AI 智慧客服完整程式碼"></a>✔ 生成 AI 智慧客服完整程式碼</h3><h3 id="✔-生成多商家（shop-id）資料表改造腳本"><a href="#✔-生成多商家（shop-id）資料表改造腳本" class="headerlink" title="✔ 生成多商家（shop_id）資料表改造腳本"></a>✔ 生成多商家（shop_id）資料表改造腳本</h3><p>你要哪一個？</p>

@@ -1,0 +1,178 @@
+<hr>
+<h2 id="title-2025-07-09-Line-訂單系統-C-階段-完整-env-範例-db-init-sqldate-2025-11-12-23-26-53categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-09-Line-訂單系統-C-階段-完整-env-範例-db-init-sql"><a href="#title-2025-07-09-Line-訂單系統-C-階段-完整-env-範例-db-init-sqldate-2025-11-12-23-26-53categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-09-Line-訂單系統-C-階段-完整-env-範例-db-init-sql" class="headerlink" title="title: 2025-07-09 Line 訂單系統-C 階段 完整 .env 範例 + db_init.sqldate: 2025-11-12 23:26:53categories: OneDayOneNotetags:  [OneNote, Line訂單系統]description: 2025-07-09 Line 訂單系統-C 階段 完整 .env 範例 + db_init.sql"></a>title: 2025-07-09 Line 訂單系統-C 階段 完整 .env 範例 + db_init.sql<br>date: 2025-11-12 23:26:53<br>categories: OneDayOneNote<br>tags:  [OneNote, Line訂單系統]<br>description: 2025-07-09 Line 訂單系統-C 階段 完整 .env 範例 + db_init.sql</h2><h2 id="2025-07-09-Line-訂單系統-C-階段-完整-env-範例-db-init-sql"><a href="#2025-07-09-Line-訂單系統-C-階段-完整-env-範例-db-init-sql" class="headerlink" title="2025-07-09 Line 訂單系統-C 階段 完整 .env 範例 + db_init.sql"></a>2025-07-09 Line 訂單系統-C 階段 完整 .env 範例 + db_init.sql</h2><p>既然我們已經完成 A～C 階段的設計（Webhook → API → LINE 整合），<br>那接下來這份是整個系統必備的「環境變數設定檔 <code>.env</code>」與「初始資料庫建構檔 <code>db_init.sql</code>」。</p>
+<p>這兩份檔案將成為你的 Node.js + MySQL + Vue3 + LINE Bot 系統的<strong>基礎核心設定</strong>。</p>
+<hr>
+<h1 id="📦-一、-env-範例設定檔（完整註解）"><a href="#📦-一、-env-範例設定檔（完整註解）" class="headerlink" title="📦 一、.env 範例設定檔（完整註解）"></a>📦 一、<code>.env</code> 範例設定檔（完整註解）</h1><blockquote>
+<p>📁 檔案位置：<code>/backend/.env</code></p>
+</blockquote>
+<pre><code class="bash"># ===============================
+# 🌐 Server Configuration
+# ===============================
+NODE_ENV=development
+PORT=3000                # Node.js 伺服器埠號
+BASE_URL=http://localhost:3000
+
+# ===============================
+# 🗄️ Database (MySQL)
+# ===============================
+DB_HOST=localhost        # 資料庫主機
+DB_PORT=3306             # MySQL 預設埠號
+DB_USER=root             # 資料庫帳號（開發用）
+DB_PASSWORD=your_password_here   # ⚠️請換成你自己的密碼
+DB_NAME=line_order_db    # 資料庫名稱
+
+# ===============================
+# 💬 LINE Messaging API
+# ===============================
+LINE_CHANNEL_SECRET=your_line_channel_secret_here
+LINE_CHANNEL_ACCESS_TOKEN=your_line_channel_access_token_here
+LINE_BOT_BASE_URL=https://api.line.me/v2/bot/message
+LINE_WEBHOOK_PATH=/webhook   # webhook endpoint
+LINE_WEBHOOK_FULL_URL=https://your-domain.com/webhook  # 部署後正式網址
+
+# ===============================
+# 🔐 JWT / Security
+# ===============================
+JWT_SECRET=my_jwt_secret_token
+TOKEN_EXPIRE_DAYS=7
+
+# ===============================
+# 💌 Email / Notification (Optional)
+# ===============================
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USER=your_email@gmail.com
+MAIL_PASS=your_email_password
+
+# ===============================
+# 🧠 Cache / Redis (Optional)
+# ===============================
+REDIS_HOST=localhost
+REDIS_PORT=6379
+REDIS_PASSWORD=
+
+# ===============================
+# 🧾 Logging &amp; Debug
+# ===============================
+LOG_LEVEL=debug
+ENABLE_WEBHOOK_LOG=true
+</code></pre>
+<blockquote>
+<p>✅ <strong>開發建議</strong>：</p>
+<ul>
+<li><code>.env</code> 不要上傳到 GitHub（加入 <code>.gitignore</code>）</li>
+<li>上線環境使用 <code>.env.production</code></li>
+<li>用 <code>dotenv</code> 套件載入設定</li>
+</ul>
+</blockquote>
+<hr>
+<h1 id="🗄️-二、db-init-sql-資料庫初始化檔"><a href="#🗄️-二、db-init-sql-資料庫初始化檔" class="headerlink" title="🗄️ 二、db_init.sql 資料庫初始化檔"></a>🗄️ 二、<code>db_init.sql</code> 資料庫初始化檔</h1><blockquote>
+<p>📁 檔案位置：<code>/backend/db/db_init.sql</code></p>
+</blockquote>
+<pre><code class="sql">-- ================================================
+-- 📘 LINE 線上訂單系統 - MySQL 資料庫初始化
+-- ================================================
+
+CREATE DATABASE IF NOT EXISTS line_order_db
+  CHARACTER SET utf8mb4
+  COLLATE utf8mb4_unicode_ci;
+
+USE line_order_db;
+
+-- =============================
+-- 🧍‍♀️ 使用者 (LINE User)
+-- =============================
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    line_user_id VARCHAR(100) NOT NULL UNIQUE,
+    display_name VARCHAR(100),
+    phone VARCHAR(30),
+    email VARCHAR(100),
+    joined_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+-- =============================
+-- 🛍️ 商品 (Product)
+-- =============================
+CREATE TABLE IF NOT EXISTS products (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    description TEXT,
+    price DECIMAL(10,2) NOT NULL,
+    stock INT DEFAULT 0,
+    category VARCHAR(50),
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- =============================
+-- 🧾 訂單 (Order)
+-- =============================
+CREATE TABLE IF NOT EXISTS orders (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    total_price DECIMAL(10,2) NOT NULL,
+    status ENUM(&#39;pending&#39;,&#39;paid&#39;,&#39;cancelled&#39;,&#39;completed&#39;) DEFAULT &#39;pending&#39;,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+-- =============================
+-- 📦 訂單明細 (Order Items)
+-- =============================
+CREATE TABLE IF NOT EXISTS order_items (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT NOT NULL,
+    product_id INT NOT NULL,
+    quantity INT DEFAULT 1,
+    price DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (order_id) REFERENCES orders(id),
+    FOREIGN KEY (product_id) REFERENCES products(id)
+);
+
+-- =============================
+-- 💬 訊息記錄 (LINE Message Log)
+-- =============================
+CREATE TABLE IF NOT EXISTS message_log (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    message_text TEXT,
+    message_type VARCHAR(30),
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+-- =============================
+-- 🔑 測試資料（選擇性）
+-- =============================
+INSERT INTO products (name, description, price, stock, category)
+VALUES
+(&#39;拿鐵咖啡&#39;, &#39;香濃順口的拿鐵&#39;, 80.00, 20, &#39;飲品&#39;),
+(&#39;美式咖啡&#39;, &#39;無糖美式，清爽提神&#39;, 60.00, 30, &#39;飲品&#39;),
+(&#39;抹茶蛋糕&#39;, &#39;抹茶控必吃&#39;, 120.00, 10, &#39;甜點&#39;);
+</code></pre>
+<hr>
+<h1 id="🧭-三、初始化與測試步驟"><a href="#🧭-三、初始化與測試步驟" class="headerlink" title="🧭 三、初始化與測試步驟"></a>🧭 三、初始化與測試步驟</h1><h3 id="🧰-Step-1-建立-env"><a href="#🧰-Step-1-建立-env" class="headerlink" title="🧰 Step 1. 建立 .env"></a>🧰 Step 1. 建立 <code>.env</code></h3><p>在 <code>backend</code> 目錄新增 <code>.env</code>，貼上上述內容並修改：</p>
+<pre><code class="bash">DB_USER=root
+DB_PASSWORD=你的MySQL密碼
+</code></pre>
+<h3 id="🧰-Step-2-匯入資料庫"><a href="#🧰-Step-2-匯入資料庫" class="headerlink" title="🧰 Step 2. 匯入資料庫"></a>🧰 Step 2. 匯入資料庫</h3><p>打開終端機（或 MySQL Workbench）：</p>
+<pre><code class="bash">mysql -u root -p &lt; db/db_init.sql
+</code></pre>
+<p>檢查：</p>
+<pre><code class="bash">SHOW DATABASES;
+USE line_order_db;
+SHOW TABLES;
+</code></pre>
+<h3 id="🧰-Step-3-啟動伺服器"><a href="#🧰-Step-3-啟動伺服器" class="headerlink" title="🧰 Step 3. 啟動伺服器"></a>🧰 Step 3. 啟動伺服器</h3><p>在 <code>backend</code> 目錄執行：</p>
+<pre><code class="bash">npm install
+npm run dev
+</code></pre>
+<h3 id="🧰-Step-4-驗證-LINE-Webhook"><a href="#🧰-Step-4-驗證-LINE-Webhook" class="headerlink" title="🧰 Step 4. 驗證 LINE Webhook"></a>🧰 Step 4. 驗證 LINE Webhook</h3><p>把 <code>.env</code> 內的 <code>LINE_WEBHOOK_FULL_URL</code> 填入 LINE Developer 設定中。<br>再發一則訊息測試 → 終端應顯示「Webhook received」。</p>
+<hr>
+<p>如果你願意，我可以幫你生成：</p>
+<blockquote>
+<p>✅ <code>backend/config.js</code><br>✅ <code>backend/db.js</code>（讀取 <code>.env</code> 並連線 MySQL）<br>✅ <code>backend/routes/orderRoutes.js</code><br>這三個檔案構成你的 <strong>Node.js + MySQL 基礎骨架</strong>，<br>可以直接與 <code>.env</code>、<code>db_init.sql</code> 搭配使用。</p>
+</blockquote>
+<p>是否要我現在幫你生成這三個檔案？</p>

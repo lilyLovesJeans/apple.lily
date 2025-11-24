@@ -1,0 +1,30 @@
+<hr>
+<h2 id="title-2025-06-29-Line-訂單系統-階段Edate-2025-11-12-21-30-36categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-06-29-Line-訂單系統-階段E"><a href="#title-2025-06-29-Line-訂單系統-階段Edate-2025-11-12-21-30-36categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-06-29-Line-訂單系統-階段E" class="headerlink" title="title: 2025-06-29 Line 訂單系統-階段Edate: 2025-11-12 21:30:36categories: OneDayOneNotetags:  [OneNote, Line訂單系統]description:   2025-06-29 Line 訂單系統-階段E"></a>title: 2025-06-29 Line 訂單系統-階段E<br>date: 2025-11-12 21:30:36<br>categories: OneDayOneNote<br>tags:  [OneNote, Line訂單系統]<br>description:   2025-06-29 Line 訂單系統-階段E</h2><h2 id="2025-06-29-Line-訂單系統-階段E"><a href="#2025-06-29-Line-訂單系統-階段E" class="headerlink" title="2025-06-29 Line 訂單系統-階段E"></a>2025-06-29 Line 訂單系統-階段E</h2><h2 id="🅴-階段-E：測試與-CI-CD"><a href="#🅴-階段-E：測試與-CI-CD" class="headerlink" title="🅴 階段 E：測試與 CI&#x2F;CD"></a>🅴 階段 E：測試與 CI&#x2F;CD</h2><h3 id="🎯-目標"><a href="#🎯-目標" class="headerlink" title="🎯 目標"></a>🎯 目標</h3><p>建立測試與自動部署流程。</p>
+<hr>
+<h3 id="🔧-步驟"><a href="#🔧-步驟" class="headerlink" title="🔧 步驟"></a>🔧 步驟</h3><h4 id="1️⃣-安裝-Jest"><a href="#1️⃣-安裝-Jest" class="headerlink" title="1️⃣ 安裝 Jest"></a>1️⃣ 安裝 Jest</h4><pre><code class="bash">npm install --save-dev jest supertest
+</code></pre>
+<h4 id="2️⃣-建立簡單測試（backend-tests-app-test-js）"><a href="#2️⃣-建立簡單測試（backend-tests-app-test-js）" class="headerlink" title="2️⃣ 建立簡單測試（backend&#x2F;tests&#x2F;app.test.js）"></a>2️⃣ 建立簡單測試（backend&#x2F;tests&#x2F;app.test.js）</h4><pre><code class="js">import request from &#39;supertest&#39;;
+import app from &#39;../index.js&#39;;
+
+test(&#39;GET /&#39;, async () =&gt; {
+  const res = await request(app).get(&#39;/&#39;);
+  expect(res.statusCode).toBe(200);
+});
+</code></pre>
+<hr>
+<h4 id="3️⃣-新增-GitHub-Actions（-github-workflows-test-yml）"><a href="#3️⃣-新增-GitHub-Actions（-github-workflows-test-yml）" class="headerlink" title="3️⃣ 新增 GitHub Actions（.github&#x2F;workflows&#x2F;test.yml）"></a>3️⃣ 新增 GitHub Actions（.github&#x2F;workflows&#x2F;test.yml）</h4><pre><code class="yaml">name: Node CI
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+      - run: npm install
+      - run: npm test
+</code></pre>
+<hr>
+<h3 id="🧪-Checkpoint"><a href="#🧪-Checkpoint" class="headerlink" title="🧪 Checkpoint"></a>🧪 Checkpoint</h3><p>✅ push 後 GitHub 自動執行測試<br>✅ 測試全通過</p>
+<hr>

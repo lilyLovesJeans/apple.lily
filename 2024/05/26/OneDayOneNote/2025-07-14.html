@@ -1,0 +1,190 @@
+<hr>
+<h2 id="title-2025-07-14-Line-訂單系統-C-階段-「LINE-訂單整合」date-2025-11-13-23-28-09categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-14-Line-訂單系統-C-階段-「LINE-訂單整合」"><a href="#title-2025-07-14-Line-訂單系統-C-階段-「LINE-訂單整合」date-2025-11-13-23-28-09categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-14-Line-訂單系統-C-階段-「LINE-訂單整合」" class="headerlink" title="title: 2025-07-14 Line 訂單系統-C 階段 「LINE 訂單整合」date: 2025-11-13 23:28:09categories: OneDayOneNotetags:  [OneNote, Line訂單系統]description: 2025-07-14 Line 訂單系統-C 階段 「LINE 訂單整合」"></a>title: 2025-07-14 Line 訂單系統-C 階段 「LINE 訂單整合」<br>date: 2025-11-13 23:28:09<br>categories: OneDayOneNote<br>tags:  [OneNote, Line訂單系統]<br>description: 2025-07-14 Line 訂單系統-C 階段 「LINE 訂單整合」</h2><h2 id="2025-07-14-Line-訂單系統-C-階段-「LINE-訂單整合」"><a href="#2025-07-14-Line-訂單系統-C-階段-「LINE-訂單整合」" class="headerlink" title="2025-07-14 Line 訂單系統-C 階段 「LINE 訂單整合」"></a>2025-07-14 Line 訂單系統-C 階段 「LINE 訂單整合」</h2><p>「LINE 訂單整合」</p>
+<p> — 這一步是整個 <strong>📘 C 階段「LINE 訂單整合」</strong> 的最關鍵部分。<br>完成這一步後，你的系統就能做到以下完整流程：</p>
+<blockquote>
+<p>LINE 使用者輸入：「購買 1」 →<br>Node.js webhook 接收 →<br>建立新訂單 →<br>儲存到 MySQL →<br>Vue3 後台可立即看到新訂單。</p>
+</blockquote>
+<hr>
+<h2 id="✅-一、目標說明"><a href="#✅-一、目標說明" class="headerlink" title="✅ 一、目標說明"></a>✅ 一、目標說明</h2><p>目前你已有兩個後端檔案：</p>
+<ul>
+<li><code>lineWebhook.js</code> → 接收 LINE 訊息事件</li>
+<li><code>orders.js</code> → 提供 <code>/api/orders</code> 新增與查詢</li>
+</ul>
+<p>現在我們要：</p>
+<blockquote>
+<p><strong>讓 webhook 在使用者輸入「購買 [商品ID]」時自動呼叫 <code>/api/orders</code> 新增訂單。</strong></p>
+</blockquote>
+<hr>
+<h2 id="🧩-二、修改檔案：backend-routes-lineWebhook-js"><a href="#🧩-二、修改檔案：backend-routes-lineWebhook-js" class="headerlink" title="🧩 二、修改檔案：backend/routes/lineWebhook.js"></a>🧩 二、修改檔案：<code>backend/routes/lineWebhook.js</code></h2><p>這份版本整合了：</p>
+<ul>
+<li>「查詢商品」(<code>商品 1</code>)</li>
+<li>「購買商品」(<code>購買 1</code>)<br>兩種指令。</li>
+</ul>
+<p>當使用者輸入「購買 1」時，後端會：<br>1️⃣ 從 MySQL 查詢商品資訊；<br>2️⃣ 建立新訂單（寫入 <code>orders</code> 表）；<br>3️⃣ 回覆使用者「訂單建立成功」訊息。</p>
+<hr>
+<h3 id="🔧-更新後完整程式："><a href="#🔧-更新後完整程式：" class="headerlink" title="🔧 更新後完整程式："></a>🔧 更新後完整程式：</h3><pre><code class="js">// backend/routes/lineWebhook.js
+import express from &quot;express&quot;;
+import axios from &quot;axios&quot;;
+import crypto from &quot;crypto&quot;;
+import mysql from &quot;mysql2/promise&quot;;
+
+const router = express.Router();
+
+// 建立 MySQL 連線池
+const pool = mysql.createPool({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+});
+
+// 驗證 LINE webhook 簽章
+function validateSignature(body, signature) {
+  const hash = crypto
+    .createHmac(&quot;SHA256&quot;, process.env.LINE_CHANNEL_SECRET)
+    .update(JSON.stringify(body))
+    .digest(&quot;base64&quot;);
+  return hash === signature;
+}
+
+// 處理 Webhook
+router.post(&quot;/webhook&quot;, async (req, res) =&gt; {
+  const signature = req.headers[&quot;x-line-signature&quot;];
+  if (!validateSignature(req.body, signature)) {
+    return res.status(401).send(&quot;Invalid signature&quot;);
+  }
+
+  const events = req.body.events;
+  for (const event of events) {
+    if (event.type === &quot;message&quot; &amp;&amp; event.message.type === &quot;text&quot;) {
+      const userText = event.message.text.trim();
+      const userName = event.source.userId || &quot;LINE使用者&quot;;
+
+      let replyMessage = &quot;&quot;;
+
+      // 🟢 1️⃣ 查詢商品
+      if (userText.startsWith(&quot;商品&quot;)) {
+        const itemCode = userText.replace(&quot;商品&quot;, &quot;&quot;).trim();
+        const [rows] = await pool.query(
+          &quot;SELECT name, price, description FROM products WHERE id = ?&quot;,
+          [itemCode]
+        );
+
+        if (rows.length &gt; 0) {
+          const p = rows[0];
+          replyMessage = `📦 商品名稱：${p.name}\n💲 價格：${p.price}\n📝 說明：${p.description}\n\n若要下單，請輸入：購買 ${itemCode}`;
+        } else {
+          replyMessage = &quot;查無此商品，請確認代號是否正確。&quot;;
+        }
+      }
+
+      // 🟠 2️⃣ 購買商品
+      else if (userText.startsWith(&quot;購買&quot;)) {
+        const itemCode = userText.replace(&quot;購買&quot;, &quot;&quot;).trim();
+
+        // 檢查商品是否存在
+        const [rows] = await pool.query(
+          &quot;SELECT name, price FROM products WHERE id = ?&quot;,
+          [itemCode]
+        );
+
+        if (rows.length === 0) {
+          replyMessage = &quot;找不到該商品，請確認代號。&quot;;
+        } else {
+          // 新增訂單
+          await pool.query(
+            `INSERT INTO orders (user_name, product_id, quantity, status, created_at)
+             VALUES (?, ?, 1, &#39;新訂單&#39;, NOW())`,
+            [userName, itemCode]
+          );
+
+          const product = rows[0];
+          replyMessage = `✅ 已建立訂單：${product.name}\n💲 價格：${product.price}\n📦 狀態：新訂單`;
+        }
+      }
+
+      // 🔵 其他訊息
+      else {
+        replyMessage =
+          &quot;您好！請輸入：\n「商品 1」查詢商品\n或「購買 1」直接下單。&quot;;
+      }
+
+      // 回覆 LINE 訊息
+      await axios.post(
+        &quot;https://api.line.me/v2/bot/message/reply&quot;,
+        {
+          replyToken: event.replyToken,
+          messages: [{ type: &quot;text&quot;, text: replyMessage }],
+        },
+        {
+          headers: {
+            &quot;Content-Type&quot;: &quot;application/json&quot;,
+            Authorization: `Bearer ${process.env.LINE_CHANNEL_ACCESS_TOKEN}`,
+          },
+        }
+      );
+    }
+  }
+
+  res.status(200).end();
+});
+
+export default router;
+</code></pre>
+<hr>
+<h2 id="🗂️-資料庫確認"><a href="#🗂️-資料庫確認" class="headerlink" title="🗂️ 資料庫確認"></a>🗂️ 資料庫確認</h2><p>請確認 <code>orders</code> 表已存在，結構如下：</p>
+<pre><code class="sql">CREATE TABLE orders (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_name VARCHAR(100),
+  product_id INT,
+  quantity INT DEFAULT 1,
+  status VARCHAR(50) DEFAULT &#39;新訂單&#39;,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (product_id) REFERENCES products(id)
+);
+</code></pre>
+<hr>
+<h2 id="⚙️-測試流程"><a href="#⚙️-測試流程" class="headerlink" title="⚙️ 測試流程"></a>⚙️ 測試流程</h2><table>
+<thead>
+<tr>
+<th>步驟</th>
+<th>動作</th>
+<th>預期結果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1️⃣</td>
+<td>啟動後端伺服器 (<code>npm run dev</code>)</td>
+<td>伺服器運行於 <a href="http://localhost:3000/">http://localhost:3000</a></td>
+</tr>
+<tr>
+<td>2️⃣</td>
+<td>使用 ngrok 對外公開</td>
+<td><code>ngrok http 3000</code></td>
+</tr>
+<tr>
+<td>3️⃣</td>
+<td>在 LINE Developers Webhook URL 設為 <code>https://&lt;ngrok-url&gt;/api/webhook</code></td>
+<td>成功設定 Webhook</td>
+</tr>
+<tr>
+<td>4️⃣</td>
+<td>在 LINE 輸入「商品 1」</td>
+<td>Bot 回覆商品資訊</td>
+</tr>
+<tr>
+<td>5️⃣</td>
+<td>在 LINE 輸入「購買 1」</td>
+<td>Bot 回覆「已建立訂單」，同時 MySQL 寫入新訂單</td>
+</tr>
+<tr>
+<td>6️⃣</td>
+<td>在 Vue3 後台「LINE 訂單紀錄」頁面查看</td>
+<td>可看到剛剛建立的訂單紀錄</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="💡-延伸建議（C-階段完成後的下一步）"><a href="#💡-延伸建議（C-階段完成後的下一步）" class="headerlink" title="💡 延伸建議（C 階段完成後的下一步）"></a>💡 延伸建議（C 階段完成後的下一步）</h2><p>完成這部分後，你的系統已經具備：<br>✅ 商品查詢<br>✅ 下單功能<br>✅ 後台查詢</p>
+<p>接下來可以進入 <strong>📒 D 階段：Redis 即時快取 + 訂單通知系統</strong>，<br>讓訂單狀態（例如「已接單」、「配送中」）能即時更新前端畫面或推播到 LINE。</p>
+<hr>
+<p>是否要我幫你繼續進入 📒 <strong>D 階段 — Redis 快取與訂單狀態通知設計與實作</strong>？</p>

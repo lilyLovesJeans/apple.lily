@@ -1,0 +1,245 @@
+<hr>
+<h2 id="title-2025-07-10-Line-訂單系統-C-階段-建立-Node-js-專案的三個核心檔案config-db-orderRoutesdate-2025-11-13-22-41-28categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-10-Line-訂單系統-C-階段-建立-Node-js-專案的三個核心檔案config-db-orderRoutes"><a href="#title-2025-07-10-Line-訂單系統-C-階段-建立-Node-js-專案的三個核心檔案config-db-orderRoutesdate-2025-11-13-22-41-28categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-10-Line-訂單系統-C-階段-建立-Node-js-專案的三個核心檔案config-db-orderRoutes" class="headerlink" title="title: 2025-07-10 Line 訂單系統-C 階段 建立 Node.js 專案的三個核心檔案config db orderRoutesdate: 2025-11-13 22:41:28categories: OneDayOneNotetags:  [OneNote, Line訂單系統]description: 2025-07-10 Line 訂單系統-C 階段 建立 Node.js 專案的三個核心檔案config db orderRoutes"></a>title: 2025-07-10 Line 訂單系統-C 階段 建立 Node.js 專案的三個核心檔案config db orderRoutes<br>date: 2025-11-13 22:41:28<br>categories: OneDayOneNote<br>tags:  [OneNote, Line訂單系統]<br>description: 2025-07-10 Line 訂單系統-C 階段 建立 Node.js 專案的三個核心檔案config db orderRoutes</h2><h2 id="2025-07-10-建立-Node-js-專案的三個核心檔案config-db-orderRoutes"><a href="#2025-07-10-建立-Node-js-專案的三個核心檔案config-db-orderRoutes" class="headerlink" title="2025-07-10 建立 Node.js 專案的三個核心檔案config db orderRoutes"></a>2025-07-10 建立 Node.js 專案的三個核心檔案config db orderRoutes</h2><p>現在我們要正式建立 Node.js 專案的三個核心檔案：</p>
+<blockquote>
+<p>📂 <code>/backend/config.js</code><br>📂 <code>/backend/db.js</code><br>📂 <code>/backend/routes/orderRoutes.js</code></p>
+</blockquote>
+<p>這三個檔案的作用如下：</p>
+<table>
+<thead>
+<tr>
+<th>檔案</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>config.js</code></td>
+<td>載入 <code>.env</code> 並集中管理環境變數</td>
+</tr>
+<tr>
+<td><code>db.js</code></td>
+<td>連線 MySQL（用 <code>mysql2</code> 或 <code>sequelize</code>）</td>
+</tr>
+<tr>
+<td><code>orderRoutes.js</code></td>
+<td>提供基本訂單 API（查詢、建立、更新）</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🧩-一、config-js"><a href="#🧩-一、config-js" class="headerlink" title="🧩 一、config.js"></a>🧩 一、<code>config.js</code></h2><blockquote>
+<p>📁 路徑：<code>/backend/config.js</code></p>
+</blockquote>
+<pre><code class="js">// ===============================
+// 📘 config.js
+// 讀取 .env 並統一管理系統設定
+// ===============================
+import dotenv from &quot;dotenv&quot;;
+dotenv.config();
+
+export const config = {
+  env: process.env.NODE_ENV || &quot;development&quot;,
+  port: process.env.PORT || 3000,
+
+  // Database
+  db: {
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    name: process.env.DB_NAME,
+  },
+
+  // LINE
+  line: {
+    channelSecret: process.env.LINE_CHANNEL_SECRET,
+    channelAccessToken: process.env.LINE_CHANNEL_ACCESS_TOKEN,
+    webhookPath: process.env.LINE_WEBHOOK_PATH,
+  },
+
+  // JWT
+  jwt: {
+    secret: process.env.JWT_SECRET,
+    expiresIn: process.env.TOKEN_EXPIRE_DAYS || &quot;7d&quot;,
+  },
+
+  // Optional
+  redis: {
+    host: process.env.REDIS_HOST,
+    port: process.env.REDIS_PORT,
+  },
+};
+
+export default config;
+</code></pre>
+<hr>
+<h2 id="🧠-二、db-js"><a href="#🧠-二、db-js" class="headerlink" title="🧠 二、db.js"></a>🧠 二、<code>db.js</code></h2><blockquote>
+<p>📁 路徑：<code>/backend/db.js</code></p>
+</blockquote>
+<p>這個檔案會使用 <code>mysql2</code> 套件連線資料庫。<br>請先在後端專案中執行安裝：</p>
+<pre><code class="bash">npm install mysql2
+</code></pre>
+<p>接著建立檔案內容👇</p>
+<pre><code class="js">// ===============================
+// 🗄️ db.js
+// 建立 MySQL 資料庫連線
+// ===============================
+import mysql from &quot;mysql2/promise&quot;;
+import config from &quot;./config.js&quot;;
+
+let pool;
+
+export async function initDB() {
+  if (!pool) {
+    pool = mysql.createPool({
+      host: config.db.host,
+      user: config.db.user,
+      password: config.db.password,
+      database: config.db.name,
+      port: config.db.port,
+      waitForConnections: true,
+      connectionLimit: 10,
+      queueLimit: 0,
+    });
+    console.log(&quot;✅ MySQL connection pool created&quot;);
+  }
+  return pool;
+}
+
+export async function query(sql, params = []) {
+  const connection = await initDB();
+  const [rows] = await connection.execute(sql, params);
+  return rows;
+}
+
+// 🔍 測試連線
+if (process.env.NODE_ENV === &quot;development&quot;) {
+  initDB()
+    .then(() =&gt; console.log(&quot;✅ DB connected successfully&quot;))
+    .catch((err) =&gt; console.error(&quot;❌ DB connection error:&quot;, err.message));
+}
+</code></pre>
+<hr>
+<h2 id="📦-三、routes-orderRoutes-js"><a href="#📦-三、routes-orderRoutes-js" class="headerlink" title="📦 三、routes/orderRoutes.js"></a>📦 三、<code>routes/orderRoutes.js</code></h2><blockquote>
+<p>📁 路徑：<code>/backend/routes/orderRoutes.js</code></p>
+</blockquote>
+<p>請先安裝 Express：</p>
+<pre><code class="bash">npm install express
+</code></pre>
+<p>然後建立以下內容：</p>
+<pre><code class="js">// ===============================
+// 🧾 orderRoutes.js
+// 訂單相關 API：查詢、建立、更新
+// ===============================
+import express from &quot;express&quot;;
+import { query } from &quot;../db.js&quot;;
+
+const router = express.Router();
+
+// ✅ GET /api/orders - 取得所有訂單
+router.get(&quot;/&quot;, async (req, res) =&gt; {
+  try {
+    const orders = await query(
+      &quot;SELECT o.id, u.display_name AS user_name, o.total_price, o.status, o.created_at FROM orders o JOIN users u ON o.user_id = u.id ORDER BY o.id DESC&quot;
+    );
+    res.json(orders);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: &quot;Server error while fetching orders&quot; });
+  }
+});
+
+// ✅ POST /api/orders - 建立新訂單
+router.post(&quot;/&quot;, async (req, res) =&gt; {
+  try {
+    const { user_id, items } = req.body;
+
+    // 計算總金額
+    let total = 0;
+    for (const item of items) {
+      total += item.price * item.quantity;
+    }
+
+    // 新增訂單
+    const result = await query(
+      &quot;INSERT INTO orders (user_id, total_price, status) VALUES (?, ?, &#39;pending&#39;)&quot;,
+      [user_id, total]
+    );
+    const orderId = result.insertId;
+
+    // 新增訂單明細
+    for (const item of items) {
+      await query(
+        &quot;INSERT INTO order_items (order_id, product_id, quantity, price) VALUES (?, ?, ?, ?)&quot;,
+        [orderId, item.product_id, item.quantity, item.price]
+      );
+    }
+
+    res.status(201).json({ message: &quot;Order created successfully&quot;, orderId });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: &quot;Server error while creating order&quot; });
+  }
+});
+
+// ✅ PATCH /api/orders/:id - 更新訂單狀態
+router.patch(&quot;/:id&quot;, async (req, res) =&gt; {
+  try {
+    const { status } = req.body;
+    const orderId = req.params.id;
+
+    await query(&quot;UPDATE orders SET status = ? WHERE id = ?&quot;, [status, orderId]);
+    res.json({ message: &quot;Order status updated&quot; });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: &quot;Failed to update order&quot; });
+  }
+});
+
+export default router;
+</code></pre>
+<hr>
+<h2 id="🧭-四、整合進主伺服器"><a href="#🧭-四、整合進主伺服器" class="headerlink" title="🧭 四、整合進主伺服器"></a>🧭 四、整合進主伺服器</h2><p>你的 <code>server.js</code>（或 <code>index.js</code>） 可以這樣設定：</p>
+<pre><code class="js">import express from &quot;express&quot;;
+import cors from &quot;cors&quot;;
+import orderRoutes from &quot;./routes/orderRoutes.js&quot;;
+import { initDB } from &quot;./db.js&quot;;
+import config from &quot;./config.js&quot;;
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+// ✅ 註冊路由
+app.use(&quot;/api/orders&quot;, orderRoutes);
+
+// ✅ 啟動伺服器
+initDB().then(() =&gt; {
+  app.listen(config.port, () =&gt; {
+    console.log(`🚀 Server running on http://localhost:${config.port}`);
+  });
+});
+</code></pre>
+<hr>
+<h2 id="✅-測試範例"><a href="#✅-測試範例" class="headerlink" title="✅ 測試範例"></a>✅ 測試範例</h2><h3 id="1️⃣-查詢所有訂單"><a href="#1️⃣-查詢所有訂單" class="headerlink" title="1️⃣ 查詢所有訂單"></a>1️⃣ 查詢所有訂單</h3><pre><code>GET http://localhost:3000/api/orders
+</code></pre>
+<h3 id="2️⃣-建立訂單"><a href="#2️⃣-建立訂單" class="headerlink" title="2️⃣ 建立訂單"></a>2️⃣ 建立訂單</h3><pre><code>POST http://localhost:3000/api/orders
+Content-Type: application/json
+
+{
+  &quot;user_id&quot;: 1,
+  &quot;items&quot;: [
+    { &quot;product_id&quot;: 1, &quot;quantity&quot;: 2, &quot;price&quot;: 80 },
+    { &quot;product_id&quot;: 2, &quot;quantity&quot;: 1, &quot;price&quot;: 60 }
+  ]
+}
+</code></pre>
+<h3 id="3️⃣-更新訂單狀態"><a href="#3️⃣-更新訂單狀態" class="headerlink" title="3️⃣ 更新訂單狀態"></a>3️⃣ 更新訂單狀態</h3><pre><code>PATCH http://localhost:3000/api/orders/1
+Content-Type: application/json
+
+{ &quot;status&quot;: &quot;paid&quot; }
+</code></pre>
+<hr>
+<p>如果你願意，下一步我可以幫你建立：</p>
+<blockquote>
+<p>📘 <code>routes/productRoutes.js</code><br>📘 <code>routes/userRoutes.js</code><br>📘 <code>routes/lineWebhook.js</code>（讓 LINE Bot 能連接這個訂單 API）</p>
+</blockquote>
+<p>是否要我接下來幫你生成這三個檔案？</p>

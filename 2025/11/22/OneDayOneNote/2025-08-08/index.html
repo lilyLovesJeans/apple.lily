@@ -434,7 +434,28 @@
 <p>如果你願意，我可以幫你畫一個 <strong>小圖，把早餐、咖啡、跑步、寫程式、測試程式</strong> 都畫在 commit 線上，視覺化 rebase 和 merge，保證一眼就懂。</p>
 <p>你想要我畫這個圖嗎？</p>
 <p>好的，我幫你用 <strong>Mermaid</strong> 畫出剛才那個生活化例子的 <strong>rebase</strong> 與 <strong>merge</strong> 流程圖。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">flowchart LR</span><br><span class="line">    %% 主線 main 的 commit</span><br><span class="line">    A[&quot;A: 吃早餐&quot;] --&gt; B[&quot;B: 喝咖啡&quot;]</span><br><span class="line">    B --&gt; E[&quot;E: 跑步&quot;]</span><br><span class="line"></span><br><span class="line">    %% feature 分支原始 commit</span><br><span class="line">    B --&gt; C[&quot;C: 寫程式&quot;]</span><br><span class="line">    C --&gt; D[&quot;D: 測試程式&quot;]</span><br><span class="line"></span><br><span class="line">    %% Merge 的結果</span><br><span class="line">    E --&gt; M[&quot;M: merge feature&quot;]</span><br><span class="line"></span><br><span class="line">    %% Rebase 的結果 (用虛線表示重放 commit)</span><br><span class="line">    E --&gt; C_prime[&quot;C&#x27;: 寫程式&quot;]</span><br><span class="line">    C_prime --&gt; D_prime[&quot;D&#x27;: 測試程式&quot;]</span><br><span class="line"></span><br><span class="line">    %% 標註</span><br><span class="line">    classDef main fill:#f9f,stroke:#333,stroke-width:1px;</span><br><span class="line">    classDef feature fill:#9f9,stroke:#333,stroke-width:1px,stroke-dasharray: 5 5;</span><br><span class="line">    class A,B,E main;</span><br><span class="line">    class C,D,M feature;</span><br><span class="line">    class C_prime,D_prime feature;</span><br></pre></td></tr></table></figure>
+<pre class="mermaid">flowchart LR
+    %% 主線 main 的 commit
+    A["A: 吃早餐"] --> B["B: 喝咖啡"]
+    B --> E["E: 跑步"]
+
+    %% feature 分支原始 commit
+    B --> C["C: 寫程式"]
+    C --> D["D: 測試程式"]
+
+    %% Merge 的結果
+    E --> M["M: merge feature"]
+
+    %% Rebase 的結果 (用虛線表示重放 commit)
+    E --> C_prime["C': 寫程式"]
+    C_prime --> D_prime["D': 測試程式"]
+
+    %% 標註
+    classDef main fill:#f9f,stroke:#333,stroke-width:1px;
+    classDef feature fill:#9f9,stroke:#333,stroke-width:1px,stroke-dasharray: 5 5;
+    class A,B,E main;
+    class C,D,M feature;
+    class C_prime,D_prime feature;</pre>
 
 <hr>
 <h3 id="解釋圖："><a href="#解釋圖：" class="headerlink" title="解釋圖："></a>解釋圖：</h3><ol>
@@ -542,6 +563,8 @@
 
   
 
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.0/mermaid.min.js","integrity":"sha256-stuqcu2FrjYCXDOytWFA5SoUE/r3nkp6gTglzNSlavU="}}</script>
+  <script src="/apple.lily/js/third-party/tags/mermaid.js"></script>
 
 
 

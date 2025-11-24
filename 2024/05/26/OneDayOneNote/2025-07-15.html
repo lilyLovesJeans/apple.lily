@@ -1,0 +1,256 @@
+<hr>
+<h2 id="title-2025-07-15-Line-訂單系統-D-階段-—-Redis-快取與訂單狀態通知設計與實作date-2025-11-13-23-37-32categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-15-Line-訂單系統-D-階段-—-Redis-快取與訂單狀態通知設計與實作"><a href="#title-2025-07-15-Line-訂單系統-D-階段-—-Redis-快取與訂單狀態通知設計與實作date-2025-11-13-23-37-32categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-15-Line-訂單系統-D-階段-—-Redis-快取與訂單狀態通知設計與實作" class="headerlink" title="title: 2025-07-15 Line 訂單系統-D 階段 — Redis 快取與訂單狀態通知設計與實作date: 2025-11-13 23:37:32categories: OneDayOneNotetags:  [OneNote, Line訂單系統]description: 2025-07-15 Line 訂單系統-D 階段 — Redis 快取與訂單狀態通知設計與實作"></a>title: 2025-07-15 Line 訂單系統-D 階段 — Redis 快取與訂單狀態通知設計與實作<br>date: 2025-11-13 23:37:32<br>categories: OneDayOneNote<br>tags:  [OneNote, Line訂單系統]<br>description: 2025-07-15 Line 訂單系統-D 階段 — Redis 快取與訂單狀態通知設計與實作</h2><h2 id="2025-07-15-Line-訂單系統-D-階段-—-Redis-快取與訂單狀態通知設計與實作"><a href="#2025-07-15-Line-訂單系統-D-階段-—-Redis-快取與訂單狀態通知設計與實作" class="headerlink" title="2025-07-15 Line 訂單系統-D 階段 — Redis 快取與訂單狀態通知設計與實作"></a>2025-07-15 Line 訂單系統-D 階段 — Redis 快取與訂單狀態通知設計與實作</h2><p>現在正式進入：</p>
+<h1 id="📒-D-階段-—-Redis-快取與訂單狀態通知設計與實作"><a href="#📒-D-階段-—-Redis-快取與訂單狀態通知設計與實作" class="headerlink" title="📒 D 階段 — Redis 快取與訂單狀態通知設計與實作"></a>📒 D 階段 — Redis 快取與訂單狀態通知設計與實作</h1><p>這是整個 LINE 訂單系統的「智慧化」階段，<br>讓你的系統不僅能收單，還能<strong>即時更新訂單狀態</strong>、<strong>減少資料庫負擔</strong>、<strong>推播通知使用者</strong>。</p>
+<hr>
+<h2 id="🧭-D-階段目標總覽"><a href="#🧭-D-階段目標總覽" class="headerlink" title="🧭 D 階段目標總覽"></a>🧭 D 階段目標總覽</h2><table>
+<thead>
+<tr>
+<th>目標</th>
+<th>功能說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>⚡ 引入 Redis</td>
+<td>作為訂單快取，減少頻繁的 MySQL 查詢</td>
+</tr>
+<tr>
+<td>🔔 即時通知機制</td>
+<td>當訂單狀態改變時（例如「已接單」、「配送中」），LINE 即時通知使用者</td>
+</tr>
+<tr>
+<td>🧩 API 整合</td>
+<td>提供 <code>/api/orders/:id/status</code> 更新訂單狀態的後端端點</td>
+</tr>
+<tr>
+<td>🖥️ Vue3 後台</td>
+<td>管理者可在後台點擊按鈕更新狀態（並觸發推播）</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="⚙️-系統架構概念圖（D-階段）"><a href="#⚙️-系統架構概念圖（D-階段）" class="headerlink" title="⚙️ 系統架構概念圖（D 階段）"></a>⚙️ 系統架構概念圖（D 階段）</h2><pre><code> LINE 使用者
+       ↓
+  LINE Messaging API
+       ↓
+  Node.js (Webhook) 
+       ↕
+  Redis ←→ MySQL
+       ↕
+  Vue3 後台 (管理者更新訂單狀態)
+</code></pre>
+<ul>
+<li>Redis：快速暫存訂單狀態，避免重查 MySQL。</li>
+<li>MySQL：正式持久儲存。</li>
+<li>Vue 後台更新狀態 → Redis + MySQL 更新 → LINE 即時通知。</li>
+</ul>
+<hr>
+<h2 id="🧱-實作步驟"><a href="#🧱-實作步驟" class="headerlink" title="🧱 實作步驟"></a>🧱 實作步驟</h2><hr>
+<h3 id="🔹-D1-—-安裝-Redis-與設定連線"><a href="#🔹-D1-—-安裝-Redis-與設定連線" class="headerlink" title="🔹 D1 — 安裝 Redis 與設定連線"></a>🔹 D1 — 安裝 Redis 與設定連線</h3><h4 id="✅-在本機或雲端安裝-Redis"><a href="#✅-在本機或雲端安裝-Redis" class="headerlink" title="✅ 在本機或雲端安裝 Redis"></a>✅ 在本機或雲端安裝 Redis</h4><p>在 <strong>Lenovo（Windows）</strong> 或 <strong>Mac Air</strong> 上都可用 Docker：</p>
+<pre><code class="bash">docker run --name redis -p 6379:6379 -d redis
+</code></pre>
+<h4 id="✅-安裝-Node-js-套件"><a href="#✅-安裝-Node-js-套件" class="headerlink" title="✅ 安裝 Node.js 套件"></a>✅ 安裝 Node.js 套件</h4><p>在你的 backend 專案中：</p>
+<pre><code class="bash">npm install redis
+</code></pre>
+<h4 id="✅-新增-env-變數"><a href="#✅-新增-env-變數" class="headerlink" title="✅ 新增 .env 變數"></a>✅ 新增 <code>.env</code> 變數</h4><pre><code>REDIS_HOST=127.0.0.1
+REDIS_PORT=6379
+</code></pre>
+<hr>
+<h3 id="🔹-D2-—-建立-Redis-連線工具"><a href="#🔹-D2-—-建立-Redis-連線工具" class="headerlink" title="🔹 D2 — 建立 Redis 連線工具"></a>🔹 D2 — 建立 Redis 連線工具</h3><p>📁 <code>backend/utils/redisClient.js</code></p>
+<pre><code class="js">import { createClient } from &quot;redis&quot;;
+
+const client = createClient({
+  socket: {
+    host: process.env.REDIS_HOST,
+    port: process.env.REDIS_PORT,
+  },
+});
+
+client.on(&quot;error&quot;, (err) =&gt; console.error(&quot;❌ Redis 錯誤:&quot;, err));
+client.connect();
+
+export default client;
+</code></pre>
+<hr>
+<h3 id="🔹-D3-—-修改-orders-js-支援-Redis-快取"><a href="#🔹-D3-—-修改-orders-js-支援-Redis-快取" class="headerlink" title="🔹 D3 — 修改 orders.js 支援 Redis 快取"></a>🔹 D3 — 修改 <code>orders.js</code> 支援 Redis 快取</h3><p>當查詢訂單列表時，會先查 Redis，沒有才查 MySQL。<br>更新訂單時，Redis 與 MySQL 會同步更新。</p>
+<p>📁 <code>backend/routes/orders.js</code>（更新後版本）：</p>
+<pre><code class="js">import express from &quot;express&quot;;
+import mysql from &quot;mysql2/promise&quot;;
+import redisClient from &quot;../utils/redisClient.js&quot;;
+import axios from &quot;axios&quot;;
+
+const router = express.Router();
+
+const pool = mysql.createPool({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+});
+
+// ✅ 查詢所有訂單（含 Redis 快取）
+router.get(&quot;/orders&quot;, async (req, res) =&gt; {
+  try {
+    // 嘗試從 Redis 取得快取
+    const cachedOrders = await redisClient.get(&quot;orders&quot;);
+    if (cachedOrders) {
+      console.log(&quot;📦 從 Redis 取得訂單資料&quot;);
+      return res.json(JSON.parse(cachedOrders));
+    }
+
+    // 查詢 MySQL
+    const [rows] = await pool.query(
+      `SELECT o.id, o.user_name, p.name AS product_name, o.quantity, o.status, o.created_at
+       FROM orders o
+       LEFT JOIN products p ON o.product_id = p.id
+       ORDER BY o.created_at DESC`
+    );
+
+    // 寫入 Redis 快取（存活 60 秒）
+    await redisClient.setEx(&quot;orders&quot;, 60, JSON.stringify(rows));
+
+    res.json(rows);
+  } catch (err) {
+    console.error(&quot;查詢訂單錯誤:&quot;, err);
+    res.status(500).json({ error: &quot;伺服器錯誤&quot; });
+  }
+});
+
+// ✅ 更新訂單狀態（並推播 LINE）
+router.put(&quot;/orders/:id/status&quot;, async (req, res) =&gt; {
+  const orderId = req.params.id;
+  const { newStatus, userName } = req.body;
+
+  try {
+    // 更新 MySQL
+    await pool.query(`UPDATE orders SET status = ? WHERE id = ?`, [
+      newStatus,
+      orderId,
+    ]);
+
+    // 更新 Redis 快取
+    await redisClient.del(&quot;orders&quot;); // 清掉舊快取
+
+    // 查找 LINE 使用者（假設 userName 對應 LINE userId）
+    const lineUserId = userName;
+
+    // 傳送 LINE 通知
+    if (lineUserId) {
+      await axios.post(
+        &quot;https://api.line.me/v2/bot/message/push&quot;,
+        {
+          to: lineUserId,
+          messages: [
+            {
+              type: &quot;text&quot;,
+              text: `📢 您的訂單（#${orderId}）狀態已更新為：「${newStatus}」`,
+            },
+          ],
+        },
+        {
+          headers: {
+            &quot;Content-Type&quot;: &quot;application/json&quot;,
+            Authorization: `Bearer ${process.env.LINE_CHANNEL_ACCESS_TOKEN}`,
+          },
+        }
+      );
+    }
+
+    res.json({ success: true });
+  } catch (err) {
+    console.error(&quot;更新訂單狀態錯誤:&quot;, err);
+    res.status(500).json({ error: &quot;伺服器錯誤&quot; });
+  }
+});
+
+export default router;
+</code></pre>
+<hr>
+<h3 id="🔹-D4-—-Vue3-後台按鈕觸發更新"><a href="#🔹-D4-—-Vue3-後台按鈕觸發更新" class="headerlink" title="🔹 D4 — Vue3 後台按鈕觸發更新"></a>🔹 D4 — Vue3 後台按鈕觸發更新</h3><p>📁 <code>frontend/src/views/LineOrders.vue</code>（部分新增內容）：</p>
+<pre><code class="vue">&lt;td&gt;
+  &lt;select v-model=&quot;order.status&quot; @change=&quot;updateStatus(order)&quot;&gt;
+    &lt;option&gt;新訂單&lt;/option&gt;
+    &lt;option&gt;已接單&lt;/option&gt;
+    &lt;option&gt;配送中&lt;/option&gt;
+    &lt;option&gt;已完成&lt;/option&gt;
+  &lt;/select&gt;
+&lt;/td&gt;
+</code></pre>
+<pre><code class="js">const updateStatus = async (order) =&gt; {
+  try {
+    await axios.put(`http://localhost:3000/api/orders/${order.id}/status`, {
+      newStatus: order.status,
+      userName: order.user_name, // 對應 LINE userId
+    });
+    alert(`訂單 #${order.id} 狀態已更新為「${order.status}」`);
+  } catch (err) {
+    console.error(&quot;更新狀態錯誤:&quot;, err);
+  }
+};
+</code></pre>
+<hr>
+<h2 id="🧪-測試流程"><a href="#🧪-測試流程" class="headerlink" title="🧪 測試流程"></a>🧪 測試流程</h2><table>
+<thead>
+<tr>
+<th>步驟</th>
+<th>動作</th>
+<th>結果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1️⃣</td>
+<td>啟動 Redis + Node.js</td>
+<td>Redis 客戶端連線成功</td>
+</tr>
+<tr>
+<td>2️⃣</td>
+<td>Vue3 後台載入訂單清單</td>
+<td>第一次從 MySQL 查詢，之後從 Redis 快取</td>
+</tr>
+<tr>
+<td>3️⃣</td>
+<td>改變訂單狀態（例如改為「已接單」）</td>
+<td>Redis 清快取、MySQL 更新、LINE 推播通知</td>
+</tr>
+<tr>
+<td>4️⃣</td>
+<td>回到 LINE App 檢查訊息</td>
+<td>收到「您的訂單已更新」通知 ✅</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="✅-D-階段完成成果"><a href="#✅-D-階段完成成果" class="headerlink" title="✅ D 階段完成成果"></a>✅ D 階段完成成果</h2><table>
+<thead>
+<tr>
+<th>模組</th>
+<th>狀態</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Redis 快取導入</td>
+<td>✅ 已完成</td>
+</tr>
+<tr>
+<td>訂單狀態即時更新</td>
+<td>✅ 已完成</td>
+</tr>
+<tr>
+<td>LINE 推播通知</td>
+<td>✅ 已完成</td>
+</tr>
+<tr>
+<td>前端管理介面</td>
+<td>✅ 已整合</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🚀-下一步（📕-E-階段預告）"><a href="#🚀-下一步（📕-E-階段預告）" class="headerlink" title="🚀 下一步（📕 E 階段預告）"></a>🚀 下一步（📕 E 階段預告）</h2><p>接下來的 <strong>E 階段</strong> 將會進入：</p>
+<blockquote>
+<p>「前端介面優化（RWD + UI&#x2F;UX）」</p>
+</blockquote>
+<p>內容包括：</p>
+<ul>
+<li>美化 <code>LineOrders.vue</code>（RWD、自動更新、進度條）</li>
+<li>新增「即時刷新」或「Socket 實時訂單」</li>
+<li>強化前端的「使用者體驗」</li>
+</ul>
+<hr>
+<p>是否要我接下來幫你進入 📕 <strong>E 階段 — Vue3 前端優化（RWD＋UI&#x2F;UX 改版與即時刷新設計）</strong>？</p>

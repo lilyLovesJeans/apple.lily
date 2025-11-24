@@ -1,0 +1,264 @@
+<hr>
+<h2 id="title-2025-08-08-Line-訂單系統-git-Rebasedate-2025-11-22-23-31-33categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-08-08-Line-訂單系統-git-Rebase"><a href="#title-2025-08-08-Line-訂單系統-git-Rebasedate-2025-11-22-23-31-33categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-08-08-Line-訂單系統-git-Rebase" class="headerlink" title="title: 2025-08-08 Line 訂單系統- git Rebasedate: 2025-11-22 23:31:33categories: OneDayOneNotetags:  [OneNote, Line訂單系統]description:  2025-08-08 Line 訂單系統- git Rebase"></a>title: 2025-08-08 Line 訂單系統- git Rebase<br>date: 2025-11-22 23:31:33<br>categories: OneDayOneNote<br>tags:  [OneNote, Line訂單系統]<br>description:  2025-08-08 Line 訂單系統- git Rebase</h2><h2 id="2025-08-08-Line-訂單系統-git-Rebase"><a href="#2025-08-08-Line-訂單系統-git-Rebase" class="headerlink" title="2025-08-08 Line 訂單系統- git Rebase"></a>2025-08-08 Line 訂單系統- git Rebase</h2><p>好的，我來詳細解釋 **<code>git rebase</code>**，並用簡單的方式讓你理解它跟 <code>git merge</code> 的差別。</p>
+<hr>
+<h2 id="1️⃣-基本概念"><a href="#1️⃣-基本概念" class="headerlink" title="1️⃣ 基本概念"></a>1️⃣ 基本概念</h2><p><code>git rebase</code> 的作用是 <strong>把一個分支的修改「搬到」另一個分支的最前面</strong>。<br>換句話說，它不是把分支「合併」在一起，而是 <strong>改寫提交歷史</strong>，讓它看起來像是在目標分支之後直接做的修改。</p>
+<p>簡單比喻：</p>
+<ul>
+<li>假設你在 <code>main</code> 分支上有提交 A → B → C</li>
+<li>你從 <code>main</code> 分出一個 <code>feature</code> 分支，做了提交 D → E</li>
+</ul>
+<p>歷史：</p>
+<pre><code>main:    A---B---C
+                 \
+feature:           D---E
+</code></pre>
+<p>如果你現在做 **<code>git rebase main</code>**：</p>
+<ul>
+<li><code>feature</code> 分支會把 D、E 移到 C 之後</li>
+<li>最終歷史變成：</li>
+</ul>
+<pre><code>main:    A---B---C
+feature:           D&#39;---E&#39;
+</code></pre>
+<blockquote>
+<p>注意：D 和 E 被重新生成了（變成 D’、E’），所以 commit hash 會變。</p>
+</blockquote>
+<hr>
+<h2 id="2️⃣-Rebase-vs-Merge"><a href="#2️⃣-Rebase-vs-Merge" class="headerlink" title="2️⃣ Rebase vs Merge"></a>2️⃣ Rebase vs Merge</h2><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>Merge</th>
+<th>Rebase</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>歷史</td>
+<td>保留所有分支歷史，會出現 merge commit</td>
+<td>重新寫歷史，保持線性，不會產生 merge commit</td>
+</tr>
+<tr>
+<td>視覺上</td>
+<td>分支歷史會分叉</td>
+<td>分支歷史線性，看起來像直接接在 main 後面</td>
+</tr>
+<tr>
+<td>衝突解決</td>
+<td>merge 時解決一次衝突</td>
+<td>每個 commit 都可能需要解決衝突</td>
+</tr>
+</tbody></table>
+<p>例子：</p>
+<ul>
+<li>Merge:</li>
+</ul>
+<pre><code>A---B---C---M
+     \     /
+      D---E
+</code></pre>
+<ul>
+<li>Rebase:</li>
+</ul>
+<pre><code>A---B---C---D&#39;---E&#39;
+</code></pre>
+<hr>
+<h2 id="3️⃣-常用指令"><a href="#3️⃣-常用指令" class="headerlink" title="3️⃣ 常用指令"></a>3️⃣ 常用指令</h2><ol>
+<li>讓當前分支重放到 <code>main</code> 之後：</li>
+</ol>
+<pre><code class="bash">git checkout feature
+git rebase main
+</code></pre>
+<ol start="2">
+<li>如果衝突，Git 會提示你，解決衝突後：</li>
+</ol>
+<pre><code class="bash">git add &lt;file&gt;
+git rebase --continue
+</code></pre>
+<ol start="3">
+<li>中斷 rebase：</li>
+</ol>
+<pre><code class="bash">git rebase --abort
+</code></pre>
+<ol start="4">
+<li>互動式 rebase（整理 commit）：</li>
+</ol>
+<pre><code class="bash">git rebase -i main
+</code></pre>
+<hr>
+<h2 id="4️⃣-使用場景"><a href="#4️⃣-使用場景" class="headerlink" title="4️⃣ 使用場景"></a>4️⃣ 使用場景</h2><ul>
+<li><strong>保持提交歷史乾淨</strong>：讓歷史看起來線性，不出現太多 merge commit。</li>
+<li><strong>把 feature 分支更新到最新 main</strong>：在 push 前用 rebase，避免 merge commit。</li>
+</ul>
+<blockquote>
+<p>⚠️ 注意：<strong>不要對已經推送到遠端的分支做 rebase</strong>，會改變 commit hash，可能導致別人 pull 出問題。</p>
+</blockquote>
+<hr>
+<p>如果你要，我可以幫你畫一張 <strong>圖解 Git Rebase vs Merge</strong>，一眼就能看懂兩者差別。</p>
+<p>你想要我畫嗎？</p>
+<p>好的，我用 <strong>真實開發情境</strong>來說明何時用 <code>rebase</code>、何時用 <code>merge</code>，讓你容易理解兩者的使用場景。</p>
+<hr>
+<h2 id="1️⃣-情境-1：小組開發新功能（建議用-rebase）"><a href="#1️⃣-情境-1：小組開發新功能（建議用-rebase）" class="headerlink" title="1️⃣ 情境 1：小組開發新功能（建議用 rebase）"></a>1️⃣ 情境 1：小組開發新功能（建議用 <strong>rebase</strong>）</h2><h3 id="情境："><a href="#情境：" class="headerlink" title="情境："></a>情境：</h3><ul>
+<li>你在 <code>feature/login</code> 分支開發登入功能。</li>
+<li>你的同事在 <code>main</code> 分支做了更新（例如修正了 API URL）。</li>
+<li>你想把最新的 <code>main</code> 更新拿到你的 <code>feature/login</code> 分支上，保持分支乾淨。</li>
+</ul>
+<h3 id="做法："><a href="#做法：" class="headerlink" title="做法："></a>做法：</h3><pre><code class="bash">git checkout feature/login
+git rebase main
+</code></pre>
+<h3 id="效果："><a href="#效果：" class="headerlink" title="效果："></a>效果：</h3><ul>
+<li>你的 feature 分支會「搬到最新 main 後面」，歷史線性。</li>
+<li>不會出現 merge commit，git log 乾淨。</li>
+</ul>
+<blockquote>
+<p>✅ 適用時機：你還沒把 feature 分支推到遠端，或團隊允許改寫分支歷史。</p>
+</blockquote>
+<hr>
+<h2 id="2️⃣-情境-2：完成-feature，要合併回-main（建議用-merge）"><a href="#2️⃣-情境-2：完成-feature，要合併回-main（建議用-merge）" class="headerlink" title="2️⃣ 情境 2：完成 feature，要合併回 main（建議用 merge）"></a>2️⃣ 情境 2：完成 feature，要合併回 main（建議用 <strong>merge</strong>）</h2><h3 id="情境：-1"><a href="#情境：-1" class="headerlink" title="情境："></a>情境：</h3><ul>
+<li>你開發的 feature 分支已完成，經過測試。</li>
+<li>你要把 <code>feature/login</code> 分支合併回 <code>main</code>，保留開發過程的歷史。</li>
+</ul>
+<h3 id="做法：-1"><a href="#做法：-1" class="headerlink" title="做法："></a>做法：</h3><pre><code class="bash">git checkout main
+git merge feature/login
+</code></pre>
+<h3 id="效果：-1"><a href="#效果：-1" class="headerlink" title="效果："></a>效果：</h3><ul>
+<li>會產生一個 merge commit，把 feature 分支完整合併回 main。</li>
+<li>歷史保留原本分叉過程，方便追蹤誰在何時做了什麼。</li>
+</ul>
+<blockquote>
+<p>✅ 適用時機：feature 分支已經推送給團隊，或你想保留分支歷史。</p>
+</blockquote>
+<hr>
+<h2 id="3️⃣-情境-3：多人長期開發同一分支（混合策略）"><a href="#3️⃣-情境-3：多人長期開發同一分支（混合策略）" class="headerlink" title="3️⃣ 情境 3：多人長期開發同一分支（混合策略）"></a>3️⃣ 情境 3：多人長期開發同一分支（混合策略）</h2><ul>
+<li>每個人先 <strong>rebase</strong> 自己的 feature 分支到最新 main，保持線性、避免衝突。</li>
+<li>最後再用 <strong>merge</strong> 將完成的 feature 分支合併回 main，保留完整歷史。</li>
+</ul>
+<p>這樣可以兼顧「線性歷史」與「完整紀錄」。</p>
+<hr>
+<p>💡 <strong>簡單記憶法：</strong></p>
+<ul>
+<li><strong>Rebase &#x3D; 更新你的分支</strong>（搬到最新 main 之後，乾淨線性）</li>
+<li><strong>Merge &#x3D; 合併完成的分支回主線</strong>（保留歷史，出現 merge commit）</li>
+</ul>
+<hr>
+<p>如果你想，我可以幫你畫一張 <strong>圖解三種情境的 Git Rebase vs Merge 流程圖</strong>，用線條表示 commit 移動和 merge，這樣一眼就能看懂。</p>
+<p>你希望我畫嗎？<br>好，我用 <strong>最簡單、生活化的例子</strong>來說明 <code>rebase</code> 和 <code>merge</code>，保證你一看就懂。</p>
+<hr>
+<h2 id="情境設定："><a href="#情境設定：" class="headerlink" title="情境設定："></a>情境設定：</h2><ul>
+<li>你有一本「工作筆記本」，主線是 <code>main</code> 分支。</li>
+<li>你想加一個「新功能」，就從主線複製出一本副本，叫 <code>feature</code> 分支。</li>
+</ul>
+<p>主線（main）有事件：</p>
+<pre><code>A: 今天吃早餐
+B: 今天喝咖啡
+</code></pre>
+<p>你從 B 分出副本做 feature：</p>
+<pre><code>feature:
+C: 寫程式
+D: 測試程式
+</code></pre>
+<p>歷史看起來像這樣：</p>
+<pre><code>main:    A --- B
+feature:        C --- D
+</code></pre>
+<hr>
+<h2 id="1️⃣-情境：main-有新事情，你要更新-feature（用-rebase）"><a href="#1️⃣-情境：main-有新事情，你要更新-feature（用-rebase）" class="headerlink" title="1️⃣ 情境：main 有新事情，你要更新 feature（用 rebase）"></a>1️⃣ 情境：main 有新事情，你要更新 feature（用 <strong>rebase</strong>）</h2><ul>
+<li>main 又更新了 E: 去跑步</li>
+<li>你希望 feature 分支在最新 main 之後繼續</li>
+</ul>
+<p><strong>做法</strong>：</p>
+<pre><code class="bash">git checkout feature
+git rebase main
+</code></pre>
+<p>結果：</p>
+<pre><code>main:    A --- B --- E
+feature:                C&#39; --- D&#39;
+</code></pre>
+<p>✅ 好處：</p>
+<ul>
+<li>歷史變線性，好像你的 feature 從最新 main 開始</li>
+<li>沒有多餘的 merge commit</li>
+</ul>
+<hr>
+<h2 id="2️⃣-情境：feature-做完，要回到-main（用-merge）"><a href="#2️⃣-情境：feature-做完，要回到-main（用-merge）" class="headerlink" title="2️⃣ 情境：feature 做完，要回到 main（用 merge）"></a>2️⃣ 情境：feature 做完，要回到 main（用 <strong>merge</strong>）</h2><ul>
+<li>你 feature 做完了 C、D</li>
+<li>想把 feature 合併回 main</li>
+</ul>
+<p><strong>做法</strong>：</p>
+<pre><code class="bash">git checkout main
+git merge feature
+</code></pre>
+<p>結果：</p>
+<pre><code>main:    A --- B --- E --- M
+                    \
+feature:             C --- D
+</code></pre>
+<ul>
+<li>M 是 merge commit</li>
+<li>歷史保留誰做了什麼，不改寫原本的 commit</li>
+</ul>
+<p>✅ 好處：</p>
+<ul>
+<li>安全，不會改變已經推到遠端的 commit</li>
+<li>可以保留完整開發歷史</li>
+</ul>
+<hr>
+<h3 id="簡單理解："><a href="#簡單理解：" class="headerlink" title="簡單理解："></a>簡單理解：</h3><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>類比</th>
+<th>結果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Rebase</td>
+<td>把你的 feature 分支搬到最新的主線後面</td>
+<td>歷史線性、乾淨</td>
+</tr>
+<tr>
+<td>Merge</td>
+<td>把 feature 分支合回主線，保留分叉歷史</td>
+<td>歷史有分叉和 merge commit</td>
+</tr>
+</tbody></table>
+<hr>
+<p>如果你願意，我可以幫你畫一個 <strong>小圖，把早餐、咖啡、跑步、寫程式、測試程式</strong> 都畫在 commit 線上，視覺化 rebase 和 merge，保證一眼就懂。</p>
+<p>你想要我畫這個圖嗎？</p>
+<p>好的，我幫你用 <strong>Mermaid</strong> 畫出剛才那個生活化例子的 <strong>rebase</strong> 與 <strong>merge</strong> 流程圖。</p>
+<pre><code class="mermaid">flowchart LR
+    %% 主線 main 的 commit
+    A[&quot;A: 吃早餐&quot;] --&gt; B[&quot;B: 喝咖啡&quot;]
+    B --&gt; E[&quot;E: 跑步&quot;]
+
+    %% feature 分支原始 commit
+    B --&gt; C[&quot;C: 寫程式&quot;]
+    C --&gt; D[&quot;D: 測試程式&quot;]
+
+    %% Merge 的結果
+    E --&gt; M[&quot;M: merge feature&quot;]
+
+    %% Rebase 的結果 (用虛線表示重放 commit)
+    E --&gt; C_prime[&quot;C&#39;: 寫程式&quot;]
+    C_prime --&gt; D_prime[&quot;D&#39;: 測試程式&quot;]
+
+    %% 標註
+    classDef main fill:#f9f,stroke:#333,stroke-width:1px;
+    classDef feature fill:#9f9,stroke:#333,stroke-width:1px,stroke-dasharray: 5 5;
+    class A,B,E main;
+    class C,D,M feature;
+    class C_prime,D_prime feature;
+</code></pre>
+<hr>
+<h3 id="解釋圖："><a href="#解釋圖：" class="headerlink" title="解釋圖："></a>解釋圖：</h3><ol>
+<li><strong>主線 main</strong>：A → B → E</li>
+<li><strong>feature 分支原本</strong>：從 B 分出 C → D</li>
+<li><strong>Merge</strong>：M commit 將 feature 分支合回 main，歷史保留分叉</li>
+<li><strong>Rebase</strong>：C’ → D’ 重新放到最新 main E 後面，線性歷史</li>
+</ol>
+<ul>
+<li>虛線表示 <strong>rebase 之後的 commit</strong>，有新 commit hash</li>
+<li>Merge commit M 保留原本分支歷史，不改寫 commit</li>
+</ul>
+<hr>
+<p>如果你想，我可以幫你做 <strong>一個更直觀的 Mermaid 動態流程圖</strong>，把 <strong>Merge 和 Rebase 比較在同一張圖</strong>，用不同顏色標示，視覺更清楚。</p>
+<p>你希望我做嗎？</p>

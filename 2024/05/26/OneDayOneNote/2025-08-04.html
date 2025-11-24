@@ -1,0 +1,95 @@
+<hr>
+<h2 id="title-2025-08-04-Line-訂單系統-LINE-訂單系統-Flowchartdate-2025-11-22-21-30-23categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-08-04-Line-訂單系統-LINE-訂單系統-Flowchart"><a href="#title-2025-08-04-Line-訂單系統-LINE-訂單系統-Flowchartdate-2025-11-22-21-30-23categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-08-04-Line-訂單系統-LINE-訂單系統-Flowchart" class="headerlink" title="title: 2025-08-04 Line 訂單系統- LINE 訂單系統 Flowchartdate: 2025-11-22 21:30:23categories: OneDayOneNotetags:  [OneNote, Line訂單系統]description:  2025-08-04 Line 訂單系統- LINE 訂單系統 Flowchart"></a>title: 2025-08-04 Line 訂單系統- LINE 訂單系統 Flowchart<br>date: 2025-11-22 21:30:23<br>categories: OneDayOneNote<br>tags:  [OneNote, Line訂單系統]<br>description:  2025-08-04 Line 訂單系統- LINE 訂單系統 Flowchart</h2><h2 id="2025-08-04-Line-訂單系統-LINE-訂單系統-Flowchart"><a href="#2025-08-04-Line-訂單系統-LINE-訂單系統-Flowchart" class="headerlink" title="2025-08-04 Line 訂單系統- LINE 訂單系統 Flowchart"></a>2025-08-04 Line 訂單系統- LINE 訂單系統 Flowchart</h2><p>LINE 訂單系統 Flowchart</p>
+<p>以下是 <strong>可直接貼到 GitHub、Notion、Obsidian、Typora</strong> 的 <strong>Mermaid 原始碼版本</strong>。<br>分成兩份：</p>
+<hr>
+<h1 id="✅-1-LINE-訂單系統-Flowchart（Mermaid-原始碼）"><a href="#✅-1-LINE-訂單系統-Flowchart（Mermaid-原始碼）" class="headerlink" title="✅ 1) LINE 訂單系統 Flowchart（Mermaid 原始碼）"></a>✅ 1) LINE 訂單系統 Flowchart（Mermaid 原始碼）</h1><pre><code class="mermaid">flowchart LR
+  subgraph LINE[LINE Messaging API（使用者端）]
+    L1(LINE User)
+  end
+
+  subgraph API[Backend — NestJS]
+    W1[Webhook 接收訊息]
+    O1[OrdersController]
+    O2[OrdersService]
+    P1[ProductsService]
+    R1[Redis 快取]
+  end
+
+  subgraph DB[MySQL Database]
+    T1[(products)]
+    T2[(orders)]
+  end
+
+  subgraph FRONT[Vue3 Admin 後台]
+    A1[商品管理頁]
+    A2[訂單管理頁]
+  end
+
+  %% 流程
+  L1 --&gt;|文字訊息: &quot;購買 1&quot;| W1
+  W1 --&gt; O1
+  O1 --&gt;|validate| O2
+  O2 --&gt;|查商品| P1
+  P1 --&gt; T1
+  O2 --&gt;|建立訂單| T2
+  O2 --&gt;|寫入快取| R1
+  O2 --&gt;|回覆 LINE User| L1
+
+  A1 --&gt;|CRUD 商品| P1
+  A2 --&gt;|查/改訂單| O2
+  P1 --&gt; T1
+  O2 --&gt; T2
+</code></pre>
+<hr>
+<h1 id="✅-2-Admin-後台-Wireframe（Mermaid-原始碼）"><a href="#✅-2-Admin-後台-Wireframe（Mermaid-原始碼）" class="headerlink" title="✅ 2) Admin 後台 Wireframe（Mermaid 原始碼）"></a>✅ 2) Admin 後台 Wireframe（Mermaid 原始碼）</h1><blockquote>
+<p>Mermaid 支援 basic wireframe（不是真正 UI），以下用 flowchart 表示 UI 佈局。</p>
+</blockquote>
+<p>{% mermaid %}<br>flowchart TB<br>  subgraph NAV[側邊欄 Navigation]<br>    N1[Dashboard]<br>    N2[Products]<br>    N3[Orders]<br>    N4[Settings]<br>  end</p>
+<p>  subgraph MAIN[主畫面]<br>    H1[Header: LOGO + 登入帳號 + 登出]</p>
+<pre><code>subgraph CONTENT[內容區]
+  C1[📦 Products List  
+      - 搜尋欄  
+      - 新增商品按鈕  
+      - 商品表格（ID, Name, Price, Stock）  
+      - 編輯 / 刪除按鈕]
+  C2[🧾 Orders List  
+      - 訂單查詢  
+      - 訂單編號 / 會員 / 金額  
+      - 狀態（待處理/已出貨）  
+      - 詳細按鈕]
+end
+</code></pre>
+<p>  end</p>
+<p>  NAV –&gt; MAIN<br>{% endmermaid %}</p>
+<hr>
+<h1 id="如果你想要的版本更多："><a href="#如果你想要的版本更多：" class="headerlink" title="如果你想要的版本更多："></a>如果你想要的版本更多：</h1><p>我可以再生成以下版本：</p>
+<table>
+<thead>
+<tr>
+<th>格式</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Mermaid C4 Model</strong></td>
+<td>支援 System &#x2F; Container &#x2F; Component（更適合架構圖）</td>
+</tr>
+<tr>
+<td><strong>PlantUML</strong></td>
+<td>若你想跟企業架構師同規格</td>
+</tr>
+<tr>
+<td><strong>ASCII UI Wireframe</strong></td>
+<td>可用在 GitHub、README</td>
+</tr>
+<tr>
+<td><strong>可編輯 SVG</strong></td>
+<td>可拉線、改顏色</td>
+</tr>
+<tr>
+<td><strong>高解析度 PDF</strong></td>
+<td>可印出做簡報</td>
+</tr>
+</tbody></table>
+<hr>
+<p>只要跟我說：「我要 C4 版本」或「我要更精簡的版本」，我就能立刻產生。</p>

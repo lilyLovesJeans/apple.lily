@@ -1,0 +1,56 @@
+<hr>
+<h2 id="title-2025-06-25-Line-訂單系統-階段Adate-2025-11-12-21-23-40categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-06-25-Line-訂單系統-階段A"><a href="#title-2025-06-25-Line-訂單系統-階段Adate-2025-11-12-21-23-40categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-06-25-Line-訂單系統-階段A" class="headerlink" title="title: 2025-06-25 Line 訂單系統-階段Adate: 2025-11-12 21:23:40categories: OneDayOneNotetags:  [OneNote, Line訂單系統]description:  2025-06-25 Line 訂單系統-階段A"></a>title: 2025-06-25 Line 訂單系統-階段A<br>date: 2025-11-12 21:23:40<br>categories: OneDayOneNote<br>tags:  [OneNote, Line訂單系統]<br>description:  2025-06-25 Line 訂單系統-階段A</h2><h2 id="2025-06-25-Line-訂單系統-階段A"><a href="#2025-06-25-Line-訂單系統-階段A" class="headerlink" title="2025-06-25 Line 訂單系統-階段A"></a>2025-06-25 Line 訂單系統-階段A</h2><h1 id="🚀-LINE-線上訂單系統：分階段開發操作手冊"><a href="#🚀-LINE-線上訂單系統：分階段開發操作手冊" class="headerlink" title="🚀 LINE 線上訂單系統：分階段開發操作手冊"></a>🚀 LINE 線上訂單系統：分階段開發操作手冊</h1><hr>
+<h2 id="🅰️-階段-A：環境準備與版本控制"><a href="#🅰️-階段-A：環境準備與版本控制" class="headerlink" title="🅰️ 階段 A：環境準備與版本控制"></a>🅰️ 階段 A：環境準備與版本控制</h2><h3 id="🎯-目標"><a href="#🎯-目標" class="headerlink" title="🎯 目標"></a>🎯 目標</h3><ul>
+<li>建立 GitHub 專案與資料夾結構</li>
+<li>三台電腦能各自 clone&#x2F;push&#x2F;pull</li>
+<li>能在本機啟動前端與後端的基本專案</li>
+</ul>
+<hr>
+<h3 id="🔧-步驟"><a href="#🔧-步驟" class="headerlink" title="🔧 步驟"></a>🔧 步驟</h3><h4 id="1️⃣-初始化後端（Lenovo）"><a href="#1️⃣-初始化後端（Lenovo）" class="headerlink" title="1️⃣ 初始化後端（Lenovo）"></a>1️⃣ 初始化後端（Lenovo）</h4><pre><code class="bash">cd backend
+npm init -y
+npm install express cors dotenv mysql2
+</code></pre>
+<p>建立 <code>backend/index.js</code>：</p>
+<pre><code class="js">import express from &#39;express&#39;;
+import cors from &#39;cors&#39;;
+import dotenv from &#39;dotenv&#39;;
+dotenv.config();
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+app.get(&#39;/&#39;, (req, res) =&gt; res.send(&#39;Backend running!&#39;));
+
+app.listen(3000, () =&gt; console.log(&#39;Server running on port 3000&#39;));
+</code></pre>
+<p>建立 <code>.env</code>：</p>
+<pre><code class="bash">DB_HOST=localhost
+DB_USER=line_user
+DB_PASS=password123
+DB_NAME=line_order_db
+PORT=3000
+</code></pre>
+<p>執行：</p>
+<pre><code class="bash">node index.js
+</code></pre>
+<p>→ 顯示 “Server running on port 3000” 即成功。</p>
+<hr>
+<h4 id="2️⃣-初始化前端（MacAir-1）"><a href="#2️⃣-初始化前端（MacAir-1）" class="headerlink" title="2️⃣ 初始化前端（MacAir #1）"></a>2️⃣ 初始化前端（MacAir #1）</h4><pre><code class="bash">cd frontend
+npm install
+npm run dev
+</code></pre>
+<p>→ 打開 <a href="http://localhost:5173/">http://localhost:5173</a> 出現 Vite + Vue 畫面。</p>
+<hr>
+<h4 id="3️⃣-推上-GitHub（所有電腦）"><a href="#3️⃣-推上-GitHub（所有電腦）" class="headerlink" title="3️⃣ 推上 GitHub（所有電腦）"></a>3️⃣ 推上 GitHub（所有電腦）</h4><pre><code class="bash">git add .
+git commit -m &quot;Initialize A: base structure&quot;
+git push origin main
+</code></pre>
+<hr>
+<h3 id="🧪-Checkpoint"><a href="#🧪-Checkpoint" class="headerlink" title="🧪 Checkpoint"></a>🧪 Checkpoint</h3><p>✅ 後端可在 3000 埠啟動<br>✅ 前端可在 5173 埠開啟<br>✅ 另一台電腦能 clone 並運行</p>
+<hr>
+<h3 id="💡-延伸"><a href="#💡-延伸" class="headerlink" title="💡 延伸"></a>💡 延伸</h3><ul>
+<li>用 <code>.env.example</code> 讓其他開發者知道要設定哪些環境變數。</li>
+<li>用 <code>nodemon</code> 自動重啟後端開發伺服器。</li>
+</ul>
+<hr>

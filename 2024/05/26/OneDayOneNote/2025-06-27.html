@@ -1,0 +1,67 @@
+<hr>
+<h2 id="title-2025-06-27-Line-訂單系統-階段Cdate-2025-11-12-21-27-05categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-06-27-Line-訂單系統-階段C"><a href="#title-2025-06-27-Line-訂單系統-階段Cdate-2025-11-12-21-27-05categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-06-27-Line-訂單系統-階段C" class="headerlink" title="title: 2025-06-27 Line 訂單系統-階段Cdate: 2025-11-12 21:27:05categories: OneDayOneNotetags:  [OneNote, Line訂單系統]description:   2025-06-27 Line 訂單系統-階段C"></a>title: 2025-06-27 Line 訂單系統-階段C<br>date: 2025-11-12 21:27:05<br>categories: OneDayOneNote<br>tags:  [OneNote, Line訂單系統]<br>description:   2025-06-27 Line 訂單系統-階段C</h2><h2 id="2025-06-27-Line-訂單系統-階段C"><a href="#2025-06-27-Line-訂單系統-階段C" class="headerlink" title="2025-06-27 Line 訂單系統-階段C"></a>2025-06-27 Line 訂單系統-階段C</h2><h2 id="🅲-階段-C：LINE-Webhook-整合"><a href="#🅲-階段-C：LINE-Webhook-整合" class="headerlink" title="🅲 階段 C：LINE Webhook 整合"></a>🅲 階段 C：LINE Webhook 整合</h2><h3 id="🎯-目標"><a href="#🎯-目標" class="headerlink" title="🎯 目標"></a>🎯 目標</h3><p>建立能與 LINE Bot 通訊的 Webhook，並寫入 MySQL 訂單。</p>
+<hr>
+<h3 id="🔧-步驟"><a href="#🔧-步驟" class="headerlink" title="🔧 步驟"></a>🔧 步驟</h3><h4 id="1️⃣-設定-LINE-Messaging-API"><a href="#1️⃣-設定-LINE-Messaging-API" class="headerlink" title="1️⃣ 設定 LINE Messaging API"></a>1️⃣ 設定 LINE Messaging API</h4><ol>
+<li><p>到 <a href="https://developers.line.biz/console/">LINE Developers Console</a></p>
+</li>
+<li><p>建立 Provider &amp; Channel（Messaging API）</p>
+</li>
+<li><p>取得：</p>
+<ul>
+<li>Channel Secret</li>
+<li>Channel Access Token</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h4 id="2️⃣-安裝-LINE-SDK"><a href="#2️⃣-安裝-LINE-SDK" class="headerlink" title="2️⃣ 安裝 LINE SDK"></a>2️⃣ 安裝 LINE SDK</h4><pre><code class="bash">npm install @line/bot-sdk
+</code></pre>
+<hr>
+<h4 id="3️⃣-新增-webhook-路由（backend-routes-line-js）"><a href="#3️⃣-新增-webhook-路由（backend-routes-line-js）" class="headerlink" title="3️⃣ 新增 webhook 路由（backend&#x2F;routes&#x2F;line.js）"></a>3️⃣ 新增 webhook 路由（backend&#x2F;routes&#x2F;line.js）</h4><pre><code class="js">import express from &#39;express&#39;;
+import { middleware, Client } from &#39;@line/bot-sdk&#39;;
+import dotenv from &#39;dotenv&#39;;
+dotenv.config();
+
+const router = express.Router();
+
+const config = {
+  channelAccessToken: process.env.LINE_ACCESS_TOKEN,
+  channelSecret: process.env.LINE_CHANNEL_SECRET,
+};
+
+const client = new Client(config);
+
+router.post(&#39;/webhook&#39;, middleware(config), async (req, res) =&gt; {
+  const events = req.body.events;
+  for (const event of events) {
+    if (event.type === &#39;message&#39; &amp;&amp; event.message.type === &#39;text&#39;) {
+      const msg = event.message.text;
+      if (msg === &#39;我要點餐&#39;) {
+        await client.replyMessage(event.replyToken, {
+          type: &#39;text&#39;,
+          text: &#39;請選擇商品：拿鐵、黑咖啡、抹茶拿鐵&#39;,
+        });
+      }
+    }
+  }
+  res.status(200).end();
+});
+
+export default router;
+</code></pre>
+<hr>
+<h4 id="4️⃣-修改-index-js"><a href="#4️⃣-修改-index-js" class="headerlink" title="4️⃣ 修改 index.js"></a>4️⃣ 修改 index.js</h4><pre><code class="js">import lineRouter from &#39;./routes/line.js&#39;;
+app.use(&#39;/line&#39;, lineRouter);
+</code></pre>
+<hr>
+<h4 id="5️⃣-用-ngrok-測試"><a href="#5️⃣-用-ngrok-測試" class="headerlink" title="5️⃣ 用 ngrok 測試"></a>5️⃣ 用 ngrok 測試</h4><pre><code class="bash">ngrok http 3000
+</code></pre>
+<p>複製 ngrok URL，例如 <code>https://abcd1234.ngrok.io/line/webhook</code><br>貼到 LINE Developers → Webhook URL。</p>
+<hr>
+<h3 id="🧪-Checkpoint"><a href="#🧪-Checkpoint" class="headerlink" title="🧪 Checkpoint"></a>🧪 Checkpoint</h3><p>✅ 手機傳「我要點餐」→ LINE 回覆「請選擇商品」<br>✅ Webhook 可觸發</p>
+<hr>
+<h3 id="💡-延伸"><a href="#💡-延伸" class="headerlink" title="💡 延伸"></a>💡 延伸</h3><ul>
+<li>將訊息內容寫入 MySQL。</li>
+<li>建立商品 carousel message。</li>
+</ul>
+<hr>

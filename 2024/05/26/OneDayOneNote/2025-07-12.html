@@ -1,0 +1,201 @@
+<hr>
+<h2 id="title-2025-07-12-Line-訂單系統-C-階段-建立兩個實際可執行的核心檔案-Webhookhook後端-Vue前端訂單記錄頁面date-2025-11-13-23-14-49categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-12-Line-訂單系統-C-階段-建立兩個實際可執行的核心檔案-Webhookhook後端-Vue前端訂單記錄頁面"><a href="#title-2025-07-12-Line-訂單系統-C-階段-建立兩個實際可執行的核心檔案-Webhookhook後端-Vue前端訂單記錄頁面date-2025-11-13-23-14-49categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-12-Line-訂單系統-C-階段-建立兩個實際可執行的核心檔案-Webhookhook後端-Vue前端訂單記錄頁面" class="headerlink" title="title: 2025-07-12 Line 訂單系統-C 階段 建立兩個實際可執行的核心檔案 Webhookhook後端 Vue前端訂單記錄頁面date: 2025-11-13 23:14:49categories: OneDayOneNotetags:  [OneNote, Line訂單系統]description: 2025-07-12 Line 訂單系統-C 階段 建立兩個實際可執行的核心檔案 Webhookhook後端 Vue前端訂單記錄頁面"></a>title: 2025-07-12 Line 訂單系統-C 階段 建立兩個實際可執行的核心檔案 Webhookhook後端 Vue前端訂單記錄頁面<br>date: 2025-11-13 23:14:49<br>categories: OneDayOneNote<br>tags:  [OneNote, Line訂單系統]<br>description: 2025-07-12 Line 訂單系統-C 階段 建立兩個實際可執行的核心檔案 Webhookhook後端 Vue前端訂單記錄頁面</h2><h2 id="2025-07-12-Line-訂單系統-C-階段-建立兩個實際可執行的核心檔案-Webhookhook後端-Vue前端訂單記錄頁面"><a href="#2025-07-12-Line-訂單系統-C-階段-建立兩個實際可執行的核心檔案-Webhookhook後端-Vue前端訂單記錄頁面" class="headerlink" title="2025-07-12 Line 訂單系統-C 階段 建立兩個實際可執行的核心檔案 Webhookhook後端 Vue前端訂單記錄頁面"></a>2025-07-12 Line 訂單系統-C 階段 建立兩個實際可執行的核心檔案 Webhookhook後端 Vue前端訂單記錄頁面</h2><p>我們現在就完整進入 <strong>📘 階段 C — LINE 訂單整合（前端＋後端連動）</strong> 的實作階段。</p>
+<p>接下來我會幫你建立兩個實際可執行的核心檔案：<br>1️⃣ <code>backend/routes/lineWebhook.js</code> — Node.js Webhook 後端<br>2️⃣ <code>frontend/src/views/LineOrders.vue</code> — Vue3 前端訂單紀錄頁面</p>
+<hr>
+<h2 id="🧩-一、Node-js-後端-—-backend-routes-lineWebhook-js"><a href="#🧩-一、Node-js-後端-—-backend-routes-lineWebhook-js" class="headerlink" title="🧩 一、Node.js 後端 — backend/routes/lineWebhook.js"></a>🧩 一、Node.js 後端 — <code>backend/routes/lineWebhook.js</code></h2><p>這個檔案的作用是：</p>
+<blockquote>
+<p>讓 LINE Bot 把使用者訊息（例如輸入「商品123」）傳到你的後端，<br>後端查 MySQL 回傳商品資料，再用 LINE API 回覆給使用者。</p>
+</blockquote>
+<pre><code class="js">// backend/routes/lineWebhook.js
+import express from &quot;express&quot;;
+import axios from &quot;axios&quot;;
+import crypto from &quot;crypto&quot;;
+import mysql from &quot;mysql2/promise&quot;;
+
+const router = express.Router();
+
+// 建立 MySQL 連線池
+const pool = mysql.createPool({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+});
+
+// 驗證 LINE webhook 簽章
+function validateSignature(body, signature) {
+  const hash = crypto
+    .createHmac(&quot;SHA256&quot;, process.env.LINE_CHANNEL_SECRET)
+    .update(JSON.stringify(body))
+    .digest(&quot;base64&quot;);
+  return hash === signature;
+}
+
+// 處理 Webhook
+router.post(&quot;/webhook&quot;, async (req, res) =&gt; {
+  const signature = req.headers[&quot;x-line-signature&quot;];
+  if (!validateSignature(req.body, signature)) {
+    return res.status(401).send(&quot;Invalid signature&quot;);
+  }
+
+  const events = req.body.events;
+  for (const event of events) {
+    if (event.type === &quot;message&quot; &amp;&amp; event.message.type === &quot;text&quot;) {
+      const userText = event.message.text.trim();
+
+      // 檢查是否為查詢商品
+      if (userText.startsWith(&quot;商品&quot;)) {
+        const itemCode = userText.replace(&quot;商品&quot;, &quot;&quot;).trim();
+        const [rows] = await pool.query(
+          &quot;SELECT name, price, description FROM products WHERE id = ?&quot;,
+          [itemCode]
+        );
+
+        let replyMessage = &quot;&quot;;
+        if (rows.length &gt; 0) {
+          const product = rows[0];
+          replyMessage = `📦 商品名稱：${product.name}\n💲 價格：${product.price}\n📝 說明：${product.description}`;
+        } else {
+          replyMessage = &quot;查無此商品，請確認代號是否正確。&quot;;
+        }
+
+        await axios.post(
+          &quot;https://api.line.me/v2/bot/message/reply&quot;,
+          {
+            replyToken: event.replyToken,
+            messages: [{ type: &quot;text&quot;, text: replyMessage }],
+          },
+          {
+            headers: {
+              &quot;Content-Type&quot;: &quot;application/json&quot;,
+              Authorization: `Bearer ${process.env.LINE_CHANNEL_ACCESS_TOKEN}`,
+            },
+          }
+        );
+      }
+    }
+  }
+
+  res.status(200).end();
+});
+
+export default router;
+</code></pre>
+<hr>
+<h2 id="📁-檔案整合說明"><a href="#📁-檔案整合說明" class="headerlink" title="📁 檔案整合說明"></a>📁 檔案整合說明</h2><p>請確認 <code>backend/server.js</code> 中有加入這段：</p>
+<pre><code class="js">import lineWebhook from &quot;./routes/lineWebhook.js&quot;;
+app.use(express.json());
+app.use(&quot;/api&quot;, lineWebhook);
+</code></pre>
+<p>然後 <code>.env</code> 需有以下參數：</p>
+<pre><code>LINE_CHANNEL_SECRET=你的LINE_CHANNEL_SECRET
+LINE_CHANNEL_ACCESS_TOKEN=你的LINE_CHANNEL_ACCESS_TOKEN
+</code></pre>
+<hr>
+<h2 id="🧩-二、Vue3-前端-—-frontend-src-views-LineOrders-vue"><a href="#🧩-二、Vue3-前端-—-frontend-src-views-LineOrders-vue" class="headerlink" title="🧩 二、Vue3 前端 — frontend/src/views/LineOrders.vue"></a>🧩 二、Vue3 前端 — <code>frontend/src/views/LineOrders.vue</code></h2><p>這個頁面主要讓管理者在後台看到所有來自 LINE 的訂單紀錄。</p>
+<p>假設你的後端有一個 <code>/api/orders</code> API，可以回傳 LINE 送進資料庫的訂單資料。</p>
+<pre><code class="vue">&lt;template&gt;
+  &lt;div class=&quot;line-orders&quot;&gt;
+    &lt;h1&gt;📱 LINE 訂單紀錄&lt;/h1&gt;
+
+    &lt;div v-if=&quot;loading&quot;&gt;讀取中...&lt;/div&gt;
+    &lt;div v-else&gt;
+      &lt;table&gt;
+        &lt;thead&gt;
+          &lt;tr&gt;
+            &lt;th&gt;訂單編號&lt;/th&gt;
+            &lt;th&gt;用戶名稱&lt;/th&gt;
+            &lt;th&gt;商品名稱&lt;/th&gt;
+            &lt;th&gt;數量&lt;/th&gt;
+            &lt;th&gt;狀態&lt;/th&gt;
+            &lt;th&gt;建立時間&lt;/th&gt;
+          &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+          &lt;tr v-for=&quot;order in orders&quot; :key=&quot;order.id&quot;&gt;
+            &lt;td&gt;{{ order.id }}&lt;/td&gt;
+            &lt;td&gt;{{ order.user_name }}&lt;/td&gt;
+            &lt;td&gt;{{ order.product_name }}&lt;/td&gt;
+            &lt;td&gt;{{ order.quantity }}&lt;/td&gt;
+            &lt;td&gt;{{ order.status }}&lt;/td&gt;
+            &lt;td&gt;{{ new Date(order.created_at).toLocaleString() }}&lt;/td&gt;
+          &lt;/tr&gt;
+        &lt;/tbody&gt;
+      &lt;/table&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { ref, onMounted } from &quot;vue&quot;;
+import axios from &quot;axios&quot;;
+
+const orders = ref([]);
+const loading = ref(true);
+
+onMounted(async () =&gt; {
+  try {
+    const res = await axios.get(&quot;http://localhost:3000/api/orders&quot;);
+    orders.value = res.data;
+  } catch (err) {
+    console.error(&quot;無法取得訂單資料：&quot;, err);
+  } finally {
+    loading.value = false;
+  }
+});
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+.line-orders {
+  padding: 1.5rem;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+th {
+  background: #f5f5f5;
+}
+&lt;/style&gt;
+</code></pre>
+<hr>
+<h2 id="⚙️-前後端連動測試流程"><a href="#⚙️-前後端連動測試流程" class="headerlink" title="⚙️ 前後端連動測試流程"></a>⚙️ 前後端連動測試流程</h2><table>
+<thead>
+<tr>
+<th>步驟</th>
+<th>動作</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>①</td>
+<td>啟動 MySQL、Node.js (<code>npm run dev</code>)</td>
+<td>確保 <code>/api/webhook</code> 可以接收請求</td>
+</tr>
+<tr>
+<td>②</td>
+<td>使用 ngrok 將你的 port 3000 對外公開</td>
+<td><code>ngrok http 3000</code></td>
+</tr>
+<tr>
+<td>③</td>
+<td>在 LINE Developers → Messaging API → Webhook URL 設定 <code>https://&lt;ngrok-url&gt;/api/webhook</code></td>
+<td>測試訊息傳遞</td>
+</tr>
+<tr>
+<td>④</td>
+<td>在 LINE 輸入「商品 1」</td>
+<td>後端查 MySQL，回傳商品資訊</td>
+</tr>
+<tr>
+<td>⑤</td>
+<td>在 Vue3 後台 <code>LineOrders.vue</code> 檢視訂單紀錄</td>
+<td>驗證資料流是否完整</td>
+</tr>
+</tbody></table>
+<hr>
+<p>是否要我幫你繼續產生：<br>👉 對應的 <code>/api/orders</code> 後端 API（讓 <code>LineOrders.vue</code> 可以正常顯示訂單）？<br>這會是 <strong>C4 子階段</strong> 的最後一塊拼圖。</p>

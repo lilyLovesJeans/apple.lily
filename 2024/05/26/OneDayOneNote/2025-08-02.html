@@ -1,0 +1,276 @@
+<hr>
+<h2 id="title-2025-08-02-Line-訂單系統-三台機器像工程公司入職手冊date-2025-11-22-21-22-41categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-08-02-Line-訂單系統-三台機器像工程公司入職手冊"><a href="#title-2025-08-02-Line-訂單系統-三台機器像工程公司入職手冊date-2025-11-22-21-22-41categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-08-02-Line-訂單系統-三台機器像工程公司入職手冊" class="headerlink" title="title: 2025-08-02 Line 訂單系統- 三台機器像工程公司入職手冊date: 2025-11-22 21:22:41categories: OneDayOneNotetags:  [OneNote, Line訂單系統]description:  2025-08-02 Line 訂單系統- 三台機器像工程公司入職手冊"></a>title: 2025-08-02 Line 訂單系統- 三台機器像工程公司入職手冊<br>date: 2025-11-22 21:22:41<br>categories: OneDayOneNote<br>tags:  [OneNote, Line訂單系統]<br>description:  2025-08-02 Line 訂單系統- 三台機器像工程公司入職手冊</h2><h2 id="2025-08-02-Line-訂單系統-三台機器像工程公司入職手冊"><a href="#2025-08-02-Line-訂單系統-三台機器像工程公司入職手冊" class="headerlink" title="2025-08-02 Line 訂單系統- 三台機器像工程公司入職手冊"></a>2025-08-02 Line 訂單系統- 三台機器像工程公司入職手冊</h2><p>「企業級完整入職手冊（Fully-Featured Onboarding Handbook）」**，並將：</p>
+<p>✔ 所有開發需要的工具<br>✔ 所有必裝的 VS Code 外掛<br>✔ 前端、後端、文件機各自的軟體<br>✔ Git &#x2F; Node &#x2F; DB &#x2F; Redis &#x2F; CICD &#x2F; Debug 工具<br>✔ 專案規範<br>✔ 新工程師第一週任務</p>
+<p>全部寫進去。</p>
+<p>格式採用「企業標準手冊」，可直接貼入 GitHub Wiki &#x2F; 公司 Notion &#x2F; Confluence。</p>
+<hr>
+<h1 id="🏢《工程部入職手冊（Full-Onboarding-Handbook）》"><a href="#🏢《工程部入職手冊（Full-Onboarding-Handbook）》" class="headerlink" title="🏢《工程部入職手冊（Full Onboarding Handbook）》"></a>🏢《工程部入職手冊（Full Onboarding Handbook）》</h1><p><strong>適用：LINE AI 訂單系統</strong><br><strong>版本：1.1（強化版）</strong></p>
+<hr>
+<h1 id="📌-第一章：專案簡介（Project-Overview）"><a href="#📌-第一章：專案簡介（Project-Overview）" class="headerlink" title="📌 第一章：專案簡介（Project Overview）"></a>📌 第一章：專案簡介（Project Overview）</h1><p>本專案為 <strong>LINE AI 訂單管理系統</strong>，採用三台 Notebook 作為整個系統的開發與運行環境：</p>
+<table>
+<thead>
+<tr>
+<th>設備</th>
+<th>角色</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Lenovo（32GB）</strong></td>
+<td>後端主機</td>
+<td>NestJS API + MySQL + Redis + LINE Webhook</td>
+</tr>
+<tr>
+<td><strong>MacBook Air #1（4GB）</strong></td>
+<td>前端開發機</td>
+<td>Vue3 管理後台、RWD、UI&#x2F;UX</td>
+</tr>
+<tr>
+<td><strong>MacBook Air #2（4GB）</strong></td>
+<td>文件＋設計機</td>
+<td>架構、流程、Mermaid、Wireframe、文件</td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="📌-第二章：本專案採用的技術棧（Technology-Stack）"><a href="#📌-第二章：本專案採用的技術棧（Technology-Stack）" class="headerlink" title="📌 第二章：本專案採用的技術棧（Technology Stack）"></a>📌 第二章：本專案採用的技術棧（Technology Stack）</h1><h3 id="🟨-後端（Lenovo）"><a href="#🟨-後端（Lenovo）" class="headerlink" title="🟨 後端（Lenovo）"></a>🟨 後端（Lenovo）</h3><ul>
+<li>Node.js LTS + NVM</li>
+<li>NestJS</li>
+<li>MySQL</li>
+<li>Redis (Memurai 替代)</li>
+<li>Ngrok（Webhook 測試）</li>
+<li>Swagger API</li>
+<li>PM2（未來部署用）</li>
+</ul>
+<h3 id="🟦-前端（MacBook-Air-1）"><a href="#🟦-前端（MacBook-Air-1）" class="headerlink" title="🟦 前端（MacBook Air #1）"></a>🟦 前端（MacBook Air #1）</h3><ul>
+<li>Vite</li>
+<li>Vue3 + Composition API</li>
+<li>Pinia</li>
+<li>Axios</li>
+<li>Vue Router</li>
+<li>TailwindCSS（可選）</li>
+</ul>
+<h3 id="🟪-文件-設計（MacBook-Air-2）"><a href="#🟪-文件-設計（MacBook-Air-2）" class="headerlink" title="🟪 文件 &#x2F; 設計（MacBook Air #2）"></a>🟪 文件 &#x2F; 設計（MacBook Air #2）</h3><ul>
+<li>Notion</li>
+<li>Obsidian</li>
+<li>VS Code（輕量擴充）</li>
+<li>Mermaid</li>
+<li>Figma &#x2F; Draw.io</li>
+</ul>
+<hr>
+<h1 id="📌-第三章：所有工程師必安裝的基礎工具"><a href="#📌-第三章：所有工程師必安裝的基礎工具" class="headerlink" title="📌 第三章：所有工程師必安裝的基礎工具"></a>📌 第三章：所有工程師必安裝的基礎工具</h1><p>無論哪台電腦，都必須安裝：</p>
+<hr>
+<h2 id="✔-1-Git（版本控制）"><a href="#✔-1-Git（版本控制）" class="headerlink" title="✔ 1. Git（版本控制）"></a>✔ 1. Git（版本控制）</h2><p><strong>Windows（Lenovo）</strong></p>
+<ul>
+<li>安裝 Git for Windows</li>
+<li>安裝 Git Bash</li>
+</ul>
+<p><strong>Mac（兩台）</strong></p>
+<pre><code class="bash">brew install git
+</code></pre>
+<hr>
+<h2 id="✔-2-VS-Code（主要開發工具）"><a href="#✔-2-VS-Code（主要開發工具）" class="headerlink" title="✔ 2. VS Code（主要開發工具）"></a>✔ 2. VS Code（主要開發工具）</h2><p>三台都要裝，但用途不同：</p>
+<h3 id="🟦-Lenovo（後端）"><a href="#🟦-Lenovo（後端）" class="headerlink" title="🟦 Lenovo（後端）"></a>🟦 Lenovo（後端）</h3><p>必裝擴充：</p>
+<pre><code>ESLint
+Prettier
+NestJS Files
+DotENV
+GitLens
+REST Client
+MySQL
+Redis Explorer
+</code></pre>
+<h3 id="🟧-Mac-1（前端）"><a href="#🟧-Mac-1（前端）" class="headerlink" title="🟧 Mac #1（前端）"></a>🟧 Mac #1（前端）</h3><p>必裝擴充：</p>
+<pre><code>Vue Language Features (Volar)
+Vite
+Tailwind CSS IntelliSense
+ESLint
+Prettier
+Path Intellisense
+Debugger for Chrome
+</code></pre>
+<h3 id="🟪-Mac-2（文件）"><a href="#🟪-Mac-2（文件）" class="headerlink" title="🟪 Mac #2（文件）"></a>🟪 Mac #2（文件）</h3><p>必裝擴充：</p>
+<pre><code>Markdown All in One
+Mermaid Markdown Syntax Highlighting
+Draw.io Integration
+GitLens
+</code></pre>
+<hr>
+<h2 id="✔-3-Node-js-LTS-NVM（每台都要）"><a href="#✔-3-Node-js-LTS-NVM（每台都要）" class="headerlink" title="✔ 3. Node.js LTS + NVM（每台都要）"></a>✔ 3. Node.js LTS + NVM（每台都要）</h2><h3 id="Mac："><a href="#Mac：" class="headerlink" title="Mac："></a>Mac：</h3><pre><code class="bash">brew install nvm
+nvm install 18
+</code></pre>
+<h3 id="Windows："><a href="#Windows：" class="headerlink" title="Windows："></a>Windows：</h3><p>安裝 nvm-windows</p>
+<pre><code class="bash">nvm install 18
+nvm use 18
+</code></pre>
+<hr>
+<h1 id="📌-第四章：各設備完整-Setup（企業標準）"><a href="#📌-第四章：各設備完整-Setup（企業標準）" class="headerlink" title="📌 第四章：各設備完整 Setup（企業標準）"></a>📌 第四章：各設備完整 Setup（企業標準）</h1><hr>
+<h1 id="🖥️-A-Lenovo（後端＋DB＋Redis-主機）Setup"><a href="#🖥️-A-Lenovo（後端＋DB＋Redis-主機）Setup" class="headerlink" title="🖥️ A. Lenovo（後端＋DB＋Redis 主機）Setup"></a>🖥️ <strong>A. Lenovo（後端＋DB＋Redis 主機）Setup</strong></h1><blockquote>
+<p><strong>這台是整個系統的「後端中樞」。</strong></p>
+</blockquote>
+<hr>
+<h2 id="1-安裝-Node-Git-VS-Code"><a href="#1-安裝-Node-Git-VS-Code" class="headerlink" title="1. 安裝 Node &#x2F; Git &#x2F; VS Code"></a>1. 安裝 Node &#x2F; Git &#x2F; VS Code</h2><p>（已在前章說明）</p>
+<hr>
+<h2 id="2-安裝-MySQL（核心資料庫）"><a href="#2-安裝-MySQL（核心資料庫）" class="headerlink" title="2. 安裝 MySQL（核心資料庫）"></a>2. 安裝 MySQL（核心資料庫）</h2><p>步驟：</p>
+<ol>
+<li>下載 MySQL Installer</li>
+<li>安裝 MySQL Server 8.0 + Workbench</li>
+<li>設定 root 密碼：</li>
+</ol>
+<pre><code>root / LocalDev123!
+</code></pre>
+<p>建立資料庫：</p>
+<pre><code class="sql">CREATE DATABASE line_order;
+</code></pre>
+<p>匯入初始資料：</p>
+<pre><code class="bash">mysql -u root -p line_order &lt; db/init.sql
+</code></pre>
+<hr>
+<h2 id="3-安裝-Redis"><a href="#3-安裝-Redis" class="headerlink" title="3. 安裝 Redis"></a>3. 安裝 Redis</h2><p>Windows 使用 <strong>Memurai</strong> 替代 Redis：</p>
+<ol>
+<li>安裝 Memurai</li>
+<li>自動啟動即可（無需額外設定）</li>
+</ol>
+<hr>
+<h2 id="4-安裝-NestJS-CLI"><a href="#4-安裝-NestJS-CLI" class="headerlink" title="4. 安裝 NestJS CLI"></a>4. 安裝 NestJS CLI</h2><pre><code class="bash">npm i -g @nestjs/cli
+</code></pre>
+<hr>
+<h2 id="5-Clone-backend-專案"><a href="#5-Clone-backend-專案" class="headerlink" title="5. Clone backend 專案"></a>5. Clone backend 專案</h2><pre><code class="bash">git clone https://github.com/.../backend.git
+cd backend
+npm install
+</code></pre>
+<hr>
+<h2 id="6-設定-env"><a href="#6-設定-env" class="headerlink" title="6. 設定 .env"></a>6. 設定 .env</h2><pre><code>PORT=3000
+DATABASE_HOST=localhost
+DATABASE_USER=root
+DATABASE_PASS=LocalDev123!
+DATABASE_NAME=line_order
+
+REDIS_HOST=localhost
+REDIS_PORT=6379
+
+LINE_CHANNEL_SECRET=xxxx
+LINE_CHANNEL_ACCESS_TOKEN=xxxx
+</code></pre>
+<hr>
+<h2 id="7-啟動後端"><a href="#7-啟動後端" class="headerlink" title="7. 啟動後端"></a>7. 啟動後端</h2><pre><code class="bash">npm run start:dev
+</code></pre>
+<hr>
+<h2 id="8-用-Ngrok-開-Webhook-通道"><a href="#8-用-Ngrok-開-Webhook-通道" class="headerlink" title="8. 用 Ngrok 開 Webhook 通道"></a>8. 用 Ngrok 開 Webhook 通道</h2><pre><code class="bash">ngrok http 3000
+</code></pre>
+<hr>
+<h1 id="🍎-B-MacBook-Air-1（前端開發機）Setup"><a href="#🍎-B-MacBook-Air-1（前端開發機）Setup" class="headerlink" title="🍎 B. MacBook Air #1（前端開發機）Setup"></a>🍎 <strong>B. MacBook Air #1（前端開發機）Setup</strong></h1><blockquote>
+<p><strong>這台是 Vue3 管理後台的主力開發環境</strong></p>
+</blockquote>
+<hr>
+<h2 id="1-安裝-Node-Git-VS-Code（前述）"><a href="#1-安裝-Node-Git-VS-Code（前述）" class="headerlink" title="1. 安裝 Node &#x2F; Git &#x2F; VS Code（前述）"></a>1. 安裝 Node &#x2F; Git &#x2F; VS Code（前述）</h2><hr>
+<h2 id="2-建立-Vue3-專案"><a href="#2-建立-Vue3-專案" class="headerlink" title="2. 建立 Vue3 專案"></a>2. 建立 Vue3 專案</h2><pre><code class="bash">npm create vite@latest admin --template vue
+cd admin
+npm install
+</code></pre>
+<hr>
+<h2 id="3-開發伺服器"><a href="#3-開發伺服器" class="headerlink" title="3. 開發伺服器"></a>3. 開發伺服器</h2><pre><code class="bash">npm run dev
+</code></pre>
+<hr>
+<h2 id="4-設定-API-端點"><a href="#4-設定-API-端點" class="headerlink" title="4. 設定 API 端點"></a>4. 設定 API 端點</h2><p>在 <code>.env</code>：</p>
+<pre><code>VITE_API_BASE=http://lenovo-ip:3000
+</code></pre>
+<hr>
+<h2 id="5-安裝前端必要模組"><a href="#5-安裝前端必要模組" class="headerlink" title="5. 安裝前端必要模組"></a>5. 安裝前端必要模組</h2><pre><code class="bash">npm i axios pinia vue-router
+</code></pre>
+<p>Tailwind（可選）</p>
+<pre><code class="bash">npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+</code></pre>
+<hr>
+<h1 id="🍎-C-MacBook-Air-2（文件＋設計機）Setup"><a href="#🍎-C-MacBook-Air-2（文件＋設計機）Setup" class="headerlink" title="🍎 C. MacBook Air #2（文件＋設計機）Setup"></a>🍎 <strong>C. MacBook Air #2（文件＋設計機）Setup</strong></h1><hr>
+<h2 id="1-安裝文件工具"><a href="#1-安裝文件工具" class="headerlink" title="1. 安裝文件工具"></a>1. 安裝文件工具</h2><ul>
+<li>Notion（公司文件）</li>
+<li>Obsidian（個人技術知識庫）</li>
+<li>VS Code（文件用途）</li>
+</ul>
+<hr>
+<h2 id="2-安裝架構／流程工具"><a href="#2-安裝架構／流程工具" class="headerlink" title="2. 安裝架構／流程工具"></a>2. 安裝架構／流程工具</h2><ul>
+<li>Figma（UI 設計）</li>
+<li>Draw.io（流程圖）</li>
+<li>Mermaid（架構圖）</li>
+</ul>
+<hr>
+<h2 id="3-Git-用途"><a href="#3-Git-用途" class="headerlink" title="3. Git 用途"></a>3. Git 用途</h2><p>此機主要更新文件：</p>
+<pre><code class="bash">git add .
+git commit -m &quot;docs: update architecture&quot;
+git push
+</code></pre>
+<hr>
+<h1 id="📌-第五章：專案規範（Coding-Standards）"><a href="#📌-第五章：專案規範（Coding-Standards）" class="headerlink" title="📌 第五章：專案規範（Coding Standards）"></a>📌 第五章：專案規範（Coding Standards）</h1><hr>
+<h2 id="✔-後端（NestJS）"><a href="#✔-後端（NestJS）" class="headerlink" title="✔ 後端（NestJS）"></a>✔ 後端（NestJS）</h2><ul>
+<li>每個 module＝Controller + Service + DTO + Entity</li>
+<li>Service <strong>不直接回傳 response</strong></li>
+<li>Controller 只處理 Request &#x2F; Response</li>
+<li>使用 ValidationPipe</li>
+<li>每個 API 要寫 Swagger</li>
+</ul>
+<hr>
+<h2 id="✔-前端（Vue3）"><a href="#✔-前端（Vue3）" class="headerlink" title="✔ 前端（Vue3）"></a>✔ 前端（Vue3）</h2><ul>
+<li>使用 Composition API</li>
+<li>Store 統一使用 Pinia</li>
+<li>所有 API 呼叫封裝在 <code>/api/</code> 目錄</li>
+<li>元件命名統一：<code>PascalCase.vue</code></li>
+<li>UI 採用可維護設計（Tailwind 或 ElementPlus）</li>
+</ul>
+<hr>
+<h1 id="📌-第六章：新工程師入職流程（企業標準）"><a href="#📌-第六章：新工程師入職流程（企業標準）" class="headerlink" title="📌 第六章：新工程師入職流程（企業標準）"></a>📌 第六章：新工程師入職流程（企業標準）</h1><hr>
+<h2 id="🗓-第一天"><a href="#🗓-第一天" class="headerlink" title="🗓 第一天"></a>🗓 第一天</h2><ul>
+<li>安裝所有工具（依 3 台分工）</li>
+<li>Clone GitHub</li>
+<li>跑起後端與前端</li>
+</ul>
+<hr>
+<h2 id="🗓-第二天"><a href="#🗓-第二天" class="headerlink" title="🗓 第二天"></a>🗓 第二天</h2><ul>
+<li>練習建立 Vue 頁面</li>
+<li>練習呼叫 <code>/products</code> API</li>
+</ul>
+<hr>
+<h2 id="🗓-第三天"><a href="#🗓-第三天" class="headerlink" title="🗓 第三天"></a>🗓 第三天</h2><ul>
+<li>練習建立 NestJS Module</li>
+<li>學會 DTO, Controller, Service 流程</li>
+</ul>
+<hr>
+<h2 id="🗓-第四天"><a href="#🗓-第四天" class="headerlink" title="🗓 第四天"></a>🗓 第四天</h2><ul>
+<li>狀態管理（Pinia）</li>
+<li>完成商品 CRUD UI</li>
+</ul>
+<hr>
+<h2 id="🗓-第五天"><a href="#🗓-第五天" class="headerlink" title="🗓 第五天"></a>🗓 第五天</h2><ul>
+<li>熟悉 LINE Webhook 流程</li>
+<li>完成「購買 1」→ 自動建立訂單</li>
+</ul>
+<hr>
+<h1 id="📌-第七章：三台電腦整體架構（Mermaid）"><a href="#📌-第七章：三台電腦整體架構（Mermaid）" class="headerlink" title="📌 第七章：三台電腦整體架構（Mermaid）"></a>📌 第七章：三台電腦整體架構（Mermaid）</h1><pre><code class="mermaid">flowchart LR
+
+  subgraph Mac1[MacBook Air #1 - 前端開發機]
+    F1[Vue3 Admin\nVite Dev Server]
+  end
+
+  subgraph Mac2[MacBook Air #2 - 文件 / 設計機]
+    D1[Mermaid 架構圖]
+    D2[Wireframe]
+    D3[Notion 文件]
+  end
+
+  subgraph Lenovo[Lenovo - 後端 / DB 主機]
+    B1[NestJS API]
+    B2[MySQL]
+    B3[Redis]
+    B4[LINE Webhook Server]
+  end
+
+  F1 --&gt;|REST API| B1
+  B1 --&gt; B2
+  B1 --&gt; B3
+  D1 -.-&gt; B1
+  D3 -.-&gt; F1
+</code></pre>
+<hr>
+<h1 id="🎉-最終完成！"><a href="#🎉-最終完成！" class="headerlink" title="🎉 最終完成！"></a>🎉 最終完成！</h1><p>如果你需要我再產生：</p>
+<p>✅ PDF 版<br>✅ DOCX 版<br>✅ 公司 Wiki（Markdown 完整版）<br>✅ 產出三台機器的「桌面圖示配置」<br>✅ 產出「每日開發例行事項」</p>
+<p>都可以告訴我，我會幫你補進去。</p>

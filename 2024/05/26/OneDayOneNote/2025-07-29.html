@@ -1,0 +1,196 @@
+<hr>
+<h2 id="title-2025-07-29-Line-訂單系統-要開始「第一塊積木」，NestJS-Products-Module-完整程式碼date-2025-11-17-22-06-31categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-29-Line-訂單系統-要開始「第一塊積木」，NestJS-Products-Module-完整程式碼"><a href="#title-2025-07-29-Line-訂單系統-要開始「第一塊積木」，NestJS-Products-Module-完整程式碼date-2025-11-17-22-06-31categories-OneDayOneNotetags-OneNote-Line訂單系統-description-2025-07-29-Line-訂單系統-要開始「第一塊積木」，NestJS-Products-Module-完整程式碼" class="headerlink" title="title: 2025-07-29 Line 訂單系統- 要開始「第一塊積木」，NestJS Products Module 完整程式碼date: 2025-11-17 22:06:31categories: OneDayOneNotetags:  [OneNote, Line訂單系統]description:   2025-07-29 Line 訂單系統- 要開始「第一塊積木」，NestJS Products Module 完整程式碼"></a>title: 2025-07-29 Line 訂單系統- 要開始「第一塊積木」，NestJS Products Module 完整程式碼<br>date: 2025-11-17 22:06:31<br>categories: OneDayOneNote<br>tags:  [OneNote, Line訂單系統]<br>description:   2025-07-29 Line 訂單系統- 要開始「第一塊積木」，NestJS Products Module 完整程式碼</h2><p>下面我會直接給你<strong>可立即貼進你的 NestJS 專案、可運作、結構正確、符合企業級設計</strong>的：</p>
+<h1 id="✅-NestJS-Products-Module-完整程式碼（含-CRUD-DTO-Validation-Service）"><a href="#✅-NestJS-Products-Module-完整程式碼（含-CRUD-DTO-Validation-Service）" class="headerlink" title="✅ NestJS Products Module 完整程式碼（含 CRUD + DTO + Validation + Service）"></a>✅ <strong>NestJS Products Module 完整程式碼（含 CRUD + DTO + Validation + Service）</strong></h1><p>內容包含：</p>
+<ul>
+<li><code>products.module.ts</code></li>
+<li><code>products.controller.ts</code></li>
+<li><code>products.service.ts</code></li>
+<li><code>dto/create-product.dto.ts</code></li>
+<li><code>dto/update-product.dto.ts</code></li>
+<li><strong>使用 In-Memory（第一塊積木）</strong><br>下一階段才能開始串 MySQL &#x2F; Prisma</li>
+</ul>
+<p>這份程式碼是「乾淨、最佳實務、積木化架構」，<br>你之後擴充 Orders、LINE、Redis 都可以依這個模式複製。</p>
+<hr>
+<h1 id="🧱-產品模組完整目錄（請先建立）"><a href="#🧱-產品模組完整目錄（請先建立）" class="headerlink" title="🧱 產品模組完整目錄（請先建立）"></a>🧱 產品模組完整目錄（請先建立）</h1><p>在 <code>src/products/</code> 建：</p>
+<pre><code>products/
+ ├─ dto/
+ │   ├─ create-product.dto.ts
+ │   └─ update-product.dto.ts
+ ├─ products.controller.ts
+ ├─ products.service.ts
+ └─ products.module.ts
+</code></pre>
+<hr>
+<h1 id="———————————————————"><a href="#———————————————————" class="headerlink" title="———————————————————-"></a>———————————————————-</h1><h1 id="📌-1-products-module-ts"><a href="#📌-1-products-module-ts" class="headerlink" title="📌 1. products.module.ts"></a>📌 <strong>1. products.module.ts</strong></h1><h1 id="———————————————————-1"><a href="#———————————————————-1" class="headerlink" title="———————————————————-"></a>———————————————————-</h1><pre><code class="ts">import { Module } from &#39;@nestjs/common&#39;;
+import { ProductsService } from &#39;./products.service&#39;;
+import { ProductsController } from &#39;./products.controller&#39;;
+
+@Module({
+  controllers: [ProductsController],
+  providers: [ProductsService],
+})
+export class ProductsModule {}
+</code></pre>
+<p>這是「積木」—— module 是可獨立拆出部署的最小單位。</p>
+<hr>
+<h1 id="———————————————————-2"><a href="#———————————————————-2" class="headerlink" title="———————————————————-"></a>———————————————————-</h1><h1 id="📌-2-products-service-ts"><a href="#📌-2-products-service-ts" class="headerlink" title="📌 2. products.service.ts"></a>📌 <strong>2. products.service.ts</strong></h1><h1 id="———————————————————-3"><a href="#———————————————————-3" class="headerlink" title="———————————————————-"></a>———————————————————-</h1><p>目前為 in-memory 模式（第一塊積木）<br>之後會改 Prisma 連 MySQL。</p>
+<pre><code class="ts">import { Injectable, NotFoundException } from &#39;@nestjs/common&#39;;
+import { CreateProductDto } from &#39;./dto/create-product.dto&#39;;
+import { UpdateProductDto } from &#39;./dto/update-product.dto&#39;;
+
+@Injectable()
+export class ProductsService {
+  private products = [];
+  private nextId = 1;
+
+  findAll() {
+    return this.products;
+  }
+
+  findOne(id: number) {
+    const product = this.products.find((p) =&gt; p.id === id);
+    if (!product) {
+      throw new NotFoundException(`Product #${id} not found`);
+    }
+    return product;
+  }
+
+  create(dto: CreateProductDto) {
+    const newProduct = {
+      id: this.nextId++,
+      name: dto.name,
+      price: dto.price,
+      description: dto.description ?? &#39;&#39;,
+    };
+
+    this.products.push(newProduct);
+    return newProduct;
+  }
+
+  update(id: number, dto: UpdateProductDto) {
+    const product = this.findOne(id);
+    Object.assign(product, dto);
+    return product;
+  }
+
+  remove(id: number) {
+    const index = this.products.findIndex((p) =&gt; p.id === id);
+    if (index === -1) throw new NotFoundException(&#39;Product not found&#39;);
+
+    this.products.splice(index, 1);
+    return { success: true };
+  }
+}
+</code></pre>
+<hr>
+<h1 id="———————————————————-4"><a href="#———————————————————-4" class="headerlink" title="———————————————————-"></a>———————————————————-</h1><h1 id="📌-3-products-controller-ts"><a href="#📌-3-products-controller-ts" class="headerlink" title="📌 3. products.controller.ts"></a>📌 <strong>3. products.controller.ts</strong></h1><h1 id="———————————————————-5"><a href="#———————————————————-5" class="headerlink" title="———————————————————-"></a>———————————————————-</h1><pre><code class="ts">import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  ParseIntPipe,
+} from &#39;@nestjs/common&#39;;
+import { ProductsService } from &#39;./products.service&#39;;
+import { CreateProductDto } from &#39;./dto/create-product.dto&#39;;
+import { UpdateProductDto } from &#39;./dto/update-product.dto&#39;;
+
+@Controller(&#39;products&#39;)
+export class ProductsController {
+  constructor(private readonly productsService: ProductsService) {}
+
+  @Get()
+  findAll() {
+    return this.productsService.findAll();
+  }
+
+  @Get(&#39;:id&#39;)
+  findOne(@Param(&#39;id&#39;, ParseIntPipe) id: number) {
+    return this.productsService.findOne(id);
+  }
+
+  @Post()
+  create(@Body() dto: CreateProductDto) {
+    return this.productsService.create(dto);
+  }
+
+  @Patch(&#39;:id&#39;)
+  update(
+    @Param(&#39;id&#39;, ParseIntPipe) id: number,
+    @Body() dto: UpdateProductDto,
+  ) {
+    return this.productsService.update(id, dto);
+  }
+
+  @Delete(&#39;:id&#39;)
+  remove(@Param(&#39;id&#39;, ParseIntPipe) id: number) {
+    return this.productsService.remove(id);
+  }
+}
+</code></pre>
+<hr>
+<h1 id="———————————————————-6"><a href="#———————————————————-6" class="headerlink" title="———————————————————-"></a>———————————————————-</h1><h1 id="📌-4-create-product-dto-ts"><a href="#📌-4-create-product-dto-ts" class="headerlink" title="📌 4. create-product.dto.ts"></a>📌 <strong>4. create-product.dto.ts</strong></h1><h1 id="———————————————————-7"><a href="#———————————————————-7" class="headerlink" title="———————————————————-"></a>———————————————————-</h1><pre><code class="ts">import { IsNotEmpty, IsNumber, IsOptional, IsString, Min } from &#39;class-validator&#39;;
+
+export class CreateProductDto {
+  @IsString()
+  @IsNotEmpty()
+  name: string;
+
+  @IsNumber()
+  @Min(0)
+  price: number;
+
+  @IsOptional()
+  @IsString()
+  description?: string;
+}
+</code></pre>
+<hr>
+<h1 id="———————————————————-8"><a href="#———————————————————-8" class="headerlink" title="———————————————————-"></a>———————————————————-</h1><h1 id="📌-5-update-product-dto-ts"><a href="#📌-5-update-product-dto-ts" class="headerlink" title="📌 5. update-product.dto.ts"></a>📌 <strong>5. update-product.dto.ts</strong></h1><h1 id="———————————————————-9"><a href="#———————————————————-9" class="headerlink" title="———————————————————-"></a>———————————————————-</h1><pre><code class="ts">import { PartialType } from &#39;@nestjs/mapped-types&#39;;
+import { CreateProductDto } from &#39;./create-product.dto&#39;;
+
+export class UpdateProductDto extends PartialType(CreateProductDto) {}
+</code></pre>
+<p>這樣你就不需要重寫欄位，完全符合 DRY 原則。</p>
+<hr>
+<h1 id="———————————————————-10"><a href="#———————————————————-10" class="headerlink" title="———————————————————-"></a>———————————————————-</h1><h1 id="🚀-如何啟動並測試（你現在就能用）"><a href="#🚀-如何啟動並測試（你現在就能用）" class="headerlink" title="🚀 如何啟動並測試（你現在就能用）"></a>🚀 如何啟動並測試（你現在就能用）</h1><h1 id="———————————————————-11"><a href="#———————————————————-11" class="headerlink" title="———————————————————-"></a>———————————————————-</h1><h2 id="啟動："><a href="#啟動：" class="headerlink" title="啟動："></a>啟動：</h2><pre><code class="bash">npm run start:dev
+</code></pre>
+<hr>
+<h2 id="測試-API（Postman-Thunder-Client）："><a href="#測試-API（Postman-Thunder-Client）：" class="headerlink" title="測試 API（Postman &#x2F; Thunder Client）："></a>測試 API（Postman &#x2F; Thunder Client）：</h2><h3 id="1️⃣-GET-所有產品"><a href="#1️⃣-GET-所有產品" class="headerlink" title="1️⃣ GET 所有產品"></a>1️⃣ GET 所有產品</h3><pre><code>GET http://localhost:3000/products
+</code></pre>
+<h3 id="2️⃣-新增產品"><a href="#2️⃣-新增產品" class="headerlink" title="2️⃣ 新增產品"></a>2️⃣ 新增產品</h3><pre><code>POST http://localhost:3000/products
+Content-Type: application/json
+
+{
+  &quot;name&quot;: &quot;綠茶&quot;,
+  &quot;price&quot;: 35,
+  &quot;description&quot;: &quot;清爽無糖&quot;
+}
+</code></pre>
+<h3 id="3️⃣-查詢單一產品"><a href="#3️⃣-查詢單一產品" class="headerlink" title="3️⃣ 查詢單一產品"></a>3️⃣ 查詢單一產品</h3><pre><code>GET http://localhost:3000/products/1
+</code></pre>
+<h3 id="4️⃣-更新"><a href="#4️⃣-更新" class="headerlink" title="4️⃣ 更新"></a>4️⃣ 更新</h3><pre><code>PATCH http://localhost:3000/products/1
+{
+  &quot;price&quot;: 40
+}
+</code></pre>
+<h3 id="5️⃣-刪除"><a href="#5️⃣-刪除" class="headerlink" title="5️⃣ 刪除"></a>5️⃣ 刪除</h3><pre><code>DELETE http://localhost:3000/products/1
+</code></pre>
+<hr>
+<h1 id="🎉-恭喜！"><a href="#🎉-恭喜！" class="headerlink" title="🎉 恭喜！"></a>🎉 恭喜！</h1><p>你已經完成：</p>
+<ul>
+<li><strong>第一塊積木（Products Module）</strong></li>
+<li>正確的 NestJS 模組化架構</li>
+<li>DTO + Validation</li>
+<li>Controller &#x2F; Service 分層</li>
+<li>DI 注入</li>
+<li>In-memory CRUD（後面換成 MySQL 只需更改 service）</li>
+</ul>
+<p>之後 A～G 階段都會基於這塊積木擴充下去。</p>
+<hr>
+<h1 id="🎯-下一步你想做哪一個？"><a href="#🎯-下一步你想做哪一個？" class="headerlink" title="🎯 下一步你想做哪一個？"></a>🎯 下一步你想做哪一個？</h1><h2 id="A-我要把-ProductsModule-換成連-MySQL-Prisma"><a href="#A-我要把-ProductsModule-換成連-MySQL-Prisma" class="headerlink" title="A. 我要把 ProductsModule 換成連 MySQL &#x2F; Prisma"></a>A. 我要把 ProductsModule 換成連 MySQL &#x2F; Prisma</h2><p>→ 完整程式碼我可立即提供</p>
+<h2 id="B-我要做第二塊積木：OrdersModule（含-order-items）"><a href="#B-我要做第二塊積木：OrdersModule（含-order-items）" class="headerlink" title="B. 我要做第二塊積木：OrdersModule（含 order_items）"></a>B. 我要做第二塊積木：OrdersModule（含 order_items）</h2><p>→ 直接生成完整 CRUD</p>
+<h2 id="C-我要開始做-LINE-Webhook-模組（階段-C）"><a href="#C-我要開始做-LINE-Webhook-模組（階段-C）" class="headerlink" title="C. 我要開始做 LINE Webhook 模組（階段 C）"></a>C. 我要開始做 LINE Webhook 模組（階段 C）</h2><p>→ 完整 webhook + replies + 事件 parser</p>
+<h2 id="D-幫我畫這個-NestJS-專案的架構圖（後端專用）"><a href="#D-幫我畫這個-NestJS-專案的架構圖（後端專用）" class="headerlink" title="D. 幫我畫這個 NestJS 專案的架構圖（後端專用）"></a>D. 幫我畫這個 NestJS 專案的架構圖（後端專用）</h2><p>選一個，我立即開始。</p>
