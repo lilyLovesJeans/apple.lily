@@ -1,0 +1,86 @@
+<hr>
+<h2 id="title-2025-08-11-Git-初次設定date-2025-11-26-23-06-03categories-OneDayOneNotetags-OneNote-git-description-2025-08-11-Git-初次設定"><a href="#title-2025-08-11-Git-初次設定date-2025-11-26-23-06-03categories-OneDayOneNotetags-OneNote-git-description-2025-08-11-Git-初次設定" class="headerlink" title="title: 2025-08-11 Git 初次設定date: 2025-11-26 23:06:03categories: OneDayOneNotetags:  [OneNote,  git]description: 2025-08-11 Git 初次設定"></a>title: 2025-08-11 Git 初次設定<br>date: 2025-11-26 23:06:03<br>categories: OneDayOneNote<br>tags:  [OneNote,  git]<br>description: 2025-08-11 Git 初次設定</h2><h2 id="2025-08-11-Git-初次設定"><a href="#2025-08-11-Git-初次設定" class="headerlink" title="2025-08-11 Git 初次設定"></a>2025-08-11 Git 初次設定</h2><p>「Level 0：Git 初次設定（一次就好）」**<br>只要做一次，未來所有 Git 專案都會正常運作。</p>
+<p>內容我會做成 <strong>步驟式 + 指令 + 是否必要 + 為什麼要做</strong>，完全適合你這種想扎穩基礎的人。</p>
+<hr>
+<h1 id="🚀-Level-0：Git-初次設定（一次就好）"><a href="#🚀-Level-0：Git-初次設定（一次就好）" class="headerlink" title="🚀 Level 0：Git 初次設定（一次就好）"></a>🚀 <strong>Level 0：Git 初次設定（一次就好）</strong></h1><p>以下 8 個步驟是業界工程師新電腦設定 Git 的標準流程。</p>
+<hr>
+<h1 id="✅-Step-0-1：設定你的名字與-Email（必做）"><a href="#✅-Step-0-1：設定你的名字與-Email（必做）" class="headerlink" title="✅ Step 0-1：設定你的名字與 Email（必做）"></a>✅ <strong>Step 0-1：設定你的名字與 Email（必做）</strong></h1><p>這是 Git 用來記錄 commit 作者。</p>
+<pre><code class="bash">git config --global user.name &quot;Lily&quot;
+git config --global user.email &quot;lily@gmail.com&quot;
+</code></pre>
+<p>✔ 只需要做一次<br>✔ 所有專案共用<br>✔ 若接案客戶需要其他 email → 之後在專案裡做 local override</p>
+<hr>
+<h1 id="✅-Step-0-2：把預設-branch-改成-main（必做）"><a href="#✅-Step-0-2：把預設-branch-改成-main（必做）" class="headerlink" title="✅ Step 0-2：把預設 branch 改成 main（必做）"></a>✅ <strong>Step 0-2：把預設 branch 改成 main（必做）</strong></h1><p>新版 Git 預設 main，但有些老版本是 master。</p>
+<p>保險做法：</p>
+<pre><code class="bash">git config --global init.defaultBranch main
+</code></pre>
+<hr>
+<h1 id="🌓-Step-0-3：設定行尾-Line-Ending-（建議）"><a href="#🌓-Step-0-3：設定行尾-Line-Ending-（建議）" class="headerlink" title="🌓 Step 0-3：設定行尾(Line Ending)（建議）"></a>🌓 <strong>Step 0-3：設定行尾(Line Ending)（建議）</strong></h1><p>你在 macOS，不同 OS 有不同的換行字元。</p>
+<p>推薦設定：</p>
+<pre><code class="bash">git config --global core.autocrlf input
+</code></pre>
+<p>✔ macOS 標準<br>✔ 避免與 Windows 協作時出現換行差異造成的修改</p>
+<hr>
+<h1 id="🎨-Step-0-4：讓-Git-顯示顏色（建議）"><a href="#🎨-Step-0-4：讓-Git-顯示顏色（建議）" class="headerlink" title="🎨 Step 0-4：讓 Git 顯示顏色（建議）"></a>🎨 <strong>Step 0-4：讓 Git 顯示顏色（建議）</strong></h1><p>加顏色方便閱讀。</p>
+<pre><code class="bash">git config --global color.ui auto
+</code></pre>
+<hr>
+<h1 id="🔑-Step-0-5：設定-Credential-Helper（非常建議）"><a href="#🔑-Step-0-5：設定-Credential-Helper（非常建議）" class="headerlink" title="🔑 Step 0-5：設定 Credential Helper（非常建議）"></a>🔑 <strong>Step 0-5：設定 Credential Helper（非常建議）</strong></h1><p>GitHub 推薦使用 macOS Keychain 儲存 token，不然每次 push 都要輸入密碼。</p>
+<pre><code class="bash">git config --global credential.helper osxkeychain
+</code></pre>
+<hr>
+<h1 id="🔐-Step-0-6：建立-SSH-Key（必做，用於免密碼-push）"><a href="#🔐-Step-0-6：建立-SSH-Key（必做，用於免密碼-push）" class="headerlink" title="🔐 Step 0-6：建立 SSH Key（必做，用於免密碼 push）"></a>🔐 <strong>Step 0-6：建立 SSH Key（必做，用於免密碼 push）</strong></h1><p>這是 GitHub、GitLab、Bitbucket 等必要的。</p>
+<p>生成：</p>
+<pre><code class="bash">ssh-keygen -t rsa -b 4096 -C &quot;lily@gmail.com&quot;
+</code></pre>
+<p>按 Enter 三次（使用預設路徑即可）</p>
+<p>查看公鑰：</p>
+<pre><code class="bash">cat ~/.ssh/id_rsa.pub
+</code></pre>
+<p>把輸出內容貼到 GitHub → Settings → SSH and GPG keys</p>
+<p>完成後測試：</p>
+<pre><code class="bash">ssh -T git@github.com
+</code></pre>
+<p>看到 👇 表示成功：</p>
+<pre><code>Hi Lily! You&#39;ve successfully authenticated...
+</code></pre>
+<hr>
+<h1 id="🔧-Step-0-7：設定常用-Alias（選做，但工程師超愛）"><a href="#🔧-Step-0-7：設定常用-Alias（選做，但工程師超愛）" class="headerlink" title="🔧 Step 0-7：設定常用 Alias（選做，但工程師超愛）"></a>🔧 <strong>Step 0-7：設定常用 Alias（選做，但工程師超愛）</strong></h1><p>讓 Git 指令變短好輸入：</p>
+<pre><code class="bash">git config --global alias.st status
+git config --global alias.br branch
+git config --global alias.cm &quot;commit -m&quot;
+git config --global alias.co checkout
+git config --global alias.last &quot;log -1 HEAD&quot;
+</code></pre>
+<p>之後你可以打：</p>
+<pre><code>git st   → git status
+git cm &quot;msg&quot; → git commit -m &quot;msg&quot;
+</code></pre>
+<hr>
+<h1 id="📝-Step-0-8：檢查所有設定是否正確（必做）"><a href="#📝-Step-0-8：檢查所有設定是否正確（必做）" class="headerlink" title="📝 Step 0-8：檢查所有設定是否正確（必做）"></a>📝 <strong>Step 0-8：檢查所有設定是否正確（必做）</strong></h1><pre><code class="bash">git config --list --show-origin
+</code></pre>
+<p>你會看到：</p>
+<ul>
+<li>user.name &#x2F; user.email</li>
+<li>credential.helper</li>
+<li>init.defaultBranch</li>
+<li>color</li>
+<li>core.autocrlf</li>
+<li>alias 設定</li>
+</ul>
+<p>全部都 OK 的話，表示 Git 環境初始化完成。</p>
+<hr>
+<h1 id="🎉-Level-0-完成後，你的電腦就正式成為工程師用的-Git-工作環境！"><a href="#🎉-Level-0-完成後，你的電腦就正式成為工程師用的-Git-工作環境！" class="headerlink" title="🎉 Level 0 完成後，你的電腦就正式成為工程師用的 Git 工作環境！"></a>🎉 Level 0 完成後，你的電腦就正式成為工程師用的 Git 工作環境！</h1><p>之後每個新專案你只要做：</p>
+<ul>
+<li><code>git init</code></li>
+<li><code>git add</code></li>
+<li><code>git commit</code></li>
+<li><code>git push</code></li>
+</ul>
+<p>就好了。</p>
+<hr>
+<h1 id="📌-接下來："><a href="#📌-接下來：" class="headerlink" title="📌 接下來："></a>📌 接下來：</h1><p>如果你貼給我：</p>
+<pre><code>git config --list --show-origin
+</code></pre>
+<p>我可以幫你確認 Level 0 是否已完全設定成功。<br>確定完成後我們就會進入 <strong>Level 1：實作 Git 專案循環</strong>。</p>
+<p>要我幫你檢查嗎？</p>

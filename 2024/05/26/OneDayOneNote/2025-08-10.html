@@ -1,0 +1,272 @@
+<hr>
+<h2 id="title-2025-08-10-Git-練習date-2025-11-26-22-11-50categories-OneDayOneNotetags-OneNote-git-description-2025-08-08-Line-訂單系統-git-Rebase"><a href="#title-2025-08-10-Git-練習date-2025-11-26-22-11-50categories-OneDayOneNotetags-OneNote-git-description-2025-08-08-Line-訂單系統-git-Rebase" class="headerlink" title="title: 2025-08-10 Git 練習date: 2025-11-26 22:11:50categories: OneDayOneNotetags:  [OneNote,  git]description:  2025-08-08 Line 訂單系統- git Rebase"></a>title: 2025-08-10 Git 練習<br>date: 2025-11-26 22:11:50<br>categories: OneDayOneNote<br>tags:  [OneNote,  git]<br>description:  2025-08-08 Line 訂單系統- git Rebase</h2><h2 id="2025-08-10-Git-練習"><a href="#2025-08-10-Git-練習" class="headerlink" title="2025-08-10 Git 練習"></a>2025-08-10 Git 練習</h2><p>下面我會給你 <strong>一份「接案工程師必備 Git 實戰循序練習地圖」</strong><br>讓你從最常發生的狀況開始練、每一個狀況都有原因、指令、練習方式。</p>
+<p>你只要一步一步照著做，練完後就能處理案子上 90% 的 Git 問題。</p>
+<hr>
+<h1 id="🧭-接案必備-Git-練習順序（從最常遇到-→-進階）"><a href="#🧭-接案必備-Git-練習順序（從最常遇到-→-進階）" class="headerlink" title="🧭 接案必備 Git 練習順序（從最常遇到 → 進階）"></a>🧭 <strong>接案必備 Git 練習順序（從最常遇到 → 進階）</strong></h1><p>我會照 <strong>你實際在接案時最常遇到的情境</strong> 排序：<br>1️⃣ <em>基本功能 Flow</em> → 2️⃣ <em>多人協作 Flow</em> → 3️⃣ <em>錯誤修復 Flow</em> → 4️⃣ <em>大型案件 Flow</em></p>
+<p>每一項我會跟你說 <strong>為什麼會遇到、要練什麼、要怎麼練</strong>。</p>
+<hr>
+<h1 id="✅-Level-1：個人開發一定會遇到的-Git-流程"><a href="#✅-Level-1：個人開發一定會遇到的-Git-流程" class="headerlink" title="✅ Level 1：個人開發一定會遇到的 Git 流程"></a>✅ <strong>Level 1：個人開發一定會遇到的 Git 流程</strong></h1><h2 id="①-初始化本地專案"><a href="#①-初始化本地專案" class="headerlink" title="① 初始化本地專案"></a><strong>① 初始化本地專案</strong></h2><p>🔹 <strong>原因：</strong> 不管新案子、Side Project、測試，都要初始化<br>🔹 <strong>要學指令：</strong></p>
+<pre><code>git init
+git add .
+git commit -m &quot;initial commit&quot;
+</code></pre>
+<p>🔹 <strong>練習：</strong></p>
+<ul>
+<li>新建一個資料夾 <code>practice-git1</code></li>
+<li>寫個 index.html</li>
+<li>做一次 commit</li>
+</ul>
+<hr>
+<h2 id="②-連接-GitHub-push"><a href="#②-連接-GitHub-push" class="headerlink" title="② 連接 GitHub + push"></a><strong>② 連接 GitHub + push</strong></h2><p>🔹 <strong>原因：</strong> 你接案一定要把程式上傳給客戶<br>🔹 <strong>要學指令：</strong></p>
+<pre><code>git remote add origin &lt;repo-url&gt;
+git branch -M main
+git push -u origin main
+</code></pre>
+<p>🔹 <strong>練習：</strong></p>
+<ul>
+<li>在 GitHub 建 repo</li>
+<li>push 上去</li>
+</ul>
+<hr>
+<h2 id="③-修改檔案-→-commit-→-push"><a href="#③-修改檔案-→-commit-→-push" class="headerlink" title="③ 修改檔案 → commit → push"></a><strong>③ 修改檔案 → commit → push</strong></h2><p>🔹 <strong>原因：</strong> 每天的基本工作就是這個<br>🔹 <strong>要學：</strong></p>
+<pre><code>git status
+git add &lt;file&gt;
+git commit -m &quot;&quot;
+git push
+</code></pre>
+<hr>
+<h1 id="✅-Level-2：接案一定會遇到的多人協作衝突-流程"><a href="#✅-Level-2：接案一定會遇到的多人協作衝突-流程" class="headerlink" title="✅ Level 2：接案一定會遇到的多人協作衝突 &amp; 流程"></a>✅ <strong>Level 2：接案一定會遇到的多人協作衝突 &amp; 流程</strong></h1><h2 id="④-從-GitHub-拉別人寫的-code"><a href="#④-從-GitHub-拉別人寫的-code" class="headerlink" title="④ 從 GitHub 拉別人寫的 code"></a><strong>④ 從 GitHub 拉別人寫的 code</strong></h2><p>🔹 <strong>原因：</strong> 專案通常不是你一個人寫<br>🔹 <strong>指令：</strong></p>
+<pre><code>git pull
+</code></pre>
+<p>🔹 <strong>練習：</strong></p>
+<ul>
+<li>用你另一台電腦，改同一個檔案</li>
+<li>在本機 pull</li>
+</ul>
+<hr>
+<h2 id="⑤-pull-會衝突（最常發生）"><a href="#⑤-pull-會衝突（最常發生）" class="headerlink" title="⑤ pull 會衝突（最常發生）"></a><strong>⑤ pull 會衝突（最常發生）</strong></h2><p>🔹 <strong>原因：</strong><br>你改了 A 檔案、別人也改了 A 檔案 → 就衝突。</p>
+<p>🔹 <strong>要練：</strong></p>
+<ul>
+<li>怎麼看衝突 <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code></li>
+<li>怎麼解決</li>
+<li>怎麼重新 commit</li>
+</ul>
+<p>🔹 <strong>練習方法：</strong></p>
+<ol>
+<li>你在 main 分支修改 index.html</li>
+<li>你在另一台電腦 or GitHub 上修改 index.html</li>
+<li>回本機 pull<br>→ 一定會衝突<br>→ 解決後 commit + push</li>
+</ol>
+<hr>
+<h2 id="⑥-分支開發（接案必備）"><a href="#⑥-分支開發（接案必備）" class="headerlink" title="⑥ 分支開發（接案必備）"></a><strong>⑥ 分支開發（接案必備）</strong></h2><p>🔹 <strong>原因：</strong> 你做功能要開 branch，不然 main 被你弄壞會出事<br>🔹 <strong>要學指令：</strong></p>
+<pre><code>git branch feature/login
+git checkout feature/login
+// or
+git switch -c feature/login
+</code></pre>
+<p>🔹 <strong>練習：</strong></p>
+<ul>
+<li>建一個 feature&#x2F;login</li>
+<li>改點東西</li>
+<li>commit</li>
+</ul>
+<hr>
+<h2 id="⑦-merge-分支（超常見）"><a href="#⑦-merge-分支（超常見）" class="headerlink" title="⑦ merge 分支（超常見）"></a><strong>⑦ merge 分支（超常見）</strong></h2><p>🔹 <strong>原因：</strong> 功能做完要 merge 回 main<br>🔹 <strong>指令：</strong></p>
+<pre><code>git switch main
+git merge feature/login
+</code></pre>
+<p>🔹 <strong>練習：</strong></p>
+<ul>
+<li>在 feature&#x2F;login 修改</li>
+<li>merge 回 main</li>
+<li>看看會不會衝突（通常會）</li>
+</ul>
+<hr>
+<h2 id="⑧-rebase（接案時-PM-或-Lead-說要整理-commit）"><a href="#⑧-rebase（接案時-PM-或-Lead-說要整理-commit）" class="headerlink" title="⑧ rebase（接案時 PM 或 Lead 說要整理 commit）"></a><strong>⑧ rebase（接案時 PM 或 Lead 說要整理 commit）</strong></h2><p>🔹 <strong>原因：</strong> merge 會有複雑 history<br>rebase 可以變乾淨</p>
+<p>🔹 <strong>指令：</strong></p>
+<pre><code>git switch feature/login
+git rebase main
+</code></pre>
+<p>🔹 <strong>練習：</strong></p>
+<ul>
+<li>同樣製造衝突</li>
+<li>解 conflict</li>
+<li>儲存 rebase</li>
+</ul>
+<hr>
+<h1 id="✅-Level-3：接案常遇到的失誤-錯誤修復"><a href="#✅-Level-3：接案常遇到的失誤-錯誤修復" class="headerlink" title="✅ Level 3：接案常遇到的失誤 &amp; 錯誤修復"></a>✅ <strong>Level 3：接案常遇到的失誤 &amp; 錯誤修復</strong></h1><h2 id="⑨-commit-寫錯訊息或漏上傳檔案"><a href="#⑨-commit-寫錯訊息或漏上傳檔案" class="headerlink" title="⑨ commit 寫錯訊息或漏上傳檔案"></a><strong>⑨ commit 寫錯訊息或漏上傳檔案</strong></h2><p>🔹 <strong>指令：</strong></p>
+<pre><code>git commit --amend
+</code></pre>
+<p>🔹 <strong>練習：</strong></p>
+<ul>
+<li>故意 commit 錯訊息</li>
+<li>用 amend 修正</li>
+</ul>
+<hr>
+<h2 id="⑩-不小心-checkout-到別的-branch-修改（接案超常發生）"><a href="#⑩-不小心-checkout-到別的-branch-修改（接案超常發生）" class="headerlink" title="⑩ 不小心 checkout 到別的 branch 修改（接案超常發生）"></a><strong>⑩ 不小心 checkout 到別的 branch 修改（接案超常發生）</strong></h2><p>🔹 <strong>指令：</strong></p>
+<pre><code>git stash
+git switch 正確分支
+git stash pop
+</code></pre>
+<p>🔹 <strong>練習：</strong></p>
+<ul>
+<li>在 main 修改</li>
+<li>發現你其實應該改 feature&#x2F;login</li>
+<li>把修改移過去</li>
+</ul>
+<hr>
+<h2 id="⑪-想丟掉本地修改"><a href="#⑪-想丟掉本地修改" class="headerlink" title="⑪ 想丟掉本地修改"></a><strong>⑪ 想丟掉本地修改</strong></h2><p>🔹 <strong>指令：</strong></p>
+<pre><code>git reset --hard
+</code></pre>
+<hr>
+<h2 id="⑫-想恢復不小心刪掉的-commit"><a href="#⑫-想恢復不小心刪掉的-commit" class="headerlink" title="⑫ 想恢復不小心刪掉的 commit"></a><strong>⑫ 想恢復不小心刪掉的 commit</strong></h2><p>🔹 <strong>指令：</strong></p>
+<pre><code>git reflog
+git reset --hard &lt;commit-id&gt;
+</code></pre>
+<hr>
+<h1 id="✅-Level-4：接案時-Lead-或公司流程會要求的"><a href="#✅-Level-4：接案時-Lead-或公司流程會要求的" class="headerlink" title="✅ Level 4：接案時 Lead 或公司流程會要求的"></a>✅ <strong>Level 4：接案時 Lead 或公司流程會要求的</strong></h1><h2 id="⑬-開-Pull-Request（PR）"><a href="#⑬-開-Pull-Request（PR）" class="headerlink" title="⑬ 開 Pull Request（PR）"></a><strong>⑬ 開 Pull Request（PR）</strong></h2><p>🔹 <strong>原因：</strong> Code Review 是業界標準<br>🔹 練習事項：</p>
+<ul>
+<li>開 branch → push → GitHub 開 PR</li>
+</ul>
+<hr>
+<h2 id="⑭-review-後被要求修改"><a href="#⑭-review-後被要求修改" class="headerlink" title="⑭ review 後被要求修改"></a><strong>⑭ review 後被要求修改</strong></h2><p>🔹 <strong>練習事項：</strong></p>
+<ul>
+<li>修改程式碼再 push，PR 自動更新</li>
+</ul>
+<hr>
+<h2 id="⑮-release-tag"><a href="#⑮-release-tag" class="headerlink" title="⑮ release &#x2F; tag"></a><strong>⑮ release &#x2F; tag</strong></h2><p>🔹 <strong>原因：</strong> 常要給客戶「版本」<br>🔹 <strong>指令：</strong></p>
+<pre><code>git tag v1.0
+git push origin v1.0
+</code></pre>
+<hr>
+<h1 id="📘-我建議的練習順序（照這樣學一定會上手）"><a href="#📘-我建議的練習順序（照這樣學一定會上手）" class="headerlink" title="📘 我建議的練習順序（照這樣學一定會上手）"></a>📘 我建議的練習順序（照這樣學一定會上手）</h1><table>
+<thead>
+<tr>
+<th>階段</th>
+<th>練習內容</th>
+<th>目的</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Lv1</td>
+<td>init → commit → push → pull</td>
+<td>一般個人開發</td>
+</tr>
+<tr>
+<td>Lv2</td>
+<td>branch → merge → conflict → rebase</td>
+<td>多人協作</td>
+</tr>
+<tr>
+<td>Lv3</td>
+<td>stash → amend → reset → reflog</td>
+<td>錯誤修復</td>
+</tr>
+<tr>
+<td>Lv4</td>
+<td>PR → tag → release</td>
+<td>真實接案流程</td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="📌-下一步："><a href="#📌-下一步：" class="headerlink" title="📌 下一步："></a>📌 下一步：</h1><p>你要我現在從 <strong>Level 1 開始一步一步教你操作嗎？</strong><br>還是你已經知道 Level 1，可以從 <strong>分支 &#x2F; 衝突（Level 2）</strong> 開始？<br>好！我們從 <strong>Level 1（個人開發）</strong> 現場演練開始 — 每一步都會有「為什麼」、「要打的指令」、「你會看到的結果（如何驗證）」、「練習題目（3 題）」，並附上小測驗 3 題確認理解。照著做就行，不用我再問你問題（除非你要我改變步調）。</p>
+<h1 id="🚀-Level-1-—-基本流程一步步做"><a href="#🚀-Level-1-—-基本流程一步步做" class="headerlink" title="🚀 Level 1 — 基本流程一步步做"></a>🚀 Level 1 — 基本流程一步步做</h1><blockquote>
+<p>前提：你已經在電腦裝好 Git（可用 <code>git --version</code> 檢查）。<br>若還沒：請先安裝 Git（mac 用 Homebrew：<code>brew install git</code>；Windows 用 Git for Windows 安裝程式）。</p>
+</blockquote>
+<hr>
+<h2 id="1-設定使用者名稱與-Email（第一次必做）"><a href="#1-設定使用者名稱與-Email（第一次必做）" class="headerlink" title="1. 設定使用者名稱與 Email（第一次必做）"></a>1. 設定使用者名稱與 Email（第一次必做）</h2><p><strong>為什麼</strong>：每個 commit 都會記錄作者資訊。<br><strong>指令</strong>：</p>
+<pre><code class="bash">git config --global user.name &quot;你的名字&quot;
+git config --global user.email &quot;you@example.com&quot;
+</code></pre>
+<p><strong>驗證</strong>：</p>
+<pre><code class="bash">git config --global --list
+</code></pre>
+<p>應該會看到剛剛設定的 name 與 email。</p>
+<hr>
+<h2 id="2-建新資料夾並-git-init"><a href="#2-建新資料夾並-git-init" class="headerlink" title="2. 建新資料夾並 git init"></a>2. 建新資料夾並 <code>git init</code></h2><p><strong>為什麼</strong>：開始一個本地專案並啟用版本控制。<br><strong>指令</strong>：</p>
+<pre><code class="bash">mkdir practice-git1
+cd practice-git1
+git init
+</code></pre>
+<p><strong>你會看到</strong>：<code>Initialized empty Git repository ...</code>（或 <code>Reinitialized existing Git repository</code>）<br><strong>驗證</strong>：</p>
+<pre><code class="bash">ls -la .git
+git status
+</code></pre>
+<p><code>git status</code> 應顯示 <code>On branch main</code>（或 master），且 no commits yet。</p>
+<hr>
+<h2 id="3-新增檔案、檢查狀態、第一次-commit"><a href="#3-新增檔案、檢查狀態、第一次-commit" class="headerlink" title="3. 新增檔案、檢查狀態、第一次 commit"></a>3. 新增檔案、檢查狀態、第一次 commit</h2><p><strong>為什麼</strong>：學會追蹤檔案與建立快照。<br><strong>步驟與指令</strong>：</p>
+<pre><code class="bash">echo &quot;&lt;!doctype html&gt;&lt;html&gt;&lt;body&gt;&lt;h1&gt;Hello Git&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;&quot; &gt; index.html
+git status
+git add index.html
+git status
+git commit -m &quot;Initial commit: add index.html&quot;
+</code></pre>
+<p><strong>驗證</strong>：</p>
+<ul>
+<li><code>git status</code> 在 <code>git add</code> 之前會把 index.html 列為 untracked</li>
+<li><code>git commit</code> 後 <code>git status</code> 顯示 <code>nothing to commit, working tree clean</code></li>
+<li><code>git log --oneline</code> 應顯示剛剛的 commit 一行。</li>
+</ul>
+<hr>
+<h2 id="4-修改檔案、再-commit"><a href="#4-修改檔案、再-commit" class="headerlink" title="4. 修改檔案、再 commit"></a>4. 修改檔案、再 commit</h2><p><strong>為什麼</strong>：學會基本工作流程：改 → 加入暫存 → commit。<br><strong>指令</strong>：</p>
+<pre><code class="bash"># 編輯 index.html（或使用 echo 追加）
+echo &quot;&lt;!-- updated --&gt;&quot; &gt;&gt; index.html
+git status
+git add index.html
+git commit -m &quot;Update: add html comment&quot;
+git log --oneline
+</code></pre>
+<p><strong>驗證</strong>：<code>git log --oneline</code> 會有兩個 commit（最新在上）。</p>
+<hr>
+<h2 id="5-連接遠端（GitHub）並-push（上傳）"><a href="#5-連接遠端（GitHub）並-push（上傳）" class="headerlink" title="5. 連接遠端（GitHub）並 push（上傳）"></a>5. 連接遠端（GitHub）並 push（上傳）</h2><p><strong>為什麼</strong>：把本地專案備份到遠端，供你或客戶下載&#x2F;部署。<br><strong>步驟</strong>：</p>
+<ol>
+<li>在 GitHub 建一個新 repo（例如 <code>practice-git1</code>），不選 README。</li>
+<li>回到 terminal：</li>
+</ol>
+<pre><code class="bash">git remote add origin https://github.com/你的帳號/practice-git1.git
+git branch -M main      # 如果你的預設分支不是 main 可執行
+git push -u origin main
+</code></pre>
+<p><strong>驗證</strong>：在 GitHub Repo 頁面可以看到檔案。<code>git remote -v</code> 可檢查遠端 URL。</p>
+<blockquote>
+<p>小提醒：若 GitHub 要求你用 PAT（personal access token）作密碼，輸入 token 當密碼即可；或設定 SSH keys（進階）。</p>
+</blockquote>
+<hr>
+<h2 id="6-常用檢查指令（隨時用）"><a href="#6-常用檢查指令（隨時用）" class="headerlink" title="6. 常用檢查指令（隨時用）"></a>6. 常用檢查指令（隨時用）</h2><ul>
+<li><code>git status</code>：看目前工作區&#x2F;暫存區狀態</li>
+<li><code>git log --oneline --graph --decorate</code>：看歷史樹狀概覽</li>
+<li><code>git diff</code>：看未 staged 的變更</li>
+<li><code>git diff --staged</code>：看已 staged 的變更</li>
+</ul>
+<hr>
+<h1 id="🧪-Level-1-練習題（做完這些你就能處理-90-個人開發情境）"><a href="#🧪-Level-1-練習題（做完這些你就能處理-90-個人開發情境）" class="headerlink" title="🧪 Level 1 練習題（做完這些你就能處理 90% 個人開發情境）"></a>🧪 Level 1 練習題（做完這些你就能處理 90% 個人開發情境）</h1><p><strong>練習 1 — 從零到上傳</strong></p>
+<ol>
+<li>新建資料夾 <code>practice-git-level1</code>。</li>
+<li><code>git init</code> → 新增一個 <code>readme.md</code> → commit → 在 GitHub 建 repo → push 到遠端。</li>
+</ol>
+<p><strong>練習 2 — 多次 commit 練習</strong></p>
+<ol>
+<li>在專案中新增三個不同檔案（例如 <code>a.txt</code>、<code>b.txt</code>、<code>c.txt</code>），每個檔案各做一次修改並 commit（共 3 次 commit）。</li>
+<li>用 <code>git log --oneline</code> 檢查有 3 個 commit（或更多，包含 initial）。</li>
+</ol>
+<p><strong>練習 3 — 查看差異與回到乾淨狀態</strong></p>
+<ol>
+<li>修改 <code>a.txt</code> 但不要 <code>git add</code>，用 <code>git diff</code> 看變更。</li>
+<li><code>git add a.txt</code> → <code>git commit -m &quot;edit a&quot;</code>。</li>
+<li>再修改 <code>a.txt</code>，用 <code>git reset --hard</code> 丟掉未 commit 的變更（注意：會刪除未儲存的修改）。</li>
+</ol>
+<hr>
+<h1 id="✅-小測驗（3-題，回答簡短）"><a href="#✅-小測驗（3-題，回答簡短）" class="headerlink" title="✅ 小測驗（3 題，回答簡短）"></a>✅ 小測驗（3 題，回答簡短）</h1><ol>
+<li><code>git add</code> 跟 <code>git commit</code> 的差別是什麼？</li>
+<li><code>git status</code> 有哪些常見輸出（至少說三種）？</li>
+<li>如果你把檔案改了但不小心切換 branch，你想保留改動該怎麼做？</li>
+</ol>
+<p>（你可以把答案直接貼上來，我會幫你檢查）</p>
+<hr>
+<h1 id="常見小陷阱（提醒）"><a href="#常見小陷阱（提醒）" class="headerlink" title="常見小陷阱（提醒）"></a>常見小陷阱（提醒）</h1><ul>
+<li>忘了 <code>git config user.email</code> → commit 會用空白或錯誤作者。</li>
+<li>push 到遠端時若分支不一致（例如遠端沒有 main），第一次要用 <code>-u origin main</code>。</li>
+<li><code>git reset --hard</code> 非常危險，會永久丟棄未 commit 的修改（本地）。小心使用。</li>
+</ul>
+<hr>
+<p>若你準備好了，我就一步步帶你「實作」第一個練習（我會列出你要貼進 Terminal 的指令，你照著貼並把輸出複製回來給我，我會幫你檢查）。要我現在直接給第一個練習的完整命令序列嗎？</p>
