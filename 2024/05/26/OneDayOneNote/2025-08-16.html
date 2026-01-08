@@ -1,0 +1,38 @@
+<hr>
+<h2 id="title-2025-08-16-Line-訂單系統-怎麼看-有沒有-install-nvm-date-2025-12-12-22-34-31categories-OneDayOneNotetags-OneNote-Line訂單系統-git-description-2025-08-15-Line-訂單系統-怎麼看-brew-的版本"><a href="#title-2025-08-16-Line-訂單系統-怎麼看-有沒有-install-nvm-date-2025-12-12-22-34-31categories-OneDayOneNotetags-OneNote-Line訂單系統-git-description-2025-08-15-Line-訂單系統-怎麼看-brew-的版本" class="headerlink" title="title: 2025-08-16 Line 訂單系統- 怎麼看 有沒有 install nvm?date: 2025-12-12 22:34:31categories: OneDayOneNotetags:  [OneNote , Line訂單系統,  git]description: 2025-08-15 Line 訂單系統- 怎麼看 brew 的版本?"></a>title: 2025-08-16 Line 訂單系統- 怎麼看 有沒有 install nvm?<br>date: 2025-12-12 22:34:31<br>categories: OneDayOneNote<br>tags:  [OneNote , Line訂單系統,  git]<br>description: 2025-08-15 Line 訂單系統- 怎麼看 brew 的版本?</h2><h2 id="2025-08-15-Line-訂單系統-怎麼看-brew-的版本"><a href="#2025-08-15-Line-訂單系統-怎麼看-brew-的版本" class="headerlink" title="2025-08-15 Line 訂單系統- 怎麼看 brew 的版本?"></a>2025-08-15 Line 訂單系統- 怎麼看 brew 的版本?</h2><p>要查看你的 Mac 是否 <strong>已經安裝 nvm</strong>，有三種最簡單的方法。</p>
+<hr>
+<h1 id="✅-方法-1：直接輸入指令"><a href="#✅-方法-1：直接輸入指令" class="headerlink" title="✅ 方法 1：直接輸入指令"></a>✅ 方法 1：直接輸入指令</h1><p>在 Terminal 輸入：</p>
+<pre><code class="sh">nvm --version
+</code></pre>
+<p><strong>如果看到版本號，例如：</strong></p>
+<pre><code>0.39.7
+</code></pre>
+<p>➡ 代表 <strong>nvm 已安裝</strong></p>
+<p><strong>如果出現：</strong></p>
+<pre><code>command not found: nvm
+</code></pre>
+<p>➡ 代表 <strong>沒有安裝</strong> 或 <strong>安裝後尚未設定好 ~&#x2F;.zshrc 或 ~&#x2F;.bashrc</strong></p>
+<hr>
+<h1 id="✅-方法-2：查看你的-Shell-設定檔"><a href="#✅-方法-2：查看你的-Shell-設定檔" class="headerlink" title="✅ 方法 2：查看你的 Shell 設定檔"></a>✅ 方法 2：查看你的 Shell 設定檔</h1><p>輸入：</p>
+<pre><code class="sh">cat ~/.zshrc
+</code></pre>
+<p>或（如果你用 bash）</p>
+<pre><code class="sh">cat ~/.bashrc
+</code></pre>
+<p>找到下面這段內容就表示已安裝：</p>
+<pre><code>export NVM_DIR=&quot;$HOME/.nvm&quot;
+[ -s &quot;$NVM_DIR/nvm.sh&quot; ] &amp;&amp; \. &quot;$NVM_DIR/nvm.sh&quot;
+</code></pre>
+<p>如果沒有看到，就表示 nvm 還沒正確設定。</p>
+<hr>
+<h1 id="✅-方法-3：查看-nvm-目錄是否存在"><a href="#✅-方法-3：查看-nvm-目錄是否存在" class="headerlink" title="✅ 方法 3：查看 nvm 目錄是否存在"></a>✅ 方法 3：查看 nvm 目錄是否存在</h1><pre><code class="sh">ls ~/.nvm
+</code></pre>
+<p>如果看到一大堆檔案（例如 <code>nvm.sh</code>、<code>versions/</code>），代表已安裝。</p>
+<p>如果看到：</p>
+<pre><code>ls: cannot access &#39;/Users/你/.nvm&#39;: No such file or directory
+</code></pre>
+<p>→ 代表未安裝。</p>
+<hr>
+<h1 id="你現在想做什麼？"><a href="#你現在想做什麼？" class="headerlink" title="你現在想做什麼？"></a>你現在想做什麼？</h1><p>我可以幫你：</p>
+<p>✓ 檢查你的 Mac 是否已安裝<br>✓ 若沒有，帶你一步步重新安裝 nvm<br>✓ 幫你設定 ~&#x2F;.zshrc，避免常見錯誤（很多 Mac 會忘記設定）</p>
+<p>你想要我幫你一起檢查嗎？</p>

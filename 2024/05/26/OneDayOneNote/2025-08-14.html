@@ -1,0 +1,89 @@
+<hr>
+<h2 id="title-2025-08-14-Line-訂單系統-為什麼-nvm-要用-18date-2025-12-12-22-26-15categories-OneDayOneNotetags-OneNote-Line訂單系統-git-description-2025-08-14-Line-訂單系統-為什麼-nvm-要用-18"><a href="#title-2025-08-14-Line-訂單系統-為什麼-nvm-要用-18date-2025-12-12-22-26-15categories-OneDayOneNotetags-OneNote-Line訂單系統-git-description-2025-08-14-Line-訂單系統-為什麼-nvm-要用-18" class="headerlink" title="title: 2025-08-14 Line 訂單系統- 為什麼 nvm 要用 18date: 2025-12-12 22:26:15categories: OneDayOneNotetags:  [OneNote , Line訂單系統,  git]description: 2025-08-14 Line 訂單系統- 為什麼 nvm 要用 18"></a>title: 2025-08-14 Line 訂單系統- 為什麼 nvm 要用 18<br>date: 2025-12-12 22:26:15<br>categories: OneDayOneNote<br>tags:  [OneNote , Line訂單系統,  git]<br>description: 2025-08-14 Line 訂單系統- 為什麼 nvm 要用 18</h2><h2 id="2025-08-14-Line-訂單系統-為什麼-nvm-要用-18"><a href="#2025-08-14-Line-訂單系統-為什麼-nvm-要用-18" class="headerlink" title="2025-08-14 Line 訂單系統- 為什麼 nvm 要用 18"></a>2025-08-14 Line 訂單系統- 為什麼 nvm 要用 18</h2><p><strong>為什麼我們在開發環境（前端 &#x2F; Vue &#x2F; 後端）常常指定：<br><code>nvm install 18</code>？</strong></p>
+<p>下面是完整而實用的原因（你用的 Mac、VS Code、Vue、Node 相關都會受影響）：</p>
+<hr>
+<h1 id="✅-1-Node-18-是-LTS（Long-Term-Support）版本"><a href="#✅-1-Node-18-是-LTS（Long-Term-Support）版本" class="headerlink" title="✅ 1. Node 18 是 LTS（Long-Term Support）版本"></a>✅ 1. Node 18 是 <strong>LTS（Long-Term Support）版本</strong></h1><p>業界普遍使用 <strong>LTS（長期維護版）</strong> 的 Node.js 版本，不用最新，也不要太舊。</p>
+<p>Node.js 官方 LTS 週期敘述：</p>
+<ul>
+<li>偶數版（16、18、20）才會成為 LTS</li>
+<li>奇數版（17、19、21）只是短期版，不適合正式專案</li>
+</ul>
+<p>因此 <strong>Node 18</strong> 是一個穩定、支援最久的版本。<br>許多框架（Vue、Vite、NestJS）都在 Node 16&#x2F;18&#x2F;20 測試最完整。</p>
+<hr>
+<h1 id="✅-2-Node-18-與-Vite-Vue-3-最相容"><a href="#✅-2-Node-18-與-Vite-Vue-3-最相容" class="headerlink" title="✅ 2. Node 18 與 Vite + Vue 3 最相容"></a>✅ 2. Node 18 與 <strong>Vite + Vue 3</strong> 最相容</h1><p>你的 Mac #1 是前端開發，使用：</p>
+<ul>
+<li>Vue 3</li>
+<li>Vite</li>
+<li>Tailwind</li>
+<li>TypeScript（載入中）</li>
+</ul>
+<p>這些工具的相容性清單通常寫：</p>
+<pre><code>Node.js &gt;= 16.14 or &gt;= 18
+</code></pre>
+<p>但實務上：</p>
+<ul>
+<li>Node 16 太舊</li>
+<li>Node 20 有些套件可能還沒完全跟上<br>➡ <strong>Node 18 是最穩、踩雷最少的前端版本</strong></li>
+</ul>
+<hr>
+<h1 id="✅-3-Node-18-與-NestJS（後端）非常穩定"><a href="#✅-3-Node-18-與-NestJS（後端）非常穩定" class="headerlink" title="✅ 3. Node 18 與 NestJS（後端）非常穩定"></a>✅ 3. Node 18 與 NestJS（後端）非常穩定</h1><p>你 Lenovo（後端）使用：</p>
+<ul>
+<li>NestJS</li>
+<li>Prisma（未來可能）</li>
+<li>Redis</li>
+<li>MySQL</li>
+<li>TypeScript</li>
+</ul>
+<p>這些後端套件已全面支援 Node 18。</p>
+<p>有些新版（20.x）功能（例如 fetch 原生支援）還會造成某些套件不相容。<br>因此：<br><strong>後端工程普遍都會跑在 Node 18 或 Node 20-LTS。</strong></p>
+<hr>
+<h1 id="✅-4-Node-18-是目前「最安全」的共同版本"><a href="#✅-4-Node-18-是目前「最安全」的共同版本" class="headerlink" title="✅ 4. Node 18 是目前「最安全」的共同版本"></a>✅ 4. Node 18 是目前「最安全」的共同版本</h1><p>因為你：</p>
+<ul>
+<li>Mac #1（前端）</li>
+<li>Lenovo（後端）</li>
+<li>Mac #2（文件機）</li>
+</ul>
+<p>三台機器不需要太多版本<br>Node 版本越少越好管理。</p>
+<p>Node 18 是業界基準值（公司專案很多也是 18）。</p>
+<hr>
+<h1 id="⚠️-哪些版本不要用？"><a href="#⚠️-哪些版本不要用？" class="headerlink" title="⚠️ 哪些版本不要用？"></a>⚠️ 哪些版本不要用？</h1><table>
+<thead>
+<tr>
+<th>版本</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>14</td>
+<td>太舊，安全更新停止</td>
+</tr>
+<tr>
+<td>16</td>
+<td>進入維護期，漸漸不被支援</td>
+</tr>
+<tr>
+<td>17、19、21</td>
+<td>非 LTS，不適合正式開發</td>
+</tr>
+<tr>
+<td>20</td>
+<td>新功能多、有些套件相容性問題（慢慢改善中）</td>
+</tr>
+<tr>
+<td>22</td>
+<td>最新，但很多開發工具不支援</td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="🎯-所以：選-Node-18-是為了："><a href="#🎯-所以：選-Node-18-是為了：" class="headerlink" title="🎯 所以：選 Node 18 是為了："></a>🎯 <strong>所以：選 Node 18 是為了：</strong></h1><ul>
+<li>最穩定</li>
+<li>Vue 3 &#x2F; Vite 最相容</li>
+<li>NestJS 也最常用</li>
+<li>套件不會踩雷</li>
+<li>不用修奇怪的錯誤</li>
+<li>三台機器統一版本最方便</li>
+</ul>
+<hr>
+<h1 id="如果你願意"><a href="#如果你願意" class="headerlink" title="如果你願意"></a>如果你願意</h1><p>我可以幫你規劃：</p>
+<h3 id="✔-三台電腦（前端-後端-文件）"><a href="#✔-三台電腦（前端-後端-文件）" class="headerlink" title="✔ 三台電腦（前端 &#x2F; 後端 &#x2F; 文件）"></a>✔ 三台電腦（前端 &#x2F; 後端 &#x2F; 文件）</h3><p>最佳 Node、nvm、環境切換方式<br>（讓你不會亂掉）</p>
+<h3 id="✔-一鍵查看-Node-版本的指令"><a href="#✔-一鍵查看-Node-版本的指令" class="headerlink" title="✔ 一鍵查看 Node 版本的指令"></a>✔ 一鍵查看 Node 版本的指令</h3><h3 id="✔-Vite、Vue、NestJS-最佳推薦-Node-版本表"><a href="#✔-Vite、Vue、NestJS-最佳推薦-Node-版本表" class="headerlink" title="✔ Vite、Vue、NestJS 最佳推薦 Node 版本表"></a>✔ Vite、Vue、NestJS 最佳推薦 Node 版本表</h3><p>你需要嗎？</p>

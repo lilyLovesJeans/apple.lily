@@ -1,0 +1,41 @@
+<hr>
+<h2 id="title-‘2025-08-17-Line-訂單系統-bash-nvm-command-not-found-系統找不到-nvm’date-2025-12-12-23-37-37tags-OneNote-Line訂單系統-git-description-‘2025-08-17-Line-訂單系統-bash-nvm-command-not-found-系統找不到-nvm’"><a href="#title-‘2025-08-17-Line-訂單系統-bash-nvm-command-not-found-系統找不到-nvm’date-2025-12-12-23-37-37tags-OneNote-Line訂單系統-git-description-‘2025-08-17-Line-訂單系統-bash-nvm-command-not-found-系統找不到-nvm’" class="headerlink" title="title: ‘2025-08-17 Line 訂單系統- bash: nvm: command not found 系統找不到 nvm’date: 2025-12-12 23:37:37tags:  [OneNote , Line訂單系統,  git]description: ‘2025-08-17 Line 訂單系統- bash: nvm: command not found 系統找不到 nvm’"></a>title: ‘2025-08-17 Line 訂單系統- bash: nvm: command not found 系統找不到 nvm’<br>date: 2025-12-12 23:37:37<br>tags:  [OneNote , Line訂單系統,  git]<br>description: ‘2025-08-17 Line 訂單系統- bash: nvm: command not found 系統找不到 nvm’</h2><h2 id="‘2025-08-17-Line-訂單系統-bash-nvm-command-not-found-系統找不到-nvm’"><a href="#‘2025-08-17-Line-訂單系統-bash-nvm-command-not-found-系統找不到-nvm’" class="headerlink" title="‘2025-08-17 Line 訂單系統- bash: nvm: command not found 系統找不到 nvm’"></a>‘2025-08-17 Line 訂單系統- bash: nvm: command not found 系統找不到 nvm’</h2><p>很好！你目前使用的是：</p>
+<h1 id="✅-Bash（-bin-bash）"><a href="#✅-Bash（-bin-bash）" class="headerlink" title="✅ Bash（&#x2F;bin&#x2F;bash）"></a>✅ <strong>Bash（&#x2F;bin&#x2F;bash）</strong></h1><p>所以你要設定的檔案不是 <code>~/.zshrc</code>，而是：</p>
+<h1 id="✔-bash-profile"><a href="#✔-bash-profile" class="headerlink" title="✔ ~/.bash_profile"></a>✔ <strong><code>~/.bash_profile</code></strong></h1><p>你的 nvm 已經安裝成功，只是「沒有載入到 bash」，所以系統找不到 <code>nvm</code>。</p>
+<p>我們現在把設定補上即可。</p>
+<hr>
+<h1 id="📌-請完全照著我下面這-3-步走，不會出錯"><a href="#📌-請完全照著我下面這-3-步走，不會出錯" class="headerlink" title="📌 請完全照著我下面這 3 步走，不會出錯"></a>📌 <strong>請完全照著我下面這 3 步走，不會出錯</strong></h1><hr>
+<h1 id="Step-1：開啟-bash-profile"><a href="#Step-1：開啟-bash-profile" class="headerlink" title="Step 1：開啟 ~&#x2F;.bash_profile"></a><strong>Step 1：開啟 ~&#x2F;.bash_profile</strong></h1><p>在 Terminal 輸入：</p>
+<pre><code>nano ~/.bash_profile
+</code></pre>
+<p>這會打開編輯器（黑色畫面）。</p>
+<hr>
+<h1 id="Step-2：把下面三行貼進去（Intel-Mac-專用！）"><a href="#Step-2：把下面三行貼進去（Intel-Mac-專用！）" class="headerlink" title="Step 2：把下面三行貼進去（Intel Mac 專用！）"></a><strong>Step 2：把下面三行貼進去（Intel Mac 專用！）</strong></h1><p>請複製並貼到檔案最下面：</p>
+<pre><code>export NVM_DIR=&quot;$HOME/.nvm&quot;
+[ -s &quot;/usr/local/opt/nvm/nvm.sh&quot; ] &amp;&amp; \. &quot;/usr/local/opt/nvm/nvm.sh&quot;
+[ -s &quot;/usr/local/opt/nvm/etc/bash_completion.d/nvm&quot; ] &amp;&amp; \. &quot;/usr/local/opt/nvm/etc/bash_completion.d/nvm&quot;
+</code></pre>
+<p>⚠ <strong>路徑一定要 &#x2F;usr&#x2F;local&#x2F;opt&#x2F;nvm</strong><br>（你是 Intel，不可用 &#x2F;opt&#x2F;homebrew）</p>
+<hr>
+<h1 id="Step-3：存檔-套用設定"><a href="#Step-3：存檔-套用設定" class="headerlink" title="Step 3：存檔 + 套用設定"></a><strong>Step 3：存檔 + 套用設定</strong></h1><p>在 nano 裡：</p>
+<ol>
+<li>按 <strong>Ctrl + O</strong>（字母 O）→ 儲存</li>
+<li>按 <strong>Enter</strong></li>
+<li>按 <strong>Ctrl + X</strong> → 離開編輯器</li>
+</ol>
+<p>然後在 Terminal 輸入：</p>
+<pre><code>source ~/.bash_profile
+</code></pre>
+<hr>
+<h1 id="✔-完成後測試"><a href="#✔-完成後測試" class="headerlink" title="✔ 完成後測試"></a>✔ 完成後測試</h1><pre><code>nvm --version
+nvm ls
+</code></pre>
+<p>你預期會看到：</p>
+<pre><code>0.40.3
+-&gt;      v18.x.x
+</code></pre>
+<hr>
+<h1 id="📣-貼給我："><a href="#📣-貼給我：" class="headerlink" title="📣 貼給我："></a>📣 貼給我：</h1><pre><code>nvm --version
+nvm ls
+</code></pre>
+<p>我確認你的 nvm 是否成功啟動並載入。</p>

@@ -1,0 +1,31 @@
+<hr>
+<h2 id="title-2025-08-15-Line-訂單系統-怎麼看-brew-的版本-date-2025-12-12-22-32-34categories-OneDayOneNotetags-OneNote-Line訂單系統-git-description-2025-08-15-Line-訂單系統-怎麼看-brew-的版本"><a href="#title-2025-08-15-Line-訂單系統-怎麼看-brew-的版本-date-2025-12-12-22-32-34categories-OneDayOneNotetags-OneNote-Line訂單系統-git-description-2025-08-15-Line-訂單系統-怎麼看-brew-的版本" class="headerlink" title="title: 2025-08-15 Line 訂單系統- 怎麼看 brew 的版本?date: 2025-12-12 22:32:34categories: OneDayOneNotetags:  [OneNote , Line訂單系統,  git]description: 2025-08-15 Line 訂單系統- 怎麼看 brew 的版本?"></a>title: 2025-08-15 Line 訂單系統- 怎麼看 brew 的版本?<br>date: 2025-12-12 22:32:34<br>categories: OneDayOneNote<br>tags:  [OneNote , Line訂單系統,  git]<br>description: 2025-08-15 Line 訂單系統- 怎麼看 brew 的版本?</h2><h2 id="2025-08-15-Line-訂單系統-怎麼看-brew-的版本"><a href="#2025-08-15-Line-訂單系統-怎麼看-brew-的版本" class="headerlink" title="2025-08-15 Line 訂單系統- 怎麼看 brew 的版本?"></a>2025-08-15 Line 訂單系統- 怎麼看 brew 的版本?</h2><p>要查看 <strong>Homebrew（brew）本身的版本</strong> 很簡單，你只需要在終端機輸入：</p>
+<h1 id="✅-查看-brew-版本"><a href="#✅-查看-brew-版本" class="headerlink" title="✅ 查看 brew 版本"></a>✅ 查看 brew 版本</h1><pre><code class="bash">brew --version
+</code></pre>
+<p>範例輸出可能像：</p>
+<pre><code>Homebrew 4.3.3
+Homebrew/homebrew-core (git revision xxxxx)
+Homebrew/homebrew-cask (git revision xxxxx)
+</code></pre>
+<hr>
+<h1 id="✅-查看-brew-是否正常運作（增強版）"><a href="#✅-查看-brew-是否正常運作（增強版）" class="headerlink" title="✅ 查看 brew 是否正常運作（增強版）"></a>✅ 查看 brew 是否正常運作（增強版）</h1><pre><code class="bash">brew doctor
+</code></pre>
+<p>如果出現：</p>
+<pre><code>Your system is ready to brew.
+</code></pre>
+<p>代表沒問題。</p>
+<hr>
+<h1 id="⛽-額外常用跟-brew-有關的版本指令"><a href="#⛽-額外常用跟-brew-有關的版本指令" class="headerlink" title="⛽ 額外常用跟 brew 有關的版本指令"></a>⛽ 額外常用跟 brew 有關的版本指令</h1><h3 id="✔-查看某個套件的版本（例如-git）"><a href="#✔-查看某個套件的版本（例如-git）" class="headerlink" title="✔ 查看某個套件的版本（例如 git）"></a>✔ 查看某個套件的版本（例如 git）</h3><pre><code class="bash">brew info git
+</code></pre>
+<h3 id="✔-查看某個已安裝套件的版本（例如-node）"><a href="#✔-查看某個已安裝套件的版本（例如-node）" class="headerlink" title="✔ 查看某個已安裝套件的版本（例如 node）"></a>✔ 查看某個已安裝套件的版本（例如 node）</h3><pre><code class="bash">brew list --versions node
+</code></pre>
+<h3 id="✔-查看所有已安裝套件-版本"><a href="#✔-查看所有已安裝套件-版本" class="headerlink" title="✔ 查看所有已安裝套件 + 版本"></a>✔ 查看所有已安裝套件 + 版本</h3><pre><code class="bash">brew list --versions
+</code></pre>
+<hr>
+<p>如果你告訴我你的輸出，我可以判斷：</p>
+<ul>
+<li>你的 Homebrew 是否太舊</li>
+<li>是否要更新</li>
+<li>你的 PATH 是否正確配置（特別是在 Intel vs M1&#x2F;M2 Mac 很容易錯）</li>
+</ul>
+<p>要不要幫你檢查一下？</p>

@@ -1,0 +1,44 @@
+<hr>
+<h2 id="title-2025-08-18-Line-訂單系統-source-bash-profile-這是什麼意思-date-2025-12-12-23-39-42tags-OneNote-Line訂單系統-git-description-2025-08-18-Line-訂單系統-source-bash-profile-這是什麼意思"><a href="#title-2025-08-18-Line-訂單系統-source-bash-profile-這是什麼意思-date-2025-12-12-23-39-42tags-OneNote-Line訂單系統-git-description-2025-08-18-Line-訂單系統-source-bash-profile-這是什麼意思" class="headerlink" title="title: 2025-08-18 Line 訂單系統- source ~&#x2F;.bash_profile 這是什麼意思?date: 2025-12-12 23:39:42tags:  [OneNote , Line訂單系統,  git]description: 2025-08-18 Line 訂單系統- source ~&#x2F;.bash_profile 這是什麼意思?"></a>title: 2025-08-18 Line 訂單系統- source ~&#x2F;.bash_profile 這是什麼意思?<br>date: 2025-12-12 23:39:42<br>tags:  [OneNote , Line訂單系統,  git]<br>description: 2025-08-18 Line 訂單系統- source ~&#x2F;.bash_profile 這是什麼意思?</h2><h2 id="2025-08-18-Line-訂單系統-source-bash-profile-這是什麼意思"><a href="#2025-08-18-Line-訂單系統-source-bash-profile-這是什麼意思" class="headerlink" title="2025-08-18 Line 訂單系統- source ~&#x2F;.bash_profile 這是什麼意思?"></a>2025-08-18 Line 訂單系統- source ~&#x2F;.bash_profile 這是什麼意思?</h2><p>這一步其實是 Linux &#x2F; macOS 裡的基礎概念，我用最簡單的方式解釋給你：</p>
+<hr>
+<h1 id="✅-source-bash-profile-的意思是：重新載入-Bash-設定"><a href="#✅-source-bash-profile-的意思是：重新載入-Bash-設定" class="headerlink" title="✅ source ~/.bash_profile 的意思是：重新載入 Bash 設定"></a>✅ <strong><code>source ~/.bash_profile</code> 的意思是：重新載入 Bash 設定</strong></h1><p>你剛剛把 nvm 的設定寫進：</p>
+<pre><code>~/.bash_profile
+</code></pre>
+<p>這是 Bash 的「設定檔」，只有 <strong>在你登入 &#x2F; 開新終端機</strong> 的時候才會被讀取。</p>
+<p>但是：</p>
+<ul>
+<li>你已經打開 Terminal</li>
+<li>你不想重新開啟或登出登入</li>
+</ul>
+<p>這時就需要輸入：</p>
+<pre><code>source ~/.bash_profile
+</code></pre>
+<h3 id="✔-把剛剛修改的設定-→-即時生效"><a href="#✔-把剛剛修改的設定-→-即時生效" class="headerlink" title="✔ 把剛剛修改的設定 → 即時生效"></a>✔ 把剛剛修改的設定 → 即時生效</h3><h3 id="✔-不用重開終端"><a href="#✔-不用重開終端" class="headerlink" title="✔ 不用重開終端"></a>✔ 不用重開終端</h3><h3 id="✔-不用重開機"><a href="#✔-不用重開機" class="headerlink" title="✔ 不用重開機"></a>✔ 不用重開機</h3><hr>
+<h1 id="📌-用生活比喻："><a href="#📌-用生活比喻：" class="headerlink" title="📌 用生活比喻："></a>📌 用生活比喻：</h1><p>就像你修改了手機 App 的設定（例如：打開推播），<br>但 App 還沒更新設定。</p>
+<p>你按一下 “重載” 鈕 → 就立即生效。</p>
+<p><code>source ~/.bash_profile</code> 就是按這個「重載設定鈕」。</p>
+<hr>
+<h1 id="📌-語法原理"><a href="#📌-語法原理" class="headerlink" title="📌 語法原理"></a>📌 語法原理</h1><p><code>source</code> &#x3D; 執行一個檔案裡的所有命令<br><code>~/.bash_profile</code> &#x3D; 你的個人 Bash 設定檔</p>
+<p>所以就是：</p>
+<pre><code>執行 ~/.bash_profile 裡面的所有設定
+</code></pre>
+<hr>
+<h1 id="⭐-用途"><a href="#⭐-用途" class="headerlink" title="⭐ 用途"></a>⭐ 用途</h1><p>當你修改：</p>
+<ul>
+<li>PATH</li>
+<li>nvm</li>
+<li>conda</li>
+<li>node</li>
+<li>git</li>
+<li>python</li>
+<li>ruby</li>
+<li>sdkman</li>
+</ul>
+<p>等設定時，都需要用 <code>source</code> 重新載入。</p>
+<hr>
+<h1 id="👉-現在你只要做這件事："><a href="#👉-現在你只要做這件事：" class="headerlink" title="👉 現在你只要做這件事："></a>👉 現在你只要做這件事：</h1><pre><code>source ~/.bash_profile
+</code></pre>
+<p>然後測試：</p>
+<pre><code>nvm --version
+</code></pre>
+<p>貼給我，我幫你確認 nvm 是否成功啟動！</p>

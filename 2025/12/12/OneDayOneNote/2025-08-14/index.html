@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2025-08-14 Line 訂單系統- 為什麼 nvm 要用 18">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025-08-14 Line 訂單系統- 為什麼 nvm 要用 18">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2025/12/12/OneDayOneNote/2025-08-14/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2025-08-14 Line 訂單系統- 為什麼 nvm 要用 18">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-12-12T14:26:15.000Z">
+<meta property="article:modified_time" content="2025-12-12T14:29:44.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="OneNote">
+<meta property="article:tag" content="Line訂單系統">
+<meta property="article:tag" content="git">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2025/12/12/OneDayOneNote/2025-08-14/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2025/12/12/OneDayOneNote/2025-08-14/","path":"2025/12/12/OneDayOneNote/2025-08-14/","title":"2025-08-14 Line 訂單系統- 為什麼 nvm 要用 18"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2025-08-14 Line 訂單系統- 為什麼 nvm 要用 18 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2025-08-14-Line-%E8%A8%82%E5%96%AE%E7%B3%BB%E7%B5%B1-%E7%82%BA%E4%BB%80%E9%BA%BC-nvm-%E8%A6%81%E7%94%A8-18"><span class="nav-number">1.</span> <span class="nav-text">2025-08-14 Line 訂單系統- 為什麼 nvm 要用 18</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%9C%85-1-Node-18-%E6%98%AF-LTS%EF%BC%88Long-Term-Support%EF%BC%89%E7%89%88%E6%9C%AC"><span class="nav-number"></span> <span class="nav-text">✅ 1. Node 18 是 LTS（Long-Term Support）版本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%9C%85-2-Node-18-%E8%88%87-Vite-Vue-3-%E6%9C%80%E7%9B%B8%E5%AE%B9"><span class="nav-number"></span> <span class="nav-text">✅ 2. Node 18 與 Vite + Vue 3 最相容</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%9C%85-3-Node-18-%E8%88%87-NestJS%EF%BC%88%E5%BE%8C%E7%AB%AF%EF%BC%89%E9%9D%9E%E5%B8%B8%E7%A9%A9%E5%AE%9A"><span class="nav-number"></span> <span class="nav-text">✅ 3. Node 18 與 NestJS（後端）非常穩定</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%9C%85-4-Node-18-%E6%98%AF%E7%9B%AE%E5%89%8D%E3%80%8C%E6%9C%80%E5%AE%89%E5%85%A8%E3%80%8D%E7%9A%84%E5%85%B1%E5%90%8C%E7%89%88%E6%9C%AC"><span class="nav-number"></span> <span class="nav-text">✅ 4. Node 18 是目前「最安全」的共同版本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%9A%A0%EF%B8%8F-%E5%93%AA%E4%BA%9B%E7%89%88%E6%9C%AC%E4%B8%8D%E8%A6%81%E7%94%A8%EF%BC%9F"><span class="nav-number"></span> <span class="nav-text">⚠️ 哪些版本不要用？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%8E%AF-%E6%89%80%E4%BB%A5%EF%BC%9A%E9%81%B8-Node-18-%E6%98%AF%E7%82%BA%E4%BA%86%EF%BC%9A"><span class="nav-number"></span> <span class="nav-text">🎯 所以：選 Node 18 是為了：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E4%BD%A0%E9%A1%98%E6%84%8F"><span class="nav-number"></span> <span class="nav-text">如果你願意</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%9C%94-%E4%B8%89%E5%8F%B0%E9%9B%BB%E8%85%A6%EF%BC%88%E5%89%8D%E7%AB%AF-%E5%BE%8C%E7%AB%AF-%E6%96%87%E4%BB%B6%EF%BC%89"><span class="nav-number">0.1.</span> <span class="nav-text">✔ 三台電腦（前端 &#x2F; 後端 &#x2F; 文件）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%9C%94-%E4%B8%80%E9%8D%B5%E6%9F%A5%E7%9C%8B-Node-%E7%89%88%E6%9C%AC%E7%9A%84%E6%8C%87%E4%BB%A4"><span class="nav-number">0.2.</span> <span class="nav-text">✔ 一鍵查看 Node 版本的指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%9C%94-Vite%E3%80%81Vue%E3%80%81NestJS-%E6%9C%80%E4%BD%B3%E6%8E%A8%E8%96%A6-Node-%E7%89%88%E6%9C%AC%E8%A1%A8"><span class="nav-number">0.3.</span> <span class="nav-text">✔ Vite、Vue、NestJS 最佳推薦 Node 版本表</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">517</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">42</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2025/12/12/OneDayOneNote/2025-08-14/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2025-08-14 Line 訂單系統- 為什麼 nvm 要用 18 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2025-08-14 Line 訂單系統- 為什麼 nvm 要用 18">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2025-08-14 Line 訂單系統- 為什麼 nvm 要用 18
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2025-12-12 22:26:15 / 修改時間：22:29:44" itemprop="dateCreated datePublished" datetime="2025-12-12T22:26:15+08:00">2025-12-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2025-08-14 Line 訂單系統- 為什麼 nvm 要用 18</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2025-08-14-Line-訂單系統-為什麼-nvm-要用-18"><a href="#2025-08-14-Line-訂單系統-為什麼-nvm-要用-18" class="headerlink" title="2025-08-14 Line 訂單系統- 為什麼 nvm 要用 18"></a>2025-08-14 Line 訂單系統- 為什麼 nvm 要用 18</h2><p><strong>為什麼我們在開發環境（前端 &#x2F; Vue &#x2F; 後端）常常指定：<br><code>nvm install 18</code>？</strong></p>
+<p>下面是完整而實用的原因（你用的 Mac、VS Code、Vue、Node 相關都會受影響）：</p>
+<hr>
+<h1 id="✅-1-Node-18-是-LTS（Long-Term-Support）版本"><a href="#✅-1-Node-18-是-LTS（Long-Term-Support）版本" class="headerlink" title="✅ 1. Node 18 是 LTS（Long-Term Support）版本"></a>✅ 1. Node 18 是 <strong>LTS（Long-Term Support）版本</strong></h1><p>業界普遍使用 <strong>LTS（長期維護版）</strong> 的 Node.js 版本，不用最新，也不要太舊。</p>
+<p>Node.js 官方 LTS 週期敘述：</p>
+<ul>
+<li>偶數版（16、18、20）才會成為 LTS</li>
+<li>奇數版（17、19、21）只是短期版，不適合正式專案</li>
+</ul>
+<p>因此 <strong>Node 18</strong> 是一個穩定、支援最久的版本。<br>許多框架（Vue、Vite、NestJS）都在 Node 16&#x2F;18&#x2F;20 測試最完整。</p>
+<hr>
+<h1 id="✅-2-Node-18-與-Vite-Vue-3-最相容"><a href="#✅-2-Node-18-與-Vite-Vue-3-最相容" class="headerlink" title="✅ 2. Node 18 與 Vite + Vue 3 最相容"></a>✅ 2. Node 18 與 <strong>Vite + Vue 3</strong> 最相容</h1><p>你的 Mac #1 是前端開發，使用：</p>
+<ul>
+<li>Vue 3</li>
+<li>Vite</li>
+<li>Tailwind</li>
+<li>TypeScript（載入中）</li>
+</ul>
+<p>這些工具的相容性清單通常寫：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Node.js &gt;= 16.14 or &gt;= 18</span><br></pre></td></tr></table></figure>
+
+<p>但實務上：</p>
+<ul>
+<li>Node 16 太舊</li>
+<li>Node 20 有些套件可能還沒完全跟上<br>➡ <strong>Node 18 是最穩、踩雷最少的前端版本</strong></li>
+</ul>
+<hr>
+<h1 id="✅-3-Node-18-與-NestJS（後端）非常穩定"><a href="#✅-3-Node-18-與-NestJS（後端）非常穩定" class="headerlink" title="✅ 3. Node 18 與 NestJS（後端）非常穩定"></a>✅ 3. Node 18 與 NestJS（後端）非常穩定</h1><p>你 Lenovo（後端）使用：</p>
+<ul>
+<li>NestJS</li>
+<li>Prisma（未來可能）</li>
+<li>Redis</li>
+<li>MySQL</li>
+<li>TypeScript</li>
+</ul>
+<p>這些後端套件已全面支援 Node 18。</p>
+<p>有些新版（20.x）功能（例如 fetch 原生支援）還會造成某些套件不相容。<br>因此：<br><strong>後端工程普遍都會跑在 Node 18 或 Node 20-LTS。</strong></p>
+<hr>
+<h1 id="✅-4-Node-18-是目前「最安全」的共同版本"><a href="#✅-4-Node-18-是目前「最安全」的共同版本" class="headerlink" title="✅ 4. Node 18 是目前「最安全」的共同版本"></a>✅ 4. Node 18 是目前「最安全」的共同版本</h1><p>因為你：</p>
+<ul>
+<li>Mac #1（前端）</li>
+<li>Lenovo（後端）</li>
+<li>Mac #2（文件機）</li>
+</ul>
+<p>三台機器不需要太多版本<br>Node 版本越少越好管理。</p>
+<p>Node 18 是業界基準值（公司專案很多也是 18）。</p>
+<hr>
+<h1 id="⚠️-哪些版本不要用？"><a href="#⚠️-哪些版本不要用？" class="headerlink" title="⚠️ 哪些版本不要用？"></a>⚠️ 哪些版本不要用？</h1><table>
+<thead>
+<tr>
+<th>版本</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>14</td>
+<td>太舊，安全更新停止</td>
+</tr>
+<tr>
+<td>16</td>
+<td>進入維護期，漸漸不被支援</td>
+</tr>
+<tr>
+<td>17、19、21</td>
+<td>非 LTS，不適合正式開發</td>
+</tr>
+<tr>
+<td>20</td>
+<td>新功能多、有些套件相容性問題（慢慢改善中）</td>
+</tr>
+<tr>
+<td>22</td>
+<td>最新，但很多開發工具不支援</td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="🎯-所以：選-Node-18-是為了："><a href="#🎯-所以：選-Node-18-是為了：" class="headerlink" title="🎯 所以：選 Node 18 是為了："></a>🎯 <strong>所以：選 Node 18 是為了：</strong></h1><ul>
+<li>最穩定</li>
+<li>Vue 3 &#x2F; Vite 最相容</li>
+<li>NestJS 也最常用</li>
+<li>套件不會踩雷</li>
+<li>不用修奇怪的錯誤</li>
+<li>三台機器統一版本最方便</li>
+</ul>
+<hr>
+<h1 id="如果你願意"><a href="#如果你願意" class="headerlink" title="如果你願意"></a>如果你願意</h1><p>我可以幫你規劃：</p>
+<h3 id="✔-三台電腦（前端-後端-文件）"><a href="#✔-三台電腦（前端-後端-文件）" class="headerlink" title="✔ 三台電腦（前端 &#x2F; 後端 &#x2F; 文件）"></a>✔ 三台電腦（前端 &#x2F; 後端 &#x2F; 文件）</h3><p>最佳 Node、nvm、環境切換方式<br>（讓你不會亂掉）</p>
+<h3 id="✔-一鍵查看-Node-版本的指令"><a href="#✔-一鍵查看-Node-版本的指令" class="headerlink" title="✔ 一鍵查看 Node 版本的指令"></a>✔ 一鍵查看 Node 版本的指令</h3><h3 id="✔-Vite、Vue、NestJS-最佳推薦-Node-版本表"><a href="#✔-Vite、Vue、NestJS-最佳推薦-Node-版本表" class="headerlink" title="✔ Vite、Vue、NestJS 最佳推薦 Node 版本表"></a>✔ Vite、Vue、NestJS 最佳推薦 Node 版本表</h3><p>你需要嗎？</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/OneNote/" rel="tag"># OneNote</a>
+              <a href="/apple.lily/tags/Line%E8%A8%82%E5%96%AE%E7%B3%BB%E7%B5%B1/" rel="tag"># Line訂單系統</a>
+              <a href="/apple.lily/tags/git/" rel="tag"># git</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/11/28/OneDayOneNote/2025-08-13/" rel="prev" title="2025-08-13 Line 訂單系統- Mac1">
+                  <i class="fa fa-angle-left"></i> 2025-08-13 Line 訂單系統- Mac1
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2025/12/12/OneDayOneNote/2025-08-15/" rel="next" title="2025-08-15 Line 訂單系統- 怎麼看 brew 的版本?">
+                  2025-08-15 Line 訂單系統- 怎麼看 brew 的版本? <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/apple.lily/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
