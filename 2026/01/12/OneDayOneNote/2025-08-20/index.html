@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2025-08-20 建立新Hexo 專案完整步驟">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025-08-20 建立新Hexo 專案完整步驟">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2026/01/12/OneDayOneNote/2025-08-20/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2025-08-20 建立新Hexo 專案完整步驟">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2026-01-12T14:15:59.000Z">
+<meta property="article:modified_time" content="2026-01-12T14:17:41.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="hexo">
+<meta property="article:tag" content="github">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2026/01/12/OneDayOneNote/2025-08-20/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2026/01/12/OneDayOneNote/2025-08-20/","path":"2026/01/12/OneDayOneNote/2025-08-20/","title":"2025-08-20 建立新Hexo 專案完整步驟"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2025-08-20 建立新Hexo 專案完整步驟 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2025-08-20-%E5%BB%BA%E7%AB%8B%E6%96%B0Hexo-%E5%B0%88%E6%A1%88%E5%AE%8C%E6%95%B4%E6%AD%A5%E9%A9%9F"><span class="nav-number">1.</span> <span class="nav-text">2025-08-20 建立新Hexo 專案完整步驟</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%8F%BE%E5%9C%A8%E7%9A%84%E7%8B%80%E6%85%8B%EF%BC%88%E7%A2%BA%E8%AA%8D%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">現在的狀態（確認）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%9C%E9%8D%B5%E8%A7%80%E5%BF%B5%EF%BC%88%E5%85%88%E8%AC%9B%E6%B8%85%E6%A5%9A%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">關鍵觀念（先講清楚）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8E%A5%E4%B8%8B%E4%BE%86%EF%BC%9A%E6%9C%AC%E6%A9%9F%E7%AB%AF%E8%A6%81%E5%81%9A%E7%9A%84%E4%BA%8B%EF%BC%88%E7%85%A7%E9%A0%86%E5%BA%8F%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">接下來：本機端要做的事（照順序）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%9F%A2-STEP-4%EF%BC%9A%E5%9C%A8-USB-%E5%BB%BA%E7%AB%8B-Hexo-%E5%B0%88%E6%A1%88%E7%9B%AE%E9%8C%84"><span class="nav-number">1.</span> <span class="nav-text">🟢 STEP 4：在 USB 建立 Hexo 專案目錄</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%EF%B8%8F%E2%83%A3-%E9%80%B2%E5%88%B0-USB"><span class="nav-number">1.1.</span> <span class="nav-text">1️⃣ 進到 USB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%EF%B8%8F%E2%83%A3-%E5%BB%BA%E7%AB%8B-Hexo-%E5%B0%88%E6%A1%88"><span class="nav-number">1.2.</span> <span class="nav-text">2️⃣ 建立 Hexo 專案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%EF%B8%8F%E2%83%A3-%E9%80%B2%E5%85%A5%E5%B0%88%E6%A1%88%E7%9B%AE%E9%8C%84"><span class="nav-number">1.3.</span> <span class="nav-text">3️⃣ 進入專案目錄</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%EF%B8%8F%E2%83%A3-%E5%AE%89%E8%A3%9D%E5%B0%88%E6%A1%88%E9%9C%80%E8%A6%81%E7%9A%84%E5%A5%97%E4%BB%B6"><span class="nav-number">1.4.</span> <span class="nav-text">4️⃣ 安裝專案需要的套件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%9F%A2-STEP-5%EF%BC%9A%E6%B8%AC%E8%A9%A6%E6%9C%AC%E6%A9%9F%E6%98%AF%E5%90%A6%E6%AD%A3%E5%B8%B8"><span class="nav-number">2.</span> <span class="nav-text">🟢 STEP 5：測試本機是否正常</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%9F%A2-STEP-6%EF%BC%9A%E5%AE%89%E8%A3%9D-NexT-%E4%B8%BB%E9%A1%8C%EF%BC%88%E4%BD%A0%E8%A6%81%E7%9A%84%E7%89%88%E9%9D%A2%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">🟢 STEP 6：安裝 NexT 主題（你要的版面）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%EF%B8%8F%E2%83%A3-%E9%80%B2%E5%88%B0-themes"><span class="nav-number">3.1.</span> <span class="nav-text">1️⃣ 進到 themes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%EF%B8%8F%E2%83%A3-%E4%B8%8B%E8%BC%89-NexT"><span class="nav-number">3.2.</span> <span class="nav-text">2️⃣ 下載 NexT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%EF%B8%8F%E2%83%A3-%E5%9B%9E%E5%88%B0%E5%B0%88%E6%A1%88%E6%A0%B9%E7%9B%AE%E9%8C%84"><span class="nav-number">3.3.</span> <span class="nav-text">3️⃣ 回到專案根目錄</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%EF%B8%8F%E2%83%A3-%E5%95%9F%E7%94%A8-NexT"><span class="nav-number">3.4.</span> <span class="nav-text">4️⃣ 啟用 NexT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5%EF%B8%8F%E2%83%A3-%E9%87%8D%E8%B7%91%E6%9C%AC%E6%A9%9F"><span class="nav-number">3.5.</span> <span class="nav-text">5️⃣ 重跑本機</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%9F%A2-STEP-7%EF%BC%9A%E8%A8%AD%E5%AE%9A-GitHub-Pages-%E8%87%AA%E5%8B%95%E9%83%A8%E7%BD%B2"><span class="nav-number">4.</span> <span class="nav-text">🟢 STEP 7：設定 GitHub Pages 自動部署</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%EF%B8%8F%E2%83%A3-%E5%AE%89%E8%A3%9D-deployer%EF%BC%88%E4%BD%A0%E5%89%9B%E5%89%9B%E5%95%8F%E7%9A%84%EF%BC%89"><span class="nav-number">4.1.</span> <span class="nav-text">1️⃣ 安裝 deployer（你剛剛問的）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%EF%B8%8F%E2%83%A3-%E8%A8%AD%E5%AE%9A-config-yml%EF%BC%88%E5%BE%88%E9%87%8D%E8%A6%81%EF%BC%89"><span class="nav-number">4.2.</span> <span class="nav-text">2️⃣ 設定 _config.yml（很重要）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%EF%B8%8F%E2%83%A3-%E7%AC%AC%E4%B8%80%E6%AC%A1%E9%83%A8%E7%BD%B2"><span class="nav-number">4.3.</span> <span class="nav-text">3️⃣ 第一次部署</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%9F%A2-STEP-8%EF%BC%9AGitHub-Pages-%E8%A8%AD%E5%AE%9A%EF%BC%88%E5%8F%AA%E8%A6%81%E4%B8%80%E6%AC%A1%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">🟢 STEP 8：GitHub Pages 設定（只要一次）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%93%8C-%E7%B5%90%E6%A7%8B%E5%B0%8D%E7%85%A7%EF%BC%88%E8%AE%93%E4%BD%A0%E5%AE%89%E5%BF%83%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">📌 結構對照（讓你安心）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A5%E4%B8%8B%E4%BE%86%E6%88%91%E5%BB%BA%E8%AD%B0%E4%BD%A0%E5%81%9A%E4%BB%80%E9%BA%BC%EF%BC%88%E4%B8%8B%E4%B8%80%E6%AD%A5%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">接下來我建議你做什麼（下一步）</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">518</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">42</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2026/01/12/OneDayOneNote/2025-08-20/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2025-08-20 建立新Hexo 專案完整步驟 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2025-08-20 建立新Hexo 專案完整步驟">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2025-08-20 建立新Hexo 專案完整步驟
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2026-01-12 22:15:59 / 修改時間：22:17:41" itemprop="dateCreated datePublished" datetime="2026-01-12T22:15:59+08:00">2026-01-12</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2025-08-20 建立新Hexo 專案完整步驟</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2025-08-20-建立新Hexo-專案完整步驟"><a href="#2025-08-20-建立新Hexo-專案完整步驟" class="headerlink" title="2025-08-20 建立新Hexo 專案完整步驟"></a>2025-08-20 建立新Hexo 專案完整步驟</h2><hr>
+<h1 id="現在的狀態（確認）"><a href="#現在的狀態（確認）" class="headerlink" title="現在的狀態（確認）"></a>現在的狀態（確認）</h1><p>你已經完成：</p>
+<p>✅ 1. Node.js、Git（環境 OK）<br>✅ 2. GitHub repo 已建立<br>👉 <code>https://github.com/lilyLovesJeans/sourdough-notes.git</code><br>✅ 3. Hexo 已安裝（全域）</p>
+<p>你<strong>現在還沒有做的，是「本機的 Hexo 專案」</strong>。</p>
+<hr>
+<h1 id="關鍵觀念（先講清楚）"><a href="#關鍵觀念（先講清楚）" class="headerlink" title="關鍵觀念（先講清楚）"></a>關鍵觀念（先講清楚）</h1><blockquote>
+<p><strong>Hexo 專案 &#x3D; 本機的一個資料夾</strong></p>
+<p>它可以在任何地方，只要你記得它在哪。</p>
+</blockquote>
+<p>你前面說過：</p>
+<ul>
+<li>你用 <strong>USB</strong></li>
+<li>USB 還有 <strong>45GB</strong></li>
+<li>你已經決定：</li>
+</ul>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/Volumes/Lily_Data/hexo-sourdough</span><br></pre></td></tr></table></figure>
+
+<p>👉 <strong>這個選擇是完全正確的</strong><br>👉 而且「跟 apple.lily.github.io 那個資料夾沒有衝突」</p>
+<hr>
+<h1 id="接下來：本機端要做的事（照順序）"><a href="#接下來：本機端要做的事（照順序）" class="headerlink" title="接下來：本機端要做的事（照順序）"></a>接下來：本機端要做的事（照順序）</h1><h2 id="🟢-STEP-4：在-USB-建立-Hexo-專案目錄"><a href="#🟢-STEP-4：在-USB-建立-Hexo-專案目錄" class="headerlink" title="🟢 STEP 4：在 USB 建立 Hexo 專案目錄"></a>🟢 STEP 4：在 USB 建立 Hexo 專案目錄</h2><h3 id="1️⃣-進到-USB"><a href="#1️⃣-進到-USB" class="headerlink" title="1️⃣ 進到 USB"></a>1️⃣ 進到 USB</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /Volumes/Lily_Data</span><br></pre></td></tr></table></figure>
+
+<p>確認一下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span></span><br></pre></td></tr></table></figure>
+
+<p>看到 <code>Lily_Data</code> 裡面你熟悉的資料就 OK。</p>
+<hr>
+<h3 id="2️⃣-建立-Hexo-專案"><a href="#2️⃣-建立-Hexo-專案" class="headerlink" title="2️⃣ 建立 Hexo 專案"></a>2️⃣ 建立 Hexo 專案</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init hexo-sourdough</span><br></pre></td></tr></table></figure>
+
+<p>這一行會：</p>
+<ul>
+<li><p>建立資料夾 <code>hexo-sourdough</code></p>
+</li>
+<li><p>裡面自動產生：</p>
+<ul>
+<li><code>_config.yml</code></li>
+<li><code>source/</code></li>
+<li><code>themes/</code></li>
+<li><code>package.json</code></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="3️⃣-進入專案目錄"><a href="#3️⃣-進入專案目錄" class="headerlink" title="3️⃣ 進入專案目錄"></a>3️⃣ 進入專案目錄</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> hexo-sourdough</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="4️⃣-安裝專案需要的套件"><a href="#4️⃣-安裝專案需要的套件" class="headerlink" title="4️⃣ 安裝專案需要的套件"></a>4️⃣ 安裝專案需要的套件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
+
+<p>📌 這一步一定要做<br>📌 會產生 <code>node_modules/</code></p>
+<hr>
+<h2 id="🟢-STEP-5：測試本機是否正常"><a href="#🟢-STEP-5：測試本機是否正常" class="headerlink" title="🟢 STEP 5：測試本機是否正常"></a>🟢 STEP 5：測試本機是否正常</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+<p>終端機看到：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:4000</span><br></pre></td></tr></table></figure>
+
+<p>用瀏覽器打開看，有看到 Hexo 預設首頁就代表 <strong>本機 OK</strong>。</p>
+<hr>
+<h2 id="🟢-STEP-6：安裝-NexT-主題（你要的版面）"><a href="#🟢-STEP-6：安裝-NexT-主題（你要的版面）" class="headerlink" title="🟢 STEP 6：安裝 NexT 主題（你要的版面）"></a>🟢 STEP 6：安裝 NexT 主題（你要的版面）</h2><h3 id="1️⃣-進到-themes"><a href="#1️⃣-進到-themes" class="headerlink" title="1️⃣ 進到 themes"></a>1️⃣ 進到 themes</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> themes</span><br></pre></td></tr></table></figure>
+
+<h3 id="2️⃣-下載-NexT"><a href="#2️⃣-下載-NexT" class="headerlink" title="2️⃣ 下載 NexT"></a>2️⃣ 下載 NexT</h3><p>（建議方式）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/next-theme/hexo-theme-next.git next</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="3️⃣-回到專案根目錄"><a href="#3️⃣-回到專案根目錄" class="headerlink" title="3️⃣ 回到專案根目錄"></a>3️⃣ 回到專案根目錄</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ..</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="4️⃣-啟用-NexT"><a href="#4️⃣-啟用-NexT" class="headerlink" title="4️⃣ 啟用 NexT"></a>4️⃣ 啟用 NexT</h3><p>打開 <code>_config.yml</code>，找到：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">theme:</span> <span class="string">landscape</span></span><br></pre></td></tr></table></figure>
+
+<p>改成：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">theme:</span> <span class="string">next</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="5️⃣-重跑本機"><a href="#5️⃣-重跑本機" class="headerlink" title="5️⃣ 重跑本機"></a>5️⃣ 重跑本機</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+<p>看到 NexT 樣式就成功了 🎉</p>
+<hr>
+<h2 id="🟢-STEP-7：設定-GitHub-Pages-自動部署"><a href="#🟢-STEP-7：設定-GitHub-Pages-自動部署" class="headerlink" title="🟢 STEP 7：設定 GitHub Pages 自動部署"></a>🟢 STEP 7：設定 GitHub Pages 自動部署</h2><h3 id="1️⃣-安裝-deployer（你剛剛問的）"><a href="#1️⃣-安裝-deployer（你剛剛問的）" class="headerlink" title="1️⃣ 安裝 deployer（你剛剛問的）"></a>1️⃣ 安裝 deployer（你剛剛問的）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="2️⃣-設定-config-yml（很重要）"><a href="#2️⃣-設定-config-yml（很重要）" class="headerlink" title="2️⃣ 設定 _config.yml（很重要）"></a>2️⃣ 設定 <code>_config.yml</code>（很重要）</h3><p>在檔案最下面加：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/lilyLovesJeans/sourdough-notes.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">main</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="3️⃣-第一次部署"><a href="#3️⃣-第一次部署" class="headerlink" title="3️⃣ 第一次部署"></a>3️⃣ 第一次部署</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<p>第一次會稍慢，正常。</p>
+<hr>
+<h2 id="🟢-STEP-8：GitHub-Pages-設定（只要一次）"><a href="#🟢-STEP-8：GitHub-Pages-設定（只要一次）" class="headerlink" title="🟢 STEP 8：GitHub Pages 設定（只要一次）"></a>🟢 STEP 8：GitHub Pages 設定（只要一次）</h2><p>到 GitHub repo → <strong>Settings → Pages</strong></p>
+<ul>
+<li>Source：<code>Deploy from a branch</code></li>
+<li>Branch：<code>gh-pages</code></li>
+<li>Folder：<code>/ (root)</code></li>
+</ul>
+<p>儲存。</p>
+<p>等 1–3 分鐘，你的網站就會出現在：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://lilylovesjeans.github.io/sourdough-notes/</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="📌-結構對照（讓你安心）"><a href="#📌-結構對照（讓你安心）" class="headerlink" title="📌 結構對照（讓你安心）"></a>📌 結構對照（讓你安心）</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">USB:</span><br><span class="line">└── /Volumes/Lily_Data/</span><br><span class="line">    └── hexo-sourdough/        ← 酸種筆記 Hexo 專案</span><br><span class="line">        ├── _config.yml</span><br><span class="line">        ├── source/</span><br><span class="line">        │   └── _posts/        ← 你的酸種文章</span><br><span class="line">        ├── themes/</span><br><span class="line">        │   └── next/</span><br><span class="line">        └── public/            ← hexo g 產生（不用動）</span><br></pre></td></tr></table></figure>
+
+<p>你的工程師筆記 <code>lily_posts</code> <strong>完全不會被影響</strong>。</p>
+<hr>
+<h2 id="接下來我建議你做什麼（下一步）"><a href="#接下來我建議你做什麼（下一步）" class="headerlink" title="接下來我建議你做什麼（下一步）"></a>接下來我建議你做什麼（下一步）</h2><p>👉 <strong>先做到這一行成功為止：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+<p>只要你看到 NexT 首頁，我們再一起慢慢：</p>
+<ul>
+<li>設定 NexT 外觀</li>
+<li>建立「酸種養成」分類</li>
+<li>寫第一篇 starter 筆記</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/hexo/" rel="tag"># hexo</a>
+              <a href="/apple.lily/tags/github/" rel="tag"># github</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2026/01/08/OneDayOneNote/2025-08-19/" rel="prev" title="2025-08-19 GitHub Hexo NexT流程">
+                  <i class="fa fa-angle-left"></i> 2025-08-19 GitHub Hexo NexT流程
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/apple.lily/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
