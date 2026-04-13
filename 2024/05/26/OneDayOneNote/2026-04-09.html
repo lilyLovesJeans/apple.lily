@@ -1,0 +1,97 @@
+<hr>
+<h2 id="title-2026-04-09-在資料表-是大表join-比較快-還是小表-join-比較快-date-2026-04-09-22-37-06categories-OneDayOneNotetags-database-description-2026-04-09-在資料表-是大表join-比較快-還是小表-join-比較快"><a href="#title-2026-04-09-在資料表-是大表join-比較快-還是小表-join-比較快-date-2026-04-09-22-37-06categories-OneDayOneNotetags-database-description-2026-04-09-在資料表-是大表join-比較快-還是小表-join-比較快" class="headerlink" title="title: 2026-04-09 在資料表 是大表join 比較快 還是小表 join 比較快?date: 2026-04-09 22:37:06categories: OneDayOneNotetags:  [database]description: 2026-04-09 在資料表 是大表join 比較快 還是小表 join 比較快?"></a>title: 2026-04-09 在資料表 是大表join 比較快 還是小表 join 比較快?<br>date: 2026-04-09 22:37:06<br>categories: OneDayOneNote<br>tags:  [database]<br>description: 2026-04-09 在資料表 是大表join 比較快 還是小表 join 比較快?</h2><h2 id="2026-04-09-在資料表-是大表join-比較快-還是小表-join-比較快"><a href="#2026-04-09-在資料表-是大表join-比較快-還是小表-join-比較快" class="headerlink" title="2026-04-09 在資料表 是大表join 比較快 還是小表 join 比較快?"></a>2026-04-09 在資料表 是大表join 比較快 還是小表 join 比較快?</h2><p>在資料表 是大表join 比較快 還是小表 join 比較快?</p>
+<p>下面給你 <strong>最精準、最實務、DBA 也會點頭的 SQL 高性能五大原則</strong>，特別是用在 Oracle 最有感。</p>
+<hr>
+<h1 id="🚀-寫-SQL-保證快的五大原則（Oracle-實務版）"><a href="#🚀-寫-SQL-保證快的五大原則（Oracle-實務版）" class="headerlink" title="🚀 寫 SQL 保證快的五大原則（Oracle 實務版）"></a>🚀 <strong>寫 SQL 保證快的五大原則（Oracle 實務版）</strong></h1><hr>
+<h1 id="1-Join-與-Where-條件一定要用「可走索引」的欄位"><a href="#1-Join-與-Where-條件一定要用「可走索引」的欄位" class="headerlink" title="1. Join 與 Where 條件一定要用「可走索引」的欄位"></a><strong>1. Join 與 Where 條件一定要用「可走索引」的欄位</strong></h1><p><strong>✓ 正確：</strong></p>
+<pre><code class="sql">ON A.ID = B.ID
+WHERE A.STATUS = &#39;ACTIVE&#39;
+</code></pre>
+<p><strong>✗ 錯誤（會破壞索引）：</strong></p>
+<pre><code class="sql">ON TO_CHAR(A.ID) = B.ID
+WHERE UPPER(A.NAME) = &#39;JOHN&#39;
+</code></pre>
+<p><strong>理由：</strong><br>只要你在欄位上做 function &#x2F; 計算 → Oracle 不能用索引 → 直接變慢。</p>
+<p><strong>解法：改成 function-free：</strong></p>
+<pre><code class="sql">WHERE A.NAME = &#39;john&#39;
+</code></pre>
+<p>（或使用 function-based index）</p>
+<hr>
+<h1 id="2-先把資料量縮小，再-JOIN（非常關鍵）"><a href="#2-先把資料量縮小，再-JOIN（非常關鍵）" class="headerlink" title="2. 先把資料量縮小，再 JOIN（非常關鍵）"></a><strong>2. 先把資料量縮小，再 JOIN（非常關鍵）</strong></h1><p>❌ 壞範例（join 全表後才 WHERE）：</p>
+<pre><code class="sql">SELECT *
+FROM A
+JOIN B ON A.ID = B.ID
+WHERE A.STATUS = &#39;ACTIVE&#39;;
+</code></pre>
+<p>Oracle 有時不會先 filter。</p>
+<p>✔ 好範例（先縮小 A，再 join）：</p>
+<pre><code class="sql">WITH A1 AS (
+    SELECT * FROM A WHERE STATUS = &#39;ACTIVE&#39;
+)
+SELECT *
+FROM A1
+JOIN B ON A1.ID = B.ID;
+</code></pre>
+<p><strong>理由：</strong><br>將 1000 萬筆先變成 10 萬筆，再 join → 速度差 50 倍以上。</p>
+<hr>
+<h1 id="3-避免-SELECT-，只取需要的欄位"><a href="#3-避免-SELECT-，只取需要的欄位" class="headerlink" title="*3. 避免 SELECT ，只取需要的欄位"></a>*<em>3. 避免 SELECT <em>，只取需要的欄位</em></em></h1><p>❌ 壞習慣：</p>
+<pre><code class="sql">SELECT *
+</code></pre>
+<p>✔ 好習慣：</p>
+<pre><code class="sql">SELECT id, name, price
+</code></pre>
+<p><strong>理由：</strong></p>
+<ul>
+<li>減少 I&#x2F;O</li>
+<li>減少 CPU</li>
+<li>減少 network 傳輸</li>
+<li>減少排序和 hash join 所需的 memory</li>
+</ul>
+<p>對大型 SQL 效能提升巨大。</p>
+<hr>
+<h1 id="4-用-EXISTS-IN-JOIN-的最佳使用原則"><a href="#4-用-EXISTS-IN-JOIN-的最佳使用原則" class="headerlink" title="4. 用 EXISTS &#x2F; IN &#x2F; JOIN 的最佳使用原則"></a><strong>4. 用 EXISTS &#x2F; IN &#x2F; JOIN 的最佳使用原則</strong></h1><p>Oracle 的性能排序一般是：</p>
+<h3 id="小集合-→-用-IN（list）"><a href="#小集合-→-用-IN（list）" class="headerlink" title="小集合 → 用 IN（list）"></a><strong>小集合 → 用 IN（list）</strong></h3><pre><code class="sql">WHERE ID IN (1,2,3)
+</code></pre>
+<h3 id="大集合-→-用-JOIN-或-EXISTS"><a href="#大集合-→-用-JOIN-或-EXISTS" class="headerlink" title="大集合 → 用 JOIN 或 EXISTS"></a><strong>大集合 → 用 JOIN 或 EXISTS</strong></h3><pre><code class="sql">WHERE EXISTS (
+    SELECT 1 FROM B WHERE B.ID = A.ID
+)
+</code></pre>
+<h3 id="NOT-IN-極慢-→-用-NOT-EXISTS-取代"><a href="#NOT-IN-極慢-→-用-NOT-EXISTS-取代" class="headerlink" title="NOT IN 極慢 → 用 NOT EXISTS 取代"></a><strong>NOT IN 極慢 → 用 NOT EXISTS 取代</strong></h3><pre><code class="sql">-- 慢
+WHERE A.ID NOT IN (SELECT ID FROM B)
+
+-- 快
+WHERE NOT EXISTS (SELECT 1 FROM B WHERE B.ID = A.ID)
+</code></pre>
+<hr>
+<h1 id="5-ORDER-BY-大量資料-效能殺手（能避免就避免）"><a href="#5-ORDER-BY-大量資料-效能殺手（能避免就避免）" class="headerlink" title="5. ORDER BY + 大量資料 &#x3D; 效能殺手（能避免就避免）"></a><strong>5. ORDER BY + 大量資料 &#x3D; 效能殺手（能避免就避免）</strong></h1><p>排序是業界噩夢之一（尤其沒有索引時）。</p>
+<p>❌ 壞範例（無索引排序）：</p>
+<pre><code class="sql">SELECT * FROM A ORDER BY CREATE_DATE;
+</code></pre>
+<p>會產生大量 TEMP I&#x2F;O（非常慢）。</p>
+<p>✔ 解法 1：建索引</p>
+<pre><code class="sql">CREATE INDEX IDX_A_CREATEDATE ON A(CREATE_DATE);
+</code></pre>
+<p>✔ 解法 2：只排序小集合</p>
+<pre><code class="sql">WITH A1 AS (
+    SELECT * FROM A WHERE STATUS = &#39;ACTIVE&#39;
+)
+SELECT * FROM A1 ORDER BY CREATE_DATE;
+</code></pre>
+<hr>
+<h1 id="🎯-Bonus（額外兩個超重要小技巧）"><a href="#🎯-Bonus（額外兩個超重要小技巧）" class="headerlink" title="🎯 Bonus（額外兩個超重要小技巧）"></a>🎯 <strong>Bonus（額外兩個超重要小技巧）</strong></h1><hr>
+<h2 id="6-要-JOIN-的欄位，兩邊資料型態要一樣"><a href="#6-要-JOIN-的欄位，兩邊資料型態要一樣" class="headerlink" title="6. 要 JOIN 的欄位，兩邊資料型態要一樣"></a><strong>6. 要 JOIN 的欄位，兩邊資料型態要一樣</strong></h2><p>❌ 如果 A.ID 是 number，B.ID 是 varchar<br>Oracle 會自動轉型 → 索引失效 → 超慢。</p>
+<p>✔ 修法：</p>
+<ul>
+<li>修改欄位</li>
+<li>或使用 function-based index</li>
+</ul>
+<hr>
+<h2 id="7-大表統計表（statistics）要定期更新"><a href="#7-大表統計表（statistics）要定期更新" class="headerlink" title="7. 大表統計表（statistics）要定期更新"></a><strong>7. 大表統計表（statistics）要定期更新</strong></h2><p>Oracle optimizer 的預估錯誤 → SQL 會變慢。</p>
+<pre><code class="sql">EXEC DBMS_STATS.GATHER_TABLE_STATS(&#39;SCOTT&#39;,&#39;EMP&#39;);
+</code></pre>
+<hr>
+<h1 id="📌-總結：SQL-想快，只要記住一句話："><a href="#📌-總結：SQL-想快，只要記住一句話：" class="headerlink" title="📌 總結：SQL 想快，只要記住一句話："></a>📌 <strong>總結：SQL 想快，只要記住一句話：</strong></h1><blockquote>
+<p><strong>“少掃資料（I&#x2F;O）、可用索引、少排序 → SQL 就會快。”</strong></p>
+</blockquote>
+<p>你如果願意，我可以：</p>
+<h3 id="✔-幫你做「SQL-優化清單模板」"><a href="#✔-幫你做「SQL-優化清單模板」" class="headerlink" title="✔ 幫你做「SQL 優化清單模板」"></a>✔ 幫你做「SQL 優化清單模板」</h3><h3 id="✔-幫你評估你現在的-SQL-寫法（你貼給我，我幫你改到最有效能版）"><a href="#✔-幫你評估你現在的-SQL-寫法（你貼給我，我幫你改到最有效能版）" class="headerlink" title="✔ 幫你評估你現在的 SQL 寫法（你貼給我，我幫你改到最有效能版）"></a>✔ 幫你評估你現在的 SQL 寫法（你貼給我，我幫你改到最有效能版）</h3><h3 id="✔-教你如何讀-Oracle-Execution-Plan（你一定會用到）"><a href="#✔-教你如何讀-Oracle-Execution-Plan（你一定會用到）" class="headerlink" title="✔ 教你如何讀 Oracle Execution Plan（你一定會用到）"></a>✔ 教你如何讀 Oracle Execution Plan（你一定會用到）</h3><p>你要哪一個？</p>

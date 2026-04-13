@@ -1,0 +1,66 @@
+<hr>
+<h2 id="title-2025-08-23-npm-install-‘hexo-deployer-git-–save’-這要在那個目錄打-date-2026-01-12-22-59-53tags-hexo-github-description-22025-08-23-npm-install-‘hexo-deployer-git-–save’-這要在那個目錄打"><a href="#title-2025-08-23-npm-install-‘hexo-deployer-git-–save’-這要在那個目錄打-date-2026-01-12-22-59-53tags-hexo-github-description-22025-08-23-npm-install-‘hexo-deployer-git-–save’-這要在那個目錄打" class="headerlink" title="title: 2025-08-23 npm install ‘hexo-deployer-git –save’   這要在那個目錄打?date: 2026-01-12 22:59:53tags:  [hexo,  github]description: 22025-08-23 npm install ‘hexo-deployer-git –save’   這要在那個目錄打?"></a>title: 2025-08-23 npm install ‘hexo-deployer-git –save’   這要在那個目錄打?<br>date: 2026-01-12 22:59:53<br>tags:  [hexo,  github]<br>description: 22025-08-23 npm install ‘hexo-deployer-git –save’   這要在那個目錄打?</h2><h2 id="2025-08-23-npm-install-‘hexo-deployer-git-–save’-這要在那個目錄打"><a href="#2025-08-23-npm-install-‘hexo-deployer-git-–save’-這要在那個目錄打" class="headerlink" title="2025-08-23 npm install ‘hexo-deployer-git –save’   這要在那個目錄打?"></a>2025-08-23 npm install ‘hexo-deployer-git –save’   這要在那個目錄打?</h2><p>這題問得<strong>非常好，而且是關鍵中的關鍵</strong> 👍<br>我直接給你<strong>一句話結論＋對照原因</strong>，保證你之後不會再打錯地方。</p>
+<hr>
+<h2 id="✅-一句話結論（先記住）"><a href="#✅-一句話結論（先記住）" class="headerlink" title="✅ 一句話結論（先記住）"></a>✅ 一句話結論（先記住）</h2><blockquote>
+<p><strong><code>npm install hexo-deployer-git --save</code><br>一定要在「Hexo 專案的根目錄」執行</strong></p>
+</blockquote>
+<p>也就是：<br>👉 <strong>有 <code>_config.yml</code>、<code>package.json</code> 那個目錄</strong></p>
+<hr>
+<h2 id="用你的實際路徑來說（USB）"><a href="#用你的實際路徑來說（USB）" class="headerlink" title="用你的實際路徑來說（USB）"></a>用你的實際路徑來說（USB）</h2><p>你的 Hexo 專案是在：</p>
+<pre><code class="text">/Volumes/Lily_Data/hexo-sourdough
+</code></pre>
+<p>所以你應該是：</p>
+<pre><code class="bash">cd /Volumes/Lily_Data/hexo-sourdough
+npm install hexo-deployer-git --save
+</code></pre>
+<hr>
+<h2 id="為什麼一定要在這裡？"><a href="#為什麼一定要在這裡？" class="headerlink" title="為什麼一定要在這裡？"></a>為什麼一定要在這裡？</h2><p>因為這個指令會做 <strong>兩件非常重要的事</strong>：</p>
+<p>1️⃣ 把 <code>hexo-deployer-git</code> 下載到：</p>
+<pre><code class="text">node_modules/
+</code></pre>
+<p>2️⃣ <strong>修改這個專案的 <code>package.json</code></strong></p>
+<pre><code class="json">&quot;dependencies&quot;: {
+  &quot;hexo-deployer-git&quot;: &quot;^4.x.x&quot;
+}
+</code></pre>
+<p>👉 如果你在別的目錄打：</p>
+<ul>
+<li><code>package.json</code> 不在那裡</li>
+<li>npm 不知道要記錄到哪個專案</li>
+<li>甚至會直接報錯</li>
+</ul>
+<hr>
+<h2 id="快速自我檢查（很實用）"><a href="#快速自我檢查（很實用）" class="headerlink" title="快速自我檢查（很實用）"></a>快速自我檢查（很實用）</h2><p>在你打指令前，先看：</p>
+<pre><code class="bash">ls
+</code></pre>
+<p>你應該看到類似：</p>
+<pre><code class="text">_config.yml
+package.json
+node_modules   (可能已存在)
+source
+themes
+</code></pre>
+<p>看到這些，再打 npm 指令。</p>
+<hr>
+<h2 id="常見錯誤（你現在剛好避開）"><a href="#常見錯誤（你現在剛好避開）" class="headerlink" title="常見錯誤（你現在剛好避開）"></a>常見錯誤（你現在剛好避開）</h2><p>❌ 在 <code>/Volumes/Lily_Data</code> 打<br>❌ 在 <code>themes/next</code> 裡打<br>❌ 在家目錄 <code>~</code> 打</p>
+<p>這些都會裝錯地方。</p>
+<hr>
+<h2 id="小補充（安心用）"><a href="#小補充（安心用）" class="headerlink" title="小補充（安心用）"></a>小補充（安心用）</h2><ul>
+<li><code>--save</code> 的意思：<br>👉 把外掛記錄到 <code>package.json</code></li>
+<li>新版 npm 就算不加 <code>--save</code> 也會自動記錄<br>👉 你加了也完全沒問題</li>
+</ul>
+<hr>
+<h2 id="你現在可以直接照這樣做"><a href="#你現在可以直接照這樣做" class="headerlink" title="你現在可以直接照這樣做"></a>你現在可以直接照這樣做</h2><pre><code class="bash">cd /Volumes/Lily_Data/hexo-sourdough
+npm install hexo-deployer-git --save
+</code></pre>
+<p>成功後你可以檢查：</p>
+<pre><code class="bash">grep hexo-deployer-git package.json
+</code></pre>
+<p>看到就代表 OK。</p>
+<hr>
+<p>下一步就只剩一件關鍵事了：<br>👉 <strong>設定 <code>_config.yml</code> 的 <code>deploy:</code> 區塊</strong></p>
+<p>你完成後回我一句：</p>
+<blockquote>
+<p>外掛裝好了</p>
+</blockquote>
+<p>我就帶你把網站真正丟上 GitHub Pages 🍞</p>

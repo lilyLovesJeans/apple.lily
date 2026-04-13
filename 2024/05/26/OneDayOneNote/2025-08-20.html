@@ -1,0 +1,126 @@
+<hr>
+<h2 id="title-2025-08-20-建立新Hexo-專案完整步驟date-2026-01-12-22-15-59tags-hexo-github-description-2025-08-20-建立新Hexo-專案完整步驟"><a href="#title-2025-08-20-建立新Hexo-專案完整步驟date-2026-01-12-22-15-59tags-hexo-github-description-2025-08-20-建立新Hexo-專案完整步驟" class="headerlink" title="title: 2025-08-20 建立新Hexo 專案完整步驟date: 2026-01-12 22:15:59tags:  [hexo,  github]description: 2025-08-20 建立新Hexo 專案完整步驟"></a>title: 2025-08-20 建立新Hexo 專案完整步驟<br>date: 2026-01-12 22:15:59<br>tags:  [hexo,  github]<br>description: 2025-08-20 建立新Hexo 專案完整步驟</h2><h2 id="2025-08-20-建立新Hexo-專案完整步驟"><a href="#2025-08-20-建立新Hexo-專案完整步驟" class="headerlink" title="2025-08-20 建立新Hexo 專案完整步驟"></a>2025-08-20 建立新Hexo 專案完整步驟</h2><hr>
+<h1 id="現在的狀態（確認）"><a href="#現在的狀態（確認）" class="headerlink" title="現在的狀態（確認）"></a>現在的狀態（確認）</h1><p>你已經完成：</p>
+<p>✅ 1. Node.js、Git（環境 OK）<br>✅ 2. GitHub repo 已建立<br>👉 <code>https://github.com/lilyLovesJeans/sourdough-notes.git</code><br>✅ 3. Hexo 已安裝（全域）</p>
+<p>你<strong>現在還沒有做的，是「本機的 Hexo 專案」</strong>。</p>
+<hr>
+<h1 id="關鍵觀念（先講清楚）"><a href="#關鍵觀念（先講清楚）" class="headerlink" title="關鍵觀念（先講清楚）"></a>關鍵觀念（先講清楚）</h1><blockquote>
+<p><strong>Hexo 專案 &#x3D; 本機的一個資料夾</strong></p>
+<p>它可以在任何地方，只要你記得它在哪。</p>
+</blockquote>
+<p>你前面說過：</p>
+<ul>
+<li>你用 <strong>USB</strong></li>
+<li>USB 還有 <strong>45GB</strong></li>
+<li>你已經決定：</li>
+</ul>
+<pre><code class="text">/Volumes/Lily_Data/hexo-sourdough
+</code></pre>
+<p>👉 <strong>這個選擇是完全正確的</strong><br>👉 而且「跟 apple.lily.github.io 那個資料夾沒有衝突」</p>
+<hr>
+<h1 id="接下來：本機端要做的事（照順序）"><a href="#接下來：本機端要做的事（照順序）" class="headerlink" title="接下來：本機端要做的事（照順序）"></a>接下來：本機端要做的事（照順序）</h1><h2 id="🟢-STEP-4：在-USB-建立-Hexo-專案目錄"><a href="#🟢-STEP-4：在-USB-建立-Hexo-專案目錄" class="headerlink" title="🟢 STEP 4：在 USB 建立 Hexo 專案目錄"></a>🟢 STEP 4：在 USB 建立 Hexo 專案目錄</h2><h3 id="1️⃣-進到-USB"><a href="#1️⃣-進到-USB" class="headerlink" title="1️⃣ 進到 USB"></a>1️⃣ 進到 USB</h3><pre><code class="bash">cd /Volumes/Lily_Data
+</code></pre>
+<p>確認一下：</p>
+<pre><code class="bash">ls
+</code></pre>
+<p>看到 <code>Lily_Data</code> 裡面你熟悉的資料就 OK。</p>
+<hr>
+<h3 id="2️⃣-建立-Hexo-專案"><a href="#2️⃣-建立-Hexo-專案" class="headerlink" title="2️⃣ 建立 Hexo 專案"></a>2️⃣ 建立 Hexo 專案</h3><pre><code class="bash">hexo init hexo-sourdough
+</code></pre>
+<p>這一行會：</p>
+<ul>
+<li><p>建立資料夾 <code>hexo-sourdough</code></p>
+</li>
+<li><p>裡面自動產生：</p>
+<ul>
+<li><code>_config.yml</code></li>
+<li><code>source/</code></li>
+<li><code>themes/</code></li>
+<li><code>package.json</code></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="3️⃣-進入專案目錄"><a href="#3️⃣-進入專案目錄" class="headerlink" title="3️⃣ 進入專案目錄"></a>3️⃣ 進入專案目錄</h3><pre><code class="bash">cd hexo-sourdough
+</code></pre>
+<hr>
+<h3 id="4️⃣-安裝專案需要的套件"><a href="#4️⃣-安裝專案需要的套件" class="headerlink" title="4️⃣ 安裝專案需要的套件"></a>4️⃣ 安裝專案需要的套件</h3><pre><code class="bash">npm install
+</code></pre>
+<p>📌 這一步一定要做<br>📌 會產生 <code>node_modules/</code></p>
+<hr>
+<h2 id="🟢-STEP-5：測試本機是否正常"><a href="#🟢-STEP-5：測試本機是否正常" class="headerlink" title="🟢 STEP 5：測試本機是否正常"></a>🟢 STEP 5：測試本機是否正常</h2><pre><code class="bash">hexo s
+</code></pre>
+<p>終端機看到：</p>
+<pre><code class="text">http://localhost:4000
+</code></pre>
+<p>用瀏覽器打開看，有看到 Hexo 預設首頁就代表 <strong>本機 OK</strong>。</p>
+<hr>
+<h2 id="🟢-STEP-6：安裝-NexT-主題（你要的版面）"><a href="#🟢-STEP-6：安裝-NexT-主題（你要的版面）" class="headerlink" title="🟢 STEP 6：安裝 NexT 主題（你要的版面）"></a>🟢 STEP 6：安裝 NexT 主題（你要的版面）</h2><h3 id="1️⃣-進到-themes"><a href="#1️⃣-進到-themes" class="headerlink" title="1️⃣ 進到 themes"></a>1️⃣ 進到 themes</h3><pre><code class="bash">cd themes
+</code></pre>
+<h3 id="2️⃣-下載-NexT"><a href="#2️⃣-下載-NexT" class="headerlink" title="2️⃣ 下載 NexT"></a>2️⃣ 下載 NexT</h3><p>（建議方式）</p>
+<pre><code class="bash">git clone https://github.com/next-theme/hexo-theme-next.git next
+</code></pre>
+<hr>
+<h3 id="3️⃣-回到專案根目錄"><a href="#3️⃣-回到專案根目錄" class="headerlink" title="3️⃣ 回到專案根目錄"></a>3️⃣ 回到專案根目錄</h3><pre><code class="bash">cd ..
+</code></pre>
+<hr>
+<h3 id="4️⃣-啟用-NexT"><a href="#4️⃣-啟用-NexT" class="headerlink" title="4️⃣ 啟用 NexT"></a>4️⃣ 啟用 NexT</h3><p>打開 <code>_config.yml</code>，找到：</p>
+<pre><code class="yml">theme: landscape
+</code></pre>
+<p>改成：</p>
+<pre><code class="yml">theme: next
+</code></pre>
+<hr>
+<h3 id="5️⃣-重跑本機"><a href="#5️⃣-重跑本機" class="headerlink" title="5️⃣ 重跑本機"></a>5️⃣ 重跑本機</h3><pre><code class="bash">hexo clean
+hexo s
+</code></pre>
+<p>看到 NexT 樣式就成功了 🎉</p>
+<hr>
+<h2 id="🟢-STEP-7：設定-GitHub-Pages-自動部署"><a href="#🟢-STEP-7：設定-GitHub-Pages-自動部署" class="headerlink" title="🟢 STEP 7：設定 GitHub Pages 自動部署"></a>🟢 STEP 7：設定 GitHub Pages 自動部署</h2><h3 id="1️⃣-安裝-deployer（你剛剛問的）"><a href="#1️⃣-安裝-deployer（你剛剛問的）" class="headerlink" title="1️⃣ 安裝 deployer（你剛剛問的）"></a>1️⃣ 安裝 deployer（你剛剛問的）</h3><pre><code class="bash">npm install hexo-deployer-git --save
+</code></pre>
+<hr>
+<h3 id="2️⃣-設定-config-yml（很重要）"><a href="#2️⃣-設定-config-yml（很重要）" class="headerlink" title="2️⃣ 設定 _config.yml（很重要）"></a>2️⃣ 設定 <code>_config.yml</code>（很重要）</h3><p>在檔案最下面加：</p>
+<pre><code class="yml">deploy:
+  type: git
+  repo: https://github.com/lilyLovesJeans/sourdough-notes.git
+  branch: main
+</code></pre>
+<hr>
+<h3 id="3️⃣-第一次部署"><a href="#3️⃣-第一次部署" class="headerlink" title="3️⃣ 第一次部署"></a>3️⃣ 第一次部署</h3><pre><code class="bash">hexo clean
+hexo g
+hexo d
+</code></pre>
+<p>第一次會稍慢，正常。</p>
+<hr>
+<h2 id="🟢-STEP-8：GitHub-Pages-設定（只要一次）"><a href="#🟢-STEP-8：GitHub-Pages-設定（只要一次）" class="headerlink" title="🟢 STEP 8：GitHub Pages 設定（只要一次）"></a>🟢 STEP 8：GitHub Pages 設定（只要一次）</h2><p>到 GitHub repo → <strong>Settings → Pages</strong></p>
+<ul>
+<li>Source：<code>Deploy from a branch</code></li>
+<li>Branch：<code>gh-pages</code></li>
+<li>Folder：<code>/ (root)</code></li>
+</ul>
+<p>儲存。</p>
+<p>等 1–3 分鐘，你的網站就會出現在：</p>
+<pre><code class="text">https://lilylovesjeans.github.io/sourdough-notes/
+</code></pre>
+<hr>
+<h1 id="📌-結構對照（讓你安心）"><a href="#📌-結構對照（讓你安心）" class="headerlink" title="📌 結構對照（讓你安心）"></a>📌 結構對照（讓你安心）</h1><pre><code class="text">USB:
+└── /Volumes/Lily_Data/
+    └── hexo-sourdough/        ← 酸種筆記 Hexo 專案
+        ├── _config.yml
+        ├── source/
+        │   └── _posts/        ← 你的酸種文章
+        ├── themes/
+        │   └── next/
+        └── public/            ← hexo g 產生（不用動）
+</code></pre>
+<p>你的工程師筆記 <code>lily_posts</code> <strong>完全不會被影響</strong>。</p>
+<hr>
+<h2 id="接下來我建議你做什麼（下一步）"><a href="#接下來我建議你做什麼（下一步）" class="headerlink" title="接下來我建議你做什麼（下一步）"></a>接下來我建議你做什麼（下一步）</h2><p>👉 <strong>先做到這一行成功為止：</strong></p>
+<pre><code class="bash">hexo s
+</code></pre>
+<p>只要你看到 NexT 首頁，我們再一起慢慢：</p>
+<ul>
+<li>設定 NexT 外觀</li>
+<li>建立「酸種養成」分類</li>
+<li>寫第一篇 starter 筆記</li>
+</ul>

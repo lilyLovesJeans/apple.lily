@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2026-04-17 關於 virtual 和 override 我覺得妳要一步步教我怎麼寫, 而不是產生程式碼的雛型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2026-04-17 關於 virtual 和 override 我覺得妳要一步步教我怎麼寫, 而不是產生程式碼的雛型">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2026/04/11/OneDayOneNote/2026-04-17/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2026-04-17 關於 virtual 和 override 我覺得妳要一步步教我怎麼寫, 而不是產生程式碼的雛型">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2026-04-11T14:16:33.000Z">
+<meta property="article:modified_time" content="2026-04-11T14:17:26.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="C#">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2026/04/11/OneDayOneNote/2026-04-17/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2026/04/11/OneDayOneNote/2026-04-17/","path":"2026/04/11/OneDayOneNote/2026-04-17/","title":"2026-04-17 關於 virtual 和 override 我覺得妳要一步步教我怎麼寫, 而不是產生程式碼的雛型"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2026-04-17 關於 virtual 和 override 我覺得妳要一步步教我怎麼寫, 而不是產生程式碼的雛型 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2026-04-17-%E9%97%9C%E6%96%BC-virtual-%E5%92%8C-override-%E6%88%91%E8%A6%BA%E5%BE%97%E5%A6%B3%E8%A6%81%E4%B8%80%E6%AD%A5%E6%AD%A5%E6%95%99%E6%88%91%E6%80%8E%E9%BA%BC%E5%AF%AB-%E8%80%8C%E4%B8%8D%E6%98%AF%E7%94%A2%E7%94%9F%E7%A8%8B%E5%BC%8F%E7%A2%BC%E7%9A%84%E9%9B%9B%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">2026-04-17 關於 virtual 和 override 我覺得妳要一步步教我怎麼寫, 而不是產生程式碼的雛型</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">536</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2026/04/11/OneDayOneNote/2026-04-17/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2026-04-17 關於 virtual 和 override 我覺得妳要一步步教我怎麼寫, 而不是產生程式碼的雛型 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2026-04-17 關於 virtual 和 override 我覺得妳要一步步教我怎麼寫, 而不是產生程式碼的雛型">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2026-04-17 關於 virtual 和 override 我覺得妳要一步步教我怎麼寫, 而不是產生程式碼的雛型
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2026-04-11 22:16:33 / 修改時間：22:17:26" itemprop="dateCreated datePublished" datetime="2026-04-11T22:16:33+08:00">2026-04-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2026-04-17 關於 virtual 和 override 我覺得妳要一步步教我怎麼寫, 而不是產生程式碼的雛型</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2026-04-17-關於-virtual-和-override-我覺得妳要一步步教我怎麼寫-而不是產生程式碼的雛型"><a href="#2026-04-17-關於-virtual-和-override-我覺得妳要一步步教我怎麼寫-而不是產生程式碼的雛型" class="headerlink" title="2026-04-17 關於 virtual 和 override 我覺得妳要一步步教我怎麼寫, 而不是產生程式碼的雛型"></a>2026-04-17 關於 virtual 和 override 我覺得妳要一步步教我怎麼寫, 而不是產生程式碼的雛型</h2><p>我:<br>關於 virtual 和 override 我覺得妳要一步步教我怎麼寫, 而不是產生程式碼的雛型</p>
+<p>GPT:<br>好的，我們來一步一步理解 virtual 和 override 這兩個關鍵字在面向物件程式設計（OOP）中的用法。為了便於理解，我們將以 C++ 為例來說明。如果你使用的是其他語言（如 C#），原理類似，但語法可能略有不同。</p>
+<ol>
+<li>基本概念<br>繼承（Inheritance） 是 OOP 的一個核心概念，它允許一個類別（子類別）繼承另一個類別（父類別）的屬性和方法。這樣可以重用代碼並建立類別之間的層次結構。<br>多態性（Polymorphism） 是 OOP 的另一個核心概念，它允許不同的類別對同一個方法做出不同的實現。virtual 和 override 關鍵字是實現多態性的重要工具。</li>
+<li>沒有 virtual 的情況<br>首先，讓我們看一個沒有使用 virtual 的簡單例子：</li>
+</ol>
+<p>#include <iostream></p>
+<p>class Animal {<br>public:<br>    void speak() {<br>        std::cout &lt;&lt; “Animal speaks” &lt;&lt; std::endl;<br>    }<br>};</p>
+<p>class Dog : public Animal {<br>public:<br>    void speak() {<br>        std::cout &lt;&lt; “Dog barks” &lt;&lt; std::endl;<br>    }<br>};</p>
+<p>int main() {<br>    Animal* myAnimal &#x3D; new Dog();<br>    myAnimal-&gt;speak(); &#x2F;&#x2F; 會輸出 “Animal speaks”<br>    delete myAnimal;<br>    return 0;<br>}<br>解釋：<br>    1.	我們有一個基類 Animal，其中有一個方法 speak。 <br>    2.	我們有一個派生類 Dog，它也有一個名為 speak 的方法，試圖覆蓋基類的方法。 <br>    3.	在 main 函數中，我們創建了一個指向 Animal 類型的指針，但實際上它指向一個 Dog 對象。 <br>    4.	當我們調用 myAnimal-&gt;speak() 時，輸出的是 “Animal speaks”，而不是 “Dog barks”。 <br>原因：<br>由於 speak 方法在基類中不是虛擬的，編譯器在編譯時就決定了調用基類的方法，而不是派生類的方法。這意味著即使指針實際上指向一個 Dog 對象，也不會調用 Dog 的 speak 方法。<br>3. 使用 virtual 關鍵字<br>為了實現多態性，我們需要在基類的方法前加上 virtual 關鍵字：<br>#include <iostream></p>
+<p>class Animal {<br>public:<br>    virtual void speak() { &#x2F;&#x2F; 使用 virtual<br>        std::cout &lt;&lt; “Animal speaks” &lt;&lt; std::endl;<br>    }<br>};</p>
+<p>class Dog : public Animal {<br>public:<br>    void speak() override { &#x2F;&#x2F; 使用 override<br>        std::cout &lt;&lt; “Dog barks” &lt;&lt; std::endl;<br>    }<br>};</p>
+<p>int main() {<br>    Animal* myAnimal &#x3D; new Dog();<br>    myAnimal-&gt;speak(); &#x2F;&#x2F; 會輸出 “Dog barks”<br>    delete myAnimal;<br>    return 0;<br>}<br>解釋：<br>    1.	在基類 Animal 中，我們在 speak 方法前加上了 virtual 關鍵字，這表示這個方法是虛擬的，可以在派生類中被覆蓋。 <br>    2.	在派生類 Dog 中，我們使用了 override 關鍵字來明確表示我們要覆蓋基類的 speak 方法。這不是必需的，但建議使用，因為編譯器會檢查是否確實覆蓋了基類的方法，避免拼寫錯誤等問題。 <br>    3.	現在，當我們在 main 函數中調用 myAnimal-&gt;speak() 時，會輸出 “Dog barks”，因為 speak 方法是虛擬的，會根據實際對象的類型來決定調用哪個方法。 <br>4. 詳細解釋 virtual 和 override<br>    •	virtual 關鍵字：<br>    ◦	用於基類的方法，表示該方法可以被派生類覆蓋。 <br>    ◦	它允許在運行時（而不是編譯時）根據對象的實際類型來決定調用哪個方法，實現多態性。 <br>    •	override 關鍵字：<br>    ◦	用於派生類的方法，表示該方法覆蓋了基類中的虛擬方法。 <br>    ◦	提高代碼的可讀性和安全性，防止因拼寫錯誤或方法簽名不匹配而未正確覆蓋基類方法。 <br>5. 進一步的例子<br>假設我們有多個動物，每個動物的叫聲不同，我們可以這樣設計：<br>#include <iostream><br>#include <vector></p>
+<p>class Animal {<br>public:<br>    virtual void speak() {<br>        std::cout &lt;&lt; “Animal speaks” &lt;&lt; std::endl;<br>    }<br>};</p>
+<p>class Dog : public Animal {<br>public:<br>    void speak() override {<br>        std::cout &lt;&lt; “Dog barks” &lt;&lt; std::endl;<br>    }<br>};</p>
+<p>class Cat : public Animal {<br>public:<br>    void speak() override {<br>        std::cout &lt;&lt; “Cat meows” &lt;&lt; std::endl;<br>    }<br>};</p>
+<p>int main() {<br>    std::vector&lt;Animal*&gt; animals;<br>    animals.push_back(new Dog());<br>    animals.push_back(new Cat());<br>    animals.push_back(new Animal());</p>
+<pre><code>for(auto animal : animals) &#123;
+    animal-&gt;speak();
+&#125;
+
+// 輸出：
+// Dog barks
+// Cat meows
+// Animal speaks
+
+// 釋放內存
+for(auto animal : animals) &#123;
+    delete animal;
+&#125;
+
+return 0;
+</code></pre>
+<p>}<br>解釋：<br>    1.	我們定義了一個基類 Animal，以及兩個派生類 Dog 和 Cat，它們各自覆蓋了 speak 方法。 <br>    2.	在 main 函數中，我們創建了一個包含不同動物對象的向量 animals。 <br>    3.	遍歷這個向量，對每個動物調用 speak 方法，根據對象的實際類型，會調用相應的覆蓋方法。 <br>    4.	輸出會根據對象的類型顯示不同的訊息，這就是多態性的體現。 <br>6. 小結<br>    •	使用 virtual 關鍵字可以在基類中聲明一個方法為虛擬的，允許派生類覆蓋它。 <br>    •	使用 override 關鍵字可以在派生類中明確表示你要覆蓋基類的方法，增加代碼的安全性和可讀性。 <br>    •	通過虛擬方法和覆蓋，我們可以實現多態性，讓相同的接口在不同的對象上有不同的行為。 <br>希望這樣的步驟講解能幫助你更好地理解 virtual 和 override 的用法。如果還有其他問題或需要更詳細的解釋，請隨時告訴我！</p>
+<p>我：<br>請用 C# , 因為我現在在學 C#</p>
+<p>GPT:<br>當你在學習 C# 的面向物件程式設計（OOP）時，理解 virtual 和 override 關鍵字是非常重要的。這兩個關鍵字讓你能夠實現多態性（Polymorphism），即讓不同的類別以相同的方式回應相同的方法呼叫。讓我們一步步來理解這些概念，並在 C# 中實作它們。<br>目錄<br>    1.	基本概念：繼承與方法覆蓋 <br>    2.	沒有使用 virtual 和 override <br>    3.	使用 virtual 關鍵字 <br>    4.	使用 override 關鍵字 <br>    5.	詳細解釋 virtual 和 override <br>    6.	多態性的實際應用 <br>    7.	小結 </p>
+<ol>
+<li><p>基本概念：繼承與方法覆蓋<br>繼承（Inheritance） 允許你創建一個類別（子類別）來繼承另一個類別（基類）的屬性和方法。這有助於代碼重用並建立類別之間的層次結構。<br>方法覆蓋（Method Overriding） 是指在子類別中重新定義基類的方法，以提供特定的實現。<br>多態性（Polymorphism） 則允許你使用基類的引用來呼叫子類別中覆蓋的方法，根據實際對象的類型執行相應的方法。</p>
+</li>
+<li><p>沒有使用 virtual 和 override<br>首先，讓我們看看在沒有使用 virtual 和 override 的情況下，方法覆蓋是如何運作的。<br>using System;</p>
+</li>
+</ol>
+<p>class Animal<br>{<br>    public void Speak()<br>    {<br>        Console.WriteLine(“Animal speaks”);<br>    }<br>}</p>
+<p>class Dog : Animal<br>{<br>    public void Speak()<br>    {<br>        Console.WriteLine(“Dog barks”);<br>    }<br>}</p>
+<p>class Program<br>{<br>    static void Main(string[] args)<br>    {<br>        Animal myAnimal &#x3D; new Dog();<br>        myAnimal.Speak(); &#x2F;&#x2F; 會輸出 “Animal speaks”<br>    }<br>}<br>解釋：<br>    1.	我們有一個基類 Animal，其中有一個方法 Speak。 <br>    2.	我們有一個子類 Dog，它也有一個名為 Speak 的方法，試圖覆蓋基類的方法。 <br>    3.	在 Main 方法中，我們創建了一個 Animal 類型的變數 myAnimal，但實際上它指向一個 Dog 對象。 <br>    4.	當我們呼叫 myAnimal.Speak() 時，輸出的是 “Animal speaks” 而不是 “Dog barks”。 <br>原因：<br>在這個例子中，Speak 方法在基類中不是虛擬的（virtual），因此即使 myAnimal 實際上是 Dog 類型，呼叫的仍然是基類 Animal 的 Speak 方法。這就是方法隱藏（Method Hiding），而不是方法覆蓋。</p>
+<ol start="3">
+<li>使用 virtual 關鍵字<br>為了讓基類的方法能夠被子類覆蓋，我們需要在基類的方法前加上 virtual 關鍵字。<br>using System;</li>
+</ol>
+<p>class Animal<br>{<br>    public virtual void Speak() &#x2F;&#x2F; 使用 virtual<br>    {<br>        Console.WriteLine(“Animal speaks”);<br>    }<br>}</p>
+<p>class Dog : Animal<br>{<br>    public void Speak() &#x2F;&#x2F; 尚未使用 override<br>    {<br>        Console.WriteLine(“Dog barks”);<br>    }<br>}</p>
+<p>class Program<br>{<br>    static void Main(string[] args)<br>    {<br>        Animal myAnimal &#x3D; new Dog();<br>        myAnimal.Speak(); &#x2F;&#x2F; 會輸出 “Animal speaks”<br>    }<br>}<br>解釋：<br>    1.	在基類 Animal 中，Speak 方法前加上了 virtual 關鍵字，表示這個方法可以被覆蓋。 <br>    2.	子類 Dog 中的 Speak 方法還沒有使用 override，因此仍然是方法隱藏。 <br>    3.	呼叫 myAnimal.Speak() 仍然會輸出 “Animal speaks”。 <br>結論：<br>僅僅將基類的方法標記為 virtual 還不足以實現方法覆蓋，我們還需要在子類中使用 override 來真正覆蓋基類的方法。</p>
+<ol start="4">
+<li>使用 override 關鍵字<br>現在，我們在子類中使用 override 關鍵字來覆蓋基類的方法。<br>using System;</li>
+</ol>
+<p>class Animal<br>{<br>    public virtual void Speak() &#x2F;&#x2F; 使用 virtual<br>    {<br>        Console.WriteLine(“Animal speaks”);<br>    }<br>}</p>
+<p>class Dog : Animal<br>{<br>    public override void Speak() &#x2F;&#x2F; 使用 override<br>    {<br>        Console.WriteLine(“Dog barks”);<br>    }<br>}</p>
+<p>class Program<br>{<br>    static void Main(string[] args)<br>    {<br>        Animal myAnimal &#x3D; new Dog();<br>        myAnimal.Speak(); &#x2F;&#x2F; 會輸出 “Dog barks”<br>    }<br>}<br>解釋：<br>    1.	基類 Animal 的 Speak 方法仍然標記為 virtual。 <br>    2.	子類 Dog 的 Speak 方法現在使用了 override 關鍵字，表示它覆蓋了基類的方法。 <br>    3.	當我們呼叫 myAnimal.Speak() 時，輸出會是 “Dog barks”。 </p>
+<ol start="5">
+<li><p>詳細解釋 virtual 和 override<br>virtual 關鍵字<br> •	位置：用於基類的方法、屬性、索引器或事件。 <br> •	作用：允許子類覆蓋這些成員。 <br> •	特性：<br> ◦	基類方法仍然可以被呼叫。 <br> ◦	虛擬方法支持多態性。 <br>override 關鍵字<br> •	位置：用於子類的方法、屬性、索引器或事件。 <br> •	作用：表示該成員覆蓋了基類中定義的虛擬成員。 <br> •	特性：<br> ◦	確保子類的方法與基類的虛擬方法具有相同的簽名。 <br> ◦	如果基類的虛擬方法不存在，編譯器會報錯，增加代碼的安全性。 </p>
+</li>
+<li><p>多態性的實際應用<br>讓我們通過一個更實際的例子來理解多態性如何在 C# 中運作。<br>using System;<br>using System.Collections.Generic;</p>
+</li>
+</ol>
+<p>class Animal<br>{<br>    public virtual void Speak()<br>    {<br>        Console.WriteLine(“Animal speaks”);<br>    }<br>}</p>
+<p>class Dog : Animal<br>{<br>    public override void Speak()<br>    {<br>        Console.WriteLine(“Dog barks”);<br>    }<br>}</p>
+<p>class Cat : Animal<br>{<br>    public override void Speak()<br>    {<br>        Console.WriteLine(“Cat meows”);<br>    }<br>}</p>
+<p>class Program<br>{<br>    static void Main(string[] args)<br>    {<br>        List<Animal> animals &#x3D; new List<Animal><br>        {<br>            new Dog(),<br>            new Cat(),<br>            new Animal()<br>        };</p>
+<pre><code>    foreach (var animal in animals)
+    &#123;
+        animal.Speak();
+    &#125;
+
+    // 輸出：
+    // Dog barks
+    // Cat meows
+    // Animal speaks
+&#125;
+</code></pre>
+<p>}<br>解釋：<br>    1.	我們定義了一個基類 Animal，以及兩個子類 Dog 和 Cat，它們都覆蓋了 Speak 方法。 <br>    2.	在 Main 方法中，我們創建了一個包含不同動物對象的 List<Animal>。 <br>    3.	當我們遍歷這個列表並呼叫每個動物的 Speak 方法時，根據對象的實際類型，會呼叫相應的覆蓋方法。 <br>    4.	這展示了多態性：同一個方法呼叫根據對象的類型表現出不同的行為。 </p>
+<ol start="7">
+<li>小結<br> •	virtual 關鍵字：<br> ◦	用於基類的方法，表示該方法可以被子類覆蓋。 <br> ◦	允許在運行時根據對象的實際類型決定呼叫哪個方法，實現多態性。 <br> •	override 關鍵字：<br> ◦	用於子類的方法，表示該方法覆蓋了基類中的虛擬方法。 <br> ◦	增加代碼的可讀性和安全性，確保正確覆蓋基類的方法。 <br> •	多態性：<br> ◦	允許使用基類的引用來操作子類對象，根據實際對象的類型執行相應的方法。 <br> ◦	增強代碼的靈活性和可擴展性。 <br>希望這個逐步的解釋能幫助你更好地理解 C# 中的 virtual 和 override 關鍵字。如果你有任何疑問或需要更深入的例子，請隨時告訴我！</li>
+</ol>
+<p>我：<br>創建 變數 , 可以用那些類型?<br>當你在 C# 中創建變數時，可以使用多種不同的資料型別（Types）。這些型別大致可以分為值型別（Value Types）和參考型別（Reference Types）。了解這些型別有助於你更有效地管理記憶體和優化程式效能。讓我們一步步來探索 C# 中可用的各種變數型別。</p>
+<p>目錄<br>    1.	值型別（Value Types）<br>    ◦	整數型別 <br>    ◦	浮點數型別 <br>    ◦	字元型別 <br>    ◦	布林型別 <br>    ◦	結構型別（Structs） <br>    ◦	列舉型別（Enums） <br>    2.	參考型別（Reference Types）<br>    ◦	字串型別（String） <br>    ◦	陣列型別（Arrays） <br>    ◦	類別型別（Classes） <br>    ◦	委派型別（Delegates） <br>    ◦	介面型別（Interfaces） <br>    3.	其他型別<br>    ◦	Nullable 型別 <br>    ◦	動態型別（Dynamic） <br>    4.	自訂型別<br>    ◦	類別（Classes） <br>    ◦	結構（Structs） <br>    ◦	列舉（Enums） <br>    5.	型別推斷（Type Inference） <br>    6.	小結 </p>
+<ol>
+<li>值型別（Value Types）<br>值型別直接包含其數據，而不是指向數據的參考。它們通常儲存在堆疊（Stack）中，存取速度快。<br>整數型別（Integer Types）<br>型別<br>範圍<br>大小（位元組）<br>int<br>-2,147,483,648 到 2,147,483,647<br>4<br>long<br>-9,223,372,036,854,775,808 到 9,223,372,036,854,775,807<br>8<br>short<br>-32,768 到 32,767<br>2<br>byte<br>0 到 255<br>1<br>uint<br>0 到 4,294,967,295<br>4<br>ulong<br>0 到 18,446,744,073,709,551,615<br>8<br>ushort<br>0 到 65,535<br>2<br>sbyte<br>-128 到 127<br>1<br>範例：<br>int age &#x3D; 25;<br>long distance &#x3D; 9876543210L;<br>byte level &#x3D; 255;<br>浮點數型別（Floating-Point Types）<br>型別<br>範圍<br>大小（位元組）<br>float<br>約 ±1.5 × 10^−45 到 ±3.4 × 10^38<br>4<br>double<br>約 ±5.0 × 10^−324 到 ±1.7 × 10^308<br>8<br>decimal<br>約 ±1.0 × 10^−28 到 ±7.9 × 10^28<br>16<br>範例：<br>float temperature &#x3D; 36.6F;<br>double pi &#x3D; 3.141592653589793;<br>decimal price &#x3D; 19.99M;<br>字元型別（Character Type）<br>型別<br>描述<br>大小（位元組）<br>char<br>單一 Unicode 字元<br>2<br>範例：<br>char grade &#x3D; ‘A’;<br>char symbol &#x3D; ‘#’;<br>布林型別（Boolean Type）<br>型別<br>描述<br>大小（位元組）<br>bool<br>true 或 false<br>1<br>範例：<br>bool isCompleted &#x3D; true;<br>bool hasAccess &#x3D; false;<br>結構型別（Structs）<br>結構是值型別的自訂型別，可以包含多個不同的成員（屬性、方法等）。<br>範例：<br>struct Point<br>{<br> public int X;<br> public int Y;<br>}</li>
+</ol>
+<p>Point p1 &#x3D; new Point();<br>p1.X &#x3D; 10;<br>p1.Y &#x3D; 20;<br>列舉型別（Enums）<br>列舉是一種值型別，用於定義一組命名的整數常數。<br>範例：<br>enum Days { Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday };</p>
+<p>Days today &#x3D; Days.Monday;</p>
+<ol start="2">
+<li>參考型別（Reference Types）<br>參考型別儲存的是對實際數據的參考（地址），而不是數據本身。它們通常儲存在堆（Heap）中，存取速度較慢。<br>字串型別（String）<br>string 是一種特殊的參考型別，用於表示文本。<br>範例：<br>string greeting &#x3D; “Hello, World!”;<br>string name &#x3D; “Alice”;<br>陣列型別（Arrays）<br>陣列是用來存儲相同型別元素的集合。<br>範例：<br>int[] numbers &#x3D; { 1, 2, 3, 4, 5 };<br>string[] fruits &#x3D; new string[3] { “Apple”, “Banana”, “Cherry” };<br>類別型別（Classes）<br>類別是 C# 中最常用的參考型別，用於創建物件。<br>範例：<br>class Person<br>{<br> public string Name;<br> public int Age;<br>}</li>
+</ol>
+<p>Person person1 &#x3D; new Person();<br>person1.Name &#x3D; “Bob”;<br>person1.Age &#x3D; 30;<br>委派型別（Delegates）<br>委派是一種引用方法的類型。<br>範例：<br>delegate void GreetingDelegate(string message);</p>
+<p>void Greet(string message)<br>{<br>    Console.WriteLine(message);<br>}</p>
+<p>GreetingDelegate del &#x3D; Greet;<br>del(“Hello via delegate!”);<br>介面型別（Interfaces）<br>介面定義了一組方法和屬性的合約，類別可以實作這些介面。<br>範例：<br>interface IAnimal<br>{<br>    void Speak();<br>}</p>
+<p>class Dog : IAnimal<br>{<br>    public void Speak()<br>    {<br>        Console.WriteLine(“Dog barks”);<br>    }<br>}</p>
+<p>IAnimal myDog &#x3D; new Dog();<br>myDog.Speak(); &#x2F;&#x2F; 輸出 “Dog barks”</p>
+<ol start="3">
+<li>其他型別<br>Nullable 型別<br>有些值型別（如 int、double）不能為 null。使用 Nullable 型別可以讓這些型別接受 null 值。<br>語法： 在型別後加上 ?<br>範例：<br>int? nullableInt &#x3D; null;<br>double? nullableDouble &#x3D; 3.14;<br>動態型別（Dynamic）<br>dynamic 型別在編譯時不會進行型別檢查，會在運行時決定其型別。<br>範例：<br>dynamic dyn &#x3D; “Hello”;<br>Console.WriteLine(dyn.Length); &#x2F;&#x2F; 輸出 5</li>
+</ol>
+<p>dyn &#x3D; 100;<br>Console.WriteLine(dyn + 200); &#x2F;&#x2F; 輸出 300<br>注意： 使用 dynamic 會失去編譯時型別檢查，需謹慎使用。</p>
+<ol start="4">
+<li><p>自訂型別<br>除了內建的型別外，你還可以創建自訂型別來滿足特定需求。<br>類別（Classes）<br>類別是創建物件的藍圖，可以包含屬性、方法、事件等。<br>範例：<br>class Car<br>{<br> public string Make;<br> public string Model;<br> public int Year;</p>
+<p> public void Start()<br> {<br> Console.WriteLine(“Car started.”);<br> }</p>
+</li>
+</ol>
+<p>}</p>
+<p>Car myCar &#x3D; new Car();<br>myCar.Make &#x3D; “Toyota”;<br>myCar.Model &#x3D; “Corolla”;<br>myCar.Year &#x3D; 2020;<br>myCar.Start(); &#x2F;&#x2F; 輸出 “Car started.”<br>結構（Structs）<br>結構是值型別的自訂型別，通常用於輕量級的資料結構。<br>範例：<br>struct Rectangle<br>{<br>    public int Width;<br>    public int Height;</p>
+<pre><code>public int Area()
+&#123;
+    return Width * Height;
+&#125;
+</code></pre>
+<p>}</p>
+<p>Rectangle rect &#x3D; new Rectangle();<br>rect.Width &#x3D; 5;<br>rect.Height &#x3D; 10;<br>Console.WriteLine(rect.Area()); &#x2F;&#x2F; 輸出 50<br>列舉（Enums）<br>如前所述，列舉用於定義一組命名的常數。<br>範例：<br>enum Season { Spring, Summer, Autumn, Winter };</p>
+<p>Season currentSeason &#x3D; Season.Spring;</p>
+<ol start="5">
+<li><p>型別推斷（Type Inference）<br>C# 提供了 var 關鍵字，可以在宣告變數時讓編譯器自動推斷變數的型別。這只適用於在宣告時初始化變數的情況。<br>範例：<br>var number &#x3D; 10; &#x2F;&#x2F; 編譯器推斷為 int<br>var name &#x3D; “Charlie”; &#x2F;&#x2F; 編譯器推斷為 string<br>var list &#x3D; new List<string>(); &#x2F;&#x2F; 編譯器推斷為 List<string><br>注意： 即使使用 var，變數仍然具有靜態型別，無法在後續賦值中改變型別。</p>
+</li>
+<li><p>小結<br>在 C# 中創建變數時，可以使用多種資料型別，這些型別大致可分為：<br> •	值型別（Value Types）：如 int、double、bool、char、struct、enum 等，直接包含數據，儲存在堆疊中。 <br> •	參考型別（Reference Types）：如 string、arrays、classes、delegates、interfaces 等，儲存對數據的引用，存儲在堆中。 <br> •	其他型別：如 Nullable 型別、動態型別等，提供更靈活的型別管理。 <br> •	自訂型別：如 classes、structs、enums，根據需求創建的自定義型別。 <br> •	型別推斷（Type Inference）：使用 var 讓編譯器自動推斷變數型別。 <br>了解並善用這些不同的型別，能幫助你編寫更高效、可維護的 C# 程式。如果你有任何進一步的問題或需要更詳細的範例，請隨時告訴我！</p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/C/" rel="tag"># C#</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2026/04/10/OneDayOneNote/2026-04-16/" rel="prev" title="2026-04-16 MySQL  JS > ? 要怎麼連?">
+                  <i class="fa fa-angle-left"></i> 2026-04-16 MySQL  JS > ? 要怎麼連?
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2026/04/11/OneDayOneNote/2026-04-18/" rel="next" title="2026-04-18 C# list = new List<string>()  這是什麼型別?">
+                  2026-04-18 C# list = new List<string>()  這是什麼型別? <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/apple.lily/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,123 @@
+<hr>
+<h2 id="title-2026-04-21-public-及-private-…-等呢-是歸屬於什麼-date-2026-04-13-22-55-11categories-OneDayOneNotetags-C-description-2026-04-21-public-及-private-…-等呢-是歸屬於什麼"><a href="#title-2026-04-21-public-及-private-…-等呢-是歸屬於什麼-date-2026-04-13-22-55-11categories-OneDayOneNotetags-C-description-2026-04-21-public-及-private-…-等呢-是歸屬於什麼" class="headerlink" title="title: 2026-04-21 public 及 private …..等呢? 是歸屬於什麼?date: 2026-04-13 22:55:11categories: OneDayOneNotetags:  [C#]description:  2026-04-21 public 及 private …..等呢? 是歸屬於什麼?"></a>title: 2026-04-21 public 及 private …..等呢? 是歸屬於什麼?<br>date: 2026-04-13 22:55:11<br>categories: OneDayOneNote<br>tags:  [C#]<br>description:  2026-04-21 public 及 private …..等呢? 是歸屬於什麼?</h2><h2 id="2026-04-21-public-及-private-…-等呢-是歸屬於什麼"><a href="#2026-04-21-public-及-private-…-等呢-是歸屬於什麼" class="headerlink" title="2026-04-21 public 及 private …..等呢? 是歸屬於什麼?"></a>2026-04-21 public 及 private …..等呢? 是歸屬於什麼?</h2><p>我：<br> public 及 private …..等呢? 是歸屬於什麼?</p>
+<p>GPT：<br>當你在學習 C# 的面向物件程式設計（OOP）時，存取修飾符（Access Modifiers） 是一個非常重要的概念。public、private 等關鍵字就是存取修飾符，用來控制類別（Classes）、方法（Methods）、屬性（Properties）、欄位（Fields）等成員的可見性和訪問範圍。了解並正確使用存取修飾符，可以幫助你設計出更安全、可維護和高效的程式碼。<br>目錄<br>    1.	存取修飾符是什麼？ <br>    2.	C# 中的主要存取修飾符<br>    ◦	public <br>    ◦	private <br>    ◦	protected <br>    ◦	internal <br>    ◦	protected internal <br>    ◦	private protected <br>    3.	存取修飾符的使用範例 <br>    4.	如何選擇合適的存取修飾符 <br>    5.	小結 </p>
+<ol>
+<li><p>存取修飾符是什麼？<br>存取修飾符（Access Modifiers） 是用來控制類別及其成員（如方法、屬性、欄位等）的可見性和訪問範圍的關鍵字。透過存取修飾符，你可以決定哪些部分的程式碼可以訪問特定的類別或其成員，從而實現資訊隱藏（Information Hiding）和封裝（Encapsulation）。</p>
+</li>
+<li><p>C# 中的主要存取修飾符<br>C# 提供了多種存取修飾符，每種修飾符定義了不同的訪問範圍。以下是主要的存取修飾符及其說明：<br>a. public<br> •	描述：公開的，沒有任何限制。任何其他類別或組件都可以訪問標記為 public 的類別或成員。 <br> •	使用場景：當你希望某個類別或成員能被所有其他程式碼訪問時使用。 <br>範例：<br>public class Person<br>{<br> public string Name; &#x2F;&#x2F; 公開欄位<br> public void Speak() &#x2F;&#x2F; 公開方法<br> {<br> Console.WriteLine(“Hello!”);<br> }<br>}<br>b. private<br> •	描述：私有的，只能在定義它的類別內部訪問。其他類別無法訪問標記為 private 的成員。 <br> •	使用場景：當你希望某個成員只在類別內部使用，並且不允許外部直接訪問或修改時使用。 <br>範例：<br>public class Person<br>{<br> private int age; &#x2F;&#x2F; 私有欄位</p>
+<p> public void SetAge(int value)<br> {<br> if (value &gt;&#x3D; 0)<br>     age &#x3D; value;<br> }</p>
+<p> public int GetAge()<br> {<br> return age;<br> }</p>
+</li>
+</ol>
+<p>}<br>c. protected<br>    •	描述：受保護的，只能在定義它的類別及其派生類別中訪問。 <br>    •	使用場景：當你希望某個成員在類別內部及其子類別中可訪問，但不允許其他外部類別訪問時使用。 <br>範例：<br>public class Animal<br>{<br>    protected string species;</p>
+<pre><code>protected void DisplaySpecies()
+{
+    Console.WriteLine($&quot;Species: {species}&quot;);
+}
+</code></pre>
+<p>}</p>
+<p>public class Dog : Animal<br>{<br>    public void SetSpecies(string sp)<br>    {<br>        species &#x3D; sp; &#x2F;&#x2F; 可訪問<br>    }</p>
+<pre><code>public void ShowSpecies()
+{
+    DisplaySpecies(); // 可訪問
+}
+</code></pre>
+<p>}<br>d. internal<br>    •	描述：內部的，只能在同一個組件（Assembly）內部訪問。不同組件之間無法訪問標記為 internal 的成員。 <br>    •	使用場景：當你希望某個類別或成員僅在其所在的組件內部使用，不對外部公開時使用。 <br>範例：<br>internal class Helper<br>{<br>    internal void Assist()<br>    {<br>        Console.WriteLine(“Assisting…”);<br>    }<br>}<br>e. protected internal<br>    •	描述：受保護且內部的，表示該成員可以在同一個組件內部訪問，或在任何派生類別中訪問（無論組件是否相同）。 <br>    •	使用場景：當你希望成員在內部組件內部及其派生類別中可訪問時使用。 <br>範例：<br>public class Vehicle<br>{<br>    protected internal int speed;</p>
+<pre><code>protected internal void SetSpeed(int sp)
+{
+    speed = sp;
+}
+</code></pre>
+<p>}<br>f. private protected （C# 7.2 及以上版本）<br>    •	描述：私有且受保護的，表示該成員只能在定義它的類別內部，或在同一組件中的派生類別中訪問。 <br>    •	使用場景：當你希望成員僅在類別內部及其派生類別（且必須在同一組件內部）中可訪問時使用。 <br>範例：<br>public class BaseClass<br>{<br>    private protected void DoSomething()<br>    {<br>        Console.WriteLine(“Doing something…”);<br>    }<br>}</p>
+<p>public class DerivedClass : BaseClass<br>{<br>    public void Execute()<br>    {<br>        DoSomething(); &#x2F;&#x2F; 可訪問<br>    }<br>}</p>
+<ol start="3">
+<li>存取修飾符的使用範例<br>讓我們通過一個更完整的範例來理解這些存取修飾符的作用：<br>using System;</li>
+</ol>
+<p>public class Car<br>{<br>    &#x2F;&#x2F; 公開欄位<br>    public string Make;</p>
+<pre><code>// 私有欄位
+private string model;
+
+// 受保護欄位
+protected int year;
+
+// 內部欄位
+internal string VIN;
+
+// 受保護且內部欄位
+protected internal string Color;
+
+// 私有且受保護欄位
+private protected string EngineType;
+
+// 公開方法
+public void StartEngine()
+{
+    Console.WriteLine(&quot;Engine started.&quot;);
+}
+
+// 私有方法
+private void SetModel(string m)
+{
+    model = m;
+}
+
+// 受保護方法
+protected void DisplayYear()
+{
+    Console.WriteLine($&quot;Year: {year}&quot;);
+}
+
+// 內部方法
+internal void SetVIN(string vin)
+{
+    VIN = vin;
+}
+
+// 受保護且內部方法
+protected internal void Paint(string newColor)
+{
+    Color = newColor;
+    Console.WriteLine($&quot;Car painted {Color}.&quot;);
+}
+
+// 私有且受保護方法
+private protected void SetEngineType(string type)
+{
+    EngineType = type;
+}
+</code></pre>
+<p>}</p>
+<p>public class SportsCar : Car<br>{<br>    public void Customize()<br>    {<br>        &#x2F;&#x2F; 可以訪問受保護的欄位和方法<br>        year &#x3D; 2022;<br>        DisplayYear();</p>
+<pre><code>    // 可以訪問受保護且內部的欄位和方法
+    Color = &quot;Red&quot;;
+    Paint(&quot;Blue&quot;);
+
+    // 可以訪問私有且受保護的方法（僅在同一組件內）
+    SetEngineType(&quot;V8&quot;);
+}
+</code></pre>
+<p>}</p>
+<p>class Program<br>{<br>    static void Main(string[] args)<br>    {<br>        Car myCar &#x3D; new Car();<br>        myCar.Make &#x3D; “Toyota”; &#x2F;&#x2F; 可訪問<br>        myCar.StartEngine();   &#x2F;&#x2F; 可訪問</p>
+<pre><code>    // 無法訪問私有欄位和方法
+    // myCar.model = &quot;Corolla&quot;; // 錯誤
+    // myCar.SetModel(&quot;Corolla&quot;); // 錯誤
+
+    // 訪問內部欄位和方法（假設在同一組件內）
+    myCar.VIN = &quot;123456789&quot;;
+    myCar.SetVIN(&quot;987654321&quot;);
+
+    // 訪問受保護且內部的欄位和方法
+    myCar.Color = &quot;Green&quot;;
+    myCar.Paint(&quot;Yellow&quot;);
+
+    SportsCar mySportsCar = new SportsCar();
+    mySportsCar.Customize();
+}
+</code></pre>
+<p>}<br>解析：<br>    1.	類別 Car 定義了不同存取修飾符的欄位和方法。 <br>    2.	類別 SportsCar 繼承自 Car，並可以訪問 protected、protected internal 及 private protected 成員（假設在同一組件內）。 <br>    3.	Program 類別 中的 Main 方法創建了 Car 和 SportsCar 的實例，並展示了哪些成員可以被訪問。 <br>輸出：<br>Engine started.<br>Year: 2022<br>Car painted Blue.</p>
+<ol start="4">
+<li><p>如何選擇合適的存取修飾符<br>選擇適當的存取修飾符有助於實現良好的封裝和資訊隱藏。以下是一些選擇存取修飾符的建議：<br> •	使用最小必要原則（Principle of Least Privilege）：<br> ◦	盡量將成員的存取範圍限制在最小必要的範圍內。例如，除非需要，否則不要將欄位設為 public。 <br> •	將欄位設為私有，並使用屬性進行訪問：<br> ◦	通常建議將類別的欄位（Fields）設為 private，並通過 public 或 protected 的屬性（Properties）來提供對這些欄位的控制性訪問。 <br> •	範例： public class Person<br> •	{<br> •	    private string name; &#x2F;&#x2F; 私有欄位<br> •	<br> •	    public string Name   &#x2F;&#x2F; 公開屬性<br> •	    {<br> •	        get { return name; }<br> •	        set { name &#x3D; value; }<br> •	    }<br> •	}<br> •	 <br> •	使用 protected 來允許派生類訪問：<br> ◦	當你希望派生類能夠訪問某些成員，但不希望外部類別訪問時，使用 protected。 <br> •	使用 internal 和 protected internal 來控制組件內部的訪問：<br> ◦	當你希望某些成員僅在同一組件內部可訪問，或者在同一組件內部及其派生類中可訪問時，使用 internal 或 protected internal。 <br> •	避免不必要的 public 成員：<br> ◦	除非確實需要，否則避免將成員設為 public，以防止外部程式碼意外修改或依賴這些成員。 </p>
+</li>
+<li><p>小結<br>存取修飾符（Access Modifiers） 是 C# 中用來控制類別及其成員可見性的重要工具。主要的存取修飾符包括：<br> •	public：公開的，無限制訪問。 <br> •	private：私有的，僅限於類別內部訪問。 <br> •	protected：受保護的，類別內部及其派生類別可訪問。 <br> •	internal：內部的，同一組件內部可訪問。 <br> •	protected internal：受保護且內部的，同一組件內部及其派生類別可訪問。 <br> •	private protected：私有且受保護的，同一組件內部及其派生類別可訪問。 <br>正確使用存取修飾符可以幫助你實現良好的封裝和資訊隱藏，從而提高程式碼的安全性、可維護性和可擴展性。記住，應盡量限制成員的可訪問範圍，僅在需要時提高其可見性。<br>如果你有更多關於存取修飾符的問題或需要進一步的範例，請隨時告訴我！</p>
+</li>
+</ol>

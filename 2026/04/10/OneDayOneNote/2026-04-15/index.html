@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2026-04-15 如果我要 用 cmd 啓動 mysql connect 到另一台 server , 要下載什麼程式 for windows">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2026-04-15 如果我要 用 cmd 啓動 mysql connect 到另一台 server , 要下載什麼程式 for windows">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2026/04/10/OneDayOneNote/2026-04-15/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2026-04-15 如果我要 用 cmd 啓動 mysql connect 到另一台 server , 要下載什麼程式 for windows">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2026-04-10T14:54:41.000Z">
+<meta property="article:modified_time" content="2026-04-10T14:55:21.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="mySQL">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2026/04/10/OneDayOneNote/2026-04-15/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2026/04/10/OneDayOneNote/2026-04-15/","path":"2026/04/10/OneDayOneNote/2026-04-15/","title":"2026-04-15 如果我要 用 cmd 啓動 mysql connect 到另一台 server , 要下載什麼程式 for windows"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2026-04-15 如果我要 用 cmd 啓動 mysql connect 到另一台 server , 要下載什麼程式 for windows | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2026-04-15-%E5%A6%82%E6%9E%9C%E6%88%91%E8%A6%81-%E7%94%A8-cmd-%E5%95%93%E5%8B%95-mysql-connect-%E5%88%B0%E5%8F%A6%E4%B8%80%E5%8F%B0-server-%E8%A6%81%E4%B8%8B%E8%BC%89%E4%BB%80%E9%BA%BC%E7%A8%8B%E5%BC%8F-for-windows"><span class="nav-number">1.</span> <span class="nav-text">2026-04-15 如果我要 用 cmd 啓動 mysql connect 到另一台 server , 要下載什麼程式 for windows</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-MySQL-Community-Server%EF%BC%88MySQL-%E5%AE%A2%E6%88%B6%E7%AB%AF%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">1. MySQL Community Server（MySQL 客戶端）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-MySQL-Shell"><span class="nav-number">1.2.</span> <span class="nav-text">2. MySQL Shell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%8F%AA%E4%B8%8B%E8%BC%89-MySQL-%E5%AE%A2%E6%88%B6%E7%AB%AF%E5%B7%A5%E5%85%B7%EF%BC%88%E5%85%8D%E5%AE%89%E8%A3%9D%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">3. 只下載 MySQL 客戶端工具（免安裝）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A0%85"><span class="nav-number">1.4.</span> <span class="nav-text">使用注意事項</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">536</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2026/04/10/OneDayOneNote/2026-04-15/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2026-04-15 如果我要 用 cmd 啓動 mysql connect 到另一台 server , 要下載什麼程式 for windows | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2026-04-15 如果我要 用 cmd 啓動 mysql connect 到另一台 server , 要下載什麼程式 for windows">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2026-04-15 如果我要 用 cmd 啓動 mysql connect 到另一台 server , 要下載什麼程式 for windows
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2026-04-10 22:54:41 / 修改時間：22:55:21" itemprop="dateCreated datePublished" datetime="2026-04-10T22:54:41+08:00">2026-04-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2026-04-15 如果我要 用 cmd 啓動 mysql connect 到另一台 server , 要下載什麼程式 for windows</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2026-04-15-如果我要-用-cmd-啓動-mysql-connect-到另一台-server-要下載什麼程式-for-windows"><a href="#2026-04-15-如果我要-用-cmd-啓動-mysql-connect-到另一台-server-要下載什麼程式-for-windows" class="headerlink" title="2026-04-15 如果我要 用 cmd 啓動 mysql connect 到另一台 server , 要下載什麼程式 for windows"></a>2026-04-15 如果我要 用 cmd 啓動 mysql connect 到另一台 server , 要下載什麼程式 for windows</h2><p>我:<br>如果我要 用 cmd 啓動 mysql connect 到另一台 server , 要下載什麼程式 for windows </p>
+<p>GPT:<br>要在 Windows 上使用命令提示字元（cmd）來連接到另一台 MySQL 伺服器，您只需要下載和安裝 MySQL 客戶端程式或 MySQL Shell。以下是幾個可行的方法：</p>
+<h3 id="1-MySQL-Community-Server（MySQL-客戶端）"><a href="#1-MySQL-Community-Server（MySQL-客戶端）" class="headerlink" title="1. MySQL Community Server（MySQL 客戶端）"></a>1. <strong>MySQL Community Server（MySQL 客戶端）</strong></h3><p>您可以下載 <strong>MySQL Community Server</strong>，它包含 MySQL 客戶端工具，包括 <code>mysql</code> 命令行工具。安裝之後，您可以使用 <code>mysql</code> 命令來連接到遠端的 MySQL 伺服器。</p>
+<p><strong>下載步驟</strong>：</p>
+<ol>
+<li>前往 <a target="_blank" rel="noopener" href="https://dev.mysql.com/downloads/mysql/">MySQL 下載頁面</a>。</li>
+<li>選擇 Windows 版本，下載安裝程式。</li>
+<li>安裝過程中，您可以選擇「Server Only」或「Full」，以確保您有客戶端工具（<code>mysql.exe</code>）。</li>
+</ol>
+<p><strong>使用方法</strong>：<br>安裝完成後，您可以在命令提示字元中輸入以下命令來連接到遠端伺服器：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u your_username -p -h remote_server_ip</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>-u</code>：使用者名稱。</li>
+<li><code>-p</code>：提示輸入密碼。</li>
+<li><code>-h</code>：目標伺服器的 IP 地址或主機名稱。</li>
+</ul>
+<h3 id="2-MySQL-Shell"><a href="#2-MySQL-Shell" class="headerlink" title="2. MySQL Shell"></a>2. <strong>MySQL Shell</strong></h3><p><strong>MySQL Shell</strong> 是 MySQL 的命令行工具，功能更強大，可以用於管理 MySQL、執行 SQL 語句，甚至管理 MySQL InnoDB Cluster。</p>
+<p><strong>下載步驟</strong>：</p>
+<ol>
+<li>前往 <a target="_blank" rel="noopener" href="https://dev.mysql.com/downloads/shell/">MySQL Shell 下載頁面</a>。</li>
+<li>選擇適用於 Windows 的版本，下載並安裝。</li>
+</ol>
+<p><strong>使用方法</strong>：<br>安裝後，您可以使用以下命令連接到遠端伺服器：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqlsh root@remote_server_ip</span><br></pre></td></tr></table></figure>
+
+<p>它也支援 SQL 模式，可以直接輸入 SQL 語句進行操作。</p>
+<h3 id="3-只下載-MySQL-客戶端工具（免安裝）"><a href="#3-只下載-MySQL-客戶端工具（免安裝）" class="headerlink" title="3. 只下載 MySQL 客戶端工具（免安裝）"></a>3. <strong>只下載 MySQL 客戶端工具（免安裝）</strong></h3><p>如果您不想安裝整個 MySQL 伺服器，可以只下載 MySQL 客戶端工具（<code>mysql.exe</code>），這些工具通常作為 MySQL Shell 或 MySQL Utilities 包的一部分提供。安裝完成後，您可以直接使用命令行連接遠端的 MySQL 伺服器。</p>
+<p><strong>步驟</strong>：</p>
+<ol>
+<li>前往 <a target="_blank" rel="noopener" href="https://dev.mysql.com/downloads/">MySQL 官方下載頁面</a>。</li>
+<li>您可以選擇下載 MySQL Shell 或者 MySQL Utilities，這些工具中包含 <code>mysql.exe</code>。</li>
+<li>下載後，添加 MySQL 客戶端的路徑到 Windows 的「環境變數」，以便可以從 cmd 中直接使用 <code>mysql</code> 命令。</li>
+</ol>
+<h3 id="使用注意事項"><a href="#使用注意事項" class="headerlink" title="使用注意事項"></a>使用注意事項</h3><ol>
+<li><p><strong>防火牆設置</strong>：確保遠端伺服器開放了 MySQL 的 3306 埠，並允許外部連接。</p>
+</li>
+<li><p><strong>MySQL 設置</strong>：確保 MySQL 伺服器允許來自外部 IP 地址的連接，您可能需要修改 <code>my.cnf</code> 或 <code>my.ini</code> 文件中的 <code>bind-address</code> 設置。</p>
+</li>
+<li><p><strong>使用者權限</strong>：確保用於連接的 MySQL 帳戶具有從遠端 IP 地址連接的權限，您可以使用以下命令進行設置：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> <span class="keyword">ALL</span> PRIVILEGES <span class="keyword">ON</span> <span class="operator">*</span>.<span class="operator">*</span> <span class="keyword">TO</span> <span class="string">&#x27;your_username&#x27;</span>@<span class="string">&#x27;%&#x27;</span> IDENTIFIED <span class="keyword">BY</span> <span class="string">&#x27;your_password&#x27;</span>;</span><br><span class="line">FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>這樣，您就能使用命令提示字元連接到遠端的 MySQL 伺服器並進行管理操作了。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/mySQL/" rel="tag"># mySQL</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2026/04/10/OneDayOneNote/2026-04-14/" rel="prev" title="2026-04-14 MySQL Utilities 是什麼?">
+                  <i class="fa fa-angle-left"></i> 2026-04-14 MySQL Utilities 是什麼?
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2026/04/10/OneDayOneNote/2026-04-16/" rel="next" title="2026-04-16 MySQL  JS > ? 要怎麼連?">
+                  2026-04-16 MySQL  JS > ? 要怎麼連? <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/apple.lily/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

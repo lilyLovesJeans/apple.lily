@@ -1,0 +1,26 @@
+<hr>
+<h2 id="title-2026-04-12-在-mac-要如何知道自的-ip-date-2026-04-10-22-43-19categories-OneDayOneNotetags-MAC-description-2026-04-12-在-mac-要如何知道自的-ip"><a href="#title-2026-04-12-在-mac-要如何知道自的-ip-date-2026-04-10-22-43-19categories-OneDayOneNotetags-MAC-description-2026-04-12-在-mac-要如何知道自的-ip" class="headerlink" title="title: 2026-04-12 在 mac 要如何知道自的 ip?date: 2026-04-10 22:43:19categories: OneDayOneNotetags:  [MAC]description: 2026-04-12 在 mac 要如何知道自的 ip?"></a>title: 2026-04-12 在 mac 要如何知道自的 ip?<br>date: 2026-04-10 22:43:19<br>categories: OneDayOneNote<br>tags:  [MAC]<br>description: 2026-04-12 在 mac 要如何知道自的 ip?</h2><h2 id="2026-04-12-在-mac-要如何知道自的-ip"><a href="#2026-04-12-在-mac-要如何知道自的-ip" class="headerlink" title="2026-04-12 在 mac 要如何知道自的 ip?"></a>2026-04-12 在 mac 要如何知道自的 ip?</h2><p>在 mac 要如何知道自的 ip?</p>
+<p>在 macOS 上，您可以透過以下幾種方式來查看您的 IP 地址：</p>
+<h3 id="方法一：透過系統偏好設定"><a href="#方法一：透過系統偏好設定" class="headerlink" title="方法一：透過系統偏好設定"></a>方法一：透過系統偏好設定</h3><ol>
+<li><strong>打開「系統偏好設定」</strong>。</li>
+<li>點選 <strong>「網路」</strong>。</li>
+<li>在左側選擇您的網路連接類型，例如 <strong>Wi-Fi</strong> 或 <strong>Ethernet</strong>（有線連接）。</li>
+<li>您可以在右側看到 IP 地址，例如「狀態：已連接」下方會顯示「IP 位址：xxx.xxx.xxx.xxx」。</li>
+</ol>
+<h3 id="方法二：透過終端機"><a href="#方法二：透過終端機" class="headerlink" title="方法二：透過終端機"></a>方法二：透過終端機</h3><ol>
+<li><p>打開 <strong>「終端機」</strong>（可以使用 Spotlight 搜尋 “Terminal” 打開）。</p>
+</li>
+<li><p>輸入以下命令以查看 Wi-Fi 的 IP 地址：</p>
+<pre><code class="bash">ipconfig getifaddr en0
+</code></pre>
+<p>或者輸入以下命令查看所有網路介面的詳細信息：</p>
+<pre><code class="bash">ifconfig
+</code></pre>
+<p>在輸出的內容中，找到以 **”en0”**（Wi-Fi）或 **”en1”**（有線）開頭的區塊，並在其中找到 <code>inet</code> 之後的地址。</p>
+</li>
+</ol>
+<h3 id="方法三：使用命令-curl"><a href="#方法三：使用命令-curl" class="headerlink" title="方法三：使用命令 curl"></a>方法三：使用命令 <code>curl</code></h3><p>如果您想知道公網 IP（外部 IP）地址，請輸入以下命令：</p>
+<pre><code class="bash">curl ifconfig.me
+</code></pre>
+<p>這會返回您當前的公網 IP 地址。</p>
+<p>您可以根據需求使用上述任何方法來查看您的 IP 地址。</p>

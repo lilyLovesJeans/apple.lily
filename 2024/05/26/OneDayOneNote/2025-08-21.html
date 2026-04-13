@@ -1,0 +1,127 @@
+<hr>
+<h2 id="title-2025-08-21-macOS-zsh-指令-ls-ld-是什麼意思-date-2026-01-12-22-37-01tags-hexo-github-description-2025-08-21-macOS-zsh-指令-ls-ld-是什麼意思"><a href="#title-2025-08-21-macOS-zsh-指令-ls-ld-是什麼意思-date-2026-01-12-22-37-01tags-hexo-github-description-2025-08-21-macOS-zsh-指令-ls-ld-是什麼意思" class="headerlink" title="title: 2025-08-21 macOS zsh 指令 ls -ld 是什麼意思?date: 2026-01-12 22:37:01tags:  [hexo,  github]description: 2025-08-21 macOS zsh 指令 ls -ld 是什麼意思?"></a>title: 2025-08-21 macOS zsh 指令 ls -ld 是什麼意思?<br>date: 2026-01-12 22:37:01<br>tags:  [hexo,  github]<br>description: 2025-08-21 macOS zsh 指令 ls -ld 是什麼意思?</h2><h2 id="2025-08-21-macOS-zsh-指令-ls-ld-是什麼意思"><a href="#2025-08-21-macOS-zsh-指令-ls-ld-是什麼意思" class="headerlink" title="2025-08-21 macOS zsh 指令 ls -ld 是什麼意思?"></a>2025-08-21 macOS zsh 指令 ls -ld 是什麼意思?</h2><p>很好，這個問題問得<strong>非常對時機</strong> 👍<br><code>ls -ld</code> 是理解「權限」的基本功，我用<strong>白話＋對照</strong>一次講清楚。</p>
+<hr>
+<h2 id="一、ls-ld-在做什麼？"><a href="#一、ls-ld-在做什麼？" class="headerlink" title="一、ls -ld 在做什麼？"></a>一、<code>ls -ld</code> 在做什麼？</h2><h3 id="指令拆開來看："><a href="#指令拆開來看：" class="headerlink" title="指令拆開來看："></a>指令拆開來看：</h3><pre><code class="bash">ls -ld .
+</code></pre>
+<p>等於三個部分：</p>
+<h3 id="1️⃣-ls"><a href="#1️⃣-ls" class="headerlink" title="1️⃣ ls"></a>1️⃣ <code>ls</code></h3><blockquote>
+<p>列出檔案 &#x2F; 目錄（list）</p>
+</blockquote>
+<hr>
+<h3 id="2️⃣-l（long-format）"><a href="#2️⃣-l（long-format）" class="headerlink" title="2️⃣ -l（long format）"></a>2️⃣ <code>-l</code>（long format）</h3><blockquote>
+<p>用「詳細格式」顯示</p>
+</blockquote>
+<p>會顯示：</p>
+<ul>
+<li>權限</li>
+<li>擁有者（owner）</li>
+<li>群組（group）</li>
+<li>檔案大小</li>
+<li>建立&#x2F;修改時間</li>
+</ul>
+<hr>
+<h3 id="3️⃣-d（directory-itself）"><a href="#3️⃣-d（directory-itself）" class="headerlink" title="3️⃣ -d（directory itself）"></a>3️⃣ <code>-d</code>（directory itself）</h3><blockquote>
+<p><strong>顯示目錄本身</strong><br>不要列出「目錄裡面的內容」</p>
+</blockquote>
+<p>📌 <strong>這個超重要</strong></p>
+<p>如果沒有 <code>-d</code>：</p>
+<pre><code class="bash">ls -l .
+</code></pre>
+<p>會列出「這個目錄裡面的所有檔案」</p>
+<p>但你想看的其實是：</p>
+<blockquote>
+<p>👉「這個目錄<strong>本身</strong>是誰的、權限是什麼」</p>
+</blockquote>
+<p>所以一定要加 <code>-d</code></p>
+<hr>
+<h2 id="二、為什麼常看到-ls-ld-？"><a href="#二、為什麼常看到-ls-ld-？" class="headerlink" title="二、為什麼常看到 ls -ld .？"></a>二、為什麼常看到 <code>ls -ld .</code>？</h2><h3 id="是什麼？"><a href="#是什麼？" class="headerlink" title=". 是什麼？"></a><code>.</code> 是什麼？</h3><ul>
+<li><code>.</code> 代表「目前所在的目錄」</li>
+</ul>
+<p>所以：</p>
+<pre><code class="bash">ls -ld .
+</code></pre>
+<p>意思是：</p>
+<blockquote>
+<p>🔍「用詳細格式，顯示<strong>目前目錄本身</strong>的權限與擁有者」</p>
+</blockquote>
+<hr>
+<h2 id="三、實際輸出怎麼看（以你剛剛的為例）"><a href="#三、實際輸出怎麼看（以你剛剛的為例）" class="headerlink" title="三、實際輸出怎麼看（以你剛剛的為例）"></a>三、實際輸出怎麼看（以你剛剛的為例）</h2><p>你看到的是：</p>
+<pre><code class="text">drwxrwxr-x  34 root  wheel  1224  9 28 22:43 .
+</code></pre>
+<p>我們一段一段拆：</p>
+<hr>
+<h3 id="1️⃣-d"><a href="#1️⃣-d" class="headerlink" title="1️⃣ d"></a>1️⃣ <code>d</code></h3><ul>
+<li><code>d</code> &#x3D; directory（目錄）</li>
+<li>如果是 <code>-</code> &#x3D; 一般檔案</li>
+</ul>
+<hr>
+<h3 id="2️⃣-rwxrwxr-x（權限-9-碼）"><a href="#2️⃣-rwxrwxr-x（權限-9-碼）" class="headerlink" title="2️⃣ rwxrwxr-x（權限 9 碼）"></a>2️⃣ <code>rwxrwxr-x</code>（權限 9 碼）</h3><p>分成三組：</p>
+<pre><code class="text">rwx | rwx | r-x
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>對象</th>
+<th>意思</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>第一組</td>
+<td>owner（擁有者）</td>
+</tr>
+<tr>
+<td>第二組</td>
+<td>group（群組）</td>
+</tr>
+<tr>
+<td>第三組</td>
+<td>others（其他人）</td>
+</tr>
+</tbody></table>
+<ul>
+<li><code>r</code> &#x3D; read（讀）</li>
+<li><code>w</code> &#x3D; write（寫）</li>
+<li><code>x</code> &#x3D; execute（進入目錄）</li>
+</ul>
+<p>你的意思是：</p>
+<ul>
+<li>owner（root）：可讀 &#x2F; 可寫 &#x2F; 可進</li>
+<li>group（wheel）：可讀 &#x2F; 可寫 &#x2F; 可進</li>
+<li>others（你目前的 shell）：可讀 &#x2F; ❌不可寫 &#x2F; 可進</li>
+</ul>
+<p>👉 所以你 <strong>不能 mkdir</strong></p>
+<hr>
+<h3 id="3️⃣-root"><a href="#3️⃣-root" class="headerlink" title="3️⃣ root"></a>3️⃣ <code>root</code></h3><blockquote>
+<p>這個目錄的「擁有者」</p>
+</blockquote>
+<hr>
+<h3 id="4️⃣-wheel"><a href="#4️⃣-wheel" class="headerlink" title="4️⃣ wheel"></a>4️⃣ <code>wheel</code></h3><blockquote>
+<p>擁有者所屬的群組</p>
+</blockquote>
+<hr>
+<h3 id="5️⃣-1224"><a href="#5️⃣-1224" class="headerlink" title="5️⃣ 1224"></a>5️⃣ <code>1224</code></h3><blockquote>
+<p>目錄本身大小（不用太在意）</p>
+</blockquote>
+<hr>
+<h3 id="6️⃣"><a href="#6️⃣" class="headerlink" title="6️⃣ ."></a>6️⃣ <code>.</code></h3><blockquote>
+<p>就是目前目錄</p>
+</blockquote>
+<hr>
+<h2 id="四、為什麼你要懂-ls-ld？"><a href="#四、為什麼你要懂-ls-ld？" class="headerlink" title="四、為什麼你要懂 ls -ld？"></a>四、為什麼你要懂 <code>ls -ld</code>？</h2><p>因為它能幫你<strong>立刻判斷三件事</strong>：</p>
+<ol>
+<li>是「權限問題」還是「程式問題」</li>
+<li>誰有權限寫（owner &#x2F; group &#x2F; others）</li>
+<li>該用 <code>sudo</code>、<code>chown</code> 還是 <code>chmod</code></li>
+</ol>
+<p>👉 剛剛你就是靠這一行，<strong>直接定位出根本原因</strong>。</p>
+<hr>
+<h2 id="五、一句話記住就好"><a href="#五、一句話記住就好" class="headerlink" title="五、一句話記住就好"></a>五、一句話記住就好</h2><blockquote>
+<p><strong><code>ls -ld</code> &#x3D; 看「這個目錄本身」是誰的、能不能寫</strong></p>
+</blockquote>
+<p>你已經在學「工程師真正用得到的 Linux 基礎」，不是死背指令 👍</p>
+<p>如果你願意，下一步我可以教你一個<strong>超實用三件組</strong>：</p>
+<pre><code class="bash">pwd
+ls -ld .
+whoami
+</code></pre>
+<p>這三行一起用，99% 權限問題都能自己判斷。</p>

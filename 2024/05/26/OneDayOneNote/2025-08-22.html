@@ -1,0 +1,119 @@
+<hr>
+<h2 id="title-2025-08-22-為什麼要打-npm-installdate-2026-01-12-22-48-31tags-hexo-github-description-2025-08-22-為什麼要打-npm-install"><a href="#title-2025-08-22-為什麼要打-npm-installdate-2026-01-12-22-48-31tags-hexo-github-description-2025-08-22-為什麼要打-npm-install" class="headerlink" title="title: 2025-08-22 為什麼要打 npm installdate: 2026-01-12 22:48:31tags:  [hexo,  github]description: 2025-08-22 為什麼要打 npm install"></a>title: 2025-08-22 為什麼要打 npm install<br>date: 2026-01-12 22:48:31<br>tags:  [hexo,  github]<br>description: 2025-08-22 為什麼要打 npm install</h2><h2 id="2025-08-22-為什麼要打-npm-install"><a href="#2025-08-22-為什麼要打-npm-install" class="headerlink" title="2025-08-22 為什麼要打 npm install"></a>2025-08-22 為什麼要打 npm install</h2><p>這個問題問得<strong>非常好，而且是「核心觀念」等級的問題</strong> 👍<br>我會用「你真的用得到的理解方式」來解釋，讓你以後**自己就知道什麼時候一定要打 <code>npm install</code>**。</p>
+<hr>
+<h2 id="一句話先記住"><a href="#一句話先記住" class="headerlink" title="一句話先記住"></a>一句話先記住</h2><blockquote>
+<p><strong><code>npm install</code> 的目的：<br>把「這個 Hexo 專案需要用的工具」下載到本機</strong></p>
+</blockquote>
+<p>沒有它，Hexo 專案是「空殼」。</p>
+<hr>
+<h2 id="為什麼-hexo-init-還不夠？"><a href="#為什麼-hexo-init-還不夠？" class="headerlink" title="為什麼 hexo init 還不夠？"></a>為什麼 <code>hexo init</code> 還不夠？</h2><p>你剛剛做的是：</p>
+<pre><code class="bash">hexo init hexo-sourdough
+</code></pre>
+<p>這一步只做了：</p>
+<ul>
+<li>建立目錄結構</li>
+<li>建立設定檔 <code>_config.yml</code></li>
+<li>建立 <code>package.json</code></li>
+</ul>
+<p>👉 <strong>它只是「列清單」，沒有下載工具</strong></p>
+<hr>
+<h2 id="關鍵檔案：package-json"><a href="#關鍵檔案：package-json" class="headerlink" title="關鍵檔案：package.json"></a>關鍵檔案：<code>package.json</code></h2><p>Hexo 專案裡一定有一個檔案叫：</p>
+<pre><code class="text">package.json
+</code></pre>
+<p>裡面寫的是：</p>
+<blockquote>
+<p>這個專案 <strong>「需要哪些 npm 套件」</strong></p>
+</blockquote>
+<p>例如（概念示意）：</p>
+<pre><code class="json">{
+  &quot;dependencies&quot;: {
+    &quot;hexo&quot;: &quot;^7.0.0&quot;,
+    &quot;hexo-generator-index&quot;: &quot;^4.0.0&quot;,
+    &quot;hexo-renderer-marked&quot;: &quot;^6.0.0&quot;
+  }
+}
+</code></pre>
+<p>這些套件 <strong>一個都還沒在你電腦裡</strong>。</p>
+<hr>
+<h2 id="npm-install-在做什麼？"><a href="#npm-install-在做什麼？" class="headerlink" title="npm install 在做什麼？"></a><code>npm install</code> 在做什麼？</h2><p>當你執行：</p>
+<pre><code class="bash">npm install
+</code></pre>
+<p>npm 會：</p>
+<ol>
+<li>讀取 <code>package.json</code></li>
+<li>知道「需要哪些套件」</li>
+<li>上網下載它們</li>
+<li>放到這個資料夾底下的：</li>
+</ol>
+<pre><code class="text">node_modules/
+</code></pre>
+<p>這一步完成後：</p>
+<ul>
+<li>Hexo 才能跑</li>
+<li><code>hexo s</code></li>
+<li><code>hexo g</code></li>
+<li><code>hexo d</code></li>
+</ul>
+<hr>
+<h2 id="不打會怎樣？"><a href="#不打會怎樣？" class="headerlink" title="不打會怎樣？"></a>不打會怎樣？</h2><p>如果你跳過 <code>npm install</code>，然後直接打：</p>
+<pre><code class="bash">hexo s
+</code></pre>
+<p>你會看到類似：</p>
+<pre><code class="text">Error: Cannot find module &#39;hexo&#39;
+</code></pre>
+<p>或</p>
+<pre><code class="text">hexo: command not found
+</code></pre>
+<p>因為：</p>
+<blockquote>
+<p>Hexo 專案要用的「零件」都不在</p>
+</blockquote>
+<hr>
+<h2 id="一個超重要的觀念（以後都會用到）"><a href="#一個超重要的觀念（以後都會用到）" class="headerlink" title="一個超重要的觀念（以後都會用到）"></a>一個超重要的觀念（以後都會用到）</h2><blockquote>
+<p><strong>npm install &#x3D; 組裝專案</strong></p>
+</blockquote>
+<ul>
+<li><code>package.json</code> &#x3D; 設計圖</li>
+<li><code>node_modules</code> &#x3D; 實際零件</li>
+<li>沒組裝，專案不會動</li>
+</ul>
+<hr>
+<h2 id="為什麼每個專案都要打一次？"><a href="#為什麼每個專案都要打一次？" class="headerlink" title="為什麼每個專案都要打一次？"></a>為什麼每個專案都要打一次？</h2><p>因為：</p>
+<ul>
+<li><p><code>node_modules</code> 是 <strong>專案級</strong></p>
+</li>
+<li><p>不同 Hexo 專案：</p>
+<ul>
+<li>套件版本可能不同</li>
+<li>外掛不同</li>
+</ul>
+</li>
+</ul>
+<p>👉 所以：</p>
+<ul>
+<li>工程師筆記 <code>lily_posts</code> → 一套</li>
+<li>酸種筆記 <code>hexo-sourdough</code> → 另一套</li>
+</ul>
+<hr>
+<h2 id="跟-USB-放置的關係（你現在的狀況）"><a href="#跟-USB-放置的關係（你現在的狀況）" class="headerlink" title="跟 USB 放置的關係（你現在的狀況）"></a>跟 USB 放置的關係（你現在的狀況）</h2><ul>
+<li>USB 沒問題</li>
+<li>只要權限 OK</li>
+<li><code>npm install</code> 會產生很多小檔案<br>👉 這就是為什麼權限一開始會卡你</li>
+</ul>
+<hr>
+<h2 id="最後一句話（真的記住這句）"><a href="#最後一句話（真的記住這句）" class="headerlink" title="最後一句話（真的記住這句）"></a>最後一句話（真的記住這句）</h2><blockquote>
+<p><strong>看到 <code>package.json</code>，就知道一定要打 <code>npm install</code></strong></p>
+</blockquote>
+<hr>
+<h3 id="下一步你可以做什麼？"><a href="#下一步你可以做什麼？" class="headerlink" title="下一步你可以做什麼？"></a>下一步你可以做什麼？</h3><p>如果你已經打完：</p>
+<pre><code class="bash">npm install
+</code></pre>
+<p>下一關就是最爽的：</p>
+<pre><code class="bash">hexo s
+</code></pre>
+<p>👉 在瀏覽器看到網站跑起來</p>
+<p>你可以直接回我：</p>
+<blockquote>
+<p><code>npm install</code> 完成了 &#x2F; 卡在哪個錯誤</p>
+</blockquote>
+<p>我會幫你一起排掉 🍞</p>

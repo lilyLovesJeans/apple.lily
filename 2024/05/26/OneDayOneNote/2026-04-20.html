@@ -1,0 +1,161 @@
+<hr>
+<h2 id="title-2026-04-20-關於類別型別-classes-type-它還有一些關鍵字-比如說-static-override-…-date-2026-04-11-22-39-44categories-OneDayOneNotetags-C-description-2026-04-20-關於類別型別-classes-type-它還有一些關鍵字-比如說-static-override-…"><a href="#title-2026-04-20-關於類別型別-classes-type-它還有一些關鍵字-比如說-static-override-…-date-2026-04-11-22-39-44categories-OneDayOneNotetags-C-description-2026-04-20-關於類別型別-classes-type-它還有一些關鍵字-比如說-static-override-…" class="headerlink" title="title: 2026-04-20 關於類別型別(classes type) 它還有一些關鍵字  ,比如說 static override ….date: 2026-04-11 22:39:44categories: OneDayOneNotetags:  [C#]description:  2026-04-20 關於類別型別(classes type) 它還有一些關鍵字  ,比如說 static override …."></a>title: 2026-04-20 關於類別型別(classes type) 它還有一些關鍵字  ,比如說 static override ….<br>date: 2026-04-11 22:39:44<br>categories: OneDayOneNote<br>tags:  [C#]<br>description:  2026-04-20 關於類別型別(classes type) 它還有一些關鍵字  ,比如說 static override ….</h2><h2 id="2026-04-20-關於類別型別-classes-type-它還有一些關鍵字-比如說-static-override-…"><a href="#2026-04-20-關於類別型別-classes-type-它還有一些關鍵字-比如說-static-override-…" class="headerlink" title="2026-04-20 關於類別型別(classes type) 它還有一些關鍵字  ,比如說 static override …."></a>2026-04-20 關於類別型別(classes type) 它還有一些關鍵字  ,比如說 static override ….</h2><p>我:<br>關於類別型別(classes type) 它還有一些關鍵字  ,比如說 static override ….., 可以細說嗎?</p>
+<p>當你深入學習 C# 的面向物件程式設計（OOP）時，了解類別（Classes）相關的各種關鍵字是非常重要的。這些關鍵字控制著類別的行為、屬性以及它們與其他類別的互動方式。以下將詳細介紹一些常見的類別相關關鍵字，如 static、override、virtual、abstract、sealed、partial 等，並提供相應的範例以幫助你更好地理解和應用這些概念。</p>
+<p>目錄<br>    1.	static 關鍵字 <br>    2.	virtual 和 override 關鍵字 <br>    3.	abstract 關鍵字 <br>    4.	sealed 關鍵字 <br>    5.	partial 關鍵字 <br>    6.	new 關鍵字 <br>    7.	其他相關關鍵字 <br>    8.	小結 </p>
+<ol>
+<li>static 關鍵字<br>概述： static 關鍵字用於定義靜態類別、靜態成員（方法、屬性、字段等）。靜態成員屬於類別本身，而不是類別的實例。<br>用途：<br> •	靜態類別（Static Classes）：用於封裝不需要實例化的功能，如工具類別（Helper Classes）。 <br> •	靜態成員（Static Members）：共享數據或方法，不依賴於任何實例。 <br>範例：靜態類別和靜態方法<br>using System;</li>
+</ol>
+<p>static class MathUtilities<br>{<br>    public static double Pi &#x3D; 3.141592653589793;</p>
+<pre><code>public static double Add(double a, double b)
+{
+    return a + b;
+}
+
+public static double Multiply(double a, double b)
+{
+    return a * b;
+}
+</code></pre>
+<p>}</p>
+<p>class Program<br>{<br>    static void Main(string[] args)<br>    {<br>        &#x2F;&#x2F; 訪問靜態成員，不需要實例化類別<br>        Console.WriteLine($”Pi 的值是 {MathUtilities.Pi}”);<br>        double sum &#x3D; MathUtilities.Add(5.5, 3.2);<br>        double product &#x3D; MathUtilities.Multiply(4.0, 2.5);<br>        Console.WriteLine($”5.5 + 3.2 &#x3D; {sum}”);<br>        Console.WriteLine($”4.0 * 2.5 &#x3D; {product}”);<br>    }<br>}<br>輸出：<br>Pi 的值是 3.141592653589793<br>5.5 + 3.2 &#x3D; 8.7<br>4.0 * 2.5 &#x3D; 10<br>注意事項：<br>    •	靜態類別不能被實例化（無法使用 new 關鍵字創建對象）。 <br>    •	靜態類別中的所有成員必須是靜態的。 <br>    •	靜態類別通常用於封裝全局功能或常數。 <br>範例：靜態字段和靜態方法<br>using System;</p>
+<p>class Counter<br>{<br>    public static int Count &#x3D; 0;</p>
+<pre><code>public Counter()
+{
+    Count++;
+}
+
+public static void DisplayCount()
+{
+    Console.WriteLine($&quot;當前計數為: {Count}&quot;);
+}
+</code></pre>
+<p>}</p>
+<p>class Program<br>{<br>    static void Main(string[] args)<br>    {<br>        new Counter();<br>        new Counter();<br>        new Counter();</p>
+<pre><code>    Counter.DisplayCount(); // 輸出: 當前計數為: 3
+}
+</code></pre>
+<p>}</p>
+<ol start="2">
+<li>virtual 和 override 關鍵字<br>概述：<br> •	virtual：用於基類的方法、屬性或事件，允許派生類重寫（覆蓋）這些成員。 <br> •	override：用於派生類的方法、屬性或事件，表示該成員覆蓋了基類的虛擬成員。 <br>用途： 實現多態性，允許基類引用指向派生類對象，並在運行時調用正確的覆蓋方法。<br>範例：使用 virtual 和 override<br>using System;</li>
+</ol>
+<p>class Animal<br>{<br>    public virtual void Speak()<br>    {<br>        Console.WriteLine(“Animal speaks”);<br>    }<br>}</p>
+<p>class Dog : Animal<br>{<br>    public override void Speak()<br>    {<br>        Console.WriteLine(“Dog barks”);<br>    }<br>}</p>
+<p>class Cat : Animal<br>{<br>    public override void Speak()<br>    {<br>        Console.WriteLine(“Cat meows”);<br>    }<br>}</p>
+<p>class Program<br>{<br>    static void Main(string[] args)<br>    {<br>        Animal myDog &#x3D; new Dog();<br>        Animal myCat &#x3D; new Cat();<br>        Animal genericAnimal &#x3D; new Animal();</p>
+<pre><code>    myDog.Speak();          // 輸出: Dog barks
+    myCat.Speak();          // 輸出: Cat meows
+    genericAnimal.Speak();  // 輸出: Animal speaks
+}
+</code></pre>
+<p>}<br>輸出：<br>Dog barks<br>Cat meows<br>Animal speaks<br>解析：<br>    1.	基類 Animal 定義了一個虛擬方法 Speak。 <br>    2.	派生類 Dog 和 Cat 使用 override 關鍵字覆蓋了 Speak 方法。 <br>    3.	基類引用 myDog 和 myCat 分別指向 Dog 和 Cat 對象，呼叫 Speak 方法時，會根據實際對象類型執行相應的覆蓋方法。 <br>    4.	基類引用 genericAnimal 指向基類對象，呼叫 Speak 方法時，執行基類的實現。 <br>注意事項：<br>    •	只有在基類方法標記為 virtual 或 abstract 時，派生類才能使用 override 來覆蓋該方法。 <br>    •	使用 override 時，方法簽名必須與基類方法完全一致。 </p>
+<ol start="3">
+<li>abstract 關鍵字<br>概述： abstract 關鍵字用於定義抽象類別或抽象方法。抽象類別不能被實例化，必須被派生類繼承並實現其抽象方法。<br>用途： 用於定義一個類別的基礎結構，而具體實現由派生類完成。<br>範例：抽象類別和抽象方法<br>using System;</li>
+</ol>
+<p>abstract class Shape<br>{<br>    public abstract double Area(); &#x2F;&#x2F; 抽象方法，沒有實現</p>
+<pre><code>public void DisplayArea()
+{
+    Console.WriteLine($&quot;面積是: {Area()}&quot;);
+}
+</code></pre>
+<p>}</p>
+<p>class Circle : Shape<br>{<br>    public double Radius { get; set; }</p>
+<pre><code>public Circle(double radius)
+{
+    Radius = radius;
+}
+
+public override double Area()
+{
+    return Math.PI * Radius * Radius;
+}
+</code></pre>
+<p>}</p>
+<p>class Rectangle : Shape<br>{<br>    public double Width { get; set; }<br>    public double Height { get; set; }</p>
+<pre><code>public Rectangle(double width, double height)
+{
+    Width = width;
+    Height = height;
+}
+
+public override double Area()
+{
+    return Width * Height;
+}
+</code></pre>
+<p>}</p>
+<p>class Program<br>{<br>    static void Main(string[] args)<br>    {<br>        Shape circle &#x3D; new Circle(5);<br>        Shape rectangle &#x3D; new Rectangle(4, 6);</p>
+<pre><code>    circle.DisplayArea();      // 輸出: 面積是: 78.53981633974483
+    rectangle.DisplayArea();   // 輸出: 面積是: 24
+}
+</code></pre>
+<p>}<br>輸出：<br>面積是: 78.53981633974483<br>面積是: 24<br>解析：<br>    1.	抽象類別 Shape 定義了一個抽象方法 Area 和一個具體方法 DisplayArea。 <br>    2.	派生類 Circle 和 Rectangle 必須實現 Area 方法，提供具體的計算邏輯。 <br>    3.	無法直接實例化 Shape 類別，只能通過派生類進行實例化。 <br>注意事項：<br>    •	抽象類別可以包含具體方法和抽象方法。 <br>    •	派生類必須覆蓋所有基類的抽象方法，除非派生類也是抽象類別。 </p>
+<ol start="4">
+<li>sealed 關鍵字<br>概述： sealed 關鍵字用於防止類別被進一步繼承，或者防止方法被覆蓋。<br>用途：<br> •	封閉類別（Sealed Classes）：不允許其他類別繼承這個類別。 <br> •	封閉方法（Sealed Methods）：在覆蓋方法中使用 sealed，防止其被進一步覆蓋。 <br>範例：封閉類別<br>using System;</li>
+</ol>
+<p>sealed class Logger<br>{<br>    public void Log(string message)<br>    {<br>        Console.WriteLine($”Log: {message}”);<br>    }<br>}</p>
+<p>&#x2F;&#x2F; 嘗試繼承 Logger 會導致編譯錯誤<br>&#x2F;&#x2F; class FileLogger : Logger { }</p>
+<p>class Program<br>{<br>    static void Main(string[] args)<br>    {<br>        Logger logger &#x3D; new Logger();<br>        logger.Log(“應用程式啟動”);<br>    }<br>}<br>輸出：<br>Log: 應用程式啟動<br>解析：<br>    •	Logger 類別被標記為 sealed，無法被其他類別繼承。 <br>    •	嘗試創建繼承自 Logger 的 FileLogger 類別會導致編譯錯誤。 <br>範例：封閉方法<br>using System;</p>
+<p>class BaseClass<br>{<br>    public virtual void Display()<br>    {<br>        Console.WriteLine(“基類的 Display 方法”);<br>    }<br>}</p>
+<p>class DerivedClass : BaseClass<br>{<br>    public sealed override void Display()<br>    {<br>        Console.WriteLine(“派生類的 Display 方法”);<br>    }<br>}</p>
+<p>&#x2F;&#x2F; 嘗試在 FurtherDerivedClass 中覆蓋 Display 方法會導致編譯錯誤<br>&#x2F;&#x2F; class FurtherDerivedClass : DerivedClass<br>&#x2F;&#x2F; {<br>&#x2F;&#x2F;     public override void Display() &#x2F;&#x2F; 錯誤<br>&#x2F;&#x2F;     {<br>&#x2F;&#x2F;         Console.WriteLine(“進一步派生類的 Display 方法”);<br>&#x2F;&#x2F;     }<br>&#x2F;&#x2F; }</p>
+<p>class Program<br>{<br>    static void Main(string[] args)<br>    {<br>        DerivedClass obj &#x3D; new DerivedClass();<br>        obj.Display(); &#x2F;&#x2F; 輸出: 派生類的 Display 方法<br>    }<br>}<br>輸出：<br>派生類的 Display 方法<br>解析：<br>    •	DerivedClass 覆蓋了基類的 Display 方法，並使用 sealed 關鍵字防止進一步的覆蓋。 <br>    •	嘗試在 FurtherDerivedClass 中覆蓋 Display 方法會導致編譯錯誤。 </p>
+<ol start="5">
+<li>partial 關鍵字<br>概述： partial 關鍵字允許將一個類別、結構（struct）或介面（interface）的定義分割到多個文件中。這對於大型類別或由工具生成部分代碼的情況非常有用。<br>用途：<br> •	代碼組織：將類別的不同部分分開管理，提高可讀性。 <br> •	工具生成代碼：允許工具生成代碼和手動編寫的代碼在不同文件中共存。 <br>範例：分割類別定義<br>File: Person.Part1.cs<br>using System;</li>
+</ol>
+<p>partial class Person<br>{<br>    public string FirstName { get; set; }<br>    public string LastName { get; set; }</p>
+<pre><code>public void GetFullName()
+{
+    Console.WriteLine($&quot;全名: {FirstName} {LastName}&quot;);
+}
+</code></pre>
+<p>}<br>File: Person.Part2.cs<br>using System;</p>
+<p>partial class Person<br>{<br>    public int Age { get; set; }</p>
+<pre><code>public void GetAge()
+{
+    Console.WriteLine($&quot;年齡: {Age}&quot;);
+}
+</code></pre>
+<p>}<br>File: Program.cs<br>using System;</p>
+<p>class Program<br>{<br>    static void Main(string[] args)<br>    {<br>        Person person &#x3D; new Person<br>        {<br>            FirstName &#x3D; “John”,<br>            LastName &#x3D; “Doe”,<br>            Age &#x3D; 30<br>        };</p>
+<pre><code>    person.GetFullName(); // 輸出: 全名: John Doe
+    person.GetAge();      // 輸出: 年齡: 30
+}
+</code></pre>
+<p>}<br>輸出：<br>全名: John Doe<br>年齡: 30<br>解析：<br>    •	Person 類別被分割到兩個不同的文件中，每個文件使用 partial 關鍵字。 <br>    •	編譯時，這些部分會被合併成一個完整的類別。 <br>注意事項：<br>    •	所有部分必須使用 partial 關鍵字並具有相同的訪問修飾符（如 public）。 <br>    •	必須在同一個命名空間中。 </p>
+<ol start="6">
+<li>new 關鍵字<br>概述： 在類別中，new 關鍵字用於隱藏基類中的成員（方法、屬性等）。這不同於 override，因為 new 不涉及多態性，而是定義了一個新的成員來隱藏基類中的同名成員。<br>用途：<br> •	方法隱藏（Method Hiding）：當你希望在派生類中定義一個與基類同名但不同實現的方法，並且不希望使用多態性時。 <br>範例：使用 new 隱藏基類方法<br>using System;</li>
+</ol>
+<p>class BaseClass<br>{<br>    public void Display()<br>    {<br>        Console.WriteLine(“基類的 Display 方法”);<br>    }<br>}</p>
+<p>class DerivedClass : BaseClass<br>{<br>    public new void Display()<br>    {<br>        Console.WriteLine(“派生類的 Display 方法”);<br>    }<br>}</p>
+<p>class Program<br>{<br>    static void Main(string[] args)<br>    {<br>        DerivedClass derived &#x3D; new DerivedClass();<br>        derived.Display(); &#x2F;&#x2F; 輸出: 派生類的 Display 方法</p>
+<pre><code>    BaseClass baseRef = derived;
+    baseRef.Display(); // 輸出: 基類的 Display 方法
+}
+</code></pre>
+<p>}<br>輸出：<br>派生類的 Display 方法<br>基類的 Display 方法<br>解析：<br>    •	在 DerivedClass 中使用 new 關鍵字定義了一個與基類 BaseClass 中同名的 Display 方法，這樣會隱藏基類的方法。 <br>    •	當使用派生類引用 derived 呼叫 Display 方法時，會調用派生類的方法。 <br>    •	當使用基類引用 baseRef 指向派生類對象時，呼叫 Display 方法會調用基類的方法，因為 new 不涉及多態性。 <br>注意事項：<br>    •	使用 new 隱藏基類成員時，不會發生多態性，即基類引用仍然呼叫基類的方法。 <br>    •	建議僅在有明確需求時使用 new，否則應優先考慮使用 virtual 和 override 來實現多態性。 </p>
+<ol start="7">
+<li>其他相關關鍵字<br>除了上述主要關鍵字外，還有一些與類別相關的重要關鍵字：<br>a. readonly 和 const<br> •	const：<br> ◦	用於定義編譯時常數，必須在聲明時初始化。 <br> ◦	隱式為 static。 <br> ◦	不能更改。 <br> •	範例： class Constants<br> •	{<br> •	    public const double Pi &#x3D; 3.141592653589793;<br> •	}<br> •	<br> •	class Program<br> •	{<br> •	    static void Main(string[] args)<br> •	    {<br> •	        Console.WriteLine($”Pi 的值是 {Constants.Pi}”);<br> •	    }<br> •	}<br> •	 <br> •	readonly：<br> ◦	用於定義運行時常數，可以在建構函數中初始化。 <br> ◦	不是 static，除非明確標記。 <br> ◦	可以根據需要在不同實例中有不同的值。 <br> •	範例： class Person<br> •	{<br> •	    public readonly string BirthDate;<br> •	<br> •	    public Person(string birthDate)<br> •	    {<br> •	        BirthDate &#x3D; birthDate;<br> •	    }<br> •	}<br> •	<br> •	class Program<br> •	{<br> •	    static void Main(string[] args)<br> •	    {<br> •	        Person person &#x3D; new Person(“1990-01-01”);<br> •	        Console.WriteLine($”出生日期: {person.BirthDate}”);<br> •	    }<br> •	}<br> •	 <br>b. interface 和 implements<br>在 C# 中，類別可以實作多個介面（Interfaces），而不是繼承多個類別。介面定義了一組方法、屬性、事件等的合約，類別需要實作這些介面成員。</li>
+</ol>
+<p>範例：實作介面<br>using System;</p>
+<p>interface IAnimal<br>{<br>    void Speak();<br>}</p>
+<p>interface IMovable<br>{<br>    void Move();<br>}</p>
+<p>class Dog : IAnimal, IMovable<br>{<br>    public void Speak()<br>    {<br>        Console.WriteLine(“Dog barks”);<br>    }</p>
+<pre><code>public void Move()
+{
+    Console.WriteLine(&quot;Dog runs&quot;);
+}
+</code></pre>
+<p>}</p>
+<p>class Program<br>{<br>    static void Main(string[] args)<br>    {<br>        Dog myDog &#x3D; new Dog();<br>        myDog.Speak(); &#x2F;&#x2F; 輸出: Dog barks<br>        myDog.Move();  &#x2F;&#x2F; 輸出: Dog runs</p>
+<pre><code>    IAnimal animal = myDog;
+    animal.Speak(); // 輸出: Dog barks
+
+    IMovable movable = myDog;
+    movable.Move(); // 輸出: Dog runs
+}
+</code></pre>
+<p>}<br>輸出：<br>Dog barks<br>Dog runs<br>Dog barks<br>Dog runs<br>c. new 關鍵字在類別中的其他用途<br>除了用於方法隱藏外，new 關鍵字還可用於創建對象和在泛型中指定新類型約束等。<br>創建對象的範例：<br>class Car<br>{<br>    public string Make { get; set; }<br>}</p>
+<p>class Program<br>{<br>    static void Main(string[] args)<br>    {<br>        Car myCar &#x3D; new Car { Make &#x3D; “Toyota” };<br>        Console.WriteLine($”車的品牌是 {myCar.Make}”);<br>    }<br>}<br>輸出：<br>車的品牌是 Toyota</p>
+<ol start="8">
+<li>小結<br>在 C# 中，類別相關的關鍵字控制著類別的行為、成員的訪問性以及類別之間的繼承和多態性。以下是主要關鍵字的快速回顧：<br> •	static：<br> ◦	定義靜態類別或靜態成員，屬於類別本身而非實例。 <br> •	virtual 和 override：<br> ◦	實現多態性，允許派生類覆蓋基類的虛擬成員。 <br> •	abstract：<br> ◦	定義抽象類別和抽象方法，必須由派生類實現。 <br> •	sealed：<br> ◦	防止類別被進一步繼承，或防止方法被覆蓋。 <br> •	partial：<br> ◦	將類別的定義分割到多個文件中，提高代碼組織性。 <br> •	new：<br> ◦	隱藏基類的成員，或用於創建對象。 <br> •	readonly 和 const：<br> ◦	定義不可變的常數值，readonly 可在建構函數中初始化，const 在編譯時初始化。 <br>了解並靈活運用這些關鍵字，可以幫助你編寫更高效、可維護且具備良好設計的 C# 程式。如果你有任何進一步的問題或需要更多範例，請隨時告訴我！</li>
+</ol>

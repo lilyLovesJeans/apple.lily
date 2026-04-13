@@ -1,0 +1,83 @@
+<hr>
+<h2 id="title-2026-04-18-C-list-new-List-這是什麼型別-date-2026-04-11-22-19-52categories-OneDayOneNotetags-C-description-2026-04-18-C-list-new-List-這是什麼型別"><a href="#title-2026-04-18-C-list-new-List-這是什麼型別-date-2026-04-11-22-19-52categories-OneDayOneNotetags-C-description-2026-04-18-C-list-new-List-這是什麼型別" class="headerlink" title="title: 2026-04-18 C# list &#x3D; new List()  這是什麼型別?date: 2026-04-11 22:19:52categories: OneDayOneNotetags:  [C#]description: 2026-04-18 C# list &#x3D; new List()  這是什麼型別?"></a>title: 2026-04-18 C# list &#x3D; new List<string>()  這是什麼型別?<br>date: 2026-04-11 22:19:52<br>categories: OneDayOneNote<br>tags:  [C#]<br>description: 2026-04-18 C# list &#x3D; new List<string>()  這是什麼型別?</h2><h2 id="2026-04-18-C-list-new-List-這是什麼型別"><a href="#2026-04-18-C-list-new-List-這是什麼型別" class="headerlink" title="2026-04-18 C# list &#x3D; new List()  這是什麼型別?"></a>2026-04-18 C# list &#x3D; new List<string>()  這是什麼型別?</h2><p>list &#x3D; new List<string>()  這是什麼型別? 上列沒有提到</p>
+<p>好的，讓我們來深入了解 List<string> 是什麼型別，以及它在 C# 中的作用。之前的介紹中，我提到了許多內建的資料型別和參考型別，但確實沒有詳細介紹 泛型集合類別（Generic Collection Classes），其中就包括 List<T>。現在，我們將一步一步來解析 List<string> 的概念、特性以及如何使用它。</p>
+<p>目錄<br>    1.	List<T> 是什麼？ <br>    2.	List<string> 的型別解析 <br>    3.	List<T> 的優點 <br>    4.	如何使用 List<T> <br>    5.	與陣列（Arrays）的比較 <br>    6.	常見的方法與屬性 <br>    7.	小結 </p>
+<ol>
+<li><p>List<T> 是什麼？<br>List<T> 是 C# 中一個非常常用的泛型集合類別，位於 System.Collections.Generic 命名空間下。它提供了一個動態大小的陣列，可以存儲任何類型的物件（由泛型參數 T 指定），並提供了豐富的方法來操作這些物件。<br>泛型（Generics） 允許你在定義類別、介面或方法時，指定一個或多個型別參數。這使得集合類別如 List<T> 能夠在保持類型安全的同時，靈活地處理不同的資料型別。</p>
+</li>
+<li><p>List<string> 的型別解析<br>當你使用 List<string> 時，實際上是在使用 List<T> 類別，並將泛型參數 T 指定為 string 型別。這意味著這個列表將專門用來存儲字串（string）類型的資料。<br>完整範例：<br>using System;<br>using System.Collections.Generic;</p>
+</li>
+</ol>
+<p>class Program<br>{<br>    static void Main(string[] args)<br>    {<br>        &#x2F;&#x2F; 創建一個 List<string> 類型的變數<br>        List<string> fruits &#x3D; new List<string>();</p>
+<pre><code>    // 添加元素到列表中
+    fruits.Add(&quot;Apple&quot;);
+    fruits.Add(&quot;Banana&quot;);
+    fruits.Add(&quot;Cherry&quot;);
+
+    // 遍歷並顯示列表中的元素
+    foreach (string fruit in fruits)
+    {
+        Console.WriteLine(fruit);
+    }
+}
+</code></pre>
+<p>}<br>輸出：<br>Apple<br>Banana<br>Cherry<br>解析：<br>    •	List<string> fruits：這是一個 List 類別的實例，專門用來存儲 string 類型的資料。 <br>    •	new List<string>()：創建一個新的 List<string> 物件。 <br>    •	fruits.Add(“Apple”)：向列表中添加一個元素。 </p>
+<ol start="3">
+<li><p>List<T> 的優點<br>List<T> 相較於傳統的陣列（Arrays），具有許多優點：</p>
+<ol>
+<li>   動態大小：<br> ◦	陣列的大小在宣告時必須固定，而 List<T> 可以根據需要動態地增加或減少元素數量。 </li>
+<li>   豐富的方法：<br> ◦	List<T> 提供了許多方便的方法，如 Add、Remove、Insert、Contains、Find 等，讓資料的操作更為簡便。 </li>
+<li>   類型安全：<br> ◦	由於使用泛型，List<T> 確保了列表中的所有元素都是相同的型別，避免了類型轉換錯誤。 </li>
+<li>   性能優化：<br> ◦	List<T> 在內部使用陣列實現，並會自動處理陣列的擴展，因此在性能上比手動管理動態陣列更高效。</li>
+</ol>
+<p> </p>
+</li>
+<li><p>如何使用 List<T><br>讓我們通過一些具體的例子來了解如何使用 List<T>。<br>a. 創建與初始化<br>using System;<br>using System.Collections.Generic;</p>
+</li>
+</ol>
+<p>class Program<br>{<br>    static void Main(string[] args)<br>    {<br>        &#x2F;&#x2F; 創建一個空的 List<string><br>        List<string> cities &#x3D; new List<string>();</p>
+<pre><code>    // 使用初始化器創建並初始化 List&lt;string&gt;
+    List&lt;string&gt; countries = new List&lt;string&gt; { &quot;USA&quot;, &quot;Canada&quot;, &quot;Mexico&quot; };
+}
+</code></pre>
+<p>}<br>b. 添加元素<br>cities.Add(“New York”);<br>cities.Add(“Los Angeles”);<br>cities.Add(“Chicago”);<br>c. 插入元素<br>&#x2F;&#x2F; 在索引 1 處插入 “Houston”<br>cities.Insert(1, “Houston”);<br>d. 移除元素<br>&#x2F;&#x2F; 移除第一個出現的 “Chicago”<br>cities.Remove(“Chicago”);</p>
+<p>&#x2F;&#x2F; 根據索引移除元素<br>cities.RemoveAt(0); &#x2F;&#x2F; 移除 “New York”<br>e. 訪問元素<br>string firstCity &#x3D; cities[0];<br>Console.WriteLine(firstCity); &#x2F;&#x2F; 輸出 “Houston”<br>f. 檢查是否包含某個元素<br>bool hasLA &#x3D; cities.Contains(“Los Angeles”);<br>Console.WriteLine(hasLA); &#x2F;&#x2F; 輸出 True<br>g. 獲取列表的大小<br>int count &#x3D; cities.Count;<br>Console.WriteLine(count); &#x2F;&#x2F; 輸出列表中元素的數量</p>
+<ol start="5">
+<li>與陣列（Arrays）的比較<br>特性<br>陣列（Array）<br>List<T><br>大小<br>固定，宣告時指定大小<br>動態，能自動擴展或縮減<br>方法支持<br>基本的方法，如索引訪問<br>豐富的方法，如 Add、Remove 等<br>類型安全<br>是，尤其是使用泛型陣列<br>是，使用泛型確保元素類型一致<br>性能<br>高效，適合固定大小的資料<br>略低於陣列，但提供更多靈活性<br>使用情境<br>資料大小已知且不變<br>需要動態管理資料集合時<br>範例：<br>&#x2F;&#x2F; 使用陣列<br>string[] arrayCities &#x3D; new string[3] { “Paris”, “Berlin”, “Tokyo” };</li>
+</ol>
+<p>&#x2F;&#x2F; 使用 List<string><br>List<string> listCities &#x3D; new List<string> { “Paris”, “Berlin”, “Tokyo” };<br>listCities.Add(“Sydney”); &#x2F;&#x2F; 動態添加</p>
+<ol start="6">
+<li>常見的方法與屬性<br>以下是 List<T> 中一些常用的方法和屬性：<br> •	添加元素：<br> ◦	Add(T item)：在列表末尾添加一個元素。 <br> ◦	AddRange(IEnumerable<T> collection)：添加一個集合中的所有元素。 <br> •	移除元素：<br> ◦	Remove(T item)：移除第一個匹配的元素。 <br> ◦	RemoveAt(int index)：根據索引移除元素。 <br> ◦	Clear()：清空列表中的所有元素。 <br> •	查詢與搜尋：<br> ◦	Contains(T item)：檢查列表中是否包含指定元素。 <br> ◦	IndexOf(T item)：獲取元素的索引。 <br> ◦	Find(Predicate<T> match)：找到第一個符合條件的元素。 <br> ◦	FindAll(Predicate<T> match)：找到所有符合條件的元素。 <br> •	排序與反轉：<br> ◦	Sort()：對列表中的元素進行排序。 <br> ◦	Reverse()：反轉列表中元素的順序。 <br> •	轉換與複製：<br> ◦	ToArray()：將列表轉換為陣列。 <br> ◦	CopyTo(T[] array, int arrayIndex)：將元素複製到指定的陣列中。 <br>範例：<br>using System;<br>using System.Collections.Generic;</li>
+</ol>
+<p>class Program<br>{<br>    static void Main(string[] args)<br>    {<br>        List<int> numbers &#x3D; new List<int> { 5, 3, 8, 1, 2 };</p>
+<pre><code>    // 添加元素
+    numbers.Add(10);
+
+    // 移除元素
+    numbers.Remove(3); // 移除值為 3 的元素
+    numbers.RemoveAt(0); // 移除索引 0 的元素
+
+    // 查詢
+    bool hasEight = numbers.Contains(8); // 返回 true
+    int index = numbers.IndexOf(8); // 返回 1
+
+    // 找到第一個大於 5 的數字
+    int firstGreaterThanFive = numbers.Find(x =&gt; x &gt; 5);
+
+    // 排序
+    numbers.Sort();
+
+    // 反轉
+    numbers.Reverse();
+
+    // 輸出結果
+    foreach (int num in numbers)
+    {
+        Console.WriteLine(num);
+    }
+}
+</code></pre>
+<p>}<br>輸出：<br>10<br>8<br>2</p>
+<ol start="7">
+<li>小結<br> •	List<T> 是什麼：<br> ◦	一個泛型集合類別，允許存儲任意型別的物件，並提供豐富的方法來管理這些物件。 <br> •	List<string> 的特性：<br> ◦	專門用來存儲 string 類型的資料。 <br> ◦	支持動態增減元素，類型安全，並提供各種便捷的方法來操作列表。 <br> •	與陣列的比較：<br> ◦	List<T> 更加靈活，適用於需要頻繁增減元素的情境，而陣列則適合大小固定且性能要求較高的場合。 <br> •	常用方法與屬性：<br> ◦	Add、Remove、Find、Sort 等方法使得 List<T> 在處理資料集合時非常方便。 <br>了解並善用 List<T>，可以讓你在 C# 中更高效地處理各種資料集合需求。如果你有更多關於 List<T> 或其他 C# 集合類別的問題，請隨時告訴我！</li>
+</ol>

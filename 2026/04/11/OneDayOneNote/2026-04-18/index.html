@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2026-04-18 C# list &#x3D; new List()  這是什麼型別?">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2026-04-18 C# list &#x3D; new List&lt;string&gt;()  這是什麼型別?">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2026/04/11/OneDayOneNote/2026-04-18/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2026-04-18 C# list &#x3D; new List()  這是什麼型別?">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2026-04-11T14:19:52.000Z">
+<meta property="article:modified_time" content="2026-04-11T14:27:06.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="C#">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2026/04/11/OneDayOneNote/2026-04-18/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2026/04/11/OneDayOneNote/2026-04-18/","path":"2026/04/11/OneDayOneNote/2026-04-18/","title":"2026-04-18 C# list = new List\u003cstring>()  這是什麼型別?"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2026-04-18 C# list = new List<string>()  這是什麼型別? | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2026-04-18-C-list-new-List-%E9%80%99%E6%98%AF%E4%BB%80%E9%BA%BC%E5%9E%8B%E5%88%A5"><span class="nav-number">1.</span> <span class="nav-text">2026-04-18 C# list &#x3D; new List()  這是什麼型別?</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">536</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2026/04/11/OneDayOneNote/2026-04-18/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2026-04-18 C# list = new List<string>()  這是什麼型別? | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2026-04-18 C# list = new List<string>()  這是什麼型別?">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2026-04-18 C# list = new List<string>()  這是什麼型別?
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2026-04-11 22:19:52 / 修改時間：22:27:06" itemprop="dateCreated datePublished" datetime="2026-04-11T22:19:52+08:00">2026-04-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2026-04-18 C# list = new List<string>()  這是什麼型別?</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2026-04-18-C-list-new-List-這是什麼型別"><a href="#2026-04-18-C-list-new-List-這是什麼型別" class="headerlink" title="2026-04-18 C# list &#x3D; new List()  這是什麼型別?"></a>2026-04-18 C# list &#x3D; new List<string>()  這是什麼型別?</h2><p>list &#x3D; new List<string>()  這是什麼型別? 上列沒有提到</p>
+<p>好的，讓我們來深入了解 List<string> 是什麼型別，以及它在 C# 中的作用。之前的介紹中，我提到了許多內建的資料型別和參考型別，但確實沒有詳細介紹 泛型集合類別（Generic Collection Classes），其中就包括 List<T>。現在，我們將一步一步來解析 List<string> 的概念、特性以及如何使用它。</p>
+<p>目錄<br>    1.	List<T> 是什麼？ <br>    2.	List<string> 的型別解析 <br>    3.	List<T> 的優點 <br>    4.	如何使用 List<T> <br>    5.	與陣列（Arrays）的比較 <br>    6.	常見的方法與屬性 <br>    7.	小結 </p>
+<ol>
+<li><p>List<T> 是什麼？<br>List<T> 是 C# 中一個非常常用的泛型集合類別，位於 System.Collections.Generic 命名空間下。它提供了一個動態大小的陣列，可以存儲任何類型的物件（由泛型參數 T 指定），並提供了豐富的方法來操作這些物件。<br>泛型（Generics） 允許你在定義類別、介面或方法時，指定一個或多個型別參數。這使得集合類別如 List<T> 能夠在保持類型安全的同時，靈活地處理不同的資料型別。</p>
+</li>
+<li><p>List<string> 的型別解析<br>當你使用 List<string> 時，實際上是在使用 List<T> 類別，並將泛型參數 T 指定為 string 型別。這意味著這個列表將專門用來存儲字串（string）類型的資料。<br>完整範例：<br>using System;<br>using System.Collections.Generic;</p>
+</li>
+</ol>
+<p>class Program<br>{<br>    static void Main(string[] args)<br>    {<br>        &#x2F;&#x2F; 創建一個 List<string> 類型的變數<br>        List<string> fruits &#x3D; new List<string>();</p>
+<pre><code>    // 添加元素到列表中
+    fruits.Add(&quot;Apple&quot;);
+    fruits.Add(&quot;Banana&quot;);
+    fruits.Add(&quot;Cherry&quot;);
+
+    // 遍歷並顯示列表中的元素
+    foreach (string fruit in fruits)
+    &#123;
+        Console.WriteLine(fruit);
+    &#125;
+&#125;
+</code></pre>
+<p>}<br>輸出：<br>Apple<br>Banana<br>Cherry<br>解析：<br>    •	List<string> fruits：這是一個 List 類別的實例，專門用來存儲 string 類型的資料。 <br>    •	new List<string>()：創建一個新的 List<string> 物件。 <br>    •	fruits.Add(“Apple”)：向列表中添加一個元素。 </p>
+<ol start="3">
+<li><p>List<T> 的優點<br>List<T> 相較於傳統的陣列（Arrays），具有許多優點：</p>
+<ol>
+<li>   動態大小：<br> ◦	陣列的大小在宣告時必須固定，而 List<T> 可以根據需要動態地增加或減少元素數量。 </li>
+<li>   豐富的方法：<br> ◦	List<T> 提供了許多方便的方法，如 Add、Remove、Insert、Contains、Find 等，讓資料的操作更為簡便。 </li>
+<li>   類型安全：<br> ◦	由於使用泛型，List<T> 確保了列表中的所有元素都是相同的型別，避免了類型轉換錯誤。 </li>
+<li>   性能優化：<br> ◦	List<T> 在內部使用陣列實現，並會自動處理陣列的擴展，因此在性能上比手動管理動態陣列更高效。</li>
+</ol>
+<p> </p>
+</li>
+<li><p>如何使用 List<T><br>讓我們通過一些具體的例子來了解如何使用 List<T>。<br>a. 創建與初始化<br>using System;<br>using System.Collections.Generic;</p>
+</li>
+</ol>
+<p>class Program<br>{<br>    static void Main(string[] args)<br>    {<br>        &#x2F;&#x2F; 創建一個空的 List<string><br>        List<string> cities &#x3D; new List<string>();</p>
+<pre><code>    // 使用初始化器創建並初始化 List&lt;string&gt;
+    List&lt;string&gt; countries = new List&lt;string&gt; &#123; &quot;USA&quot;, &quot;Canada&quot;, &quot;Mexico&quot; &#125;;
+&#125;
+</code></pre>
+<p>}<br>b. 添加元素<br>cities.Add(“New York”);<br>cities.Add(“Los Angeles”);<br>cities.Add(“Chicago”);<br>c. 插入元素<br>&#x2F;&#x2F; 在索引 1 處插入 “Houston”<br>cities.Insert(1, “Houston”);<br>d. 移除元素<br>&#x2F;&#x2F; 移除第一個出現的 “Chicago”<br>cities.Remove(“Chicago”);</p>
+<p>&#x2F;&#x2F; 根據索引移除元素<br>cities.RemoveAt(0); &#x2F;&#x2F; 移除 “New York”<br>e. 訪問元素<br>string firstCity &#x3D; cities[0];<br>Console.WriteLine(firstCity); &#x2F;&#x2F; 輸出 “Houston”<br>f. 檢查是否包含某個元素<br>bool hasLA &#x3D; cities.Contains(“Los Angeles”);<br>Console.WriteLine(hasLA); &#x2F;&#x2F; 輸出 True<br>g. 獲取列表的大小<br>int count &#x3D; cities.Count;<br>Console.WriteLine(count); &#x2F;&#x2F; 輸出列表中元素的數量</p>
+<ol start="5">
+<li>與陣列（Arrays）的比較<br>特性<br>陣列（Array）<br>List<T><br>大小<br>固定，宣告時指定大小<br>動態，能自動擴展或縮減<br>方法支持<br>基本的方法，如索引訪問<br>豐富的方法，如 Add、Remove 等<br>類型安全<br>是，尤其是使用泛型陣列<br>是，使用泛型確保元素類型一致<br>性能<br>高效，適合固定大小的資料<br>略低於陣列，但提供更多靈活性<br>使用情境<br>資料大小已知且不變<br>需要動態管理資料集合時<br>範例：<br>&#x2F;&#x2F; 使用陣列<br>string[] arrayCities &#x3D; new string[3] { “Paris”, “Berlin”, “Tokyo” };</li>
+</ol>
+<p>&#x2F;&#x2F; 使用 List<string><br>List<string> listCities &#x3D; new List<string> { “Paris”, “Berlin”, “Tokyo” };<br>listCities.Add(“Sydney”); &#x2F;&#x2F; 動態添加</p>
+<ol start="6">
+<li>常見的方法與屬性<br>以下是 List<T> 中一些常用的方法和屬性：<br> •	添加元素：<br> ◦	Add(T item)：在列表末尾添加一個元素。 <br> ◦	AddRange(IEnumerable<T> collection)：添加一個集合中的所有元素。 <br> •	移除元素：<br> ◦	Remove(T item)：移除第一個匹配的元素。 <br> ◦	RemoveAt(int index)：根據索引移除元素。 <br> ◦	Clear()：清空列表中的所有元素。 <br> •	查詢與搜尋：<br> ◦	Contains(T item)：檢查列表中是否包含指定元素。 <br> ◦	IndexOf(T item)：獲取元素的索引。 <br> ◦	Find(Predicate<T> match)：找到第一個符合條件的元素。 <br> ◦	FindAll(Predicate<T> match)：找到所有符合條件的元素。 <br> •	排序與反轉：<br> ◦	Sort()：對列表中的元素進行排序。 <br> ◦	Reverse()：反轉列表中元素的順序。 <br> •	轉換與複製：<br> ◦	ToArray()：將列表轉換為陣列。 <br> ◦	CopyTo(T[] array, int arrayIndex)：將元素複製到指定的陣列中。 <br>範例：<br>using System;<br>using System.Collections.Generic;</li>
+</ol>
+<p>class Program<br>{<br>    static void Main(string[] args)<br>    {<br>        List<int> numbers &#x3D; new List<int> { 5, 3, 8, 1, 2 };</p>
+<pre><code>    // 添加元素
+    numbers.Add(10);
+
+    // 移除元素
+    numbers.Remove(3); // 移除值為 3 的元素
+    numbers.RemoveAt(0); // 移除索引 0 的元素
+
+    // 查詢
+    bool hasEight = numbers.Contains(8); // 返回 true
+    int index = numbers.IndexOf(8); // 返回 1
+
+    // 找到第一個大於 5 的數字
+    int firstGreaterThanFive = numbers.Find(x =&gt; x &gt; 5);
+
+    // 排序
+    numbers.Sort();
+
+    // 反轉
+    numbers.Reverse();
+
+    // 輸出結果
+    foreach (int num in numbers)
+    &#123;
+        Console.WriteLine(num);
+    &#125;
+&#125;
+</code></pre>
+<p>}<br>輸出：<br>10<br>8<br>2</p>
+<ol start="7">
+<li>小結<br> •	List<T> 是什麼：<br> ◦	一個泛型集合類別，允許存儲任意型別的物件，並提供豐富的方法來管理這些物件。 <br> •	List<string> 的特性：<br> ◦	專門用來存儲 string 類型的資料。 <br> ◦	支持動態增減元素，類型安全，並提供各種便捷的方法來操作列表。 <br> •	與陣列的比較：<br> ◦	List<T> 更加靈活，適用於需要頻繁增減元素的情境，而陣列則適合大小固定且性能要求較高的場合。 <br> •	常用方法與屬性：<br> ◦	Add、Remove、Find、Sort 等方法使得 List<T> 在處理資料集合時非常方便。 <br>了解並善用 List<T>，可以讓你在 C# 中更高效地處理各種資料集合需求。如果你有更多關於 List<T> 或其他 C# 集合類別的問題，請隨時告訴我！</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/C/" rel="tag"># C#</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2026/04/11/OneDayOneNote/2026-04-17/" rel="prev" title="2026-04-17 關於 virtual 和 override 我覺得妳要一步步教我怎麼寫, 而不是產生程式碼的雛型">
+                  <i class="fa fa-angle-left"></i> 2026-04-17 關於 virtual 和 override 我覺得妳要一步步教我怎麼寫, 而不是產生程式碼的雛型
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2026/04/11/OneDayOneNote/2026-04-19/" rel="next" title="2026-04-19 C# 泛型集合類別（Generic Collection Classes）除了 list<T> 還有其他種嗎?">
+                  2026-04-19 C# 泛型集合類別（Generic Collection Classes）除了 list<T> 還有其他種嗎? <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/apple.lily/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
