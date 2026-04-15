@@ -1,0 +1,87 @@
+<hr>
+<h2 id="title-‘2026-04-27-static-void-Main-string-args-‘date-2026-04-15-22-25-03categories-OneDayOneNotetags-C-description-‘2026-04-27-static-void-Main-string-args-‘"><a href="#title-‘2026-04-27-static-void-Main-string-args-‘date-2026-04-15-22-25-03categories-OneDayOneNotetags-C-description-‘2026-04-27-static-void-Main-string-args-‘" class="headerlink" title="title: ‘2026-04-27  static void Main(string[] args) ‘date: 2026-04-15 22:25:03categories: OneDayOneNotetags:  [C#]description:  ‘2026-04-27  static void Main(string[] args) ‘"></a>title: ‘2026-04-27  static void Main(string[] args) ‘<br>date: 2026-04-15 22:25:03<br>categories: OneDayOneNote<br>tags:  [C#]<br>description:  ‘2026-04-27  static void Main(string[] args) ‘</h2><h2 id="‘2026-04-27-static-void-Main-string-args-‘"><a href="#‘2026-04-27-static-void-Main-string-args-‘" class="headerlink" title="‘2026-04-27  static void Main(string[] args) ‘"></a>‘2026-04-27  static void Main(string[] args) ‘</h2><p>我:<br>static void Main(string[] args)  這個我非常不懂, 為什麼 Main 不用傳參數, 但確要寫 (string[] args) 感覺好像是要傳參數進去, 為什麼不寫 Main() 就好?<br>還有 Main 前面一定要寫 static void?</p>
+<p>GPT:<br>你的問題非常好！讓我們一步一步來解釋 <code>static void Main(string[] args)</code> 這個方法的每個部分，包括為什麼我們需要 <code>string[] args</code>，以及為什麼 <code>Main</code> 前面要寫 <code>static void</code>。我們會從這些關鍵字和參數的功能出發，幫助你理解它們在 C# 中的作用。</p>
+<hr>
+<h2 id="1-Main-方法的作用"><a href="#1-Main-方法的作用" class="headerlink" title="1. Main 方法的作用"></a>1. Main 方法的作用</h2><p><strong><code>Main</code> 方法</strong>是 C# 程式的入口點。當你執行一個 C# 程式時，程式從 <code>Main</code> 方法開始運行。所以，<code>Main</code> 方法是非常特殊的，它告訴編譯器程式應該從哪裡開始執行。</p>
+<h3 id="Main-方法的定義"><a href="#Main-方法的定義" class="headerlink" title="Main 方法的定義"></a><code>Main</code> 方法的定義</h3><p><code>Main</code> 方法的定義通常是：</p>
+<pre><code class="csharp">static void Main(string[] args)
+{
+    // 程式碼
+}
+</code></pre>
+<p>讓我們來逐個了解它的各部分。</p>
+<h3 id="string-args-的作用"><a href="#string-args-的作用" class="headerlink" title="string[] args 的作用"></a><code>string[] args</code> 的作用</h3><ul>
+<li><strong><code>string[] args</code></strong> 代表的是「命令列參數（Command-line Arguments）」。</li>
+<li>當你在命令提示符中執行程式時，你可以在命令後面附加參數，例如：<code>MyProgram.exe param1 param2</code>。這些附加的參數就會被存放在 <code>args</code> 陣列中，讓你的程式能夠根據使用者的輸入做出不同的行為。</li>
+</ul>
+<p>例如，考慮以下的程式：</p>
+<pre><code class="csharp">static void Main(string[] args)
+{
+    if (args.Length &gt; 0)
+    {
+        Console.WriteLine($&quot;Hello, {args[0]}!&quot;);
+    }
+    else
+    {
+        Console.WriteLine(&quot;Hello, World!&quot;);
+    }
+}
+</code></pre>
+<p>如果你用命令列執行這個程式，並加上參數 <code>Alice</code>：</p>
+<pre><code>MyProgram.exe Alice
+</code></pre>
+<p>這時候程式的輸出會是：</p>
+<pre><code>Hello, Alice!
+</code></pre>
+<p>如果沒有傳入任何參數，則會輸出：</p>
+<pre><code>Hello, World!
+</code></pre>
+<p>這樣，<code>string[] args</code> 就能讓你的程式根據不同的輸入執行不同的邏輯。</p>
+<h3 id="為什麼可以不用寫-string-args"><a href="#為什麼可以不用寫-string-args" class="headerlink" title="為什麼可以不用寫 string[] args"></a>為什麼可以不用寫 <code>string[] args</code></h3><p>在你不需要命令列參數的情況下，<code>Main</code> 方法也可以定義為不帶參數的形式：</p>
+<pre><code class="csharp">static void Main()
+{
+    Console.WriteLine(&quot;Hello, World!&quot;);
+}
+</code></pre>
+<p>這樣的寫法是合法的，但只是在某些情況下使用。如果你不需要處理命令列輸入，可以省略 <code>args</code>，這樣 <code>Main</code> 方法也能正常運行。</p>
+<h2 id="2-static-和-void-的作用"><a href="#2-static-和-void-的作用" class="headerlink" title="2. static 和 void 的作用"></a>2. <code>static</code> 和 <code>void</code> 的作用</h2><h3 id="static-關鍵字"><a href="#static-關鍵字" class="headerlink" title="static 關鍵字"></a><code>static</code> 關鍵字</h3><ul>
+<li><strong><code>static</code></strong> 的作用是表示這個方法是屬於類別本身，而不是屬於類別的某個實例。</li>
+<li>這意味著你可以在沒有創建這個類別物件的情況下直接呼叫 <code>Main</code> 方法。由於 <code>Main</code> 方法是整個程式的入口點，必須在執行時被呼叫，因此它必須是 <code>static</code> 的。</li>
+</ul>
+<p>例如，如果 <code>Main</code> 不是 <code>static</code> 的，那麼就需要創建類別的實例來呼叫它：</p>
+<pre><code class="csharp">class Program
+{
+    void Main() // 這樣寫是錯誤的，因為 Main 不能是非 static
+    {
+        // 程式碼
+    }
+}
+
+// 如果 Main 不是 static，你需要這樣做（但這是錯誤的）
+Program p = new Program();
+p.Main();
+</code></pre>
+<p>這顯然不符合 <code>Main</code> 作為入口點的要求，因此它必須是 <code>static</code>。</p>
+<h3 id="void-關鍵字"><a href="#void-關鍵字" class="headerlink" title="void 關鍵字"></a><code>void</code> 關鍵字</h3><ul>
+<li><strong><code>void</code></strong> 表示這個方法不會返回任何值。</li>
+<li><code>Main</code> 方法通常不需要返回值，因為它的主要功能是啟動和控制整個程式的運行。</li>
+<li>在某些情況下，<code>Main</code> 方法也可以返回一個整數（<code>int</code>），通常表示程式的退出狀態。例如：</li>
+</ul>
+<pre><code class="csharp">static int Main()
+{
+    // 執行一些操作...
+    return 0; // 返回 0 表示程式正常結束
+}
+</code></pre>
+<p>這樣的 <code>Main</code> 方法有時用於大型系統或批次腳本中，返回值可以用來標示程式執行的狀態，例如成功（0）或失敗（非零值）。</p>
+<h2 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h2><ul>
+<li><strong><code>Main</code> 方法</strong> 是程式的入口點，從這裡開始執行所有程式碼。</li>
+<li><strong><code>static</code></strong> 表示 <code>Main</code> 方法可以在不創建類別實例的情況下被呼叫，這符合程式入口點的要求。</li>
+<li><strong><code>void</code></strong> 表示這個方法沒有返回值，因為 <code>Main</code> 只是用來啟動程式的執行。</li>
+<li><strong><code>string[] args</code></strong> 是命令列參數，你可以根據輸入的參數控制程式的執行行為。</li>
+</ul>
+<hr>
+<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p><strong>問題 1：</strong><br>為什麼 <code>Main</code> 方法前面必須加上 <code>static</code>？</p>
+<p><strong>問題 2：</strong><br><code>string[] args</code> 在 <code>Main</code> 方法中有什麼作用？在什麼情況下可以省略這個參數？</p>
+<hr>
+<p>當你回答完這些問題後，如果有需要進一步的解釋或有其他疑問，我們可以再繼續往下學習！</p>

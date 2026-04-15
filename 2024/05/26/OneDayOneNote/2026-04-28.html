@@ -1,0 +1,97 @@
+<hr>
+<h2 id="title-2026-04-28-什麼是-在不創建類別實例的情況下被呼叫-date-2026-04-15-23-51-50categories-OneDayOneNotetags-C-description-2026-04-28-什麼是-在不創建類別實例的情況下被呼叫"><a href="#title-2026-04-28-什麼是-在不創建類別實例的情況下被呼叫-date-2026-04-15-23-51-50categories-OneDayOneNotetags-C-description-2026-04-28-什麼是-在不創建類別實例的情況下被呼叫" class="headerlink" title="title: 2026-04-28 什麼是  在不創建類別實例的情況下被呼叫 ?date: 2026-04-15 23:51:50categories: OneDayOneNotetags:  [C#]description: 2026-04-28 什麼是  在不創建類別實例的情況下被呼叫 ?"></a>title: 2026-04-28 什麼是  在不創建類別實例的情況下被呼叫 ?<br>date: 2026-04-15 23:51:50<br>categories: OneDayOneNote<br>tags:  [C#]<br>description: 2026-04-28 什麼是  在不創建類別實例的情況下被呼叫 ?</h2><h2 id="2026-04-28-什麼是-在不創建類別實例的情況下被呼叫"><a href="#2026-04-28-什麼是-在不創建類別實例的情況下被呼叫" class="headerlink" title="2026-04-28 什麼是  在不創建類別實例的情況下被呼叫 ?"></a>2026-04-28 什麼是  在不創建類別實例的情況下被呼叫 ?</h2><p>我:<br>什麼是  在不創建類別實例的情況下被呼叫 ? 可以用情境式說明嗎?<br>GPT:</p>
+<p>當然，我來用具體的情境來說明什麼是「在不創建類別實例的情況下被呼叫」。</p>
+<h3 id="類別與實例的基本概念"><a href="#類別與實例的基本概念" class="headerlink" title="類別與實例的基本概念"></a>類別與實例的基本概念</h3><p>在 C# 中，<strong>類別（Class）</strong> 是一個藍圖，它定義了物件的屬性和方法。而<strong>實例（Instance）</strong> 是根據這個類別創建的具體物件。簡單來說，類別像是一個模具，而實例就是用模具做出來的具體物件。</p>
+<h3 id="非靜態方法的呼叫"><a href="#非靜態方法的呼叫" class="headerlink" title="非靜態方法的呼叫"></a>非靜態方法的呼叫</h3><p>假設你有一個 <code>Person</code> 類別，定義了一些屬性和方法。</p>
+<p><strong>範例：</strong></p>
+<pre><code class="csharp">public class Person
+{
+    public string Name;
+
+    public void Speak()
+    {
+        Console.WriteLine($&quot;Hello, I am {Name}&quot;);
+    }
+}
+</code></pre>
+<p>在這個 <code>Person</code> 類別中，<code>Speak</code> 是一個非靜態方法。這意味著如果你想要呼叫 <code>Speak</code> 方法，你必須先創建一個 <code>Person</code> 類別的實例，也就是「創建物件」。</p>
+<p><strong>如何創建實例：</strong></p>
+<pre><code class="csharp">class Program
+{
+    static void Main(string[] args)
+    {
+        // 創建一個 Person 的實例
+        Person person1 = new Person();
+        person1.Name = &quot;Alice&quot;;
+        person1.Speak(); // 輸出: Hello, I am Alice
+    }
+}
+</code></pre>
+<p>在這裡，我們使用 <code>new Person()</code> 來創建一個名為 <code>person1</code> 的物件（實例），然後才能呼叫 <code>Speak</code> 方法。如果沒有創建 <code>person1</code> 這個物件，是無法直接呼叫 <code>Speak</code> 的。</p>
+<h3 id="靜態方法的呼叫"><a href="#靜態方法的呼叫" class="headerlink" title="靜態方法的呼叫"></a>靜態方法的呼叫</h3><p>現在我們來看什麼是靜態方法，以及它如何在不創建類別實例的情況下被呼叫。</p>
+<p><strong>範例：靜態方法</strong></p>
+<pre><code class="csharp">public class MathUtilities
+{
+    public static void PrintPi()
+    {
+        Console.WriteLine(&quot;Pi is approximately 3.14159&quot;);
+    }
+}
+</code></pre>
+<p>在這個範例中，<code>PrintPi</code> 是一個靜態方法，定義在 <code>MathUtilities</code> 類別中。注意它前面有一個關鍵字 <code>static</code>，這表示這個方法屬於類別本身，而不是某個特定的物件。</p>
+<p><strong>如何呼叫靜態方法：</strong></p>
+<pre><code class="csharp">class Program
+{
+    static void Main(string[] args)
+    {
+        // 直接通過類別名稱呼叫靜態方法
+        MathUtilities.PrintPi(); // 輸出: Pi is approximately 3.14159
+    }
+}
+</code></pre>
+<p>在這裡，你可以看到我們並沒有創建 <code>MathUtilities</code> 的物件，而是直接使用類別名稱來呼叫 <code>PrintPi</code> 方法。這就是「在不創建類別實例的情況下被呼叫」。這樣做的原因是靜態方法的邏輯通常是和類別整體相關的，而不是和某個特定的物件相關。</p>
+<h3 id="具體情境舉例"><a href="#具體情境舉例" class="headerlink" title="具體情境舉例"></a>具體情境舉例</h3><p>讓我們來看一個更具體的情境來說明靜態方法為什麼可以不需要創建物件。</p>
+<h4 id="情境-1：計算工具"><a href="#情境-1：計算工具" class="headerlink" title="情境 1：計算工具"></a>情境 1：計算工具</h4><p>假設你要創建一個計算工具的類別，提供一些常用的數學方法，例如計算圓的面積。這些方法只需要根據輸入的數據進行計算，而不需要記住任何特定物件的狀態。</p>
+<p><strong>範例：</strong></p>
+<pre><code class="csharp">public class MathHelper
+{
+    public static double CalculateCircleArea(double radius)
+    {
+        return Math.PI * radius * radius;
+    }
+}
+</code></pre>
+<p>在這裡，<code>CalculateCircleArea</code> 方法是靜態的，因為它的功能是根據輸入的半徑計算圓的面積，與物件的狀態無關。</p>
+<p><strong>如何使用這個靜態方法：</strong></p>
+<pre><code class="csharp">class Program
+{
+    static void Main(string[] args)
+    {
+        double area = MathHelper.CalculateCircleArea(5);
+        Console.WriteLine($&quot;圓的面積是: {area}&quot;);
+    }
+}
+</code></pre>
+<p>在這個例子中，我們不需要創建 <code>MathHelper</code> 的實例，而是直接呼叫類別中的靜態方法來進行計算。</p>
+<h4 id="情境-2：應用程式的入口點"><a href="#情境-2：應用程式的入口點" class="headerlink" title="情境 2：應用程式的入口點"></a>情境 2：應用程式的入口點</h4><p><strong><code>Main</code> 方法</strong> 就是另一個例子。當應用程式啟動時，C# 需要知道從哪裡開始執行。由於 <code>Main</code> 方法是程式的入口點，而且不需要物件的狀態來運行，因此它必須是靜態的。這樣，C# 執行環境就可以直接呼叫它來啟動程式，而不需要創建任何物件。</p>
+<p><strong>範例：</strong></p>
+<pre><code class="csharp">class Program
+{
+    static void Main(string[] args)
+    {
+        Console.WriteLine(&quot;這是程式的入口點！&quot;);
+    }
+}
+</code></pre>
+<p>這個 <code>Main</code> 方法是靜態的，這樣 C# 就可以在啟動應用程式時直接呼叫它，而不需要先創建 <code>Program</code> 類別的實例。</p>
+<h3 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h3><ul>
+<li><strong>靜態方法（<code>static</code>）</strong>：屬於類別本身，不需要創建物件就能呼叫。適合那些和特定物件無關的功能，如數學計算、應用程式入口點等。</li>
+<li><strong>非靜態方法</strong>：屬於類別的某個實例，需要先創建物件才能呼叫。適合那些需要物件的特定狀態（例如物件的屬性值）的操作。</li>
+</ul>
+<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p><strong>問題：</strong></p>
+<ol>
+<li>為什麼靜態方法不需要創建類別的實例就可以被呼叫？</li>
+<li>如果有一個方法需要使用物件的屬性值，這個方法應該是靜態的還是非靜態的？為什麼？</li>
+</ol>
+<hr>
+<p>希望這樣的解釋能幫助你理解「在不創建類別實例的情況下被呼叫」的概念。如果還有其他不清楚的地方，隨時告訴我！</p>

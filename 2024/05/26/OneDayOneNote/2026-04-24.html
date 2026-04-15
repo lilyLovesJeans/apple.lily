@@ -1,0 +1,224 @@
+<hr>
+<h2 id="title-2026-04-24-將-C-類別型別的概念分成多個階段，每個階段都包含簡短的解釋和一個問題date-2026-04-15-21-47-34categories-OneDayOneNotetags-C-description-2026-04-24-將-C-類別型別的概念分成多個階段，每個階段都包含簡短的解釋和一個問題"><a href="#title-2026-04-24-將-C-類別型別的概念分成多個階段，每個階段都包含簡短的解釋和一個問題date-2026-04-15-21-47-34categories-OneDayOneNotetags-C-description-2026-04-24-將-C-類別型別的概念分成多個階段，每個階段都包含簡短的解釋和一個問題" class="headerlink" title="title: 2026-04-24 將 C# 類別型別的概念分成多個階段，每個階段都包含簡短的解釋和一個問題date: 2026-04-15 21:47:34categories: OneDayOneNotetags:  [C#]description:  2026-04-24 將 C# 類別型別的概念分成多個階段，每個階段都包含簡短的解釋和一個問題"></a>title: 2026-04-24 將 C# 類別型別的概念分成多個階段，每個階段都包含簡短的解釋和一個問題<br>date: 2026-04-15 21:47:34<br>categories: OneDayOneNote<br>tags:  [C#]<br>description:  2026-04-24 將 C# 類別型別的概念分成多個階段，每個階段都包含簡短的解釋和一個問題</h2><h2 id="2026-04-24-將-C-類別型別的概念分成多個階段，每個階段都包含簡短的解釋和一個問題"><a href="#2026-04-24-將-C-類別型別的概念分成多個階段，每個階段都包含簡短的解釋和一個問題" class="headerlink" title="2026-04-24 將 C# 類別型別的概念分成多個階段，每個階段都包含簡短的解釋和一個問題"></a>2026-04-24 將 C# 類別型別的概念分成多個階段，每個階段都包含簡短的解釋和一個問題</h2><p>我:<br>我覺得妳不要從程式範例開始, 請一個階段一個階段來教我, 並問問題( 不要答案),  然後確定我是否理解, 之後再接下一個階段, 而且每個階段都要很短, 這樣我才能吸收並消化.</p>
+<p>GPT:<br>當然，我會按照您的需求，將 C# 類別型別的概念分成多個階段，每個階段都包含簡短的解釋和一個問題，幫助您逐步理解。讓我們從最基本的概念開始，確保每一步都能被充分吸收和理解。</p>
+<p>階段 1：類別與物件的基本概念<br>解釋<br>類別（Class） 是物件導向程式設計（OOP）的核心概念之一。類別是物件的藍圖，定義了物件的屬性（數據）和方法（行為）。物件（Object） 是類別的實例，擁有類別中定義的屬性和方法。<br>範例：<br>public class Person<br>{<br>    &#x2F;&#x2F; 屬性<br>    public string Name;<br>    public int Age;</p>
+<pre><code>// 方法
+public void Speak()
+{
+    Console.WriteLine($&quot;Hello, my name is {Name} and I am {Age} years old.&quot;);
+}
+</code></pre>
+<p>}<br>在這個範例中，Person 是一個類別，具有 Name 和 Age 兩個屬性，以及一個 Speak 方法。你可以根據這個類別創建多個 Person 物件，每個物件都有自己的 Name 和 Age 值。<br>問題<br>問題：<br>請解釋什麼是類別和物件，以及它們之間的關係。</p>
+<p>階段 2：定義類別與創建物件<br>解釋<br>在 C# 中，定義一個類別後，可以通過 new 關鍵字創建該類別的物件。每個物件都是類別的獨立實例，擁有自己的數據和行為。<br>範例：<br>class Program<br>{<br>    static void Main(string[] args)<br>    {<br>        &#x2F;&#x2F; 創建 Person 物件<br>        Person person1 &#x3D; new Person();<br>        person1.Name &#x3D; “Alice”;<br>        person1.Age &#x3D; 30;<br>        person1.Speak(); &#x2F;&#x2F; 輸出: Hello, my name is Alice and I am 30 years old.</p>
+<pre><code>    Person person2 = new Person();
+    person2.Name = &quot;Bob&quot;;
+    person2.Age = 25;
+    person2.Speak(); // 輸出: Hello, my name is Bob and I am 25 years old.
+}
+</code></pre>
+<p>}<br>在這個範例中，我們創建了兩個 Person 物件，person1 和 person2，並為它們設置不同的 Name 和 Age，然後呼叫 Speak 方法顯示各自的信息。<br>問題<br>問題：<br>如何使用 new 關鍵字來創建一個類別的物件？請描述其步驟。</p>
+<p>階段 3：存取修飾符（Access Modifiers）<br>解釋<br>存取修飾符 用來控制類別及其成員的可見性和訪問範圍。C# 中常用的存取修飾符有：<br>    •	public：公開的，任何地方都可以訪問。 <br>    •	private：私有的，僅在類別內部可訪問。 <br>範例：<br>public class Person<br>{<br>    &#x2F;&#x2F; 公開欄位<br>    public string Name;</p>
+<pre><code>// 私有欄位
+private int age;
+
+// 公開方法
+public void SetAge(int value)
+{
+    if (value &gt; 0)
+        age = value;
+}
+
+public int GetAge()
+{
+    return age;
+}
+</code></pre>
+<p>}<br>在這個範例中，Name 是公開的，可以在任何地方訪問；而 age 是私有的，只能通過公開的方法 SetAge 和 GetAge 來修改和獲取。<br>問題<br>問題：<br>請說明 public 和 private 存取修飾符的區別，以及它們在類別成員中的應用場景。</p>
+<p>階段 4：屬性（Properties）<br>解釋<br>屬性（Property） 是類別成員的一種，用於封裝欄位，提供安全的讀取和寫入方式。屬性通常有 get 和 set 訪問器。<br>範例：<br>public class Person<br>{<br>    private string name;<br>    private int age;</p>
+<pre><code>// 公開屬性
+public string Name
+{
+    get { return name; }
+    set { name = value; }
+}
+
+// 只讀屬性
+public int Age
+{
+    get { return age; }
+}
+
+// 建構函數
+public Person(string name, int age)
+{
+    this.name = name;
+    this.age = age;
+}
+
+public void Speak()
+{
+    Console.WriteLine($&quot;Hello, my name is {Name} and I am {Age} years old.&quot;);
+}
+</code></pre>
+<p>}<br>在這個範例中，Name 屬性提供了讀寫訪問，而 Age 屬性僅提供讀取訪問。這樣可以控制外部程式碼對類別成員的操作。<br>問題<br>問題：<br>什麼是屬性（Property）？請解釋 get 和 set 訪問器的作用。</p>
+<p>階段 5：建構函數（Constructors）<br>解釋<br>建構函數（Constructor） 是類別的一種特殊方法，用於初始化物件的狀態。建構函數的名稱與類別名稱相同，沒有返回類型。<br>範例：<br>public class Person<br>{<br>    public string Name { get; set; }<br>    public int Age { get; private set; }</p>
+<pre><code>// 無參數建構函數
+public Person()
+{
+    Name = &quot;Unknown&quot;;
+    Age = 0;
+}
+
+// 有參數建構函數
+public Person(string name, int age)
+{
+    Name = name;
+    Age = age;
+}
+
+public void Speak()
+{
+    Console.WriteLine($&quot;Hello, my name is {Name} and I am {Age} years old.&quot;);
+}
+</code></pre>
+<p>}<br>在這個範例中，Person 類別有兩個建構函數：一個無參數建構函數，初始化 Name 為 “Unknown” 和 Age 為 0；另一個有參數建構函數，允許在創建物件時設置 Name 和 Age。<br>問題<br>問題：<br>什麼是建構函數（Constructor）？它在類別中有什麼作用？</p>
+<p>階段 6：靜態成員（Static Members）<br>解釋<br>靜態成員（Static Members） 屬於類別本身，而不是類別的實例。靜態成員使用 static 關鍵字定義，可以直接通過類別名稱訪問，而不需要創建物件。<br>範例：<br>public class MathUtilities<br>{<br>    &#x2F;&#x2F; 靜態欄位<br>    public static double Pi &#x3D; 3.141592653589793;</p>
+<pre><code>// 靜態方法
+public static double Add(double a, double b)
+{
+    return a + b;
+}
+
+public static double Multiply(double a, double b)
+{
+    return a * b;
+}
+</code></pre>
+<p>}</p>
+<p>class Program<br>{<br>    static void Main(string[] args)<br>    {<br>        &#x2F;&#x2F; 訪問靜態成員，不需要實例化類別<br>        Console.WriteLine($”Pi 的值是 {MathUtilities.Pi}”);<br>        double sum &#x3D; MathUtilities.Add(5.5, 3.2);<br>        double product &#x3D; MathUtilities.Multiply(4.0, 2.5);<br>        Console.WriteLine($”5.5 + 3.2 &#x3D; {sum}”);<br>        Console.WriteLine($”4.0 * 2.5 &#x3D; {product}”);<br>    }<br>}<br>在這個範例中，MathUtilities 類別包含靜態欄位 Pi 和靜態方法 Add、Multiply。這些成員可以直接通過類別名稱訪問，而不需要創建 MathUtilities 的物件實例。<br>問題<br>問題：<br>什麼是靜態成員（Static Members）？它們與非靜態成員有什麼不同？</p>
+<p>階段 7：繼承（Inheritance）<br>解釋<br>繼承（Inheritance） 允許一個類別（子類別）從另一個類別（基類）繼承屬性和方法。這有助於重用代碼並建立類別之間的層次結構。<br>範例：<br>&#x2F;&#x2F; 基類<br>public class Animal<br>{<br>    public string Name { get; set; }</p>
+<pre><code>public void Eat()
+{
+    Console.WriteLine($&quot;{Name} 正在吃食物。&quot;);
+}
+
+// 虛擬方法，允許派生類覆蓋
+public virtual void Speak()
+{
+    Console.WriteLine($&quot;{Name} 發出聲音。&quot;);
+}
+</code></pre>
+<p>}</p>
+<p>&#x2F;&#x2F; 派生類<br>public class Dog : Animal<br>{<br>    &#x2F;&#x2F; 覆蓋基類的 Speak 方法<br>    public override void Speak()<br>    {<br>        Console.WriteLine($”{Name} 汪汪叫。”);<br>    }</p>
+<pre><code>// 派生類的特有方法
+public void Fetch()
+{
+    Console.WriteLine($&quot;{Name} 正在取回球。&quot;);
+}
+</code></pre>
+<p>}</p>
+<p>class Program<br>{<br>    static void Main(string[] args)<br>    {<br>        Dog myDog &#x3D; new Dog { Name &#x3D; “Buddy” };<br>        myDog.Eat();      &#x2F;&#x2F; 輸出: Buddy 正在吃食物。<br>        myDog.Speak();    &#x2F;&#x2F; 輸出: Buddy 汪汪叫。<br>        myDog.Fetch();    &#x2F;&#x2F; 輸出: Buddy 正在取回球。</p>
+<pre><code>    // 基類引用指向派生類物件
+    Animal myAnimal = myDog;
+    myAnimal.Eat();   // 輸出: Buddy 正在吃食物。
+    myAnimal.Speak(); // 輸出: Buddy 汪汪叫。
+    // myAnimal.Fetch(); // 錯誤，基類引用無法訪問派生類特有方法
+}
+</code></pre>
+<p>}<br>在這個範例中，Dog 類別繼承自 Animal 類別，並覆蓋了 Speak 方法。此外，Dog 類別還有一個特有的方法 Fetch。當使用基類引用 myAnimal 指向 Dog 物件時，呼叫 Speak 方法會執行 Dog 類別中的實現，但無法訪問 Fetch 方法。<br>問題<br>問題：<br>什麼是繼承（Inheritance）？在繼承中，子類別如何擴展或修改基類的功能？</p>
+<p>階段 8：多態性（Polymorphism）<br>解釋<br>多態性（Polymorphism） 允許相同的接口在不同的類別中有不同的實現。這使得程式碼更加靈活和可擴展。<br>在 C# 中，多態性通常通過基類中的虛擬方法和子類中的覆蓋方法實現。<br>範例：<br>&#x2F;&#x2F; 基類<br>public class Animal<br>{<br>    public string Name { get; set; }</p>
+<pre><code>public virtual void Speak()
+{
+    Console.WriteLine($&quot;{Name} 發出聲音。&quot;);
+}
+</code></pre>
+<p>}</p>
+<p>&#x2F;&#x2F; 派生類<br>public class Cat : Animal<br>{<br>    public override void Speak()<br>    {<br>        Console.WriteLine($”{Name} 喵喵叫。”);<br>    }<br>}</p>
+<p>public class Dog : Animal<br>{<br>    public override void Speak()<br>    {<br>        Console.WriteLine($”{Name} 汪汪叫。”);<br>    }<br>}</p>
+<p>class Program<br>{<br>    static void Main(string[] args)<br>    {<br>        List<Animal> animals &#x3D; new List<Animal><br>        {<br>            new Cat { Name &#x3D; “Whiskers” },<br>            new Dog { Name &#x3D; “Rex” },<br>            new Animal { Name &#x3D; “Generic Animal” }<br>        };</p>
+<pre><code>    foreach (var animal in animals)
+    {
+        animal.Speak();
+    }
+
+    // 輸出：
+    // Whiskers 喵喵叫。
+    // Rex 汪汪叫。
+    // Generic Animal 發出聲音。
+}
+</code></pre>
+<p>}<br>在這個範例中，Animal 類別定義了一個虛擬方法 Speak，Cat 和 Dog 類別覆蓋了這個方法。當使用基類引用 animal 呼叫 Speak 方法時，會根據實際物件的類型執行相應的覆蓋方法。<br>問題<br>問題：<br>什麼是多態性（Polymorphism）？如何在 C# 中實現多態性？</p>
+<p>階段 9：封裝（Encapsulation）<br>解釋<br>封裝（Encapsulation） 是將數據（屬性）和操作數據的方法組織在一起，並控制對數據的訪問。這有助於保護數據不被外部不當修改，並確保物件的一致性。<br>範例：<br>public class BankAccount<br>{<br>    &#x2F;&#x2F; 私有欄位<br>    private decimal balance;</p>
+<pre><code>// 公開屬性，僅提供讀取權限
+public decimal Balance
+{
+    get { return balance; }
+    private set { balance = value; }
+}
+
+// 建構函數
+public BankAccount(decimal initialBalance)
+{
+    Balance = initialBalance;
+}
+
+// 公開方法，增加餘額
+public void Deposit(decimal amount)
+{
+    if (amount &gt; 0)
+    {
+        Balance += amount;
+        Console.WriteLine($&quot;已存入: {amount}，新餘額: {Balance}&quot;);
+    }
+}
+
+// 公開方法，減少餘額
+public void Withdraw(decimal amount)
+{
+    if (amount &gt; 0 &amp;&amp; amount &lt;= Balance)
+    {
+        Balance -= amount;
+        Console.WriteLine($&quot;已提取: {amount}，新餘額: {Balance}&quot;);
+    }
+    else
+    {
+        Console.WriteLine(&quot;提取金額無效。&quot;);
+    }
+}
+</code></pre>
+<p>}</p>
+<p>class Program<br>{<br>    static void Main(string[] args)<br>    {<br>        BankAccount account &#x3D; new BankAccount(1000m);<br>        account.Deposit(500m);   &#x2F;&#x2F; 輸出: 已存入: 500， 新餘額: 1500<br>        account.Withdraw(200m);  &#x2F;&#x2F; 輸出: 已提取: 200， 新餘額: 1300</p>
+<pre><code>    // 無法直接訪問私有欄位或屬性設置器
+    // account.balance = 100; // 錯誤
+    // account.Balance = 100; // 錯誤
+}
+</code></pre>
+<p>}<br>在這個範例中，balance 欄位是私有的，只能通過公開的方法 Deposit 和 Withdraw 來修改。這確保了餘額的修改是受控制的，避免了外部程式碼的隨意更改。<br>問題<br>問題：<br>什麼是封裝（Encapsulation）？它在類別設計中有什麼作用？</p>
+<p>階段 10：小結與練習<br>小結<br>我們已經分階段學習了 C# 中類別的基本概念和特性，包括：<br>    1.	類別與物件的基本概念 <br>    2.	定義類別與創建物件 <br>    3.	存取修飾符（Access Modifiers） <br>    4.	屬性（Properties） <br>    5.	建構函數（Constructors） <br>    6.	靜態成員（Static Members） <br>    7.	繼承（Inheritance） <br>    8.	多態性（Polymorphism） <br>    9.	封裝（Encapsulation） <br>練習題<br>練習題 1：<br>請定義一個 Book 類別，具有以下特性：<br>    •	私有欄位 title 和 author。 <br>    •	公開屬性 Title 和 Author，分別用於讀取和設置 title 和 author。 <br>    •	一個公開方法 DisplayInfo，顯示書籍的標題和作者。 <br>    •	一個有參數的建構函數，用於初始化 title 和 author。 <br>提示： 請遵循封裝原則，確保外部程式碼無法直接訪問私有欄位。</p>
+<p>練習題 2：<br>考慮以下類別定義，請回答哪一行會導致編譯錯誤，並解釋原因。<br>public class Wallet<br>{<br>    private decimal balance;</p>
+<pre><code>public decimal Balance
+{
+    get { return balance; }
+    private set { balance = value; }
+}
+
+public void AddMoney(decimal amount)
+{
+    if (amount &gt; 0)
+    {
+        Balance += amount;
+    }
+}
+
+public void SpendMoney(decimal amount)
+{
+    if (amount &gt; 0 &amp;&amp; amount &lt;= Balance)
+    {
+        Balance -= amount;
+    }
+}
+</code></pre>
+<p>}</p>
+<p>class Program<br>{<br>    static void Main(string[] args)<br>    {<br>        Wallet myWallet &#x3D; new Wallet();<br>        myWallet.AddMoney(100m);<br>        myWallet.SpendMoney(30m);<br>        Console.WriteLine($”餘額: {myWallet.Balance}”); &#x2F;&#x2F; 正確<br>        myWallet.Balance &#x3D; 50m; &#x2F;&#x2F; 會導致編譯錯誤<br>    }<br>}<br>問題：<br>哪一行會導致編譯錯誤？為什麼？</p>
+<p>練習題 3：<br>請回答以下問題以檢查您的理解：<br>問題：<br>為什麼在類別中使用 private 存取修飾符來定義欄位，並通過公開的方法來訪問和修改這些欄位，而不是直接將欄位設為 public？</p>
+<p>下一步<br>當您完成這些練習並確定自己已經理解每個階段的內容後，我們可以繼續深入探討以下主題：<br>    1.	介面（Interfaces）的深入理解與應用 <br>    2.	抽象類別（Abstract Classes）與封閉類別（Sealed Classes）的使用場景 <br>    3.	委派（Delegates）和事件（Events）的基礎知識 <br>    4.	例外處理（Exception Handling）的基礎和最佳實踐 <br>如果您對以上內容有任何疑問，或希望進一步了解某個特定主題，請隨時告訴我！</p>

@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2026-04-24 將 C# 類別型別的概念分成多個階段，每個階段都包含簡短的解釋和一個問題">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2026-04-24 將 C# 類別型別的概念分成多個階段，每個階段都包含簡短的解釋和一個問題">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2026/04/15/OneDayOneNote/2026-04-24/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2026-04-24 將 C# 類別型別的概念分成多個階段，每個階段都包含簡短的解釋和一個問題">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2026-04-15T13:47:34.000Z">
+<meta property="article:modified_time" content="2026-04-15T13:48:22.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="C#">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2026/04/15/OneDayOneNote/2026-04-24/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2026/04/15/OneDayOneNote/2026-04-24/","path":"2026/04/15/OneDayOneNote/2026-04-24/","title":"2026-04-24 將 C# 類別型別的概念分成多個階段，每個階段都包含簡短的解釋和一個問題"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2026-04-24 將 C# 類別型別的概念分成多個階段，每個階段都包含簡短的解釋和一個問題 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2026-04-24-%E5%B0%87-C-%E9%A1%9E%E5%88%A5%E5%9E%8B%E5%88%A5%E7%9A%84%E6%A6%82%E5%BF%B5%E5%88%86%E6%88%90%E5%A4%9A%E5%80%8B%E9%9A%8E%E6%AE%B5%EF%BC%8C%E6%AF%8F%E5%80%8B%E9%9A%8E%E6%AE%B5%E9%83%BD%E5%8C%85%E5%90%AB%E7%B0%A1%E7%9F%AD%E7%9A%84%E8%A7%A3%E9%87%8B%E5%92%8C%E4%B8%80%E5%80%8B%E5%95%8F%E9%A1%8C"><span class="nav-number">1.</span> <span class="nav-text">2026-04-24 將 C# 類別型別的概念分成多個階段，每個階段都包含簡短的解釋和一個問題</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">541</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2026/04/15/OneDayOneNote/2026-04-24/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2026-04-24 將 C# 類別型別的概念分成多個階段，每個階段都包含簡短的解釋和一個問題 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2026-04-24 將 C# 類別型別的概念分成多個階段，每個階段都包含簡短的解釋和一個問題">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2026-04-24 將 C# 類別型別的概念分成多個階段，每個階段都包含簡短的解釋和一個問題
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2026-04-15 21:47:34 / 修改時間：21:48:22" itemprop="dateCreated datePublished" datetime="2026-04-15T21:47:34+08:00">2026-04-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2026-04-24 將 C# 類別型別的概念分成多個階段，每個階段都包含簡短的解釋和一個問題</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2026-04-24-將-C-類別型別的概念分成多個階段，每個階段都包含簡短的解釋和一個問題"><a href="#2026-04-24-將-C-類別型別的概念分成多個階段，每個階段都包含簡短的解釋和一個問題" class="headerlink" title="2026-04-24 將 C# 類別型別的概念分成多個階段，每個階段都包含簡短的解釋和一個問題"></a>2026-04-24 將 C# 類別型別的概念分成多個階段，每個階段都包含簡短的解釋和一個問題</h2><p>我:<br>我覺得妳不要從程式範例開始, 請一個階段一個階段來教我, 並問問題( 不要答案),  然後確定我是否理解, 之後再接下一個階段, 而且每個階段都要很短, 這樣我才能吸收並消化.</p>
+<p>GPT:<br>當然，我會按照您的需求，將 C# 類別型別的概念分成多個階段，每個階段都包含簡短的解釋和一個問題，幫助您逐步理解。讓我們從最基本的概念開始，確保每一步都能被充分吸收和理解。</p>
+<p>階段 1：類別與物件的基本概念<br>解釋<br>類別（Class） 是物件導向程式設計（OOP）的核心概念之一。類別是物件的藍圖，定義了物件的屬性（數據）和方法（行為）。物件（Object） 是類別的實例，擁有類別中定義的屬性和方法。<br>範例：<br>public class Person<br>{<br>    &#x2F;&#x2F; 屬性<br>    public string Name;<br>    public int Age;</p>
+<pre><code>// 方法
+public void Speak()
+&#123;
+    Console.WriteLine($&quot;Hello, my name is &#123;Name&#125; and I am &#123;Age&#125; years old.&quot;);
+&#125;
+</code></pre>
+<p>}<br>在這個範例中，Person 是一個類別，具有 Name 和 Age 兩個屬性，以及一個 Speak 方法。你可以根據這個類別創建多個 Person 物件，每個物件都有自己的 Name 和 Age 值。<br>問題<br>問題：<br>請解釋什麼是類別和物件，以及它們之間的關係。</p>
+<p>階段 2：定義類別與創建物件<br>解釋<br>在 C# 中，定義一個類別後，可以通過 new 關鍵字創建該類別的物件。每個物件都是類別的獨立實例，擁有自己的數據和行為。<br>範例：<br>class Program<br>{<br>    static void Main(string[] args)<br>    {<br>        &#x2F;&#x2F; 創建 Person 物件<br>        Person person1 &#x3D; new Person();<br>        person1.Name &#x3D; “Alice”;<br>        person1.Age &#x3D; 30;<br>        person1.Speak(); &#x2F;&#x2F; 輸出: Hello, my name is Alice and I am 30 years old.</p>
+<pre><code>    Person person2 = new Person();
+    person2.Name = &quot;Bob&quot;;
+    person2.Age = 25;
+    person2.Speak(); // 輸出: Hello, my name is Bob and I am 25 years old.
+&#125;
+</code></pre>
+<p>}<br>在這個範例中，我們創建了兩個 Person 物件，person1 和 person2，並為它們設置不同的 Name 和 Age，然後呼叫 Speak 方法顯示各自的信息。<br>問題<br>問題：<br>如何使用 new 關鍵字來創建一個類別的物件？請描述其步驟。</p>
+<p>階段 3：存取修飾符（Access Modifiers）<br>解釋<br>存取修飾符 用來控制類別及其成員的可見性和訪問範圍。C# 中常用的存取修飾符有：<br>    •	public：公開的，任何地方都可以訪問。 <br>    •	private：私有的，僅在類別內部可訪問。 <br>範例：<br>public class Person<br>{<br>    &#x2F;&#x2F; 公開欄位<br>    public string Name;</p>
+<pre><code>// 私有欄位
+private int age;
+
+// 公開方法
+public void SetAge(int value)
+&#123;
+    if (value &gt; 0)
+        age = value;
+&#125;
+
+public int GetAge()
+&#123;
+    return age;
+&#125;
+</code></pre>
+<p>}<br>在這個範例中，Name 是公開的，可以在任何地方訪問；而 age 是私有的，只能通過公開的方法 SetAge 和 GetAge 來修改和獲取。<br>問題<br>問題：<br>請說明 public 和 private 存取修飾符的區別，以及它們在類別成員中的應用場景。</p>
+<p>階段 4：屬性（Properties）<br>解釋<br>屬性（Property） 是類別成員的一種，用於封裝欄位，提供安全的讀取和寫入方式。屬性通常有 get 和 set 訪問器。<br>範例：<br>public class Person<br>{<br>    private string name;<br>    private int age;</p>
+<pre><code>// 公開屬性
+public string Name
+&#123;
+    get &#123; return name; &#125;
+    set &#123; name = value; &#125;
+&#125;
+
+// 只讀屬性
+public int Age
+&#123;
+    get &#123; return age; &#125;
+&#125;
+
+// 建構函數
+public Person(string name, int age)
+&#123;
+    this.name = name;
+    this.age = age;
+&#125;
+
+public void Speak()
+&#123;
+    Console.WriteLine($&quot;Hello, my name is &#123;Name&#125; and I am &#123;Age&#125; years old.&quot;);
+&#125;
+</code></pre>
+<p>}<br>在這個範例中，Name 屬性提供了讀寫訪問，而 Age 屬性僅提供讀取訪問。這樣可以控制外部程式碼對類別成員的操作。<br>問題<br>問題：<br>什麼是屬性（Property）？請解釋 get 和 set 訪問器的作用。</p>
+<p>階段 5：建構函數（Constructors）<br>解釋<br>建構函數（Constructor） 是類別的一種特殊方法，用於初始化物件的狀態。建構函數的名稱與類別名稱相同，沒有返回類型。<br>範例：<br>public class Person<br>{<br>    public string Name { get; set; }<br>    public int Age { get; private set; }</p>
+<pre><code>// 無參數建構函數
+public Person()
+&#123;
+    Name = &quot;Unknown&quot;;
+    Age = 0;
+&#125;
+
+// 有參數建構函數
+public Person(string name, int age)
+&#123;
+    Name = name;
+    Age = age;
+&#125;
+
+public void Speak()
+&#123;
+    Console.WriteLine($&quot;Hello, my name is &#123;Name&#125; and I am &#123;Age&#125; years old.&quot;);
+&#125;
+</code></pre>
+<p>}<br>在這個範例中，Person 類別有兩個建構函數：一個無參數建構函數，初始化 Name 為 “Unknown” 和 Age 為 0；另一個有參數建構函數，允許在創建物件時設置 Name 和 Age。<br>問題<br>問題：<br>什麼是建構函數（Constructor）？它在類別中有什麼作用？</p>
+<p>階段 6：靜態成員（Static Members）<br>解釋<br>靜態成員（Static Members） 屬於類別本身，而不是類別的實例。靜態成員使用 static 關鍵字定義，可以直接通過類別名稱訪問，而不需要創建物件。<br>範例：<br>public class MathUtilities<br>{<br>    &#x2F;&#x2F; 靜態欄位<br>    public static double Pi &#x3D; 3.141592653589793;</p>
+<pre><code>// 靜態方法
+public static double Add(double a, double b)
+&#123;
+    return a + b;
+&#125;
+
+public static double Multiply(double a, double b)
+&#123;
+    return a * b;
+&#125;
+</code></pre>
+<p>}</p>
+<p>class Program<br>{<br>    static void Main(string[] args)<br>    {<br>        &#x2F;&#x2F; 訪問靜態成員，不需要實例化類別<br>        Console.WriteLine($”Pi 的值是 {MathUtilities.Pi}”);<br>        double sum &#x3D; MathUtilities.Add(5.5, 3.2);<br>        double product &#x3D; MathUtilities.Multiply(4.0, 2.5);<br>        Console.WriteLine($”5.5 + 3.2 &#x3D; {sum}”);<br>        Console.WriteLine($”4.0 * 2.5 &#x3D; {product}”);<br>    }<br>}<br>在這個範例中，MathUtilities 類別包含靜態欄位 Pi 和靜態方法 Add、Multiply。這些成員可以直接通過類別名稱訪問，而不需要創建 MathUtilities 的物件實例。<br>問題<br>問題：<br>什麼是靜態成員（Static Members）？它們與非靜態成員有什麼不同？</p>
+<p>階段 7：繼承（Inheritance）<br>解釋<br>繼承（Inheritance） 允許一個類別（子類別）從另一個類別（基類）繼承屬性和方法。這有助於重用代碼並建立類別之間的層次結構。<br>範例：<br>&#x2F;&#x2F; 基類<br>public class Animal<br>{<br>    public string Name { get; set; }</p>
+<pre><code>public void Eat()
+&#123;
+    Console.WriteLine($&quot;&#123;Name&#125; 正在吃食物。&quot;);
+&#125;
+
+// 虛擬方法，允許派生類覆蓋
+public virtual void Speak()
+&#123;
+    Console.WriteLine($&quot;&#123;Name&#125; 發出聲音。&quot;);
+&#125;
+</code></pre>
+<p>}</p>
+<p>&#x2F;&#x2F; 派生類<br>public class Dog : Animal<br>{<br>    &#x2F;&#x2F; 覆蓋基類的 Speak 方法<br>    public override void Speak()<br>    {<br>        Console.WriteLine($”{Name} 汪汪叫。”);<br>    }</p>
+<pre><code>// 派生類的特有方法
+public void Fetch()
+&#123;
+    Console.WriteLine($&quot;&#123;Name&#125; 正在取回球。&quot;);
+&#125;
+</code></pre>
+<p>}</p>
+<p>class Program<br>{<br>    static void Main(string[] args)<br>    {<br>        Dog myDog &#x3D; new Dog { Name &#x3D; “Buddy” };<br>        myDog.Eat();      &#x2F;&#x2F; 輸出: Buddy 正在吃食物。<br>        myDog.Speak();    &#x2F;&#x2F; 輸出: Buddy 汪汪叫。<br>        myDog.Fetch();    &#x2F;&#x2F; 輸出: Buddy 正在取回球。</p>
+<pre><code>    // 基類引用指向派生類物件
+    Animal myAnimal = myDog;
+    myAnimal.Eat();   // 輸出: Buddy 正在吃食物。
+    myAnimal.Speak(); // 輸出: Buddy 汪汪叫。
+    // myAnimal.Fetch(); // 錯誤，基類引用無法訪問派生類特有方法
+&#125;
+</code></pre>
+<p>}<br>在這個範例中，Dog 類別繼承自 Animal 類別，並覆蓋了 Speak 方法。此外，Dog 類別還有一個特有的方法 Fetch。當使用基類引用 myAnimal 指向 Dog 物件時，呼叫 Speak 方法會執行 Dog 類別中的實現，但無法訪問 Fetch 方法。<br>問題<br>問題：<br>什麼是繼承（Inheritance）？在繼承中，子類別如何擴展或修改基類的功能？</p>
+<p>階段 8：多態性（Polymorphism）<br>解釋<br>多態性（Polymorphism） 允許相同的接口在不同的類別中有不同的實現。這使得程式碼更加靈活和可擴展。<br>在 C# 中，多態性通常通過基類中的虛擬方法和子類中的覆蓋方法實現。<br>範例：<br>&#x2F;&#x2F; 基類<br>public class Animal<br>{<br>    public string Name { get; set; }</p>
+<pre><code>public virtual void Speak()
+&#123;
+    Console.WriteLine($&quot;&#123;Name&#125; 發出聲音。&quot;);
+&#125;
+</code></pre>
+<p>}</p>
+<p>&#x2F;&#x2F; 派生類<br>public class Cat : Animal<br>{<br>    public override void Speak()<br>    {<br>        Console.WriteLine($”{Name} 喵喵叫。”);<br>    }<br>}</p>
+<p>public class Dog : Animal<br>{<br>    public override void Speak()<br>    {<br>        Console.WriteLine($”{Name} 汪汪叫。”);<br>    }<br>}</p>
+<p>class Program<br>{<br>    static void Main(string[] args)<br>    {<br>        List<Animal> animals &#x3D; new List<Animal><br>        {<br>            new Cat { Name &#x3D; “Whiskers” },<br>            new Dog { Name &#x3D; “Rex” },<br>            new Animal { Name &#x3D; “Generic Animal” }<br>        };</p>
+<pre><code>    foreach (var animal in animals)
+    &#123;
+        animal.Speak();
+    &#125;
+
+    // 輸出：
+    // Whiskers 喵喵叫。
+    // Rex 汪汪叫。
+    // Generic Animal 發出聲音。
+&#125;
+</code></pre>
+<p>}<br>在這個範例中，Animal 類別定義了一個虛擬方法 Speak，Cat 和 Dog 類別覆蓋了這個方法。當使用基類引用 animal 呼叫 Speak 方法時，會根據實際物件的類型執行相應的覆蓋方法。<br>問題<br>問題：<br>什麼是多態性（Polymorphism）？如何在 C# 中實現多態性？</p>
+<p>階段 9：封裝（Encapsulation）<br>解釋<br>封裝（Encapsulation） 是將數據（屬性）和操作數據的方法組織在一起，並控制對數據的訪問。這有助於保護數據不被外部不當修改，並確保物件的一致性。<br>範例：<br>public class BankAccount<br>{<br>    &#x2F;&#x2F; 私有欄位<br>    private decimal balance;</p>
+<pre><code>// 公開屬性，僅提供讀取權限
+public decimal Balance
+&#123;
+    get &#123; return balance; &#125;
+    private set &#123; balance = value; &#125;
+&#125;
+
+// 建構函數
+public BankAccount(decimal initialBalance)
+&#123;
+    Balance = initialBalance;
+&#125;
+
+// 公開方法，增加餘額
+public void Deposit(decimal amount)
+&#123;
+    if (amount &gt; 0)
+    &#123;
+        Balance += amount;
+        Console.WriteLine($&quot;已存入: &#123;amount&#125;，新餘額: &#123;Balance&#125;&quot;);
+    &#125;
+&#125;
+
+// 公開方法，減少餘額
+public void Withdraw(decimal amount)
+&#123;
+    if (amount &gt; 0 &amp;&amp; amount &lt;= Balance)
+    &#123;
+        Balance -= amount;
+        Console.WriteLine($&quot;已提取: &#123;amount&#125;，新餘額: &#123;Balance&#125;&quot;);
+    &#125;
+    else
+    &#123;
+        Console.WriteLine(&quot;提取金額無效。&quot;);
+    &#125;
+&#125;
+</code></pre>
+<p>}</p>
+<p>class Program<br>{<br>    static void Main(string[] args)<br>    {<br>        BankAccount account &#x3D; new BankAccount(1000m);<br>        account.Deposit(500m);   &#x2F;&#x2F; 輸出: 已存入: 500， 新餘額: 1500<br>        account.Withdraw(200m);  &#x2F;&#x2F; 輸出: 已提取: 200， 新餘額: 1300</p>
+<pre><code>    // 無法直接訪問私有欄位或屬性設置器
+    // account.balance = 100; // 錯誤
+    // account.Balance = 100; // 錯誤
+&#125;
+</code></pre>
+<p>}<br>在這個範例中，balance 欄位是私有的，只能通過公開的方法 Deposit 和 Withdraw 來修改。這確保了餘額的修改是受控制的，避免了外部程式碼的隨意更改。<br>問題<br>問題：<br>什麼是封裝（Encapsulation）？它在類別設計中有什麼作用？</p>
+<p>階段 10：小結與練習<br>小結<br>我們已經分階段學習了 C# 中類別的基本概念和特性，包括：<br>    1.	類別與物件的基本概念 <br>    2.	定義類別與創建物件 <br>    3.	存取修飾符（Access Modifiers） <br>    4.	屬性（Properties） <br>    5.	建構函數（Constructors） <br>    6.	靜態成員（Static Members） <br>    7.	繼承（Inheritance） <br>    8.	多態性（Polymorphism） <br>    9.	封裝（Encapsulation） <br>練習題<br>練習題 1：<br>請定義一個 Book 類別，具有以下特性：<br>    •	私有欄位 title 和 author。 <br>    •	公開屬性 Title 和 Author，分別用於讀取和設置 title 和 author。 <br>    •	一個公開方法 DisplayInfo，顯示書籍的標題和作者。 <br>    •	一個有參數的建構函數，用於初始化 title 和 author。 <br>提示： 請遵循封裝原則，確保外部程式碼無法直接訪問私有欄位。</p>
+<p>練習題 2：<br>考慮以下類別定義，請回答哪一行會導致編譯錯誤，並解釋原因。<br>public class Wallet<br>{<br>    private decimal balance;</p>
+<pre><code>public decimal Balance
+&#123;
+    get &#123; return balance; &#125;
+    private set &#123; balance = value; &#125;
+&#125;
+
+public void AddMoney(decimal amount)
+&#123;
+    if (amount &gt; 0)
+    &#123;
+        Balance += amount;
+    &#125;
+&#125;
+
+public void SpendMoney(decimal amount)
+&#123;
+    if (amount &gt; 0 &amp;&amp; amount &lt;= Balance)
+    &#123;
+        Balance -= amount;
+    &#125;
+&#125;
+</code></pre>
+<p>}</p>
+<p>class Program<br>{<br>    static void Main(string[] args)<br>    {<br>        Wallet myWallet &#x3D; new Wallet();<br>        myWallet.AddMoney(100m);<br>        myWallet.SpendMoney(30m);<br>        Console.WriteLine($”餘額: {myWallet.Balance}”); &#x2F;&#x2F; 正確<br>        myWallet.Balance &#x3D; 50m; &#x2F;&#x2F; 會導致編譯錯誤<br>    }<br>}<br>問題：<br>哪一行會導致編譯錯誤？為什麼？</p>
+<p>練習題 3：<br>請回答以下問題以檢查您的理解：<br>問題：<br>為什麼在類別中使用 private 存取修飾符來定義欄位，並通過公開的方法來訪問和修改這些欄位，而不是直接將欄位設為 public？</p>
+<p>下一步<br>當您完成這些練習並確定自己已經理解每個階段的內容後，我們可以繼續深入探討以下主題：<br>    1.	介面（Interfaces）的深入理解與應用 <br>    2.	抽象類別（Abstract Classes）與封閉類別（Sealed Classes）的使用場景 <br>    3.	委派（Delegates）和事件（Events）的基礎知識 <br>    4.	例外處理（Exception Handling）的基礎和最佳實踐 <br>如果您對以上內容有任何疑問，或希望進一步了解某個特定主題，請隨時告訴我！</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/C/" rel="tag"># C#</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2026/04/13/OneDayOneNote/2026-04-23/" rel="prev" title="2026-04-23 一步步地深入了解 C# 中類別（Classes）的語法構造及其背後的設計理念">
+                  <i class="fa fa-angle-left"></i> 2026-04-23 一步步地深入了解 C# 中類別（Classes）的語法構造及其背後的設計理念
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2026/04/15/OneDayOneNote/2026-04-25/" rel="next" title="2026-04-25 從最基礎的 C# 語法開始，第一階段就是「Hello World」程式。這是 C# 的入門">
+                  2026-04-25 從最基礎的 C# 語法開始，第一階段就是「Hello World」程式。這是 C# 的入門 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/apple.lily/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
