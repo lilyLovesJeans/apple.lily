@@ -1,0 +1,43 @@
+<hr>
+<h2 id="title-2026-05-01-WEB-API-也是OOP設計模式-它是什麼原因被隱藏-被封裝-date-2026-04-16-23-21-38categories-OneDayOneNotetags-C-description-2026-05-01-WEB-API-也是OOP設計模式-它是什麼原因被隱藏-被封裝-那裡"><a href="#title-2026-05-01-WEB-API-也是OOP設計模式-它是什麼原因被隱藏-被封裝-date-2026-04-16-23-21-38categories-OneDayOneNotetags-C-description-2026-05-01-WEB-API-也是OOP設計模式-它是什麼原因被隱藏-被封裝-那裡" class="headerlink" title="title: 2026-05-01 WEB API 也是OOP設計模式 , 它是什麼原因被隱藏? 被封裝?date: 2026-04-16 23:21:38categories: OneDayOneNotetags:  [C#]description:   2026-05-01 WEB API 也是OOP設計模式 , 它是什麼原因被隱藏? 被封裝?那裡?"></a>title: 2026-05-01 WEB API 也是OOP設計模式 , 它是什麼原因被隱藏? 被封裝?<br>date: 2026-04-16 23:21:38<br>categories: OneDayOneNote<br>tags:  [C#]<br>description:   2026-05-01 WEB API 也是OOP設計模式 , 它是什麼原因被隱藏? 被封裝?那裡?</h2><h2 id="2026-05-01-WEB-API-也是OOP設計模式-它是什麼原因被隱藏-被封裝"><a href="#2026-05-01-WEB-API-也是OOP設計模式-它是什麼原因被隱藏-被封裝" class="headerlink" title="2026-05-01 WEB API 也是OOP設計模式 , 它是什麼原因被隱藏? 被封裝?"></a>2026-05-01 WEB API 也是OOP設計模式 , 它是什麼原因被隱藏? 被封裝?</h2><p>我:<br>WEB API 也是OOP設計模式 , 它是什麼原因被隱藏? 被封裝?</p>
+<p>GPT:<br>非常好的問題！<strong>ASP.NET Core Web API</strong> 是基於<strong>面向物件編程（OOP）</strong>的設計模式，但在 ASP.NET Core 6 中的 <strong>最小化 API（Minimal API）</strong> 提供了一種新的、更簡潔的方式來構建 Web API。在這裡，<code>Main</code> 方法被「隱藏」和「封裝」的原因主要與框架的設計理念和開發者體驗的改進有關。讓我更詳細地說明。</p>
+<h3 id="1-從-OOP-的角度來看-Web-API"><a href="#1-從-OOP-的角度來看-Web-API" class="headerlink" title="1. 從 OOP 的角度來看 Web API"></a>1. 從 OOP 的角度來看 Web API</h3><p>首先要了解，<strong>Web API</strong> 作為 ASP.NET Core 框架的一部分，是完全基於 <strong>OOP</strong> 設計的。這意味著它依然遵循著面向物件的基本原則，例如類別、屬性、方法、繼承和多態等。Web API 的架構本身是高度面向物件的，它由許多類別和接口組成來處理 HTTP 請求和回應。</p>
+<p>不過，在應用的啟動過程中，框架的設計並不一定需要所有部分都完全暴露給開發者使用，因此在 ASP.NET Core 6 中，最小化 API 引入了隱藏部分啟動邏輯的方式。</p>
+<h3 id="2-隱藏和封裝的原因"><a href="#2-隱藏和封裝的原因" class="headerlink" title="2. 隱藏和封裝的原因"></a>2. 隱藏和封裝的原因</h3><p>這裡的「隱藏」和「封裝」其實是一種<strong>框架設計上的選擇</strong>，目的是讓開發者能夠更高效地開發，並且專注於應用的主要邏輯，而不是樣板代碼（Boilerplate Code）和啟動å配置。具體來說：</p>
+<h4 id="2-1-簡化樣板代碼"><a href="#2-1-簡化樣板代碼" class="headerlink" title="2.1 簡化樣板代碼"></a>2.1 簡化樣板代碼</h4><p>在 ASP.NET Core 6 及以上版本中，最小化 API 的一個主要目的是<strong>減少樣板代碼</strong>。傳統的 ASP.NET Core Web API 需要有很多標準化的啟動代碼，例如定義 <code>Main</code> 方法、配置 <code>Startup</code> 類別、創建 <code>Host</code> 等等。</p>
+<p>這些代碼雖然重要，但它們對於大部分項目來說是非常相似的，屬於樣板代碼。這些樣板代碼使得新手學習起來增加了困難，或者讓開發者在構建簡單的 API 時需要做許多重複工作。</p>
+<p>因此，為了提高開發效率，框架將這些啟動邏輯進行了封裝和隱藏。這樣，開發者在編寫 API 時，不需要手動撰寫這些啟動代碼，而是直接撰寫應用程式的核心功能。</p>
+<h4 id="2-2-頂層語句的引入"><a href="#2-2-頂層語句的引入" class="headerlink" title="2.2 頂層語句的引入"></a>2.2 頂層語句的引入</h4><p>C# 9 引入了<strong>頂層語句（Top-level Statements）</strong>，這個新特性讓程式碼更加簡潔，特別是對於簡單應用和快速原型開發。使用頂層語句，可以直接撰寫應用程式的邏輯，而不需要顯式地撰寫 <code>Main</code> 方法。</p>
+<ul>
+<li><strong>封裝啟動邏輯</strong>：當使用頂層語句時，編譯器自動把這些頂層語句包裝進一個 <code>Main</code> 方法中，從而封裝了啟動邏輯，讓開發者不必手動去寫這些樣板代碼。</li>
+</ul>
+<h4 id="2-3-提升開發者體驗"><a href="#2-3-提升開發者體驗" class="headerlink" title="2.3 提升開發者體驗"></a>2.3 提升開發者體驗</h4><p><strong>提升開發者體驗</strong> 是最小化 API 引入的主要目的之一。這種做法讓開發者可以在幾行代碼內快速啟動一個 Web API，從而專注於處理核心的應用邏輯。這種簡潔的風格對於新手和需要快速原型的場景非常有幫助。</p>
+<p>例如：</p>
+<pre><code class="csharp">var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.MapGet(&quot;/&quot;, () =&gt; &quot;Hello World!&quot;);
+
+app.Run();
+</code></pre>
+<p>這樣的代碼結構非常簡潔，適合於那些想要快速啟動和測試簡單 API 的場景。相比於以往需要撰寫 <code>Program</code> 類別和 <code>Startup</code> 類別，這樣的寫法更加直觀和高效。</p>
+<h4 id="2-4-對於複雜應用的彈性"><a href="#2-4-對於複雜應用的彈性" class="headerlink" title="2.4 對於複雜應用的彈性"></a>2.4 對於複雜應用的彈性</h4><p>雖然最小化 API 引入了這些改進，但並不意味著所有情況下都會隱藏 <code>Main</code> 方法。如果開發者需要對應用程式的啟動過程進行更多的控制，仍然可以自己定義 <code>Main</code> 方法，或者使用傳統的 <code>Startup</code> 類別來配置應用。這意味著 ASP.NET Core 保留了彈性，可以滿足簡單和複雜應用的需求。</p>
+<h3 id="3-隱藏和封裝的背後：設計模式的應用"><a href="#3-隱藏和封裝的背後：設計模式的應用" class="headerlink" title="3. 隱藏和封裝的背後：設計模式的應用"></a>3. 隱藏和封裝的背後：設計模式的應用</h3><p>這裡的「隱藏」和「封裝」其實是一些設計模式的應用：</p>
+<ul>
+<li><strong>封裝（Encapsulation）</strong>：框架對啟動邏輯進行封裝，讓開發者不需要關心啟動的細節，只需要專注於業務邏輯。</li>
+<li><strong>模板方法模式（Template Method Pattern）</strong>：框架定義了應用啟動的模板，而開發者只需要提供具體的邏輯，框架會按照模板來運行應用。</li>
+<li><strong>簡單工廠模式（Simple Factory Pattern）</strong>：<code>WebApplication.CreateBuilder(args)</code> 這樣的方法實際上是一種工廠方法，用來創建和配置應用程式。</li>
+</ul>
+<p>這些設計模式的應用使得框架能夠提供一個清晰且一致的啟動過程，並且根據應用的需要自動處理許多細節。</p>
+<h3 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h3><ul>
+<li>在 ASP.NET Core 6 的 <strong>最小化 API</strong> 中，<code>Main</code> 方法被隱藏和封裝的原因主要是為了<strong>簡化樣板代碼</strong>，讓開發者可以更專注於應用的核心邏輯。</li>
+<li><strong>頂層語句</strong> 和 <strong>框架封裝</strong> 使得 Web API 的啟動過程更為簡單，提高了<strong>開發效率</strong> 和 <strong>開發者體驗</strong>。</li>
+<li>這樣的隱藏是基於設計模式的應用，例如 <strong>封裝</strong> 和 <strong>模板方法</strong>，從而使得框架能夠自動處理啟動邏輯，減少開發者的工作負擔。</li>
+</ul>
+<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p><strong>問題：</strong></p>
+<ol>
+<li>為什麼 ASP.NET Core 6 的最小化 API 要隱藏 <code>Main</code> 方法？</li>
+<li>你認為封裝啟動邏輯對開發者有哪些好處？</li>
+</ol>
+<hr>
+<p>如果還有任何疑問，或者想更深入地了解其中的概念和設計模式，隨時告訴我！</p>

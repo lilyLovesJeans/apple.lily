@@ -1,0 +1,52 @@
+<hr>
+<h2 id="title-2026-04-29-妳寫-program-cs-有這個public-static-void-Main-string-args-進入點-但我看到的另一個專案-並沒有-main-…date-2026-04-16-23-15-00categories-OneDayOneNotetags-C-description-2026-04-29-妳寫-program-cs-有這個public-static-void-Main-string-args-進入點-但我看到的另一個專案-並沒有-main-…"><a href="#title-2026-04-29-妳寫-program-cs-有這個public-static-void-Main-string-args-進入點-但我看到的另一個專案-並沒有-main-…date-2026-04-16-23-15-00categories-OneDayOneNotetags-C-description-2026-04-29-妳寫-program-cs-有這個public-static-void-Main-string-args-進入點-但我看到的另一個專案-並沒有-main-…" class="headerlink" title="title:  2026-04-29 妳寫 program.cs 有這個public static void Main(string[] args)進入點, 但我看到的另一個專案,並沒有 main …date: 2026-04-16 23:15:00categories: OneDayOneNotetags:  [C#]description:  2026-04-29 妳寫 program.cs 有這個public static void Main(string[] args)進入點, 但我看到的另一個專案,並沒有 main …"></a>title:  2026-04-29 妳寫 program.cs 有這個public static void Main(string[] args)進入點, 但我看到的另一個專案,並沒有 main …<br>date: 2026-04-16 23:15:00<br>categories: OneDayOneNote<br>tags:  [C#]<br>description:  2026-04-29 妳寫 program.cs 有這個public static void Main(string[] args)進入點, 但我看到的另一個專案,並沒有 main …</h2><h2 id="2026-04-29-妳寫-program-cs-有這個public-static-void-Main-string-args-進入點-但我看到的另一個專案-並沒有-main-…"><a href="#2026-04-29-妳寫-program-cs-有這個public-static-void-Main-string-args-進入點-但我看到的另一個專案-並沒有-main-…" class="headerlink" title="2026-04-29 妳寫 program.cs 有這個public static void Main(string[] args)進入點, 但我看到的另一個專案,並沒有 main …"></a>2026-04-29 妳寫 program.cs 有這個public static void Main(string[] args)進入點, 但我看到的另一個專案,並沒有 main …</h2><p>我:<br>  但我看到妳寫的 program.cs 有這個public static void Main(string[] args)進入點, 但我看到的另一個專案,並沒有 main …</p>
+<p>你提到的情況非常有趣，其實是和不同版本的 ASP.NET Core 框架以及專案類型的特性有關。讓我解釋一下為什麼在一些專案中你看不到 <code>Main</code> 方法，而在另一些專案中則可以看到。</p>
+<h3 id="1-不同-ASP-NET-Core-專案模板的差異"><a href="#1-不同-ASP-NET-Core-專案模板的差異" class="headerlink" title="1. 不同 ASP.NET Core 專案模板的差異"></a>1. 不同 ASP.NET Core 專案模板的差異</h3><p>ASP.NET Core 是用來創建 Web API 的常用框架，隨著框架版本的更新，專案模板和結構也有所改變。在一些較新的版本中，Microsoft 引入了<strong>最小化 API（Minimal API）</strong> 的概念，這導致了一些專案不再顯示 <code>Main</code> 方法，或是使用了更簡潔的代碼結構。</p>
+<h4 id="典型的-Web-API-專案（有-Main-方法）"><a href="#典型的-Web-API-專案（有-Main-方法）" class="headerlink" title="典型的 Web API 專案（有 Main 方法）"></a>典型的 Web API 專案（有 <code>Main</code> 方法）</h4><p>在大多數 ASP.NET Core Web API 的專案中，你會看到 <code>Program.cs</code> 檔案裡有類似這樣的代碼：</p>
+<pre><code class="csharp">public class Program
+{
+    public static void Main(string[] args)
+    {
+        CreateHostBuilder(args).Build().Run();
+    }
+
+    public static IHostBuilder CreateHostBuilder(string[] args) =&gt;
+        Host.CreateDefaultBuilder(args)
+            .ConfigureWebHostDefaults(webBuilder =&gt;
+            {
+                webBuilder.UseStartup&lt;Startup&gt;();
+            });
+}
+</code></pre>
+<p>在這種結構中，<code>Main</code> 方法是明確的進入點，用於啟動整個應用程式。這是 ASP.NET Core 早期和典型的 Web API 專案結構，適用於 ASP.NET Core 2.x 或 3.x。</p>
+<h4 id="最小化-API-專案（沒有明顯的-Main-方法）"><a href="#最小化-API-專案（沒有明顯的-Main-方法）" class="headerlink" title="最小化 API 專案（沒有明顯的 Main 方法）"></a>最小化 API 專案（沒有明顯的 <code>Main</code> 方法）</h4><p>從 <strong>ASP.NET Core 6</strong> 開始，Microsoft 引入了<strong>最小化 API（Minimal API）</strong>，這是一種新的、更簡潔的方式來構建 Web API，適合簡單的應用程式。這些專案的 <code>Program.cs</code> 看起來更加簡潔，並且不需要顯式定義 <code>Main</code> 方法。如下所示：</p>
+<pre><code class="csharp">var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.MapGet(&quot;/&quot;, () =&gt; &quot;Hello World!&quot;);
+
+app.Run();
+</code></pre>
+<p>在這裡，你可以看到：</p>
+<ul>
+<li>沒有明顯的 <code>Main</code> 方法，代碼變得更加簡潔。</li>
+<li><strong><code>CreateBuilder</code></strong> 和 <strong><code>Build</code></strong> 是用來創建應用程式和設定的，但它們並不是通過 <code>Main</code> 方法來顯示啟動。</li>
+</ul>
+<p>實際上，編譯器在背後依然會自動生成 <code>Main</code> 方法，但這個方法對開發者來說是隱藏的，不需要顯式撰寫。這是為了讓開發過程更方便，特別是對於簡單的 API 或測試來說，減少了樣板代碼（Boilerplate Code）。</p>
+<h3 id="2-為什麼看不到-Main-方法"><a href="#2-為什麼看不到-Main-方法" class="headerlink" title="2. 為什麼看不到 Main 方法"></a>2. 為什麼看不到 <code>Main</code> 方法</h3><p>在使用 <strong>最小化 API</strong> 的專案中，<code>Main</code> 方法依然存在，但它是隱藏的，這是因為：</p>
+<ol>
+<li><strong>簡化代碼</strong>：Microsoft 希望讓開發者編寫更簡單的代碼，減少不必要的樣板代碼，特別是對於簡單應用程式或快速原型來說。</li>
+<li><strong>框架的改進</strong>：從 ASP.NET Core 6 開始，框架的改進讓這些常見的設定和初始化工作被隱藏起來，並且由框架來自動處理。</li>
+</ol>
+<h3 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h3><ol>
+<li><strong>ASP.NET Core Web API</strong> 中的 <code>Main</code> 方法依然存在，只是它的存在形式和你所用的專案模板、框架版本有關。</li>
+<li><strong>典型的 Web API</strong>（如 ASP.NET Core 2.x 或 3.x）中，你會看到 <code>Main</code> 方法明確地定義在 <code>Program.cs</code> 中，負責啟動應用程式。</li>
+<li><strong>最小化 API</strong>（如 ASP.NET Core 6 及以上）中，<code>Main</code> 方法是隱藏的，代碼更加簡潔，開發者不再需要直接撰寫 <code>Main</code> 方法。</li>
+</ol>
+<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p><strong>問題：</strong></p>
+<ol>
+<li>為什麼在 ASP.NET Core 6 使用的最小化 API 中看不到 <code>Main</code> 方法？</li>
+<li>使用最小化 API 的優勢是什麼？</li>
+</ol>
+<hr>
+<p>希望這些解釋能幫助你理解為什麼有些 Web API 專案中沒有顯式的 <code>Main</code> 方法。如果還有任何疑問，請隨時告訴我！</p>

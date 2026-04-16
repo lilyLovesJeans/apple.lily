@@ -1,0 +1,27 @@
+<hr>
+<h2 id="title-2026-04-30-最小化-API（如-ASP-NET-Core-6-及以上）中，Main-方法是隱藏的它是隱藏在那裡-date-2026-04-16-23-18-43categories-OneDayOneNotetags-C-description-2026-04-30-最小化-API（如-ASP-NET-Core-6-及以上）中，Main-方法是隱藏的它是隱藏在那裡"><a href="#title-2026-04-30-最小化-API（如-ASP-NET-Core-6-及以上）中，Main-方法是隱藏的它是隱藏在那裡-date-2026-04-16-23-18-43categories-OneDayOneNotetags-C-description-2026-04-30-最小化-API（如-ASP-NET-Core-6-及以上）中，Main-方法是隱藏的它是隱藏在那裡" class="headerlink" title="title: 2026-04-30 最小化 API（如 ASP.NET Core 6 及以上）中，Main 方法是隱藏的它是隱藏在那裡?date: 2026-04-16 23:18:43categories: OneDayOneNotetags:  [C#]description:  2026-04-30 最小化 API（如 ASP.NET Core 6 及以上）中，Main 方法是隱藏的它是隱藏在那裡?"></a>title: 2026-04-30 最小化 API（如 ASP.NET Core 6 及以上）中，Main 方法是隱藏的它是隱藏在那裡?<br>date: 2026-04-16 23:18:43<br>categories: OneDayOneNote<br>tags:  [C#]<br>description:  2026-04-30 最小化 API（如 ASP.NET Core 6 及以上）中，Main 方法是隱藏的它是隱藏在那裡?</h2><h2 id="2026-04-30-最小化-API（如-ASP-NET-Core-6-及以上）中，Main-方法是隱藏的它是隱藏在那裡"><a href="#2026-04-30-最小化-API（如-ASP-NET-Core-6-及以上）中，Main-方法是隱藏的它是隱藏在那裡" class="headerlink" title="2026-04-30 最小化 API（如 ASP.NET Core 6 及以上）中，Main 方法是隱藏的它是隱藏在那裡?"></a>2026-04-30 最小化 API（如 ASP.NET Core 6 及以上）中，Main 方法是隱藏的它是隱藏在那裡?</h2><p>我:<br>最小化 API（如 ASP.NET Core 6 及以上）中，Main 方法是隱藏的<br>它是隱藏在那裡? </p>
+<p>GPT:</p>
+<p>是的，沒錯！在 ASP.NET Core 6 的 <strong>最小化 API（Minimal API）</strong> 中，<code>Main</code> 方法是隱藏的，這表示它存在，但開發者<strong>看不到，也不需要手動編寫</strong>。這是因為 C# 編譯器在編譯的過程中自動幫助你生成了這個 <code>Main</code> 方法，將你的頂層語句（Top-level Statements）封裝進去。</p>
+<p>簡單來說：</p>
+<ul>
+<li><p>當你撰寫最小化 API 的程式碼時，像這樣的 <code>Program.cs</code>：</p>
+<pre><code class="csharp">var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.MapGet(&quot;/&quot;, () =&gt; &quot;Hello World!&quot;);
+
+app.Run();
+</code></pre>
+<p>雖然你看不到 <code>Main</code> 方法，但實際上，這段代碼會在背後被編譯器包裝進一個 <code>Main</code> 方法裡面，這個 <code>Main</code> 方法負責啟動你的應用程式。</p>
+</li>
+<li><p><strong>編譯器自動生成</strong>：C# 編譯器會自動在應用程式中生成一個 <code>Main</code> 方法，這就是為什麼你在代碼中看不到它，但應用程式還是能正常啟動並運行。</p>
+</li>
+<li><p><strong>隱藏的意思</strong>：它隱藏的意思是說，對於開發者來說，這些標準的啟動代碼已經被框架和編譯器封裝起來了，讓你不必手動去編寫那些繁瑣的樣板代碼。因此，從開發者的角度看，<code>Main</code> 方法就像是不存在的，但它確實在背後自動生成並負責啟動應用程式。</p>
+</li>
+</ul>
+<h3 id="為什麼要這樣做？"><a href="#為什麼要這樣做？" class="headerlink" title="為什麼要這樣做？"></a>為什麼要這樣做？</h3><p>這樣的設計是為了讓開發更簡便，特別是對於簡單的 Web API 應用來說，你不需要手動定義一個 <code>Main</code> 方法，只需要直接撰寫啟動應用和定義路由的邏輯，讓代碼更為清晰簡潔。</p>
+<h3 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h3><ul>
+<li><strong>隱藏的 <code>Main</code> 方法</strong>：在 ASP.NET Core 6 中，編譯器會自動幫你生成 <code>Main</code> 方法，所以你看不到這個方法，但它確實存在並且負責啟動應用程式。</li>
+<li><strong>最小化 API</strong>：這是一種新的開發方式，減少樣板代碼，讓你更快速地構建 API，而不需要手動管理那些常見的啟動邏輯。</li>
+</ul>
+<p>這就是為什麼你在一些最小化 API 專案中看不到顯示的 <code>Main</code> 方法，但應用程式還是能正常啟動的原因。如果還有其他問題，隨時告訴我！</p>
