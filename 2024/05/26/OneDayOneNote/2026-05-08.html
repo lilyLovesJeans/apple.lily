@@ -1,0 +1,166 @@
+<hr>
+<h2 id="title-2026-05-08-學習-C-控制流語句date-2026-04-20-21-59-23categories-OneDayOneNotetags-C-description-2026-05-08-學習-C-控制流語句"><a href="#title-2026-05-08-學習-C-控制流語句date-2026-04-20-21-59-23categories-OneDayOneNotetags-C-description-2026-05-08-學習-C-控制流語句" class="headerlink" title="title: 2026-05-08 學習 C# 控制流語句date: 2026-04-20 21:59:23categories: OneDayOneNotetags:  [C#]description:  2026-05-08 學習 C# 控制流語句"></a>title: 2026-05-08 學習 C# 控制流語句<br>date: 2026-04-20 21:59:23<br>categories: OneDayOneNote<br>tags:  [C#]<br>description:  2026-05-08 學習 C# 控制流語句</h2><h2 id="2026-05-08-學習-C-控制流語句"><a href="#2026-05-08-學習-C-控制流語句" class="headerlink" title="2026-05-08 學習 C# 控制流語句"></a>2026-05-08 學習 C# 控制流語句</h2><p>我:<br>學習 C# 控制流語句</p>
+<p>GPT:<br>太好了！接下來我們進入 <strong>第四階段：控制流語句</strong>。控制流語句用來控制程式的執行順序，使程式根據不同的條件或需求做出不同的操作。在這一階段，我們將學習以下幾種控制流語句：</p>
+<h3 id="階段-4：控制流語句"><a href="#階段-4：控制流語句" class="headerlink" title="階段 4：控制流語句"></a>階段 4：控制流語句</h3><p>在這個階段，我們會學習以下內容：</p>
+<ol>
+<li><strong><code>if-else</code> 條件語句</strong></li>
+<li><strong><code>switch</code> 多重選擇語句</strong></li>
+<li><strong><code>for</code> 迴圈語句</strong></li>
+<li><strong><code>while</code> 和 <code>do-while</code> 迴圈語句</strong></li>
+</ol>
+<hr>
+<h4 id="1-if-else-條件語句"><a href="#1-if-else-條件語句" class="headerlink" title="1. if-else 條件語句"></a>1. <code>if-else</code> 條件語句</h4><p><strong><code>if-else</code></strong> 語句用於根據某個條件的真假來決定程式的執行路徑。</p>
+<ul>
+<li><p><strong>語法：</strong></p>
+<pre><code class="csharp">if (條件)
+{
+    // 當條件為 true 時執行的代碼
+}
+else
+{
+    // 當條件為 false 時執行的代碼
+}
+</code></pre>
+</li>
+<li><p><strong>範例：</strong></p>
+<pre><code class="csharp">int age = 18;
+
+if (age &gt;= 18)
+{
+    Console.WriteLine(&quot;您是成年人。&quot;);
+}
+else
+{
+    Console.WriteLine(&quot;您未滿18歲。&quot;);
+}
+</code></pre>
+</li>
+<li><p>在這個範例中，如果 <code>age</code> 大於或等於 <code>18</code>，將輸出「您是成年人」，否則輸出「您未滿18歲」。</p>
+</li>
+</ul>
+<h4 id="2-switch-多重選擇語句"><a href="#2-switch-多重選擇語句" class="headerlink" title="2. switch 多重選擇語句"></a>2. <code>switch</code> 多重選擇語句</h4><p><strong><code>switch</code></strong> 語句用於根據變數的值，執行多個可能的代碼區塊之一。當需要根據多個值進行選擇時，比較適合使用 <code>switch</code>。</p>
+<ul>
+<li><p><strong>語法：</strong></p>
+<pre><code class="csharp">switch (變數)
+{
+    case 值1:
+        // 當變數等於值1時執行的代碼
+        break;
+    case 值2:
+        // 當變數等於值2時執行的代碼
+        break;
+    default:
+        // 當變數不符合任何情況時執行的代碼
+        break;
+}
+</code></pre>
+</li>
+<li><p><strong>範例：</strong></p>
+<pre><code class="csharp">string day = &quot;Monday&quot;;
+
+switch (day)
+{
+    case &quot;Monday&quot;:
+        Console.WriteLine(&quot;今天是星期一。&quot;);
+        break;
+    case &quot;Tuesday&quot;:
+        Console.WriteLine(&quot;今天是星期二。&quot;);
+        break;
+    default:
+        Console.WriteLine(&quot;不是星期一或星期二。&quot;);
+        break;
+}
+</code></pre>
+</li>
+</ul>
+<h4 id="3-for-迴圈語句"><a href="#3-for-迴圈語句" class="headerlink" title="3. for 迴圈語句"></a>3. <code>for</code> 迴圈語句</h4><p><strong><code>for</code> 迴圈</strong> 用於重複執行某些代碼，通常是當你知道迴圈的次數時。</p>
+<ul>
+<li><p><strong>語法：</strong></p>
+<pre><code class="csharp">for (初始化; 條件; 迭代)
+{
+    // 重複執行的代碼
+}
+</code></pre>
+</li>
+<li><p><strong>範例：</strong></p>
+<pre><code class="csharp">for (int i = 1; i &lt;= 5; i++)
+{
+    Console.WriteLine($&quot;這是第 {i} 次迴圈。&quot;);
+}
+</code></pre>
+</li>
+<li><p>在這個範例中，迴圈將從 <code>i = 1</code> 開始，執行到 <code>i &lt;= 5</code>，每次迴圈後 <code>i</code> 增加 1，總共執行 5 次。</p>
+</li>
+</ul>
+<h4 id="4-while-和-do-while-迴圈語句"><a href="#4-while-和-do-while-迴圈語句" class="headerlink" title="4. while 和 do-while 迴圈語句"></a>4. <code>while</code> 和 <code>do-while</code> 迴圈語句</h4><ul>
+<li><p><strong><code>while</code> 迴圈</strong> 在條件為 <code>true</code> 時，重複執行代碼。如果條件在一開始就是 <code>false</code>，<code>while</code> 迴圈可能一次也不執行。</p>
+<ul>
+<li><p><strong>語法：</strong></p>
+<pre><code class="csharp">while (條件)
+{
+    // 重複執行的代碼
+}
+</code></pre>
+</li>
+<li><p><strong>範例：</strong></p>
+<pre><code class="csharp">int count = 1;
+
+while (count &lt;= 3)
+{
+    Console.WriteLine($&quot;計數：{count}&quot;);
+    count++;
+}
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong><code>do-while</code> 迴圈</strong> 至少會執行一次，然後在條件為 <code>true</code> 的情況下繼續執行。</p>
+<ul>
+<li><p><strong>語法：</strong></p>
+<pre><code class="csharp">do
+{
+    // 重複執行的代碼
+} while (條件);
+</code></pre>
+</li>
+<li><p><strong>範例：</strong></p>
+<pre><code class="csharp">int number = 1;
+
+do
+{
+    Console.WriteLine($&quot;數字：{number}&quot;);
+    number++;
+} while (number &lt;= 3);
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>在這裡，無論條件最初是否成立，<code>do-while</code> 迴圈至少執行一次。</p>
+</li>
+</ul>
+<h3 id="實戰練習"><a href="#實戰練習" class="headerlink" title="實戰練習"></a>實戰練習</h3><p>讓我們來做一些練習，幫助你鞏固控制流語句的知識：</p>
+<p><strong>練習 1：使用 <code>if-else</code> 語句</strong></p>
+<ol>
+<li>定義一個變數 <code>score</code>，值為 <code>75</code>。</li>
+<li>使用 <code>if-else</code> 判斷 <code>score</code> 是否大於等於 <code>60</code>，如果是，輸出「及格」，否則輸出「不及格」。</li>
+</ol>
+<p><strong>練習 2：使用 <code>switch</code> 語句</strong></p>
+<ol>
+<li>定義一個變數 <code>dayOfWeek</code>，值為 <code>&quot;Friday&quot;</code>。</li>
+<li>使用 <code>switch</code> 判斷星期幾，如果是 <code>&quot;Monday&quot;</code>，輸出「星期一」，如果是 <code>&quot;Friday&quot;</code>，輸出「星期五」，其他情況輸出「未知的星期」。</li>
+</ol>
+<p><strong>練習 3：使用 <code>for</code> 迴圈</strong></p>
+<ol>
+<li>使用 <code>for</code> 迴圈從 <code>1</code> 到 <code>10</code>，輸出所有的數字。</li>
+</ol>
+<p><strong>練習 4：使用 <code>while</code> 迴圈</strong></p>
+<ol>
+<li>定義一個變數 <code>counter</code>，值為 <code>1</code>。</li>
+<li>使用 <code>while</code> 迴圈，當 <code>counter</code> 小於等於 <code>5</code> 時輸出 <code>counter</code>，每次輸出後增加 <code>1</code>。</li>
+</ol>
+<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><ol>
+<li><strong>問題：</strong> <code>if-else</code> 語句和 <code>switch</code> 語句有什麼區別？什麼時候應該用 <code>switch</code>？</li>
+<li><strong>問題：</strong> <code>while</code> 和 <code>do-while</code> 迴圈的主要區別是什麼？</li>
+</ol>
+<hr>
+<p>完成這些練習後，如果有任何問題或需要更深入的解釋，隨時告訴我！我們可以進一步探討這些控制流語句，或者進入下一個階段學習方法和函數的概念。</p>

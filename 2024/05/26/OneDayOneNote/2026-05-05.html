@@ -1,0 +1,79 @@
+<hr>
+<h2 id="title-2026-05-05-了解-C-中的一些基礎概念date-2026-04-20-21-40-09categories-OneDayOneNotetags-C-description-2026-05-05-了解-C-中的一些基礎概念"><a href="#title-2026-05-05-了解-C-中的一些基礎概念date-2026-04-20-21-40-09categories-OneDayOneNotetags-C-description-2026-05-05-了解-C-中的一些基礎概念" class="headerlink" title="title: 2026-05-05 了解 C# 中的一些基礎概念date: 2026-04-20 21:40:09categories: OneDayOneNotetags:  [C#]description:   2026-05-05 了解 C# 中的一些基礎概念"></a>title: 2026-05-05 了解 C# 中的一些基礎概念<br>date: 2026-04-20 21:40:09<br>categories: OneDayOneNote<br>tags:  [C#]<br>description:   2026-05-05 了解 C# 中的一些基礎概念</h2><h2 id="2026-05-05-了解-C-中的一些基礎概念，"><a href="#2026-05-05-了解-C-中的一些基礎概念，" class="headerlink" title="2026-05-05 了解 C# 中的一些基礎概念，"></a>2026-05-05 了解 C# 中的一些基礎概念，</h2><p>我:<br>我已完成C# hello world ,<br>我們可以繼續進行下一個階段，深入了解更多基礎知識。</p>
+<p>GPT:<br>太好了！你已經完成了 C# 的 “Hello World”，這是非常棒的起點！接下來，我們進入<strong>第二階段</strong>，來了解 C# 中的一些基礎概念，包括 <strong>變數和資料型別</strong>，這是所有程式的基本構成單位。</p>
+<h3 id="階段-2：變數與資料型別"><a href="#階段-2：變數與資料型別" class="headerlink" title="階段 2：變數與資料型別"></a>階段 2：變數與資料型別</h3><p>在這個階段，我們會學習以下內容：</p>
+<ol>
+<li><strong>變數的定義與使用</strong></li>
+<li><strong>常見的資料型別</strong></li>
+<li><strong>變數的命名規則</strong></li>
+</ol>
+<hr>
+<h4 id="1-什麼是變數？"><a href="#1-什麼是變數？" class="headerlink" title="1. 什麼是變數？"></a>1. 什麼是變數？</h4><p><strong>變數</strong> 是一個用來存儲數據的命名空間。在程式中，變數可以幫助我們存放和管理各種數據，例如整數、浮點數、文字等等。你可以把變數想像成程式中的一個「小盒子」，可以在其中存放資料，並在程式的不同部分中使用這些資料。</p>
+<p><strong>範例：</strong></p>
+<pre><code class="csharp">int age = 25;
+string name = &quot;Alice&quot;;
+double height = 5.9;
+</code></pre>
+<p>在上面的程式碼中，我們定義了三個變數：</p>
+<ul>
+<li>**<code>age</code>**：用來存放一個整數（<code>int</code>）值 <code>25</code>。</li>
+<li>**<code>name</code>**：用來存放一個字串（<code>string</code>）值 <code>&quot;Alice&quot;</code>。</li>
+<li>**<code>height</code>**：用來存放一個雙精度浮點數（<code>double</code>）值 <code>5.9</code>。</li>
+</ul>
+<h4 id="2-常見的資料型別"><a href="#2-常見的資料型別" class="headerlink" title="2. 常見的資料型別"></a>2. 常見的資料型別</h4><p>C# 提供了多種<strong>資料型別</strong>，用來存放不同類型的資料。在這裡，我們介紹一些最常見的基本資料型別：</p>
+<ul>
+<li><p><strong>整數型別（<code>int</code>）</strong>：用來存放整數值。</p>
+<pre><code class="csharp">int number = 10;
+</code></pre>
+</li>
+<li><p><strong>浮點數型別（<code>float</code>、<code>double</code>）</strong>：用來存放小數。<code>float</code> 的精度較低，而 <code>double</code> 的精度較高。</p>
+<pre><code class="csharp">double price = 19.99;
+float weight = 3.5f; // 注意：`float` 型別的值需要加上 `f` 字尾
+</code></pre>
+</li>
+<li><p><strong>布林型別（<code>bool</code>）</strong>：用來存放布林值（<code>true</code> 或 <code>false</code>）。</p>
+<pre><code class="csharp">bool isHappy = true;
+</code></pre>
+</li>
+<li><p><strong>字串型別（<code>string</code>）</strong>：用來存放文字。</p>
+<pre><code class="csharp">string greeting = &quot;Hello, World!&quot;;
+</code></pre>
+</li>
+<li><p><strong>字符型別（<code>char</code>）</strong>：用來存放單個字符，必須使用單引號。</p>
+<pre><code class="csharp">char letter = &#39;A&#39;;
+</code></pre>
+</li>
+</ul>
+<h4 id="3-變數的命名規則"><a href="#3-變數的命名規則" class="headerlink" title="3. 變數的命名規則"></a>3. 變數的命名規則</h4><p>在 C# 中，變數的命名需要遵循一些基本的規則：</p>
+<ol>
+<li><strong>名稱必須以字母或下劃線（<code>_</code>）開頭</strong>，不能以數字開頭。</li>
+<li><strong>變數名稱不能包含空格</strong>，例如 <code>my variable</code> 是不合法的名稱。</li>
+<li><strong>變數名稱區分大小寫</strong>，例如 <code>age</code> 和 <code>Age</code> 是兩個不同的變數。</li>
+<li><strong>避免使用 C# 關鍵字</strong>（如 <code>int</code>、<code>class</code> 等）作為變數名稱。</li>
+</ol>
+<p><strong>良好的變數命名風格</strong>：</p>
+<ul>
+<li>使用有意義的名稱，描述變數存放的內容。</li>
+<li>遵循駝峰命名法，例如 <code>firstName</code> 或 <code>totalPrice</code>。</li>
+</ul>
+<p><strong>範例：</strong></p>
+<pre><code class="csharp">int totalScore = 100;
+string userName = &quot;Bob&quot;;
+bool isLoggedIn = false;
+</code></pre>
+<h3 id="實戰練習"><a href="#實戰練習" class="headerlink" title="實戰練習"></a>實戰練習</h3><p>接下來，我們來做一些小練習，幫助你鞏固所學的變數和資料型別的知識。</p>
+<p><strong>練習 1：定義變數</strong></p>
+<p>請你自己嘗試定義以下變數：</p>
+<ol>
+<li>一個整數變數 <code>myAge</code>，值為 <code>30</code>。</li>
+<li>一個字串變數 <code>favoriteColor</code>，值為 <code>&quot;blue&quot;</code>。</li>
+<li>一個布林變數 <code>isStudent</code>，值為 <code>true</code>。</li>
+</ol>
+<p><strong>練習 2：使用變數</strong></p>
+<p>請定義一個變數 <code>firstName</code>，值為 <code>&quot;John&quot;</code>，並使用 <code>Console.WriteLine()</code> 輸出 <code>&quot;Hello, John!&quot;</code>。</p>
+<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><ol>
+<li><strong>問題：</strong> 為什麼我們需要使用不同的資料型別？</li>
+<li><strong>問題：</strong> 在定義變數時，如何選擇合適的資料型別？</li>
+</ol>
+<hr>
+<p>完成這些練習後，如果你有任何問題或需要進一步的解釋，請隨時告訴我！我們可以繼續進行下一個階段，深入了解更多關於變數和運算的知識。</p>

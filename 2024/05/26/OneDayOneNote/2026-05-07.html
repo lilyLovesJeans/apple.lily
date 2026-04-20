@@ -1,0 +1,128 @@
+<hr>
+<h2 id="title-2026-05-07-C-運算和運算符實戰練習date-2026-04-20-21-55-38categories-OneDayOneNotetags-C-description-2026-05-06-變數與資料型別-實戰練習"><a href="#title-2026-05-07-C-運算和運算符實戰練習date-2026-04-20-21-55-38categories-OneDayOneNotetags-C-description-2026-05-06-變數與資料型別-實戰練習" class="headerlink" title="title: 2026-05-07 C# 運算和運算符實戰練習date: 2026-04-20 21:55:38categories: OneDayOneNotetags:  [C#]description:   2026-05-06 變數與資料型別 實戰練習"></a>title: 2026-05-07 C# 運算和運算符實戰練習<br>date: 2026-04-20 21:55:38<br>categories: OneDayOneNote<br>tags:  [C#]<br>description:   2026-05-06 變數與資料型別 實戰練習</h2><h2 id="2026-05-07-C-運算和運算符實戰練習"><a href="#2026-05-07-C-運算和運算符實戰練習" class="headerlink" title="2026-05-07 C# 運算和運算符實戰練習"></a>2026-05-07 C# 運算和運算符實戰練習</h2><p>我:<br>階段 3：運算和運算符<br>實戰練習<br>讓我們做一些練習，來鞏固你對運算符的理解：</p>
+<p>練習 1：使用算術運算符</p>
+<p>定義兩個變數 num1 和 num2，分別賦值為 15 和 4。<br>使用算術運算符計算它們的和、差、積、商和餘數，並用 Console.WriteLine() 輸出結果。</p>
+<pre><code>    //練習 1：使用算術運算符
+    int num1 = 15;
+    int num2 = 4;
+    int sum = num1 + num2;  // 和
+    Console.WriteLine($&quot;{num1}+{num2} = {sum}&quot;);
+    //15 + 4 = 19
+
+    int difference = num1 - num2;  //差
+    Console.WriteLine($&quot;{num1}-{num2} = {difference}&quot;);
+    //15 - 4 = 11
+
+    int product = num1 * num2; //積
+    Console.WriteLine($&quot;{num1}*{num2} = {product}&quot;);
+    //15 * 4 = 60
+
+    int quotient = num1 / num2; //商
+    Console.WriteLine($&quot;{num1}/{num2} = {quotient}&quot;);
+    // 15 / 4 = 3
+
+    int remainder = num1 % num2; //餘
+    Console.WriteLine($&quot;{num1}%{num2} = {remainder}&quot;);
+    //15 % 4 = 3
+</code></pre>
+<p>練習 2：使用比較和邏輯運算符</p>
+<p>定義一個變數 age，值為 20。<br>使用比較運算符判斷 age 是否大於等於 18，並將結果存入 isAdult 變數。<br>定義一個布林變數 hasLicense，值為 true。<br>使用邏輯運算符判斷 age 大於等於 18 且 hasLicense 為 true，結果存入 canDrive 變數，並輸出是否可以開車。</p>
+<p>&#x2F;&#x2F; 練習 2：使用比較和邏輯運算符<br>int age &#x3D; 20;<br>bool isAdult &#x3D; (age &gt;&#x3D; 18);<br>bool hasLicense &#x3D; true;<br>bool canDrive &#x3D; isAdult &amp;&amp; hasLicense;</p>
+<p>Console.WriteLine($”是否可開車 ?  {canDrive}”);</p>
+<p>問題<br>問題： a % b 運算符的作用是什麼？它適合用於什麼樣的場景？<br>答案:<br>a % b 是取餘數 ,<br>可以算數學題: 假如有 a&#x3D;10顆糖果, 要分給b&#x3D;8個人, 每人一顆, 分完之後會剰 a%b &#x3D;2顆.<br>  int a &#x3D; 10;<br>  int b &#x3D; 8;<br>  int remainder_1 &#x3D; (a % b);</p>
+<p>  Console.WriteLine($”{a} % {b}  &#x3D; {remainder_1}”);</p>
+<p>問題： 邏輯運算符 &amp;&amp; 和 || 有什麼區別？<br>  &amp;&amp; : 當邏輯變數 a 與 當邏輯變數 b 都為true 時, 結果才會為 true.<br>       比如:<br>    bool isUserIdOK &#x3D; true ;<br>    bool isPassordOK &#x3D; true;</p>
+<pre><code>    bool loginPassed = isUserIdOK &amp;&amp; isPassordOK ;
+    Console.WriteLine($&quot;登入成功? {loginPassed}&quot;);
+</code></pre>
+<p>  || : 當邏輯變數 c 與 當邏輯變數 d 其中一個為true 時, 結果就為 true.</p>
+<p>   bool hasKey&#x3D; true;<br>   bool hasRemote &#x3D; false;</p>
+<p>   bool canOpenTheDoor &#x3D; hasKey || hasRemote;<br>   Console.WriteLine($”可以開門? {canOpenTheDoor}”);</p>
+<p>GPT:<br>你的答案非常好！你成功完成了運算符的練習，並正確地回答了問題，展示了對算術運算符和邏輯運算符的理解。以下是一些小的改進和補充，讓你的回答更加完整和準確。</p>
+<h3 id="改進和補充"><a href="#改進和補充" class="headerlink" title="改進和補充"></a>改進和補充</h3><ol>
+<li><p><strong>語法和表達修正</strong></p>
+<ul>
+<li>在 <code>Console.WriteLine()</code> 中，描述結果的部分可以稍作修正以更清楚地傳達結果，例如在條件語句中，可以補充為 “是否可以開車？”。</li>
+</ul>
+</li>
+<li><p><strong>詳細解釋</strong></p>
+<ul>
+<li>在回答關於邏輯運算符的問題時，可以更詳細地說明每個運算符的作用和結果，幫助理解它們的區別。</li>
+</ul>
+</li>
+</ol>
+<h3 id="修正後的答案"><a href="#修正後的答案" class="headerlink" title="修正後的答案"></a>修正後的答案</h3><h4 id="練習-1-和-練習-2"><a href="#練習-1-和-練習-2" class="headerlink" title="練習 1 和 練習 2"></a>練習 1 和 練習 2</h4><p>你的代碼是完全正確的，這裡是完整的代碼示例：</p>
+<pre><code class="csharp">// 練習 1：使用算術運算符
+int num1 = 15;
+int num2 = 4;
+
+int sum = num1 + num2;  // 和
+Console.WriteLine($&quot;{num1} + {num2} = {sum}&quot;);
+// 輸出: 15 + 4 = 19
+
+int difference = num1 - num2;  // 差
+Console.WriteLine($&quot;{num1} - {num2} = {difference}&quot;);
+// 輸出: 15 - 4 = 11
+
+int product = num1 * num2; // 積
+Console.WriteLine($&quot;{num1} * {num2} = {product}&quot;);
+// 輸出: 15 * 4 = 60
+
+int quotient = num1 / num2; // 商
+Console.WriteLine($&quot;{num1} / {num2} = {quotient}&quot;);
+// 輸出: 15 / 4 = 3
+
+int remainder = num1 % num2; // 餘數
+Console.WriteLine($&quot;{num1} % {num2} = {remainder}&quot;);
+// 輸出: 15 % 4 = 3
+
+// 練習 2：使用比較和邏輯運算符
+int age = 20;
+bool isAdult = (age &gt;= 18);
+bool hasLicense = true;
+bool canDrive = isAdult &amp;&amp; hasLicense;
+
+Console.WriteLine($&quot;是否可開車？{canDrive}&quot;);
+// 輸出: 是否可開車？True
+</code></pre>
+<h4 id="問題回答"><a href="#問題回答" class="headerlink" title="問題回答"></a>問題回答</h4><p><strong>問題 1：<code>a % b</code> 運算符的作用是什麼？它適合用於什麼樣的場景？</strong></p>
+<p><strong>答案：</strong><br><code>a % b</code> 是取餘數運算符，用於計算 <code>a</code> 除以 <code>b</code> 的餘數。它適合用於需要了解兩個數相除後剩下多少的場景，例如：</p>
+<ul>
+<li><p><strong>分配物品的剩餘量</strong>：假如有 <code>10</code> 顆糖果要分給 <code>8</code> 個人，每人一顆，分完後還剩下 <code>2</code> 顆，可以用 <code>a % b</code> 來求出剩餘的糖果數量。</p>
+<p><strong>範例：</strong></p>
+<pre><code class="csharp">int a = 10;
+int b = 8;
+int remainder_1 = (a % b);
+Console.WriteLine($&quot;{a} % {b} = {remainder_1}&quot;);
+// 輸出: 10 % 8 = 2
+</code></pre>
+</li>
+</ul>
+<p><strong>問題 2：邏輯運算符 <code>&amp;&amp;</code> 和 <code>||</code> 有什麼區別？</strong></p>
+<p><strong>答案：</strong></p>
+<ul>
+<li><p><strong><code>&amp;&amp;</code>（與運算）</strong>：當兩個條件都為 <code>true</code> 時，結果才會是 <code>true</code>。例如：</p>
+<pre><code class="csharp">bool isUserIdOK = true;
+bool isPasswordOK = true;
+bool loginPassed = isUserIdOK &amp;&amp; isPasswordOK;
+Console.WriteLine($&quot;登入成功？{loginPassed}&quot;);
+// 輸出: 登入成功？True
+</code></pre>
+<p>只有在 <code>isUserIdOK</code> 和 <code>isPasswordOK</code> 都為 <code>true</code> 時，<code>loginPassed</code> 才為 <code>true</code>。</p>
+</li>
+<li><p><strong><code>||</code>（或運算）</strong>：只要其中一個條件為 <code>true</code>，結果就是 <code>true</code>。例如：</p>
+<pre><code class="csharp">bool hasKey = true;
+bool hasRemote = false;
+bool canOpenTheDoor = hasKey || hasRemote;
+Console.WriteLine($&quot;可以開門？{canOpenTheDoor}&quot;);
+// 輸出: 可以開門？True
+</code></pre>
+<p>在這個例子中，只要 <code>hasKey</code> 或 <code>hasRemote</code> 有一個為 <code>true</code>，<code>canOpenTheDoor</code> 就會是 <code>true</code>。</p>
+</li>
+</ul>
+<h3 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h3><ul>
+<li>你成功地運用了算術運算符、比較運算符和邏輯運算符，並且理解了它們的作用。</li>
+<li><code>a % b</code> 是取餘數的運算符，適合用於需要知道除法後剩餘多少的情境。</li>
+<li><code>&amp;&amp;</code> 和 <code>||</code> 是邏輯運算符，分別用於表示「且」和「或」的條件組合。</li>
+</ul>
+<p>接下來，如果你準備好了，我們可以進入<strong>第四階段</strong>，學習 <strong>控制流語句</strong>，例如 <code>if-else</code>、<code>switch</code>、<code>for</code> 和 <code>while</code> 等控制程式執行流程的語句。如果有任何不清楚的地方，隨時告訴我！</p>

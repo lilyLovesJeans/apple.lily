@@ -1,0 +1,108 @@
+<hr>
+<h2 id="title-2026-05-03-頂層語句-是什麼-有那些可以被視為-頂層語句-date-2026-04-20-21-14-52categories-OneDayOneNotetags-C-description-2026-05-03-頂層語句-是什麼-有那些可以被視為-頂層語句"><a href="#title-2026-05-03-頂層語句-是什麼-有那些可以被視為-頂層語句-date-2026-04-20-21-14-52categories-OneDayOneNotetags-C-description-2026-05-03-頂層語句-是什麼-有那些可以被視為-頂層語句" class="headerlink" title="title: 2026-05-03 頂層語句 是什麼, 有那些可以被視為  頂層語句?date: 2026-04-20 21:14:52categories: OneDayOneNotetags:  [C#]description:   2026-05-03 頂層語句 是什麼, 有那些可以被視為  頂層語句?"></a>title: 2026-05-03 頂層語句 是什麼, 有那些可以被視為  頂層語句?<br>date: 2026-04-20 21:14:52<br>categories: OneDayOneNote<br>tags:  [C#]<br>description:   2026-05-03 頂層語句 是什麼, 有那些可以被視為  頂層語句?</h2><h2 id="2026-05-03-頂層語句-是什麼-有那些可以被視為-頂層語句"><a href="#2026-05-03-頂層語句-是什麼-有那些可以被視為-頂層語句" class="headerlink" title="2026-05-03 頂層語句 是什麼, 有那些可以被視為  頂層語句?"></a>2026-05-03 頂層語句 是什麼, 有那些可以被視為  頂層語句?</h2><p>我:<br>頂層語句 是什麼, 有那些可以被視為  頂層語句?</p>
+<p>GPT:<br><strong>頂層語句（Top-level Statements）</strong> 是 C# 9 引入的一個特性，目的是簡化 C# 程式的結構，特別是針對簡單應用或範例程式。在使用頂層語句時，開發者可以直接撰寫可執行的程式代碼，而不需要顯式地撰寫 <code>Main</code> 方法。這些語句被稱為頂層語句，它們被認為是應用程式的<strong>入口點</strong>。</p>
+<p>讓我詳細說明什麼是頂層語句，以及哪些語句可以被視為頂層語句。</p>
+<h3 id="1-什麼是頂層語句？"><a href="#1-什麼是頂層語句？" class="headerlink" title="1. 什麼是頂層語句？"></a>1. 什麼是頂層語句？</h3><p>在傳統的 C# 應用程式中，所有可執行的代碼必須被包裹在一個 <code>Main</code> 方法中，例如：</p>
+<pre><code class="csharp">using System;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Console.WriteLine(&quot;Hello, World!&quot;);
+    }
+}
+</code></pre>
+<p>這段代碼中，<code>Main</code> 方法是應用程式的入口點，所有的可執行代碼都寫在這個方法中。</p>
+<p>然而，<strong>頂層語句</strong> 的引入讓這些樣板代碼變得不再必要。開發者可以直接撰寫可執行的代碼，而編譯器會自動為你生成一個隱藏的 <code>Main</code> 方法，並將這些語句包裹進去。例如：</p>
+<pre><code class="csharp">using System;
+
+Console.WriteLine(&quot;Hello, World!&quot;);
+</code></pre>
+<p>在這裡，<code>Console.WriteLine(&quot;Hello, World!&quot;);</code> 就是一個頂層語句。你不需要顯式地定義 <code>Main</code> 方法，這段代碼仍然會被編譯和執行。</p>
+<p>編譯器會自動將這些頂層語句包裹在一個隱藏的 <code>Main</code> 方法中，這意味著從開發者的角度來看，代碼更加簡潔，而不需要額外撰寫樣板代碼。</p>
+<h3 id="2-頂層語句的使用範圍"><a href="#2-頂層語句的使用範圍" class="headerlink" title="2. 頂層語句的使用範圍"></a>2. 頂層語句的使用範圍</h3><p><strong>頂層語句</strong> 是指那些可以直接寫在檔案頂層、沒有包含在任何類別或方法中的可執行代碼。這些語句可以是：</p>
+<ol>
+<li><p><strong>變數定義</strong>：</p>
+<pre><code class="csharp">int number = 10;
+Console.WriteLine($&quot;Number is: {number}&quot;);
+</code></pre>
+</li>
+<li><p><strong>條件語句</strong>：</p>
+<pre><code class="csharp">if (args.Length &gt; 0)
+{
+    Console.WriteLine($&quot;Hello, {args[0]}!&quot;);
+}
+else
+{
+    Console.WriteLine(&quot;Hello, World!&quot;);
+}
+</code></pre>
+</li>
+<li><p><strong>循環語句</strong>：</p>
+<pre><code class="csharp">for (int i = 0; i &lt; 5; i++)
+{
+    Console.WriteLine($&quot;Counter: {i}&quot;);
+}
+</code></pre>
+</li>
+<li><p><strong>方法呼叫</strong>：</p>
+<pre><code class="csharp">PrintMessage();
+
+void PrintMessage()
+{
+    Console.WriteLine(&quot;This is a message from a local function.&quot;);
+}
+</code></pre>
+</li>
+<li><p><strong>異步程式碼</strong>（使用 <code>await</code>）：<br>如果在頂層語句中使用異步程式碼，則 <code>Main</code> 方法會自動成為 <code>async</code>，如下：</p>
+<pre><code class="csharp">using System.Net.Http;
+
+HttpClient client = new HttpClient();
+var result = await client.GetStringAsync(&quot;https://example.com&quot;);
+Console.WriteLine(result);
+</code></pre>
+</li>
+</ol>
+<h3 id="3-頂層語句的限制"><a href="#3-頂層語句的限制" class="headerlink" title="3. 頂層語句的限制"></a>3. 頂層語句的限制</h3><p>雖然頂層語句非常方便，但它有一些限制：</p>
+<ol>
+<li><p><strong>只能在一個檔案中使用</strong>：頂層語句只能在一個檔案中使用，通常是應用程式的 <code>Program.cs</code>。一個專案中只能有一個檔案使用頂層語句，否則會導致編譯錯誤，因為應用程式只能有一個入口點。</p>
+</li>
+<li><p><strong>類別和方法的定義限制</strong>：在使用頂層語句的檔案中，不能直接在頂層定義類別或方法，但可以定義本地函數（local functions）。這些本地函數可以作為頂層語句的一部分來使用。</p>
+</li>
+<li><p><strong>適用於簡單應用</strong>：頂層語句通常適用於簡單的應用或範例程式，例如快速測試某些功能或編寫簡單的工具。在大型應用程式中，使用頂層語句可能會使結構變得混亂，這時候建議使用傳統的 <code>Main</code> 方法來保持程式碼的組織性。</p>
+</li>
+</ol>
+<h3 id="4-頂層語句的例子"><a href="#4-頂層語句的例子" class="headerlink" title="4. 頂層語句的例子"></a>4. 頂層語句的例子</h3><p>以下是一個完整的使用頂層語句的範例：</p>
+<pre><code class="csharp">using System;
+
+Console.WriteLine(&quot;Welcome to the calculator!&quot;);
+
+Console.Write(&quot;Enter the first number: &quot;);
+int num1 = int.Parse(Console.ReadLine());
+
+Console.Write(&quot;Enter the second number: &quot;);
+int num2 = int.Parse(Console.ReadLine());
+
+int sum = num1 + num2;
+Console.WriteLine($&quot;The sum of {num1} and {num2} is {sum}.&quot;);
+</code></pre>
+<p>在這個例子中，所有的程式碼都是頂層語句。這段代碼在編譯時，會被自動包裹進一個 <code>Main</code> 方法中，例如：</p>
+<pre><code class="csharp">public static void Main(string[] args)
+{
+    // 上面的頂層語句會被包裹在這裡
+}
+</code></pre>
+<h3 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h3><ul>
+<li><strong>頂層語句（Top-level Statements）</strong> 是 C# 9 引入的一個特性，讓開發者可以直接撰寫可執行的代碼，而不需要顯式定義 <code>Main</code> 方法。</li>
+<li>頂層語句包括變數定義、條件語句、循環語句、方法呼叫等。</li>
+<li><strong>限制</strong>：頂層語句只能在一個檔案中使用，適用於簡單的應用和快速開發，且不能直接定義類別或方法（但可以定義本地函數）。</li>
+<li><strong>目標</strong>：頂層語句旨在簡化程式碼結構，特別是對於簡單應用來說，減少樣板代碼，提高開發效率。</li>
+</ul>
+<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><p><strong>問題：</strong></p>
+<ol>
+<li>在頂層語句中，為什麼不需要顯式地定義 <code>Main</code> 方法？</li>
+<li>頂層語句有哪些類型的代碼可以被包括？</li>
+</ol>
+<hr>
+<p>希望這些解釋能幫助你理解頂層語句的概念及其應用。如果還有其他問題，隨時告訴我！</p>
