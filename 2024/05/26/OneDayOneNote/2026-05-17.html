@@ -1,0 +1,257 @@
+<hr>
+<h2 id="title-2026-05-17-C-面向對象編程（OOP）實戰練習date-2026-04-22-22-35-12categories-OneDayOneNotetags-C-description-2026-05-17-C-面向對象編程（OOP）實戰練習"><a href="#title-2026-05-17-C-面向對象編程（OOP）實戰練習date-2026-04-22-22-35-12categories-OneDayOneNotetags-C-description-2026-05-17-C-面向對象編程（OOP）實戰練習" class="headerlink" title="title: 2026-05-17 C#面向對象編程（OOP）實戰練習date: 2026-04-22 22:35:12categories: OneDayOneNotetags:  [C#]description: 2026-05-17 C#面向對象編程（OOP）實戰練習"></a>title: 2026-05-17 C#面向對象編程（OOP）實戰練習<br>date: 2026-04-22 22:35:12<br>categories: OneDayOneNote<br>tags:  [C#]<br>description: 2026-05-17 C#面向對象編程（OOP）實戰練習</h2><h2 id="2026-05-17-C-面向對象編程（OOP）實戰練習"><a href="#2026-05-17-C-面向對象編程（OOP）實戰練習" class="headerlink" title="2026-05-17 C#面向對象編程（OOP）實戰練習"></a>2026-05-17 C#面向對象編程（OOP）實戰練習</h2><p>我:<br>using System;<br>using System.Collections;<br>using System.ComponentModel.Design;<br>using System.Runtime.CompilerServices;<br>using System.Security.Cryptography.X509Certificates;</p>
+<p>#region  第六階段：面向對象編程（OOP）<br>&#x2F;&#x2F;類別的定義範例<br>public class Person<br>{<br>    public string Name&#x3D;””;<br>    public int Age;<br>    public void Greet()<br>    {<br>        Console.WriteLine($”Hello, my name is {Name} and I am {Age} years old.”);<br>    }<br>}</p>
+<p>&#x2F;&#x2F;改進的屬性（使用 get 和 set）<br>public class Car<br>{<br>    &#x2F;&#x2F; 使用屬性來封裝字段<br>    public string  Brand { get; set; } &#x3D; string.Empty;</p>
+<pre><code>public string Color { get; set; } = string.Empty;
+
+
+//方法
+public void ShowCarInfo()
+{
+    Console.WriteLine($&quot;This Car is a {Color} {Brand}.&quot;);
+}
+</code></pre>
+<p>}</p>
+<p>&#x2F;&#x2F;建構函數的範例：<br>public class Person2<br>{<br>    public string Name;<br>    public int Age;<br>    public Person2(string name , int age)<br>    {<br>       Name &#x3D; name;<br>       Age &#x3D; age;<br>    }<br>    public void Greet()<br>    {<br>        Console.WriteLine($”Hello , my name is {Name} and I am {Age} years old.”);<br>    }<br>}</p>
+<p>&#x2F;&#x2F;封裝 私有屬性和公開方法：<br>public class BankAccount<br>{<br>    private decimal balance;</p>
+<pre><code>public void Deposit(decimal amount)
+{
+    balance += amount;
+    Console.WriteLine($&quot;存入{amount}元, 目前餘額為{balance}元&quot;);
+}
+
+public decimal GetBalance()
+{ return balance; } 
+</code></pre>
+<p>}</p>
+<p>&#x2F;&#x2F;繼承-父<br>public class Animal<br>{<br>    public void Eat()<br>    { Console.WriteLine(“Eating…”); }<br>}<br>&#x2F;&#x2F;繼承-子<br>public class Dog: Animal<br>{<br>    public void Bark()<br>    {<br>        Console.WriteLine(“Barking”);<br>    }<br>}</p>
+<p>&#x2F;&#x2F;多態：<br>public class Animal1<br>{<br>    public virtual void MakeSound()<br>    {<br>        Console.WriteLine(“Some generic animal sound”);<br>    }<br>}</p>
+<p>public class Cat: Animal1<br>{<br>    public override void MakeSound()<br>    {<br>        Console.WriteLine(“Meow”);<br>    }<br>}<br>&#x2F;&#x2F;實戰練習<br>&#x2F;&#x2F;練習 1：定義類別和創建物件</p>
+<p>&#x2F;&#x2F;定義一個類別 Book，包含屬性 Title 和 Author，以及方法 DisplayInfo，用來顯示書名和作者。<br>&#x2F;&#x2F;使用這個類別創建一個物件，並輸出書的信息。<br>public class Book<br>{<br>    public string Title { get; set; } &#x3D; string.Empty;<br>    public string Author { get; set; } &#x3D; string.Empty;</p>
+<pre><code>public void DisplayInfo()
+{
+    Console.WriteLine($&quot;This Book Title is【 {Title} 】and author is {Author}&quot;);
+}
+</code></pre>
+<p>}</p>
+<p>&#x2F;&#x2F;練習 2：使用建構函數</p>
+<p>&#x2F;&#x2F;為 Book 類別添加建構函數，用來初始化 Title 和 Author。<br>&#x2F;&#x2F;使用建構函數創建物件並輸出書的信息。<br>public class Book1<br>{<br>    public string Title;<br>    public string Author;<br>    public Book1(string title, string author)<br>    {<br>        Title &#x3D; title;<br>        Author &#x3D; author;<br>    }<br>    public void DisplayInfo()<br>    {<br>        Console.WriteLine($”This Book Title is 【 {Title} 】and author is {Author}”);<br>    }<br>}</p>
+<p>&#x2F;&#x2F;練習 3：繼承與覆寫</p>
+<p>&#x2F;&#x2F;定義一個類別 Vehicle，包含方法 StartEngine。<br>&#x2F;&#x2F;創建一個子類別 Car，繼承 Vehicle，並覆寫 StartEngine 方法以顯示特定的消息。<br>public class Vehicle<br>{<br>    public virtual void StartEngine()<br>    {<br>        Console.WriteLine(“Engine Starting….”);<br>    }<br>}</p>
+<p>public class Car1 : Vehicle<br>{<br>    public override void StartEngine()<br>    {<br>        Console.WriteLine(“Car’s Engine Starting…..”);<br>    }<br>}<br>#endregion</p>
+<p>class Program<br>{</p>
+<pre><code>static void Main(string[] args)
+{
+
+
+    #region  第六階段：面向對象編程（OOP）
+
+    //創建物件範例：
+    Person person1 = new Person();
+    person1.Name = &quot;Alice&quot;;
+    person1.Age = 25;
+
+    person1.Greet();
+
+    //創建物件並設置屬性：
+    Car mayCar = new Car();
+    mayCar.Brand = &quot;Toyota&quot;;
+    mayCar.Color = &quot;Red&quot;;
+
+    mayCar.ShowCarInfo();
+
+    //建構函數的範例：
+    Person2 person2 = new Person2(&quot;Lily&quot;, 53);
+    person2.Greet();
+
+
+    //封裝 私有屬性和公開方法：
+    BankAccount bankAccount = new BankAccount();
+    decimal[] deposits = { 22908, 11201, 2333 };
+    foreach (decimal amount in deposits)
+    {
+        bankAccount.Deposit(amount);
+    }
+
+    //繼承
+    Dog myDog = new Dog();
+    myDog.Eat(); // 繼承自父類別 Animal
+    myDog.Bark();// 自己的方法
+
+    //多態：
+    Animal1 animal1 = new Animal1();
+    animal1.MakeSound(); // 輸出: Some generic animal sound
+    Cat myCat = new Cat();
+    myCat.MakeSound(); // 輸出: Meow (多態)
+
+    //實戰練習
+    //練習 1：定義類別和創建物件
+
+    //定義一個類別 Book，包含屬性 Title 和 Author，以及方法 DisplayInfo，用來顯示書名和作者。
+    //使用這個類別創建一個物件，並輸出書的信息。
+    Book myBook = new Book();
+    myBook.Title = &quot;Wonderful Day&quot;;
+    myBook.Author = &quot;Lily&quot;;
+    myBook.DisplayInfo();
+
+    //練習 2：使用建構函數
+
+    //為 Book 類別添加建構函數，用來初始化 Title 和 Author。
+    //使用建構函數創建物件並輸出書的信息。
+    Book1 book1 = new Book1(&quot;Booking Time&quot;, &quot;Amy&quot;);
+    book1.DisplayInfo();
+
+    //練習 3：繼承與覆寫
+
+    //定義一個類別 Vehicle，包含方法 StartEngine。
+    //創建一個子類別 Car，繼承 Vehicle，並覆寫 StartEngine 方法以顯示特定的消息。
+    Vehicle myVehicle = new Vehicle();
+    myVehicle.StartEngine();
+    Car1 car1 = new Car1();
+    car1.StartEngine();
+
+    #endregion
+
+}
+</code></pre>
+<p>}<br>問題<br>問題： 為什麼 OOP 中需要封裝數據？<br>通過訪問修飾符（例如 public、private）來控制屬性和方法的可見性，保護數據並隱藏實現細節。<br>例如:<br>public class BankAccount<br>{<br>    private decimal balance;</p>
+<pre><code>public void Deposit(decimal amount)
+{
+    if (amount &gt; 0)
+    {
+        balance += amount;
+        Console.WriteLine($&quot;存入 {amount} 元，目前餘額為 {balance} 元&quot;);
+    }
+}
+
+public decimal GetBalance()
+{
+    return balance;
+}
+</code></pre>
+<p>}</p>
+<p>問題： 繼承如何幫助代碼的重用？<br>允許子類別從父類別繼承屬性和方法，從而實現代碼的重用。<br>例如:<br>public class Animal<br>{<br>    public void Eat()<br>    {<br>        Console.WriteLine(“Eating…”);<br>    }<br>}</p>
+<p>public class Dog : Animal<br>{<br>    public void Bark()<br>    {<br>        Console.WriteLine(“Barking…”);<br>    }<br>}</p>
+<p>class Program<br>{<br>    static void Main(string[] args)<br>    {<br>        Dog myDog &#x3D; new Dog();<br>        myDog.Eat();  &#x2F;&#x2F; 繼承自父類別 Animal<br>        myDog.Bark(); &#x2F;&#x2F; 自己的方法<br>    }<br>}</p>
+<p>GPT:<br>你的代碼已經很好地展示了面向對象編程（OOP）的各個方面，包括類別、屬性、方法、建構函數、封裝、繼承和多態。你還對 OOP 的問題進行了解釋，闡述了<strong>封裝</strong>和<strong>繼承</strong>的優點。這裡有一些小的建議來讓你的代碼和回答更為精緻：</p>
+<h3 id="代碼優化和建議"><a href="#代碼優化和建議" class="headerlink" title="代碼優化和建議"></a>代碼優化和建議</h3><ol>
+<li><p><strong>屬性預設值與 <code>null</code> 檢查的改進</strong>：</p>
+<ul>
+<li>你的屬性 <code>Name</code>、<code>Title</code>、<code>Author</code> 等都有預設值 <code>&quot;&quot;</code>，這可以防止 <code>null</code>，但如果你要明確禁止這些值為空字串，你可以進一步添加驗證邏輯。</li>
+<li>例如，你可以在 <code>set</code> 方法中進行檢查，確保值不為 <code>null</code> 或空字串。</li>
+</ul>
+<pre><code class="csharp">public string Brand
+{
+    get =&gt; _brand;
+    set
+    {
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            throw new ArgumentException(&quot;Brand cannot be empty or null.&quot;);
+        }
+        _brand = value;
+    }
+}
+private string _brand = string.Empty;
+</code></pre>
+</li>
+<li><p><strong>建構函數改進</strong>：</p>
+<ul>
+<li>在 <code>Person2</code> 類別中，建構函數使用參數來初始化 <code>Name</code> 和 <code>Age</code>，這是一個很好的設計模式。</li>
+<li>你可以考慮為 <code>Book</code> 類別中的 <code>Title</code> 和 <code>Author</code> 使用 <code>required</code> 屬性（C# 11 支持），這樣可以強制初始化屬性，使代碼更加安全。</li>
+</ul>
+</li>
+<li><p><strong><code>BankAccount</code> 改進</strong>：</p>
+<ul>
+<li>在 <code>Deposit</code> 方法中，你應該檢查存款的金額是否為正數。已經有這樣的邏輯，但可以在 <code>Deposit</code> 內部返回新的餘額，這樣更方便使用。</li>
+<li>你也可以考慮添加一個 <code>Withdraw</code> 方法來支持取款功能，這樣 <code>BankAccount</code> 類別更接近真實世界的銀行帳戶。</li>
+</ul>
+<pre><code class="csharp">public void Withdraw(decimal amount)
+{
+    if (amount &lt;= 0)
+    {
+        Console.WriteLine(&quot;取款金額必須大於 0.&quot;);
+        return;
+    }
+    if (amount &gt; balance)
+    {
+        Console.WriteLine(&quot;餘額不足，無法完成取款。&quot;);
+        return;
+    }
+    balance -= amount;
+    Console.WriteLine($&quot;取出 {amount} 元，目前餘額為 {balance} 元&quot;);
+}
+</code></pre>
+</li>
+<li><p><strong>多態改進</strong>：</p>
+<ul>
+<li>在多態的範例中，可以通過引入更多的子類別（例如 <code>Dog</code> 和 <code>Cat</code>）來更好地展示多態的概念。</li>
+<li>在 <code>Main</code> 方法中，你可以使用一個 <code>List&lt;Animal1&gt;</code> 來存儲不同的動物，並調用它們的 <code>MakeSound</code> 方法，這樣可以更好地展示多態的力量。</li>
+</ul>
+<pre><code class="csharp">List&lt;Animal1&gt; animals = new List&lt;Animal1&gt; { new Animal1(), new Cat() };
+foreach (var animal in animals)
+{
+    animal.MakeSound(); // 根據物件的具體型別調用對應的方法
+}
+</code></pre>
+</li>
+</ol>
+<h3 id="修正後的回答"><a href="#修正後的回答" class="headerlink" title="修正後的回答"></a>修正後的回答</h3><p><strong>問題 1：為什麼 OOP 中需要封裝數據？</strong></p>
+<p><strong>回答：</strong><br>封裝數據的主要目的是<strong>保護對象的內部狀態</strong>，防止外部程式直接訪問和修改內部的數據，從而維持系統的穩定性和安全性。通過使用<strong>訪問修飾符</strong>（例如 <code>public</code> 和 <code>private</code>），我們可以控制屬性和方法的可見性，並確保只有經過驗證或特定的方式才能修改數據。這樣做也有助於<strong>隱藏實現細節</strong>，使得類別對使用者來說更易於理解和使用。</p>
+<p><strong>範例：</strong></p>
+<pre><code class="csharp">public class BankAccount
+{
+    private decimal balance;
+
+    public void Deposit(decimal amount)
+    {
+        if (amount &gt; 0)
+        {
+            balance += amount;
+            Console.WriteLine($&quot;存入 {amount} 元，目前餘額為 {balance} 元&quot;);
+        }
+    }
+
+    public decimal GetBalance()
+    {
+        return balance;
+    }
+}
+</code></pre>
+<p>在這個範例中，<code>balance</code> 是私有的，只有通過 <code>Deposit</code> 方法和 <code>GetBalance</code> 方法才能存取和操作餘額。</p>
+<p><strong>問題 2：繼承如何幫助代碼的重用？</strong></p>
+<p><strong>回答：</strong><br>繼承允許子類別從父類別<strong>繼承屬性和方法</strong>，這樣可以實現代碼的重用，減少重複編寫相同功能的代碼。父類別中定義的所有屬性和方法都可以被子類別直接使用，而子類別也可以<strong>添加自己的特性或方法</strong>，或者<strong>覆寫</strong>父類別的方法來實現特殊化的行為。這種方式不僅減少了代碼重複，也使得程式的結構更有層次，更易於擴展。</p>
+<p><strong>範例：</strong></p>
+<pre><code class="csharp">public class Animal
+{
+    public void Eat()
+    {
+        Console.WriteLine(&quot;Eating...&quot;);
+    }
+}
+
+public class Dog : Animal
+{
+    public void Bark()
+    {
+        Console.WriteLine(&quot;Barking...&quot;);
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Dog myDog = new Dog();
+        myDog.Eat();  // 繼承自父類別 Animal
+        myDog.Bark(); // 自己的方法
+    }
+}
+</code></pre>
+<p>在這個例子中，<code>Dog</code> 類別繼承了 <code>Animal</code> 類別，因此可以直接使用 <code>Animal</code> 類別的 <code>Eat</code> 方法，而不需要再次定義，從而實現了代碼重用。</p>
+<h3 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h3><ul>
+<li>你已經非常熟練地掌握了類別的定義、建構函數、封裝、繼承和多態等 OOP 的基礎概念。</li>
+<li>在進一步優化你的代碼時，可以考慮添加更多的驗證邏輯，使代碼更加健壯。</li>
+<li>多態可以讓不同的物件以相同的方式被操作，這樣程式變得更靈活。</li>
+</ul>
+<p>接下來，如果你準備好了，我們可以進入<strong>第七階段</strong>，學習 <strong>接口（Interfaces）和抽象類（Abstract Classes）</strong>，這是面向對象編程中進一步提升代碼抽象化和設計靈活性的重要工具。如果還有任何不清楚的地方，隨時告訴我！</p>

@@ -1,0 +1,221 @@
+<hr>
+<h2 id="title-2026-05-14-C-學習-面向對象編程（OOP）date-2026-04-21-22-16-35categories-OneDayOneNotetags-C-description-2026-05-14-C-學習-面向對象編程（OOP）"><a href="#title-2026-05-14-C-學習-面向對象編程（OOP）date-2026-04-21-22-16-35categories-OneDayOneNotetags-C-description-2026-05-14-C-學習-面向對象編程（OOP）" class="headerlink" title="title: 2026-05-14 C# 學習 面向對象編程（OOP）date: 2026-04-21 22:16:35categories: OneDayOneNotetags:  [C#]description: 2026-05-14 C# 學習 面向對象編程（OOP）"></a>title: 2026-05-14 C# 學習 面向對象編程（OOP）<br>date: 2026-04-21 22:16:35<br>categories: OneDayOneNote<br>tags:  [C#]<br>description: 2026-05-14 C# 學習 面向對象編程（OOP）</h2><h2 id="2026-05-14-C-學習-面向對象編程（OOP）"><a href="#2026-05-14-C-學習-面向對象編程（OOP）" class="headerlink" title="2026-05-14 C# 學習 面向對象編程（OOP）"></a>2026-05-14 C# 學習 面向對象編程（OOP）</h2><p>我:<br>請進入 進入第六階段，學習 面向對象編程（OOP）</p>
+<p>GPT:<br>太好了！現在讓我們進入 <strong>第六階段：面向對象編程（OOP）</strong>。面向對象編程是 C# 中非常重要的一部分，它幫助我們更好地組織代碼，使其更加模組化、可重用且易於擴展。</p>
+<p>在這個階段，我們會學習以下內容：</p>
+<ol>
+<li><strong>什麼是面向對象編程（OOP）</strong></li>
+<li><strong>類別和物件</strong></li>
+<li><strong>屬性與方法</strong></li>
+<li><strong>建構函數</strong></li>
+<li><strong>封裝、繼承、多態</strong></li>
+</ol>
+<hr>
+<h3 id="1-什麼是面向對象編程（OOP）？"><a href="#1-什麼是面向對象編程（OOP）？" class="headerlink" title="1. 什麼是面向對象編程（OOP）？"></a>1. 什麼是面向對象編程（OOP）？</h3><p><strong>面向對象編程（OOP）</strong> 是一種以物件為中心來設計和編寫程式碼的方法。OOP 有助於將現實世界的概念映射到程式中，使得代碼結構更直觀、更模組化。OOP 的核心概念包括 <strong>封裝</strong>、<strong>繼承</strong> 和 <strong>多態</strong>。</p>
+<ul>
+<li><strong>封裝（Encapsulation）</strong>：將數據和操作數據的方法封裝在一起，隱藏內部的實現，對外只提供必要的介面。</li>
+<li><strong>繼承（Inheritance）</strong>：允許一個類別從另一個類別繼承屬性和方法，使得代碼更加可重用。</li>
+<li><strong>多態（Polymorphism）</strong>：允許不同類別的物件以相同的介面做出不同的行為，使得代碼更具彈性。</li>
+</ul>
+<h3 id="2-類別和物件"><a href="#2-類別和物件" class="headerlink" title="2. 類別和物件"></a>2. 類別和物件</h3><ul>
+<li><strong>類別（Class）</strong> 是對一類物件的抽象，是物件的藍圖或模板。</li>
+<li><strong>物件（Object）</strong> 是類別的具體實例，它包含了類別的屬性和行為。</li>
+</ul>
+<p><strong>類別的定義範例：</strong></p>
+<pre><code class="csharp">public class Person
+{
+    // 屬性
+    public string Name;
+    public int Age;
+
+    // 方法
+    public void Greet()
+    {
+        Console.WriteLine($&quot;Hello, my name is {Name} and I am {Age} years old.&quot;);
+    }
+}
+</code></pre>
+<p><strong>創建物件範例：</strong></p>
+<pre><code class="csharp">class Program
+{
+    static void Main(string[] args)
+    {
+        // 創建類別的實例（物件）
+        Person person1 = new Person();
+        person1.Name = &quot;Alice&quot;;
+        person1.Age = 25;
+
+        person1.Greet(); // 輸出: Hello, my name is Alice and I am 25 years old.
+    }
+}
+</code></pre>
+<p>在這裡，<code>Person</code> 是一個類別，而 <code>person1</code> 是這個類別的具體物件。<code>Name</code> 和 <code>Age</code> 是屬性，<code>Greet</code> 是這個物件的方法。</p>
+<h3 id="3-屬性與方法"><a href="#3-屬性與方法" class="headerlink" title="3. 屬性與方法"></a>3. 屬性與方法</h3><ul>
+<li><strong>屬性</strong> 是類別的數據成員，描述物件的特徵。</li>
+<li><strong>方法</strong> 是類別的行為，描述物件可以執行的操作。</li>
+</ul>
+<p>我們可以使用屬性來設置或獲取物件的狀態，並使用方法來執行操作。</p>
+<p><strong>改進的屬性（使用 <code>get</code> 和 <code>set</code>）</strong>：</p>
+<pre><code class="csharp">public class Car
+{
+    // 使用屬性來封裝字段
+    public string Brand { get; set; }
+    public string Color { get; set; }
+
+    // 方法
+    public void ShowCarInfo()
+    {
+        Console.WriteLine($&quot;This car is a {Color} {Brand}.&quot;);
+    }
+}
+</code></pre>
+<p><strong>創建物件並設置屬性：</strong></p>
+<pre><code class="csharp">Car myCar = new Car();
+myCar.Brand = &quot;Toyota&quot;;
+myCar.Color = &quot;Red&quot;;
+
+myCar.ShowCarInfo(); // 輸出: This car is a Red Toyota.
+</code></pre>
+<h3 id="4-建構函數（Constructor）"><a href="#4-建構函數（Constructor）" class="headerlink" title="4. 建構函數（Constructor）"></a>4. 建構函數（Constructor）</h3><p><strong>建構函數</strong> 是一種特殊的方法，用於在創建物件時初始化物件的狀態。建構函數與類別同名，且不會有返回值。</p>
+<ul>
+<li><p><strong>建構函數的範例：</strong></p>
+<pre><code class="csharp">public class Person
+{
+    public string Name;
+    public int Age;
+
+    // 建構函數，用於初始化屬性
+    public Person(string name, int age)
+    {
+        Name = name;
+        Age = age;
+    }
+
+    public void Greet()
+    {
+        Console.WriteLine($&quot;Hello, my name is {Name} and I am {Age} years old.&quot;);
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // 使用建構函數創建物件並初始化屬性
+        Person person2 = new Person(&quot;Bob&quot;, 30);
+        person2.Greet(); // 輸出: Hello, my name is Bob and I am 30 years old.
+    }
+}
+</code></pre>
+</li>
+</ul>
+<p>在這個範例中，<code>Person</code> 類別有一個建構函數，可以在創建物件時為 <code>Name</code> 和 <code>Age</code> 設定初始值。</p>
+<h3 id="5-封裝、繼承和多態"><a href="#5-封裝、繼承和多態" class="headerlink" title="5. 封裝、繼承和多態"></a>5. 封裝、繼承和多態</h3><p><strong>封裝</strong>：通過<strong>訪問修飾符</strong>（例如 <code>public</code>、<code>private</code>）來控制屬性和方法的可見性，保護數據並隱藏實現細節。</p>
+<ul>
+<li><p><strong>私有屬性和公開方法</strong>：</p>
+<pre><code class="csharp">public class BankAccount
+{
+    private decimal balance;
+
+    public void Deposit(decimal amount)
+    {
+        if (amount &gt; 0)
+        {
+            balance += amount;
+            Console.WriteLine($&quot;存入 {amount} 元，目前餘額為 {balance} 元&quot;);
+        }
+    }
+
+    public decimal GetBalance()
+    {
+        return balance;
+    }
+}
+</code></pre>
+</li>
+</ul>
+<p><strong>繼承</strong>：允許子類別從父類別繼承屬性和方法，從而實現代碼的重用。</p>
+<ul>
+<li><p><strong>範例</strong>：</p>
+<pre><code class="csharp">public class Animal
+{
+    public void Eat()
+    {
+        Console.WriteLine(&quot;Eating...&quot;);
+    }
+}
+
+public class Dog : Animal
+{
+    public void Bark()
+    {
+        Console.WriteLine(&quot;Barking...&quot;);
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Dog myDog = new Dog();
+        myDog.Eat();  // 繼承自父類別 Animal
+        myDog.Bark(); // 自己的方法
+    }
+}
+</code></pre>
+</li>
+</ul>
+<p><strong>多態</strong>：允許不同的類別以相同的方式響應相同的消息。通常使用<strong>方法覆寫（override）</strong>來實現。</p>
+<ul>
+<li><p><strong>範例</strong>：</p>
+<pre><code class="csharp">public class Animal
+{
+    public virtual void MakeSound()
+    {
+        Console.WriteLine(&quot;Some generic animal sound&quot;);
+    }
+}
+
+public class Cat : Animal
+{
+    public override void MakeSound()
+    {
+        Console.WriteLine(&quot;Meow&quot;);
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Animal myAnimal = new Animal();
+        myAnimal.MakeSound(); // 輸出: Some generic animal sound
+
+        Animal myCat = new Cat();
+        myCat.MakeSound(); // 輸出: Meow (多態)
+    }
+}
+</code></pre>
+</li>
+</ul>
+<p>在這裡，<code>Cat</code> 類別繼承了 <code>Animal</code> 類別，並覆寫了 <code>MakeSound</code> 方法，這樣即使使用 <code>Animal</code> 型別，也能調用 <code>Cat</code> 的實現。</p>
+<h3 id="實戰練習"><a href="#實戰練習" class="headerlink" title="實戰練習"></a>實戰練習</h3><p><strong>練習 1：定義類別和創建物件</strong></p>
+<ol>
+<li>定義一個類別 <code>Book</code>，包含屬性 <code>Title</code> 和 <code>Author</code>，以及方法 <code>DisplayInfo</code>，用來顯示書名和作者。</li>
+<li>使用這個類別創建一個物件，並輸出書的信息。</li>
+</ol>
+<p><strong>練習 2：使用建構函數</strong></p>
+<ol>
+<li>為 <code>Book</code> 類別添加建構函數，用來初始化 <code>Title</code> 和 <code>Author</code>。</li>
+<li>使用建構函數創建物件並輸出書的信息。</li>
+</ol>
+<p><strong>練習 3：繼承與覆寫</strong></p>
+<ol>
+<li>定義一個類別 <code>Vehicle</code>，包含方法 <code>StartEngine</code>。</li>
+<li>創建一個子類別 <code>Car</code>，繼承 <code>Vehicle</code>，並覆寫 <code>StartEngine</code> 方法以顯示特定的消息。</li>
+</ol>
+<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><ol>
+<li><strong>問題：</strong> 為什麼 OOP 中需要封裝數據？</li>
+<li><strong>問題：</strong> 繼承如何幫助代碼的重用？</li>
+</ol>
+<hr>
+<p>完成這些練習後，如果有任何問題或需要更深入的解釋，請隨時告訴我！我們可以進一步探討 OOP 的概念，或者學習其他編程主題，例如接口和抽象類。</p>

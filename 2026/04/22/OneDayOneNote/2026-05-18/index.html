@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2026-05-18 C# 關於 繼承與覆寫 ,  我有個疑問, 這樣讓子類別可以覆寫父類別的動作, 是否會很有爭議或危險">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2026-05-18 C# 關於 繼承與覆寫 ,  我有個疑問, 這樣讓子類別可以覆寫父類別的動作, 是否會很有爭議或危險">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2026/04/22/OneDayOneNote/2026-05-18/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2026-05-18 C# 關於 繼承與覆寫 ,  我有個疑問, 這樣讓子類別可以覆寫父類別的動作, 是否會很有爭議或危險">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2026-04-22T14:41:09.000Z">
+<meta property="article:modified_time" content="2026-04-22T15:00:44.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="C#">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2026/04/22/OneDayOneNote/2026-05-18/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2026/04/22/OneDayOneNote/2026-05-18/","path":"2026/04/22/OneDayOneNote/2026-05-18/","title":"2026-05-18 C# 關於 繼承與覆寫 ,  我有個疑問, 這樣讓子類別可以覆寫父類別的動作, 是否會很有爭議或危險"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2026-05-18 C# 關於 繼承與覆寫 ,  我有個疑問, 這樣讓子類別可以覆寫父類別的動作, 是否會很有爭議或危險 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2026-05-18-C-%E9%97%9C%E6%96%BC-%E7%B9%BC%E6%89%BF%E8%88%87%E8%A6%86%E5%AF%AB-%E6%88%91%E6%9C%89%E5%80%8B%E7%96%91%E5%95%8F-%E9%80%99%E6%A8%A3%E8%AE%93%E5%AD%90%E9%A1%9E%E5%88%A5%E5%8F%AF%E4%BB%A5%E8%A6%86%E5%AF%AB%E7%88%B6%E9%A1%9E%E5%88%A5%E7%9A%84%E5%8B%95%E4%BD%9C-%E6%98%AF%E5%90%A6%E6%9C%83%E5%BE%88%E6%9C%89%E7%88%AD%E8%AD%B0%E6%88%96%E5%8D%B1%E9%9A%AA"><span class="nav-number">1.</span> <span class="nav-text">2026-05-18 C# 關於 繼承與覆寫 ,  我有個疑問, 這樣讓子類別可以覆寫父類別的動作, 是否會很有爭議或危險</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E9%A2%A8%E9%9A%AA%E5%92%8C%E6%8C%91%E6%88%B0"><span class="nav-number">1.1.</span> <span class="nav-text">1. 風險和挑戰</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E9%81%B5%E5%AE%88%E9%9D%A2%E5%90%91%E5%B0%8D%E8%B1%A1%E7%B7%A8%E7%A8%8B%E7%9A%84%E5%8E%9F%E5%89%87"><span class="nav-number">1.2.</span> <span class="nav-text">2. 遵守面向對象編程的原則</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Liskov-%E6%9B%BF%E6%8F%9B%E5%8E%9F%E5%89%87%EF%BC%88Liskov-Substitution-Principle-LSP%EF%BC%89"><span class="nav-number">1.2.1.</span> <span class="nav-text">Liskov 替換原則（Liskov Substitution Principle, LSP）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%96%8B%E6%94%BE-%E5%B0%81%E9%96%89%E5%8E%9F%E5%89%87%EF%BC%88Open-Closed-Principle-OCP%EF%BC%89"><span class="nav-number">1.2.2.</span> <span class="nav-text">開放-封閉原則（Open&#x2F;Closed Principle, OCP）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%A6%82%E4%BD%95%E5%AE%89%E5%85%A8%E5%9C%B0%E4%BD%BF%E7%94%A8%E8%A6%86%E5%AF%AB%EF%BC%9F"><span class="nav-number">1.3.</span> <span class="nav-text">3. 如何安全地使用覆寫？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-virtual-%E5%92%8C-override"><span class="nav-number">1.3.1.</span> <span class="nav-text">使用 virtual 和 override</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-sealed-%E9%97%9C%E9%8D%B5%E5%AD%97%E9%98%B2%E6%AD%A2%E9%80%B2%E4%B8%80%E6%AD%A5%E8%A6%86%E5%AF%AB"><span class="nav-number">1.3.2.</span> <span class="nav-text">使用 sealed 關鍵字防止進一步覆寫</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%85%8E%E7%94%A8%E8%A6%86%E5%AF%AB%EF%BC%9A%E8%80%83%E6%85%AE%E7%B5%84%E5%90%88%E8%80%8C%E9%9D%9E%E7%B9%BC%E6%89%BF"><span class="nav-number">1.3.3.</span> <span class="nav-text">慎用覆寫：考慮組合而非繼承</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B8%BD%E7%B5%90"><span class="nav-number">1.4.</span> <span class="nav-text">總結</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">567</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2026/04/22/OneDayOneNote/2026-05-18/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2026-05-18 C# 關於 繼承與覆寫 ,  我有個疑問, 這樣讓子類別可以覆寫父類別的動作, 是否會很有爭議或危險 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2026-05-18 C# 關於 繼承與覆寫 ,  我有個疑問, 這樣讓子類別可以覆寫父類別的動作, 是否會很有爭議或危險">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2026-05-18 C# 關於 繼承與覆寫 ,  我有個疑問, 這樣讓子類別可以覆寫父類別的動作, 是否會很有爭議或危險
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2026-04-22 22:41:09 / 修改時間：23:00:44" itemprop="dateCreated datePublished" datetime="2026-04-22T22:41:09+08:00">2026-04-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2026-05-18 C# 關於 繼承與覆寫 ,  我有個疑問, 這樣讓子類別可以覆寫父類別的動作, 是否會很有爭議或危險</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2026-05-18-C-關於-繼承與覆寫-我有個疑問-這樣讓子類別可以覆寫父類別的動作-是否會很有爭議或危險"><a href="#2026-05-18-C-關於-繼承與覆寫-我有個疑問-這樣讓子類別可以覆寫父類別的動作-是否會很有爭議或危險" class="headerlink" title="2026-05-18 C# 關於 繼承與覆寫 ,  我有個疑問, 這樣讓子類別可以覆寫父類別的動作, 是否會很有爭議或危險"></a>2026-05-18 C# 關於 繼承與覆寫 ,  我有個疑問, 這樣讓子類別可以覆寫父類別的動作, 是否會很有爭議或危險</h2><p>我:<br>關於 繼承與覆寫 ,  我有個疑問, 這樣讓子類別可以覆寫父類別的動作, 是否會很有爭議或危險, 亦或是違返什麼原則呢?</p>
+<p>GPT:<br>這是一個非常好的問題，<strong>繼承與覆寫</strong>確實是一把雙刃劍，它們的強大靈活性同時也帶來了一些潛在的風險和挑戰。如果沒有合理的規劃和正確的使用，允許子類別覆寫父類別的行為可能會引發一些問題，甚至導致違反面向對象編程（OOP）的一些設計原則。以下是對這些風險、原則以及如何管理它們的詳細說明。</p>
+<h3 id="1-風險和挑戰"><a href="#1-風險和挑戰" class="headerlink" title="1. 風險和挑戰"></a>1. 風險和挑戰</h3><ul>
+<li><p><strong>破壞一致性和可預測性</strong>：<br>當子類別覆寫父類別的方法時，可能會導致不同的子類表現出不同的行為。這使得程式的行為變得難以預測，尤其是在大型系統中。如果某個父類別的方法被覆寫後，表現與預期的父類行為有很大差異，可能會破壞整體系統的邏輯一致性。</p>
+</li>
+<li><p><strong>父類別的設計被削弱</strong>：<br>父類別的方法被覆寫可能會破壞父類別的原始設計意圖。尤其當子類未遵循父類的契約（contract）時，可能導致系統的不穩定或錯誤。例如，父類別可能包含一些重要的前置條件或後置條件，但子類別在覆寫時未能遵循，從而導致錯誤的行為。</p>
+</li>
+<li><p><strong>增加了代碼的耦合性</strong>：<br>繼承導致父類和子類之間的耦合增加，這意味著子類強烈依賴父類。當父類進行變更時，子類必須同步調整，這可能導致大量的重構和測試，特別是當子類覆寫了很多父類的方法時。</p>
+</li>
+</ul>
+<h3 id="2-遵守面向對象編程的原則"><a href="#2-遵守面向對象編程的原則" class="headerlink" title="2. 遵守面向對象編程的原則"></a>2. 遵守面向對象編程的原則</h3><p>為了避免繼承和覆寫可能帶來的風險，有一些面向對象編程的設計原則和最佳實踐可以遵循。</p>
+<h4 id="Liskov-替換原則（Liskov-Substitution-Principle-LSP）"><a href="#Liskov-替換原則（Liskov-Substitution-Principle-LSP）" class="headerlink" title="Liskov 替換原則（Liskov Substitution Principle, LSP）"></a><strong>Liskov 替換原則（Liskov Substitution Principle, LSP）</strong></h4><p><strong>Liskov 替換原則</strong> 是面向對象設計中的一個重要原則，該原則指出：子類應該可以替換其父類並且不影響程式的正確性。</p>
+<ul>
+<li><strong>LSP 的應用</strong>：如果子類覆寫了父類的方法，它必須<strong>保持父類的預期行為</strong>，確保不會導致系統的邏輯破壞。也就是說，使用父類的地方應該可以無縫地替換為子類而不影響功能。</li>
+<li><strong>違反 LSP 的例子</strong>：<br>如果父類 <code>Bird</code> 有一個方法 <code>Fly()</code>，那麼所有的子類都應該能飛行。如果有一個子類 <code>Penguin</code> 覆寫了 <code>Fly()</code> 並且使其無法飛行，就違反了 LSP。這樣做可能導致代碼中出現不預期的行為，因為有人可能假設所有的鳥都會飛。</li>
+</ul>
+<h4 id="開放-封閉原則（Open-Closed-Principle-OCP）"><a href="#開放-封閉原則（Open-Closed-Principle-OCP）" class="headerlink" title="開放-封閉原則（Open&#x2F;Closed Principle, OCP）"></a><strong>開放-封閉原則（Open&#x2F;Closed Principle, OCP）</strong></h4><p><strong>開放-封閉原則</strong> 指的是軟體實體（類別、模組、函數等）應該對擴展開放，對修改封閉。</p>
+<ul>
+<li><strong>OCP 的應用</strong>：應盡量避免修改已有的類別，而是通過繼承和覆寫來擴展功能。這樣可以減少對已有代碼的改動，降低引入錯誤的風險。</li>
+<li><strong>覆寫帶來的挑戰</strong>：如果子類過度地覆寫父類的方法，可能會導致子類的行為過於複雜，並且與父類的初始設計偏離，這違背了 OCP 的設計原則。</li>
+</ul>
+<h3 id="3-如何安全地使用覆寫？"><a href="#3-如何安全地使用覆寫？" class="headerlink" title="3. 如何安全地使用覆寫？"></a>3. 如何安全地使用覆寫？</h3><p>為了使繼承和覆寫能安全且符合原則，以下是一些最佳實踐：</p>
+<h4 id="使用-virtual-和-override"><a href="#使用-virtual-和-override" class="headerlink" title="使用 virtual 和 override"></a><strong>使用 <code>virtual</code> 和 <code>override</code></strong></h4><ul>
+<li>父類中的方法應該使用 <strong><code>virtual</code></strong> 關鍵字來明確告訴開發者這個方法是可以被覆寫的。這樣做可以使覆寫成為明確的行為。</li>
+<li>子類覆寫時使用 <strong><code>override</code></strong> 關鍵字，這樣可以使覆寫行為更加清晰，並且編譯器會檢查父類中的相應方法是否存在，從而減少錯誤。</li>
+</ul>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Animal</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">MakeSound</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;Some generic animal sound&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Cat</span> : <span class="title">Animal</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">MakeSound</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;Meow&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="使用-sealed-關鍵字防止進一步覆寫"><a href="#使用-sealed-關鍵字防止進一步覆寫" class="headerlink" title="使用 sealed 關鍵字防止進一步覆寫"></a><strong>使用 <code>sealed</code> 關鍵字防止進一步覆寫</strong></h4><p>當你希望防止子類進一步覆寫某個方法時，可以使用 <strong><code>sealed</code></strong> 關鍵字。這樣可以避免不必要的覆寫，從而保持類別的行為一致性。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Dog</span> : <span class="title">Animal</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">sealed</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">MakeSound</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;Bark&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在這個例子中，<code>MakeSound</code> 被標記為 <code>sealed</code>，這意味著在 <code>Dog</code> 的任何子類中都不能再覆寫這個方法。</p>
+<h4 id="慎用覆寫：考慮組合而非繼承"><a href="#慎用覆寫：考慮組合而非繼承" class="headerlink" title="慎用覆寫：考慮組合而非繼承"></a><strong>慎用覆寫：考慮組合而非繼承</strong></h4><p>在有些情況下，<strong>組合（Composition）</strong> 比繼承更適合。組合指的是一個類別透過包含另一個類別的物件來重用功能，而不是直接繼承。這樣做可以降低耦合度，使得代碼更加靈活。</p>
+<p>例如，如果你有一個 <code>Bird</code> 類別與 <code>FlyingBehaviour</code> 類別，與其讓所有的鳥去繼承 <code>Bird</code> 類別，並覆寫 <code>Fly</code> 方法，不如讓 <code>Bird</code> 包含一個 <code>FlyingBehaviour</code> 的物件，並通過它來決定是否可以飛行。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Bird</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> IFlyBehaviour flyBehaviour;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Bird</span>(<span class="params">IFlyBehaviour flyBehaviour</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">this</span>.flyBehaviour = flyBehaviour;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Fly</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        flyBehaviour.Fly();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IFlyBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Fly</span>()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CanFly</span> : <span class="title">IFlyBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Fly</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;Flying high!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CannotFly</span> : <span class="title">IFlyBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Fly</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;Cannot fly.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這樣的設計使得飛行行為與鳥類分離，不同的鳥可以擁有不同的飛行行為，且不需要覆寫父類方法，避免了繼承帶來的風險。</p>
+<h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h3><ul>
+<li><p><strong>覆寫可能存在的風險</strong>：不當的覆寫可能會導致行為不一致，增加代碼的耦合性，並破壞系統的邏輯。</p>
+</li>
+<li><p><strong>遵循設計原則</strong>：</p>
+<ul>
+<li><strong>Liskov 替換原則（LSP）</strong> 和 <strong>開放-封閉原則（OCP）</strong> 可以幫助你合理地設計繼承和覆寫的類別結構。</li>
+</ul>
+</li>
+<li><p><strong>最佳實踐</strong>：</p>
+<ul>
+<li>使用 <code>virtual</code> 和 <code>override</code> 明確控制覆寫的行為。</li>
+<li>使用 <code>sealed</code> 來防止不必要的覆寫。</li>
+<li>在適當的情況下，考慮使用組合（Composition）來替代繼承，降低耦合度。</li>
+</ul>
+</li>
+</ul>
+<p>覆寫是 OOP 中強大的工具，但也需要謹慎使用，以免引入難以預測的問題。希望這些解釋能幫助你理解如何合理使用覆寫來實現靈活且穩定的程式設計。如果你還有其他問題，隨時告訴我！</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/C/" rel="tag"># C#</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2026/04/22/OneDayOneNote/2026-05-17/" rel="prev" title="2026-05-17 C#面向對象編程（OOP）實戰練習">
+                  <i class="fa fa-angle-left"></i> 2026-05-17 C#面向對象編程（OOP）實戰練習
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2026/04/22/OneDayOneNote/2026-05-19/" rel="next" title="2026-05-19 C# OCP 的應用情境式舉例">
+                  2026-05-19 C# OCP 的應用情境式舉例 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/apple.lily/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

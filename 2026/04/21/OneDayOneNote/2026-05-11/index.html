@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2026-05-11 學習C# 方法和函數的定義與使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2026-05-11 學習C# 方法和函數的定義與使用">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2026/04/21/OneDayOneNote/2026-05-11/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2026-05-11 學習C# 方法和函數的定義與使用">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2026-04-21T13:31:54.000Z">
+<meta property="article:modified_time" content="2026-04-21T13:33:00.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="C#">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2026/04/21/OneDayOneNote/2026-05-11/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2026/04/21/OneDayOneNote/2026-05-11/","path":"2026/04/21/OneDayOneNote/2026-05-11/","title":"2026-05-11 學習C# 方法和函數的定義與使用"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2026-05-11 學習C# 方法和函數的定義與使用 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2026-05-11-%E5%AD%B8%E7%BF%92C-%E6%96%B9%E6%B3%95%E5%92%8C%E5%87%BD%E6%95%B8%E7%9A%84%E5%AE%9A%E7%BE%A9%E8%88%87%E4%BD%BF%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text">2026-05-11 學習C# 方法和函數的定義與使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%8E%E6%AE%B5-5%EF%BC%9A%E6%96%B9%E6%B3%95%E5%92%8C%E5%87%BD%E6%95%B8%E7%9A%84%E5%AE%9A%E7%BE%A9%E8%88%87%E4%BD%BF%E7%94%A8"><span class="nav-number">1.1.</span> <span class="nav-text">階段 5：方法和函數的定義與使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%96%B9%E6%B3%95%E7%9A%84%E5%AE%9A%E7%BE%A9%E8%88%87%E7%B5%90%E6%A7%8B"><span class="nav-number">1.1.1.</span> <span class="nav-text">1. 方法的定義與結構</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%96%B9%E6%B3%95%E7%9A%84%E5%8F%83%E6%95%B8%E8%88%87%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="nav-number">1.1.2.</span> <span class="nav-text">2. 方法的參數與返回值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E6%96%B9%E6%B3%95%E7%9A%84%E8%AA%BF%E7%94%A8"><span class="nav-number">1.1.3.</span> <span class="nav-text">3. 方法的調用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E6%96%B9%E6%B3%95%E7%9A%84%E7%AF%84%E4%BE%8B"><span class="nav-number">1.1.4.</span> <span class="nav-text">4. 方法的範例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%A6%E6%88%B0%E7%B7%B4%E7%BF%92"><span class="nav-number">1.2.</span> <span class="nav-text">實戰練習</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%95%8F%E9%A1%8C"><span class="nav-number">1.3.</span> <span class="nav-text">問題</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">567</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2026/04/21/OneDayOneNote/2026-05-11/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2026-05-11 學習C# 方法和函數的定義與使用 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2026-05-11 學習C# 方法和函數的定義與使用">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2026-05-11 學習C# 方法和函數的定義與使用
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2026-04-21 21:31:54 / 修改時間：21:33:00" itemprop="dateCreated datePublished" datetime="2026-04-21T21:31:54+08:00">2026-04-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2026-05-11 學習C# 方法和函數的定義與使用</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2026-05-11-學習C-方法和函數的定義與使用"><a href="#2026-05-11-學習C-方法和函數的定義與使用" class="headerlink" title="2026-05-11 學習C# 方法和函數的定義與使用"></a>2026-05-11 學習C# 方法和函數的定義與使用</h2><p>我：<br>請繼續  第五階段，學習 方法和函數的定義與使用</p>
+<p>GPT:<br>太好了！現在讓我們進入 <strong>第五階段：方法和函數的定義與使用</strong>。方法（或稱為函數）是讓代碼更有組織性和可重用的重要工具，通過將重複的邏輯封裝在方法中，可以提高程式的可讀性和維護性。</p>
+<h3 id="階段-5：方法和函數的定義與使用"><a href="#階段-5：方法和函數的定義與使用" class="headerlink" title="階段 5：方法和函數的定義與使用"></a>階段 5：方法和函數的定義與使用</h3><p>在這個階段，我們會學習以下內容：</p>
+<ol>
+<li><strong>方法的定義與結構</strong></li>
+<li><strong>方法的參數與返回值</strong></li>
+<li><strong>方法的調用</strong></li>
+<li><strong>方法的範例</strong></li>
+</ol>
+<hr>
+<h4 id="1-方法的定義與結構"><a href="#1-方法的定義與結構" class="headerlink" title="1. 方法的定義與結構"></a>1. 方法的定義與結構</h4><p><strong>方法</strong> 是一段可以被重複執行的代碼塊，通常用於執行特定的操作。</p>
+<ul>
+<li><p><strong>方法的結構：</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">修飾詞 返回值類型 方法名(參數列表)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 方法內部的代碼</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>修飾詞</strong>：定義方法的訪問級別，例如 <code>public</code>（公開）、<code>private</code>（私有）等。</li>
+<li><strong>返回值類型</strong>：方法返回的數據類型。如果方法不返回任何數據，使用 <code>void</code>。</li>
+<li><strong>方法名</strong>：方法的名稱，通常使用駝峰式命名法。</li>
+<li><strong>參數列表</strong>：用於傳遞給方法的變數，可以有多個參數，如果沒有參數則留空。</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-方法的參數與返回值"><a href="#2-方法的參數與返回值" class="headerlink" title="2. 方法的參數與返回值"></a>2. 方法的參數與返回值</h4><ul>
+<li><p><strong>參數</strong> 用於向方法傳遞數據，方法可以根據這些參數來執行操作。</p>
+</li>
+<li><p><strong>返回值</strong> 是從方法返回的結果。使用 <code>return</code> 關鍵字來返回結果。</p>
+</li>
+<li><p><strong>範例：</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="built_in">int</span> <span class="title">Add</span>(<span class="params"><span class="built_in">int</span> a, <span class="built_in">int</span> b</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在這個範例中：</p>
+<ul>
+<li><code>public</code> 是訪問修飾詞，表示這個方法可以在其他類中訪問。</li>
+<li><code>int</code> 是返回值類型，表示這個方法會返回一個整數。</li>
+<li><code>Add</code> 是方法名。</li>
+<li><code>(int a, int b)</code> 是參數列表，表示這個方法需要兩個整數作為參數。</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-方法的調用"><a href="#3-方法的調用" class="headerlink" title="3. 方法的調用"></a>3. 方法的調用</h4><p>當方法定義好之後，我們就可以在程式中通過調用它來使用它。調用方法時需要傳入與參數列表匹配的參數。</p>
+<ul>
+<li><p><strong>範例：</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">int</span> result = Add(<span class="number">3</span>, <span class="number">5</span>);</span><br><span class="line">        Console.WriteLine(<span class="string">$&quot;結果是: <span class="subst">&#123;result&#125;</span>&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="built_in">int</span> <span class="title">Add</span>(<span class="params"><span class="built_in">int</span> a, <span class="built_in">int</span> b</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> a + b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在 <code>Main</code> 方法中，我們調用了 <code>Add(3, 5)</code>，並將返回的結果存入變數 <code>result</code>，然後輸出結果。</p>
+</li>
+</ul>
+<h4 id="4-方法的範例"><a href="#4-方法的範例" class="headerlink" title="4. 方法的範例"></a>4. 方法的範例</h4><p>讓我們來看看一些不同類型的方法：</p>
+<ol>
+<li><p><strong>沒有返回值且沒有參數的方法（<code>void</code> 方法）</strong>：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Greet</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    Console.WriteLine(<span class="string">&quot;Hello, welcome!&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>調用範例：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Greet();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>有返回值的方法</strong>：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="built_in">double</span> <span class="title">Multiply</span>(<span class="params"><span class="built_in">double</span> x, <span class="built_in">double</span> y</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> x * y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>調用範例：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">double</span> product = Multiply(<span class="number">4.5</span>, <span class="number">2.0</span>);</span><br><span class="line">Console.WriteLine(<span class="string">$&quot;乘積是: <span class="subst">&#123;product&#125;</span>&quot;</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>有參數但沒有返回值的方法</strong>：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">PrintMessage</span>(<span class="params"><span class="built_in">string</span> message</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    Console.WriteLine(<span class="string">$&quot;Message: <span class="subst">&#123;message&#125;</span>&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>調用範例：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PrintMessage(<span class="string">&quot;這是一個測試訊息&quot;</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>有多個參數的方法</strong>：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="built_in">int</span> <span class="title">Subtract</span>(<span class="params"><span class="built_in">int</span> a, <span class="built_in">int</span> b</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> a - b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>調用範例：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span> difference = Subtract(<span class="number">10</span>, <span class="number">4</span>);</span><br><span class="line">Console.WriteLine(<span class="string">$&quot;差值是: <span class="subst">&#123;difference&#125;</span>&quot;</span>);</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="實戰練習"><a href="#實戰練習" class="headerlink" title="實戰練習"></a>實戰練習</h3><p>讓我們做一些小練習，幫助你鞏固對方法的理解：</p>
+<p><strong>練習 1：定義一個簡單的方法</strong></p>
+<ol>
+<li>定義一個方法名為 <code>SayHello</code>，不接受任何參數，並輸出 <code>&quot;Hello, World!&quot;</code>。</li>
+<li>在 <code>Main</code> 方法中調用 <code>SayHello</code>。</li>
+</ol>
+<p><strong>練習 2：計算兩個數的和</strong></p>
+<ol>
+<li>定義一個方法名為 <code>Sum</code>，接受兩個整數參數並返回它們的和。</li>
+<li>在 <code>Main</code> 方法中調用 <code>Sum</code> 方法，並輸出結果。</li>
+</ol>
+<p><strong>練習 3：使用參數的方法</strong></p>
+<ol>
+<li>定義一個方法名為 <code>IsEven</code>，接受一個整數參數，並返回 <code>true</code> 或 <code>false</code> 表示這個數字是否為偶數。</li>
+<li>在 <code>Main</code> 方法中調用 <code>IsEven</code> 方法，並輸出結果。</li>
+</ol>
+<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><ol>
+<li><strong>問題：</strong> 為什麼我們需要使用方法來封裝代碼？</li>
+<li><strong>問題：</strong> 方法的返回值類型有什麼作用？<code>void</code> 有什麼特別之處？</li>
+</ol>
+<hr>
+<p>完成這些練習後，如果有任何問題或需要更深入的解釋，請隨時告訴我！我們可以進一步探討這些概念，或者進入下一個階段學習面向對象編程的基本原則。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/C/" rel="tag"># C#</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2026/04/21/OneDayOneNote/2026-05-10/" rel="prev" title="2026-05-10 C# 實戰練習固控制流語句的知識">
+                  <i class="fa fa-angle-left"></i> 2026-05-10 C# 實戰練習固控制流語句的知識
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2026/04/21/OneDayOneNote/2026-05-12/" rel="next" title="2026-05-12 C#第一個字母大寫的 Public  與小寫的 public 有什麼不同?">
+                  2026-05-12 C#第一個字母大寫的 Public  與小寫的 public 有什麼不同? <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/apple.lily/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<hr>
+<h2 id="title-2026-05-09-C-有-if-elseif-嗎-date-2026-04-21-21-24-20categories-OneDayOneNotetags-C-description-2026-05-09-C-有-if-elseif-嗎"><a href="#title-2026-05-09-C-有-if-elseif-嗎-date-2026-04-21-21-24-20categories-OneDayOneNotetags-C-description-2026-05-09-C-有-if-elseif-嗎" class="headerlink" title="title: 2026-05-09 C# 有 if elseif 嗎?date: 2026-04-21 21:24:20categories: OneDayOneNotetags:  [C#]description:  2026-05-09 C# 有 if elseif 嗎?"></a>title: 2026-05-09 C# 有 if elseif 嗎?<br>date: 2026-04-21 21:24:20<br>categories: OneDayOneNote<br>tags:  [C#]<br>description:  2026-05-09 C# 有 if elseif 嗎?</h2><h2 id="2026-05-09-C-有-if-elseif-嗎"><a href="#2026-05-09-C-有-if-elseif-嗎" class="headerlink" title="2026-05-09 C# 有 if elseif 嗎?"></a>2026-05-09 C# 有 if elseif 嗎?</h2><p>我:<br>C# 有 if elseif 嗎?</p>
+<p>GPT:<br>是的，<strong>C#</strong> 支持 <strong><code>if-else if</code></strong> 結構，這樣可以用來處理多個條件，而不是僅限於兩個條件。<code>if-else if</code> 結構非常有用，當你有多個不同的條件需要依次檢查時，可以使用這種方式來進行更靈活的判斷。</p>
+<h3 id="if-else-if-語句的語法"><a href="#if-else-if-語句的語法" class="headerlink" title="if-else if 語句的語法"></a><code>if-else if</code> 語句的語法</h3><p><code>if-else if</code> 的語法如下：</p>
+<pre><code class="csharp">if (條件1)
+{
+    // 當條件1為true時執行的代碼
+}
+else if (條件2)
+{
+    // 當條件1為false且條件2為true時執行的代碼
+}
+else if (條件3)
+{
+    // 當條件1和條件2都為false且條件3為true時執行的代碼
+}
+else
+{
+    // 當所有條件都為false時執行的代碼
+}
+</code></pre>
+<h3 id="if-else-if-的範例"><a href="#if-else-if-的範例" class="headerlink" title="if-else if 的範例"></a><code>if-else if</code> 的範例</h3><p>假設你想要根據考試成績給出不同的評價，可以用 <code>if-else if</code> 語句來處理：</p>
+<pre><code class="csharp">int score = 85;
+
+if (score &gt;= 90)
+{
+    Console.WriteLine(&quot;優秀&quot;);
+}
+else if (score &gt;= 75)
+{
+    Console.WriteLine(&quot;良好&quot;);
+}
+else if (score &gt;= 60)
+{
+    Console.WriteLine(&quot;及格&quot;);
+}
+else
+{
+    Console.WriteLine(&quot;不及格&quot;);
+}
+</code></pre>
+<p>在這個範例中：</p>
+<ul>
+<li>如果 <code>score</code> 大於等於 <code>90</code>，將輸出「優秀」。</li>
+<li>如果 <code>score</code> 在 <code>75</code> 到 <code>89</code> 之間，將輸出「良好」。</li>
+<li>如果 <code>score</code> 在 <code>60</code> 到 <code>74</code> 之間，將輸出「及格」。</li>
+<li>如果 <code>score</code> 小於 <code>60</code>，將輸出「不及格」。</li>
+</ul>
+<h3 id="使用-if-else-if-的情境"><a href="#使用-if-else-if-的情境" class="headerlink" title="使用 if-else if 的情境"></a>使用 <code>if-else if</code> 的情境</h3><p>當有多個條件需要依次檢查且每個條件都彼此不同時，<code>if-else if</code> 是非常合適的。例如：</p>
+<ul>
+<li>根據分數等級給出評價。</li>
+<li>根據使用者輸入的數值選擇不同的行為。</li>
+<li>檢查多個條件，找出符合的特定情況。</li>
+</ul>
+<p><code>if-else if</code> 語句比單純的 <code>if-else</code> 語句更靈活，因為你可以用來處理更多的情況。它是 <code>switch</code> 語句的另一種選擇，適合處理一些複雜的邏輯判斷（特別是條件不是單一值比較的情況）。</p>
+<p>如果你還有其他問題，或者想進行更多的練習，隨時告訴我！</p>

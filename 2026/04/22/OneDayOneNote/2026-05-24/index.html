@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2026-05-24  逐行解釋 C# List">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2026-05-24  逐行解釋 C# List&lt;T&gt;">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2026/04/22/OneDayOneNote/2026-05-24/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2026-05-24  逐行解釋 C# List">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2026-04-22T15:41:14.000Z">
+<meta property="article:modified_time" content="2026-04-22T15:41:45.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="C#">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2026/04/22/OneDayOneNote/2026-05-24/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2026/04/22/OneDayOneNote/2026-05-24/","path":"2026/04/22/OneDayOneNote/2026-05-24/","title":"2026-05-24  逐行解釋 C# List\u003cT>"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2026-05-24  逐行解釋 C# List<T> | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2026-05-24-%E9%80%90%E8%A1%8C%E8%A7%A3%E9%87%8B-C-List"><span class="nav-number">1.</span> <span class="nav-text">2026-05-24  逐行解釋 C# List</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A8%8B%E5%BC%8F%E7%A2%BC%E9%80%90%E8%A1%8C%E8%A7%A3%E9%87%8B"><span class="nav-number">1.1.</span> <span class="nav-text">程式碼逐行解釋</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E7%A8%8B%E5%BC%8F%E7%A2%BC"><span class="nav-number">1.2.</span> <span class="nav-text">完整程式碼</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A8%8B%E5%BC%8F%E7%A2%BC%E8%A6%8F%E5%89%87"><span class="nav-number">1.3.</span> <span class="nav-text">程式碼規則</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%B1%AC%E6%80%A7"><span class="nav-number">1.4.</span> <span class="nav-text">常用屬性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-number">1.5.</span> <span class="nav-text">常用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Count-%E5%B1%AC%E6%80%A7"><span class="nav-number">1.6.</span> <span class="nav-text">1. Count 屬性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Add-T-item-%E6%96%B9%E6%B3%95"><span class="nav-number">1.7.</span> <span class="nav-text">2. Add(T item) 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Remove-T-item-%E6%96%B9%E6%B3%95"><span class="nav-number">1.8.</span> <span class="nav-text">3. Remove(T item) 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Clear-%E6%96%B9%E6%B3%95"><span class="nav-number">1.9.</span> <span class="nav-text">4. Clear() 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-Sort-%E6%96%B9%E6%B3%95"><span class="nav-number">1.10.</span> <span class="nav-text">5. Sort() 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-ToArray-%E6%96%B9%E6%B3%95"><span class="nav-number">1.11.</span> <span class="nav-text">6. ToArray() 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E5%B1%AC%E6%80%A7"><span class="nav-number">1.12.</span> <span class="nav-text">主要屬性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E6%96%B9%E6%B3%95"><span class="nav-number">1.13.</span> <span class="nav-text">主要方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AB%98%E7%B4%9A%E6%96%B9%E6%B3%95"><span class="nav-number">1.14.</span> <span class="nav-text">高級方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B8%BD%E7%B5%90"><span class="nav-number">1.15.</span> <span class="nav-text">總結</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%AC%E6%80%A7"><span class="nav-number">1.16.</span> <span class="nav-text">屬性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95"><span class="nav-number">1.17.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B8%BD%E7%B5%90-1"><span class="nav-number">1.18.</span> <span class="nav-text">總結</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%AC%E6%80%A7%E8%A9%B3%E7%B4%B0%E8%AA%AA%E6%98%8E"><span class="nav-number">1.19.</span> <span class="nav-text">屬性詳細說明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A0%85"><span class="nav-number">1.20.</span> <span class="nav-text">注意事項</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">567</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2026/04/22/OneDayOneNote/2026-05-24/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2026-05-24  逐行解釋 C# List<T> | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2026-05-24  逐行解釋 C# List<T>">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2026-05-24  逐行解釋 C# List<T>
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2026-04-22 23:41:14 / 修改時間：23:41:45" itemprop="dateCreated datePublished" datetime="2026-04-22T23:41:14+08:00">2026-04-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2026-05-24  逐行解釋 C# List<T></div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2026-05-24-逐行解釋-C-List"><a href="#2026-05-24-逐行解釋-C-List" class="headerlink" title="2026-05-24  逐行解釋 C# List"></a>2026-05-24  逐行解釋 C# List<T></h2><p>我:<br>public class Storage<T><br>{<br>    private List<T> items &#x3D; new List<T>();</p>
+<pre><code>public void AddItem(T item)
+&#123;
+    items.Add(item);
+&#125;
+
+public List&lt;T&gt; GetItems()
+&#123;
+    return items;
+&#125;
+</code></pre>
+<p>}<br>這程式可以逐行解釋嗎? 包括程式碼規則 </p>
+<p>GPT:<br>當然可以！讓我們逐行解析這段使用泛型的 <code>Storage&lt;T&gt;</code> 類別程式碼，並解釋其中的每一部分及其規則。</p>
+<h3 id="程式碼逐行解釋"><a href="#程式碼逐行解釋" class="headerlink" title="程式碼逐行解釋"></a>程式碼逐行解釋</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Storage</span>&lt;<span class="title">T</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>**<code>public</code>**：這是訪問修飾符，表示 <code>Storage</code> 類別可以在任何地方被訪問。</li>
+<li>**<code>class</code>**：關鍵字用來定義一個類別。</li>
+<li>**<code>Storage</code>**：這是類別的名稱。根據 C# 的命名慣例，類別名稱通常以大寫字母開頭。</li>
+<li>**<code>&lt;T&gt;</code>**：這是泛型類型參數的聲明。<code>T</code> 可以是任何類型，這使得 <code>Storage</code> 類別可以存儲不同類型的項目。</li>
+</ul>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> List&lt;T&gt; items = <span class="keyword">new</span> List&lt;T&gt;();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>**<code>private</code>**：這是另一個訪問修飾符，表示 <code>items</code> 變數只能在 <code>Storage</code> 類別內部訪問。</li>
+<li>**<code>List&lt;T&gt;</code>**：這是一個泛型集合類別，用來存儲 <code>T</code> 類型的項目。<code>List&lt;T&gt;</code> 是動態數組，可以隨著添加項目而自動調整大小。</li>
+<li>**<code>items</code>**：這是 <code>List&lt;T&gt;</code> 的變數名稱，將用來存儲項目。</li>
+<li>**<code>= new List&lt;T&gt;()</code>**：這個表達式創建了一個新的 <code>List&lt;T&gt;</code> 實例，並將其賦值給 <code>items</code> 變數。</li>
+</ul>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">AddItem</span>(<span class="params">T item</span>)</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>**<code>public</code>**：這是方法的訪問修飾符，表示這個方法可以被外部調用。</li>
+<li>**<code>void</code>**：這表示該方法不會返回任何值。</li>
+<li>**<code>AddItem</code>**：這是方法的名稱，表示此方法用來添加項目。</li>
+<li>**<code>(T item)</code>**：這是方法的參數，表示該方法接收一個類型為 <code>T</code> 的參數 <code>item</code>。這個 <code>item</code> 將被添加到 <code>items</code> 列表中。</li>
+</ul>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    items.Add(item);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>**<code>&#123; ... &#125;</code>**：這是一個方法的主體，包裹著方法的具體實現。</li>
+<li>**<code>items.Add(item)</code>**：這行代碼調用 <code>List&lt;T&gt;</code> 的 <code>Add</code> 方法，將 <code>item</code> 添加到 <code>items</code> 列表中。</li>
+</ul>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;T&gt; <span class="title">GetItems</span>()</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>**<code>public</code>**：表示這個方法可以被外部調用。</li>
+<li>**<code>List&lt;T&gt;</code>**：這表示這個方法會返回一個 <code>List&lt;T&gt;</code> 類型的值。</li>
+<li>**<code>GetItems</code>**：這是方法的名稱，表示該方法用來獲取存儲的項目列表。</li>
+</ul>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> items;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>**<code>&#123; ... &#125;</code>**：這是方法的主體。</li>
+<li>**<code>return items;</code>**：這行代碼返回 <code>items</code> 列表，讓調用者可以獲取到存儲的項目。</li>
+</ul>
+<h3 id="完整程式碼"><a href="#完整程式碼" class="headerlink" title="完整程式碼"></a>完整程式碼</h3><p>整個類別的結構如下所示：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Storage</span>&lt;<span class="title">T</span>&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> List&lt;T&gt; items = <span class="keyword">new</span> List&lt;T&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">AddItem</span>(<span class="params">T item</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        items.Add(item);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;T&gt; <span class="title">GetItems</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> items;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="程式碼規則"><a href="#程式碼規則" class="headerlink" title="程式碼規則"></a>程式碼規則</h3><ol>
+<li><strong>命名慣例</strong>：類別名使用 PascalCase（每個單詞的首字母大寫），變數和方法名使用 camelCase（首字母小寫，後續每個單詞的首字母大寫）。</li>
+<li><strong>訪問修飾符</strong>：使用 <code>public</code> 和 <code>private</code> 設定成員的可見性，讓類別能夠隱藏內部實現並只暴露必要的接口。</li>
+<li><strong>泛型的使用</strong>：泛型類別使用 <code>&lt;T&gt;</code> 來允許類別可以操作多種數據類型，提高了靈活性和重用性。</li>
+</ol>
+<p>這段程式碼展示了如何使用泛型來創建一個可以存儲任意類型數據的容器類別，並提供添加和獲取項目的方法。如果你對這段程式碼還有其他問題，或想要進一步深入某個方面，請告訴我！</p>
+<p>我:<br>List<T> 是C# using 那個類別?</p>
+<p>GPT:<br><code>List&lt;T&gt;</code> 是 C# 中的泛型集合類別，它位於 <code>System.Collections.Generic</code> 命名空間中。因此，若要使用 <code>List&lt;T&gt;</code>，您需要在程式的開頭添加以下 <code>using</code> 指令：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br></pre></td></tr></table></figure>
+
+<p>這樣就可以在程式中使用 <code>List&lt;T&gt;</code> 來創建泛型列表，存儲任意類型的數據。如果有任何其他問題，或者想了解更多關於泛型或集合的內容，請隨時告訴我！</p>
+<p>我:<br>List<T> 有很多方法及屬性?</p>
+<p>GPT:<br>是的，<code>List&lt;T&gt;</code> 在 C# 中提供了多種方法和屬性，用於操作和管理列表中的元素。以下是一些常用的方法和屬性：</p>
+<h3 id="常用屬性"><a href="#常用屬性" class="headerlink" title="常用屬性"></a>常用屬性</h3><ol>
+<li><p><strong>Count</strong>: 獲取 <code>List&lt;T&gt;</code> 中當前元素的數量。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span> count = myList.Count;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Capacity</strong>: 獲取或設置 <code>List&lt;T&gt;</code> 可以容納的元素數量，而不需要重新分配內部數組的大小。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span> capacity = myList.Capacity;</span><br><span class="line">myList.Capacity = <span class="number">100</span>; <span class="comment">// 設置容量</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h3><ol>
+<li><p><strong>Add(T item)</strong>: 將元素添加到列表的末尾。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">myList.Add(<span class="number">10</span>); <span class="comment">// 將整數 10 添加到列表中</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Remove(T item)</strong>: 刪除列表中第一個出現的指定元素。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">myList.Remove(<span class="number">10</span>); <span class="comment">// 刪除列表中第一個出現的整數 10</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Insert(int index, T item)</strong>: 在指定索引處插入元素。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">myList.Insert(<span class="number">0</span>, <span class="number">5</span>); <span class="comment">// 在索引 0 處插入整數 5</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Clear()</strong>: 刪除列表中的所有元素。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">myList.Clear(); <span class="comment">// 清空列表</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Contains(T item)</strong>: 判斷列表是否包含指定的元素，返回布林值。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">bool</span> contains = myList.Contains(<span class="number">5</span>); <span class="comment">// 檢查列表中是否包含整數 5</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>IndexOf(T item)</strong>: 返回指定元素在列表中首次出現的索引，如果未找到則返回 -1。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span> index = myList.IndexOf(<span class="number">5</span>); <span class="comment">// 獲取整數 5 的索引</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Sort()</strong>: 對列表中的元素進行排序。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">myList.Sort(); <span class="comment">// 對列表進行排序</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>ToArray()</strong>: 將 <code>List&lt;T&gt;</code> 轉換為數組。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">T[] array = myList.ToArray(); <span class="comment">// 將列表轉換為數組</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>這些方法和屬性使得 <code>List&lt;T&gt;</code> 成為一個非常靈活和強大的資料結構，適合存儲和管理各種數據。您可以通過這些方法進行增、刪、查、改等各種操作。如果您有興趣深入了解某一個特定方法或屬性，請告訴我！</p>
+<p>我:<br>我有興趣深入了解</p>
+<p>GPT:<br>好的！讓我們深入了解一些 <code>List&lt;T&gt;</code> 中的常用方法和屬性。以下是幾個特別有用的，並附上詳細的解釋和示範代碼。</p>
+<h3 id="1-Count-屬性"><a href="#1-Count-屬性" class="headerlink" title="1. Count 屬性"></a>1. <strong>Count 屬性</strong></h3><ul>
+<li><strong>說明</strong>：<code>Count</code> 屬性用於獲取 <code>List&lt;T&gt;</code> 中當前元素的數量。</li>
+<li><strong>用法</strong>：你可以使用 <code>Count</code> 來檢查列表中有多少個元素，這在需要進行迭代或進行條件檢查時特別有用。</li>
+</ul>
+<p><strong>範例代碼</strong>：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">List&lt;<span class="built_in">int</span>&gt; numbers = <span class="keyword">new</span> List&lt;<span class="built_in">int</span>&gt;();</span><br><span class="line">numbers.Add(<span class="number">1</span>);</span><br><span class="line">numbers.Add(<span class="number">2</span>);</span><br><span class="line">numbers.Add(<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">Console.WriteLine(<span class="string">&quot;Number of elements in the list: &quot;</span> + numbers.Count); <span class="comment">// 輸出: 3</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-Add-T-item-方法"><a href="#2-Add-T-item-方法" class="headerlink" title="2. Add(T item) 方法"></a>2. <strong>Add(T item) 方法</strong></h3><ul>
+<li><strong>說明</strong>：<code>Add</code> 方法將指定的元素添加到 <code>List&lt;T&gt;</code> 的末尾。</li>
+<li><strong>用法</strong>：這個方法非常簡單易用，通常在初始化或構建列表時使用。</li>
+</ul>
+<p><strong>範例代碼</strong>：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">List&lt;<span class="built_in">string</span>&gt; fruits = <span class="keyword">new</span> List&lt;<span class="built_in">string</span>&gt;();</span><br><span class="line">fruits.Add(<span class="string">&quot;Apple&quot;</span>);</span><br><span class="line">fruits.Add(<span class="string">&quot;Banana&quot;</span>);</span><br><span class="line">fruits.Add(<span class="string">&quot;Cherry&quot;</span>);</span><br><span class="line"></span><br><span class="line">Console.WriteLine(<span class="string">&quot;Fruits in the list: &quot;</span> + <span class="built_in">string</span>.Join(<span class="string">&quot;, &quot;</span>, fruits)); <span class="comment">// 輸出: Fruits in the list: Apple, Banana, Cherry</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-Remove-T-item-方法"><a href="#3-Remove-T-item-方法" class="headerlink" title="3. Remove(T item) 方法"></a>3. <strong>Remove(T item) 方法</strong></h3><ul>
+<li><strong>說明</strong>：<code>Remove</code> 方法刪除列表中第一個出現的指定元素。如果該元素存在於列表中，它會被刪除，並返回 <code>true</code>，如果不存在則返回 <code>false</code>。</li>
+<li><strong>用法</strong>：此方法用於刪除特定的元素。</li>
+</ul>
+<p><strong>範例代碼</strong>：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">List&lt;<span class="built_in">string</span>&gt; animals = <span class="keyword">new</span> List&lt;<span class="built_in">string</span>&gt; &#123; <span class="string">&quot;Dog&quot;</span>, <span class="string">&quot;Cat&quot;</span>, <span class="string">&quot;Bird&quot;</span> &#125;;</span><br><span class="line"><span class="built_in">bool</span> removed = animals.Remove(<span class="string">&quot;Cat&quot;</span>); <span class="comment">// 嘗試刪除 &quot;Cat&quot;</span></span><br><span class="line"></span><br><span class="line">Console.WriteLine(<span class="string">&quot;Removed Cat: &quot;</span> + removed); <span class="comment">// 輸出: Removed Cat: True</span></span><br><span class="line">Console.WriteLine(<span class="string">&quot;Animals left in the list: &quot;</span> + <span class="built_in">string</span>.Join(<span class="string">&quot;, &quot;</span>, animals)); <span class="comment">// 輸出: Animals left in the list: Dog, Bird</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-Clear-方法"><a href="#4-Clear-方法" class="headerlink" title="4. Clear() 方法"></a>4. <strong>Clear() 方法</strong></h3><ul>
+<li><strong>說明</strong>：<code>Clear</code> 方法刪除列表中的所有元素。</li>
+<li><strong>用法</strong>：當你需要重置列表或不再需要任何元素時，這個方法非常有用。</li>
+</ul>
+<p><strong>範例代碼</strong>：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">List&lt;<span class="built_in">int</span>&gt; numbers = <span class="keyword">new</span> List&lt;<span class="built_in">int</span>&gt; &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span> &#125;;</span><br><span class="line">Console.WriteLine(<span class="string">&quot;Count before clear: &quot;</span> + numbers.Count); <span class="comment">// 輸出: Count before clear: 5</span></span><br><span class="line"></span><br><span class="line">numbers.Clear(); <span class="comment">// 清空列表</span></span><br><span class="line"></span><br><span class="line">Console.WriteLine(<span class="string">&quot;Count after clear: &quot;</span> + numbers.Count); <span class="comment">// 輸出: Count after clear: 0</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-Sort-方法"><a href="#5-Sort-方法" class="headerlink" title="5. Sort() 方法"></a>5. <strong>Sort() 方法</strong></h3><ul>
+<li><strong>說明</strong>：<code>Sort</code> 方法對列表中的元素進行排序，默認情況下是按升序排序。</li>
+<li><strong>用法</strong>：這個方法對於需要有序數據的場景非常有用。</li>
+</ul>
+<p><strong>範例代碼</strong>：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">List&lt;<span class="built_in">int</span>&gt; numbers = <span class="keyword">new</span> List&lt;<span class="built_in">int</span>&gt; &#123; <span class="number">5</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">2</span> &#125;;</span><br><span class="line">numbers.Sort(); <span class="comment">// 對列表進行排序</span></span><br><span class="line"></span><br><span class="line">Console.WriteLine(<span class="string">&quot;Sorted numbers: &quot;</span> + <span class="built_in">string</span>.Join(<span class="string">&quot;, &quot;</span>, numbers)); <span class="comment">// 輸出: Sorted numbers: 1, 2, 3, 4, 5</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="6-ToArray-方法"><a href="#6-ToArray-方法" class="headerlink" title="6. ToArray() 方法"></a>6. <strong>ToArray() 方法</strong></h3><ul>
+<li><strong>說明</strong>：<code>ToArray</code> 方法將 <code>List&lt;T&gt;</code> 轉換為一個數組。</li>
+<li><strong>用法</strong>：這在需要將列表數據傳遞給只接受數組的方法時非常有用。</li>
+</ul>
+<p><strong>範例代碼</strong>：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">List&lt;<span class="built_in">string</span>&gt; colors = <span class="keyword">new</span> List&lt;<span class="built_in">string</span>&gt; &#123; <span class="string">&quot;Red&quot;</span>, <span class="string">&quot;Green&quot;</span>, <span class="string">&quot;Blue&quot;</span> &#125;;</span><br><span class="line"><span class="built_in">string</span>[] colorArray = colors.ToArray(); <span class="comment">// 將列表轉換為數組</span></span><br><span class="line"></span><br><span class="line">Console.WriteLine(<span class="string">&quot;Colors in array: &quot;</span> + <span class="built_in">string</span>.Join(<span class="string">&quot;, &quot;</span>, colorArray)); <span class="comment">// 輸出: Colors in array: Red, Green, Blue</span></span><br></pre></td></tr></table></figure>
+
+<p>這些方法和屬性使 <code>List&lt;T&gt;</code> 成為一個強大的資料結構，允許你輕鬆地進行各種操作。如果您對某一方法有特別的問題，或者想要更深入的範例，請告訴我！</p>
+<p>我:<br> List<T> 總共有幾個方法及屬性?</p>
+<p>GPT：<br><code>List&lt;T&gt;</code> 是 C# 中的一個非常靈活和強大的泛型集合類，提供了多種方法和屬性來管理和操作集合中的元素。以下是 <code>List&lt;T&gt;</code> 中的一些主要方法和屬性：</p>
+<h3 id="主要屬性"><a href="#主要屬性" class="headerlink" title="主要屬性"></a>主要屬性</h3><ol>
+<li><strong>Count</strong>：獲取 <code>List&lt;T&gt;</code> 中的元素數量。</li>
+<li><strong>Capacity</strong>：獲取或設置 <code>List&lt;T&gt;</code> 能夠容納的元素數量（即內部數組的大小）。</li>
+</ol>
+<h3 id="主要方法"><a href="#主要方法" class="headerlink" title="主要方法"></a>主要方法</h3><ol>
+<li>**Add(T item)**：將指定的元素添加到列表的末尾。</li>
+<li>**AddRange(IEnumerable<T> collection)**：將指定集合的元素添加到列表的末尾。</li>
+<li>**Clear()**：刪除列表中的所有元素。</li>
+<li>**Contains(T item)**：檢查列表是否包含指定的元素。</li>
+<li>**CopyTo(T[] array)**：將列表的元素複製到數組中。</li>
+<li>**IndexOf(T item)**：返回指定元素在列表中第一次出現的索引。</li>
+<li>**Insert(int index, T item)**：在指定索引處插入元素。</li>
+<li>**Remove(T item)**：刪除列表中第一次出現的指定元素。</li>
+<li>**RemoveAt(int index)**：刪除指定索引處的元素。</li>
+<li>**Sort()**：對列表中的元素進行排序。</li>
+<li>**Reverse()**：反轉列表中的元素順序。</li>
+<li>**ToArray()**：將 <code>List&lt;T&gt;</code> 轉換為數組。</li>
+<li>**GetEnumerator()**：返回一個可用於遍歷 <code>List&lt;T&gt;</code> 的枚舉數。</li>
+</ol>
+<h3 id="高級方法"><a href="#高級方法" class="headerlink" title="高級方法"></a>高級方法</h3><ol>
+<li>**Find(Predicate<T> match)**：根據指定的條件返回列表中第一個符合條件的元素。</li>
+<li>**FindAll(Predicate<T> match)**：返回所有符合條件的元素。</li>
+<li>**FindIndex(Predicate<T> match)**：返回符合條件的第一個元素的索引。</li>
+<li>**ForEach(Action<T> action)**：對列表中的每個元素執行指定的操作。</li>
+<li>**Exists(Predicate<T> match)**：檢查列表中是否存在符合條件的元素。</li>
+<li>**RemoveAll(Predicate<T> match)**：刪除所有符合條件的元素。</li>
+<li>**TrimExcess()**：修剪列表的容量，以使其與當前元素數量相匹配。</li>
+</ol>
+<h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h3><p>總體而言，<code>List&lt;T&gt;</code> 包含多達 30 多個方法和屬性，這些方法和屬性使其成為一個非常靈活且功能強大的資料結構。具體可用的方法和屬性可能取決於使用的 .NET 版本，但以上是一般情況下常用的。</p>
+<p>如果你有興趣了解某一特定方法的用法或需要示範，請告訴我！</p>
+<p>我:<br>是那 30種呢?</p>
+<p>GPT:<br>以下是 <code>List&lt;T&gt;</code> 類別中提供的所有方法和屬性的完整列表，包括常用的屬性和方法：</p>
+<h3 id="屬性"><a href="#屬性" class="headerlink" title="屬性"></a>屬性</h3><ol>
+<li><strong>Count</strong>：獲取列表中元素的數量。</li>
+<li><strong>Capacity</strong>：獲取或設置列表的容量。</li>
+</ol>
+<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><ol>
+<li>**Add(T item)**：將元素添加到列表的末尾。</li>
+<li>**AddRange(IEnumerable<T> collection)**：將集合中的元素添加到列表的末尾。</li>
+<li>**AsReadOnly()**：將 <code>List&lt;T&gt;</code> 包裝為只讀版本。</li>
+<li>**BinarySearch(T item)**：對已排序的列表進行二分搜尋。</li>
+<li>**BinarySearch(T item, IComparer<T> comparer)**：對已排序的列表進行二分搜尋，使用指定的比較器。</li>
+<li>**Clear()**：移除列表中的所有元素。</li>
+<li>**Contains(T item)**：檢查列表是否包含指定的元素。</li>
+<li>**CopyTo(T[] array)**：將列表的元素複製到數組。</li>
+<li>**CopyTo(T[] array, int arrayIndex)**：將列表的元素複製到數組，從指定的索引開始。</li>
+<li>**CopyTo(int index, T[] array, int arrayIndex, int count)**：將列表的元素複製到數組，指定源索引和計數。</li>
+<li>**Exists(Predicate<T> match)**：檢查列表中是否存在符合條件的元素。</li>
+<li>**Find(Predicate<T> match)**：找到符合條件的第一個元素。</li>
+<li>**FindAll(Predicate<T> match)**：找到所有符合條件的元素。</li>
+<li>**FindIndex(Predicate<T> match)**：找到符合條件的第一個元素的索引。</li>
+<li>**FindIndex(int startIndex, Predicate<T> match)**：在指定的起始索引開始查找符合條件的元素的索引。</li>
+<li>**FindIndex(int startIndex, int count, Predicate<T> match)**：在指定的範圍內查找符合條件的元素的索引。</li>
+<li>**FindLast(Predicate<T> match)**：查找符合條件的最後一個元素。</li>
+<li>**FindLastIndex(Predicate<T> match)**：查找符合條件的最後一個元素的索引。</li>
+<li>**FindLastIndex(int startIndex, Predicate<T> match)**：在指定的起始索引開始查找符合條件的最後一個元素的索引。</li>
+<li>**FindLastIndex(int startIndex, int count, Predicate<T> match)**：在指定範圍內查找符合條件的最後一個元素的索引。</li>
+<li>**ForEach(Action<T> action)**：對列表中的每個元素執行指定的操作。</li>
+<li>**GetEnumerator()**：返回一個可用於遍歷 <code>List&lt;T&gt;</code> 的枚舉數。</li>
+<li>**GetRange(int index, int count)**：獲取從指定索引開始的指定數量的元素的子列表。</li>
+<li>**IndexOf(T item)**：找到指定元素第一次出現的索引。</li>
+<li>**IndexOf(T item, int index)**：從指定的索引開始查找元素。</li>
+<li>**IndexOf(T item, int index, int count)**：在指定範圍內查找元素。</li>
+<li>**Insert(int index, T item)**：在指定索引處插入元素。</li>
+<li>**InsertRange(int index, IEnumerable<T> collection)**：在指定索引處插入集合中的元素。</li>
+<li>**LastIndexOf(T item)**：找到指定元素最後一次出現的索引。</li>
+<li>**LastIndexOf(T item, int index)**：從指定的索引開始向前查找元素。</li>
+<li>**LastIndexOf(T item, int index, int count)**：在指定範圍內查找元素。</li>
+<li>**Remove(T item)**：移除列表中第一次出現的指定元素。</li>
+<li>**RemoveAll(Predicate<T> match)**：移除所有符合條件的元素。</li>
+<li>**RemoveAt(int index)**：移除指定索引處的元素。</li>
+<li>**RemoveRange(int index, int count)**：移除指定範圍內的元素。</li>
+<li>**Reverse()**：反轉列表中的元素。</li>
+<li>**Reverse(int index, int count)**：反轉列表中指定範圍內的元素。</li>
+<li>**Sort()**：對列表中的元素進行排序。</li>
+<li>**Sort(IComparer<T> comparer)**：使用指定的比較器對列表中的元素進行排序。</li>
+<li>**Sort(Comparison<T> comparison)**：使用指定的比較函數對列表中的元素進行排序。</li>
+<li>**ToArray()**：將 <code>List&lt;T&gt;</code> 轉換為數組。</li>
+<li>**TrimExcess()**：修剪列表的容量，以使其與當前元素數量相匹配。</li>
+</ol>
+<h3 id="總結-1"><a href="#總結-1" class="headerlink" title="總結"></a>總結</h3><p>以上是 <code>List&lt;T&gt;</code> 的完整方法和屬性列表，總共有 42 個方法和屬性。這些方法和屬性使得 <code>List&lt;T&gt;</code> 成為 C# 中非常強大的資料結構之一。如果你對其中的某一方法或屬性有特別的興趣，想要更深入地了解，隨時告訴我！</p>
+<p>我:<br>屬性 只有2種?</p>
+<p>GPT:<br>是的，<code>List&lt;T&gt;</code> 主要有兩個屬性，分別是：</p>
+<ol>
+<li><strong>Count</strong>：這是一個只讀屬性，用來獲取 <code>List&lt;T&gt;</code> 中當前元素的數量。</li>
+<li><strong>Capacity</strong>：這是一個可讀可寫屬性，用來獲取或設置 <code>List&lt;T&gt;</code> 可以容納的元素的數量。</li>
+</ol>
+<h3 id="屬性詳細說明"><a href="#屬性詳細說明" class="headerlink" title="屬性詳細說明"></a>屬性詳細說明</h3><ul>
+<li><p><strong>Count</strong></p>
+<ul>
+<li><p><strong>用途</strong>：獲取 <code>List&lt;T&gt;</code> 中的元素數量。</p>
+</li>
+<li><p><strong>範例</strong>：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">List&lt;<span class="built_in">int</span>&gt; numbers = <span class="keyword">new</span> List&lt;<span class="built_in">int</span>&gt;();</span><br><span class="line">numbers.Add(<span class="number">1</span>);</span><br><span class="line">numbers.Add(<span class="number">2</span>);</span><br><span class="line">Console.WriteLine(numbers.Count); <span class="comment">// 輸出: 2</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>Capacity</strong></p>
+<ul>
+<li><p><strong>用途</strong>：獲取或設置 <code>List&lt;T&gt;</code> 的容量。當添加的元素超過當前容量時，<code>List&lt;T&gt;</code> 會自動擴展其容量。</p>
+</li>
+<li><p><strong>範例</strong>：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">List&lt;<span class="built_in">int</span>&gt; numbers = <span class="keyword">new</span> List&lt;<span class="built_in">int</span>&gt;(<span class="number">5</span>); <span class="comment">// 設置初始容量為 5</span></span><br><span class="line">Console.WriteLine(numbers.Capacity); <span class="comment">// 輸出: 5</span></span><br><span class="line">numbers.Add(<span class="number">1</span>);</span><br><span class="line">numbers.Add(<span class="number">2</span>);</span><br><span class="line">Console.WriteLine(numbers.Count); <span class="comment">// 輸出: 2</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="注意事項"><a href="#注意事項" class="headerlink" title="注意事項"></a>注意事項</h3><ul>
+<li><code>Count</code> 和 <code>Capacity</code> 的關係：<code>Count</code> 是當前元素的數量，而 <code>Capacity</code> 是 <code>List&lt;T&gt;</code> 能夠容納的最大元素數量。如果 <code>Count</code> 超過 <code>Capacity</code>，<code>List&lt;T&gt;</code> 會自動擴展 <code>Capacity</code> 以容納更多元素。</li>
+</ul>
+<p>這兩個屬性在使用 <code>List&lt;T&gt;</code> 時非常重要，因為它們幫助你理解和管理列表的大小和容量。如果你對這些屬性有進一步的問題或想了解其他內容，隨時告訴我！</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/C/" rel="tag"># C#</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2026/04/22/OneDayOneNote/2026-05-23/" rel="prev" title="2026-05-23  深入理解 C# 中的泛型（Generics）練習題">
+                  <i class="fa fa-angle-left"></i> 2026-05-23  深入理解 C# 中的泛型（Generics）練習題
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/apple.lily/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

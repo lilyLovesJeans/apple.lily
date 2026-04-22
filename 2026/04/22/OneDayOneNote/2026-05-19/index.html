@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2026-05-19 C# OCP 的應用情境式舉例">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2026-05-19 C# OCP 的應用情境式舉例">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2026/04/22/OneDayOneNote/2026-05-19/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2026-05-19 C# OCP 的應用情境式舉例">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2026-04-22T14:50:03.000Z">
+<meta property="article:modified_time" content="2026-04-22T14:53:25.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="C#">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2026/04/22/OneDayOneNote/2026-05-19/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2026/04/22/OneDayOneNote/2026-05-19/","path":"2026/04/22/OneDayOneNote/2026-05-19/","title":"2026-05-19 C# OCP 的應用情境式舉例"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2026-05-19 C# OCP 的應用情境式舉例 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2026-05-19-C-OCP-%E7%9A%84%E6%87%89%E7%94%A8%E6%83%85%E5%A2%83%E5%BC%8F%E8%88%89%E4%BE%8B"><span class="nav-number">1.</span> <span class="nav-text">2026-05-19 C# OCP 的應用情境式舉例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A5%E5%B8%B8%E7%94%9F%E6%B4%BB%E6%83%85%E5%A2%83-%E5%92%96%E5%95%A1%E6%A9%9F%E8%A8%AD%E8%A8%88"><span class="nav-number">1.1.</span> <span class="nav-text">日常生活情境 - 咖啡機設計</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%89%88%E8%A8%AD%E8%A8%88-%E5%96%AE%E4%B8%80%E5%8A%9F%E8%83%BD"><span class="nav-number">1.1.1.</span> <span class="nav-text">第一版設計 - 單一功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B0%E9%9C%80%E6%B1%82-%E5%8A%A0%E5%85%A5%E6%96%B0%E5%92%96%E5%95%A1%E7%A8%AE%E9%A1%9E"><span class="nav-number">1.1.2.</span> <span class="nav-text">新需求 - 加入新咖啡種類</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%B5%E5%BE%AA-OCP-%E7%9A%84%E8%A8%AD%E8%A8%88-%E6%93%B4%E5%B1%95%E8%80%8C%E4%B8%8D%E4%BF%AE%E6%94%B9"><span class="nav-number">1.2.</span> <span class="nav-text">遵循 OCP 的設計 - 擴展而不修改</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E9%A1%9E%E8%A8%AD%E8%A8%88"><span class="nav-number">1.2.1.</span> <span class="nav-text">基類設計</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%93%B4%E5%B1%95%E5%8A%9F%E8%83%BD-%E8%A3%BD%E4%BD%9C%E4%B8%8D%E5%90%8C%E7%A8%AE%E9%A1%9E%E7%9A%84%E5%92%96%E5%95%A1"><span class="nav-number">1.2.2.</span> <span class="nav-text">擴展功能 - 製作不同種類的咖啡</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%93%B4%E5%B1%95%E5%BE%8C%E7%9A%84%E9%A1%9E%E5%88%A5"><span class="nav-number">1.2.3.</span> <span class="nav-text">使用擴展後的類別</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%81%B5%E5%BE%AA-OCP-%E7%9A%84%E5%84%AA%E9%BB%9E"><span class="nav-number">1.2.4.</span> <span class="nav-text">遵循 OCP 的優點</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B8%BD%E7%B5%90"><span class="nav-number">1.3.</span> <span class="nav-text">總結</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%BE%9D%E8%B3%B4%E6%B3%A8%E5%85%A5%EF%BC%88Dependency-Injection%EF%BC%89"><span class="nav-number">1.4.</span> <span class="nav-text">1. 依賴注入（Dependency Injection）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%94%B9%E9%80%B2%E7%9A%84%E8%A8%AD%E8%A8%88-%E6%8A%BD%E8%B1%A1%E6%8E%A5%E5%8F%A3%E5%92%8C%E4%BE%9D%E8%B3%B4%E6%B3%A8%E5%85%A5"><span class="nav-number">1.4.1.</span> <span class="nav-text">改進的設計 - 抽象接口和依賴注入</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%EF%BC%88Strategy-Pattern%EF%BC%89"><span class="nav-number">1.5.</span> <span class="nav-text">2. 策略模式（Strategy Pattern）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E9%80%99%E6%A8%A3%E8%A8%AD%E8%A8%88%E7%9A%84%E5%A5%BD%E8%99%95"><span class="nav-number">1.6.</span> <span class="nav-text">3. 這樣設計的好處</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-%E9%99%8D%E4%BD%8E%E8%80%A6%E5%90%88%E6%80%A7"><span class="nav-number">1.6.1.</span> <span class="nav-text">3.1 降低耦合性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-%E6%93%B4%E5%B1%95%E6%80%A7%E5%BC%B7"><span class="nav-number">1.6.2.</span> <span class="nav-text">3.2 擴展性強</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-%E5%8F%AF%E6%B8%AC%E8%A9%A6%E6%80%A7"><span class="nav-number">1.6.3.</span> <span class="nav-text">3.3 可測試性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E7%B8%BD%E7%B5%90"><span class="nav-number">1.7.</span> <span class="nav-text">4. 總結</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">567</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2026/04/22/OneDayOneNote/2026-05-19/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2026-05-19 C# OCP 的應用情境式舉例 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2026-05-19 C# OCP 的應用情境式舉例">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2026-05-19 C# OCP 的應用情境式舉例
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2026-04-22 22:50:03 / 修改時間：22:53:25" itemprop="dateCreated datePublished" datetime="2026-04-22T22:50:03+08:00">2026-04-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2026-05-19 C# OCP 的應用情境式舉例</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2026-05-19-C-OCP-的應用情境式舉例"><a href="#2026-05-19-C-OCP-的應用情境式舉例" class="headerlink" title="2026-05-19 C# OCP 的應用情境式舉例"></a>2026-05-19 C# OCP 的應用情境式舉例</h2><p>我:<br>OCP 的應用：應盡量避免修改已有的類別，而是通過繼承和覆寫來擴展功能。這樣可以減少對已有代碼的改動，降低引入錯誤的風險。<br>這個不太懂, 可以情境式舉例嗎? 最好能利用日常生活情境</p>
+<p>GPT:<br>當然可以，讓我用一個<strong>日常生活中的例子</strong>來解釋<strong>開放-封閉原則（Open&#x2F;Closed Principle, OCP）</strong>，並展示如何應用它來<strong>擴展功能</strong>而非<strong>修改原有的類別</strong>。</p>
+<h3 id="日常生活情境-咖啡機設計"><a href="#日常生活情境-咖啡機設計" class="headerlink" title="日常生活情境 - 咖啡機設計"></a>日常生活情境 - 咖啡機設計</h3><p>想像你是一名設計師，正在為一個咖啡館設計一個咖啡機系統。這台咖啡機最初的功能非常簡單，只能製作<strong>美式咖啡（Americano）</strong>。</p>
+<h4 id="第一版設計-單一功能"><a href="#第一版設計-單一功能" class="headerlink" title="第一版設計 - 單一功能"></a>第一版設計 - 單一功能</h4><p>你設計了一個類別 <code>CoffeeMachine</code>，其中有一個方法 <code>MakeCoffee()</code> 專門用於製作美式咖啡。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CoffeeMachine</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">MakeCoffee</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;Making an Americano...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這樣的設計可以滿足當前的需求，只需呼叫 <code>MakeCoffee()</code> 方法，咖啡機就會製作美式咖啡。</p>
+<h4 id="新需求-加入新咖啡種類"><a href="#新需求-加入新咖啡種類" class="headerlink" title="新需求 - 加入新咖啡種類"></a>新需求 - 加入新咖啡種類</h4><p>隨著時間的推移，咖啡館的客人越來越多，他們開始希望能夠製作其他種類的咖啡，例如<strong>拿鐵（Latte）</strong>和<strong>卡布奇諾（Cappuccino）</strong>。此時你面臨的挑戰是如何在不改動原有 <code>CoffeeMachine</code> 類別的情況下，滿足這些新需求。</p>
+<p><strong>為什麼不直接改動原有類別？</strong></p>
+<p>如果你直接在 <code>CoffeeMachine</code> 中新增更多的咖啡製作方法，例如：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CoffeeMachine</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">MakeCoffee</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;Making an Americano...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 新增的功能</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">MakeLatte</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;Making a Latte...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">MakeCappuccino</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;Making a Cappuccino...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這樣的做法有幾個潛在的問題：</p>
+<ol>
+<li><strong>增加了代碼的複雜性</strong>：隨著咖啡種類的增加，類別中的代碼會越來越複雜。</li>
+<li><strong>違反開放-封閉原則</strong>：每次需要加入新咖啡種類時，都需要<strong>修改原有類別</strong>，這會增加引入錯誤的風險，並且在已有代碼的基礎上進行改動不容易維護。</li>
+</ol>
+<h3 id="遵循-OCP-的設計-擴展而不修改"><a href="#遵循-OCP-的設計-擴展而不修改" class="headerlink" title="遵循 OCP 的設計 - 擴展而不修改"></a>遵循 OCP 的設計 - 擴展而不修改</h3><p>為了遵循 <strong>OCP</strong>，應對現有的類別保持不變，並通過<strong>擴展</strong>來添加新功能。這裡可以使用<strong>繼承</strong>和<strong>覆寫</strong>來擴展咖啡機的功能。</p>
+<p>首先，我們可以將 <code>CoffeeMachine</code> 類別設計為一個<strong>基類</strong>，然後讓不同種類的咖啡機繼承自這個基類並實現特定的功能。</p>
+<h4 id="基類設計"><a href="#基類設計" class="headerlink" title="基類設計"></a>基類設計</h4><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CoffeeMachine</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">MakeCoffee</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;Making an Americano...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這樣，<code>CoffeeMachine</code> 類別仍然只具備製作美式咖啡的功能，並且設計為<strong>可擴展的</strong>，方法 <code>MakeCoffee()</code> 使用了 <code>virtual</code> 關鍵字，表示它可以被子類覆寫。</p>
+<h4 id="擴展功能-製作不同種類的咖啡"><a href="#擴展功能-製作不同種類的咖啡" class="headerlink" title="擴展功能 - 製作不同種類的咖啡"></a>擴展功能 - 製作不同種類的咖啡</h4><p>接下來，我們通過繼承 <code>CoffeeMachine</code> 類別來擴展咖啡機的功能：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">LatteMachine</span> : <span class="title">CoffeeMachine</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">MakeCoffee</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;Making a Latte...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CappuccinoMachine</span> : <span class="title">CoffeeMachine</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">MakeCoffee</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;Making a Cappuccino...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong><code>LatteMachine</code></strong> 和 <strong><code>CappuccinoMachine</code></strong> 都繼承自 <code>CoffeeMachine</code>，並且覆寫了 <code>MakeCoffee()</code> 方法來製作不同種類的咖啡。</li>
+<li>這樣，我們在不改動原有的 <code>CoffeeMachine</code> 類別的情況下，通過擴展新增了拿鐵和卡布奇諾的製作功能。</li>
+</ul>
+<h4 id="使用擴展後的類別"><a href="#使用擴展後的類別" class="headerlink" title="使用擴展後的類別"></a>使用擴展後的類別</h4><p>當我們想製作不同種類的咖啡時，只需使用相應的子類來創建咖啡機物件：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        CoffeeMachine myAmericano = <span class="keyword">new</span> CoffeeMachine();</span><br><span class="line">        myAmericano.MakeCoffee();  <span class="comment">// 輸出: Making an Americano...</span></span><br><span class="line"></span><br><span class="line">        CoffeeMachine myLatte = <span class="keyword">new</span> LatteMachine();</span><br><span class="line">        myLatte.MakeCoffee();  <span class="comment">// 輸出: Making a Latte...</span></span><br><span class="line"></span><br><span class="line">        CoffeeMachine myCappuccino = <span class="keyword">new</span> CappuccinoMachine();</span><br><span class="line">        myCappuccino.MakeCoffee();  <span class="comment">// 輸出: Making a Cappuccino...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="遵循-OCP-的優點"><a href="#遵循-OCP-的優點" class="headerlink" title="遵循 OCP 的優點"></a>遵循 OCP 的優點</h4><ol>
+<li><p><strong>擴展性強</strong>：</p>
+<ul>
+<li>現在，如果咖啡館再增加新種類的咖啡，例如<strong>摩卡（Mocha）</strong>，只需要創建一個新的子類 <code>MochaMachine</code> 並覆寫 <code>MakeCoffee()</code> 方法。</li>
+<li>不需要改動原有的 <code>CoffeeMachine</code> 類別，這樣保持了原有代碼的穩定性。</li>
+</ul>
+</li>
+<li><p><strong>降低錯誤風險</strong>：</p>
+<ul>
+<li>原有的 <code>CoffeeMachine</code> 類別保持不變，不會受到新需求的影響。因此，如果原本的美式咖啡功能運行良好，新需求的加入不會改變它的行為，降低了引入錯誤的風險。</li>
+</ul>
+</li>
+<li><p><strong>符合開放-封閉原則</strong>：</p>
+<ul>
+<li>類別對擴展是開放的（可以通過繼承來擴展功能），對修改是封閉的（不需要直接修改原有的類別）。</li>
+<li>這樣的設計使得系統更具靈活性，當需要擴展新功能時，只需新增子類即可，降低了修改已經穩定的代碼的風險。</li>
+</ul>
+</li>
+</ol>
+<h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h3><ul>
+<li><strong>開放-封閉原則（OCP）</strong> 強調類別應該<strong>對擴展開放</strong>（允許增加新功能）而<strong>對修改封閉</strong>（不必改動已有代碼）。</li>
+<li>在我們的咖啡機的例子中，<strong>通過繼承和覆寫</strong>來實現新功能的擴展，而不是改動原有的類別。</li>
+<li>這樣的做法能夠<strong>減少代碼改動</strong>，保持原有的代碼穩定，降低錯誤風險，同時也使系統更加靈活，能夠快速應對變化和需求的增長。</li>
+</ul>
+<p>希望這個日常生活中的例子能幫助你更好地理解 OCP 的應用和它的重要性。如果你有其他問題或需要進一步的說明，隨時告訴我！</p>
+<p>我:<br>那麼以上面的例子是否有最安全且降低耦合的寫法呢?</p>
+<p>是的，在面向對象編程中，遵循 <strong>開放-封閉原則（OCP）</strong> 的同時，還可以進一步降低類別之間的<strong>耦合性</strong>，這樣能讓系統更具<strong>彈性</strong>和<strong>可測試性</strong>，並且更加符合設計的最佳實踐。為了達到這些目標，我們可以利用一些設計模式和設計原則，比如<strong>依賴注入（Dependency Injection）</strong>和<strong>策略模式（Strategy Pattern）</strong>。以下是一些改進的方法，可以使得系統更安全並降低耦合。</p>
+<h3 id="1-依賴注入（Dependency-Injection）"><a href="#1-依賴注入（Dependency-Injection）" class="headerlink" title="1. 依賴注入（Dependency Injection）"></a>1. 依賴注入（Dependency Injection）</h3><p>為了降低 <code>CoffeeMachine</code> 與特定咖啡類型的緊密耦合，我們可以使用 <strong>依賴注入</strong> 來管理不同的咖啡製作行為。依賴注入使得 <code>CoffeeMachine</code> 不再直接依賴某個特定的類別，而是依賴於一個<strong>抽象的接口</strong>，這樣能提高系統的靈活性。</p>
+<h4 id="改進的設計-抽象接口和依賴注入"><a href="#改進的設計-抽象接口和依賴注入" class="headerlink" title="改進的設計 - 抽象接口和依賴注入"></a>改進的設計 - 抽象接口和依賴注入</h4><p>首先，定義一個接口 <code>ICoffeeMaker</code>，該接口包含 <code>MakeCoffee()</code> 方法，代表一種製作咖啡的行為。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">ICoffeeMaker</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">MakeCoffee</span>()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接著，我們為不同的咖啡類型（例如美式、拿鐵、卡布奇諾）分別實現這個接口：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">AmericanoMaker</span> : <span class="title">ICoffeeMaker</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">MakeCoffee</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;Making an Americano...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">LatteMaker</span> : <span class="title">ICoffeeMaker</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">MakeCoffee</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;Making a Latte...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CappuccinoMaker</span> : <span class="title">ICoffeeMaker</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">MakeCoffee</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;Making a Cappuccino...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接下來，我們修改 <code>CoffeeMachine</code> 類別，使它依賴於 <code>ICoffeeMaker</code> 接口，而不是依賴於具體的咖啡製作方式。通過依賴注入的方式，我們可以動態地改變咖啡機的行為。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CoffeeMachine</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> ICoffeeMaker _coffeeMaker;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 依賴注入，用於注入不同的咖啡製作方式</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">CoffeeMachine</span>(<span class="params">ICoffeeMaker coffeeMaker</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        _coffeeMaker = coffeeMaker;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">MakeCoffee</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        _coffeeMaker.MakeCoffee();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這樣的設計可以讓 <code>CoffeeMachine</code> 非常靈活，我們可以根據需要注入不同的 <code>ICoffeeMaker</code> 實現，而不需要修改 <code>CoffeeMachine</code> 本身。</p>
+<p><strong>使用範例</strong>：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 使用不同的咖啡製作器來創建咖啡機</span></span><br><span class="line">        ICoffeeMaker americanoMaker = <span class="keyword">new</span> AmericanoMaker();</span><br><span class="line">        CoffeeMachine americanoMachine = <span class="keyword">new</span> CoffeeMachine(americanoMaker);</span><br><span class="line">        americanoMachine.MakeCoffee(); <span class="comment">// 輸出: Making an Americano...</span></span><br><span class="line"></span><br><span class="line">        ICoffeeMaker latteMaker = <span class="keyword">new</span> LatteMaker();</span><br><span class="line">        CoffeeMachine latteMachine = <span class="keyword">new</span> CoffeeMachine(latteMaker);</span><br><span class="line">        latteMachine.MakeCoffee(); <span class="comment">// 輸出: Making a Latte...</span></span><br><span class="line"></span><br><span class="line">        ICoffeeMaker cappuccinoMaker = <span class="keyword">new</span> CappuccinoMaker();</span><br><span class="line">        CoffeeMachine cappuccinoMachine = <span class="keyword">new</span> CoffeeMachine(cappuccinoMaker);</span><br><span class="line">        cappuccinoMachine.MakeCoffee(); <span class="comment">// 輸出: Making a Cappuccino...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-策略模式（Strategy-Pattern）"><a href="#2-策略模式（Strategy-Pattern）" class="headerlink" title="2. 策略模式（Strategy Pattern）"></a>2. 策略模式（Strategy Pattern）</h3><p>這樣的設計其實是一種 <strong>策略模式（Strategy Pattern）</strong> 的應用。策略模式是一種設計模式，通過將一個行為抽象為一個接口或基類，使得可以在運行時更換具體的行為實現，而不需要修改使用該行為的物件。</p>
+<p>在這個例子中，<code>ICoffeeMaker</code> 代表不同的咖啡製作策略，而 <code>CoffeeMachine</code> 只依賴於這個抽象接口，因此可以輕鬆地切換不同的咖啡製作策略。</p>
+<h3 id="3-這樣設計的好處"><a href="#3-這樣設計的好處" class="headerlink" title="3. 這樣設計的好處"></a>3. 這樣設計的好處</h3><h4 id="3-1-降低耦合性"><a href="#3-1-降低耦合性" class="headerlink" title="3.1 降低耦合性"></a>3.1 <strong>降低耦合性</strong></h4><ul>
+<li><code>CoffeeMachine</code> 不再直接依賴於具體的咖啡製作類別，而是依賴於 <code>ICoffeeMaker</code> 接口。</li>
+<li>當需要新增或修改咖啡製作方式時，只需實現新的 <code>ICoffeeMaker</code> 類別，不需要改動 <code>CoffeeMachine</code> 類別本身。</li>
+<li><code>CoffeeMachine</code> 和具體的咖啡製作器之間的耦合大幅降低，這使得代碼更易於擴展和維護。</li>
+</ul>
+<h4 id="3-2-擴展性強"><a href="#3-2-擴展性強" class="headerlink" title="3.2 擴展性強"></a>3.2 <strong>擴展性強</strong></h4><ul>
+<li>新增一個新種類的咖啡，只需要創建一個新的實現 <code>ICoffeeMaker</code> 的類別即可，例如 <code>MochaMaker</code>，而 <code>CoffeeMachine</code> 本身不需要任何改動。</li>
+<li>這種方式完全遵循了 <strong>開放-封閉原則（OCP）</strong>，類別對擴展開放（添加新的 <code>ICoffeeMaker</code> 實現），對修改封閉（<code>CoffeeMachine</code> 本身不需要更改）。</li>
+</ul>
+<h4 id="3-3-可測試性"><a href="#3-3-可測試性" class="headerlink" title="3.3 可測試性"></a>3.3 <strong>可測試性</strong></h4><ul>
+<li>由於 <code>CoffeeMachine</code> 依賴於接口而不是具體的類別，在單元測試中，我們可以輕鬆地使用一個<strong>模擬（mock）</strong>或替代的 <code>ICoffeeMaker</code> 來測試 <code>CoffeeMachine</code>，而不必真正製作咖啡。</li>
+</ul>
+<h3 id="4-總結"><a href="#4-總結" class="headerlink" title="4. 總結"></a>4. 總結</h3><p>在這個優化的設計中，我們通過以下方式使代碼更具靈活性並降低耦合：</p>
+<ol>
+<li><strong>依賴注入（Dependency Injection）</strong>：<code>CoffeeMachine</code> 不再直接依賴具體的類別，而是依賴於一個抽象接口 <code>ICoffeeMaker</code>，使得它能夠靈活應對不同的咖啡製作行為。</li>
+<li><strong>策略模式（Strategy Pattern）</strong>：不同的咖啡製作行為被抽象為策略（<code>ICoffeeMaker</code>），並可以在運行時動態更改，從而達到靈活擴展的目的。</li>
+<li><strong>開放-封閉原則（OCP）</strong>：這種設計完全符合 OCP，對擴展是開放的（可以添加新類別），對修改是封閉的（不必改動 <code>CoffeeMachine</code> 本身）。</li>
+</ol>
+<p>這樣設計不僅保持了系統的靈活性，而且大大降低了類別之間的耦合，使得系統能夠更穩定地應對需求變化。如果你還有其他問題，或者需要進一步的幫助，隨時告訴我！</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/C/" rel="tag"># C#</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2026/04/22/OneDayOneNote/2026-05-18/" rel="prev" title="2026-05-18 C# 關於 繼承與覆寫 ,  我有個疑問, 這樣讓子類別可以覆寫父類別的動作, 是否會很有爭議或危險">
+                  <i class="fa fa-angle-left"></i> 2026-05-18 C# 關於 繼承與覆寫 ,  我有個疑問, 這樣讓子類別可以覆寫父類別的動作, 是否會很有爭議或危險
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2026/04/22/OneDayOneNote/2026-05-20/" rel="next" title="2026-05-20 C# 學習 **接口（Interfaces）和抽象類（Abstract Classes）">
+                  2026-05-20 C# 學習 **接口（Interfaces）和抽象類（Abstract Classes） <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/apple.lily/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

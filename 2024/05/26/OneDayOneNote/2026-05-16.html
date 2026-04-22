@@ -1,0 +1,81 @@
+<hr>
+<h2 id="title-2026-05-16-優化-C-BankAccount-bankAccount-new-BankAccount-date-2026-04-21-22-22-30categories-OneDayOneNotetags-C-description-2026-05-16-優化-C-BankAccount-bankAccount-new-BankAccount"><a href="#title-2026-05-16-優化-C-BankAccount-bankAccount-new-BankAccount-date-2026-04-21-22-22-30categories-OneDayOneNotetags-C-description-2026-05-16-優化-C-BankAccount-bankAccount-new-BankAccount" class="headerlink" title="title: 2026-05-16 優化 C# BankAccount bankAccount &#x3D; new BankAccount();date: 2026-04-21 22:22:30categories: OneDayOneNotetags:  [C#]description: 2026-05-16 優化 C# BankAccount bankAccount &#x3D; new BankAccount();"></a>title: 2026-05-16 優化 C# BankAccount bankAccount &#x3D; new BankAccount();<br>date: 2026-04-21 22:22:30<br>categories: OneDayOneNote<br>tags:  [C#]<br>description: 2026-05-16 優化 C# BankAccount bankAccount &#x3D; new BankAccount();</h2><h2 id="2026-05-16-優化-C-BankAccount-bankAccount-new-BankAccount"><a href="#2026-05-16-優化-C-BankAccount-bankAccount-new-BankAccount" class="headerlink" title="2026-05-16 優化 C# BankAccount bankAccount &#x3D; new BankAccount();"></a>2026-05-16 優化 C# BankAccount bankAccount &#x3D; new BankAccount();</h2><p>我:<br>        BankAccount bankAccount &#x3D; new BankAccount();<br>        bankAccount.Deposit(22908);<br>        bankAccount.GetBalance();<br>        bankAccount.Deposit(11201);<br>        bankAccount.GetBalance();<br>        bankAccount.Deposit(2333);<br>        bankAccount.GetBalance();<br>這個能優化嗎?</p>
+<p>GPT:<br>當然可以優化！目前的代碼中，你每次都呼叫 <code>Deposit</code> 方法後再呼叫 <code>GetBalance</code> 方法，這導致每次操作都需要分開來完成。可以通過幾種方式來優化這段代碼，使其更加簡潔和高效。</p>
+<h3 id="方法-1：使用循環簡化重複操作"><a href="#方法-1：使用循環簡化重複操作" class="headerlink" title="方法 1：使用循環簡化重複操作"></a>方法 1：使用循環簡化重複操作</h3><p>你可以將需要存款的金額存放在一個陣列或集合中，然後使用迴圈來遍歷這些金額並進行存款和查詢餘額。這樣可以避免多次重複撰寫同樣的呼叫語句。</p>
+<pre><code class="csharp">BankAccount bankAccount = new BankAccount();
+int[] deposits = { 22908, 11201, 2333 };
+
+foreach (int amount in deposits)
+{
+    bankAccount.Deposit(amount);
+    Console.WriteLine($&quot;目前餘額: {bankAccount.GetBalance()} 元&quot;);
+}
+</code></pre>
+<p>這樣做可以讓代碼更加簡潔且更易於維護。如果你有更多金額需要存入，只需更新 <code>deposits</code> 陣列的內容即可。</p>
+<h3 id="方法-2：修改-Deposit-方法使其返回餘額"><a href="#方法-2：修改-Deposit-方法使其返回餘額" class="headerlink" title="方法 2：修改 Deposit 方法使其返回餘額"></a>方法 2：修改 <code>Deposit</code> 方法使其返回餘額</h3><p>另一種優化方式是修改 <code>Deposit</code> 方法，讓它直接返回更新後的餘額，這樣就不需要分開呼叫 <code>GetBalance</code> 方法來查詢餘額了。</p>
+<pre><code class="csharp">public class BankAccount
+{
+    private decimal balance;
+
+    public decimal Deposit(decimal amount)
+    {
+        if (amount &gt; 0)
+        {
+            balance += amount;
+            Console.WriteLine($&quot;存入 {amount} 元，目前餘額為 {balance} 元&quot;);
+        }
+        return balance;
+    }
+    
+    public decimal GetBalance()
+    {
+        return balance;
+    }
+}
+
+// 呼叫代碼
+BankAccount bankAccount = new BankAccount();
+bankAccount.Deposit(22908);
+bankAccount.Deposit(11201);
+bankAccount.Deposit(2333);
+</code></pre>
+<p>在這個範例中，<code>Deposit</code> 方法在完成存款操作後會直接返回餘額並顯示出來，因此你不需要再額外呼叫 <code>GetBalance</code> 方法。</p>
+<h3 id="方法-3：使用一個自定義方法來進行存款和查詢餘額"><a href="#方法-3：使用一個自定義方法來進行存款和查詢餘額" class="headerlink" title="方法 3：使用一個自定義方法來進行存款和查詢餘額"></a>方法 3：使用一個自定義方法來進行存款和查詢餘額</h3><p>你也可以創建一個自定義方法，用來一次性處理存款和查詢餘額的操作，這樣可以減少主程式中的重複代碼。</p>
+<pre><code class="csharp">public class BankAccount
+{
+    private decimal balance;
+
+    public void Deposit(decimal amount)
+    {
+        if (amount &gt; 0)
+        {
+            balance += amount;
+        }
+    }
+
+    public decimal GetBalance()
+    {
+        return balance;
+    }
+
+    // 自定義方法來存款並顯示餘額
+    public void DepositAndDisplayBalance(decimal amount)
+    {
+        Deposit(amount);
+        Console.WriteLine($&quot;存入 {amount} 元，目前餘額為 {balance} 元&quot;);
+    }
+}
+
+// 呼叫代碼
+BankAccount bankAccount = new BankAccount();
+bankAccount.DepositAndDisplayBalance(22908);
+bankAccount.DepositAndDisplayBalance(11201);
+bankAccount.DepositAndDisplayBalance(2333);
+</code></pre>
+<p>在這裡，<code>DepositAndDisplayBalance</code> 方法將存款和顯示餘額的操作合併到一起，這樣可以避免在主程式中多次撰寫相同的呼叫。</p>
+<h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h3><ul>
+<li><strong>方法 1：使用循環簡化重複操作</strong>，適合多次對同一操作進行不同值的情況，可以使代碼更加簡潔。</li>
+<li><strong>方法 2：修改 <code>Deposit</code> 方法使其返回餘額</strong>，使每次存款後直接獲得更新的餘額，減少對 <code>GetBalance</code> 的多餘呼叫。</li>
+<li><strong>方法 3：創建自定義方法來合併操作</strong>，將存款和顯示餘額的功能放在一起，讓程式更具可讀性。</li>
+</ul>
+<p>你可以根據需要選擇最合適的方法來優化代碼。如果還有其他需求，隨時告訴我！</p>

@@ -1,0 +1,329 @@
+<hr>
+<h2 id="title-2026-05-24-逐行解釋-C-Listdate-2026-04-22-23-41-14categories-OneDayOneNotetags-C-description-2026-05-24-逐行解釋-C-List"><a href="#title-2026-05-24-逐行解釋-C-Listdate-2026-04-22-23-41-14categories-OneDayOneNotetags-C-description-2026-05-24-逐行解釋-C-List" class="headerlink" title="title: 2026-05-24  逐行解釋 C# Listdate: 2026-04-22 23:41:14categories: OneDayOneNotetags:  [C#]description: 2026-05-24  逐行解釋 C# List"></a>title: 2026-05-24  逐行解釋 C# List<T><br>date: 2026-04-22 23:41:14<br>categories: OneDayOneNote<br>tags:  [C#]<br>description: 2026-05-24  逐行解釋 C# List<T></h2><h2 id="2026-05-24-逐行解釋-C-List"><a href="#2026-05-24-逐行解釋-C-List" class="headerlink" title="2026-05-24  逐行解釋 C# List"></a>2026-05-24  逐行解釋 C# List<T></h2><p>我:<br>public class Storage<T><br>{<br>    private List<T> items &#x3D; new List<T>();</p>
+<pre><code>public void AddItem(T item)
+{
+    items.Add(item);
+}
+
+public List&lt;T&gt; GetItems()
+{
+    return items;
+}
+</code></pre>
+<p>}<br>這程式可以逐行解釋嗎? 包括程式碼規則 </p>
+<p>GPT:<br>當然可以！讓我們逐行解析這段使用泛型的 <code>Storage&lt;T&gt;</code> 類別程式碼，並解釋其中的每一部分及其規則。</p>
+<h3 id="程式碼逐行解釋"><a href="#程式碼逐行解釋" class="headerlink" title="程式碼逐行解釋"></a>程式碼逐行解釋</h3><pre><code class="csharp">public class Storage&lt;T&gt;
+</code></pre>
+<ul>
+<li>**<code>public</code>**：這是訪問修飾符，表示 <code>Storage</code> 類別可以在任何地方被訪問。</li>
+<li>**<code>class</code>**：關鍵字用來定義一個類別。</li>
+<li>**<code>Storage</code>**：這是類別的名稱。根據 C# 的命名慣例，類別名稱通常以大寫字母開頭。</li>
+<li>**<code>&lt;T&gt;</code>**：這是泛型類型參數的聲明。<code>T</code> 可以是任何類型，這使得 <code>Storage</code> 類別可以存儲不同類型的項目。</li>
+</ul>
+<pre><code class="csharp">{
+    private List&lt;T&gt; items = new List&lt;T&gt;();
+</code></pre>
+<ul>
+<li>**<code>private</code>**：這是另一個訪問修飾符，表示 <code>items</code> 變數只能在 <code>Storage</code> 類別內部訪問。</li>
+<li>**<code>List&lt;T&gt;</code>**：這是一個泛型集合類別，用來存儲 <code>T</code> 類型的項目。<code>List&lt;T&gt;</code> 是動態數組，可以隨著添加項目而自動調整大小。</li>
+<li>**<code>items</code>**：這是 <code>List&lt;T&gt;</code> 的變數名稱，將用來存儲項目。</li>
+<li>**<code>= new List&lt;T&gt;()</code>**：這個表達式創建了一個新的 <code>List&lt;T&gt;</code> 實例，並將其賦值給 <code>items</code> 變數。</li>
+</ul>
+<pre><code class="csharp">public void AddItem(T item)
+</code></pre>
+<ul>
+<li>**<code>public</code>**：這是方法的訪問修飾符，表示這個方法可以被外部調用。</li>
+<li>**<code>void</code>**：這表示該方法不會返回任何值。</li>
+<li>**<code>AddItem</code>**：這是方法的名稱，表示此方法用來添加項目。</li>
+<li>**<code>(T item)</code>**：這是方法的參數，表示該方法接收一個類型為 <code>T</code> 的參數 <code>item</code>。這個 <code>item</code> 將被添加到 <code>items</code> 列表中。</li>
+</ul>
+<pre><code class="csharp">{
+    items.Add(item);
+}
+</code></pre>
+<ul>
+<li>**<code>{ ... }</code>**：這是一個方法的主體，包裹著方法的具體實現。</li>
+<li>**<code>items.Add(item)</code>**：這行代碼調用 <code>List&lt;T&gt;</code> 的 <code>Add</code> 方法，將 <code>item</code> 添加到 <code>items</code> 列表中。</li>
+</ul>
+<pre><code class="csharp">public List&lt;T&gt; GetItems()
+</code></pre>
+<ul>
+<li>**<code>public</code>**：表示這個方法可以被外部調用。</li>
+<li>**<code>List&lt;T&gt;</code>**：這表示這個方法會返回一個 <code>List&lt;T&gt;</code> 類型的值。</li>
+<li>**<code>GetItems</code>**：這是方法的名稱，表示該方法用來獲取存儲的項目列表。</li>
+</ul>
+<pre><code class="csharp">{
+    return items;
+}
+</code></pre>
+<ul>
+<li>**<code>{ ... }</code>**：這是方法的主體。</li>
+<li>**<code>return items;</code>**：這行代碼返回 <code>items</code> 列表，讓調用者可以獲取到存儲的項目。</li>
+</ul>
+<h3 id="完整程式碼"><a href="#完整程式碼" class="headerlink" title="完整程式碼"></a>完整程式碼</h3><p>整個類別的結構如下所示：</p>
+<pre><code class="csharp">public class Storage&lt;T&gt;
+{
+    private List&lt;T&gt; items = new List&lt;T&gt;();
+
+    public void AddItem(T item)
+    {
+        items.Add(item);
+    }
+
+    public List&lt;T&gt; GetItems()
+    {
+        return items;
+    }
+}
+</code></pre>
+<h3 id="程式碼規則"><a href="#程式碼規則" class="headerlink" title="程式碼規則"></a>程式碼規則</h3><ol>
+<li><strong>命名慣例</strong>：類別名使用 PascalCase（每個單詞的首字母大寫），變數和方法名使用 camelCase（首字母小寫，後續每個單詞的首字母大寫）。</li>
+<li><strong>訪問修飾符</strong>：使用 <code>public</code> 和 <code>private</code> 設定成員的可見性，讓類別能夠隱藏內部實現並只暴露必要的接口。</li>
+<li><strong>泛型的使用</strong>：泛型類別使用 <code>&lt;T&gt;</code> 來允許類別可以操作多種數據類型，提高了靈活性和重用性。</li>
+</ol>
+<p>這段程式碼展示了如何使用泛型來創建一個可以存儲任意類型數據的容器類別，並提供添加和獲取項目的方法。如果你對這段程式碼還有其他問題，或想要進一步深入某個方面，請告訴我！</p>
+<p>我:<br>List<T> 是C# using 那個類別?</p>
+<p>GPT:<br><code>List&lt;T&gt;</code> 是 C# 中的泛型集合類別，它位於 <code>System.Collections.Generic</code> 命名空間中。因此，若要使用 <code>List&lt;T&gt;</code>，您需要在程式的開頭添加以下 <code>using</code> 指令：</p>
+<pre><code class="csharp">using System.Collections.Generic;
+</code></pre>
+<p>這樣就可以在程式中使用 <code>List&lt;T&gt;</code> 來創建泛型列表，存儲任意類型的數據。如果有任何其他問題，或者想了解更多關於泛型或集合的內容，請隨時告訴我！</p>
+<p>我:<br>List<T> 有很多方法及屬性?</p>
+<p>GPT:<br>是的，<code>List&lt;T&gt;</code> 在 C# 中提供了多種方法和屬性，用於操作和管理列表中的元素。以下是一些常用的方法和屬性：</p>
+<h3 id="常用屬性"><a href="#常用屬性" class="headerlink" title="常用屬性"></a>常用屬性</h3><ol>
+<li><p><strong>Count</strong>: 獲取 <code>List&lt;T&gt;</code> 中當前元素的數量。</p>
+<pre><code class="csharp">int count = myList.Count;
+</code></pre>
+</li>
+<li><p><strong>Capacity</strong>: 獲取或設置 <code>List&lt;T&gt;</code> 可以容納的元素數量，而不需要重新分配內部數組的大小。</p>
+<pre><code class="csharp">int capacity = myList.Capacity;
+myList.Capacity = 100; // 設置容量
+</code></pre>
+</li>
+</ol>
+<h3 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h3><ol>
+<li><p><strong>Add(T item)</strong>: 將元素添加到列表的末尾。</p>
+<pre><code class="csharp">myList.Add(10); // 將整數 10 添加到列表中
+</code></pre>
+</li>
+<li><p><strong>Remove(T item)</strong>: 刪除列表中第一個出現的指定元素。</p>
+<pre><code class="csharp">myList.Remove(10); // 刪除列表中第一個出現的整數 10
+</code></pre>
+</li>
+<li><p><strong>Insert(int index, T item)</strong>: 在指定索引處插入元素。</p>
+<pre><code class="csharp">myList.Insert(0, 5); // 在索引 0 處插入整數 5
+</code></pre>
+</li>
+<li><p><strong>Clear()</strong>: 刪除列表中的所有元素。</p>
+<pre><code class="csharp">myList.Clear(); // 清空列表
+</code></pre>
+</li>
+<li><p><strong>Contains(T item)</strong>: 判斷列表是否包含指定的元素，返回布林值。</p>
+<pre><code class="csharp">bool contains = myList.Contains(5); // 檢查列表中是否包含整數 5
+</code></pre>
+</li>
+<li><p><strong>IndexOf(T item)</strong>: 返回指定元素在列表中首次出現的索引，如果未找到則返回 -1。</p>
+<pre><code class="csharp">int index = myList.IndexOf(5); // 獲取整數 5 的索引
+</code></pre>
+</li>
+<li><p><strong>Sort()</strong>: 對列表中的元素進行排序。</p>
+<pre><code class="csharp">myList.Sort(); // 對列表進行排序
+</code></pre>
+</li>
+<li><p><strong>ToArray()</strong>: 將 <code>List&lt;T&gt;</code> 轉換為數組。</p>
+<pre><code class="csharp">T[] array = myList.ToArray(); // 將列表轉換為數組
+</code></pre>
+</li>
+</ol>
+<p>這些方法和屬性使得 <code>List&lt;T&gt;</code> 成為一個非常靈活和強大的資料結構，適合存儲和管理各種數據。您可以通過這些方法進行增、刪、查、改等各種操作。如果您有興趣深入了解某一個特定方法或屬性，請告訴我！</p>
+<p>我:<br>我有興趣深入了解</p>
+<p>GPT:<br>好的！讓我們深入了解一些 <code>List&lt;T&gt;</code> 中的常用方法和屬性。以下是幾個特別有用的，並附上詳細的解釋和示範代碼。</p>
+<h3 id="1-Count-屬性"><a href="#1-Count-屬性" class="headerlink" title="1. Count 屬性"></a>1. <strong>Count 屬性</strong></h3><ul>
+<li><strong>說明</strong>：<code>Count</code> 屬性用於獲取 <code>List&lt;T&gt;</code> 中當前元素的數量。</li>
+<li><strong>用法</strong>：你可以使用 <code>Count</code> 來檢查列表中有多少個元素，這在需要進行迭代或進行條件檢查時特別有用。</li>
+</ul>
+<p><strong>範例代碼</strong>：</p>
+<pre><code class="csharp">List&lt;int&gt; numbers = new List&lt;int&gt;();
+numbers.Add(1);
+numbers.Add(2);
+numbers.Add(3);
+
+Console.WriteLine(&quot;Number of elements in the list: &quot; + numbers.Count); // 輸出: 3
+</code></pre>
+<h3 id="2-Add-T-item-方法"><a href="#2-Add-T-item-方法" class="headerlink" title="2. Add(T item) 方法"></a>2. <strong>Add(T item) 方法</strong></h3><ul>
+<li><strong>說明</strong>：<code>Add</code> 方法將指定的元素添加到 <code>List&lt;T&gt;</code> 的末尾。</li>
+<li><strong>用法</strong>：這個方法非常簡單易用，通常在初始化或構建列表時使用。</li>
+</ul>
+<p><strong>範例代碼</strong>：</p>
+<pre><code class="csharp">List&lt;string&gt; fruits = new List&lt;string&gt;();
+fruits.Add(&quot;Apple&quot;);
+fruits.Add(&quot;Banana&quot;);
+fruits.Add(&quot;Cherry&quot;);
+
+Console.WriteLine(&quot;Fruits in the list: &quot; + string.Join(&quot;, &quot;, fruits)); // 輸出: Fruits in the list: Apple, Banana, Cherry
+</code></pre>
+<h3 id="3-Remove-T-item-方法"><a href="#3-Remove-T-item-方法" class="headerlink" title="3. Remove(T item) 方法"></a>3. <strong>Remove(T item) 方法</strong></h3><ul>
+<li><strong>說明</strong>：<code>Remove</code> 方法刪除列表中第一個出現的指定元素。如果該元素存在於列表中，它會被刪除，並返回 <code>true</code>，如果不存在則返回 <code>false</code>。</li>
+<li><strong>用法</strong>：此方法用於刪除特定的元素。</li>
+</ul>
+<p><strong>範例代碼</strong>：</p>
+<pre><code class="csharp">List&lt;string&gt; animals = new List&lt;string&gt; { &quot;Dog&quot;, &quot;Cat&quot;, &quot;Bird&quot; };
+bool removed = animals.Remove(&quot;Cat&quot;); // 嘗試刪除 &quot;Cat&quot;
+
+Console.WriteLine(&quot;Removed Cat: &quot; + removed); // 輸出: Removed Cat: True
+Console.WriteLine(&quot;Animals left in the list: &quot; + string.Join(&quot;, &quot;, animals)); // 輸出: Animals left in the list: Dog, Bird
+</code></pre>
+<h3 id="4-Clear-方法"><a href="#4-Clear-方法" class="headerlink" title="4. Clear() 方法"></a>4. <strong>Clear() 方法</strong></h3><ul>
+<li><strong>說明</strong>：<code>Clear</code> 方法刪除列表中的所有元素。</li>
+<li><strong>用法</strong>：當你需要重置列表或不再需要任何元素時，這個方法非常有用。</li>
+</ul>
+<p><strong>範例代碼</strong>：</p>
+<pre><code class="csharp">List&lt;int&gt; numbers = new List&lt;int&gt; { 1, 2, 3, 4, 5 };
+Console.WriteLine(&quot;Count before clear: &quot; + numbers.Count); // 輸出: Count before clear: 5
+
+numbers.Clear(); // 清空列表
+
+Console.WriteLine(&quot;Count after clear: &quot; + numbers.Count); // 輸出: Count after clear: 0
+</code></pre>
+<h3 id="5-Sort-方法"><a href="#5-Sort-方法" class="headerlink" title="5. Sort() 方法"></a>5. <strong>Sort() 方法</strong></h3><ul>
+<li><strong>說明</strong>：<code>Sort</code> 方法對列表中的元素進行排序，默認情況下是按升序排序。</li>
+<li><strong>用法</strong>：這個方法對於需要有序數據的場景非常有用。</li>
+</ul>
+<p><strong>範例代碼</strong>：</p>
+<pre><code class="csharp">List&lt;int&gt; numbers = new List&lt;int&gt; { 5, 3, 1, 4, 2 };
+numbers.Sort(); // 對列表進行排序
+
+Console.WriteLine(&quot;Sorted numbers: &quot; + string.Join(&quot;, &quot;, numbers)); // 輸出: Sorted numbers: 1, 2, 3, 4, 5
+</code></pre>
+<h3 id="6-ToArray-方法"><a href="#6-ToArray-方法" class="headerlink" title="6. ToArray() 方法"></a>6. <strong>ToArray() 方法</strong></h3><ul>
+<li><strong>說明</strong>：<code>ToArray</code> 方法將 <code>List&lt;T&gt;</code> 轉換為一個數組。</li>
+<li><strong>用法</strong>：這在需要將列表數據傳遞給只接受數組的方法時非常有用。</li>
+</ul>
+<p><strong>範例代碼</strong>：</p>
+<pre><code class="csharp">List&lt;string&gt; colors = new List&lt;string&gt; { &quot;Red&quot;, &quot;Green&quot;, &quot;Blue&quot; };
+string[] colorArray = colors.ToArray(); // 將列表轉換為數組
+
+Console.WriteLine(&quot;Colors in array: &quot; + string.Join(&quot;, &quot;, colorArray)); // 輸出: Colors in array: Red, Green, Blue
+</code></pre>
+<p>這些方法和屬性使 <code>List&lt;T&gt;</code> 成為一個強大的資料結構，允許你輕鬆地進行各種操作。如果您對某一方法有特別的問題，或者想要更深入的範例，請告訴我！</p>
+<p>我:<br> List<T> 總共有幾個方法及屬性?</p>
+<p>GPT：<br><code>List&lt;T&gt;</code> 是 C# 中的一個非常靈活和強大的泛型集合類，提供了多種方法和屬性來管理和操作集合中的元素。以下是 <code>List&lt;T&gt;</code> 中的一些主要方法和屬性：</p>
+<h3 id="主要屬性"><a href="#主要屬性" class="headerlink" title="主要屬性"></a>主要屬性</h3><ol>
+<li><strong>Count</strong>：獲取 <code>List&lt;T&gt;</code> 中的元素數量。</li>
+<li><strong>Capacity</strong>：獲取或設置 <code>List&lt;T&gt;</code> 能夠容納的元素數量（即內部數組的大小）。</li>
+</ol>
+<h3 id="主要方法"><a href="#主要方法" class="headerlink" title="主要方法"></a>主要方法</h3><ol>
+<li>**Add(T item)**：將指定的元素添加到列表的末尾。</li>
+<li>**AddRange(IEnumerable<T> collection)**：將指定集合的元素添加到列表的末尾。</li>
+<li>**Clear()**：刪除列表中的所有元素。</li>
+<li>**Contains(T item)**：檢查列表是否包含指定的元素。</li>
+<li>**CopyTo(T[] array)**：將列表的元素複製到數組中。</li>
+<li>**IndexOf(T item)**：返回指定元素在列表中第一次出現的索引。</li>
+<li>**Insert(int index, T item)**：在指定索引處插入元素。</li>
+<li>**Remove(T item)**：刪除列表中第一次出現的指定元素。</li>
+<li>**RemoveAt(int index)**：刪除指定索引處的元素。</li>
+<li>**Sort()**：對列表中的元素進行排序。</li>
+<li>**Reverse()**：反轉列表中的元素順序。</li>
+<li>**ToArray()**：將 <code>List&lt;T&gt;</code> 轉換為數組。</li>
+<li>**GetEnumerator()**：返回一個可用於遍歷 <code>List&lt;T&gt;</code> 的枚舉數。</li>
+</ol>
+<h3 id="高級方法"><a href="#高級方法" class="headerlink" title="高級方法"></a>高級方法</h3><ol>
+<li>**Find(Predicate<T> match)**：根據指定的條件返回列表中第一個符合條件的元素。</li>
+<li>**FindAll(Predicate<T> match)**：返回所有符合條件的元素。</li>
+<li>**FindIndex(Predicate<T> match)**：返回符合條件的第一個元素的索引。</li>
+<li>**ForEach(Action<T> action)**：對列表中的每個元素執行指定的操作。</li>
+<li>**Exists(Predicate<T> match)**：檢查列表中是否存在符合條件的元素。</li>
+<li>**RemoveAll(Predicate<T> match)**：刪除所有符合條件的元素。</li>
+<li>**TrimExcess()**：修剪列表的容量，以使其與當前元素數量相匹配。</li>
+</ol>
+<h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h3><p>總體而言，<code>List&lt;T&gt;</code> 包含多達 30 多個方法和屬性，這些方法和屬性使其成為一個非常靈活且功能強大的資料結構。具體可用的方法和屬性可能取決於使用的 .NET 版本，但以上是一般情況下常用的。</p>
+<p>如果你有興趣了解某一特定方法的用法或需要示範，請告訴我！</p>
+<p>我:<br>是那 30種呢?</p>
+<p>GPT:<br>以下是 <code>List&lt;T&gt;</code> 類別中提供的所有方法和屬性的完整列表，包括常用的屬性和方法：</p>
+<h3 id="屬性"><a href="#屬性" class="headerlink" title="屬性"></a>屬性</h3><ol>
+<li><strong>Count</strong>：獲取列表中元素的數量。</li>
+<li><strong>Capacity</strong>：獲取或設置列表的容量。</li>
+</ol>
+<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><ol>
+<li>**Add(T item)**：將元素添加到列表的末尾。</li>
+<li>**AddRange(IEnumerable<T> collection)**：將集合中的元素添加到列表的末尾。</li>
+<li>**AsReadOnly()**：將 <code>List&lt;T&gt;</code> 包裝為只讀版本。</li>
+<li>**BinarySearch(T item)**：對已排序的列表進行二分搜尋。</li>
+<li>**BinarySearch(T item, IComparer<T> comparer)**：對已排序的列表進行二分搜尋，使用指定的比較器。</li>
+<li>**Clear()**：移除列表中的所有元素。</li>
+<li>**Contains(T item)**：檢查列表是否包含指定的元素。</li>
+<li>**CopyTo(T[] array)**：將列表的元素複製到數組。</li>
+<li>**CopyTo(T[] array, int arrayIndex)**：將列表的元素複製到數組，從指定的索引開始。</li>
+<li>**CopyTo(int index, T[] array, int arrayIndex, int count)**：將列表的元素複製到數組，指定源索引和計數。</li>
+<li>**Exists(Predicate<T> match)**：檢查列表中是否存在符合條件的元素。</li>
+<li>**Find(Predicate<T> match)**：找到符合條件的第一個元素。</li>
+<li>**FindAll(Predicate<T> match)**：找到所有符合條件的元素。</li>
+<li>**FindIndex(Predicate<T> match)**：找到符合條件的第一個元素的索引。</li>
+<li>**FindIndex(int startIndex, Predicate<T> match)**：在指定的起始索引開始查找符合條件的元素的索引。</li>
+<li>**FindIndex(int startIndex, int count, Predicate<T> match)**：在指定的範圍內查找符合條件的元素的索引。</li>
+<li>**FindLast(Predicate<T> match)**：查找符合條件的最後一個元素。</li>
+<li>**FindLastIndex(Predicate<T> match)**：查找符合條件的最後一個元素的索引。</li>
+<li>**FindLastIndex(int startIndex, Predicate<T> match)**：在指定的起始索引開始查找符合條件的最後一個元素的索引。</li>
+<li>**FindLastIndex(int startIndex, int count, Predicate<T> match)**：在指定範圍內查找符合條件的最後一個元素的索引。</li>
+<li>**ForEach(Action<T> action)**：對列表中的每個元素執行指定的操作。</li>
+<li>**GetEnumerator()**：返回一個可用於遍歷 <code>List&lt;T&gt;</code> 的枚舉數。</li>
+<li>**GetRange(int index, int count)**：獲取從指定索引開始的指定數量的元素的子列表。</li>
+<li>**IndexOf(T item)**：找到指定元素第一次出現的索引。</li>
+<li>**IndexOf(T item, int index)**：從指定的索引開始查找元素。</li>
+<li>**IndexOf(T item, int index, int count)**：在指定範圍內查找元素。</li>
+<li>**Insert(int index, T item)**：在指定索引處插入元素。</li>
+<li>**InsertRange(int index, IEnumerable<T> collection)**：在指定索引處插入集合中的元素。</li>
+<li>**LastIndexOf(T item)**：找到指定元素最後一次出現的索引。</li>
+<li>**LastIndexOf(T item, int index)**：從指定的索引開始向前查找元素。</li>
+<li>**LastIndexOf(T item, int index, int count)**：在指定範圍內查找元素。</li>
+<li>**Remove(T item)**：移除列表中第一次出現的指定元素。</li>
+<li>**RemoveAll(Predicate<T> match)**：移除所有符合條件的元素。</li>
+<li>**RemoveAt(int index)**：移除指定索引處的元素。</li>
+<li>**RemoveRange(int index, int count)**：移除指定範圍內的元素。</li>
+<li>**Reverse()**：反轉列表中的元素。</li>
+<li>**Reverse(int index, int count)**：反轉列表中指定範圍內的元素。</li>
+<li>**Sort()**：對列表中的元素進行排序。</li>
+<li>**Sort(IComparer<T> comparer)**：使用指定的比較器對列表中的元素進行排序。</li>
+<li>**Sort(Comparison<T> comparison)**：使用指定的比較函數對列表中的元素進行排序。</li>
+<li>**ToArray()**：將 <code>List&lt;T&gt;</code> 轉換為數組。</li>
+<li>**TrimExcess()**：修剪列表的容量，以使其與當前元素數量相匹配。</li>
+</ol>
+<h3 id="總結-1"><a href="#總結-1" class="headerlink" title="總結"></a>總結</h3><p>以上是 <code>List&lt;T&gt;</code> 的完整方法和屬性列表，總共有 42 個方法和屬性。這些方法和屬性使得 <code>List&lt;T&gt;</code> 成為 C# 中非常強大的資料結構之一。如果你對其中的某一方法或屬性有特別的興趣，想要更深入地了解，隨時告訴我！</p>
+<p>我:<br>屬性 只有2種?</p>
+<p>GPT:<br>是的，<code>List&lt;T&gt;</code> 主要有兩個屬性，分別是：</p>
+<ol>
+<li><strong>Count</strong>：這是一個只讀屬性，用來獲取 <code>List&lt;T&gt;</code> 中當前元素的數量。</li>
+<li><strong>Capacity</strong>：這是一個可讀可寫屬性，用來獲取或設置 <code>List&lt;T&gt;</code> 可以容納的元素的數量。</li>
+</ol>
+<h3 id="屬性詳細說明"><a href="#屬性詳細說明" class="headerlink" title="屬性詳細說明"></a>屬性詳細說明</h3><ul>
+<li><p><strong>Count</strong></p>
+<ul>
+<li><p><strong>用途</strong>：獲取 <code>List&lt;T&gt;</code> 中的元素數量。</p>
+</li>
+<li><p><strong>範例</strong>：</p>
+<pre><code class="csharp">List&lt;int&gt; numbers = new List&lt;int&gt;();
+numbers.Add(1);
+numbers.Add(2);
+Console.WriteLine(numbers.Count); // 輸出: 2
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>Capacity</strong></p>
+<ul>
+<li><p><strong>用途</strong>：獲取或設置 <code>List&lt;T&gt;</code> 的容量。當添加的元素超過當前容量時，<code>List&lt;T&gt;</code> 會自動擴展其容量。</p>
+</li>
+<li><p><strong>範例</strong>：</p>
+<pre><code class="csharp">List&lt;int&gt; numbers = new List&lt;int&gt;(5); // 設置初始容量為 5
+Console.WriteLine(numbers.Capacity); // 輸出: 5
+numbers.Add(1);
+numbers.Add(2);
+Console.WriteLine(numbers.Count); // 輸出: 2
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="注意事項"><a href="#注意事項" class="headerlink" title="注意事項"></a>注意事項</h3><ul>
+<li><code>Count</code> 和 <code>Capacity</code> 的關係：<code>Count</code> 是當前元素的數量，而 <code>Capacity</code> 是 <code>List&lt;T&gt;</code> 能夠容納的最大元素數量。如果 <code>Count</code> 超過 <code>Capacity</code>，<code>List&lt;T&gt;</code> 會自動擴展 <code>Capacity</code> 以容納更多元素。</li>
+</ul>
+<p>這兩個屬性在使用 <code>List&lt;T&gt;</code> 時非常重要，因為它們幫助你理解和管理列表的大小和容量。如果你對這些屬性有進一步的問題或想了解其他內容，隨時告訴我！</p>

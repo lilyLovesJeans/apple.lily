@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2026-05-23  深入理解 C# 中的泛型（Generics）練習題">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2026-05-23  深入理解 C# 中的泛型（Generics）練習題">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2026/04/22/OneDayOneNote/2026-05-23/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2026-05-23  深入理解 C# 中的泛型（Generics）練習題">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2026-04-22T15:26:29.000Z">
+<meta property="article:modified_time" content="2026-04-22T15:27:32.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="C#">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2026/04/22/OneDayOneNote/2026-05-23/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2026/04/22/OneDayOneNote/2026-05-23/","path":"2026/04/22/OneDayOneNote/2026-05-23/","title":"2026-05-23  深入理解 C# 中的泛型（Generics）練習題"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2026-05-23  深入理解 C# 中的泛型（Generics）練習題 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2026-05-23-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-C-%E4%B8%AD%E7%9A%84%E6%B3%9B%E5%9E%8B%EF%BC%88Generics%EF%BC%89%E7%B7%B4%E7%BF%92%E9%A1%8C"><span class="nav-number">1.</span> <span class="nav-text">2026-05-23  深入理解 C# 中的泛型（Generics）練習題</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%85%AB%E9%9A%8E%E6%AE%B5%EF%BC%9A%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-C-%E4%B8%AD%E7%9A%84%E6%B3%9B%E5%9E%8B%EF%BC%88Generics%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">第八階段：深入理解 C# 中的泛型（Generics）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B7%B4%E7%BF%92"><span class="nav-number">1.2.</span> <span class="nav-text">練習</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%95%8F%E9%A1%8C"><span class="nav-number">1.3.</span> <span class="nav-text">問題</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%85%AB%E9%9A%8E%E6%AE%B5%EF%BC%9A%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-C-%E4%B8%AD%E7%9A%84%E6%B3%9B%E5%9E%8B%EF%BC%88Generics%EF%BC%89-1"><span class="nav-number">1.4.</span> <span class="nav-text">第八階段：深入理解 C# 中的泛型（Generics）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%B3%9B%E5%9E%8B%E9%9B%86%E5%90%88%E9%A1%9E%E5%88%A5"><span class="nav-number">1.5.</span> <span class="nav-text">3. 常見的泛型集合類別</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B7%B4%E7%BF%92-1"><span class="nav-number">1.6.</span> <span class="nav-text">練習</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%95%8F%E9%A1%8C-1"><span class="nav-number">1.7.</span> <span class="nav-text">問題</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%BB%80%E9%BA%BC%E6%98%AF%E6%B3%9B%E5%9E%8B%EF%BC%9F"><span class="nav-number">1.8.</span> <span class="nav-text">1. 什麼是泛型？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%82%BA%E4%BB%80%E9%BA%BC%E6%88%91%E5%80%91%E9%9C%80%E8%A6%81%E6%B3%9B%E5%9E%8B%EF%BC%9F"><span class="nav-number">1.9.</span> <span class="nav-text">2. 為什麼我們需要泛型？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E6%B3%9B%E5%9E%8B%E4%BE%86%E5%89%B5%E5%BB%BA%E9%9D%88%E6%B4%BB%E4%B8%94%E5%8F%AF%E9%87%8D%E7%94%A8%E7%9A%84%E9%A1%9E%E5%88%A5%E5%92%8C%E6%96%B9%E6%B3%95%EF%BC%9F"><span class="nav-number">1.10.</span> <span class="nav-text">3. 如何使用泛型來創建靈活且可重用的類別和方法？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%B3%9B%E5%9E%8B%E9%9B%86%E5%90%88%E9%A1%9E%E5%88%A5"><span class="nav-number">1.11.</span> <span class="nav-text">4. 常見的泛型集合類別</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%A6%E6%88%B0%E7%B7%B4%E7%BF%92"><span class="nav-number">1.12.</span> <span class="nav-text">實戰練習</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%95%8F%E9%A1%8C-2"><span class="nav-number">1.13.</span> <span class="nav-text">問題</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">567</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2026/04/22/OneDayOneNote/2026-05-23/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2026-05-23  深入理解 C# 中的泛型（Generics）練習題 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2026-05-23  深入理解 C# 中的泛型（Generics）練習題">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2026-05-23  深入理解 C# 中的泛型（Generics）練習題
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2026-04-22 23:26:29 / 修改時間：23:27:32" itemprop="dateCreated datePublished" datetime="2026-04-22T23:26:29+08:00">2026-04-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2026-05-23  深入理解 C# 中的泛型（Generics）練習題</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2026-05-23-深入理解-C-中的泛型（Generics）練習題"><a href="#2026-05-23-深入理解-C-中的泛型（Generics）練習題" class="headerlink" title="2026-05-23  深入理解 C# 中的泛型（Generics）練習題"></a>2026-05-23  深入理解 C# 中的泛型（Generics）練習題</h2><p>我:<br>接下來繼續 出題,<br> 請一個階段一個階段來教我, 並問問題( 不要答案),  然後確定我是否理解, 之後再接下一個階段, 而且每個階段都要很短, 這樣我才能吸收並消化.<br>請繼續第八階段：深入理解 C# 中的泛型（Generics）<br>內容：<br>什麼是泛型，為什麼我們需要泛型。<br>如何使用泛型來創建靈活且可重用的類別和方法。<br>學習常見的泛型集合類別，如 List<T>、Dictionary&lt;TKey, TValue&gt;。<br>練習：<br>創建一個泛型類來存儲不同類型的數據。<br>使用泛型方法來執行基本的數據操作（如查找、排序等）。</p>
+<p>GPT:</p>
+<h3 id="第八階段：深入理解-C-中的泛型（Generics）"><a href="#第八階段：深入理解-C-中的泛型（Generics）" class="headerlink" title="第八階段：深入理解 C# 中的泛型（Generics）"></a>第八階段：深入理解 C# 中的泛型（Generics）</h3><p><strong>1. 什麼是泛型？</strong></p>
+<p>泛型（Generics）允許我們在定義類別、方法或接口時，使用一個或多個未確定類型的參數。這樣可以在不具體指定數據類型的情況下創建靈活且可重用的代碼。</p>
+<p><strong>2. 為什麼我們需要泛型？</strong></p>
+<ul>
+<li><strong>類型安全</strong>：使用泛型可以在編譯時檢查類型，從而避免在運行時發生類型錯誤。</li>
+<li><strong>代碼重用</strong>：泛型類別和方法可以處理多種數據類型，減少代碼重複。</li>
+<li><strong>性能優化</strong>：泛型可以避免裝箱和拆箱操作（例如在使用集合時），從而提高性能。</li>
+</ul>
+<p><strong>3. 常見的泛型集合類別</strong></p>
+<ul>
+<li>**List<T>**：一種動態數組，可以存儲多個相同類型的對象。</li>
+<li>**Dictionary&lt;TKey, TValue&gt;**：一種鍵-值對集合，用於存儲具有唯一鍵的數據。</li>
+</ul>
+<h3 id="練習"><a href="#練習" class="headerlink" title="練習"></a>練習</h3><ol>
+<li><p><strong>創建一個泛型類來存儲不同類型的數據</strong></p>
+<p>定義一個泛型類 <code>Storage&lt;T&gt;</code>，其中有一個方法 <code>AddItem(T item)</code> 用來添加項目，以及一個方法 <code>GetItems()</code> 返回所有項目。</p>
+</li>
+<li><p><strong>使用泛型方法來執行基本的數據操作</strong></p>
+<p>定義一個泛型方法 <code>FindMax&lt;T&gt;(List&lt;T&gt; items)</code>，返回列表中的最大值。要求這些項目必須是可比較的（需要用到 <code>IComparable</code> 接口）。</p>
+</li>
+</ol>
+<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><ol>
+<li><p><strong>問題 1</strong>：泛型與非泛型類別相比，有哪些主要的優勢？請舉例說明。</p>
+</li>
+<li><p><strong>問題 2</strong>：如何確保泛型類別中的數據類型具有某些特定的功能或屬性？例如，當你想在泛型方法中使用排序功能時。</p>
+</li>
+<li><p><strong>問題 3</strong>：為什麼在創建一個集合類（例如 <code>List&lt;T&gt;</code>）時，使用泛型是更好的選擇？請說明原因。</p>
+</li>
+</ol>
+<p>GPT:<br>了解了！讓我們以類似的方式進行第八階段：深入理解 C# 中的泛型（Generics）。</p>
+<h3 id="第八階段：深入理解-C-中的泛型（Generics）-1"><a href="#第八階段：深入理解-C-中的泛型（Generics）-1" class="headerlink" title="第八階段：深入理解 C# 中的泛型（Generics）"></a>第八階段：深入理解 C# 中的泛型（Generics）</h3><p><strong>1. 什麼是泛型？</strong></p>
+<p>泛型允許我們在類別、方法或接口的定義中使用未知的類型，這樣可以創建更靈活和可重用的代碼。泛型提供了類型安全的特性，使得我們能夠在編譯時檢查類型，從而減少運行時錯誤。</p>
+<p><strong>2. 為什麼我們需要泛型？</strong></p>
+<ul>
+<li><strong>類型安全</strong>：泛型在編譯時檢查類型，避免了不必要的類型轉換錯誤。</li>
+<li><strong>代碼重用</strong>：同一泛型類別或方法可以處理多種數據類型，減少重複代碼。</li>
+<li><strong>性能優化</strong>：使用泛型可以避免裝箱和拆箱操作，從而提高性能。</li>
+</ul>
+<h3 id="3-常見的泛型集合類別"><a href="#3-常見的泛型集合類別" class="headerlink" title="3. 常見的泛型集合類別"></a>3. 常見的泛型集合類別</h3><ul>
+<li>**List<T>**：一種動態數組，可以存儲多個相同類型的對象。</li>
+<li>**Dictionary&lt;TKey, TValue&gt;**：一種鍵-值對集合，用於存儲具有唯一鍵的數據。</li>
+</ul>
+<h3 id="練習-1"><a href="#練習-1" class="headerlink" title="練習"></a>練習</h3><ol>
+<li><p><strong>創建一個泛型類來存儲不同類型的數據</strong></p>
+<p>定義一個泛型類 <code>Storage&lt;T&gt;</code>，並在裡面添加一個方法 <code>AddItem(T item)</code> 用來添加項目，以及一個方法 <code>GetItems()</code> 返回所有項目。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Storage</span>&lt;<span class="title">T</span>&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> List&lt;T&gt; items = <span class="keyword">new</span> List&lt;T&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">AddItem</span>(<span class="params">T item</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        items.Add(item);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;T&gt; <span class="title">GetItems</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> items;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>使用泛型方法來執行基本的數據操作</strong></p>
+<p>定義一個泛型方法 <code>FindMax&lt;T&gt;(List&lt;T&gt; items)</code>，返回列表中的最大值。這要求這些項目必須實作 <code>IComparable</code> 接口。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> T <span class="title">FindMax</span>&lt;<span class="title">T</span>&gt;(<span class="params">List&lt;T&gt; items</span>) <span class="keyword">where</span> T : IComparable</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (items == <span class="literal">null</span> || items.Count == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> ArgumentException(<span class="string">&quot;The list cannot be null or empty.&quot;</span>);</span><br><span class="line"></span><br><span class="line">    T max = items[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">foreach</span> (T item <span class="keyword">in</span> items)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (item.CompareTo(max) &gt; <span class="number">0</span>)</span><br><span class="line">            max = item;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="問題-1"><a href="#問題-1" class="headerlink" title="問題"></a>問題</h3><ol>
+<li><p><strong>問題 1</strong>：你如何理解泛型在 C# 中的主要優勢？請舉例說明。</p>
+</li>
+<li><p><strong>問題 2</strong>：在何種情況下，使用泛型方法會比使用普通方法更好？</p>
+</li>
+<li><p><strong>問題 3</strong>：為什麼使用泛型會提高性能，特別是在集合操作中？</p>
+</li>
+</ol>
+<p>完成這些問題後，請分享你的回答，然後我們可以討論你的理解，並繼續進行下一個階段的內容！</p>
+<p>GPT:<br>好的！讓我們開始 <strong>第八階段：深入理解 C# 中的泛型（Generics）</strong>。在這一階段，我們將會學習以下內容：</p>
+<h3 id="1-什麼是泛型？"><a href="#1-什麼是泛型？" class="headerlink" title="1. 什麼是泛型？"></a>1. 什麼是泛型？</h3><p><strong>泛型</strong> 是一種能夠讓類別、結構和方法在不指定具體數據類型的情況下，使用類型參數進行定義的功能。這使得我們可以編寫靈活且可重用的代碼。</p>
+<h3 id="2-為什麼我們需要泛型？"><a href="#2-為什麼我們需要泛型？" class="headerlink" title="2. 為什麼我們需要泛型？"></a>2. 為什麼我們需要泛型？</h3><p>泛型提供了以下優勢：</p>
+<ul>
+<li><strong>類型安全</strong>：在編譯時期就能檢查類型，避免運行時錯誤。</li>
+<li><strong>代碼重用</strong>：可以使用相同的代碼處理不同數據類型。</li>
+<li><strong>性能優化</strong>：泛型避免了裝箱和拆箱（boxing and unboxing），提高性能。</li>
+</ul>
+<h3 id="3-如何使用泛型來創建靈活且可重用的類別和方法？"><a href="#3-如何使用泛型來創建靈活且可重用的類別和方法？" class="headerlink" title="3. 如何使用泛型來創建靈活且可重用的類別和方法？"></a>3. 如何使用泛型來創建靈活且可重用的類別和方法？</h3><p>以下是如何創建泛型類別和方法的範例：</p>
+<p><strong>泛型類別範例</strong>：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Box</span>&lt;<span class="title">T</span>&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> T content;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Pack</span>(<span class="params">T item</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        content = item;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">Unpack</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> content;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>泛型方法範例</strong>：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Utility</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> T <span class="title">GetMax</span>&lt;<span class="title">T</span>&gt;(<span class="params">T a, T b</span>) <span class="keyword">where</span> T : IComparable</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> (a.CompareTo(b) &gt; <span class="number">0</span>) ? a : b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-常見的泛型集合類別"><a href="#4-常見的泛型集合類別" class="headerlink" title="4. 常見的泛型集合類別"></a>4. 常見的泛型集合類別</h3><ul>
+<li>**List<T>**：可變長度的集合，可以存儲同一類型的對象。</li>
+<li>**Dictionary&lt;TKey, TValue&gt;**：存儲鍵值對的集合，快速查找數據。</li>
+</ul>
+<hr>
+<h3 id="實戰練習"><a href="#實戰練習" class="headerlink" title="實戰練習"></a>實戰練習</h3><p><strong>練習 1：創建一個泛型類</strong></p>
+<ol>
+<li>創建一個泛型類 <code>Container&lt;T&gt;</code>，該類包含一個屬性 <code>Item</code> 用來存儲一個項目，以及 <code>SetItem</code> 和 <code>GetItem</code> 方法來設置和獲取這個項目。</li>
+</ol>
+<p><strong>練習 2：使用泛型方法</strong><br>2. 創建一個靜態方法 <code>FindMax&lt;T&gt;(List&lt;T&gt; items)</code>，用來返回列表中最大的元素，要求 T 必須實現 <code>IComparable</code> 接口。</p>
+<p><strong>練習 3：使用泛型集合</strong><br>3. 使用 <code>List&lt;T&gt;</code> 創建一個包含不同數字的集合，並使用 LINQ 查找最大值。</p>
+<hr>
+<h3 id="問題-2"><a href="#問題-2" class="headerlink" title="問題"></a>問題</h3><ol>
+<li><strong>問題：</strong> 泛型如何增強代碼的類型安全性？</li>
+<li><strong>問題：</strong> 使用泛型時，<code>where</code> 關鍵字的作用是什麼？</li>
+</ol>
+<p>完成這些練習後，請分享你的解答和問題！如果有需要進一步探討的地方，隨時告訴我！</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/C/" rel="tag"># C#</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2026/04/22/OneDayOneNote/2026-05-22/" rel="prev" title="2026-05-22 C#接口與抽象類練習題解答">
+                  <i class="fa fa-angle-left"></i> 2026-05-22 C#接口與抽象類練習題解答
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2026/04/22/OneDayOneNote/2026-05-24/" rel="next" title="2026-05-24  逐行解釋 C# List<T>">
+                  2026-05-24  逐行解釋 C# List<T> <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/apple.lily/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

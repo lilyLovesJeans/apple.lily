@@ -1,0 +1,241 @@
+<hr>
+<h2 id="title-2026-05-10-C-實戰練習固控制流語句的知識date-2026-04-21-21-27-24categories-OneDayOneNotetags-C-description-2026-05-10-C-實戰練習固控制流語句的知識"><a href="#title-2026-05-10-C-實戰練習固控制流語句的知識date-2026-04-21-21-27-24categories-OneDayOneNotetags-C-description-2026-05-10-C-實戰練習固控制流語句的知識" class="headerlink" title="title: 2026-05-10 C# 實戰練習固控制流語句的知識date: 2026-04-21 21:27:24categories: OneDayOneNotetags:  [C#]description:   2026-05-10 C# 實戰練習固控制流語句的知識"></a>title: 2026-05-10 C# 實戰練習固控制流語句的知識<br>date: 2026-04-21 21:27:24<br>categories: OneDayOneNote<br>tags:  [C#]<br>description:   2026-05-10 C# 實戰練習固控制流語句的知識</h2><h2 id="2026-05-10-C-實戰練習固控制流語句的知識"><a href="#2026-05-10-C-實戰練習固控制流語句的知識" class="headerlink" title="2026-05-10 C# 實戰練習固控制流語句的知識"></a>2026-05-10 C# 實戰練習固控制流語句的知識</h2><p>我:<br>實戰練習<br>讓我們來做一些練習，幫助你鞏固控制流語句的知識：</p>
+<p>練習 1：使用 if-else 語句</p>
+<p>定義一個變數 score，值為 75。<br>使用 if-else 判斷 score 是否大於等於 60，<br>如果是，輸出「及格」，否則輸出「不及格」。</p>
+<p> int score &#x3D; 75;<br> if (score &gt;&#x3D;60)<br> {<br>     Console.WriteLine($”分數:{score} 及格”);<br> }<br> else<br> {<br>     Console.WriteLine($”不及格”);<br> }</p>
+<p>練習 2：使用 switch 語句</p>
+<p>定義一個變數 dayOfWeek，值為 “Friday”。<br>使用 switch 判斷星期幾，如果是 “Monday”，輸出「星期一」，如果是 “Friday”，輸出「星期五」，其他情況輸出「未知的星期」。</p>
+<p>  string dayOfWeek &#x3D; “Friday”;<br>  switch (dayOfWeek)<br>  {<br>      case “Monday”:<br>          Console.WriteLine(“星期一”);<br>          break;<br>      case “Friday”:<br>          Console.WriteLine(“星期五”);<br>          break;<br>      default:<br>          Console.WriteLine(“未知的星期”);<br>          break;<br>  }</p>
+<p>練習 3：使用 for 迴圈</p>
+<p>使用 for 迴圈從 1 到 10，輸出所有的數字。</p>
+<pre><code>    for(int i= 1; i&lt;=10; i++)
+    {
+        Console.WriteLine($&quot;i = {i}&quot;);
+    }
+</code></pre>
+<p>練習 4：使用 while 迴圈</p>
+<p>定義一個變數 counter，值為 1。<br>使用 while 迴圈，當 counter 小於等於 5 時輸出 counter，每次輸出後增加 1。</p>
+<p> int counter &#x3D; 1;<br> while (counter &lt;&#x3D;5)<br> {<br>     Console.WriteLine($”counter: {counter}”);<br>     counter++;<br> }</p>
+<p>問題</p>
+<pre><code>    問題： if-else 語句和 switch 語句有什麼區別？什麼時候應該用 switch？
+    回答:
+     if-else 語句和 switch 的區別: if-else 適用在單一判斷, switch 可以多值判斷
+    例如:
+
+    //if-else
+    bool loginOk = false;
+    if (loginOk)
+    {
+       Console.WriteLine(&quot;登入成功!&quot;);
+    }
+    else
+    {
+        Console.WriteLine(&quot;登入失敗!&quot;);
+
+    }
+    //switch
+    string messageColor = &quot;green&quot;;
+
+    switch(messageColor)
+    {
+        case &quot;blue&quot;:
+            Console.WriteLine(&quot;藍色...一般訊息&quot;);
+            break;
+        case &quot;green&quot;:
+            Console.WriteLine(&quot;綠色....通過!&quot;);
+            break;
+        case &quot;red&quot;:
+            Console.WriteLine(&quot;紅色....失敗!!!&quot;);
+            break;
+        case &quot;orange&quot;:
+            Console.WriteLine(&quot;橘色....警告!!!&quot;);
+            break;
+        default:
+            Console.WriteLine(&quot;未知的訊息!!!!&quot;);
+            break;
+    }
+    //綠色....通過!
+
+
+    問題： while 和 do -while 迴圈的主要區別是什麼？
+    回答:
+    while是 當條件成立時, 開始跑迴圈
+    do -while 無論條件是否成立, 都會跑一次迴圈
+    例如:
+//while
+    int counter_1 = 1;
+    while (counter_1 &lt;= 3)
+    {
+        Console.WriteLine($&quot;counter_1: {counter_1}&quot;);
+        counter_1++;
+    }
+    //counter_1: 1
+    //counter_1: 2
+    //counter_1: 3
+
+
+//do -while
+    int counter_2 = 1;
+    do
+    {
+        Console.WriteLine($&quot;counter_2: {counter_2}&quot;);
+        counter_2++;
+    }while (counter_2 &lt;= 3);
+    //counter_2: 1
+    //counter_2: 2
+    //counter_2: 3
+</code></pre>
+<p>GPT:<br>你的回答和代碼都非常好！你成功完成了對控制流語句的練習，也正確回答了相關的問題，展示了對各種控制流語句的理解。以下是一些補充和改進，使你的答案更加清晰和準確。</p>
+<h3 id="改進和補充"><a href="#改進和補充" class="headerlink" title="改進和補充"></a>改進和補充</h3><ol>
+<li><p><strong>語法與敘述調整</strong></p>
+<ul>
+<li>在 <code>if-else</code> 和 <code>switch</code> 的回答中，可以更詳細地說明它們的適用場景，以便更好地理解什麼情況下應該選擇使用哪種語句。</li>
+<li>在 <code>while</code> 和 <code>do-while</code> 的範例中，可以補充它們的運行順序差異，以便強調兩者的不同。</li>
+</ul>
+</li>
+</ol>
+<h3 id="修正後的答案"><a href="#修正後的答案" class="headerlink" title="修正後的答案"></a>修正後的答案</h3><h4 id="練習部分"><a href="#練習部分" class="headerlink" title="練習部分"></a>練習部分</h4><p>你的代碼是完全正確的，這裡是完整的代碼示例：</p>
+<pre><code class="csharp">// 練習 1：使用 if-else 語句
+int score = 75;
+if (score &gt;= 60)
+{
+    Console.WriteLine($&quot;分數: {score} 及格&quot;);
+}
+else
+{
+    Console.WriteLine(&quot;不及格&quot;);
+}
+// 輸出: 分數: 75 及格
+
+// 練習 2：使用 switch 語句
+string dayOfWeek = &quot;Friday&quot;;
+switch (dayOfWeek)
+{
+    case &quot;Monday&quot;:
+        Console.WriteLine(&quot;星期一&quot;);
+        break;
+    case &quot;Friday&quot;:
+        Console.WriteLine(&quot;星期五&quot;);
+        break;
+    default:
+        Console.WriteLine(&quot;未知的星期&quot;);
+        break;
+}
+// 輸出: 星期五
+
+// 練習 3：使用 for 迴圈
+for (int i = 1; i &lt;= 10; i++)
+{
+    Console.WriteLine($&quot;i = {i}&quot;);
+}
+// 輸出: i = 1, i = 2, ... , i = 10
+
+// 練習 4：使用 while 迴圈
+int counter = 1;
+while (counter &lt;= 5)
+{
+    Console.WriteLine($&quot;counter: {counter}&quot;);
+    counter++;
+}
+// 輸出: counter: 1, counter: 2, ..., counter: 5
+</code></pre>
+<h4 id="問題回答"><a href="#問題回答" class="headerlink" title="問題回答"></a>問題回答</h4><p><strong>問題 1：<code>if-else</code> 語句和 <code>switch</code> 語句有什麼區別？什麼時候應該用 <code>switch</code>？</strong></p>
+<p><strong>回答：</strong></p>
+<ul>
+<li><p><strong><code>if-else</code> 語句</strong> 適用於根據不同的條件進行判斷，通常適合於處理單一或複雜的邏輯表達式。例如，如果條件是布林值（<code>true</code> 或 <code>false</code>），或者條件是由多個比較和邏輯組合而成，<code>if-else</code> 更為合適。</p>
+<p><strong>範例：</strong></p>
+<pre><code class="csharp">bool loginOk = false;
+if (loginOk)
+{
+    Console.WriteLine(&quot;登入成功!&quot;);
+}
+else
+{
+    Console.WriteLine(&quot;登入失敗!&quot;);
+}
+</code></pre>
+</li>
+<li><p><strong><code>switch</code> 語句</strong> 適用於多值選擇的情況，通常是當需要對一個變數進行多個可能值的判斷時使用，例如枚舉類型或一組特定的字串常量。這種語句在處理多個可能的選擇時比 <code>if-else</code> 更直觀和清晰。</p>
+<p><strong>範例：</strong></p>
+<pre><code class="csharp">string messageColor = &quot;green&quot;;
+
+switch (messageColor)
+{
+    case &quot;blue&quot;:
+        Console.WriteLine(&quot;藍色...一般訊息&quot;);
+        break;
+    case &quot;green&quot;:
+        Console.WriteLine(&quot;綠色....通過!&quot;);
+        break;
+    case &quot;red&quot;:
+        Console.WriteLine(&quot;紅色....失敗!!!&quot;);
+        break;
+    case &quot;orange&quot;:
+        Console.WriteLine(&quot;橘色....警告!!!&quot;);
+        break;
+    default:
+        Console.WriteLine(&quot;未知的訊息!!!!&quot;);
+        break;
+}
+</code></pre>
+<ul>
+<li>輸出：綠色….通過!</li>
+</ul>
+</li>
+</ul>
+<p><strong>總結：</strong></p>
+<ul>
+<li>當條件較複雜或涉及多個布林運算時，使用 <code>if-else</code>。</li>
+<li>當需要針對一個值的多種可能性進行選擇時，使用 <code>switch</code> 更合適。</li>
+</ul>
+<p><strong>問題 2：<code>while</code> 和 <code>do-while</code> 迴圈的主要區別是什麼？</strong></p>
+<p><strong>回答：</strong></p>
+<ul>
+<li><p><strong><code>while</code> 迴圈</strong>：在執行迴圈內的代碼之前會先檢查條件是否為 <code>true</code>。只有當條件為 <code>true</code> 時，才會進行迴圈。如果條件一開始就是 <code>false</code>，那麼迴圈一次也不會執行。</p>
+<p><strong>範例：</strong></p>
+<pre><code class="csharp">int counter_1 = 1;
+while (counter_1 &lt;= 3)
+{
+    Console.WriteLine($&quot;counter_1: {counter_1}&quot;);
+    counter_1++;
+}
+</code></pre>
+<ul>
+<li><p>輸出：</p>
+<pre><code>counter_1: 1
+counter_1: 2
+counter_1: 3
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong><code>do-while</code> 迴圈</strong>：首先執行迴圈內的代碼，然後再檢查條件是否為 <code>true</code>。無論條件最初是否成立，<code>do-while</code> 迴圈至少會執行一次。</p>
+<p><strong>範例：</strong></p>
+<pre><code class="csharp">int counter_2 = 1;
+do
+{
+    Console.WriteLine($&quot;counter_2: {counter_2}&quot;);
+    counter_2++;
+} while (counter_2 &lt;= 3);
+</code></pre>
+<ul>
+<li><p>輸出：</p>
+<pre><code>counter_2: 1
+counter_2: 2
+counter_2: 3
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>總結：</strong></p>
+<ul>
+<li><strong><code>while</code></strong> 迴圈在條件成立時進行，可能一次都不執行。</li>
+<li><strong><code>do-while</code></strong> 迴圈至少執行一次，然後根據條件繼續決定是否繼續。</li>
+</ul>
+<h3 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h3><ul>
+<li>你成功完成了對 <code>if-else</code>、<code>switch</code>、<code>for</code>、<code>while</code> 和 <code>do-while</code> 的練習，非常棒！</li>
+<li><code>if-else</code> 和 <code>switch</code> 都是條件判斷語句，但 <code>switch</code> 更適合用於多個值選擇的情況。</li>
+<li><code>while</code> 和 <code>do-while</code> 都是迴圈語句，但 <code>do-while</code> 至少執行一次，<code>while</code> 則可能一次也不執行。</li>
+</ul>
+<p>接下來，如果你準備好了，我們可以進入<strong>第五階段</strong>，學習 <strong>方法和函數的定義與使用</strong>，這是讓你的代碼更為模組化和可重用的重要部分。如果有任何不清楚的地方，隨時告訴我！</p>

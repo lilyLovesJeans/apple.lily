@@ -1,0 +1,135 @@
+<hr>
+<h2 id="title-2026-05-11-學習C-方法和函數的定義與使用date-2026-04-21-21-31-54categories-OneDayOneNotetags-C-description-2026-05-11-學習C-方法和函數的定義與使用"><a href="#title-2026-05-11-學習C-方法和函數的定義與使用date-2026-04-21-21-31-54categories-OneDayOneNotetags-C-description-2026-05-11-學習C-方法和函數的定義與使用" class="headerlink" title="title: 2026-05-11 學習C# 方法和函數的定義與使用date: 2026-04-21 21:31:54categories: OneDayOneNotetags:  [C#]description:    2026-05-11 學習C# 方法和函數的定義與使用"></a>title: 2026-05-11 學習C# 方法和函數的定義與使用<br>date: 2026-04-21 21:31:54<br>categories: OneDayOneNote<br>tags:  [C#]<br>description:    2026-05-11 學習C# 方法和函數的定義與使用</h2><h2 id="2026-05-11-學習C-方法和函數的定義與使用"><a href="#2026-05-11-學習C-方法和函數的定義與使用" class="headerlink" title="2026-05-11 學習C# 方法和函數的定義與使用"></a>2026-05-11 學習C# 方法和函數的定義與使用</h2><p>我：<br>請繼續  第五階段，學習 方法和函數的定義與使用</p>
+<p>GPT:<br>太好了！現在讓我們進入 <strong>第五階段：方法和函數的定義與使用</strong>。方法（或稱為函數）是讓代碼更有組織性和可重用的重要工具，通過將重複的邏輯封裝在方法中，可以提高程式的可讀性和維護性。</p>
+<h3 id="階段-5：方法和函數的定義與使用"><a href="#階段-5：方法和函數的定義與使用" class="headerlink" title="階段 5：方法和函數的定義與使用"></a>階段 5：方法和函數的定義與使用</h3><p>在這個階段，我們會學習以下內容：</p>
+<ol>
+<li><strong>方法的定義與結構</strong></li>
+<li><strong>方法的參數與返回值</strong></li>
+<li><strong>方法的調用</strong></li>
+<li><strong>方法的範例</strong></li>
+</ol>
+<hr>
+<h4 id="1-方法的定義與結構"><a href="#1-方法的定義與結構" class="headerlink" title="1. 方法的定義與結構"></a>1. 方法的定義與結構</h4><p><strong>方法</strong> 是一段可以被重複執行的代碼塊，通常用於執行特定的操作。</p>
+<ul>
+<li><p><strong>方法的結構：</strong></p>
+<pre><code class="csharp">修飾詞 返回值類型 方法名(參數列表)
+{
+    // 方法內部的代碼
+}
+</code></pre>
+<ul>
+<li><strong>修飾詞</strong>：定義方法的訪問級別，例如 <code>public</code>（公開）、<code>private</code>（私有）等。</li>
+<li><strong>返回值類型</strong>：方法返回的數據類型。如果方法不返回任何數據，使用 <code>void</code>。</li>
+<li><strong>方法名</strong>：方法的名稱，通常使用駝峰式命名法。</li>
+<li><strong>參數列表</strong>：用於傳遞給方法的變數，可以有多個參數，如果沒有參數則留空。</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-方法的參數與返回值"><a href="#2-方法的參數與返回值" class="headerlink" title="2. 方法的參數與返回值"></a>2. 方法的參數與返回值</h4><ul>
+<li><p><strong>參數</strong> 用於向方法傳遞數據，方法可以根據這些參數來執行操作。</p>
+</li>
+<li><p><strong>返回值</strong> 是從方法返回的結果。使用 <code>return</code> 關鍵字來返回結果。</p>
+</li>
+<li><p><strong>範例：</strong></p>
+<pre><code class="csharp">public int Add(int a, int b)
+{
+    return a + b;
+}
+</code></pre>
+<p>在這個範例中：</p>
+<ul>
+<li><code>public</code> 是訪問修飾詞，表示這個方法可以在其他類中訪問。</li>
+<li><code>int</code> 是返回值類型，表示這個方法會返回一個整數。</li>
+<li><code>Add</code> 是方法名。</li>
+<li><code>(int a, int b)</code> 是參數列表，表示這個方法需要兩個整數作為參數。</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-方法的調用"><a href="#3-方法的調用" class="headerlink" title="3. 方法的調用"></a>3. 方法的調用</h4><p>當方法定義好之後，我們就可以在程式中通過調用它來使用它。調用方法時需要傳入與參數列表匹配的參數。</p>
+<ul>
+<li><p><strong>範例：</strong></p>
+<pre><code class="csharp">class Program
+{
+    static void Main(string[] args)
+    {
+        int result = Add(3, 5);
+        Console.WriteLine($&quot;結果是: {result}&quot;);
+    }
+
+    public static int Add(int a, int b)
+    {
+        return a + b;
+    }
+}
+</code></pre>
+</li>
+<li><p>在 <code>Main</code> 方法中，我們調用了 <code>Add(3, 5)</code>，並將返回的結果存入變數 <code>result</code>，然後輸出結果。</p>
+</li>
+</ul>
+<h4 id="4-方法的範例"><a href="#4-方法的範例" class="headerlink" title="4. 方法的範例"></a>4. 方法的範例</h4><p>讓我們來看看一些不同類型的方法：</p>
+<ol>
+<li><p><strong>沒有返回值且沒有參數的方法（<code>void</code> 方法）</strong>：</p>
+<pre><code class="csharp">public void Greet()
+{
+    Console.WriteLine(&quot;Hello, welcome!&quot;);
+}
+</code></pre>
+<p>調用範例：</p>
+<pre><code class="csharp">Greet();
+</code></pre>
+</li>
+<li><p><strong>有返回值的方法</strong>：</p>
+<pre><code class="csharp">public double Multiply(double x, double y)
+{
+    return x * y;
+}
+</code></pre>
+<p>調用範例：</p>
+<pre><code class="csharp">double product = Multiply(4.5, 2.0);
+Console.WriteLine($&quot;乘積是: {product}&quot;);
+</code></pre>
+</li>
+<li><p><strong>有參數但沒有返回值的方法</strong>：</p>
+<pre><code class="csharp">public void PrintMessage(string message)
+{
+    Console.WriteLine($&quot;Message: {message}&quot;);
+}
+</code></pre>
+<p>調用範例：</p>
+<pre><code class="csharp">PrintMessage(&quot;這是一個測試訊息&quot;);
+</code></pre>
+</li>
+<li><p><strong>有多個參數的方法</strong>：</p>
+<pre><code class="csharp">public int Subtract(int a, int b)
+{
+    return a - b;
+}
+</code></pre>
+<p>調用範例：</p>
+<pre><code class="csharp">int difference = Subtract(10, 4);
+Console.WriteLine($&quot;差值是: {difference}&quot;);
+</code></pre>
+</li>
+</ol>
+<h3 id="實戰練習"><a href="#實戰練習" class="headerlink" title="實戰練習"></a>實戰練習</h3><p>讓我們做一些小練習，幫助你鞏固對方法的理解：</p>
+<p><strong>練習 1：定義一個簡單的方法</strong></p>
+<ol>
+<li>定義一個方法名為 <code>SayHello</code>，不接受任何參數，並輸出 <code>&quot;Hello, World!&quot;</code>。</li>
+<li>在 <code>Main</code> 方法中調用 <code>SayHello</code>。</li>
+</ol>
+<p><strong>練習 2：計算兩個數的和</strong></p>
+<ol>
+<li>定義一個方法名為 <code>Sum</code>，接受兩個整數參數並返回它們的和。</li>
+<li>在 <code>Main</code> 方法中調用 <code>Sum</code> 方法，並輸出結果。</li>
+</ol>
+<p><strong>練習 3：使用參數的方法</strong></p>
+<ol>
+<li>定義一個方法名為 <code>IsEven</code>，接受一個整數參數，並返回 <code>true</code> 或 <code>false</code> 表示這個數字是否為偶數。</li>
+<li>在 <code>Main</code> 方法中調用 <code>IsEven</code> 方法，並輸出結果。</li>
+</ol>
+<h3 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h3><ol>
+<li><strong>問題：</strong> 為什麼我們需要使用方法來封裝代碼？</li>
+<li><strong>問題：</strong> 方法的返回值類型有什麼作用？<code>void</code> 有什麼特別之處？</li>
+</ol>
+<hr>
+<p>完成這些練習後，如果有任何問題或需要更深入的解釋，請隨時告訴我！我們可以進一步探討這些概念，或者進入下一個階段學習面向對象編程的基本原則。</p>

@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2026-05-22 C#接口與抽象類練習題解答">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2026-05-22 C#接口與抽象類練習題解答">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2026/04/22/OneDayOneNote/2026-05-22/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2026-05-22 C#接口與抽象類練習題解答">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2026-04-22T15:23:20.000Z">
+<meta property="article:modified_time" content="2026-04-22T15:27:19.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="C#">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2026/04/22/OneDayOneNote/2026-05-22/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2026/04/22/OneDayOneNote/2026-05-22/","path":"2026/04/22/OneDayOneNote/2026-05-22/","title":"2026-05-22 C#接口與抽象類練習題解答"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2026-05-22 C#接口與抽象類練習題解答 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2026-05-22-C-%E6%8E%A5%E5%8F%A3%E8%88%87%E6%8A%BD%E8%B1%A1%E9%A1%9E%E7%B7%B4%E7%BF%92%E9%A1%8C%E8%A7%A3%E7%AD%94"><span class="nav-number">1.</span> <span class="nav-text">2026-05-22 C#接口與抽象類練習題解答</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A8%8B%E5%BC%8F%E7%A2%BC%E5%84%AA%E5%8C%96%E5%BB%BA%E8%AD%B0"><span class="nav-number">1.1.</span> <span class="nav-text">程式碼優化建議</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%95%8F%E9%A1%8C%E8%A7%A3%E7%AD%94%E8%A3%9C%E5%85%85"><span class="nav-number">1.2.</span> <span class="nav-text">問題解答補充</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">567</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2026/04/22/OneDayOneNote/2026-05-22/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2026-05-22 C#接口與抽象類練習題解答 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2026-05-22 C#接口與抽象類練習題解答">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2026-05-22 C#接口與抽象類練習題解答
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2026-04-22 23:23:20 / 修改時間：23:27:19" itemprop="dateCreated datePublished" datetime="2026-04-22T23:23:20+08:00">2026-04-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2026-05-22 C#接口與抽象類練習題解答</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2026-05-22-C-接口與抽象類練習題解答"><a href="#2026-05-22-C-接口與抽象類練習題解答" class="headerlink" title="2026-05-22 C#接口與抽象類練習題解答"></a>2026-05-22 C#接口與抽象類練習題解答</h2><p>我:<br>第七階段練習的答案:<br>using System;<br>using System.Collections;<br>using System.ComponentModel.Design;<br>using System.Runtime.CompilerServices;<br>using System.Security.Cryptography.X509Certificates;</p>
+<p>class Program<br>#region 練習 1：定義和實現接口<br>{   &#x2F;&#x2F;練習 1：定義和實現接口<br>    public interface IVehicle<br>    {<br>        public void Start();<br>        public void Stop();<br>    }</p>
+<pre><code>public class Car : IVehicle
+&#123;
+    public void Start()
+    &#123;
+        Console.WriteLine(&quot;Car Starting.....&quot;);
+    &#125;
+
+    public void Stop()
+    &#123;
+        Console.WriteLine(&quot;Car Stopping....&quot;);
+    &#125;
+&#125;
+
+    public class  Bicycle : IVehicle 
+    &#123;
+        public void Start()
+         &#123;
+              Console.WriteLine(&quot;Bike Starting....&quot;);
+         &#125;
+        public void Stop()
+        &#123;
+            Console.WriteLine(&quot;Bike Stopping...&quot;);
+        &#125;
+    &#125;
+#endregion
+
+#region 練習 2：使用抽象類
+public abstract class Appliance()
+&#123;
+    public abstract void TurnOn();
+    public void TurnOff()
+    &#123;
+        Console.WriteLine(&quot;Turning off appliance...&quot;);
+    &#125;
+&#125;
+
+public class WashingMachine : Appliance
+&#123;
+    public override void TurnOn()
+    &#123;
+        Console.WriteLine(&quot;Turning on WashingMachine&quot;);
+    &#125;
+&#125;
+#endregion
+
+#region 練習 3：結合接口和抽象類
+public interface IPlayable
+&#123;
+    public void play(); 
+&#125;
+
+public abstract class Instrument
+&#123;
+    public abstract void Tune();
+&#125;
+
+public class Guiter : Instrument, IPlayable
+&#123;
+    public override void Tune() &#123;
+        Console.WriteLine(&quot;Tuning Guiter&quot;);
+    &#125;
+    public void play()
+    &#123;
+        Console.WriteLine(&quot;play Guiter&quot;);
+    &#125;
+
+&#125;
+#endregion
+static void Main(string[] args)
+&#123;
+    #region  練習 1：定義和實現接口
+    //練習 1：定義和實現接口
+    Car myCar = new Car();
+    myCar.Start();
+    myCar.Stop();
+
+    Bicycle myBicycle = new Bicycle();  
+    myBicycle.Start();  
+    myBicycle.Stop();
+    #endregion
+
+    #region 練習 2：使用抽象類
+    WashingMachine myWashingMachine = new WashingMachine();
+    &#123;
+        myWashingMachine.TurnOn();
+        myWashingMachine.TurnOff();
+    &#125;
+    #endregion
+
+    #region 練習 3：結合接口和抽象類
+
+    Guiter myGuiter = new Guiter();
+    myGuiter.Tune();
+    myGuiter.play();
+
+    #endregion
+&#125;
+</code></pre>
+<p>}<br>問題</p>
+<ol>
+<li><p><strong>問題 1</strong>：接口與抽象類的主要區別是什麼？什麼時候應該使用接口，什麼時候應該使用抽象類？<br>答案:</p>
+<ol>
+<li>接口(interface) 就是當多個類別需要實作同一個方法, 可將它提出來作一個接口.<br> 比如 人事薪資系統: 員工的類別有 正式員工、約聘員工、工讀生、實習生, 每類的員工都需要計自薪資,<br> 於是將計算薪資這個方法提出來一個接口 ICalculate , 然後有一個實作方法叫 getSalary(),<br> 每一類員工(PermanentEmployee 、ParttimeEmployee…)都須實作getSalary() 這個方法.<br> 但可能只有正式員工或是工讀生、實習生可加勞保、健保, 所以可以多設計一個接口勞保 及 健保的接口,<br> (ILaborInsurance、IHealthInsurance) 以便加退保.<br>2.抽象(abstract) : 就是一種不完整的類, 它會有抽象方法, 由子類去實現,<br> 比如: 接上 人事薪資系統, 會有一些共同的員工資料, 比如 姓名、姓別、國家別、生日…等,這些為共通屬性,<br> 但會依照不同員工類有不同的薪資計算方法,<br> 就可以設計一個抽象方法 getSalary()由字類去實作.</li>
+</ol>
+</li>
+<li><p><strong>問題 2</strong>：為什麼 C# 中允許一個類實現多個接口，但只能繼承一個抽象類<br>答案:<br>如果 C# 允許多個基類，那麼類之間的繼承層級會變得非常複雜。例如，如果兩個基類中都有同名的方法或屬性，<br>則衝突會使得子類無法確定應該使用哪個基類的方法或屬性，這稱為菱形繼承問題。<br>為了避免這些複雜性，C# 僅允許一個抽象基類，從而維持清晰的繼承層級，讓子類僅繼承單一父類的成員和實現。</p>
+</li>
+<li><p><strong>問題 3</strong>：如果一個類需要具有多種不同的行為（例如會飛和會游泳），應該如何設計類的結構以保持靈活性並降低耦合？<br>答案:<br>可以設計二個Interface,一個 IFly , 裏面有一個 canFly() 的方法,<br>一個ISwimming , 裏面有一個 canSwim() 的方法.<br>然後由這個類繼承實作這二個方法.</p>
+</li>
+</ol>
+<p>GPT:<br>你的程式碼結構和練習解答寫得非常清晰！也對接口與抽象類的應用解釋得很完整。以下是一些小修改建議和補充回答，以便加深理解：</p>
+<hr>
+<h3 id="程式碼優化建議"><a href="#程式碼優化建議" class="headerlink" title="程式碼優化建議"></a>程式碼優化建議</h3><ol>
+<li><p>**抽象類 <code>Appliance</code>**：</p>
+<ul>
+<li>定義抽象類時，不需要在後面加上括號。</li>
+<li>使用 <code>TurnOn</code> 和 <code>TurnOff</code> 表現了家電的基本行為，保持了抽象類別在行為擴展上的優勢。</li>
+</ul>
+</li>
+<li><p><strong>接口的命名</strong>：</p>
+<ul>
+<li><code>Guiter</code> 應該更正為 <code>Guitar</code>。</li>
+<li>方法名通常建議以大寫開頭以符合 C# 命名慣例，例如將 <code>play()</code> 改為 <code>Play()</code>。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="問題解答補充"><a href="#問題解答補充" class="headerlink" title="問題解答補充"></a>問題解答補充</h3><p><strong>問題 1</strong>：接口與抽象類的主要區別是什麼？<br><strong>補充說明</strong>：</p>
+<ul>
+<li>接口主要是為了<strong>定義一組行為契約</strong>，強調功能，通常用於橫向擴展功能。而抽象類則是為了提供基礎結構，並允許繼承。選擇使用抽象類還是接口，關鍵在於看是否有共享的具體實現需求。</li>
+</ul>
+<p><strong>問題 2</strong>：為什麼 C# 中允許一個類實現多個接口，但只能繼承一個抽象類？<br><strong>補充說明</strong>：</p>
+<ul>
+<li>接口不包含具體實現，無法直接造成資源衝突，因此 C# 允許多接口實現。</li>
+<li>抽象類可能含有已實現的方法與屬性，允許多重繼承會導致資源衝突，增加維護難度，因此 C# 避免多重繼承的複雜性。</li>
+</ul>
+<p><strong>問題 3</strong>：如果一個類需要具有多種不同的行為，如何保持靈活性並降低耦合？<br><strong>補充說明</strong>：</p>
+<ul>
+<li>設計多個接口讓類別可以選擇性實現不同行為，這是一種組合優於繼承的原則應用。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/C/" rel="tag"># C#</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2026/04/22/OneDayOneNote/2026-05-21/" rel="prev" title="2026-05-21 C# 第八階段～第十六階段的課程內容">
+                  <i class="fa fa-angle-left"></i> 2026-05-21 C# 第八階段～第十六階段的課程內容
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2026/04/22/OneDayOneNote/2026-05-23/" rel="next" title="2026-05-23  深入理解 C# 中的泛型（Generics）練習題">
+                  2026-05-23  深入理解 C# 中的泛型（Generics）練習題 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/apple.lily/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

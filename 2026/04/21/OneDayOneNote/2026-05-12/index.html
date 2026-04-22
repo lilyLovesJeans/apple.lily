@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2026-05-12 C#第一個字母大寫的 Public  與小寫的 public 有什麼不同?">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2026-05-12 C#第一個字母大寫的 Public  與小寫的 public 有什麼不同?">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2026/04/21/OneDayOneNote/2026-05-12/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2026-05-12 C#第一個字母大寫的 Public  與小寫的 public 有什麼不同?">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2026-04-21T14:02:03.000Z">
+<meta property="article:modified_time" content="2026-04-21T14:03:15.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="C#">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2026/04/21/OneDayOneNote/2026-05-12/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2026/04/21/OneDayOneNote/2026-05-12/","path":"2026/04/21/OneDayOneNote/2026-05-12/","title":"2026-05-12 C#第一個字母大寫的 Public  與小寫的 public 有什麼不同?"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2026-05-12 C#第一個字母大寫的 Public  與小寫的 public 有什麼不同? | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2026-05-12-C-%E7%AC%AC%E4%B8%80%E5%80%8B%E5%AD%97%E6%AF%8D%E5%A4%A7%E5%AF%AB%E7%9A%84-Public-%E8%88%87%E5%B0%8F%E5%AF%AB%E7%9A%84-public-%E6%9C%89%E4%BB%80%E9%BA%BC%E4%B8%8D%E5%90%8C"><span class="nav-number">1.</span> <span class="nav-text">2026-05-12 C#第一個字母大寫的 Public  與小寫的 public 有什麼不同?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#public-%E7%9A%84%E6%84%8F%E7%BE%A9"><span class="nav-number">1.1.</span> <span class="nav-text">public 的意義</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%A7%E5%B0%8F%E5%AF%AB%E6%95%8F%E6%84%9F%E6%80%A7"><span class="nav-number">1.2.</span> <span class="nav-text">大小寫敏感性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E8%A8%AA%E5%95%8F%E4%BF%AE%E9%A3%BE%E8%A9%9E"><span class="nav-number">1.3.</span> <span class="nav-text">其他訪問修飾詞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B8%BD%E7%B5%90"><span class="nav-number">1.4.</span> <span class="nav-text">總結</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">567</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2026/04/21/OneDayOneNote/2026-05-12/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2026-05-12 C#第一個字母大寫的 Public  與小寫的 public 有什麼不同? | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2026-05-12 C#第一個字母大寫的 Public  與小寫的 public 有什麼不同?">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2026-05-12 C#第一個字母大寫的 Public  與小寫的 public 有什麼不同?
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2026-04-21 22:02:03 / 修改時間：22:03:15" itemprop="dateCreated datePublished" datetime="2026-04-21T22:02:03+08:00">2026-04-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2026-05-12 C#第一個字母大寫的 Public  與小寫的 public 有什麼不同?</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2026-05-12-C-第一個字母大寫的-Public-與小寫的-public-有什麼不同"><a href="#2026-05-12-C-第一個字母大寫的-Public-與小寫的-public-有什麼不同" class="headerlink" title="2026-05-12 C#第一個字母大寫的 Public  與小寫的 public 有什麼不同?"></a>2026-05-12 C#第一個字母大寫的 Public  與小寫的 public 有什麼不同?</h2><p>我：<br>第一個字母大寫的 Public  與小寫的 public 有什麼不同?</p>
+<p>GPT:<br>在 C# 中，**<code>public</code>** 和 <strong><code>Public</code></strong> 是兩個不同的標識，其中 <strong><code>public</code></strong> 是 C# 中的<strong>關鍵字</strong>，而 <strong><code>Public</code></strong> 則沒有任何特殊含義，是大小寫不同而已。在 C# 中，<strong>大小寫是敏感的</strong>，因此 <code>public</code> 和 <code>Public</code> 會被視為完全不同的內容。以下是詳細的說明：</p>
+<h3 id="public-的意義"><a href="#public-的意義" class="headerlink" title="public 的意義"></a><code>public</code> 的意義</h3><ul>
+<li><strong><code>public</code></strong> 是 C# 中的一個<strong>訪問修飾詞</strong>，用於表示類別、方法、屬性或成員的<strong>可見性</strong>。</li>
+<li>使用 <code>public</code> 表示某個成員是<strong>公開的</strong>，可以從程式中的任何地方訪問它，包括其他類和程式庫中的代碼。</li>
+</ul>
+<p><strong>範例：</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Person</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> Name;  <span class="comment">// `Name` 是公開的，可以從外部訪問</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">SayHello</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">$&quot;Hello, my name is <span class="subst">&#123;Name&#125;</span>&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在這個例子中，<code>public</code> 用於類別 <code>Person</code> 的屬性 <code>Name</code> 和方法 <code>SayHello</code>，這意味著這些成員可以被其他類別直接訪問和使用。</p>
+<h3 id="大小寫敏感性"><a href="#大小寫敏感性" class="headerlink" title="大小寫敏感性"></a>大小寫敏感性</h3><ul>
+<li>在 C# 中，關鍵字是<strong>大小寫敏感的</strong>，這意味著 <code>public</code> 和 <code>Public</code> 是不同的。</li>
+<li><strong><code>public</code></strong> 是一個有效的關鍵字，而 <strong><code>Public</code></strong> 不是，因此如果你嘗試在代碼中使用 <code>Public</code> 作為訪問修飾詞，編譯器會報錯。</li>
+</ul>
+<p><strong>範例（錯誤）：</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Public <span class="keyword">class</span> <span class="title">Car</span>  <span class="comment">// 錯誤：`Public` 不是 C# 中的有效關鍵字</span></span><br><span class="line">&#123;</span><br><span class="line">    Public <span class="built_in">string</span> Brand;  <span class="comment">// 錯誤：`Public` 不正確，應該是 `public`</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在這個例子中，<code>Public</code> 會導致編譯錯誤，因為 C# 不認識 <code>Public</code> 作為有效的訪問修飾詞。</p>
+<h3 id="其他訪問修飾詞"><a href="#其他訪問修飾詞" class="headerlink" title="其他訪問修飾詞"></a>其他訪問修飾詞</h3><p>除了 <code>public</code> 之外，C# 中還有其他幾種訪問修飾詞，用於控制類別、屬性和方法的可見性：</p>
+<ul>
+<li>**<code>private</code>**：僅能在定義它的類中訪問。這是最嚴格的訪問控制。</li>
+<li>**<code>protected</code>**：可以在定義它的類和子類中訪問。</li>
+<li>**<code>internal</code>**：僅能在相同程式集中訪問。</li>
+<li>**<code>protected internal</code>**：可以在相同程式集中或任何子類中訪問。</li>
+<li>**<code>private protected</code>**：只能在包含它的類或在相同程式集中的子類中訪問。</li>
+</ul>
+<h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h3><ul>
+<li><strong><code>public</code></strong> 是 C# 中的訪問修飾詞，表示可以從程式中的任何地方訪問該成員。</li>
+<li><strong><code>Public</code></strong> 不是有效的 C# 關鍵字，會導致編譯錯誤。</li>
+<li>C# 是<strong>大小寫敏感</strong>的語言，必須正確使用大小寫，否則會引發錯誤。</li>
+</ul>
+<p>希望這能幫助你理解 <code>public</code> 和 <code>Public</code> 之間的區別！如果你還有其他問題，隨時告訴我！</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/C/" rel="tag"># C#</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2026/04/21/OneDayOneNote/2026-05-11/" rel="prev" title="2026-05-11 學習C# 方法和函數的定義與使用">
+                  <i class="fa fa-angle-left"></i> 2026-05-11 學習C# 方法和函數的定義與使用
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2026/04/21/OneDayOneNote/2026-05-13/" rel="next" title="2026-05-13 C# 方法和函數的定義與使用">
+                  2026-05-13 C# 方法和函數的定義與使用 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/apple.lily/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,143 @@
+<hr>
+<h2 id="title-2026-05-22-C-接口與抽象類練習題解答date-2026-04-22-23-23-20categories-OneDayOneNotetags-C-description-2026-05-22-C-接口與抽象類練習題解答"><a href="#title-2026-05-22-C-接口與抽象類練習題解答date-2026-04-22-23-23-20categories-OneDayOneNotetags-C-description-2026-05-22-C-接口與抽象類練習題解答" class="headerlink" title="title: 2026-05-22 C#接口與抽象類練習題解答date: 2026-04-22 23:23:20categories: OneDayOneNotetags:  [C#]description: 2026-05-22 C#接口與抽象類練習題解答"></a>title: 2026-05-22 C#接口與抽象類練習題解答<br>date: 2026-04-22 23:23:20<br>categories: OneDayOneNote<br>tags:  [C#]<br>description: 2026-05-22 C#接口與抽象類練習題解答</h2><h2 id="2026-05-22-C-接口與抽象類練習題解答"><a href="#2026-05-22-C-接口與抽象類練習題解答" class="headerlink" title="2026-05-22 C#接口與抽象類練習題解答"></a>2026-05-22 C#接口與抽象類練習題解答</h2><p>我:<br>第七階段練習的答案:<br>using System;<br>using System.Collections;<br>using System.ComponentModel.Design;<br>using System.Runtime.CompilerServices;<br>using System.Security.Cryptography.X509Certificates;</p>
+<p>class Program<br>#region 練習 1：定義和實現接口<br>{   &#x2F;&#x2F;練習 1：定義和實現接口<br>    public interface IVehicle<br>    {<br>        public void Start();<br>        public void Stop();<br>    }</p>
+<pre><code>public class Car : IVehicle
+{
+    public void Start()
+    {
+        Console.WriteLine(&quot;Car Starting.....&quot;);
+    }
+
+    public void Stop()
+    {
+        Console.WriteLine(&quot;Car Stopping....&quot;);
+    }
+}
+
+    public class  Bicycle : IVehicle 
+    {
+        public void Start()
+         {
+              Console.WriteLine(&quot;Bike Starting....&quot;);
+         }
+        public void Stop()
+        {
+            Console.WriteLine(&quot;Bike Stopping...&quot;);
+        }
+    }
+#endregion
+
+#region 練習 2：使用抽象類
+public abstract class Appliance()
+{
+    public abstract void TurnOn();
+    public void TurnOff()
+    {
+        Console.WriteLine(&quot;Turning off appliance...&quot;);
+    }
+}
+
+public class WashingMachine : Appliance
+{
+    public override void TurnOn()
+    {
+        Console.WriteLine(&quot;Turning on WashingMachine&quot;);
+    }
+}
+#endregion
+
+#region 練習 3：結合接口和抽象類
+public interface IPlayable
+{
+    public void play(); 
+}
+
+public abstract class Instrument
+{
+    public abstract void Tune();
+}
+
+public class Guiter : Instrument, IPlayable
+{
+    public override void Tune() {
+        Console.WriteLine(&quot;Tuning Guiter&quot;);
+    }
+    public void play()
+    {
+        Console.WriteLine(&quot;play Guiter&quot;);
+    }
+
+}
+#endregion
+static void Main(string[] args)
+{
+    #region  練習 1：定義和實現接口
+    //練習 1：定義和實現接口
+    Car myCar = new Car();
+    myCar.Start();
+    myCar.Stop();
+
+    Bicycle myBicycle = new Bicycle();  
+    myBicycle.Start();  
+    myBicycle.Stop();
+    #endregion
+
+    #region 練習 2：使用抽象類
+    WashingMachine myWashingMachine = new WashingMachine();
+    {
+        myWashingMachine.TurnOn();
+        myWashingMachine.TurnOff();
+    }
+    #endregion
+
+    #region 練習 3：結合接口和抽象類
+
+    Guiter myGuiter = new Guiter();
+    myGuiter.Tune();
+    myGuiter.play();
+
+    #endregion
+}
+</code></pre>
+<p>}<br>問題</p>
+<ol>
+<li><p><strong>問題 1</strong>：接口與抽象類的主要區別是什麼？什麼時候應該使用接口，什麼時候應該使用抽象類？<br>答案:</p>
+<ol>
+<li>接口(interface) 就是當多個類別需要實作同一個方法, 可將它提出來作一個接口.<br> 比如 人事薪資系統: 員工的類別有 正式員工、約聘員工、工讀生、實習生, 每類的員工都需要計自薪資,<br> 於是將計算薪資這個方法提出來一個接口 ICalculate , 然後有一個實作方法叫 getSalary(),<br> 每一類員工(PermanentEmployee 、ParttimeEmployee…)都須實作getSalary() 這個方法.<br> 但可能只有正式員工或是工讀生、實習生可加勞保、健保, 所以可以多設計一個接口勞保 及 健保的接口,<br> (ILaborInsurance、IHealthInsurance) 以便加退保.<br>2.抽象(abstract) : 就是一種不完整的類, 它會有抽象方法, 由子類去實現,<br> 比如: 接上 人事薪資系統, 會有一些共同的員工資料, 比如 姓名、姓別、國家別、生日…等,這些為共通屬性,<br> 但會依照不同員工類有不同的薪資計算方法,<br> 就可以設計一個抽象方法 getSalary()由字類去實作.</li>
+</ol>
+</li>
+<li><p><strong>問題 2</strong>：為什麼 C# 中允許一個類實現多個接口，但只能繼承一個抽象類<br>答案:<br>如果 C# 允許多個基類，那麼類之間的繼承層級會變得非常複雜。例如，如果兩個基類中都有同名的方法或屬性，<br>則衝突會使得子類無法確定應該使用哪個基類的方法或屬性，這稱為菱形繼承問題。<br>為了避免這些複雜性，C# 僅允許一個抽象基類，從而維持清晰的繼承層級，讓子類僅繼承單一父類的成員和實現。</p>
+</li>
+<li><p><strong>問題 3</strong>：如果一個類需要具有多種不同的行為（例如會飛和會游泳），應該如何設計類的結構以保持靈活性並降低耦合？<br>答案:<br>可以設計二個Interface,一個 IFly , 裏面有一個 canFly() 的方法,<br>一個ISwimming , 裏面有一個 canSwim() 的方法.<br>然後由這個類繼承實作這二個方法.</p>
+</li>
+</ol>
+<p>GPT:<br>你的程式碼結構和練習解答寫得非常清晰！也對接口與抽象類的應用解釋得很完整。以下是一些小修改建議和補充回答，以便加深理解：</p>
+<hr>
+<h3 id="程式碼優化建議"><a href="#程式碼優化建議" class="headerlink" title="程式碼優化建議"></a>程式碼優化建議</h3><ol>
+<li><p>**抽象類 <code>Appliance</code>**：</p>
+<ul>
+<li>定義抽象類時，不需要在後面加上括號。</li>
+<li>使用 <code>TurnOn</code> 和 <code>TurnOff</code> 表現了家電的基本行為，保持了抽象類別在行為擴展上的優勢。</li>
+</ul>
+</li>
+<li><p><strong>接口的命名</strong>：</p>
+<ul>
+<li><code>Guiter</code> 應該更正為 <code>Guitar</code>。</li>
+<li>方法名通常建議以大寫開頭以符合 C# 命名慣例，例如將 <code>play()</code> 改為 <code>Play()</code>。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="問題解答補充"><a href="#問題解答補充" class="headerlink" title="問題解答補充"></a>問題解答補充</h3><p><strong>問題 1</strong>：接口與抽象類的主要區別是什麼？<br><strong>補充說明</strong>：</p>
+<ul>
+<li>接口主要是為了<strong>定義一組行為契約</strong>，強調功能，通常用於橫向擴展功能。而抽象類則是為了提供基礎結構，並允許繼承。選擇使用抽象類還是接口，關鍵在於看是否有共享的具體實現需求。</li>
+</ul>
+<p><strong>問題 2</strong>：為什麼 C# 中允許一個類實現多個接口，但只能繼承一個抽象類？<br><strong>補充說明</strong>：</p>
+<ul>
+<li>接口不包含具體實現，無法直接造成資源衝突，因此 C# 允許多接口實現。</li>
+<li>抽象類可能含有已實現的方法與屬性，允許多重繼承會導致資源衝突，增加維護難度，因此 C# 避免多重繼承的複雜性。</li>
+</ul>
+<p><strong>問題 3</strong>：如果一個類需要具有多種不同的行為，如何保持靈活性並降低耦合？<br><strong>補充說明</strong>：</p>
+<ul>
+<li>設計多個接口讓類別可以選擇性實現不同行為，這是一種組合優於繼承的原則應用。</li>
+</ul>
