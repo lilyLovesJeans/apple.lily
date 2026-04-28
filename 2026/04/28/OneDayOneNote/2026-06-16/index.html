@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2026-06-16  一個完整系統開發流程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2026-06-16  一個完整系統開發流程">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2026/04/28/OneDayOneNote/2026-06-16/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2026-06-16  一個完整系統開發流程">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2026-04-28T15:51:09.000Z">
+<meta property="article:modified_time" content="2026-04-28T15:52:02.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="系統開發流程">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2026/04/28/OneDayOneNote/2026-06-16/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2026/04/28/OneDayOneNote/2026-06-16/","path":"2026/04/28/OneDayOneNote/2026-06-16/","title":"2026-06-16  一個完整系統開發流程"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2026-06-16  一個完整系統開發流程 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2026-06-16-%E4%B8%80%E5%80%8B%E5%AE%8C%E6%95%B4%E7%B3%BB%E7%B5%B1%E9%96%8B%E7%99%BC%E6%B5%81%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">2026-06-16  一個完整系統開發流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%8E%AF-%E7%82%BA%E4%BB%80%E9%BA%BC%E6%88%91%E6%9C%83%E5%9B%9E%E4%BD%A0%E3%80%8C%E6%AD%A5%E9%A9%9F-1%EF%BD%9E9%E3%80%8D%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">🎯 為什麼我會回你「步驟 1～9」？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%A7%A0-%E5%BE%88%E9%97%9C%E9%8D%B5%E7%9A%84%E4%B8%80%E9%BB%9E"><span class="nav-number">3.</span> <span class="nav-text">🧠 很關鍵的一點</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%A5-%E6%89%80%E4%BB%A5%E6%88%91%E7%95%B6%E6%99%82%E5%81%9A%E4%BA%86%E4%B8%80%E4%BB%B6%E4%BA%8B%EF%BC%9A"><span class="nav-number">4.</span> <span class="nav-text">💥 所以我當時做了一件事：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%A7%B1-%E9%82%A3-1%EF%BD%9E9-%E6%AD%A5%E6%9C%AC%E8%B3%AA%E6%98%AF%E4%BB%80%E9%BA%BC%EF%BC%9F"><span class="nav-number">5.</span> <span class="nav-text">🧱 那 1～9 步本質是什麼？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%AA%9C-%E5%A4%A7%E8%87%B4%E9%95%B7%E9%80%99%E6%A8%A3%EF%BC%9A"><span class="nav-number">5.1.</span> <span class="nav-text">🪜 大致長這樣：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%94%A5-%E9%97%9C%E9%8D%B5%E4%BE%86%E4%BA%86%EF%BC%88%E4%BD%A0%E7%82%BA%E4%BB%80%E9%BA%BC%E6%9C%83%E5%9B%B0%E6%83%91%EF%BC%89"><span class="nav-number">6.</span> <span class="nav-text">🔥 關鍵來了（你為什麼會困惑）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%A7%AD-%E7%9C%9F%E6%AD%A3%E7%9A%84%E7%AD%94%E6%A1%88%EF%BC%88%E5%BE%88%E8%AA%A0%E5%AF%A6%E7%89%88%EF%BC%89"><span class="nav-number">7.</span> <span class="nav-text">🧭 真正的答案（很誠實版）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%A1-%E6%88%91%E5%B9%AB%E4%BD%A0%E7%B8%BD%E7%B5%90%E4%B8%80%E5%8F%A5%E8%A9%B1%EF%BC%88%E6%9C%80%E6%BA%96%E7%A2%BA%EF%BC%89"><span class="nav-number">8.</span> <span class="nav-text">💡 我幫你總結一句話（最準確）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%AA%9E-%E4%BD%A0%E7%8F%BE%E5%9C%A8%E7%9A%84%E7%8B%80%E6%85%8B%EF%BC%88%E6%88%91%E5%B9%AB%E4%BD%A0%E5%AE%9A%E4%BD%8D%EF%BC%89"><span class="nav-number">9.</span> <span class="nav-text">🪞 你現在的狀態（我幫你定位）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%91%8D-%E6%88%91%E5%BB%BA%E8%AD%B0%E4%BD%A0%E6%8E%A5%E4%B8%8B%E4%BE%86%E4%B8%8D%E8%A6%81%E5%86%8D%E7%B3%BE%E7%B5%90%EF%BC%9A"><span class="nav-number">10.</span> <span class="nav-text">👍 我建議你接下來不要再糾結：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%91%89-%E6%9B%B4%E9%87%8D%E8%A6%81%E7%9A%84%E6%98%AF%E9%80%99%E9%A1%8C%EF%BC%9A"><span class="nav-number">11.</span> <span class="nav-text">👉 更重要的是這題：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%B8%E9%A0%85-A%EF%BC%88%E6%9C%80%E7%A9%A9%EF%BC%89"><span class="nav-number">11.1.</span> <span class="nav-text">選項 A（最穩）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%B8%E9%A0%85-B%EF%BC%88%E5%8D%87%E7%B4%9A%EF%BC%89"><span class="nav-number">11.2.</span> <span class="nav-text">選項 B（升級）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%B8%E9%A0%85-C%EF%BC%88%E8%A3%9C%E5%BC%B7%EF%BC%89"><span class="nav-number">11.3.</span> <span class="nav-text">選項 C（補強）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%91%89-%E4%BD%A0%E5%9B%9E%E6%88%91%E4%B8%80%E5%80%8B%E6%96%B9%E5%90%91%E5%B0%B1%E5%A5%BD%EF%BC%9A"><span class="nav-number">12.</span> <span class="nav-text">👉 你回我一個方向就好：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%A7%A0-%E5%85%88%E8%AC%9B%E7%B5%90%E8%AB%96%EF%BC%88%E4%BD%A0%E8%A6%81%E9%95%B7%E9%80%99%E6%A8%A3%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">🧠 先講結論（你要長這樣）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%A7%B1-%E4%B8%80%E3%80%81%E5%B0%88%E6%A1%88%E7%B5%90%E6%A7%8B%EF%BC%88%E4%BD%A0%E8%A6%81%E8%AA%BF%E6%95%B4%E6%88%90%E9%80%99%E6%A8%A3%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">🧱 一、專案結構（你要調整成這樣）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%A7%A9-%E4%BA%8C%E3%80%81%E6%AF%8F%E4%B8%80%E5%B1%A4%E5%9C%A8%E5%81%9A%E4%BB%80%E9%BA%BC%EF%BC%88%E5%BE%88%E9%87%8D%E8%A6%81%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">🧩 二、每一層在做什麼（很重要）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%EF%B8%8F%E2%83%A3-Controller%EF%BC%88%E5%B0%8D%E5%A4%96-API%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">1️⃣ Controller（對外 API）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%EF%B8%8F%E2%83%A3-Service%EF%BC%88%E5%95%86%E6%A5%AD%E9%82%8F%E8%BC%AF%E5%B1%A4%EF%BC%89%F0%9F%94%A5"><span class="nav-number">2.</span> <span class="nav-text">2️⃣ Service（商業邏輯層）🔥</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%EF%B8%8F%E2%83%A3-DAO%EF%BC%88%E8%B3%87%E6%96%99%E5%AD%98%E5%8F%96%EF%BC%89%F0%9F%94%A5%F0%9F%94%A5"><span class="nav-number">3.</span> <span class="nav-text">3️⃣ DAO（資料存取）🔥🔥</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4%EF%B8%8F%E2%83%A3-Model%EF%BC%88%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">4️⃣ Model（資料結構）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5%EF%B8%8F%E2%83%A3-Config%EF%BC%88%E9%80%B2%E9%9A%8E%E4%BD%86%E9%87%8D%E8%A6%81%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">5️⃣ Config（進階但重要）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%94%A5-%E4%B8%89%E3%80%81%E7%82%BA%E4%BB%80%E9%BA%BC%E8%A6%81%E9%80%99%E6%A8%A3%E5%88%86%EF%BC%9F"><span class="nav-number"></span> <span class="nav-text">🔥 三、為什麼要這樣分？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9D%8C-%E5%A6%82%E6%9E%9C%E4%BD%A0%E5%85%A8%E9%83%A8%E5%AF%AB%E5%9C%A8-Controller"><span class="nav-number">1.</span> <span class="nav-text">❌ 如果你全部寫在 Controller</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%85-%E5%88%86%E5%B1%A4%E4%B9%8B%E5%BE%8C"><span class="nav-number">2.</span> <span class="nav-text">✅ 分層之後</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%A7%AA-%E5%9B%9B%E3%80%81%E4%BD%A0%E7%8F%BE%E5%9C%A8%E8%A6%81%E5%81%9A%E7%9A%84%E3%80%8C%E6%95%B4%E7%90%86%E4%BB%BB%E5%8B%99%E3%80%8D"><span class="nav-number"></span> <span class="nav-text">🧪 四、你現在要做的「整理任務」</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%85-%E4%BD%9C%E6%A5%AD-1%EF%BC%88%E5%BF%85%E5%81%9A%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">✅ 作業 1（必做）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%85-%E4%BD%9C%E6%A5%AD-2"><span class="nav-number">2.</span> <span class="nav-text">✅ 作業 2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%85-%E4%BD%9C%E6%A5%AD-3"><span class="nav-number">3.</span> <span class="nav-text">✅ 作業 3</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%9A%80-%E4%BA%94%E3%80%81%E4%B8%8B%E4%B8%80%E6%AD%A5%EF%BC%88%E9%80%B2%E9%9A%8E%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">🚀 五、下一步（進階）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%91%89-%E9%80%B2%E9%9A%8E-1"><span class="nav-number">0.1.</span> <span class="nav-text">👉 進階 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%91%89-%E9%80%B2%E9%9A%8E-2"><span class="nav-number">0.2.</span> <span class="nav-text">👉 進階 2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%91%89-%E9%80%B2%E9%9A%8E-3"><span class="nav-number">0.3.</span> <span class="nav-text">👉 進階 3</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%A7%AD-%E6%88%91%E5%B9%AB%E4%BD%A0%E4%B8%80%E5%8F%A5%E8%A9%B1%E7%B8%BD%E7%B5%90"><span class="nav-number"></span> <span class="nav-text">🧭 我幫你一句話總結</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%91%89-%E4%B8%8B%E4%B8%80%E6%AD%A5%E4%BD%A0%E5%8F%AF%E4%BB%A5%E9%81%B8"><span class="nav-number">1.</span> <span class="nav-text">👉 下一步你可以選</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">589</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">50</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2026/04/28/OneDayOneNote/2026-06-16/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2026-06-16  一個完整系統開發流程 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2026-06-16  一個完整系統開發流程">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2026-06-16  一個完整系統開發流程
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2026-04-28 23:51:09 / 修改時間：23:52:02" itemprop="dateCreated datePublished" datetime="2026-04-28T23:51:09+08:00">2026-04-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2026-06-16  一個完整系統開發流程</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2026-06-16-一個完整系統開發流程"><a href="#2026-06-16-一個完整系統開發流程" class="headerlink" title="2026-06-16  一個完整系統開發流程"></a>2026-06-16  一個完整系統開發流程</h2><p>GPT：<br>你這個問題問得很好，而且這次我不猜，直接講「真正原因」👇</p>
+<hr>
+<h2 id="🎯-為什麼我會回你「步驟-1～9」？"><a href="#🎯-為什麼我會回你「步驟-1～9」？" class="headerlink" title="🎯 為什麼我會回你「步驟 1～9」？"></a>🎯 為什麼我會回你「步驟 1～9」？</h2><p>👉 因為你當時<strong>不是只問一個小問題</strong><br>👉 你是在問一個「整個流程怎麼做」</p>
+<hr>
+<h2 id="🧠-很關鍵的一點"><a href="#🧠-很關鍵的一點" class="headerlink" title="🧠 很關鍵的一點"></a>🧠 很關鍵的一點</h2><p>你之前問過這類問題（從你的脈絡推得出來）：</p>
+<ul>
+<li>「接下來要做什麼？」</li>
+<li>「完整流程是什麼？」</li>
+<li>「我要怎麼做到可以部署？」</li>
+</ul>
+<p>👉 這種問題的本質是：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">不是問「一個指令」</span><br><span class="line">而是問「一整條學習 / 開發路線」</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="💥-所以我當時做了一件事："><a href="#💥-所以我當時做了一件事：" class="headerlink" title="💥 所以我當時做了一件事："></a>💥 所以我當時做了一件事：</h2><p>👉 幫你整理成「分階段 roadmap」</p>
+<p>也就是：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Step 1 ～ Step 9</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="🧱-那-1～9-步本質是什麼？"><a href="#🧱-那-1～9-步本質是什麼？" class="headerlink" title="🧱 那 1～9 步本質是什麼？"></a>🧱 那 1～9 步本質是什麼？</h2><p>其實就是一個完整系統開發流程：</p>
+<h3 id="🪜-大致長這樣："><a href="#🪜-大致長這樣：" class="headerlink" title="🪜 大致長這樣："></a>🪜 大致長這樣：</h3><ol>
+<li>環境準備（MySQL &#x2F; 工具）</li>
+<li>建資料庫</li>
+<li>建 Table</li>
+<li>設計 Model（Package）</li>
+<li>寫 API</li>
+<li>測試 API</li>
+<li>資料流（記憶體）</li>
+<li>👉 持久化（寫入 DB） ← 你卡在這</li>
+<li>部署（Docker &#x2F; 雲端）</li>
+</ol>
+<hr>
+<h2 id="🔥-關鍵來了（你為什麼會困惑）"><a href="#🔥-關鍵來了（你為什麼會困惑）" class="headerlink" title="🔥 關鍵來了（你為什麼會困惑）"></a>🔥 關鍵來了（你為什麼會困惑）</h2><p>👉 因為你<strong>現在只在第 8 步</strong></p>
+<p>但你看到的是：</p>
+<p>👉 一整條「1～9 的完整地圖」</p>
+<p>所以你會覺得：</p>
+<blockquote>
+<p>🤔「我到底問了什麼，怎麼變成這麼大一包？」</p>
+</blockquote>
+<hr>
+<h2 id="🧭-真正的答案（很誠實版）"><a href="#🧭-真正的答案（很誠實版）" class="headerlink" title="🧭 真正的答案（很誠實版）"></a>🧭 真正的答案（很誠實版）</h2><p>你當時問的其實是：</p>
+<blockquote>
+<p>👉「我做到這裡了，接下來要怎麼走？」</p>
+</blockquote>
+<p>而不是：</p>
+<blockquote>
+<p>👉「請給我 9 個步驟」</p>
+</blockquote>
+<hr>
+<h2 id="💡-我幫你總結一句話（最準確）"><a href="#💡-我幫你總結一句話（最準確）" class="headerlink" title="💡 我幫你總結一句話（最準確）"></a>💡 我幫你總結一句話（最準確）</h2><p>👉 <strong>你問的是「方向」</strong><br>👉 我回的是「地圖」</p>
+<hr>
+<h2 id="🪞-你現在的狀態（我幫你定位）"><a href="#🪞-你現在的狀態（我幫你定位）" class="headerlink" title="🪞 你現在的狀態（我幫你定位）"></a>🪞 你現在的狀態（我幫你定位）</h2><p>你在這裡：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1～7 ✔</span><br><span class="line">8 🔥（現在正在做）</span><br><span class="line">9 ⏳（還沒開始）</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="👍-我建議你接下來不要再糾結："><a href="#👍-我建議你接下來不要再糾結：" class="headerlink" title="👍 我建議你接下來不要再糾結："></a>👍 我建議你接下來不要再糾結：</h2><p>「我當初問了什麼？」</p>
+<p>👉 那已經不重要了</p>
+<hr>
+<h2 id="👉-更重要的是這題："><a href="#👉-更重要的是這題：" class="headerlink" title="👉 更重要的是這題："></a>👉 更重要的是這題：</h2><p>你現在要選👇</p>
+<h3 id="選項-A（最穩）"><a href="#選項-A（最穩）" class="headerlink" title="選項 A（最穩）"></a>選項 A（最穩）</h3><p>👉 繼續做第 8 步（把 DAO 做完整）</p>
+<h3 id="選項-B（升級）"><a href="#選項-B（升級）" class="headerlink" title="選項 B（升級）"></a>選項 B（升級）</h3><p>👉 進第 9 步（部署 &#x2F; Docker &#x2F; 雲端）</p>
+<h3 id="選項-C（補強）"><a href="#選項-C（補強）" class="headerlink" title="選項 C（補強）"></a>選項 C（補強）</h3><p>👉 把整個架構整理成「像工程師寫的」</p>
+<hr>
+<h2 id="👉-你回我一個方向就好："><a href="#👉-你回我一個方向就好：" class="headerlink" title="👉 你回我一個方向就好："></a>👉 你回我一個方向就好：</h2><ul>
+<li>「我要專心第8步」</li>
+<li>「我要直接上第9步」</li>
+<li>「我要整理整體架構」</li>
+</ul>
+<p>我會用你現在的程度，帶你走下一段（而不是再丟一張地圖給你）</p>
+<p>我:<br>「整理整體架構」</p>
+<p>GPT:<br>好，這一步你選對了 👍<br>你現在不是缺「功能」，而是要把東西整理成<strong>像工程師會交付的架構</strong>。</p>
+<p>我幫你做一份 <strong>「適合你目前程度 + 可成長的完整架構」</strong>，而且會對應你現在的 <code>Package / MySQL / API</code>。</p>
+<hr>
+<h1 id="🧠-先講結論（你要長這樣）"><a href="#🧠-先講結論（你要長這樣）" class="headerlink" title="🧠 先講結論（你要長這樣）"></a>🧠 先講結論（你要長這樣）</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Controller  →  Service  →  DAO  →  MySQL</span><br><span class="line">                ↑</span><br><span class="line">             Model</span><br></pre></td></tr></table></figure>
+
+<p>👉 這就是乾淨分層（Clean Architecture 的簡化版）</p>
+<hr>
+<h1 id="🧱-一、專案結構（你要調整成這樣）"><a href="#🧱-一、專案結構（你要調整成這樣）" class="headerlink" title="🧱 一、專案結構（你要調整成這樣）"></a>🧱 一、專案結構（你要調整成這樣）</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">/Controllers</span><br><span class="line">    PackageController.cs</span><br><span class="line"></span><br><span class="line">/Services</span><br><span class="line">    PackageService.cs</span><br><span class="line"></span><br><span class="line">/DAO</span><br><span class="line">    PackageDAO.cs</span><br><span class="line"></span><br><span class="line">/Models</span><br><span class="line">    Package.cs</span><br><span class="line"></span><br><span class="line">/Config</span><br><span class="line">    DbConfig.cs</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="🧩-二、每一層在做什麼（很重要）"><a href="#🧩-二、每一層在做什麼（很重要）" class="headerlink" title="🧩 二、每一層在做什麼（很重要）"></a>🧩 二、每一層在做什麼（很重要）</h1><h2 id="1️⃣-Controller（對外-API）"><a href="#1️⃣-Controller（對外-API）" class="headerlink" title="1️⃣ Controller（對外 API）"></a>1️⃣ Controller（對外 API）</h2><p>👉 只做一件事：<strong>接 request + 回 response</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">HttpPost</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> IActionResult <span class="title">AddPackage</span>(<span class="params">[FromBody] Package p</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">var</span> service = <span class="keyword">new</span> PackageService();</span><br><span class="line"></span><br><span class="line">    service.AddPackage(p);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> Ok(<span class="string">&quot;OK&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>❌ 不要寫 SQL<br>❌ 不要寫 DB code</p>
+<hr>
+<h2 id="2️⃣-Service（商業邏輯層）🔥"><a href="#2️⃣-Service（商業邏輯層）🔥" class="headerlink" title="2️⃣ Service（商業邏輯層）🔥"></a>2️⃣ Service（商業邏輯層）🔥</h2><p>👉 這一層是「大腦」</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">PackageService</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> PackageDAO dao = <span class="keyword">new</span> PackageDAO();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">AddPackage</span>(<span class="params">Package p</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">string</span>.IsNullOrWhiteSpace(p.TrackingNumber))</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">&quot;TrackingNumber 不可空&quot;</span>);</span><br><span class="line"></span><br><span class="line">        dao.InsertPackage(p);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>👉 你可以在這裡加：</p>
+<ul>
+<li>驗證</li>
+<li>規則</li>
+<li>流程控制</li>
+</ul>
+<hr>
+<h2 id="3️⃣-DAO（資料存取）🔥🔥"><a href="#3️⃣-DAO（資料存取）🔥🔥" class="headerlink" title="3️⃣ DAO（資料存取）🔥🔥"></a>3️⃣ DAO（資料存取）🔥🔥</h2><p>👉 只負責「跟 MySQL 講話」</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">PackageDAO</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">string</span> connStr = <span class="string">&quot;Server=192.168.0.101;Database=logisticsdb;User ID=lily_Admin;Password=1234;&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">InsertPackage</span>(<span class="params">Package p</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">using</span> (<span class="keyword">var</span> conn = <span class="keyword">new</span> MySqlConnection(connStr))</span><br><span class="line">        &#123;</span><br><span class="line">            conn.Open();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">var</span> sql = <span class="string">@&quot;INSERT INTO packages </span></span><br><span class="line"><span class="string">                        (TrackingNumber, Sender, Recipient, Status)</span></span><br><span class="line"><span class="string">                        VALUES (@TrackingNumber, @Sender, @Recipient, @Status)&quot;</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">var</span> cmd = <span class="keyword">new</span> MySqlCommand(sql, conn);</span><br><span class="line"></span><br><span class="line">            cmd.Parameters.AddWithValue(<span class="string">&quot;@TrackingNumber&quot;</span>, p.TrackingNumber);</span><br><span class="line">            cmd.Parameters.AddWithValue(<span class="string">&quot;@Sender&quot;</span>, p.Sender);</span><br><span class="line">            cmd.Parameters.AddWithValue(<span class="string">&quot;@Recipient&quot;</span>, p.Recipient);</span><br><span class="line">            cmd.Parameters.AddWithValue(<span class="string">&quot;@Status&quot;</span>, p.Status);</span><br><span class="line"></span><br><span class="line">            cmd.ExecuteNonQuery();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="4️⃣-Model（資料結構）"><a href="#4️⃣-Model（資料結構）" class="headerlink" title="4️⃣ Model（資料結構）"></a>4️⃣ Model（資料結構）</h2><p>👉 你已經有了 👍</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Package</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> TrackingNumber &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> Sender &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> Recipient &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> Status &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="5️⃣-Config（進階但重要）"><a href="#5️⃣-Config（進階但重要）" class="headerlink" title="5️⃣ Config（進階但重要）"></a>5️⃣ Config（進階但重要）</h2><p>👉 把 connection string 抽出來</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">DbConfig</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="built_in">string</span> ConnStr = <span class="string">&quot;Server=192.168.0.101;Database=logisticsdb;User ID=lily_Admin;Password=1234;&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>DAO 改：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="built_in">string</span> connStr = DbConfig.ConnStr;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="🔥-三、為什麼要這樣分？"><a href="#🔥-三、為什麼要這樣分？" class="headerlink" title="🔥 三、為什麼要這樣分？"></a>🔥 三、為什麼要這樣分？</h1><p>這段很關鍵，你要理解（不是死背）</p>
+<hr>
+<h2 id="❌-如果你全部寫在-Controller"><a href="#❌-如果你全部寫在-Controller" class="headerlink" title="❌ 如果你全部寫在 Controller"></a>❌ 如果你全部寫在 Controller</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Controller = API + 邏輯 + SQL + DB</span><br></pre></td></tr></table></figure>
+
+<p>👉 會變：</p>
+<ul>
+<li>難改</li>
+<li>難測試</li>
+<li>爆炸</li>
+</ul>
+<hr>
+<h2 id="✅-分層之後"><a href="#✅-分層之後" class="headerlink" title="✅ 分層之後"></a>✅ 分層之後</h2><table>
+<thead>
+<tr>
+<th>層</th>
+<th>負責</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Controller</td>
+<td>API</td>
+</tr>
+<tr>
+<td>Service</td>
+<td>邏輯</td>
+</tr>
+<tr>
+<td>DAO</td>
+<td>DB</td>
+</tr>
+<tr>
+<td>Model</td>
+<td>資料</td>
+</tr>
+</tbody></table>
+<p>👉 <strong>每一層只做一件事</strong></p>
+<hr>
+<h1 id="🧪-四、你現在要做的「整理任務」"><a href="#🧪-四、你現在要做的「整理任務」" class="headerlink" title="🧪 四、你現在要做的「整理任務」"></a>🧪 四、你現在要做的「整理任務」</h1><p>我給你實戰作業（很重要）</p>
+<hr>
+<h2 id="✅-作業-1（必做）"><a href="#✅-作業-1（必做）" class="headerlink" title="✅ 作業 1（必做）"></a>✅ 作業 1（必做）</h2><p>👉 把你現在的程式：</p>
+<p><strong>拆成 3 層</strong></p>
+<ul>
+<li>Controller</li>
+<li>Service</li>
+<li>DAO</li>
+</ul>
+<hr>
+<h2 id="✅-作業-2"><a href="#✅-作業-2" class="headerlink" title="✅ 作業 2"></a>✅ 作業 2</h2><p>👉 在 Service 加一個規則：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Status 不能亂填（例如只能：</span><br><span class="line">Pending / In Transit / Delivered）</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="✅-作業-3"><a href="#✅-作業-3" class="headerlink" title="✅ 作業 3"></a>✅ 作業 3</h2><p>👉 DAO 新增：</p>
+<ul>
+<li>Update</li>
+<li>Delete</li>
+</ul>
+<hr>
+<h1 id="🚀-五、下一步（進階）"><a href="#🚀-五、下一步（進階）" class="headerlink" title="🚀 五、下一步（進階）"></a>🚀 五、下一步（進階）</h1><p>當你這個做完，你就可以升級：</p>
+<h3 id="👉-進階-1"><a href="#👉-進階-1" class="headerlink" title="👉 進階 1"></a>👉 進階 1</h3><p>Dependency Injection（DI）</p>
+<h3 id="👉-進階-2"><a href="#👉-進階-2" class="headerlink" title="👉 進階 2"></a>👉 進階 2</h3><p>Repository Pattern</p>
+<h3 id="👉-進階-3"><a href="#👉-進階-3" class="headerlink" title="👉 進階 3"></a>👉 進階 3</h3><p>部署（Docker &#x2F; 雲端）</p>
+<hr>
+<h1 id="🧭-我幫你一句話總結"><a href="#🧭-我幫你一句話總結" class="headerlink" title="🧭 我幫你一句話總結"></a>🧭 我幫你一句話總結</h1><p>👉 你現在在做的不是「寫功能」</p>
+<p>👉 是在學：</p>
+<blockquote>
+<p><strong>怎麼把程式寫成「可以維護的系統」</strong></p>
+</blockquote>
+<hr>
+<h2 id="👉-下一步你可以選"><a href="#👉-下一步你可以選" class="headerlink" title="👉 下一步你可以選"></a>👉 下一步你可以選</h2><p>直接回我：</p>
+<ul>
+<li>「幫我改成 DI（專業版）」</li>
+<li>「幫我檢查我的程式架構」</li>
+<li>「帶我做 Update &#x2F; Delete」</li>
+</ul>
+<p>我會帶你往「工程師等級」再升一階 🚀</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/%E7%B3%BB%E7%B5%B1%E9%96%8B%E7%99%BC%E6%B5%81%E7%A8%8B/" rel="tag"># 系統開發流程</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2026/04/28/OneDayOneNote/2026-06-15/" rel="prev" title="2026-06-15  MySQL 提示符（`mysql＞`）中連接到遠程伺服器">
+                  <i class="fa fa-angle-left"></i> 2026-06-15  MySQL 提示符（`mysql＞`）中連接到遠程伺服器
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/apple.lily/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

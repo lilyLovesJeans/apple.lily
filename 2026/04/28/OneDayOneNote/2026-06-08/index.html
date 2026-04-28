@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2026-06-08 獲取 Wi-Fi 網絡接口的 IP 地址">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2026-06-08 獲取 Wi-Fi 網絡接口的 IP 地址">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2026/04/28/OneDayOneNote/2026-06-08/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2026-06-08 獲取 Wi-Fi 網絡接口的 IP 地址">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2026-04-28T15:13:57.000Z">
+<meta property="article:modified_time" content="2026-04-28T15:20:15.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="網路">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2026/04/28/OneDayOneNote/2026-06-08/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2026/04/28/OneDayOneNote/2026-06-08/","path":"2026/04/28/OneDayOneNote/2026-06-08/","title":"2026-06-08 獲取 Wi-Fi 網絡接口的 IP 地址"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2026-06-08 獲取 Wi-Fi 網絡接口的 IP 地址 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2026-06-08-%E7%8D%B2%E5%8F%96-Wi-Fi-%E7%B6%B2%E7%B5%A1%E6%8E%A5%E5%8F%A3%E7%9A%84-IP-%E5%9C%B0%E5%9D%80"><span class="nav-number">1.</span> <span class="nav-text">2026-06-08 獲取 Wi-Fi 網絡接口的 IP 地址</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E6%9C%AC%E6%A9%9F-IP-%E5%9C%B0%E5%9D%80"><span class="nav-number">1.1.</span> <span class="nav-text">查看本機 IP 地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E6%89%80%E6%9C%89%E7%B6%B2%E7%B5%A1%E6%8E%A5%E5%8F%A3%E4%BF%A1%E6%81%AF"><span class="nav-number">1.2.</span> <span class="nav-text">查看所有網絡接口信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B8%BD%E7%B5%90"><span class="nav-number">1.3.</span> <span class="nav-text">總結</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%A1%88-1%EF%BC%9A%E6%9F%A5%E7%9C%8B%E7%95%B6%E5%89%8D-IP-%E5%9C%B0%E5%9D%80"><span class="nav-number">1.4.</span> <span class="nav-text">解決方案 1：查看當前 IP 地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%A1%88-2%EF%BC%9A%E8%A8%AD%E7%BD%AE%E9%9D%9C%E6%85%8B-IP-%E5%9C%B0%E5%9D%80"><span class="nav-number">1.5.</span> <span class="nav-text">解決方案 2：設置靜態 IP 地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%A1%88-3%EF%BC%9A%E4%BD%BF%E7%94%A8%E8%A8%AD%E5%82%99%E5%90%8D%E7%A8%B1%E6%88%96-localhost"><span class="nav-number">1.6.</span> <span class="nav-text">解決方案 3：使用設備名稱或 localhost</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B8%BD%E7%B5%90-1"><span class="nav-number">1.7.</span> <span class="nav-text">總結</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E8%A8%AD%E5%82%99%E5%90%8D%E7%A8%B1%E9%80%B2%E8%A1%8C%E9%80%A3%E6%8E%A5"><span class="nav-number">1.8.</span> <span class="nav-text">使用設備名稱進行連接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A8%AD%E5%AE%9A%E8%A8%AD%E5%82%99%E5%90%8D%E7%A8%B1"><span class="nav-number">1.9.</span> <span class="nav-text">設定設備名稱</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E8%A8%AD%E5%82%99%E5%90%8D%E7%A8%B1%E9%80%A3%E6%8E%A5%E7%9A%84%E5%A5%BD%E8%99%95"><span class="nav-number">1.10.</span> <span class="nav-text">使用設備名稱連接的好處</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">589</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">50</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2026/04/28/OneDayOneNote/2026-06-08/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2026-06-08 獲取 Wi-Fi 網絡接口的 IP 地址 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2026-06-08 獲取 Wi-Fi 網絡接口的 IP 地址">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2026-06-08 獲取 Wi-Fi 網絡接口的 IP 地址
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2026-04-28 23:13:57 / 修改時間：23:20:15" itemprop="dateCreated datePublished" datetime="2026-04-28T23:13:57+08:00">2026-04-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2026-06-08 獲取 Wi-Fi 網絡接口的 IP 地址</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2026-06-08-獲取-Wi-Fi-網絡接口的-IP-地址"><a href="#2026-06-08-獲取-Wi-Fi-網絡接口的-IP-地址" class="headerlink" title="2026-06-08 獲取 Wi-Fi 網絡接口的 IP 地址"></a>2026-06-08 獲取 Wi-Fi 網絡接口的 IP 地址</h2><p>我:<br>???iMacBook-Air:~ root# ipconfig getifaddr et0</p>
+<p>GPT:<br>您可能是想要獲取 Mac 上網絡接口的 IP 地址，但似乎輸入了錯誤的命令。<code>et0</code> 應該是 <code>en0</code>，這是 Mac 上的內建 Wi-Fi 或以太網接口的名稱。請試著使用以下命令來獲取正確的 IP 地址：</p>
+<h3 id="查看本機-IP-地址"><a href="#查看本機-IP-地址" class="headerlink" title="查看本機 IP 地址"></a>查看本機 IP 地址</h3><ol>
+<li><p><strong>獲取 Wi-Fi 網絡接口的 IP 地址</strong>：<br>如果您想查看 <strong>Wi-Fi（無線網絡）</strong> 的 IP 地址，可以使用以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ipconfig getifaddr en0</span><br></pre></td></tr></table></figure>
+
+<p><code>en0</code> 是 Mac 上 Wi-Fi 網絡接口的名稱。此命令會返回分配給 Wi-Fi 的 IP 地址。</p>
+</li>
+<li><p><strong>獲取以太網接口的 IP 地址</strong>：<br>如果您使用的是有線網絡（以太網），網絡接口的名稱可能是 <strong><code>en1</code></strong> 或其他：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ipconfig getifaddr en1</span><br></pre></td></tr></table></figure>
+
+<p>可以根據具體情況嘗試不同的接口名稱，如 <code>en1</code>、<code>en2</code>，查看哪個是有線網絡。</p>
+</li>
+</ol>
+<h3 id="查看所有網絡接口信息"><a href="#查看所有網絡接口信息" class="headerlink" title="查看所有網絡接口信息"></a>查看所有網絡接口信息</h3><p>如果您不確定網絡接口的名稱，也可以使用以下命令查看所有網絡接口的 IP 信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ifconfig</span><br></pre></td></tr></table></figure>
+
+<p><code>ifconfig</code> 命令會列出所有網絡接口及其相關信息，包括 IP 地址。通常 <code>en0</code> 是 Wi-Fi，<code>en1</code> 是有線網絡。</p>
+<h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h3><ul>
+<li><strong>Wi-Fi IP 地址</strong>：使用 <code>ipconfig getifaddr en0</code>。</li>
+<li><strong>以太網 IP 地址</strong>：使用 <code>ipconfig getifaddr en1</code>（如果連接的是有線網絡）。</li>
+<li><strong>查看所有網絡接口信息</strong>：使用 <code>ifconfig</code> 來獲取所有接口的信息。</li>
+</ul>
+<p>這樣應該可以幫助您正確獲取 Mac 上的 IP 地址。如果有其他疑問，請隨時告訴我。</p>
+<p>我:<br>可能是我的  ip  改了 昨天是 192.168.0.104 今天是 192.168.0.101</p>
+<p>GPT:<br>是的，這是因為大多數本地網絡使用 <strong>DHCP（動態主機配置協定）</strong> 來分配 IP 地址。當您的設備連接到網絡時，<strong>路由器</strong> 會動態地分配一個可用的 IP 地址，這個 IP 地址可能會隨著每次連接而改變。這樣的行為導致您的 IP 地址每天可能會不同，比如昨天是 <code>192.168.0.104</code>，今天變成了 <code>192.168.0.101</code>。</p>
+<h3 id="解決方案-1：查看當前-IP-地址"><a href="#解決方案-1：查看當前-IP-地址" class="headerlink" title="解決方案 1：查看當前 IP 地址"></a>解決方案 1：查看當前 IP 地址</h3><p>如果您需要經常使用本地 IP 進行連接（例如 MySQL、SSH 等），可以使用以下方式來查看當前的 IP 地址：</p>
+<ol>
+<li><p><strong>使用終端命令</strong>：</p>
+<ul>
+<li><p>如果是 <strong>Wi-Fi</strong> 連接，可以使用以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ipconfig getifaddr en0</span><br></pre></td></tr></table></figure></li>
+<li><p>如果是 <strong>有線網絡（以太網）</strong>，可能是 <code>en1</code> 或其他：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ipconfig getifaddr en1</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>使用系統偏好設定查看</strong>：</p>
+<ul>
+<li>打開 <strong>「系統偏好設定」</strong> &gt; <strong>「網絡」</strong>。</li>
+<li>在左側選擇您正在使用的網絡連接（Wi-Fi 或 Ethernet），右側就會顯示當前的 IP 地址。</li>
+</ul>
+</li>
+</ol>
+<h3 id="解決方案-2：設置靜態-IP-地址"><a href="#解決方案-2：設置靜態-IP-地址" class="headerlink" title="解決方案 2：設置靜態 IP 地址"></a>解決方案 2：設置靜態 IP 地址</h3><p>如果您不希望 IP 地址隨著每次重新連接而改變，可以考慮在路由器上為您的設備設置一個 <strong>靜態 IP 地址</strong>，這樣每次您的設備連接到網絡時都會得到相同的 IP 地址。</p>
+<p><strong>方法如下：</strong></p>
+<ol>
+<li><p><strong>訪問路由器管理頁面</strong>：</p>
+<ul>
+<li>通常，您可以通過在瀏覽器中輸入路由器的 IP 地址（例如 <code>192.168.0.1</code> 或 <code>192.168.1.1</code>）來訪問路由器的管理頁面。然後使用管理者帳戶和密碼登錄。</li>
+</ul>
+</li>
+<li><p><strong>找到 DHCP 設置</strong>：</p>
+<ul>
+<li>在路由器管理頁面中找到 <strong>DHCP 設置</strong>，這通常在「網絡設置」或「LAN 設置」的頁面中。</li>
+</ul>
+</li>
+<li><p><strong>設置 IP 地址預留（DHCP Reservation）</strong>：</p>
+<ul>
+<li>在 DHCP 設置中，您可以為特定的設備（通過它的 <strong>MAC 地址</strong>）預留一個靜態 IP 地址。</li>
+<li>輸入設備的 <strong>MAC 地址</strong> 和您想要為其分配的 <strong>IP 地址</strong>（例如 <code>192.168.0.104</code>），然後保存設置。</li>
+</ul>
+</li>
+<li><p><strong>重新連接網絡</strong>：</p>
+<ul>
+<li>設置完成後，斷開並重新連接您的設備以獲取新的靜態 IP 地址。</li>
+</ul>
+</li>
+</ol>
+<h3 id="解決方案-3：使用設備名稱或-localhost"><a href="#解決方案-3：使用設備名稱或-localhost" class="headerlink" title="解決方案 3：使用設備名稱或 localhost"></a>解決方案 3：使用設備名稱或 <code>localhost</code></h3><p>如果您的應用程序需要頻繁連接本地 MySQL 伺服器，您也可以嘗試以下方法：</p>
+<ul>
+<li><p>**使用 <code>localhost</code>**：如果 MySQL 伺服器就在您當前使用的 Mac 上，您可以使用 <code>localhost</code> 而不是具體的 IP 地址來連接。</p>
+</li>
+<li><p><strong>使用設備名稱</strong>：在某些情況下，使用設備的網絡名稱（如 Mac 的名稱）也可以連接到該設備。例如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -h your-mac-name.local -u root -p</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>這樣，即使 IP 地址更改，您依然可以通過設備名稱來連接。</p>
+<h3 id="總結-1"><a href="#總結-1" class="headerlink" title="總結"></a>總結</h3><ul>
+<li><strong>IP 地址變動</strong> 是由於 DHCP 分配的動態 IP 地址，可以使用 <code>ipconfig getifaddr</code> 查看當前的 IP 地址。</li>
+<li>您可以 <strong>設置靜態 IP 地址</strong>，在路由器中為您的設備保留一個固定的 IP 地址。</li>
+<li>如果在本地連接 MySQL，可以使用 <strong><code>localhost</code></strong> 或設備名稱來避免 IP 變動問題。</li>
+</ul>
+<p>這些方法應該能幫助您穩定地連接到設備，無論 IP 地址是否變動。如果您需要進一步幫助，請隨時告訴我。</p>
+<p>我:<br>???MacBook-Air</p>
+<p>GPT:<br>看起來 <strong><code>???MacBook-Air</code></strong> 是您這台 <strong>MacBook</strong> 的設備名稱。這個名稱在一些操作中，比如在本地網絡中連接其他設備時，可以作為一個網絡識別符號。當您嘗試連接這台 Mac 上的服務或應用時，可以使用這個設備名稱來替代 IP 地址，這樣即使 IP 地址變動，您也能順利連接。</p>
+<h3 id="使用設備名稱進行連接"><a href="#使用設備名稱進行連接" class="headerlink" title="使用設備名稱進行連接"></a>使用設備名稱進行連接</h3><p>如果您想通過這台 Mac 的設備名稱來連接，比如連接本地 MySQL 伺服器，可以使用設備名稱來代替本地 IP 地址。</p>
+<p>假設您的設備名稱是 **<code>???MacBook-Air</code>**，那麼連接方式如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -h ???MacBook-Air.<span class="built_in">local</span> -u root -p</span><br></pre></td></tr></table></figure>
+
+<p>這裡 <code>.local</code> 是 <strong>Bonjour</strong> 提供的域名解析方式，用於在本地網絡中解析設備名稱。如果您在同一網絡中，使用這個名稱來連接就不需要擔心 IP 地址的變動問題。</p>
+<h3 id="設定設備名稱"><a href="#設定設備名稱" class="headerlink" title="設定設備名稱"></a>設定設備名稱</h3><p>如果您想修改這個設備名稱或者確認它的正確拼寫，可以按照以下步驟進行：</p>
+<ol>
+<li><p><strong>打開「系統偏好設定」</strong>：</p>
+<ul>
+<li>點擊左上角的 <strong>Apple 菜單</strong>，選擇 <strong>「系統偏好設定」</strong>。</li>
+</ul>
+</li>
+<li><p><strong>選擇「共享」</strong>：</p>
+<ul>
+<li>在「系統偏好設定」中選擇 <strong>「共享」</strong> 選項。</li>
+</ul>
+</li>
+<li><p><strong>查看或修改設備名稱</strong>：</p>
+<ul>
+<li>在 <strong>「電腦名稱」</strong> 中，您可以看到當前設備的名稱，比如 **<code>???MacBook-Air</code>**。您可以修改這個名稱為一個更容易識別的名稱，這個名稱將被本地網絡中的其他設備使用。</li>
+</ul>
+</li>
+</ol>
+<h3 id="使用設備名稱連接的好處"><a href="#使用設備名稱連接的好處" class="headerlink" title="使用設備名稱連接的好處"></a>使用設備名稱連接的好處</h3><ul>
+<li><strong>避免 IP 地址變動的影響</strong>：由於 IP 地址可能由 DHCP 動態分配而變動，使用設備名稱可以確保連接的一致性。</li>
+<li><strong>簡單方便</strong>：設備名稱更易記憶，並且使用設備名稱來連接時，不需要手動檢查當前 IP 地址。</li>
+</ul>
+<p>如果您在本地網絡中頻繁進行設備之間的連接，這樣使用設備名稱來連接可以更方便。如果還有其他需要，請隨時告訴我！</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/%E7%B6%B2%E8%B7%AF/" rel="tag"># 網路</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2026/04/28/OneDayOneNote/2026-06-07/" rel="prev" title="2026-06-07 重置 MySQL Root 密碼步驟">
+                  <i class="fa fa-angle-left"></i> 2026-06-07 重置 MySQL Root 密碼步驟
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2026/04/28/OneDayOneNote/2026-06-09/" rel="next" title="2026-06-09 my.cnf（或有時候叫作 my.ini）是 MySQL 的配置文件">
+                  2026-06-09 my.cnf（或有時候叫作 my.ini）是 MySQL 的配置文件 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/apple.lily/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

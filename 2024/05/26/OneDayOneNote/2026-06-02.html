@@ -1,0 +1,332 @@
+<hr>
+<h2 id="title-2026-06-02-部署到雲端-資料庫要怎麼連-date-2026-04-28-22-05-40categories-OneDayOneNotetags-Web-API-description-2026-06-02-部署到雲端-資料庫要怎麼連"><a href="#title-2026-06-02-部署到雲端-資料庫要怎麼連-date-2026-04-28-22-05-40categories-OneDayOneNotetags-Web-API-description-2026-06-02-部署到雲端-資料庫要怎麼連" class="headerlink" title="title: 2026-06-02 部署到雲端, 資料庫要怎麼連?date: 2026-04-28 22:05:40categories: OneDayOneNotetags:  [Web API]description:    2026-06-02 部署到雲端, 資料庫要怎麼連?"></a>title: 2026-06-02 部署到雲端, 資料庫要怎麼連?<br>date: 2026-04-28 22:05:40<br>categories: OneDayOneNote<br>tags:  [Web API]<br>description:    2026-06-02 部署到雲端, 資料庫要怎麼連?</h2><h2 id="2026-06-02-部署到雲端-資料庫要怎麼連"><a href="#2026-06-02-部署到雲端-資料庫要怎麼連" class="headerlink" title="2026-06-02 部署到雲端, 資料庫要怎麼連?"></a>2026-06-02 部署到雲端, 資料庫要怎麼連?</h2><p>我:<br>部署到雲端, 資料庫要怎麼連?<br>GPT:<br>當您將 Web API 部署到雲端（例如使用 Azure App Service）後，您的應用程式需要能夠正確地連接到資料庫。在雲端環境中，您有幾個不同的選擇來管理和連接資料庫。以下是部署 Web API 後連接資料庫的步驟：</p>
+<h3 id="1-雲端資料庫選擇"><a href="#1-雲端資料庫選擇" class="headerlink" title="1. 雲端資料庫選擇"></a>1. <strong>雲端資料庫選擇</strong></h3><ul>
+<li><strong>Azure SQL Database</strong>（如果使用 SQL Server）</li>
+<li><strong>Azure Database for MySQL</strong>（如果使用 MySQL）</li>
+<li><strong>Azure Cosmos DB</strong>（適用於非關係型資料）</li>
+<li><strong>其他雲端托管的資料庫服務</strong></li>
+</ul>
+<h3 id="2-設置資料庫連接字符串"><a href="#2-設置資料庫連接字符串" class="headerlink" title="2. 設置資料庫連接字符串"></a>2. <strong>設置資料庫連接字符串</strong></h3><p>無論您的資料庫是本地的還是雲端的，Web API 通常使用連接字符串來連接資料庫。在部署到 Azure App Service 之後，您需要確保您的應用程式可以找到正確的連接字符串來連接到資料庫。</p>
+<ol>
+<li><p><strong>在 Azure App Service 中配置連接字符串</strong>：</p>
+<ul>
+<li><p>登入 <a href="https://portal.azure.com/">Azure 入口網站</a>。</p>
+</li>
+<li><p>在 <strong>Azure App Service</strong> 中，找到您的應用程式。</p>
+</li>
+<li><p>點擊左側菜單中的 <strong>「設定」</strong>，選擇 <strong>「應用設定」</strong>（Application settings）。</p>
+</li>
+<li><p>在「連接字符串」部分，您可以添加新的連接字符串，例如：</p>
+<ul>
+<li>名稱：<code>DefaultConnection</code></li>
+<li>值：<code>Server=myserver.database.windows.net;Database=logisticsdb;User Id=myuser;Password=mypassword;</code></li>
+</ul>
+</li>
+<li><p>請確保名稱與應用程式代碼中的連接字符串名稱一致。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>修改應用程式代碼來使用連接字符串</strong>：</p>
+<ul>
+<li><p>在您的 ASP.NET Core Web API 中，連接字符串通常在 <code>appsettings.json</code> 中配置，示例如下：</p>
+<pre><code class="json">{
+  &quot;ConnectionStrings&quot;: {
+    &quot;DefaultConnection&quot;: &quot;Server=myserver.database.windows.net;Database=logisticsdb;User Id=myuser;Password=mypassword;&quot;
+  }
+}
+</code></pre>
+</li>
+<li><p>如果您要使用 Azure 入口網站中設置的連接字符串，可以將連接字符串名稱設定為環境變數。ASP.NET Core 可以自動檢測 Azure App Service 中的設定，無需直接將連接字符串暴露在代碼中。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>在代碼中使用連接字符串</strong>：<br>在 <code>Startup.cs</code> 文件中使用 <code>IConfiguration</code> 來讀取連接字符串：</p>
+<pre><code class="csharp">public void ConfigureServices(IServiceCollection services)
+{
+    services.AddDbContext&lt;ApplicationDbContext&gt;(options =&gt;
+        options.UseSqlServer(Configuration.GetConnectionString(&quot;DefaultConnection&quot;)));
+}
+</code></pre>
+</li>
+</ol>
+<h3 id="3-防火牆設置與訪問權限"><a href="#3-防火牆設置與訪問權限" class="headerlink" title="3. 防火牆設置與訪問權限"></a>3. <strong>防火牆設置與訪問權限</strong></h3><p>當您將資料庫設置在雲端時，可能需要調整資料庫的防火牆規則，以允許您的 Azure App Service 實例連接到它。</p>
+<ol>
+<li><p><strong>Azure SQL Database 的防火牆設置</strong>：</p>
+<ul>
+<li>登入 Azure 入口網站。</li>
+<li>找到您的 Azure SQL Database。</li>
+<li>點擊 <strong>「設定」</strong>，選擇 <strong>「防火牆和虛擬網路」</strong>。</li>
+<li>您可以添加一條規則，允許來自 Azure 服務的連接，或特定的 IP 地址段。</li>
+<li>您也可以選擇「允許 Azure 服務和資源訪問這個服務」來簡化連接設置。</li>
+</ul>
+</li>
+<li><p><strong>允許 Azure App Service 訪問資料庫</strong>：</p>
+<ul>
+<li>在 Azure 入口網站中，找到 App Service 和資料庫的設置，並確保兩者的訪問權限設置正確，以便 App Service 能夠連接到資料庫。</li>
+<li>例如，在資料庫中允許 Azure 內部 IP 或直接允許應用程式服務連接。</li>
+</ul>
+</li>
+</ol>
+<h3 id="4-本地資料庫與雲端資料庫的連接"><a href="#4-本地資料庫與雲端資料庫的連接" class="headerlink" title="4. 本地資料庫與雲端資料庫的連接"></a>4. <strong>本地資料庫與雲端資料庫的連接</strong></h3><p>如果您的資料庫仍位於本地（例如開發期間），而您的 Web API 已部署到雲端，您需要確保本地資料庫對 Azure 開放連接：</p>
+<ul>
+<li><strong>VPN 連接</strong>：可以考慮使用 VPN 來將 Azure 服務與本地環境連接起來。</li>
+<li><strong>動態 IP 或靜態 IP</strong>：確保您本地網絡的 IP 地址允許 Azure 的流量進入，並開啟資料庫埠號（如 MySQL 的 3306 埠或 SQL Server 的 1433 埠）。</li>
+</ul>
+<h3 id="5-使用雲端資料庫的優點"><a href="#5-使用雲端資料庫的優點" class="headerlink" title="5. 使用雲端資料庫的優點"></a>5. <strong>使用雲端資料庫的優點</strong></h3><p>將資料庫部署到雲端（例如 Azure SQL Database 或 Azure Database for MySQL），可以獲得以下優點：</p>
+<ul>
+<li><strong>可擴展性</strong>：隨著應用的成長，您可以方便地擴展資料庫性能。</li>
+<li><strong>高可用性</strong>：雲端資料庫提供內建的備份和高可用性選項，減少停機風險。</li>
+<li><strong>維護方便</strong>：Azure 提供了資料庫的自動更新和修補服務，節省維護成本。</li>
+</ul>
+<h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h3><p>部署 Web API 到雲端後，您可以通過配置雲端資料庫並設置正確的連接字符串來實現連接。建議將資料庫也部署到雲端，以便更好的性能、可擴展性以及方便的管理。如果有其他具體問題，隨時告訴我！</p>
+<p>我:<br>azure 雲端有免費的嗎?<br>GPT:<br>是的，Azure 提供一些免費的雲端服務選項，以便用戶可以在不花費的情況下體驗和測試 Azure 的功能。以下是 Azure 提供的一些免費選項和資源：</p>
+<h3 id="1-Azure-免費帳戶"><a href="#1-Azure-免費帳戶" class="headerlink" title="1. Azure 免費帳戶"></a>1. <strong>Azure 免費帳戶</strong></h3><p>Azure 提供新註冊用戶 <strong>12 個月的免費服務</strong>和一個包含 <strong>$200 美元</strong>的 Azure 點數，有效期為 30 天。這些資源包括多種 Azure 服務的免費配額，例如：</p>
+<ul>
+<li><strong>虛擬機</strong>：使用指定類型的虛擬機，每月最多 750 小時。</li>
+<li><strong>Azure Blob 儲存</strong>：5 GB 的 LRS 儲存。</li>
+<li><strong>Azure Database for MySQL&#x2F;MariaDB&#x2F;PostgreSQL</strong>：提供 750 小時的免費運行時間和 32 GB 的儲存。</li>
+<li><strong>Azure App Service</strong>：每月最多 10 個應用的免費主機（適合 Web、API 和行動應用程式）。</li>
+</ul>
+<p>這些免費服務可以幫助您學習和測試雲端應用程序。</p>
+<h3 id="2-免費層級服務"><a href="#2-免費層級服務" class="headerlink" title="2. 免費層級服務"></a>2. <strong>免費層級服務</strong></h3><p>除了 Azure 免費帳戶外，還有一些 Azure 服務提供<strong>免費層</strong>，這些免費層不僅限於前 12 個月，而是可以永久免費使用（在配額內），例如：</p>
+<ul>
+<li><p><strong>Azure App Service</strong>：</p>
+<ul>
+<li>Azure App Service 提供 <strong>免費層</strong>，可以用於測試和小型應用的部署。</li>
+<li>每月有限的運行時間、配額和基本的資源，適合開發測試目的。</li>
+</ul>
+</li>
+<li><p><strong>Azure Cosmos DB</strong>：</p>
+<ul>
+<li>提供一個免費層，每月有 400 個 RU&#x2F;s 和 5 GB 儲存，適合進行入門測試。</li>
+</ul>
+</li>
+<li><p><strong>Azure Functions</strong>（無伺服器計算）：</p>
+<ul>
+<li>Azure Functions 提供每月 100 萬次請求的免費層，非常適合無伺服器後端應用程式的開發和測試。</li>
+</ul>
+</li>
+<li><p><strong>Azure Logic Apps</strong>：</p>
+<ul>
+<li>允許在工作流程自動化中每月使用一定數量的標準執行次數，適合開發自動化流程。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-教育版-Azure（Azure-for-Students）"><a href="#3-教育版-Azure（Azure-for-Students）" class="headerlink" title="3. 教育版 Azure（Azure for Students）"></a>3. <strong>教育版 Azure（Azure for Students）</strong></h3><ul>
+<li><strong>Azure for Students</strong> 是專門針對學生提供的免費 Azure 點數和資源計劃。</li>
+<li>不需要信用卡驗證，您將獲得 <strong>$100 美元</strong>的 Azure 點數和一些免費的雲端服務。</li>
+<li>您可以使用這些資源來開發、部署和學習雲端技術。</li>
+</ul>
+<h3 id="免費層級的限制"><a href="#免費層級的限制" class="headerlink" title="免費層級的限制"></a>免費層級的限制</h3><p>需要注意的是，<strong>免費層</strong>有一定的使用限制，並不適合長期運行大規模應用。通常，免費層適合以下情況：</p>
+<ul>
+<li><strong>開發和測試</strong>：開發過程中嘗試雲端部署、測試新功能。</li>
+<li><strong>學習</strong>：了解如何使用 Azure 平台和工具。</li>
+</ul>
+<h3 id="免費使用後的成本"><a href="#免費使用後的成本" class="headerlink" title="免費使用後的成本"></a>免費使用後的成本</h3><ul>
+<li>在使用 Azure 免費帳戶中的資源或配額達到上限之後，Azure 會開始收取費用。</li>
+<li>如果您註冊了 Azure 免費帳戶，一旦免費點數（例如 $200 美元）使用完畢，您可以選擇是否升級為「按需付費帳戶」。Azure 會通知您資金即將用盡，避免意外產生額外費用。</li>
+</ul>
+<h3 id="總結-1"><a href="#總結-1" class="headerlink" title="總結"></a>總結</h3><p>Azure 提供免費帳戶、免費層級和學生版計劃，讓您能夠免費體驗 Azure 的雲端服務。這些免費選項非常適合開發、學習和測試環境，但不適合大規模的商業應用。如果您計劃將應用程式運行在生產環境中，建議根據需求選擇適當的收費方案。</p>
+<p>如果您想嘗試 Azure 免費帳戶，可以前往 <a href="https://azure.microsoft.com/free/">Azure 免費帳戶</a> 註冊並開始使用。</p>
+<p>我:<br>除了 azure 還有其他建議的雲端免費服務嗎<br>除了 <strong>Azure</strong> 之外，還有一些其他的雲端平台也提供免費的服務層級，適合學習、測試和小型應用開發。以下是幾個熱門的雲端平台及其免費服務：</p>
+<h3 id="1-Amazon-Web-Services-AWS"><a href="#1-Amazon-Web-Services-AWS" class="headerlink" title="1. Amazon Web Services (AWS)"></a>1. <strong>Amazon Web Services (AWS)</strong></h3><p><strong>AWS</strong> 提供一個「<strong>免費層</strong>」計劃，允許用戶在有限的配額內免費使用多種 AWS 服務：</p>
+<ul>
+<li><strong>Amazon EC2</strong>：提供 750 小時的免費微型虛擬機（t2.micro），有效期 12 個月。</li>
+<li><strong>Amazon S3</strong>：每月 5 GB 的存儲免費，有效期 12 個月。</li>
+<li><strong>AWS Lambda</strong>：每月 100 萬個免費請求，適合無伺服器計算應用。</li>
+<li><strong>Amazon RDS</strong>：提供 750 小時的微型資料庫實例（如 MySQL、PostgreSQL）免費，有效期 12 個月。</li>
+</ul>
+<p>AWS 免費層非常適合進行入門和學習 AWS 平台。</p>
+<h3 id="2-Google-Cloud-Platform-GCP"><a href="#2-Google-Cloud-Platform-GCP" class="headerlink" title="2. Google Cloud Platform (GCP)"></a>2. <strong>Google Cloud Platform (GCP)</strong></h3><p><strong>Google Cloud Platform</strong> 提供兩種免費的資源：</p>
+<ol>
+<li><p><strong>$300 美元免費點數</strong>：新用戶註冊後的 90 天內，可以使用 $300 美元點數來使用任何 GCP 服務。</p>
+</li>
+<li><p><strong>永久免費層</strong>：</p>
+<ul>
+<li><strong>Compute Engine</strong>：每月提供 1 個微型虛擬機（f1-micro），免費可用於美國部分地區。</li>
+<li><strong>Google Cloud Storage</strong>：每月 5 GB 的標準存儲免費。</li>
+<li><strong>Firebase</strong>：GCP 上的 Firebase 是針對移動應用的後端服務，提供許多免費功能，包括資料庫、身份驗證等。</li>
+</ul>
+</li>
+</ol>
+<p>GCP 的免費層級特別適合開發者進行小型專案的部署和測試。</p>
+<h3 id="3-IBM-Cloud"><a href="#3-IBM-Cloud" class="headerlink" title="3. IBM Cloud"></a>3. <strong>IBM Cloud</strong></h3><p><strong>IBM Cloud</strong> 也提供一些免費的服務：</p>
+<ul>
+<li><strong>Lite Plans</strong>：有多種服務提供「Lite」版本，不需要信用卡，包括 IBM Cloud Foundry 應用、Cloudant NoSQL 資料庫、Kubernetes 叢集等。</li>
+<li><strong>IBM Watson</strong>：可以免費試用多個 Watson AI 服務，如文本分析、語音識別等，提供一定的請求配額。</li>
+</ul>
+<p>這些免費計劃不會過期，非常適合進行學習和個人專案開發。</p>
+<h3 id="4-Oracle-Cloud"><a href="#4-Oracle-Cloud" class="headerlink" title="4. Oracle Cloud"></a>4. <strong>Oracle Cloud</strong></h3><p><strong>Oracle Cloud</strong> 提供了一些永久免費的雲端服務：</p>
+<ul>
+<li><strong>計算實例</strong>：提供 2 個「Always Free」的虛擬機（Arm-based 或 x86-based），適合小型專案的計算需求。</li>
+<li><strong>Oracle Autonomous Database</strong>：每月 20 GB 的 Autonomous Database（Oracle 自動化資料庫），適合學習和小型應用程序。</li>
+<li><strong>儲存和網路</strong>：10 GB 的儲存和免費的負載平衡等。</li>
+</ul>
+<p>Oracle 的免費層非常強大，特別適合需要持續運行虛擬機和使用資料庫的用戶。</p>
+<h3 id="5-Heroku"><a href="#5-Heroku" class="headerlink" title="5. Heroku"></a>5. <strong>Heroku</strong></h3><p><strong>Heroku</strong> 提供免費的 PaaS（平台即服務），適合開發和部署小型 Web 應用程序：</p>
+<ul>
+<li><strong>免費 Dyno</strong>：Heroku 提供免費的虛擬機（Dyno），適合運行應用，但會在長時間無請求時進入睡眠狀態。</li>
+<li><strong>免費資料庫</strong>：PostgreSQL（有一定的儲存限制），適合測試和小型專案。</li>
+<li>Heroku 允許用戶輕鬆地將應用部署到雲端，對於開發者來說特別友好，支援多種編程語言。</li>
+</ul>
+<h3 id="6-DigitalOcean-App-Platform"><a href="#6-DigitalOcean-App-Platform" class="headerlink" title="6. DigitalOcean App Platform"></a>6. <strong>DigitalOcean App Platform</strong></h3><p><strong>DigitalOcean</strong> 提供一個「App Platform」免費層，可以用來部署靜態網站：</p>
+<ul>
+<li><strong>靜態網站</strong>：每月提供 3 個靜態網站的免費部署，適合用於展示網站或個人簡單應用。</li>
+<li>DigitalOcean 還提供一個付費的虛擬機服務，但起價較低，非常適合小型專案。</li>
+</ul>
+<h3 id="7-Netlify-和-Vercel"><a href="#7-Netlify-和-Vercel" class="headerlink" title="7. Netlify 和 Vercel"></a>7. <strong>Netlify 和 Vercel</strong></h3><p><strong>Netlify</strong> 和 <strong>Vercel</strong> 是兩個專注於靜態網站和前端應用程序的雲端平台，它們提供非常友好的免費層：</p>
+<ul>
+<li><strong>靜態網站部署</strong>：可以免費部署靜態網站，並提供 CI&#x2F;CD 功能，用於自動化構建和發布。</li>
+<li><strong>自動域名和 SSL</strong>：支援自動生成的子域名和免費的 SSL 證書。</li>
+</ul>
+<p>這些平台適合前端開發者快速將靜態網站或 Jamstack 應用程序部署到雲端。</p>
+<h3 id="總結-2"><a href="#總結-2" class="headerlink" title="總結"></a>總結</h3><ul>
+<li><strong>AWS、GCP、Azure</strong>：這些大型雲平台提供了免費層級和試用點數，適合想要學習和體驗雲端技術的用戶。</li>
+<li><strong>Heroku、Netlify、Vercel</strong>：適合開發和部署小型應用或前端項目，使用門檻低，適合初學者。</li>
+<li><strong>Oracle Cloud</strong>：免費層級功能強大，特別適合有持續運行需求的小型專案。</li>
+<li><strong>DigitalOcean</strong>：對於靜態網站部署來說非常便捷，且起價較低。</li>
+</ul>
+<p>根據您的需求選擇合適的免費雲端服務平台，如果您想學習完整的雲端部署流程，可以選擇 <strong>AWS、Azure 或 GCP</strong>，如果您專注於前端開發和靜態網站，<strong>Netlify</strong> 和 <strong>Vercel</strong> 會是很好的選擇。</p>
+<p>我：<br>Heroku 沒有mysql ?</p>
+<p>GPT：<br><strong>Heroku</strong> 自身沒有提供內建的 MySQL 資料庫作為一項官方服務，但可以通過一些其他方式在 Heroku 上使用 MySQL：</p>
+<h3 id="1-使用-Heroku-外掛程式（Addon）"><a href="#1-使用-Heroku-外掛程式（Addon）" class="headerlink" title="1. 使用 Heroku 外掛程式（Addon）"></a>1. <strong>使用 Heroku 外掛程式（Addon）</strong></h3><p>Heroku 有一些第三方的附加元件（Addon）可以用來提供 MySQL 資料庫。這些附加元件提供雲端托管的 MySQL 資料庫，您可以輕鬆地將它們添加到 Heroku 應用程序中。以下是常見的幾個 MySQL 附加元件：</p>
+<ol>
+<li><p><strong>ClearDB MySQL</strong>：</p>
+<ul>
+<li><p><strong>ClearDB</strong> 是一個第三方附加元件，可以提供 MySQL 資料庫在 Heroku 上的服務。</p>
+</li>
+<li><p>您可以通過以下命令將 ClearDB MySQL 添加到您的 Heroku 應用中：</p>
+<pre><code class="bash">heroku addons:create cleardb:ignite
+</code></pre>
+<ul>
+<li><code>ignite</code> 是免費的配額，但資源較少，適合測試和小型應用。</li>
+</ul>
+</li>
+<li><p>安裝完畢後，您可以通過以下命令來獲取資料庫的連接字符串：</p>
+<pre><code class="bash">heroku config | grep CLEARDB_DATABASE_URL
+</code></pre>
+</li>
+<li><p>這個 URL 可以直接作為應用程式的連接字符串使用。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>JawsDB MySQL</strong>：</p>
+<ul>
+<li><p><strong>JawsDB</strong> 是另一個 MySQL 資料庫附加元件，提供類似 ClearDB 的服務。</p>
+</li>
+<li><p>安裝命令：</p>
+<pre><code class="bash">heroku addons:create jawsdb:kitefin
+</code></pre>
+<ul>
+<li><code>kitefin</code> 是免費的層級，但資源有限，適合小型應用或開發測試。</li>
+</ul>
+</li>
+<li><p>您可以通過以下命令來查看 JawsDB 的連接信息：</p>
+<pre><code class="bash">heroku config | grep JAWSDB_URL
+</code></pre>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="2-自行託管-MySQL"><a href="#2-自行託管-MySQL" class="headerlink" title="2. 自行託管 MySQL"></a>2. <strong>自行託管 MySQL</strong></h3><p>您也可以在其他地方自行託管 MySQL 資料庫，然後將 Heroku 應用程式連接到該資料庫。例如：</p>
+<ul>
+<li><p><strong>雲端托管 MySQL</strong>：可以使用 <strong>AWS RDS</strong>、<strong>Google Cloud SQL</strong> 或 <strong>Azure Database for MySQL</strong> 來托管 MySQL 資料庫，這些平台可以提供穩定和高可用性的資料庫服務。</p>
+<ul>
+<li>設置資料庫之後，您只需將 Heroku 應用中的連接字符串指向該雲端 MySQL 實例即可。</li>
+</ul>
+</li>
+<li><p><strong>VPS 或本地伺服器</strong>：如果您有自己的 <strong>VPS</strong> 或伺服器，也可以在上面部署 MySQL，然後讓 Heroku 應用程式通過網際網路來訪問該資料庫。</p>
+<ul>
+<li>這種方式需要確保伺服器對外網開放，並且安全設置充足，防止不當訪問。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-配置-Heroku-應用程式中的連接字符串"><a href="#3-配置-Heroku-應用程式中的連接字符串" class="headerlink" title="3. 配置 Heroku 應用程式中的連接字符串"></a>3. <strong>配置 Heroku 應用程式中的連接字符串</strong></h3><p>一旦 MySQL 資料庫的外掛安裝或自行部署完成，您需要將資料庫的連接字符串設置為環境變數，這樣 Heroku 應用程式就可以讀取並連接到該資料庫。</p>
+<p>例如，在 <code>appsettings.json</code> 中可以設置如下：</p>
+<pre><code class="json">{
+  &quot;ConnectionStrings&quot;: {
+    &quot;DefaultConnection&quot;: &quot;Your MySQL connection string here&quot;
+  }
+}
+</code></pre>
+<p>然後在 Heroku 上設置環境變數：</p>
+<pre><code class="bash">heroku config:set DATABASE_URL=&#39;Your MySQL connection string here&#39;
+</code></pre>
+<h3 id="4-使用-Heroku-與其他資料庫"><a href="#4-使用-Heroku-與其他資料庫" class="headerlink" title="4. 使用 Heroku 與其他資料庫"></a>4. <strong>使用 Heroku 與其他資料庫</strong></h3><p>Heroku 官方提供的資料庫服務是 <strong>PostgreSQL</strong>，叫做 <strong>Heroku Postgres</strong>，而且 Postgres 與 Heroku 的整合非常緊密，使用上也相對簡單。如果您考慮方便性，並且可以使用 Postgres 替代 MySQL，那麼直接使用 Heroku 提供的 Postgres 可能是一個更佳的選擇，特別是因為它有免費層（Hobby Dev），可滿足基本應用需求。</p>
+<h3 id="總結-3"><a href="#總結-3" class="headerlink" title="總結"></a>總結</h3><ul>
+<li><strong>Heroku 沒有內建 MySQL</strong>，但您可以通過附加元件（如 ClearDB 或 JawsDB）來使用 MySQL 資料庫。</li>
+<li>您也可以使用其他雲端托管的 MySQL，並將其連接到您的 Heroku 應用。</li>
+<li><strong>Heroku Postgres</strong> 是 Heroku 的原生資料庫選擇，集成更緊密，如果可以切換資料庫，建議使用 Postgres。</li>
+</ul>
+<p>Heroku 上的 MySQL 方案有免費選擇，但免費版本通常有資源限制，適合學習和測試用途。如果應用擴展到生產級別，您可能需要升級至付費版本以獲得更高的性能和穩定性。</p>
+<p>我：<br>PostgreSQL 有 stored procedure 嗎?</p>
+<p>GPT：<br>是的，<strong>PostgreSQL</strong> 支援 <strong>儲存程序（Stored Procedures）</strong>，並且在 11 版本之後引入了新的 <code>CREATE PROCEDURE</code> 語法。儲存程序可以幫助您在資料庫中封裝邏輯，允許多個 SQL 語句一起執行，這對於需要重複執行的業務邏輯非常有用。</p>
+<p>在 PostgreSQL 中有兩種方式來封裝和執行程式碼邏輯：</p>
+<ol>
+<li><strong>儲存函數（Stored Functions）</strong> - 在 PostgreSQL 早期版本中，您可以通過 <code>CREATE FUNCTION</code> 來創建儲存函數，它們能返回值，並且是主要用於執行計算或返回資料的。</li>
+<li><strong>儲存程序（Stored Procedures）</strong> - 從 <strong>PostgreSQL 11</strong> 版本開始，<code>CREATE PROCEDURE</code> 語法被引入，儲存程序允許通過 <code>CALL</code> 語句來執行，且支援交易控制（例如 <code>COMMIT</code> 和 <code>ROLLBACK</code>）。</li>
+</ol>
+<h3 id="儲存程序與儲存函數的區別"><a href="#儲存程序與儲存函數的區別" class="headerlink" title="儲存程序與儲存函數的區別"></a>儲存程序與儲存函數的區別</h3><ul>
+<li><strong>儲存程序（Stored Procedures）</strong> 通過 <code>CALL</code> 語法執行，並且允許在執行期間執行 <code>COMMIT</code> 或 <code>ROLLBACK</code> 來控制事務，這使得它們在複雜交易中的應用更強大。</li>
+<li><strong>儲存函數（Stored Functions）</strong> 必須返回一個值或數據集，並且不能控制交易，主要用於資料查詢或計算。</li>
+</ul>
+<h3 id="創建儲存程序的語法"><a href="#創建儲存程序的語法" class="headerlink" title="創建儲存程序的語法"></a>創建儲存程序的語法</h3><p>以下是如何使用 PostgreSQL 中的 <code>CREATE PROCEDURE</code> 語法來創建一個儲存程序的例子：</p>
+<pre><code class="sql">CREATE PROCEDURE update_package_status(IN tracking_number VARCHAR, IN new_status VARCHAR)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    UPDATE Packages
+    SET Status = new_status
+    WHERE TrackingNumber = tracking_number;
+
+    -- 可以在這裡執行更多的邏輯
+    RAISE NOTICE &#39;Package status updated for %&#39;, tracking_number;
+END;
+$$;
+</code></pre>
+<ul>
+<li>**<code>CREATE PROCEDURE</code>**：創建儲存程序。</li>
+<li>**<code>IN tracking_number VARCHAR</code>**：輸入參數，<code>tracking_number</code> 是包裹的追踪號。</li>
+<li>**<code>LANGUAGE plpgsql</code>**：使用 PL&#x2F;pgSQL 語言，它是 PostgreSQL 的一個過程語言，非常適合編寫複雜的邏輯。</li>
+<li>**<code>BEGIN ... END</code>**：定義儲存程序的主體。</li>
+</ul>
+<h3 id="執行儲存程序"><a href="#執行儲存程序" class="headerlink" title="執行儲存程序"></a>執行儲存程序</h3><p>儲存程序在 PostgreSQL 中使用 <code>CALL</code> 語句執行。例如，要執行剛才創建的 <code>update_package_status</code> 儲存程序，可以使用以下命令：</p>
+<pre><code class="sql">CALL update_package_status(&#39;12345ABC&#39;, &#39;Delivered&#39;);
+</code></pre>
+<p>這個命令將更新 <code>TrackingNumber</code> 為 <code>&#39;12345ABC&#39;</code> 的包裹狀態為 <code>&#39;Delivered&#39;</code>。</p>
+<h3 id="儲存函數的例子"><a href="#儲存函數的例子" class="headerlink" title="儲存函數的例子"></a>儲存函數的例子</h3><p>如果您想創建一個儲存函數來計算某些值或返回查詢結果，您可以使用 <code>CREATE FUNCTION</code>。例如：</p>
+<pre><code class="sql">CREATE FUNCTION get_package_status(tracking_number VARCHAR)
+RETURNS VARCHAR
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    package_status VARCHAR;
+BEGIN
+    SELECT Status INTO package_status
+    FROM Packages
+    WHERE TrackingNumber = tracking_number;
+
+    RETURN package_status;
+END;
+$$;
+</code></pre>
+<ul>
+<li>**<code>CREATE FUNCTION</code>**：創建儲存函數。</li>
+<li>**<code>RETURNS VARCHAR</code>**：指定返回值類型。</li>
+<li>**<code>DECLARE</code>**：用於聲明變量。</li>
+<li>**<code>RETURN</code>**：返回計算結果。</li>
+</ul>
+<h3 id="交易控制的不同"><a href="#交易控制的不同" class="headerlink" title="交易控制的不同"></a>交易控制的不同</h3><ul>
+<li><strong>儲存函數</strong> 不允許在內部使用 <code>COMMIT</code> 或 <code>ROLLBACK</code>，因為函數中的語句總是作為一個整體在一個單獨的事務中執行。</li>
+<li><strong>儲存程序</strong> 允許在程序內部進行 <code>COMMIT</code> 或 <code>ROLLBACK</code>，這使它非常適合用於需要進行部分提交的情況。</li>
+</ul>
+<h3 id="使用場景"><a href="#使用場景" class="headerlink" title="使用場景"></a>使用場景</h3><ul>
+<li><strong>儲存函數</strong> 適合需要進行資料計算、查詢並返回結果的場景，像是業務邏輯計算、報表生成等。</li>
+<li><strong>儲存程序</strong> 更適合包含多個步驟並需要交易控制的操作，像是批量更新、日誌寫入等。</li>
+</ul>
+<h3 id="總結-4"><a href="#總結-4" class="headerlink" title="總結"></a>總結</h3><p>PostgreSQL 支援儲存程序和儲存函數，並且從 <strong>PostgreSQL 11</strong> 版本開始引入了新的 <code>CREATE PROCEDURE</code> 語法。儲存程序可以讓開發人員編寫更靈活的邏輯，特別是在需要控制事務的情況下。</p>
+<ul>
+<li>如果您需要返回某些計算結果或資料，使用 <strong>儲存函數</strong>。</li>
+<li>如果需要進行多步驟的操作並可能涉及交易控制，使用 <strong>儲存程序</strong>。</li>
+</ul>
+<p>兩者的結合使用可以極大地提高資料庫邏輯的靈活性和性能。</p>

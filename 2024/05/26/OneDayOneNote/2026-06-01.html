@@ -1,0 +1,184 @@
+<hr>
+<h2 id="title-2026-06-01-部署-Web-APIdate-2026-04-28-21-56-35categories-OneDayOneNotetags-Web-API-description-2026-05-29-要連接到-MySQL-伺服器"><a href="#title-2026-06-01-部署-Web-APIdate-2026-04-28-21-56-35categories-OneDayOneNotetags-Web-API-description-2026-05-29-要連接到-MySQL-伺服器" class="headerlink" title="title: 2026-06-01 部署 Web APIdate: 2026-04-28 21:56:35categories: OneDayOneNotetags:  [Web API]description:   2026-05-29 要連接到 MySQL 伺服器"></a>title: 2026-06-01 部署 Web API<br>date: 2026-04-28 21:56:35<br>categories: OneDayOneNote<br>tags:  [Web API]<br>description:   2026-05-29 要連接到 MySQL 伺服器</h2><h2 id="2026-06-01-部署-Web-API"><a href="#2026-06-01-部署-Web-API" class="headerlink" title="2026-06-01 部署 Web API"></a>2026-06-01 部署 Web API</h2><p>我:<br>3. <strong>部署 Web API</strong>：</p>
+<ul>
+<li>使用 <strong>Docker</strong> 或 <strong>Azure App Service</strong> 部署你的 Web API。</li>
+<li>學習如何將 API 部署到雲端，讓其他人也能訪問。<br>這要如何做?</li>
+</ul>
+<p>GPT:<br><strong>作業說明：擴展 DAO 方法與異常處理</strong></p>
+<h3 id="第-1-部分：添加更多-DAO-方法"><a href="#第-1-部分：添加更多-DAO-方法" class="headerlink" title="第 1 部分：添加更多 DAO 方法"></a>第 1 部分：添加更多 DAO 方法</h3><ol>
+<li><p><strong>更新包裹的方法</strong>：</p>
+<ul>
+<li>在您的 DAO 類別中添加一個名為 <code>updatePackage</code> 的方法，用於更新包裹的狀態或其他屬性。</li>
+<li>方法應接收一個 <code>Package</code> 物件（包含更新後的所有屬性），並根據 <code>TrackingNumber</code> 來執行更新。</li>
+</ul>
+<pre><code class="csharp">public bool UpdatePackage(Package package)
+{
+    string query = &quot;UPDATE Packages SET Sender = @Sender, Recipient = @Recipient, Status = @Status WHERE TrackingNumber = @TrackingNumber&quot;;
+    using (var connection = new SqlConnection(connectionString))
+    {
+        using (var command = new SqlCommand(query, connection))
+        {
+            command.Parameters.AddWithValue(&quot;@Sender&quot;, package.Sender);
+            command.Parameters.AddWithValue(&quot;@Recipient&quot;, package.Recipient);
+            command.Parameters.AddWithValue(&quot;@Status&quot;, package.Status);
+            command.Parameters.AddWithValue(&quot;@TrackingNumber&quot;, package.TrackingNumber);
+            
+            connection.Open();
+            int rowsAffected = command.ExecuteNonQuery();
+            return rowsAffected &gt; 0;
+        }
+    }
+}
+</code></pre>
+</li>
+<li><p><strong>刪除包裹的方法</strong>：</p>
+<ul>
+<li>添加一個名為 <code>deletePackage</code> 的方法，用於根據 <code>TrackingNumber</code> 刪除包裹記錄。</li>
+</ul>
+<pre><code class="csharp">public bool DeletePackage(string trackingNumber)
+{
+    string query = &quot;DELETE FROM Packages WHERE TrackingNumber = @TrackingNumber&quot;;
+    using (var connection = new SqlConnection(connectionString))
+    {
+        using (var command = new SqlCommand(query, connection))
+        {
+            command.Parameters.AddWithValue(&quot;@TrackingNumber&quot;, trackingNumber);
+            
+            connection.Open();
+            int rowsAffected = command.ExecuteNonQuery();
+            return rowsAffected &gt; 0;
+        }
+    }
+}
+</code></pre>
+</li>
+</ol>
+<h3 id="第-2-部分：進一步測試資料庫操作"><a href="#第-2-部分：進一步測試資料庫操作" class="headerlink" title="第 2 部分：進一步測試資料庫操作"></a>第 2 部分：進一步測試資料庫操作</h3><ol>
+<li><p><strong>更新單元測試</strong>：</p>
+<ul>
+<li>更新現有的單元測試來測試 <code>updatePackage</code> 和 <code>deletePackage</code> 方法。</li>
+<li>您可以使用 <code>Moq</code> 等模擬工具來模擬資料庫連接和操作，以確保您的 DAO 在沒有實際資料庫的情況下也能進行測試。</li>
+</ul>
+<pre><code class="csharp">[TestMethod]
+public void UpdatePackage_ShouldReturnTrue_WhenPackageIsUpdated()
+{
+    // Arrange
+    var package = new Package { TrackingNumber = &quot;12345ABC&quot;, Sender = &quot;NewSender&quot;, Recipient = &quot;NewRecipient&quot;, Status = &quot;Delivered&quot; };
+    var dao = new PackageDao();
+    
+    // Act
+    bool result = dao.UpdatePackage(package);
+    
+    // Assert
+    Assert.IsTrue(result);
+}
+
+[TestMethod]
+public void DeletePackage_ShouldReturnTrue_WhenPackageIsDeleted()
+{
+    // Arrange
+    var trackingNumber = &quot;12345ABC&quot;;
+    var dao = new PackageDao();
+    
+    // Act
+    bool result = dao.DeletePackage(trackingNumber);
+    
+    // Assert
+    Assert.IsTrue(result);
+}
+</code></pre>
+</li>
+</ol>
+<h3 id="第-3-部分：加入異常處理"><a href="#第-3-部分：加入異常處理" class="headerlink" title="第 3 部分：加入異常處理"></a>第 3 部分：加入異常處理</h3><ol>
+<li><p><strong>資料庫操作中的異常處理</strong>：</p>
+<ul>
+<li>在每個 DAO 方法中加入 <code>try-catch</code> 塊，以便在發生異常時能夠捕捉並處理，例如資料庫連接失敗或 SQL 語句執行失敗。</li>
+<li>可以記錄異常訊息，並根據需要返回錯誤碼或自定義的異常類型。</li>
+</ul>
+<pre><code class="csharp">public bool UpdatePackage(Package package)
+{
+    string query = &quot;UPDATE Packages SET Sender = @Sender, Recipient = @Recipient, Status = @Status WHERE TrackingNumber = @TrackingNumber&quot;;
+    try
+    {
+        using (var connection = new SqlConnection(connectionString))
+        {
+            using (var command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue(&quot;@Sender&quot;, package.Sender);
+                command.Parameters.AddWithValue(&quot;@Recipient&quot;, package.Recipient);
+                command.Parameters.AddWithValue(&quot;@Status&quot;, package.Status);
+                command.Parameters.AddWithValue(&quot;@TrackingNumber&quot;, package.TrackingNumber);
+                
+                connection.Open();
+                int rowsAffected = command.ExecuteNonQuery();
+                return rowsAffected &gt; 0;
+            }
+        }
+    }
+    catch (SqlException ex)
+    {
+        // 記錄異常訊息並處理
+        Console.WriteLine(&quot;An error occurred while updating the package: &quot; + ex.Message);
+        return false;
+    }
+}
+</code></pre>
+</li>
+<li><p><strong>全域異常處理</strong>：</p>
+<ul>
+<li>在應用程式中設置全域異常處理器，用於捕捉未預期的異常，防止應用程式崩潰。</li>
+</ul>
+</li>
+</ol>
+<h3 id="第-4-部分：部署-Web-API"><a href="#第-4-部分：部署-Web-API" class="headerlink" title="第 4 部分：部署 Web API"></a>第 4 部分：部署 Web API</h3><ol>
+<li><p><strong>使用 Docker 部署 Web API</strong>：</p>
+<ul>
+<li><p><strong>編寫 Dockerfile</strong>：為您的 Web API 編寫一個 Dockerfile，描述應用程式如何構建和運行。</p>
+<pre><code class="dockerfile"># 使用官方的 .NET Core SDK 作為基礎映像
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+WORKDIR /app
+EXPOSE 80
+
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+WORKDIR /src
+COPY . .
+RUN dotnet publish -c Release -o /app/build
+
+FROM base AS final
+WORKDIR /app
+COPY --from=build /app/build .
+ENTRYPOINT [&quot;dotnet&quot;, &quot;YourWebApi.dll&quot;]
+</code></pre>
+</li>
+<li><p><strong>構建 Docker 映像</strong>：在專案目錄中運行以下命令來構建映像：</p>
+<pre><code class="bash">docker build -t yourwebapi-image .
+</code></pre>
+</li>
+<li><p><strong>運行 Docker 容器</strong>：使用以下命令運行您的 Web API 容器：</p>
+<pre><code class="bash">docker run -d -p 8080:80 yourwebapi-image
+</code></pre>
+</li>
+<li><p><strong>訪問 API</strong>：您的 API 將在本地的 <code>http://localhost:8080</code> 上可用。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>使用 Azure App Service 部署 Web API</strong>：</p>
+<ul>
+<li><p><strong>創建 Azure App Service</strong>：登入 <a href="https://portal.azure.com/">Azure 入口網站</a>，創建一個新的 App Service，選擇適合的方案。</p>
+</li>
+<li><p><strong>部署 Web API</strong>：可以使用 Visual Studio 直接發布，也可以使用 Azure CLI：</p>
+<pre><code class="bash">az webapp up --name yourwebapi-app --resource-group your-resource-group --location your-location
+</code></pre>
+</li>
+<li><p><strong>配置應用設置</strong>：在 Azure App Service 中配置應用的連接字串和其他必要的環境變數。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>學習資料</strong>：</p>
+<ul>
+<li><strong>Docker 教程</strong>：<a href="https://docs.docker.com/get-started/">Docker 官方文檔</a></li>
+<li><strong>Azure App Service 教程</strong>：<a href="https://learn.microsoft.com/azure/app-service/quickstart-dotnetcore">Azure App Service 文檔</a></li>
+</ul>
+<p>學習如何將 API 部署到雲端，這樣其他人就能通過網路訪問您的 Web API。</p>
+</li>
+</ol>

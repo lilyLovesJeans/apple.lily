@@ -1,0 +1,68 @@
+<hr>
+<h2 id="title-“2026-06-05-mac-進入mysql-指令”date-2026-04-28-22-16-54categories-OneDayOneNotetags-mySQL-description-“2026-06-05-mac-進入mysql-指令”"><a href="#title-“2026-06-05-mac-進入mysql-指令”date-2026-04-28-22-16-54categories-OneDayOneNotetags-mySQL-description-“2026-06-05-mac-進入mysql-指令”" class="headerlink" title="title: “2026-06-05 mac 進入mysql 指令”date: 2026-04-28 22:16:54categories: OneDayOneNotetags:  [mySQL]description:    “2026-06-05 mac 進入mysql 指令”"></a>title: “2026-06-05 mac 進入mysql 指令”<br>date: 2026-04-28 22:16:54<br>categories: OneDayOneNote<br>tags:  [mySQL]<br>description:    “2026-06-05 mac 進入mysql 指令”</h2><h2 id="“2026-06-05-mac-進入mysql-指令”"><a href="#“2026-06-05-mac-進入mysql-指令”" class="headerlink" title="“2026-06-05 mac 進入mysql 指令”"></a>“2026-06-05 mac 進入mysql 指令”</h2><p>我:<br>mac   進入mysql 指令</p>
+<p>GPT:<br>在 macOS 上進入 <strong>MySQL</strong>，您可以使用終端機來進行操作。以下是如何使用命令行進入 MySQL 的步驟：</p>
+<h3 id="步驟-1：打開終端機"><a href="#步驟-1：打開終端機" class="headerlink" title="步驟 1：打開終端機"></a>步驟 1：打開終端機</h3><ol>
+<li>按下 <strong><code>Command + Space</code></strong> 鍵，打開 Spotlight 搜尋，然後輸入 <strong>「Terminal」</strong>，按下 Enter，這會打開終端機窗口。</li>
+<li>您也可以從「應用程式」&gt;「實用工具」中找到 <strong>「終端機」</strong>。</li>
+</ol>
+<h3 id="步驟-2：進入-MySQL"><a href="#步驟-2：進入-MySQL" class="headerlink" title="步驟 2：進入 MySQL"></a>步驟 2：進入 MySQL</h3><p>假設 MySQL 已經安裝並且服務正在運行，您可以使用以下命令進入 MySQL：</p>
+<ol>
+<li><p><strong>使用 root 使用者進入 MySQL</strong>：<br>在終端機中輸入以下命令，並根據提示輸入密碼：</p>
+<pre><code class="bash">mysql -u root -p
+</code></pre>
+<ul>
+<li>**<code>-u root</code>**：表示您以 <strong>root</strong> 使用者身份登錄。</li>
+<li>**<code>-p</code>**：這將提示您輸入 MySQL root 使用者的密碼。</li>
+</ul>
+</li>
+<li><p>如果 MySQL 安裝在默認位置並且已經設置了 PATH 環境變數，這個命令應該能正常運行。輸入密碼之後，您就會進入 MySQL 提示符 **<code>mysql&gt;</code>**。</p>
+</li>
+<li><p><strong>連接到特定資料庫</strong>：<br>如果您想進入特定的資料庫，可以在上面的命令後添加資料庫名稱：</p>
+<pre><code class="bash">mysql -u root -p logisticsdb
+</code></pre>
+<p>然後輸入您的密碼，就會直接進入該資料庫。</p>
+</li>
+</ol>
+<h3 id="常見指令"><a href="#常見指令" class="headerlink" title="常見指令"></a>常見指令</h3><ul>
+<li><p><strong>查看資料庫列表</strong>：</p>
+<pre><code class="sql">SHOW DATABASES;
+</code></pre>
+</li>
+<li><p><strong>選擇資料庫</strong>：</p>
+<pre><code class="sql">USE database_name;
+</code></pre>
+</li>
+<li><p><strong>查看資料表</strong>：</p>
+<pre><code class="sql">SHOW TABLES;
+</code></pre>
+</li>
+<li><p><strong>退出 MySQL</strong>：<br>您可以輸入以下命令退出 MySQL 提示符：</p>
+<pre><code class="sql">exit;
+</code></pre>
+<p>或者輸入 **<code>quit</code>**。</p>
+</li>
+</ul>
+<h3 id="啟動-MySQL-服務"><a href="#啟動-MySQL-服務" class="headerlink" title="啟動 MySQL 服務"></a>啟動 MySQL 服務</h3><p>如果您遇到 MySQL 無法連接的問題，可能是 MySQL 服務沒有啟動。可以使用以下命令來啟動 MySQL：</p>
+<ol>
+<li><p>如果 MySQL 是使用 Homebrew 安裝的，啟動命令為：</p>
+<pre><code class="bash">brew services start mysql
+</code></pre>
+</li>
+<li><p>如果 MySQL 是使用 DMG 安裝包安裝的，您可以使用以下命令啟動：</p>
+<pre><code class="bash">sudo /usr/local/mysql/support-files/mysql.server start
+</code></pre>
+<p>輸入您的 macOS 使用者密碼來啟動 MySQL。</p>
+</li>
+</ol>
+<h3 id="檢查-MySQL-安裝位置"><a href="#檢查-MySQL-安裝位置" class="headerlink" title="檢查 MySQL 安裝位置"></a>檢查 MySQL 安裝位置</h3><p>如果您無法找到 <code>mysql</code>，可以檢查 MySQL 的安裝位置。可以使用以下命令來查找：</p>
+<pre><code class="bash">which mysql
+</code></pre>
+<p>如果返回的是類似 <code>/usr/local/mysql/bin/mysql</code>，則表示 MySQL 已安裝，並且您可以使用該路徑來進入 MySQL：</p>
+<pre><code class="bash">/usr/local/mysql/bin/mysql -u root -p
+</code></pre>
+<h3 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h3><ul>
+<li>使用 <strong><code>mysql -u root -p</code></strong> 命令進入 MySQL。</li>
+<li>輸入密碼後可以進入 MySQL 的交互模式進行操作。</li>
+<li>如果 MySQL 服務未啟動，可以使用 <strong><code>brew services start mysql</code></strong> 或其他啟動命令。</li>
+</ul>
+<p>這些步驟應該可以幫助您在 macOS 上順利進入 MySQL，如果有其他問題，歡迎隨時提問！</p>

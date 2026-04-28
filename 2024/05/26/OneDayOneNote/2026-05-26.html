@@ -1,0 +1,59 @@
+<hr>
+<h2 id="title-2026-05-26-MySQL-Shell-就不能像-mysql-這樣下指令嗎-date-2026-04-23-23-20-46ategories-OneDayOneNotetags-mySQL-description-2026-05-26-MySQL-Shell-就不能像-mysql-這樣下指令嗎"><a href="#title-2026-05-26-MySQL-Shell-就不能像-mysql-這樣下指令嗎-date-2026-04-23-23-20-46ategories-OneDayOneNotetags-mySQL-description-2026-05-26-MySQL-Shell-就不能像-mysql-這樣下指令嗎" class="headerlink" title="title: 2026-05-26 MySQL Shell 就不能像 mysql &gt; 這樣下指令嗎?date: 2026-04-23 23:20:46ategories: OneDayOneNotetags:  [mySQL]description:  2026-05-26 MySQL Shell 就不能像 mysql &gt; 這樣下指令嗎?"></a>title: 2026-05-26 MySQL Shell 就不能像 mysql &gt; 這樣下指令嗎?<br>date: 2026-04-23 23:20:46<br>ategories: OneDayOneNote<br>tags:  [mySQL]<br>description:  2026-05-26 MySQL Shell 就不能像 mysql &gt; 這樣下指令嗎?</h2><h2 id="2026-05-26-MySQL-Shell-就不能像-mysql-這樣下指令嗎"><a href="#2026-05-26-MySQL-Shell-就不能像-mysql-這樣下指令嗎" class="headerlink" title="2026-05-26 MySQL Shell 就不能像 mysql &gt; 這樣下指令嗎?"></a>2026-05-26 MySQL Shell 就不能像 mysql &gt; 這樣下指令嗎?</h2><p>我:<br>MySQL Shell 就不能像 mysql &gt; 這樣下指令嗎?<br>GPT：<br>可以的，<strong>MySQL Shell</strong> 可以像傳統的 <strong>MySQL 客戶端 (<code>mysql&gt;</code>)</strong> 一樣執行 SQL 指令。在 <strong>MySQL Shell</strong> 中，您可以切換到 <strong>SQL 模式</strong>，並直接輸入和執行 SQL 語句。MySQL Shell 不僅支持 JavaScript 和 Python 語法，還支持傳統的 SQL 語法。</p>
+<p>以下是如何在 <strong>MySQL Shell</strong> 中使用 SQL 模式來執行與傳統 <strong><code>mysql&gt;</code></strong> 相似的操作：</p>
+<h3 id="1-啟動-MySQL-Shell"><a href="#1-啟動-MySQL-Shell" class="headerlink" title="1. 啟動 MySQL Shell"></a>1. 啟動 MySQL Shell</h3><p>首先，打開 <strong>命令提示字元 (cmd)</strong> 或 <strong>終端機</strong>，輸入以下命令來啟動 <strong>MySQL Shell</strong>：</p>
+<pre><code class="bash">mysqlsh
+</code></pre>
+<h3 id="2-切換到-SQL-模式"><a href="#2-切換到-SQL-模式" class="headerlink" title="2. 切換到 SQL 模式"></a>2. 切換到 SQL 模式</h3><p><strong>MySQL Shell</strong> 支援三種模式：JavaScript 模式 (<code>JS&gt;</code>)、Python 模式 (<code>PY&gt;</code>)，和 SQL 模式 (<code>MySQL&gt;</code>)。默認情況下，MySQL Shell 可能會以 JavaScript 模式 (<code>JS&gt;</code>) 啟動。</p>
+<p>要切換到 <strong>SQL 模式</strong>，輸入以下指令：</p>
+<pre><code class="javascript">\sql
+</code></pre>
+<p>之後，您會看到提示符變為 **<code>MySQL&gt;</code>**，這與傳統 MySQL 客戶端非常類似。</p>
+<h3 id="3-連接到-MySQL-伺服器"><a href="#3-連接到-MySQL-伺服器" class="headerlink" title="3. 連接到 MySQL 伺服器"></a>3. 連接到 MySQL 伺服器</h3><p>您可以直接使用 MySQL Shell 來連接遠端或本地的 MySQL 伺服器。您可以使用以下命令：</p>
+<pre><code class="sql">\connect root@localhost:3306
+</code></pre>
+<p>輸入您的密碼來完成連接。這裡的 <code>root</code> 是您的使用者名稱，<code>localhost</code> 是伺服器的地址（可以替換為遠端 IP 地址），<code>3306</code> 是 MySQL 的默認埠號。</p>
+<p>如果您希望在啟動 MySQL Shell 的時候就自動連接，可以直接使用以下命令：</p>
+<pre><code class="bash">mysqlsh root@localhost:3306
+</code></pre>
+<h3 id="4-使用-SQL-模式執行指令"><a href="#4-使用-SQL-模式執行指令" class="headerlink" title="4. 使用 SQL 模式執行指令"></a>4. 使用 SQL 模式執行指令</h3><p>一旦進入 <strong>SQL 模式</strong> (<code>MySQL&gt;</code> 提示符)，您可以像使用傳統 MySQL 客戶端一樣，輸入 SQL 語句。例如：</p>
+<ul>
+<li><p>查看資料庫：</p>
+<pre><code class="sql">SHOW DATABASES;
+</code></pre>
+</li>
+<li><p>使用某個資料庫：</p>
+<pre><code class="sql">USE my_database;
+</code></pre>
+</li>
+<li><p>查看表：</p>
+<pre><code class="sql">SHOW TABLES;
+</code></pre>
+</li>
+<li><p>查詢資料：</p>
+<pre><code class="sql">SELECT * FROM my_table;
+</code></pre>
+</li>
+</ul>
+<p>這些操作都與傳統 <strong><code>mysql&gt;</code></strong> 命令行中的操作完全相同。</p>
+<h3 id="5-切換回其他模式"><a href="#5-切換回其他模式" class="headerlink" title="5. 切換回其他模式"></a>5. 切換回其他模式</h3><p>如果您想切換回 JavaScript 模式或 Python 模式，可以分別輸入：</p>
+<pre><code class="sql">\js
+</code></pre>
+<p>或</p>
+<pre><code class="sql">\py
+</code></pre>
+<h3 id="6-常見快捷指令"><a href="#6-常見快捷指令" class="headerlink" title="6. 常見快捷指令"></a>6. 常見快捷指令</h3><ul>
+<li><p>列出可用命令：</p>
+<pre><code class="sql">\help
+</code></pre>
+</li>
+<li><p>切換資料庫：</p>
+<pre><code class="sql">USE my_database;
+</code></pre>
+</li>
+</ul>
+<h3 id="使用-MySQL-Shell-的好處"><a href="#使用-MySQL-Shell-的好處" class="headerlink" title="使用 MySQL Shell 的好處"></a>使用 MySQL Shell 的好處</h3><ul>
+<li><strong>多模式支持</strong>：MySQL Shell 支持 JavaScript 和 Python，不僅可以執行 SQL 語句，還可以編寫腳本來自動化操作。</li>
+<li><strong>更多功能</strong>：MySQL Shell 提供一些比傳統 <code>mysql&gt;</code> 更強大的功能，例如管理 InnoDB Cluster 和自動化管理腳本。</li>
+</ul>
+<h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h3><p><strong>MySQL Shell</strong> 是一個功能更強大的工具，它同時支持 JavaScript、Python 和 SQL 語法。在 <strong>SQL 模式</strong> 中，您可以像在傳統的 <strong><code>mysql&gt;</code></strong> 一樣輸入 SQL 語句來操作資料庫。因此，您完全可以用 MySQL Shell 來進行傳統的 SQL 操作，同時也可以利用其額外的腳本功能來增強您的 MySQL 管理能力。</p>

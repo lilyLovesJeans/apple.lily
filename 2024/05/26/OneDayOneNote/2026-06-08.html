@@ -1,0 +1,119 @@
+<hr>
+<h2 id="title-2026-06-08-獲取-Wi-Fi-網絡接口的-IP-地址date-2026-04-28-23-13-57categories-OneDayOneNotetags-網路-description-2026-06-08-獲取-Wi-Fi-網絡接口的-IP-地址"><a href="#title-2026-06-08-獲取-Wi-Fi-網絡接口的-IP-地址date-2026-04-28-23-13-57categories-OneDayOneNotetags-網路-description-2026-06-08-獲取-Wi-Fi-網絡接口的-IP-地址" class="headerlink" title="title: 2026-06-08 獲取 Wi-Fi 網絡接口的 IP 地址date: 2026-04-28 23:13:57categories: OneDayOneNotetags:  [網路]description:  2026-06-08 獲取 Wi-Fi 網絡接口的 IP 地址"></a>title: 2026-06-08 獲取 Wi-Fi 網絡接口的 IP 地址<br>date: 2026-04-28 23:13:57<br>categories: OneDayOneNote<br>tags:  [網路]<br>description:  2026-06-08 獲取 Wi-Fi 網絡接口的 IP 地址</h2><h2 id="2026-06-08-獲取-Wi-Fi-網絡接口的-IP-地址"><a href="#2026-06-08-獲取-Wi-Fi-網絡接口的-IP-地址" class="headerlink" title="2026-06-08 獲取 Wi-Fi 網絡接口的 IP 地址"></a>2026-06-08 獲取 Wi-Fi 網絡接口的 IP 地址</h2><p>我:<br>???iMacBook-Air:~ root# ipconfig getifaddr et0</p>
+<p>GPT:<br>您可能是想要獲取 Mac 上網絡接口的 IP 地址，但似乎輸入了錯誤的命令。<code>et0</code> 應該是 <code>en0</code>，這是 Mac 上的內建 Wi-Fi 或以太網接口的名稱。請試著使用以下命令來獲取正確的 IP 地址：</p>
+<h3 id="查看本機-IP-地址"><a href="#查看本機-IP-地址" class="headerlink" title="查看本機 IP 地址"></a>查看本機 IP 地址</h3><ol>
+<li><p><strong>獲取 Wi-Fi 網絡接口的 IP 地址</strong>：<br>如果您想查看 <strong>Wi-Fi（無線網絡）</strong> 的 IP 地址，可以使用以下命令：</p>
+<pre><code class="bash">ipconfig getifaddr en0
+</code></pre>
+<p><code>en0</code> 是 Mac 上 Wi-Fi 網絡接口的名稱。此命令會返回分配給 Wi-Fi 的 IP 地址。</p>
+</li>
+<li><p><strong>獲取以太網接口的 IP 地址</strong>：<br>如果您使用的是有線網絡（以太網），網絡接口的名稱可能是 <strong><code>en1</code></strong> 或其他：</p>
+<pre><code class="bash">ipconfig getifaddr en1
+</code></pre>
+<p>可以根據具體情況嘗試不同的接口名稱，如 <code>en1</code>、<code>en2</code>，查看哪個是有線網絡。</p>
+</li>
+</ol>
+<h3 id="查看所有網絡接口信息"><a href="#查看所有網絡接口信息" class="headerlink" title="查看所有網絡接口信息"></a>查看所有網絡接口信息</h3><p>如果您不確定網絡接口的名稱，也可以使用以下命令查看所有網絡接口的 IP 信息：</p>
+<pre><code class="bash">ifconfig
+</code></pre>
+<p><code>ifconfig</code> 命令會列出所有網絡接口及其相關信息，包括 IP 地址。通常 <code>en0</code> 是 Wi-Fi，<code>en1</code> 是有線網絡。</p>
+<h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h3><ul>
+<li><strong>Wi-Fi IP 地址</strong>：使用 <code>ipconfig getifaddr en0</code>。</li>
+<li><strong>以太網 IP 地址</strong>：使用 <code>ipconfig getifaddr en1</code>（如果連接的是有線網絡）。</li>
+<li><strong>查看所有網絡接口信息</strong>：使用 <code>ifconfig</code> 來獲取所有接口的信息。</li>
+</ul>
+<p>這樣應該可以幫助您正確獲取 Mac 上的 IP 地址。如果有其他疑問，請隨時告訴我。</p>
+<p>我:<br>可能是我的  ip  改了 昨天是 192.168.0.104 今天是 192.168.0.101</p>
+<p>GPT:<br>是的，這是因為大多數本地網絡使用 <strong>DHCP（動態主機配置協定）</strong> 來分配 IP 地址。當您的設備連接到網絡時，<strong>路由器</strong> 會動態地分配一個可用的 IP 地址，這個 IP 地址可能會隨著每次連接而改變。這樣的行為導致您的 IP 地址每天可能會不同，比如昨天是 <code>192.168.0.104</code>，今天變成了 <code>192.168.0.101</code>。</p>
+<h3 id="解決方案-1：查看當前-IP-地址"><a href="#解決方案-1：查看當前-IP-地址" class="headerlink" title="解決方案 1：查看當前 IP 地址"></a>解決方案 1：查看當前 IP 地址</h3><p>如果您需要經常使用本地 IP 進行連接（例如 MySQL、SSH 等），可以使用以下方式來查看當前的 IP 地址：</p>
+<ol>
+<li><p><strong>使用終端命令</strong>：</p>
+<ul>
+<li><p>如果是 <strong>Wi-Fi</strong> 連接，可以使用以下命令：</p>
+<pre><code class="bash">ipconfig getifaddr en0
+</code></pre>
+</li>
+<li><p>如果是 <strong>有線網絡（以太網）</strong>，可能是 <code>en1</code> 或其他：</p>
+<pre><code class="bash">ipconfig getifaddr en1
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>使用系統偏好設定查看</strong>：</p>
+<ul>
+<li>打開 <strong>「系統偏好設定」</strong> &gt; <strong>「網絡」</strong>。</li>
+<li>在左側選擇您正在使用的網絡連接（Wi-Fi 或 Ethernet），右側就會顯示當前的 IP 地址。</li>
+</ul>
+</li>
+</ol>
+<h3 id="解決方案-2：設置靜態-IP-地址"><a href="#解決方案-2：設置靜態-IP-地址" class="headerlink" title="解決方案 2：設置靜態 IP 地址"></a>解決方案 2：設置靜態 IP 地址</h3><p>如果您不希望 IP 地址隨著每次重新連接而改變，可以考慮在路由器上為您的設備設置一個 <strong>靜態 IP 地址</strong>，這樣每次您的設備連接到網絡時都會得到相同的 IP 地址。</p>
+<p><strong>方法如下：</strong></p>
+<ol>
+<li><p><strong>訪問路由器管理頁面</strong>：</p>
+<ul>
+<li>通常，您可以通過在瀏覽器中輸入路由器的 IP 地址（例如 <code>192.168.0.1</code> 或 <code>192.168.1.1</code>）來訪問路由器的管理頁面。然後使用管理者帳戶和密碼登錄。</li>
+</ul>
+</li>
+<li><p><strong>找到 DHCP 設置</strong>：</p>
+<ul>
+<li>在路由器管理頁面中找到 <strong>DHCP 設置</strong>，這通常在「網絡設置」或「LAN 設置」的頁面中。</li>
+</ul>
+</li>
+<li><p><strong>設置 IP 地址預留（DHCP Reservation）</strong>：</p>
+<ul>
+<li>在 DHCP 設置中，您可以為特定的設備（通過它的 <strong>MAC 地址</strong>）預留一個靜態 IP 地址。</li>
+<li>輸入設備的 <strong>MAC 地址</strong> 和您想要為其分配的 <strong>IP 地址</strong>（例如 <code>192.168.0.104</code>），然後保存設置。</li>
+</ul>
+</li>
+<li><p><strong>重新連接網絡</strong>：</p>
+<ul>
+<li>設置完成後，斷開並重新連接您的設備以獲取新的靜態 IP 地址。</li>
+</ul>
+</li>
+</ol>
+<h3 id="解決方案-3：使用設備名稱或-localhost"><a href="#解決方案-3：使用設備名稱或-localhost" class="headerlink" title="解決方案 3：使用設備名稱或 localhost"></a>解決方案 3：使用設備名稱或 <code>localhost</code></h3><p>如果您的應用程序需要頻繁連接本地 MySQL 伺服器，您也可以嘗試以下方法：</p>
+<ul>
+<li><p>**使用 <code>localhost</code>**：如果 MySQL 伺服器就在您當前使用的 Mac 上，您可以使用 <code>localhost</code> 而不是具體的 IP 地址來連接。</p>
+</li>
+<li><p><strong>使用設備名稱</strong>：在某些情況下，使用設備的網絡名稱（如 Mac 的名稱）也可以連接到該設備。例如：</p>
+<pre><code class="bash">mysql -h your-mac-name.local -u root -p
+</code></pre>
+</li>
+</ul>
+<p>這樣，即使 IP 地址更改，您依然可以通過設備名稱來連接。</p>
+<h3 id="總結-1"><a href="#總結-1" class="headerlink" title="總結"></a>總結</h3><ul>
+<li><strong>IP 地址變動</strong> 是由於 DHCP 分配的動態 IP 地址，可以使用 <code>ipconfig getifaddr</code> 查看當前的 IP 地址。</li>
+<li>您可以 <strong>設置靜態 IP 地址</strong>，在路由器中為您的設備保留一個固定的 IP 地址。</li>
+<li>如果在本地連接 MySQL，可以使用 <strong><code>localhost</code></strong> 或設備名稱來避免 IP 變動問題。</li>
+</ul>
+<p>這些方法應該能幫助您穩定地連接到設備，無論 IP 地址是否變動。如果您需要進一步幫助，請隨時告訴我。</p>
+<p>我:<br>???MacBook-Air</p>
+<p>GPT:<br>看起來 <strong><code>???MacBook-Air</code></strong> 是您這台 <strong>MacBook</strong> 的設備名稱。這個名稱在一些操作中，比如在本地網絡中連接其他設備時，可以作為一個網絡識別符號。當您嘗試連接這台 Mac 上的服務或應用時，可以使用這個設備名稱來替代 IP 地址，這樣即使 IP 地址變動，您也能順利連接。</p>
+<h3 id="使用設備名稱進行連接"><a href="#使用設備名稱進行連接" class="headerlink" title="使用設備名稱進行連接"></a>使用設備名稱進行連接</h3><p>如果您想通過這台 Mac 的設備名稱來連接，比如連接本地 MySQL 伺服器，可以使用設備名稱來代替本地 IP 地址。</p>
+<p>假設您的設備名稱是 **<code>???MacBook-Air</code>**，那麼連接方式如下：</p>
+<pre><code class="bash">mysql -h ???MacBook-Air.local -u root -p
+</code></pre>
+<p>這裡 <code>.local</code> 是 <strong>Bonjour</strong> 提供的域名解析方式，用於在本地網絡中解析設備名稱。如果您在同一網絡中，使用這個名稱來連接就不需要擔心 IP 地址的變動問題。</p>
+<h3 id="設定設備名稱"><a href="#設定設備名稱" class="headerlink" title="設定設備名稱"></a>設定設備名稱</h3><p>如果您想修改這個設備名稱或者確認它的正確拼寫，可以按照以下步驟進行：</p>
+<ol>
+<li><p><strong>打開「系統偏好設定」</strong>：</p>
+<ul>
+<li>點擊左上角的 <strong>Apple 菜單</strong>，選擇 <strong>「系統偏好設定」</strong>。</li>
+</ul>
+</li>
+<li><p><strong>選擇「共享」</strong>：</p>
+<ul>
+<li>在「系統偏好設定」中選擇 <strong>「共享」</strong> 選項。</li>
+</ul>
+</li>
+<li><p><strong>查看或修改設備名稱</strong>：</p>
+<ul>
+<li>在 <strong>「電腦名稱」</strong> 中，您可以看到當前設備的名稱，比如 **<code>???MacBook-Air</code>**。您可以修改這個名稱為一個更容易識別的名稱，這個名稱將被本地網絡中的其他設備使用。</li>
+</ul>
+</li>
+</ol>
+<h3 id="使用設備名稱連接的好處"><a href="#使用設備名稱連接的好處" class="headerlink" title="使用設備名稱連接的好處"></a>使用設備名稱連接的好處</h3><ul>
+<li><strong>避免 IP 地址變動的影響</strong>：由於 IP 地址可能由 DHCP 動態分配而變動，使用設備名稱可以確保連接的一致性。</li>
+<li><strong>簡單方便</strong>：設備名稱更易記憶，並且使用設備名稱來連接時，不需要手動檢查當前 IP 地址。</li>
+</ul>
+<p>如果您在本地網絡中頻繁進行設備之間的連接，這樣使用設備名稱來連接可以更方便。如果還有其他需要，請隨時告訴我！</p>

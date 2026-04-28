@@ -1,0 +1,60 @@
+<hr>
+<h2 id="title-“2026-05-25-想直接在-Windows-的命令提示字元（cmd）中使用-mysql＞-來連接-MySQL-伺服器，您需要先安裝-MySQL”date-2026-04-23-23-17-56ategories-OneDayOneNotetags-mySQL-description-“2026-05-25-想直接在-Windows-的命令提示字元（cmd）中使用-mysql＞-來連接-MySQL-伺服器，您需要先安裝-MySQL”"><a href="#title-“2026-05-25-想直接在-Windows-的命令提示字元（cmd）中使用-mysql＞-來連接-MySQL-伺服器，您需要先安裝-MySQL”date-2026-04-23-23-17-56ategories-OneDayOneNotetags-mySQL-description-“2026-05-25-想直接在-Windows-的命令提示字元（cmd）中使用-mysql＞-來連接-MySQL-伺服器，您需要先安裝-MySQL”" class="headerlink" title="title: “2026-05-25 想直接在 Windows 的命令提示字元（cmd）中使用 mysql＞ 來連接 MySQL 伺服器，您需要先安裝 MySQL”date: 2026-04-23 23:17:56ategories: OneDayOneNotetags:  [mySQL]description: “2026-05-25 想直接在 Windows 的命令提示字元（cmd）中使用 mysql＞ 來連接 MySQL 伺服器，您需要先安裝 MySQL”"></a>title: “2026-05-25 想直接在 Windows 的命令提示字元（cmd）中使用 mysql＞ 來連接 MySQL 伺服器，您需要先安裝 MySQL”<br>date: 2026-04-23 23:17:56<br>ategories: OneDayOneNote<br>tags:  [mySQL]<br>description: “2026-05-25 想直接在 Windows 的命令提示字元（cmd）中使用 mysql＞ 來連接 MySQL 伺服器，您需要先安裝 MySQL”</h2><h2 id="“2026-05-25-想直接在-Windows-的命令提示字元（cmd）中使用-mysql＞-來連接-MySQL-伺服器，您需要先安裝-MySQL”"><a href="#“2026-05-25-想直接在-Windows-的命令提示字元（cmd）中使用-mysql＞-來連接-MySQL-伺服器，您需要先安裝-MySQL”" class="headerlink" title="“2026-05-25 想直接在 Windows 的命令提示字元（cmd）中使用 mysql＞ 來連接 MySQL 伺服器，您需要先安裝 MySQL”"></a>“2026-05-25 想直接在 Windows 的命令提示字元（cmd）中使用 mysql＞ 來連接 MySQL 伺服器，您需要先安裝 MySQL”</h2><p>GPT:<br>是的，如果您想直接在 Windows 的命令提示字元（cmd）中使用 <strong><code>mysql&gt;</code></strong> 來連接 MySQL 伺服器，您需要先安裝 MySQL。通常，您需要安裝 <strong>MySQL Community Server</strong>，這包括 MySQL 伺服器以及用於命令行連接的 MySQL 客戶端工具（如 <code>mysql.exe</code>）。以下是具體的安裝和設置步驟：</p>
+<h3 id="1-下載-MySQL-社群版"><a href="#1-下載-MySQL-社群版" class="headerlink" title="1. 下載 MySQL 社群版"></a>1. 下載 MySQL 社群版</h3><p>首先，您需要下載 <strong>MySQL Community Server</strong>。可以前往 MySQL 的官方下載頁面下載：</p>
+<ul>
+<li><a href="https://dev.mysql.com/downloads/mysql/">MySQL Community Server 下載頁面</a></li>
+</ul>
+<p>選擇適合 Windows 的安裝程式，下載並安裝。</p>
+<h3 id="2-安裝-MySQL"><a href="#2-安裝-MySQL" class="headerlink" title="2. 安裝 MySQL"></a>2. 安裝 MySQL</h3><p>按照以下步驟安裝 MySQL：</p>
+<ol>
+<li>執行下載的安裝程序，選擇安裝類型，建議選擇 <strong>“Server Only”</strong> 或 **”Custom”**，這樣可以確保您同時安裝了 MySQL 伺服器和客戶端工具。</li>
+<li>在安裝過程中，您可以設置 MySQL root 用戶的密碼，並配置其他相關選項。</li>
+</ol>
+<h3 id="3-添加-MySQL-到系統環境變數"><a href="#3-添加-MySQL-到系統環境變數" class="headerlink" title="3. 添加 MySQL 到系統環境變數"></a>3. 添加 MySQL 到系統環境變數</h3><p>為了能夠直接在 cmd 中使用 <code>mysql</code> 命令，您需要將 MySQL 的 <code>bin</code> 目錄添加到 Windows 的環境變數中。具體步驟如下：</p>
+<ol>
+<li><p>打開 <strong>「開始」</strong> 菜單，並搜索 <strong>「環境變數」</strong>，然後點選 <strong>「編輯系統環境變數」</strong>。</p>
+</li>
+<li><p>點選 <strong>「環境變數」</strong> 按鈕。</p>
+</li>
+<li><p>在 <strong>「系統變數」</strong> 中找到 **<code>Path</code>**，並點選 <strong>「編輯」</strong>。</p>
+</li>
+<li><p>點選 <strong>「新增」</strong>，並輸入 MySQL 安裝目錄下的 <strong><code>bin</code></strong> 路徑，例如：</p>
+<pre><code>C:\Program Files\MySQL\MySQL Server 8.0\bin
+</code></pre>
+</li>
+</ol>
+<p>這樣做的目的是讓 Windows 系統知道 <code>mysql.exe</code> 的位置，使得您可以直接在命令提示字元中輸入 <code>mysql</code> 來啟動 MySQL 客戶端。</p>
+<h3 id="4-使用命令行連接到-MySQL"><a href="#4-使用命令行連接到-MySQL" class="headerlink" title="4. 使用命令行連接到 MySQL"></a>4. 使用命令行連接到 MySQL</h3><p>設置完成後，您可以通過命令提示字元連接到 MySQL 伺服器。</p>
+<ol>
+<li><p>打開 <strong>cmd</strong>（命令提示字元）。</p>
+</li>
+<li><p>輸入以下命令以連接到 MySQL 伺服器：</p>
+<pre><code class="bash">mysql -u root -p
+</code></pre>
+<p>這裡：</p>
+<ul>
+<li><code>-u root</code> 表示使用 root 使用者進行登錄。</li>
+<li><code>-p</code> 表示要求輸入密碼。</li>
+</ul>
+</li>
+</ol>
+<p>按下 Enter 後，會提示您輸入 MySQL root 使用者的密碼。輸入您在安裝過程中設置的密碼，即可進入 MySQL 互動模式，提示符會變成 **<code>mysql&gt;</code>**。</p>
+<h3 id="5-常見-MySQL-互動模式命令"><a href="#5-常見-MySQL-互動模式命令" class="headerlink" title="5. 常見 MySQL 互動模式命令"></a>5. 常見 MySQL 互動模式命令</h3><ul>
+<li><p>查看資料庫：</p>
+<pre><code class="sql">SHOW DATABASES;
+</code></pre>
+</li>
+<li><p>使用某個資料庫：</p>
+<pre><code class="sql">USE my_database;
+</code></pre>
+</li>
+<li><p>查看某個資料庫中的表：</p>
+<pre><code class="sql">SHOW TABLES;
+</code></pre>
+</li>
+<li><p>執行查詢：</p>
+<pre><code class="sql">SELECT * FROM my_table;
+</code></pre>
+</li>
+</ul>
+<h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h3><p>如果您希望能夠在命令提示字元中使用 <strong><code>mysql&gt;</code></strong> 命令，您需要安裝 MySQL Community Server，這樣就會包含 <code>mysql</code> 客戶端工具。安裝完成後，通過配置環境變數，您就可以在命令提示字元中直接輸入 <code>mysql</code> 來連接到 MySQL 資料庫了。</p>

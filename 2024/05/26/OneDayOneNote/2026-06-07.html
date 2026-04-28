@@ -1,0 +1,42 @@
+<hr>
+<h2 id="title-2026-06-07-重置-MySQL-Root-密碼步驟date-2026-04-28-22-39-50categories-OneDayOneNotetags-mySQL-description-2026-06-07-重置-MySQL-Root-密碼步驟"><a href="#title-2026-06-07-重置-MySQL-Root-密碼步驟date-2026-04-28-22-39-50categories-OneDayOneNotetags-mySQL-description-2026-06-07-重置-MySQL-Root-密碼步驟" class="headerlink" title="title: 2026-06-07 重置 MySQL Root 密碼步驟date: 2026-04-28 22:39:50categories: OneDayOneNotetags:  [mySQL]description:   2026-06-07 重置 MySQL Root 密碼步驟"></a>title: 2026-06-07 重置 MySQL Root 密碼步驟<br>date: 2026-04-28 22:39:50<br>categories: OneDayOneNote<br>tags:  [mySQL]<br>description:   2026-06-07 重置 MySQL Root 密碼步驟</h2><p>我:<br>sudo &#x2F;usr&#x2F;local&#x2F;mysql&#x2F;bin&#x2F;mysql -u root -p</p>
+<p>GPT:<br>請輸入這條命令後，系統應該會提示您輸入 MySQL root 使用者的密碼：</p>
+<pre><code class="bash">sudo /usr/local/mysql/bin/mysql -u root -p
+</code></pre>
+<p>當看到提示 <code>Enter password:</code> 時，請輸入 root 使用者的密碼。如果您不確定這個密碼是什麼或者已經忘記密碼，您可以按照以下步驟重置 root 密碼。</p>
+<h3 id="重置-MySQL-Root-密碼步驟"><a href="#重置-MySQL-Root-密碼步驟" class="headerlink" title="重置 MySQL Root 密碼步驟"></a>重置 MySQL Root 密碼步驟</h3><ol>
+<li><p><strong>停止 MySQL 服務</strong>：<br>首先停止 MySQL 服務，以便能夠在不檢查權限的模式下啟動 MySQL。</p>
+<pre><code class="bash">sudo /usr/local/mysql/support-files/mysql.server stop
+</code></pre>
+</li>
+<li><p><strong>安全模式啟動 MySQL</strong>：<br>使用安全模式啟動 MySQL，跳過權限檢查，允許您無需密碼進行登錄。</p>
+<pre><code class="bash">sudo /usr/local/mysql/bin/mysqld_safe --skip-grant-tables &amp;
+</code></pre>
+</li>
+<li><p><strong>無密碼進入 MySQL</strong>：<br>在安全模式下，使用以下命令無需密碼進入 MySQL：</p>
+<pre><code class="bash">sudo /usr/local/mysql/bin/mysql -u root
+</code></pre>
+</li>
+<li><p><strong>重置 Root 密碼</strong>：<br>進入 MySQL 提示符後，執行以下命令來重置 root 密碼：</p>
+<pre><code class="sql">USE mysql;
+UPDATE user SET authentication_string = PASSWORD(&#39;new_password&#39;) WHERE User = &#39;root&#39;;
+FLUSH PRIVILEGES;
+</code></pre>
+<p>請將 <code>new_password</code> 替換為您希望設置的 root 密碼。</p>
+</li>
+<li><p><strong>重新啟動 MySQL 服務</strong>：<br>退出 MySQL 提示符後，重新啟動 MySQL 服務：</p>
+<pre><code class="bash">sudo /usr/local/mysql/support-files/mysql.server start
+</code></pre>
+</li>
+<li><p><strong>使用新密碼登錄 MySQL</strong>：<br>服務啟動後，嘗試使用新密碼登錄 MySQL：</p>
+<pre><code class="bash">sudo /usr/local/mysql/bin/mysql -u root -p
+</code></pre>
+<p>然後輸入剛剛設置的新密碼。</p>
+</li>
+</ol>
+<h3 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h3><ul>
+<li>輸入 <code>sudo /usr/local/mysql/bin/mysql -u root -p</code> 後，輸入 root 密碼登錄 MySQL。</li>
+<li>如果忘記 root 密碼，可以按照上述步驟重置。</li>
+<li>重置過程需要停止 MySQL 服務，進入安全模式，然後重置密碼。</li>
+</ul>
+<p>如果您在這個過程中遇到任何問題，請隨時告訴我，我會幫助您解決。</p>

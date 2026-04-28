@@ -1,0 +1,63 @@
+<hr>
+<h2 id="title-2026-06-11-配置-MySQL，使其允許外部-IP-地址連接date-2026-04-28-23-29-18categories-OneDayOneNotetags-mySQL-description-2026-06-10-mySQL-ERROR-1045-28000"><a href="#title-2026-06-11-配置-MySQL，使其允許外部-IP-地址連接date-2026-04-28-23-29-18categories-OneDayOneNotetags-mySQL-description-2026-06-10-mySQL-ERROR-1045-28000" class="headerlink" title="title: 2026-06-11 配置 MySQL，使其允許外部 IP 地址連接date: 2026-04-28 23:29:18categories: OneDayOneNotetags:  [mySQL]description:  2026-06-10 mySQL *ERROR 1045 (28000)"></a>title: 2026-06-11 配置 <strong>MySQL</strong>，使其允許外部 IP 地址連接<br>date: 2026-04-28 23:29:18<br>categories: OneDayOneNote<br>tags:  [mySQL]<br>description:  2026-06-10 mySQL *ERROR 1045 (28000)</h2><h2 id="2026-06-11-配置-MySQL，使其允許外部-IP-地址連接"><a href="#2026-06-11-配置-MySQL，使其允許外部-IP-地址連接" class="headerlink" title="2026-06-11 配置 MySQL，使其允許外部 IP 地址連接"></a>2026-06-11 配置 <strong>MySQL</strong>，使其允許外部 IP 地址連接</h2><p>我:<br>我的 mysql 放在  &#x2F;usr&#x2F;local&#x2F;mysql&#x2F;bin&#x2F;mysql<br>然後我要設定 my.cnf 要外部ip 可以連接</p>
+<p>GPT:<br>如果您想要配置 <strong>MySQL</strong>，使其允許外部 IP 地址連接，您需要修改 <code>my.cnf</code> 配置文件中的 <strong><code>bind-address</code></strong> 設定。以下是具體步驟：</p>
+<h3 id="1-創建或編輯-my-cnf-文件"><a href="#1-創建或編輯-my-cnf-文件" class="headerlink" title="1. 創建或編輯 my.cnf 文件"></a>1. 創建或編輯 <code>my.cnf</code> 文件</h3><p>由於您的 MySQL 安裝在 **<code>/usr/local/mysql/bin/mysql</code>**，您的 <code>my.cnf</code> 文件可能不存在或者不在常見的系統目錄中。因此，您可以在適當的目錄中創建一個 <code>my.cnf</code> 文件，例如放在 <strong><code>/etc/</code></strong> 或 <strong><code>/usr/local/mysql/etc/</code></strong> 中。</p>
+<p>使用以下命令來創建或編輯 <code>my.cnf</code> 文件：</p>
+<pre><code class="bash">sudo nano /etc/my.cnf
+</code></pre>
+<p>或者：</p>
+<pre><code class="bash">sudo nano /usr/local/mysql/etc/my.cnf
+</code></pre>
+<h3 id="2-配置-my-cnf-文件允許外部連接"><a href="#2-配置-my-cnf-文件允許外部連接" class="headerlink" title="2. 配置 my.cnf 文件允許外部連接"></a>2. 配置 <code>my.cnf</code> 文件允許外部連接</h3><p>在 <code>my.cnf</code> 文件中，找到 <code>[mysqld]</code> 區段，並添加或修改以下內容：</p>
+<pre><code class="ini">[mysqld]
+bind-address = 0.0.0.0
+</code></pre>
+<ul>
+<li>**<code>bind-address = 0.0.0.0</code>**：將 <code>bind-address</code> 設置為 <code>0.0.0.0</code>，這樣 MySQL 將接受來自所有 IP 地址的連接。</li>
+<li>您也可以設置為特定的 IP 地址，以只允許從特定外部 IP 連接。</li>
+</ul>
+<h3 id="3-檢查防火牆設置"><a href="#3-檢查防火牆設置" class="headerlink" title="3. 檢查防火牆設置"></a>3. 檢查防火牆設置</h3><p>確保您的防火牆允許 MySQL 的端口（默認是 <strong>3306</strong>）接受外部連接。</p>
+<ul>
+<li>如果您在使用 <strong>macOS 防火牆</strong>，確保防火牆允許 <strong>3306</strong> 端口的流量。</li>
+<li>如果有路由器，還需要確保路由器允許外部訪問該端口。</li>
+</ul>
+<h3 id="4-重啟-MySQL-服務"><a href="#4-重啟-MySQL-服務" class="headerlink" title="4. 重啟 MySQL 服務"></a>4. 重啟 MySQL 服務</h3><p>在完成 <code>my.cnf</code> 文件的編輯後，您需要重啟 MySQL 服務以應用更改：</p>
+<ol>
+<li><p>如果 MySQL 是使用手動安裝的，請使用以下命令重啟服務：</p>
+<pre><code class="bash">sudo /usr/local/mysql/support-files/mysql.server restart
+</code></pre>
+</li>
+<li><p>如果 MySQL 是通過 <strong>Homebrew</strong> 安裝的，可以使用以下命令：</p>
+<pre><code class="bash">brew services restart mysql
+</code></pre>
+</li>
+</ol>
+<h3 id="5-創建或更新用戶賬戶，允許外部連接"><a href="#5-創建或更新用戶賬戶，允許外部連接" class="headerlink" title="5. 創建或更新用戶賬戶，允許外部連接"></a>5. 創建或更新用戶賬戶，允許外部連接</h3><p>默認情況下，MySQL 的 <strong>root</strong> 用戶只允許從本地（<code>localhost</code>）連接。如果需要允許外部 IP 連接，您需要創建一個可以外部訪問的用戶賬戶，或者為現有用戶賬戶授予訪問權限。</p>
+<h4 id="創建一個可以遠程連接的用戶"><a href="#創建一個可以遠程連接的用戶" class="headerlink" title="創建一個可以遠程連接的用戶"></a>創建一個可以遠程連接的用戶</h4><p>進入 MySQL，然後執行以下命令來創建一個新用戶，允許所有 IP 進行連接：</p>
+<pre><code class="sql">CREATE USER &#39;newuser&#39;@&#39;%&#39; IDENTIFIED BY &#39;password&#39;;
+GRANT ALL PRIVILEGES ON *.* TO &#39;newuser&#39;@&#39;%&#39; WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+</code></pre>
+<ul>
+<li>**<code>&#39;newuser&#39;@&#39;%&#39;</code>**：<code>%</code> 表示允許任何 IP 地址連接。</li>
+<li>**<code>GRANT ALL PRIVILEGES</code>**：授予該用戶所有權限，您可以根據需要選擇具體權限。</li>
+</ul>
+<h4 id="更新現有的-root-賬戶權限"><a href="#更新現有的-root-賬戶權限" class="headerlink" title="更新現有的 root 賬戶權限"></a>更新現有的 root 賬戶權限</h4><p>如果希望使 root 用戶可以從外部訪問，可以使用以下命令：</p>
+<pre><code class="sql">UPDATE mysql.user SET host = &#39;%&#39; WHERE user = &#39;root&#39;;
+FLUSH PRIVILEGES;
+</code></pre>
+<p>這將允許 <strong>root</strong> 用戶從任何 IP 地址進行連接。</p>
+<h3 id="6-測試外部連接"><a href="#6-測試外部連接" class="headerlink" title="6. 測試外部連接"></a>6. 測試外部連接</h3><ul>
+<li><p>從另一台設備上，使用 MySQL 客戶端嘗試連接到您的 MySQL 伺服器：</p>
+<pre><code class="bash">mysql -u newuser -p -h YOUR_SERVER_IP
+</code></pre>
+<p>輸入密碼後，應該能成功連接到伺服器。</p>
+</li>
+</ul>
+<h3 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h3><ul>
+<li><strong>編輯 <code>my.cnf</code> 文件</strong>，將 <strong><code>bind-address</code></strong> 設置為 <strong><code>0.0.0.0</code></strong> 以允許所有外部連接。</li>
+<li><strong>重啟 MySQL 服務</strong> 使配置生效。</li>
+<li>創建新用戶或更新現有用戶，授予遠程訪問權限。</li>
+<li>確保防火牆和路由器允許 <strong>3306</strong> 端口的外部連接。</li>
+</ul>
+<p>這些步驟應該能幫助您配置 MySQL 以允許外部 IP 的連接。如果有其他問題或遇到困難，隨時告訴我！</p>

@@ -1,0 +1,21 @@
+<hr>
+<h2 id="title-2026-05-28-MySQL-Shell-沒有成功退出到命令提示符date-2026-04-28-21-28-36ategories-OneDayOneNotetags-mySQL-description-2026-05-28-MySQL-Shell-沒有成功退出到命令提示符"><a href="#title-2026-05-28-MySQL-Shell-沒有成功退出到命令提示符date-2026-04-28-21-28-36ategories-OneDayOneNotetags-mySQL-description-2026-05-28-MySQL-Shell-沒有成功退出到命令提示符" class="headerlink" title="title: 2026-05-28 MySQL Shell 沒有成功退出到命令提示符date: 2026-04-28 21:28:36ategories: OneDayOneNotetags:  [mySQL]description:   2026-05-28 MySQL Shell 沒有成功退出到命令提示符"></a>title: 2026-05-28 MySQL Shell 沒有成功退出到命令提示符<br>date: 2026-04-28 21:28:36<br>ategories: OneDayOneNote<br>tags:  [mySQL]<br>description:   2026-05-28 MySQL Shell 沒有成功退出到命令提示符</h2><h2 id="2026-05-28-MySQL-Shell-沒有成功退出到命令提示符"><a href="#2026-05-28-MySQL-Shell-沒有成功退出到命令提示符" class="headerlink" title="2026-05-28 MySQL Shell 沒有成功退出到命令提示符"></a>2026-05-28 MySQL Shell 沒有成功退出到命令提示符</h2><p>我:<br>MySQL  192.168.0.104:3306 ssl  logisticsdb  SQL &gt; exit<br>                                                -&gt; &#x2F;<br>                                                -&gt; &#x2F;exit<br>                                                -&gt; quit<br>                                                -&gt; :<br>                                                -&gt;<br>GPT：<br>看起來 MySQL Shell 沒有成功退出到命令提示符。這種情況可能是因為輸入錯誤或某些意外的 Shell 行為。</p>
+<p>在 MySQL Shell 中，正常退出的方法有以下幾種：</p>
+<ol>
+<li><p><strong>使用 <code>\q</code> 指令</strong>：</p>
+<pre><code>\q
+</code></pre>
+<p>這是最直接的方式退出 MySQL Shell。</p>
+</li>
+<li><p>**使用 <code>exit</code>**：</p>
+<pre><code class="sql">exit
+</code></pre>
+<p>或者</p>
+<pre><code class="sql">quit
+</code></pre>
+<p>這兩個命令也可以用來正常退出 MySQL Shell。</p>
+</li>
+<li><p><strong>使用 Ctrl+D</strong>：<br>您也可以按下 **<code>Ctrl+D</code>**，這是 UNIX 系統中常見的「結束輸入」指令，會直接退出 Shell。</p>
+</li>
+</ol>
+<p>如果 Shell 無法退出，可能是有不正確的命令執行導致輸入狀態被卡住，建議嘗試 <strong><code>Ctrl+C</code></strong> 來強制中斷命令，然後再嘗試使用 <strong><code>exit</code></strong> 或 <strong><code>\q</code></strong> 來退出。</p>

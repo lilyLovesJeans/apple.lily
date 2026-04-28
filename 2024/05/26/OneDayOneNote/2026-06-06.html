@@ -1,0 +1,90 @@
+<hr>
+<h2 id="title-2026-06-06-mysql-ERROR-1045-28000-date-2026-04-28-22-31-38categories-OneDayOneNotetags-mySQL-description-2026-06-06-mysql-ERROR-1045-28000"><a href="#title-2026-06-06-mysql-ERROR-1045-28000-date-2026-04-28-22-31-38categories-OneDayOneNotetags-mySQL-description-2026-06-06-mysql-ERROR-1045-28000" class="headerlink" title="title: 2026-06-06 mysql ERROR 1045 (28000)date: 2026-04-28 22:31:38categories: OneDayOneNotetags:  [mySQL]description:    2026-06-06 mysql ERROR 1045 (28000)"></a>title: 2026-06-06 mysql ERROR 1045 (28000)<br>date: 2026-04-28 22:31:38<br>categories: OneDayOneNote<br>tags:  [mySQL]<br>description:    2026-06-06 mysql ERROR 1045 (28000)</h2><h2 id="2026-06-06-mysql-ERROR-1045-28000"><a href="#2026-06-06-mysql-ERROR-1045-28000" class="headerlink" title="2026-06-06 mysql ERROR 1045 (28000)"></a>2026-06-06 mysql ERROR 1045 (28000)</h2><p>我:<br>ERROR 1045 (28000): Access denied for user ‘root‘@’localhost’ (using password: YES)<br>???MacBook-Air:~ ？？？$ sudo mysql -u root -p </p>
+<p>GPT：<br><strong>ERROR 1045 (28000)</strong> 的錯誤表明您在嘗試使用 <strong>root</strong> 使用者進入 MySQL 時遇到了訪問被拒的問題。這通常是因為您輸入的密碼不正確，或者 <strong>root</strong> 使用者的帳戶有權限設置問題。</p>
+<p>以下是一些解決此問題的步驟：</p>
+<h3 id="1-使用-sudo-嘗試進入-MySQL"><a href="#1-使用-sudo-嘗試進入-MySQL" class="headerlink" title="1. 使用 sudo 嘗試進入 MySQL"></a>1. 使用 <code>sudo</code> 嘗試進入 MySQL</h3><p>您可以通過使用 <strong><code>sudo</code></strong> 命令，以獲取管理員權限進入 MySQL，這樣可以避開一些訪問限制。請確保在終端中以正確的方式輸入以下命令：</p>
+<pre><code class="bash">sudo mysql -u root
+</code></pre>
+<p>這樣可以繞過輸入密碼的過程，直接使用 <strong>root</strong> 權限進入 MySQL。如果這樣可以進入，則表示可能是 <strong>root</strong> 使用者的密碼配置問題。</p>
+<h3 id="2-使用無密碼方式登錄"><a href="#2-使用無密碼方式登錄" class="headerlink" title="2. 使用無密碼方式登錄"></a>2. 使用無密碼方式登錄</h3><p>如果您使用 <code>sudo</code> 也無法進入，可能是 root 使用者的密碼配置有問題，可以通過以下步驟重置密碼：</p>
+<h4 id="步驟-1：停止-MySQL-服務"><a href="#步驟-1：停止-MySQL-服務" class="headerlink" title="步驟 1：停止 MySQL 服務"></a>步驟 1：停止 MySQL 服務</h4><p>您首先需要停止 MySQL 服務，具體命令如下（取決於您的安裝方式）：</p>
+<pre><code class="bash">sudo brew services stop mysql
+</code></pre>
+<p>或者：</p>
+<pre><code class="bash">sudo /usr/local/mysql/support-files/mysql.server stop
+</code></pre>
+<h4 id="步驟-2：安全模式啟動-MySQL"><a href="#步驟-2：安全模式啟動-MySQL" class="headerlink" title="步驟 2：安全模式啟動 MySQL"></a>步驟 2：安全模式啟動 MySQL</h4><p>然後，您需要使用 <strong>不檢查權限的模式</strong>（safe mode）來啟動 MySQL，以便能夠不使用密碼進入 MySQL：</p>
+<pre><code class="bash">sudo mysqld_safe --skip-grant-tables &amp;
+</code></pre>
+<p>這會在跳過權限檢查的模式下啟動 MySQL，使您可以重置 root 密碼。</p>
+<h4 id="步驟-3：進入-MySQL-並重置-root-密碼"><a href="#步驟-3：進入-MySQL-並重置-root-密碼" class="headerlink" title="步驟 3：進入 MySQL 並重置 root 密碼"></a>步驟 3：進入 MySQL 並重置 root 密碼</h4><p>現在您可以不需要密碼進入 MySQL：</p>
+<pre><code class="bash">mysql -u root
+</code></pre>
+<p>進入 MySQL 提示符後，使用以下 SQL 指令來重置 root 的密碼：</p>
+<pre><code class="sql">USE mysql;
+UPDATE user SET authentication_string = PASSWORD(&#39;新密碼&#39;) WHERE User = &#39;root&#39;;
+FLUSH PRIVILEGES;
+</code></pre>
+<p>記得將 <code>新密碼</code> 替換為您希望設置的密碼。然後輸入以下命令退出：</p>
+<pre><code class="sql">exit;
+</code></pre>
+<h4 id="步驟-4：重新啟動-MySQL-服務"><a href="#步驟-4：重新啟動-MySQL-服務" class="headerlink" title="步驟 4：重新啟動 MySQL 服務"></a>步驟 4：重新啟動 MySQL 服務</h4><p>完成密碼重置後，您需要重新啟動 MySQL 服務：</p>
+<pre><code class="bash">sudo brew services start mysql
+</code></pre>
+<p>或者：</p>
+<pre><code class="bash">sudo /usr/local/mysql/support-files/mysql.server start
+</code></pre>
+<h4 id="步驟-5：使用新密碼登錄"><a href="#步驟-5：使用新密碼登錄" class="headerlink" title="步驟 5：使用新密碼登錄"></a>步驟 5：使用新密碼登錄</h4><p>現在您可以使用新設置的密碼嘗試再次登錄：</p>
+<pre><code class="bash">mysql -u root -p
+</code></pre>
+<p>系統會提示輸入新密碼，輸入正確後應該能成功登錄。</p>
+<h3 id="3-檢查-MySQL-的配置文件"><a href="#3-檢查-MySQL-的配置文件" class="headerlink" title="3. 檢查 MySQL 的配置文件"></a>3. 檢查 MySQL 的配置文件</h3><p>如果您仍然無法登錄，可能是 MySQL 的配置文件有一些設置導致權限出現問題。您可以檢查 <strong><code>my.cnf</code></strong> 文件（通常位於 <code>/etc/mysql/my.cnf</code> 或 <code>/usr/local/mysql/my.cnf</code>）中的相關設置，特別是 <strong><code>bind-address</code></strong> 或 <strong><code>skip-grant-tables</code></strong> 等選項，確保它們設置正確。</p>
+<h3 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h3><ol>
+<li>嘗試使用 <code>sudo</code> 來進入 MySQL，跳過密碼檢查。</li>
+<li>如果無法進入，使用安全模式啟動 MySQL 並重置 root 密碼。</li>
+<li>檢查 MySQL 配置文件中的設置，以排除其他訪問問題。</li>
+</ol>
+<p>這些步驟應該能夠幫助您解決 <strong>ERROR 1045</strong> 的問題。如果問題依然存在，請告訴我更多詳細信息，我會繼續幫助您！</p>
+<p>我 ：<br>？？？-Air:~ root# which mysql</p>
+<p>&#x2F;usr&#x2F;local&#x2F;mysql&#x2F;bin&#x2F;mysql</p>
+<p>GPT：</p>
+<p>看起來您的 MySQL 安裝在 <strong><code>/usr/local/mysql/bin/mysql</code></strong> 路徑下。這意味著 MySQL 可執行文件的路徑是 **<code>/usr/local/mysql/bin/mysql</code>**。</p>
+<p>如果您嘗試進入 MySQL，但仍然遇到 <strong>ERROR 1045 (28000): Access denied</strong>，請參考以下解決步驟：</p>
+<h3 id="1-使用-MySQL-完整路徑進入"><a href="#1-使用-MySQL-完整路徑進入" class="headerlink" title="1. 使用 MySQL 完整路徑進入"></a>1. 使用 MySQL 完整路徑進入</h3><p>可以嘗試使用完整路徑進入 MySQL，這樣可以確保使用的是正確版本的 MySQL：</p>
+<pre><code class="bash">sudo /usr/local/mysql/bin/mysql -u root -p
+</code></pre>
+<p>然後，根據提示輸入密碼。</p>
+<h3 id="2-確認-MySQL-是否已經啟動"><a href="#2-確認-MySQL-是否已經啟動" class="headerlink" title="2. 確認 MySQL 是否已經啟動"></a>2. 確認 MySQL 是否已經啟動</h3><p>MySQL 服務需要正常運行才能連接。如果您無法連接，可能是 MySQL 服務未啟動。請使用以下命令來啟動 MySQL：</p>
+<pre><code class="bash">sudo /usr/local/mysql/support-files/mysql.server start
+</code></pre>
+<p>然後再次嘗試使用完整路徑連接。</p>
+<h3 id="3-重置-MySQL-Root-密碼"><a href="#3-重置-MySQL-Root-密碼" class="headerlink" title="3. 重置 MySQL Root 密碼"></a>3. 重置 MySQL Root 密碼</h3><p>如果密碼仍然無法使用，可以嘗試重置 root 密碼，具體步驟如下：</p>
+<h4 id="步驟-1：停止-MySQL-服務-1"><a href="#步驟-1：停止-MySQL-服務-1" class="headerlink" title="步驟 1：停止 MySQL 服務"></a>步驟 1：停止 MySQL 服務</h4><p>首先需要停止 MySQL 服務：</p>
+<pre><code class="bash">sudo /usr/local/mysql/support-files/mysql.server stop
+</code></pre>
+<h4 id="步驟-2：使用安全模式啟動-MySQL"><a href="#步驟-2：使用安全模式啟動-MySQL" class="headerlink" title="步驟 2：使用安全模式啟動 MySQL"></a>步驟 2：使用安全模式啟動 MySQL</h4><p>在安全模式下啟動 MySQL，不檢查權限：</p>
+<pre><code class="bash">sudo /usr/local/mysql/bin/mysqld_safe --skip-grant-tables &amp;
+</code></pre>
+<p>這樣可以跳過權限檢查，並允許您無需密碼登錄 MySQL。</p>
+<h4 id="步驟-3：無密碼進入-MySQL"><a href="#步驟-3：無密碼進入-MySQL" class="headerlink" title="步驟 3：無密碼進入 MySQL"></a>步驟 3：無密碼進入 MySQL</h4><p>使用以下命令無需密碼進入 MySQL：</p>
+<pre><code class="bash">sudo /usr/local/mysql/bin/mysql -u root
+</code></pre>
+<h4 id="步驟-4：重置-root-密碼"><a href="#步驟-4：重置-root-密碼" class="headerlink" title="步驟 4：重置 root 密碼"></a>步驟 4：重置 root 密碼</h4><p>在 MySQL 提示符中執行以下命令來重置 root 密碼：</p>
+<pre><code class="sql">USE mysql;
+UPDATE user SET authentication_string = PASSWORD(&#39;新密碼&#39;) WHERE User = &#39;root&#39;;
+FLUSH PRIVILEGES;
+</code></pre>
+<p>將 <code>新密碼</code> 替換為您想要設置的密碼。</p>
+<h4 id="步驟-5：重新啟動-MySQL-服務"><a href="#步驟-5：重新啟動-MySQL-服務" class="headerlink" title="步驟 5：重新啟動 MySQL 服務"></a>步驟 5：重新啟動 MySQL 服務</h4><p>輸入 <code>exit</code> 退出 MySQL 提示符，然後重新啟動 MySQL 服務：</p>
+<pre><code class="bash">sudo /usr/local/mysql/support-files/mysql.server start
+</code></pre>
+<h4 id="步驟-6：使用新密碼登錄"><a href="#步驟-6：使用新密碼登錄" class="headerlink" title="步驟 6：使用新密碼登錄"></a>步驟 6：使用新密碼登錄</h4><p>現在可以使用新密碼登錄 MySQL：</p>
+<pre><code class="bash">sudo /usr/local/mysql/bin/mysql -u root -p
+</code></pre>
+<p>系統會提示您輸入新設置的密碼。</p>
+<h3 id="小結-1"><a href="#小結-1" class="headerlink" title="小結"></a>小結</h3><ul>
+<li>確認使用正確的 MySQL 可執行文件路徑 <code>/usr/local/mysql/bin/mysql</code>。</li>
+<li>確保 MySQL 服務已經啟動。</li>
+<li>如果遇到訪問被拒的問題，使用安全模式進入並重置 root 密碼。</li>
+</ul>
+<p>這些步驟應該可以幫助您解決連接 MySQL 時的問題。如果還有其他問題，請隨時告訴我。</p>

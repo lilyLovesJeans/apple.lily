@@ -1,0 +1,187 @@
+<hr>
+<h2 id="title-2026-06-10-mySQL-ERROR-1045-28000-date-2026-04-28-23-22-56categories-OneDayOneNotetags-mySQL-description-2026-06-10-mySQL-ERROR-1045-28000"><a href="#title-2026-06-10-mySQL-ERROR-1045-28000-date-2026-04-28-23-22-56categories-OneDayOneNotetags-mySQL-description-2026-06-10-mySQL-ERROR-1045-28000" class="headerlink" title="title: 2026-06-10 mySQL *ERROR 1045 (28000)date: 2026-04-28 23:22:56categories: OneDayOneNotetags:  [mySQL]description:  2026-06-10 mySQL *ERROR 1045 (28000)"></a>title: 2026-06-10 mySQL *ERROR 1045 (28000)<br>date: 2026-04-28 23:22:56<br>categories: OneDayOneNote<br>tags:  [mySQL]<br>description:  2026-06-10 mySQL *ERROR 1045 (28000)</h2><h2 id="2026-06-10-mySQL-ERROR-1045-28000"><a href="#2026-06-10-mySQL-ERROR-1045-28000" class="headerlink" title="2026-06-10 mySQL *ERROR 1045 (28000)"></a>2026-06-10 mySQL *ERROR 1045 (28000)</h2><p>我:<br>???MacBook-Air:bin root# mysql -u root<br>ERROR 1045 (28000): Access denied for user ‘root‘@’localhost’ (using password: NO)<br>???MacBook-Air:bin root# </p>
+<p>GPT：<br>您遇到了 <strong>ERROR 1045 (28000): Access denied for user ‘root‘@’localhost’</strong> 的錯誤，這是因為您在沒有提供密碼的情況下嘗試以 <strong>root</strong> 身份進入 MySQL，而 MySQL 需要驗證密碼。因此，出現了 “Access denied” 的錯誤信息。</p>
+<p>您可以嘗試以下步驟來解決此問題：</p>
+<h3 id="方法-1：使用-p-提供密碼"><a href="#方法-1：使用-p-提供密碼" class="headerlink" title="方法 1：使用 -p 提供密碼"></a>方法 1：使用 <code>-p</code> 提供密碼</h3><p>請嘗試以下命令，並根據提示輸入 root 使用者的密碼：</p>
+<pre><code class="bashåç">mysql -u root -p
+</code></pre>
+<p>這會要求您輸入 MySQL root 密碼。如果您忘記了這個密碼，請參考以下步驟來重置密碼。</p>
+<h3 id="方法-2：重置-Root-密碼"><a href="#方法-2：重置-Root-密碼" class="headerlink" title="方法 2：重置 Root 密碼"></a>方法 2：重置 Root 密碼</h3><p>如果您忘記了 root 密碼，可以通過以下步驟來重置：</p>
+<h4 id="1-停止-MySQL-服務"><a href="#1-停止-MySQL-服務" class="headerlink" title="1. 停止 MySQL 服務"></a>1. 停止 MySQL 服務</h4><p>首先需要停止 MySQL 服務，以便可以在安全模式下啟動 MySQL：</p>
+<pre><code class="bash">sudo /usr/local/mysql/support-files/mysql.server stop
+</code></pre>
+<h4 id="2-啟動-MySQL-到安全模式"><a href="#2-啟動-MySQL-到安全模式" class="headerlink" title="2. 啟動 MySQL 到安全模式"></a>2. 啟動 MySQL 到安全模式</h4><p>啟動 MySQL 進入安全模式，這樣可以跳過權限檢查，不需要密碼就可以登錄：</p>
+<pre><code class="bash">sudo /usr/local/mysql/bin/mysqld_safe --skip-grant-tables &amp;
+</code></pre>
+<p>這個命令會啟動 MySQL，並允許您在不提供密碼的情況下訪問 MySQL。</p>
+<h4 id="3-無密碼登錄-MySQL"><a href="#3-無密碼登錄-MySQL" class="headerlink" title="3. 無密碼登錄 MySQL"></a>3. 無密碼登錄 MySQL</h4><p>現在使用以下命令以 root 身份登錄：</p>
+<pre><code class="bash">mysql -u root
+</code></pre>
+<p>這次應該能夠成功進入 MySQL 提示符 **<code>mysql&gt;</code>**。</p>
+<h4 id="4-重置-Root-密碼"><a href="#4-重置-Root-密碼" class="headerlink" title="4. 重置 Root 密碼"></a>4. 重置 Root 密碼</h4><p>在 MySQL 提示符中執行以下 SQL 命令來重置 root 密碼：</p>
+<pre><code class="sql">USE mysql;
+UPDATE user SET authentication_string = PASSWORD(&#39;新密碼&#39;) WHERE User = &#39;root&#39;;
+FLUSH PRIVILEGES;
+</code></pre>
+<p>請將 <code>新密碼</code> 替換為您希望設置的新密碼。</p>
+<h4 id="5-重啟-MySQL-服務"><a href="#5-重啟-MySQL-服務" class="headerlink" title="5. 重啟 MySQL 服務"></a>5. 重啟 MySQL 服務</h4><p>輸入 <code>exit</code> 退出 MySQL 提示符，然後重新啟動 MySQL 服務：</p>
+<pre><code class="bash">sudo /usr/local/mysql/support-files/mysql.server start
+</code></pre>
+<h4 id="6-使用新密碼登錄"><a href="#6-使用新密碼登錄" class="headerlink" title="6. 使用新密碼登錄"></a>6. 使用新密碼登錄</h4><p>現在可以使用新設置的密碼登錄 MySQL：</p>
+<pre><code class="bash">mysql -u root -p
+</code></pre>
+<p>輸入您剛剛設置的新密碼後，應該能夠順利登錄。</p>
+<h3 id="方法-3：檢查-my-cnf-配置"><a href="#方法-3：檢查-my-cnf-配置" class="headerlink" title="方法 3：檢查 my.cnf 配置"></a>方法 3：檢查 <code>my.cnf</code> 配置</h3><p>有時候 <code>my.cnf</code> 配置文件中可能包含一些會影響 root 用戶訪問的設置。您可以查看 <code>my.cnf</code> 文件，確認是否有關於 root 用戶訪問的特殊配置。例如：</p>
+<ol>
+<li>確認是否有設置 <code>skip-grant-tables</code>（跳過權限表的設置），這樣會使得 MySQL 無法進行密碼檢查，並可能導致登錄失敗。</li>
+<li>檢查 <code>bind-address</code> 設置，確保它允許本地連接（例如 <code>127.0.0.1</code> 或 <code>localhost</code>）。</li>
+</ol>
+<p>使用以下命令查看 <code>my.cnf</code> 文件的位置：</p>
+<pre><code class="bash">sudo find / -name &quot;my.cnf&quot;
+</code></pre>
+<h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h3><ul>
+<li><strong>Access Denied</strong> 的錯誤通常是由於密碼不正確或者沒有提供密碼造成的。可以使用 <code>-p</code> 選項來提示輸入密碼。</li>
+<li>如果忘記 root 密碼，可以通過安全模式（<code>--skip-grant-tables</code>）進入 MySQL 並重置密碼。</li>
+<li>確認 MySQL 配置文件中沒有影響到 root 登錄的設置。</li>
+</ul>
+<p>如果還有其他問題或步驟中遇到困難，隨時告訴我，我會幫助您解決。</p>
+<p>我:<br>my.cnf 該怎麼配置?</p>
+<p>GPT:<br><code>my.cnf</code> 是 MySQL 的主要配置文件，用於設置 MySQL 伺服器的各種參數，比如端口號、數據目錄、緩存大小、網絡設置等。以下是一些常見的配置選項以及如何配置它們的建議。</p>
+<h3 id="my-cnf-的位置"><a href="#my-cnf-的位置" class="headerlink" title="my.cnf 的位置"></a><code>my.cnf</code> 的位置</h3><p><code>my.cnf</code> 文件通常可以在以下幾個位置找到，具體位置取決於 MySQL 的安裝方式：</p>
+<ul>
+<li><code>/etc/my.cnf</code> 或 <code>/etc/mysql/my.cnf</code>（全局配置文件）</li>
+<li><code>/usr/local/mysql/etc/my.cnf</code>（自定義安裝的 MySQL）</li>
+<li><code>~/.my.cnf</code>（用戶級別的配置）</li>
+</ul>
+<p>如果您不知道具體位置，可以使用以下命令查找：</p>
+<pre><code class="bash">sudo find / -name &quot;my.cnf&quot;
+</code></pre>
+<h3 id="配置-my-cnf-的基本結構"><a href="#配置-my-cnf-的基本結構" class="headerlink" title="配置 my.cnf 的基本結構"></a>配置 <code>my.cnf</code> 的基本結構</h3><p><code>my.cnf</code> 文件使用分區節來配置不同服務的參數，例如 <code>[mysqld]</code> 針對 MySQL 伺服器，<code>[client]</code> 針對 MySQL 客戶端。以下是常見的配置結構：</p>
+<pre><code class="ini">[client]
+port = 3306
+socket = /tmp/mysql.sock
+
+[mysqld]
+user = mysql
+port = 3306
+bind-address = 127.0.0.1
+datadir = /usr/local/mysql/data
+socket = /tmp/mysql.sock
+
+# 基本設置
+max_connections = 100
+skip-external-locking
+
+# 語言與時區設置
+character-set-server = utf8mb4
+collation-server = utf8mb4_general_ci
+default-time-zone = &#39;+00:00&#39;
+
+# 緩存與性能設置
+key_buffer_size = 256M
+max_allowed_packet = 64M
+table_open_cache = 256
+sort_buffer_size = 1M
+read_buffer_size = 1M
+query_cache_size = 64M
+
+# 日誌設置
+log_error = /usr/local/mysql/data/mysql_error.log
+slow_query_log = 1
+slow_query_log_file = /usr/local/mysql/data/mysql_slow_query.log
+long_query_time = 2
+
+# InnoDB 引擎設置
+innodb_buffer_pool_size = 512M
+innodb_log_file_size = 128M
+innodb_file_per_table = 1
+</code></pre>
+<h3 id="my-cnf-配置選項詳解"><a href="#my-cnf-配置選項詳解" class="headerlink" title="my.cnf 配置選項詳解"></a><code>my.cnf</code> 配置選項詳解</h3><h4 id="client-部分"><a href="#client-部分" class="headerlink" title="[client] 部分"></a><code>[client]</code> 部分</h4><p>這一部分配置 MySQL 客戶端的參數，例如命令行工具使用的設置：</p>
+<ul>
+<li>**<code>port</code>**：指定默認的 MySQL 端口號（通常為 <code>3306</code>）。</li>
+<li>**<code>socket</code>**：指定 Unix Socket 文件的位置，通常用於本地連接。</li>
+</ul>
+<h4 id="mysqld-部分"><a href="#mysqld-部分" class="headerlink" title="[mysqld] 部分"></a><code>[mysqld]</code> 部分</h4><p>這是 MySQL 伺服器的主要配置部分，控制伺服器的各種行為：</p>
+<ol>
+<li><p><strong>基本設置</strong></p>
+<ul>
+<li>**<code>user</code>**：指定運行 MySQL 伺服器的用戶（默認為 <code>mysql</code>）。</li>
+<li>**<code>port</code>**：指定 MySQL 使用的端口號（默認為 <code>3306</code>）。</li>
+<li>**<code>bind-address</code>**：指定 MySQL 綁定的 IP 地址。通常設為 <code>127.0.0.1</code> 以僅允許本地連接。如果想允許遠程連接，可以設置為 <code>0.0.0.0</code> 或特定 IP。</li>
+<li>**<code>datadir</code>**：指定 MySQL 數據存儲目錄的位置。</li>
+</ul>
+</li>
+<li><p><strong>性能調整</strong></p>
+<ul>
+<li>**<code>max_connections</code>**：指定 MySQL 允許的最大連接數，默認為 <code>151</code>。如果是大流量應用，應根據硬體資源增加此值。</li>
+<li>**<code>skip-external-locking</code>**：防止 MySQL 對文件鎖使用外部鎖定，這樣可以提高性能。</li>
+</ul>
+</li>
+<li><p><strong>語言與字符集設置</strong></p>
+<ul>
+<li>**<code>character-set-server</code>**：設置伺服器的默認字符集，通常設為 <code>utf8mb4</code>，以支援更多特殊字符。</li>
+<li>**<code>collation-server</code>**：設置伺服器的字符集校對規則。</li>
+</ul>
+</li>
+<li><p><strong>緩存與內存設置</strong></p>
+<ul>
+<li>**<code>key_buffer_size</code>**：設置索引緩存大小，適合 MyISAM 表使用。InnoDB 則主要依賴 <code>innodb_buffer_pool_size</code>。</li>
+<li>**<code>query_cache_size</code>**：查詢緩存大小，可以加快相同查詢的響應速度。請注意，從 MySQL 8.0 開始已棄用查詢緩存。</li>
+<li>**<code>innodb_buffer_pool_size</code>**：設置 InnoDB 的緩存大小，建議設置為系統內存的 50%-80%，以提高性能。</li>
+</ul>
+</li>
+<li><p><strong>日誌設置</strong></p>
+<ul>
+<li>**<code>log_error</code>**：指定錯誤日誌文件的路徑，用於記錄 MySQL 伺服器運行時發生的錯誤。</li>
+<li>**<code>slow_query_log</code>**：是否啟用慢查詢日誌（<code>1</code> 為啟用）。</li>
+<li>**<code>slow_query_log_file</code>**：指定慢查詢日誌文件的路徑。</li>
+<li>**<code>long_query_time</code>**：設置查詢的時間閾值（單位為秒），超過這個時間的查詢會被記錄在慢查詢日誌中。</li>
+</ul>
+</li>
+<li><p><strong>InnoDB 引擎設置</strong></p>
+<ul>
+<li>**<code>innodb_log_file_size</code>**：設置 InnoDB 日誌文件的大小，通常設置為緩存池大小的 1&#x2F;4。</li>
+<li>**<code>innodb_file_per_table</code>**：為每個表創建單獨的數據文件，便於管理和備份。</li>
+</ul>
+</li>
+</ol>
+<h3 id="如何修改-my-cnf-配置"><a href="#如何修改-my-cnf-配置" class="headerlink" title="如何修改 my.cnf 配置"></a>如何修改 <code>my.cnf</code> 配置</h3><ol>
+<li><p><strong>找到 <code>my.cnf</code> 文件</strong>：</p>
+<ul>
+<li><p>使用以下命令查找配置文件的位置：</p>
+<pre><code class="bash">sudo find / -name &quot;my.cnf&quot;
+</code></pre>
+</li>
+<li><p>常見位置是 <code>/etc/my.cnf</code> 或 <code>/usr/local/mysql/etc/my.cnf</code>。</p>
+</li>
+</ul>
+</li>
+<li><p>**使用文本編輯器修改 <code>my.cnf</code>**：</p>
+<ul>
+<li><p>可以使用 <strong>nano</strong> 或 <strong>vi</strong> 編輯配置文件。例如：</p>
+<pre><code class="bash">sudo nano /etc/my.cnf
+</code></pre>
+</li>
+<li><p>修改完畢後，保存並退出編輯器。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>重啟 MySQL 服務以應用更改</strong>：</p>
+<ul>
+<li><p>修改完成後，您需要重新啟動 MySQL 服務來使配置生效：</p>
+<pre><code class="bash">sudo /usr/local/mysql/support-files/mysql.server restart
+</code></pre>
+</li>
+<li><p>或者，如果您使用的是 Homebrew 安裝的 MySQL：</p>
+<pre><code class="bash">brew services restart mysql
+</code></pre>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h3><ul>
+<li><strong><code>my.cnf</code> 文件</strong> 用於配置 MySQL 伺服器的各種行為，包括網絡設置、緩存、日誌、性能調優等。</li>
+<li>常見的配置項目包括端口號、數據目錄、字符集、最大連接數、緩存大小等。</li>
+<li><strong>修改 <code>my.cnf</code></strong> 後需要重啟 MySQL 服務以使更改生效。</li>
+</ul>
+<p>這些配置可以根據您的需求進行調整，以優化 MySQL 的性能和行為。如果您有特定的需求或遇到問題，隨時告訴我，我會幫助您進一步設置。</p>

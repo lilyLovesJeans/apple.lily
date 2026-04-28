@@ -1,0 +1,204 @@
+<hr>
+<h2 id="title-“2026-06-15-MySQL-提示符（mysql＞）中連接到遠程伺服器”date-2026-04-28-23-44-58categories-OneDayOneNotetags-mySQL-description-“2026-06-15-MySQL-提示符（mysql＞）中連接到遠程伺服器”"><a href="#title-“2026-06-15-MySQL-提示符（mysql＞）中連接到遠程伺服器”date-2026-04-28-23-44-58categories-OneDayOneNotetags-mySQL-description-“2026-06-15-MySQL-提示符（mysql＞）中連接到遠程伺服器”" class="headerlink" title="title: “2026-06-15  MySQL 提示符（mysql＞）中連接到遠程伺服器”date: 2026-04-28 23:44:58categories: OneDayOneNotetags:  [mySQL]description:  “2026-06-15  MySQL 提示符（mysql＞）中連接到遠程伺服器”"></a>title: “2026-06-15  MySQL 提示符（<code>mysql＞</code>）中連接到遠程伺服器”<br>date: 2026-04-28 23:44:58<br>categories: OneDayOneNote<br>tags:  [mySQL]<br>description:  “2026-06-15  MySQL 提示符（<code>mysql＞</code>）中連接到遠程伺服器”</h2><h2 id="“2026-06-15-MySQL-提示符（mysql＞）中連接到遠程伺服器”"><a href="#“2026-06-15-MySQL-提示符（mysql＞）中連接到遠程伺服器”" class="headerlink" title="“2026-06-15  MySQL 提示符（mysql＞）中連接到遠程伺服器”"></a>“2026-06-15  MySQL 提示符（<code>mysql＞</code>）中連接到遠程伺服器”</h2><p>我:<br> MySQL  SQL &gt; connect to 192.169.0.101 lily_Admin</p>
+<p>GPT:<br>要從 MySQL 提示符（<code>mysql&gt;</code>）中連接到遠程伺服器，您可以使用 <strong><code>CONNECT</code></strong> 命令或直接退出當前 MySQL 提示符後使用 MySQL 客戶端重新連接。下面是具體步驟：</p>
+<h3 id="方法-1：從-MySQL-提示符使用-CONNECT"><a href="#方法-1：從-MySQL-提示符使用-CONNECT" class="headerlink" title="方法 1：從 MySQL 提示符使用 CONNECT"></a>方法 1：從 MySQL 提示符使用 <code>CONNECT</code></h3><p>在 MySQL 提示符下可以使用 <code>CONNECT</code> 命令來連接到遠程 MySQL 伺服器：</p>
+<pre><code class="sql">CONNECT 192.169.0.101:3306  USER &#39;lily_Admin&#39; IDENTIFIED BY &#39;password&#39;;
+</code></pre>
+<h3 id="方法-2：使用命令行連接遠程-MySQL-伺服器"><a href="#方法-2：使用命令行連接遠程-MySQL-伺服器" class="headerlink" title="方法 2：使用命令行連接遠程 MySQL 伺服器"></a>方法 2：使用命令行連接遠程 MySQL 伺服器</h3><p>更常見的方式是從命令行重新啟動 MySQL 客戶端並直接連接到遠程伺服器。例如：</p>
+<ol>
+<li><p><strong>退出當前 MySQL 提示符</strong>：</p>
+<ul>
+<li>在 MySQL 提示符下輸入 <code>exit;</code> 或 <code>quit;</code>，然後按 <strong>Enter</strong>，這樣就會退出 MySQL 客戶端回到終端。</li>
+</ul>
+</li>
+<li><p><strong>使用命令行重新連接到遠程伺服器</strong>：<br>在終端中，輸入以下命令連接到目標伺服器：</p>
+<pre><code class="bash">mysql -h 192.169.0.101 -u lily_Admin -p
+</code></pre>
+<ul>
+<li>**<code>-h 192.169.0.101</code>**：指定 MySQL 伺服器的 IP 地址。</li>
+<li>**<code>-u lily_Admin</code>**：指定用戶名為 <code>lily_Admin</code>。</li>
+<li>**<code>-p</code>**：提示輸入密碼，輸入 <code>lily_Admin</code> 用戶的密碼來進行身份驗證。</li>
+</ul>
+</li>
+<li><p><strong>輸入密碼</strong>：<br>之後會提示輸入該用戶的密碼，輸入正確的密碼後即可連接到遠程 MySQL 伺服器。</p>
+</li>
+</ol>
+<h3 id="注意事項"><a href="#注意事項" class="headerlink" title="注意事項"></a>注意事項</h3><ul>
+<li><p>確保目標 MySQL 伺服器允許遠程連接，這通常可以通過以下方式確認：</p>
+<ol>
+<li><p><strong>修改 <code>my.cnf</code> 文件</strong> 中的 <code>bind-address</code> 為 <code>0.0.0.0</code> 或允許特定 IP 地址。</p>
+</li>
+<li><p><strong>為用戶授予遠程連接的權限</strong>，可以通過 MySQL 進行配置，如下所示：</p>
+<pre><code class="sql">GRANT ALL PRIVILEGES ON *.* TO &#39;lily_Admin&#39;@&#39;%&#39; IDENTIFIED BY &#39;password&#39; WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+</code></pre>
+<ul>
+<li><strong><code>&#39;lily_Admin&#39;@&#39;%&#39;</code></strong> 表示允許來自所有 IP 地址的遠程連接。</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p><strong>防火牆設置</strong>：確保 MySQL 使用的 <strong>3306</strong> 端口沒有被防火牆阻擋。</p>
+</li>
+<li><p><strong>檢查 IP 地址</strong>：請確保 IP 地址是正確的，並且 <code>192.169.0.101</code> 可正常訪問（注意 IP 地址的格式，應為正確的內網或公網 IP）。</p>
+</li>
+</ul>
+<h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h3><ul>
+<li>可以使用 <code>CONNECT</code> 命令在 MySQL 提示符中連接到遠程伺服器，或者更常見地直接從終端使用 <code>mysql -h</code> 命令重新連接。</li>
+<li>確保 MySQL 伺服器允許遠程連接，並且防火牆和授權設置正確。</li>
+</ul>
+<p>如果還有其他問題，請隨時告訴我，我會幫助您進一步解決。</p>
+<p>我:<br>MySQL  SQL &gt; CONNECT 192.169.0.101:3306  USER ‘lily_Admin’ IDENTIFIED BY ‘1234’;<br>ERROR: Not connected.<br> MySQL  SQL &gt;</p>
+<p>在 MySQL 提示符下 (<code>mysql&gt;</code>)，<code>CONNECT</code> 命令不支持直接使用指定的 IP 地址和端口進行連接。這就是為什麼你會看到 <strong>“ERROR: Not connected”</strong> 的錯誤。</p>
+<p>MySQL 提示符下的 <code>CONNECT</code> 通常是用來連接到已經打開的資料庫，而不是用來重新連接另一個伺服器。因此，要連接到不同的 MySQL 伺服器，你需要先退出當前 MySQL 會話，然後重新啟動 MySQL 客戶端來進行遠程連接。以下是如何操作的步驟：</p>
+<h3 id="步驟-1：退出-MySQL-提示符"><a href="#步驟-1：退出-MySQL-提示符" class="headerlink" title="步驟 1：退出 MySQL 提示符"></a>步驟 1：退出 MySQL 提示符</h3><p>在 MySQL 提示符中輸入以下命令來退出：</p>
+<pre><code class="sql">exit;
+</code></pre>
+<p>或者使用：</p>
+<pre><code class="sql">quit;
+</code></pre>
+<p>這樣可以退出當前的 MySQL 會話並返回到命令行終端。</p>
+<h3 id="步驟-2：使用命令行連接到遠程伺服器"><a href="#步驟-2：使用命令行連接到遠程伺服器" class="headerlink" title="步驟 2：使用命令行連接到遠程伺服器"></a>步驟 2：使用命令行連接到遠程伺服器</h3><p>在終端命令行中輸入以下命令，重新啟動 MySQL 客戶端並連接到目標伺服器：</p>
+<pre><code class="bash">mysql -h 192.169.0.101 -P 3306 -u lily_Admin -p
+</code></pre>
+<ul>
+<li>**<code>-h 192.169.0.101</code>**：指定遠程 MySQL 伺服器的 IP 地址。</li>
+<li>**<code>-P 3306</code>**：指定 MySQL 伺服器的端口號，默認為 3306。</li>
+<li>**<code>-u lily_Admin</code>**：指定用戶名為 <code>lily_Admin</code>。</li>
+<li>**<code>-p</code>**：提示輸入用戶的密碼。</li>
+</ul>
+<p>輸入密碼（<code>1234</code>）後，應該可以成功連接到目標伺服器。</p>
+<h3 id="注意事項-1"><a href="#注意事項-1" class="headerlink" title="注意事項"></a>注意事項</h3><ol>
+<li><p><strong>確認伺服器允許遠程連接</strong>：</p>
+<ul>
+<li>需要在 MySQL 配置文件 <strong><code>my.cnf</code></strong> 中設置 **<code>bind-address = 0.0.0.0</code>**，以允許所有 IP 地址的連接。</li>
+<li>檢查並確認防火牆允許 <strong>3306</strong> 端口的訪問。</li>
+</ul>
+</li>
+<li><p><strong>給用戶授予遠程訪問權限</strong>：</p>
+<ul>
+<li><p>確保用戶 <code>lily_Admin</code> 已被授予從外部 IP 進行連接的權限。可以進入 MySQL 並執行以下命令：</p>
+<pre><code class="sql">GRANT ALL PRIVILEGES ON *.* TO &#39;lily_Admin&#39;@&#39;%&#39; IDENTIFIED BY &#39;1234&#39; WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+</code></pre>
+</li>
+<li><p><code>%</code> 表示允許從任何 IP 地址連接。</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="總結-1"><a href="#總結-1" class="headerlink" title="總結"></a>總結</h3><ul>
+<li><strong><code>CONNECT</code> 命令</strong> 在 MySQL 提示符下不能用於重新連接到不同的伺服器。</li>
+<li><strong>退出 MySQL 提示符</strong>，使用終端命令行連接到遠程伺服器，例如使用 <strong><code>mysql -h</code></strong> 命令。</li>
+<li><strong>確認伺服器配置允許遠程連接</strong>，包括 MySQL 配置和防火牆設置。</li>
+</ul>
+<p>如果您還有其他問題，隨時告訴我，我會幫助您進一步解決。</p>
+<p>我:<br> MySQL  SQL &gt; mysql -h 192.168.0.101 -P 3306 -u lily_Admin -p 1234<br>ERROR: Not connected.<br>           -&gt; ;</p>
+<p>GPT:<br>在 MySQL 提示符 (<code>mysql&gt;</code>) 下直接輸入類似命令行工具的命令是無法執行的，這就是為什麼您會遇到 <strong>“ERROR: Not connected”</strong> 的錯誤。在 MySQL 客戶端提示符內，無法像在命令行終端中那樣使用 <code>mysql -h</code> 來連接新的伺服器。</p>
+<p>要連接到遠程 MySQL 伺服器，您需要退出當前的 MySQL 會話，然後從命令行重新連接。請按照以下步驟進行操作：</p>
+<h3 id="1-退出-MySQL-提示符"><a href="#1-退出-MySQL-提示符" class="headerlink" title="1. 退出 MySQL 提示符"></a>1. 退出 MySQL 提示符</h3><p>首先輸入以下命令來退出當前的 MySQL 提示符：</p>
+<pre><code class="sql">exit;
+</code></pre>
+<p>或者使用：</p>
+<pre><code class="sql">quit;
+</code></pre>
+<p>這樣可以退出當前 MySQL 會話並返回到終端命令行界面。</p>
+<h3 id="2-使用終端連接遠程-MySQL-伺服器"><a href="#2-使用終端連接遠程-MySQL-伺服器" class="headerlink" title="2. 使用終端連接遠程 MySQL 伺服器"></a>2. 使用終端連接遠程 MySQL 伺服器</h3><p>退出 MySQL 提示符後，在命令行終端中，使用以下命令重新連接到遠程 MySQL 伺服器：</p>
+<pre><code class="bash">mysql -h 192.168.0.101 -P 3306 -u lily_Admin -p
+</code></pre>
+<p>然後輸入密碼 <strong><code>1234</code></strong> 進行身份驗證。</p>
+<ul>
+<li>**<code>-h 192.168.0.101</code>**：指定遠程伺服器的 IP 地址。</li>
+<li>**<code>-P 3306</code>**：指定 MySQL 使用的端口（默認為 3306）。</li>
+<li>**<code>-u lily_Admin</code>**：指定 MySQL 用戶名。</li>
+<li>**<code>-p</code>**：提示輸入用戶的密碼。</li>
+</ul>
+<h3 id="請注意"><a href="#請注意" class="headerlink" title="請注意"></a>請注意</h3><ul>
+<li><p><strong>不要在命令行中直接提供密碼</strong>：建議在 <code>-p</code> 之後不加密碼，這樣會在提示時輸入密碼，更加安全。例如：</p>
+<pre><code class="bash">mysql -h 192.168.0.101 -P 3306 -u lily_Admin -p
+</code></pre>
+<p>這樣會在提示時輸入密碼，避免將密碼直接顯示在終端上。</p>
+</li>
+<li><p><strong>授予遠程訪問權限</strong>：<br>確保用戶 <code>lily_Admin</code> 具有遠程訪問的權限。您可以進入 MySQL 並執行以下 SQL 語句來授予權限：</p>
+<pre><code class="sql">GRANT ALL PRIVILEGES ON *.* TO &#39;lily_Admin&#39;@&#39;%&#39; IDENTIFIED BY &#39;1234&#39; WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+</code></pre>
+</li>
+<li><p><strong>確認 MySQL 設置允許遠程連接</strong>：</p>
+<ul>
+<li>確認 MySQL 的配置文件（<code>my.cnf</code>）中有 <strong><code>bind-address = 0.0.0.0</code></strong> 或允許所有外部連接的設置。</li>
+<li>確保防火牆設置允許 <strong>3306</strong> 端口的訪問。</li>
+</ul>
+</li>
+</ul>
+<h3 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h3><ul>
+<li>在 <strong>MySQL 提示符</strong>中，無法像在終端命令行那樣使用 <code>mysql -h</code> 命令進行新連接。</li>
+<li><strong>退出當前 MySQL 提示符</strong>，並在命令行中重新使用 <code>mysql -h</code> 命令來連接遠程伺服器。</li>
+<li>確保伺服器配置允許遠程連接，並且用戶有足夠的權限。</li>
+</ul>
+<p>如果您還有其他問題或需要更多幫助，隨時告訴我！</p>
+<p>我:<br>我是用 mysql shell</p>
+<p>GPT:<br>如果您使用的是 <strong>MySQL Shell</strong>（MySQL Shell，通常是以 <code>MySQL JS&gt;</code> 或 <code>MySQL SQL&gt;</code> 開頭的提示符），而不是傳統的 MySQL 客戶端，這時連接到遠程伺服器的方式略有不同。</p>
+<p>以下是如何在 <strong>MySQL Shell</strong> 中連接到遠程 MySQL 伺服器的步驟：</p>
+<h3 id="在-MySQL-Shell-中連接到遠程伺服器"><a href="#在-MySQL-Shell-中連接到遠程伺服器" class="headerlink" title="在 MySQL Shell 中連接到遠程伺服器"></a>在 MySQL Shell 中連接到遠程伺服器</h3><p>在 MySQL Shell 中，您可以使用 <code>\connect</code> 或 <code>\c</code> 命令來連接到遠程伺服器：</p>
+<ol>
+<li><p><strong>使用 <code>\connect</code> 命令</strong>：<br>在 <strong>MySQL Shell</strong> 的提示符下（例如 <code>MySQL SQL&gt;</code> 或 <code>MySQL JS&gt;</code>），使用以下命令連接到遠程伺服器：</p>
+<pre><code class="shell">\connect lily_Admin@192.168.0.101:3306
+</code></pre>
+<p>輸入這個命令之後，MySQL Shell 會提示您輸入用戶的密碼，輸入您的密碼（<code>1234</code>），即可嘗試連接。</p>
+</li>
+<li><p><strong>使用完整連接字符串</strong>：<br>如果希望直接提供密碼，您也可以這樣操作：</p>
+<pre><code class="shell">\connect lily_Admin:1234@192.168.0.101:3306
+</code></pre>
+<p>這樣可以一次性提供用戶名和密碼，但不建議這樣做，因為這樣可能會將密碼暴露在 Shell 歷史中。</p>
+</li>
+</ol>
+<h3 id="注意事項-2"><a href="#注意事項-2" class="headerlink" title="注意事項"></a>注意事項</h3><ol>
+<li><p><strong>確認 MySQL 配置允許遠程連接</strong>：</p>
+<ul>
+<li>確保 MySQL 伺服器的配置文件（<code>my.cnf</code>）中設置 **<code>bind-address = 0.0.0.0</code>**，這樣 MySQL 可以接受來自任何 IP 地址的連接。</li>
+<li>如果只允許特定的外部 IP 連接，可以設置為特定的 IP 地址。</li>
+</ul>
+</li>
+<li><p><strong>授予遠程訪問權限</strong>：<br>確保用戶 <code>lily_Admin</code> 被授權可以從外部 IP 進行連接。可以使用以下 SQL 語句授予權限：</p>
+<pre><code class="sql">GRANT ALL PRIVILEGES ON *.* TO &#39;lily_Admin&#39;@&#39;%&#39; IDENTIFIED BY &#39;1234&#39; WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+</code></pre>
+<ul>
+<li><code>%</code> 表示允許從任何 IP 地址進行連接。</li>
+</ul>
+</li>
+<li><p><strong>防火牆設置</strong>：<br>確保您的 MySQL 伺服器所在的主機允許通過 <strong>3306</strong> 端口進行訪問。可能需要設置防火牆來允許這些連接。</p>
+</li>
+</ol>
+<h3 id="小結-1"><a href="#小結-1" class="headerlink" title="小結"></a>小結</h3><ul>
+<li><p>在 <strong>MySQL Shell</strong> 中，可以使用 <strong><code>\connect</code></strong> 命令來連接到遠程伺服器。</p>
+<ul>
+<li><strong><code>\connect lily_Admin@192.168.0.101:3306</code></strong> 會提示您輸入密碼。</li>
+</ul>
+</li>
+<li><p>確保 <strong>MySQL 配置</strong> 和 <strong>防火牆設置</strong> 允許遠程訪問。</p>
+</li>
+<li><p>確認用戶 <code>lily_Admin</code> 具備遠程訪問的權限。</p>
+</li>
+</ul>
+<p>這些步驟應該可以幫助您從 <strong>MySQL Shell</strong> 連接到遠程 MySQL 伺服器。如果還有其他問題或需要更多幫助，請隨時告訴我！</p>
+<p>我:<br>MySQL  192.168.0.101:3306 ssl  logis… SQL &gt; quit;<br>ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ‘quit’ at line 1</p>
+<p>GPT:<br>在 <strong>MySQL Shell</strong>（<code>MySQL SQL&gt;</code> 提示符下），<code>quit</code> 或 <code>exit</code> 是用來退出 MySQL Shell 的命令，但不能像 SQL 命令那樣直接在提示符中輸入。這是因為它並不是一個 SQL 指令，而是一個 Shell 命令。在這種情況下，您應該使用 MySQL Shell 支持的命令來退出。以下是正確的做法：</p>
+<h3 id="方法-1：退出-MySQL-Shell"><a href="#方法-1：退出-MySQL-Shell" class="headerlink" title="方法 1：退出 MySQL Shell"></a>方法 1：退出 MySQL Shell</h3><p>在 <strong>MySQL Shell</strong> 中，您可以使用以下命令來退出：</p>
+<pre><code class="shell">\quit
+</code></pre>
+<p>或者：</p>
+<pre><code class="shell">\exit
+</code></pre>
+<p>這些命令是 MySQL Shell 的內建命令，用於退出 Shell，它們可以在 <strong>MySQL SQL&gt;</strong> 或 <strong>MySQL JS&gt;</strong> 提示符下使用。</p>
+<h3 id="方法-2：使用-Ctrl-D"><a href="#方法-2：使用-Ctrl-D" class="headerlink" title="方法 2：使用 Ctrl + D"></a>方法 2：使用 Ctrl + D</h3><p>您還可以直接按 **<code>Ctrl + D</code>**，這將退出 MySQL Shell 並返回到命令行終端。</p>
+<h3 id="錯誤的原因"><a href="#錯誤的原因" class="headerlink" title="錯誤的原因"></a>錯誤的原因</h3><p>您遇到的錯誤：</p>
+<pre><code>ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#39;quit&#39; at line 1
+</code></pre>
+<p>這是因為 <strong><code>quit</code></strong> 被當作了一條 SQL 語句來執行，而不是 MySQL Shell 的內建命令。MySQL Shell 不會將 <code>quit</code> 認為是一個有效的 SQL 語句，因此它產生了語法錯誤。</p>
+<h3 id="小結-2"><a href="#小結-2" class="headerlink" title="小結"></a>小結</h3><ul>
+<li>在 <strong>MySQL Shell</strong> 中退出的正確方法是使用 <strong><code>\quit</code></strong> 或 **<code>\exit</code>**。</li>
+<li>也可以使用 <strong><code>Ctrl + D</code></strong> 快捷鍵來退出 MySQL Shell。</li>
+</ul>
+<p>這些方法應該可以幫助您正確退出 MySQL Shell。如果還有其他問題，隨時告訴我！</p>

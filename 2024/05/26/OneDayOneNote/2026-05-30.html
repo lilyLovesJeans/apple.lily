@@ -1,0 +1,131 @@
+<hr>
+<h2 id="title-2026-05-30-擴展-DAO-方法與異常處理date-2026-04-28-21-47-24categories-OneDayOneNotetags-mySQL-description-2026-05-30-擴展-DAO-方法與異常處理"><a href="#title-2026-05-30-擴展-DAO-方法與異常處理date-2026-04-28-21-47-24categories-OneDayOneNotetags-mySQL-description-2026-05-30-擴展-DAO-方法與異常處理" class="headerlink" title="title: 2026-05-30 擴展 DAO 方法與異常處理date: 2026-04-28 21:47:24categories: OneDayOneNotetags:  [mySQL]description:   2026-05-30 擴展 DAO 方法與異常處理"></a>title: 2026-05-30 擴展 DAO 方法與異常處理<br>date: 2026-04-28 21:47:24<br>categories: OneDayOneNote<br>tags:  [mySQL]<br>description:   2026-05-30 擴展 DAO 方法與異常處理</h2><h2 id="2026-05-30-擴展-DAO-方法與異常處理"><a href="#2026-05-30-擴展-DAO-方法與異常處理" class="headerlink" title="2026-05-30 擴展 DAO 方法與異常處理"></a>2026-05-30 擴展 DAO 方法與異常處理</h2><p>我:<br>第 8 步：持久化數據 我已完成,<br>接下來:<br>添加更多 DAO 方法：如更新和刪除包裹的方法。<br>進一步測試資料庫操作：更新單元測試來確保 DAO 操作的正確性，可以使用一些工具模擬資料庫。<br>加入異常處理：在資料庫操作中加入異常處理機制，以處理可能出現的資料庫連接失敗等問題。<br>要怎麼做呢? 請出作業</p>
+<p>GPT:<br><strong>作業說明：擴展 DAO 方法與異常處理</strong></p>
+<h3 id="第-1-部分：添加更多-DAO-方法"><a href="#第-1-部分：添加更多-DAO-方法" class="headerlink" title="第 1 部分：添加更多 DAO 方法"></a>第 1 部分：添加更多 DAO 方法</h3><ol>
+<li><p><strong>更新包裹的方法</strong>：</p>
+<ul>
+<li>在您的 DAO 類別中添加一個名為 <code>updatePackage</code> 的方法，用於更新包裹的狀態或其他屬性。</li>
+<li>方法應接收一個 <code>Package</code> 物件（包含更新後的所有屬性），並根據 <code>TrackingNumber</code> 來執行更新。</li>
+</ul>
+<pre><code class="csharp">public bool UpdatePackage(Package package)
+{
+    string query = &quot;UPDATE Packages SET Sender = @Sender, Recipient = @Recipient, Status = @Status WHERE TrackingNumber = @TrackingNumber&quot;;
+    using (var connection = new SqlConnection(connectionString))
+    {
+        using (var command = new SqlCommand(query, connection))
+        {
+            command.Parameters.AddWithValue(&quot;@Sender&quot;, package.Sender);
+            command.Parameters.AddWithValue(&quot;@Recipient&quot;, package.Recipient);
+            command.Parameters.AddWithValue(&quot;@Status&quot;, package.Status);
+            command.Parameters.AddWithValue(&quot;@TrackingNumber&quot;, package.TrackingNumber);
+            
+            connection.Open();
+            int rowsAffected = command.ExecuteNonQuery();
+            return rowsAffected &gt; 0;
+        }
+    }
+}
+</code></pre>
+</li>
+<li><p><strong>刪除包裹的方法</strong>：</p>
+<ul>
+<li>添加一個名為 <code>deletePackage</code> 的方法，用於根據 <code>TrackingNumber</code> 刪除包裹記錄。</li>
+</ul>
+<pre><code class="csharp">public bool DeletePackage(string trackingNumber)
+{
+    string query = &quot;DELETE FROM Packages WHERE TrackingNumber = @TrackingNumber&quot;;
+    using (var connection = new SqlConnection(connectionString))
+    {
+        using (var command = new SqlCommand(query, connection))
+        {
+            command.Parameters.AddWithValue(&quot;@TrackingNumber&quot;, trackingNumber);
+            
+            connection.Open();
+            int rowsAffected = command.ExecuteNonQuery();
+            return rowsAffected &gt; 0;
+        }
+    }
+}
+</code></pre>
+</li>
+</ol>
+<h3 id="第-2-部分：進一步測試資料庫操作"><a href="#第-2-部分：進一步測試資料庫操作" class="headerlink" title="第 2 部分：進一步測試資料庫操作"></a>第 2 部分：進一步測試資料庫操作</h3><ol>
+<li><p><strong>更新單元測試</strong>：</p>
+<ul>
+<li>更新現有的單元測試來測試 <code>updatePackage</code> 和 <code>deletePackage</code> 方法。</li>
+<li>您可以使用 <code>Moq</code> 等模擬工具來模擬資料庫連接和操作，以確保您的 DAO 在沒有實際資料庫的情況下也能進行測試。</li>
+</ul>
+<pre><code class="csharp">[TestMethod]
+public void UpdatePackage_ShouldReturnTrue_WhenPackageIsUpdated()
+{
+    // Arrange
+    var package = new Package { TrackingNumber = &quot;12345ABC&quot;, Sender = &quot;NewSender&quot;, Recipient = &quot;NewRecipient&quot;, Status = &quot;Delivered&quot; };
+    var dao = new PackageDao();
+    
+    // Act
+    bool result = dao.UpdatePackage(package);
+    
+    // Assert
+    Assert.IsTrue(result);
+}
+
+[TestMethod]
+public void DeletePackage_ShouldReturnTrue_WhenPackageIsDeleted()
+{
+    // Arrange
+    var trackingNumber = &quot;12345ABC&quot;;
+    var dao = new PackageDao();
+    
+    // Act
+    bool result = dao.DeletePackage(trackingNumber);
+    
+    // Assert
+    Assert.IsTrue(result);
+}
+</code></pre>
+</li>
+</ol>
+<h3 id="第-3-部分：加入異常處理"><a href="#第-3-部分：加入異常處理" class="headerlink" title="第 3 部分：加入異常處理"></a>第 3 部分：加入異常處理</h3><ol>
+<li><p><strong>資料庫操作中的異常處理</strong>：</p>
+<ul>
+<li>在每個 DAO 方法中加入 <code>try-catch</code> 塊，以便在發生異常時能夠捕捉並處理，例如資料庫連接失敗或 SQL 語句執行失敗。</li>
+<li>可以記錄異常訊息，並根據需要返回錯誤碼或自定義的異常類型。</li>
+</ul>
+<pre><code class="csharp">public bool UpdatePackage(Package package)
+{
+    string query = &quot;UPDATE Packages SET Sender = @Sender, Recipient = @Recipient, Status = @Status WHERE TrackingNumber = @TrackingNumber&quot;;
+    try
+    {
+        using (var connection = new SqlConnection(connectionString))
+        {
+            using (var command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue(&quot;@Sender&quot;, package.Sender);
+                command.Parameters.AddWithValue(&quot;@Recipient&quot;, package.Recipient);
+                command.Parameters.AddWithValue(&quot;@Status&quot;, package.Status);
+                command.Parameters.AddWithValue(&quot;@TrackingNumber&quot;, package.TrackingNumber);
+                
+                connection.Open();
+                int rowsAffected = command.ExecuteNonQuery();
+                return rowsAffected &gt; 0;
+            }
+        }
+    }
+    catch (SqlException ex)
+    {
+        // 記錄異常訊息並處理
+        Console.WriteLine(&quot;An error occurred while updating the package: &quot; + ex.Message);
+        return false;
+    }
+}
+</code></pre>
+</li>
+<li><p><strong>全域異常處理</strong>：</p>
+<ul>
+<li>在應用程式中設置全域異常處理器，用於捕捉未預期的異常，防止應用程式崩潰。</li>
+</ul>
+</li>
+</ol>
+<p>已為您準備了擴展 DAO 方法和異常處理的作業內容，包含新增的更新和刪除方法、更新測試案例及異常處理邏輯。您可以根據這些指導進一步完善代碼。如果有任何問題，隨時向我詢問！</p>
+<p>我:<br>這是第9步嗎?<br>是的，這是第 9 步的後續工作內容。第 9 步涉及持久化數據，這裡的作業進一步擴展了 DAO 方法，添加了更新和刪除包裹的功能，以及進一步測試和處理異常的建議。</p>
+<p>接下來，您可以實施這些更新並執行相應的單元測試來驗證功能。如果還有任何問題或需要更多幫助，隨時告訴我！</p>
