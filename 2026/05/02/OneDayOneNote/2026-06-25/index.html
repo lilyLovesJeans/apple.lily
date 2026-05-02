@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2026-06-25  C# 泛型類型參數的聲明">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2026-06-25  C# 泛型類型參數的聲明">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2026/05/02/OneDayOneNote/2026-06-25/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2026-06-25  C# 泛型類型參數的聲明">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2026-05-02T14:33:29.000Z">
+<meta property="article:modified_time" content="2026-05-02T14:34:09.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="C#">
+<meta property="article:tag" content="系統開發流程">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2026/05/02/OneDayOneNote/2026-06-25/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2026/05/02/OneDayOneNote/2026-06-25/","path":"2026/05/02/OneDayOneNote/2026-06-25/","title":"2026-06-25  C# 泛型類型參數的聲明"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2026-06-25  C# 泛型類型參數的聲明 | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2026-06-25-C-%E6%B3%9B%E5%9E%8B%E9%A1%9E%E5%9E%8B%E5%8F%83%E6%95%B8%E7%9A%84%E8%81%B2%E6%98%8E"><span class="nav-number">1.</span> <span class="nav-text">2026-06-25  C# 泛型類型參數的聲明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E9%A1%9E%E5%9E%8B"><span class="nav-number">1.1.</span> <span class="nav-text">1. 基本資料類型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E8%87%AA%E5%AE%9A%E7%BE%A9%E9%A1%9E%E5%9E%8B"><span class="nav-number">1.2.</span> <span class="nav-text">2. 自定義類型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%85%B6%E4%BB%96%E6%B3%9B%E5%9E%8B%E9%A1%9E%E5%9E%8B"><span class="nav-number">1.3.</span> <span class="nav-text">3. 其他泛型類型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E7%89%A9%E4%BB%B6%E5%9E%8B%E5%88%A5"><span class="nav-number">1.4.</span> <span class="nav-text">4. 物件型別</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BB%BA%E8%AD%B0%E7%9A%84%E5%81%9A%E6%B3%95%EF%BC%9A%E5%AE%9A%E7%BE%A9%E6%B8%85%E6%99%B0%E7%9A%84%E8%B3%87%E6%96%99%E8%A1%A8%E9%A1%9E%E5%88%A5"><span class="nav-number">1.5.</span> <span class="nav-text">建議的做法：定義清晰的資料表類別</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%B3%9B%E5%9E%8B-List-%E4%BE%86%E5%84%B2%E5%AD%98%E7%89%A9%E4%BB%B6%E8%B3%87%E6%96%99"><span class="nav-number">1.6.</span> <span class="nav-text">使用泛型 List 來儲存物件資料</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%B2%E9%9A%8E%EF%BC%9A%E4%BD%BF%E7%94%A8-ORM-%E6%A1%86%E6%9E%B6"><span class="nav-number">1.7.</span> <span class="nav-text">進階：使用 ORM 框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AF%84%E4%BE%8B"><span class="nav-number">1.8.</span> <span class="nav-text">範例</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">601</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">50</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2026/05/02/OneDayOneNote/2026-06-25/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2026-06-25  C# 泛型類型參數的聲明 | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2026-06-25  C# 泛型類型參數的聲明">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2026-06-25  C# 泛型類型參數的聲明
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2026-05-02 22:33:29 / 修改時間：22:34:09" itemprop="dateCreated datePublished" datetime="2026-05-02T22:33:29+08:00">2026-05-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2026-06-25  C# 泛型類型參數的聲明</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2026-06-25-C-泛型類型參數的聲明"><a href="#2026-06-25-C-泛型類型參數的聲明" class="headerlink" title="2026-06-25  C# 泛型類型參數的聲明"></a>2026-06-25  C# 泛型類型參數的聲明</h2><p>我:<br><T>：這是泛型類型參數的聲明 ,比如說可儲存什麼類別參數?  包括物件?<br>GPT：<br>在 C# 中，<code>&lt;T&gt;</code> 是泛型的類型參數聲明，它表示集合可以用來儲存任何類型的資料，例如基本資料類型（如 <code>int</code>、<code>string</code>）、自定義類型（如 <code>Person</code> 類別），甚至其他泛型類型的資料（如 <code>List&lt;List&lt;int&gt;&gt;</code>）。以下是一些具體例子：</p>
+<h3 id="1-基本資料類型"><a href="#1-基本資料類型" class="headerlink" title="1. 基本資料類型"></a>1. <strong>基本資料類型</strong></h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">List&lt;<span class="built_in">int</span>&gt; intList = <span class="keyword">new</span> List&lt;<span class="built_in">int</span>&gt;();     <span class="comment">// 儲存整數</span></span><br><span class="line">List&lt;<span class="built_in">string</span>&gt; stringList = <span class="keyword">new</span> List&lt;<span class="built_in">string</span>&gt;(); <span class="comment">// 儲存字串</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-自定義類型"><a href="#2-自定義類型" class="headerlink" title="2. 自定義類型"></a>2. <strong>自定義類型</strong></h3><p>假設有一個 <code>Person</code> 類別，可以使用泛型 <code>List&lt;T&gt;</code> 來儲存多個 <code>Person</code> 物件：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Person</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> Name &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> Age &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">List&lt;Person&gt; people = <span class="keyword">new</span> List&lt;Person&gt;(); <span class="comment">// 儲存 Person 類別物件</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-其他泛型類型"><a href="#3-其他泛型類型" class="headerlink" title="3. 其他泛型類型"></a>3. <strong>其他泛型類型</strong></h3><p>泛型也可以嵌套使用，例如儲存其他泛型集合的資料：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;List&lt;<span class="built_in">int</span>&gt;&gt; listOfLists = <span class="keyword">new</span> List&lt;List&lt;<span class="built_in">int</span>&gt;&gt;(); <span class="comment">// 儲存 List&lt;int&gt; 的列表</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-物件型別"><a href="#4-物件型別" class="headerlink" title="4. 物件型別"></a>4. <strong>物件型別</strong></h3><p>泛型集合也能儲存任何繼承自 <code>object</code> 的類型，因為所有類別在 C# 中都繼承自 <code>object</code>：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">List&lt;<span class="built_in">object</span>&gt; objectList = <span class="keyword">new</span> List&lt;<span class="built_in">object</span>&gt;(); <span class="comment">// 可以儲存不同類型的物件</span></span><br><span class="line">objectList.Add(<span class="number">1</span>);         <span class="comment">// 加入整數</span></span><br><span class="line">objectList.Add(<span class="string">&quot;Hello&quot;</span>);    <span class="comment">// 加入字串</span></span><br><span class="line">objectList.Add(<span class="keyword">new</span> Person &#123; Name = <span class="string">&quot;Alice&quot;</span>, Age = <span class="number">30</span> &#125;); <span class="comment">// 加入 Person 類別物件</span></span><br></pre></td></tr></table></figure>
+
+<p>使用泛型 <code>T</code> 提供了更高的靈活性和型別安全性，讓你可以使用單一泛型類別來處理多種不同的資料類型。</p>
+<p>我:<br>那比如說, 我要創建create 一個資料庫的Table , 是否可以用List<object>?</p>
+<p>GPT:<br>使用 <code>List&lt;object&gt;</code> 可以儲存不同類型的資料，但在實際操作上並不建議這麼做來建立資料庫的表（Table）。以下是原因以及更合適的替代方案：</p>
+<ol>
+<li><p><strong>型別安全性</strong>：<code>List&lt;object&gt;</code> 缺乏型別安全性，因為 <code>object</code> 可以代表任何類型的資料。這樣會增加型別檢查和轉型的負擔，容易導致執行時錯誤。</p>
+</li>
+<li><p><strong>表結構定義不明確</strong>：資料庫表結構通常需要清晰的定義，例如每個欄位的名稱和型別。用 <code>List&lt;object&gt;</code> 來定義表結構會讓結構變得模糊，並且很難知道每個欄位的用途和資料型別。</p>
+</li>
+</ol>
+<h3 id="建議的做法：定義清晰的資料表類別"><a href="#建議的做法：定義清晰的資料表類別" class="headerlink" title="建議的做法：定義清晰的資料表類別"></a>建議的做法：定義清晰的資料表類別</h3><p>通常在 C# 中會先定義表的結構類別來代表資料庫中的一個表，並使用清楚的屬性名稱和型別。這樣做可以確保資料的一致性與型別安全性。例如：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Employee</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> Id &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> Name &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">decimal</span> Salary &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> DateTime HireDate &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用泛型-List-來儲存物件資料"><a href="#使用泛型-List-來儲存物件資料" class="headerlink" title="使用泛型 List 來儲存物件資料"></a>使用泛型 List 來儲存物件資料</h3><p>如果需要儲存這些 <code>Employee</code> 類別的資料列集合，可以使用泛型 <code>List&lt;Employee&gt;</code>，這樣就能確保集合中每一個項目都是 <code>Employee</code> 類型的物件：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Employee&gt; employees = <span class="keyword">new</span> List&lt;Employee&gt;();</span><br><span class="line">employees.Add(<span class="keyword">new</span> Employee &#123; Id = <span class="number">1</span>, Name = <span class="string">&quot;John Doe&quot;</span>, Salary = <span class="number">50000</span>, HireDate = DateTime.Now &#125;);</span><br><span class="line">employees.Add(<span class="keyword">new</span> Employee &#123; Id = <span class="number">2</span>, Name = <span class="string">&quot;Jane Smith&quot;</span>, Salary = <span class="number">60000</span>, HireDate = DateTime.Now &#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="進階：使用-ORM-框架"><a href="#進階：使用-ORM-框架" class="headerlink" title="進階：使用 ORM 框架"></a>進階：使用 ORM 框架</h3><p>若你的需求是和資料庫互動並管理表結構，可以考慮使用 ORM（物件關聯映射）框架，例如 <strong>Entity Framework</strong>。這樣的框架可以自動生成資料庫表並進行查詢操作，並且使用清晰的類別來定義表結構。ORM 框架會更適合於定義和操作資料表的類別，並且提供額外的優勢，例如自動遷移和查詢語法糖。</p>
+<p>我:<br>所以這個 List<object> 的object , 建議是 model類?</p>
+<p>GPT:<br>是的，<code>List&lt;object&gt;</code> 的 <code>object</code> 建議替換為具體的 model 類別，例如 <code>Employee</code>、<code>Product</code> 或其他符合你需求的資料類別。使用具體 model 類別有以下優點：</p>
+<ol>
+<li><p><strong>型別安全性</strong>：使用具體的 model 類別，例如 <code>List&lt;Employee&gt;</code>，可以確保 <code>List</code> 中每個項目都符合 <code>Employee</code> 類型，減少型別轉換和潛在錯誤。</p>
+</li>
+<li><p><strong>可讀性與維護性</strong>：具體 model 類別能讓代碼更清晰，讓開發者知道集合中包含的是什麼類型的資料，這會增強代碼的可讀性。</p>
+</li>
+<li><p><strong>支援 LINQ 查詢和強型別操作</strong>：使用具體的 model 類別後，可以使用 LINQ 查詢進行強型別操作，例如篩選、排序和群組，而不需要轉換型別。</p>
+</li>
+<li><p><strong>方便擴展和調整</strong>：model 類別通常會反映資料庫中的一個表，若日後需要在表中新增欄位或更改欄位屬性，只需要更新 model 類別，維護上更加方便。</p>
+</li>
+</ol>
+<h3 id="範例"><a href="#範例" class="headerlink" title="範例"></a>範例</h3><p>假設我們有一個 <code>Employee</code> 類別，那麼用 <code>List&lt;Employee&gt;</code> 來儲存員工資料的集合會更直觀和安全：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Employee</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> Id &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> Name &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">decimal</span> Salary &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> DateTime HireDate &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用具體類別的 List 來儲存 Employee 物件</span></span><br><span class="line">List&lt;Employee&gt; employees = <span class="keyword">new</span> List&lt;Employee&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">new</span> Employee &#123; Id = <span class="number">1</span>, Name = <span class="string">&quot;John Doe&quot;</span>, Salary = <span class="number">50000</span>, HireDate = DateTime.Now &#125;,</span><br><span class="line">    <span class="keyword">new</span> Employee &#123; Id = <span class="number">2</span>, Name = <span class="string">&quot;Jane Smith&quot;</span>, Salary = <span class="number">60000</span>, HireDate = DateTime.Now &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>這樣的集合就能確保每個項目都是 <code>Employee</code> 類型的物件，並且可以直接使用屬性來存取和操作每個員工的資料。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/C/" rel="tag"># C#</a>
+              <a href="/apple.lily/tags/%E7%B3%BB%E7%B5%B1%E9%96%8B%E7%99%BC%E6%B5%81%E7%A8%8B/" rel="tag"># 系統開發流程</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2026/05/02/OneDayOneNote/2026-06-24/" rel="prev" title="2026-06-24  C# 有與`List〈T〉` 類別目似的類別嗎?">
+                  <i class="fa fa-angle-left"></i> 2026-06-24  C# 有與`List〈T〉` 類別目似的類別嗎?
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2026/05/02/OneDayOneNote/2026-06-26/" rel="next" title="2026-06-26  C# Entity Framework 有支援 PL/SQL 或是 stored procedure?">
+                  2026-06-26  C# Entity Framework 有支援 PL/SQL 或是 stored procedure? <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/apple.lily/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

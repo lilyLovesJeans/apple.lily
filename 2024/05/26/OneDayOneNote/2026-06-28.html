@@ -1,0 +1,70 @@
+<hr>
+<h2 id="title-2026-06-28-可以在-visual-studio-2022-run-C-時看變數的變化嗎-date-2026-05-02-22-47-42ategories-OneDayOneNotetags-系統開發流程-C-description-2026-06-28-可以在-visual-studio-2022-run-C-時看變數的變化嗎"><a href="#title-2026-06-28-可以在-visual-studio-2022-run-C-時看變數的變化嗎-date-2026-05-02-22-47-42ategories-OneDayOneNotetags-系統開發流程-C-description-2026-06-28-可以在-visual-studio-2022-run-C-時看變數的變化嗎" class="headerlink" title="title: 2026-06-28  可以在 visual studio 2022 run C# 時看變數的變化嗎?date: 2026-05-02 22:47:42ategories: OneDayOneNotetags:  [系統開發流程, C#]description:    2026-06-28  可以在 visual studio 2022 run C# 時看變數的變化嗎?"></a>title: 2026-06-28  可以在 visual studio 2022 run C# 時看變數的變化嗎?<br>date: 2026-05-02 22:47:42<br>ategories: OneDayOneNote<br>tags:  [系統開發流程, C#]<br>description:    2026-06-28  可以在 visual studio 2022 run C# 時看變數的變化嗎?</h2><h2 id="2026-06-28-可以在-visual-studio-2022-run-C-時看變數的變化嗎"><a href="#2026-06-28-可以在-visual-studio-2022-run-C-時看變數的變化嗎" class="headerlink" title="2026-06-28  可以在 visual studio 2022 run C# 時看變數的變化嗎?"></a>2026-06-28  可以在 visual studio 2022 run C# 時看變數的變化嗎?</h2><p>我:<br>  可以在 visual studio 2022 run C# 時看變數的變化嗎?</p>
+<p>GPT:<br>在 Visual Studio 2022 中，你可以使用「偵錯模式」（Debug Mode）來查看程式執行時變數的變化。以下是幾個在 Debug Mode 中追蹤變數變化的常用方式：</p>
+<ol>
+<li><p><strong>設置斷點（Breakpoint）</strong>：</p>
+<ul>
+<li>在想要暫停的程式碼行號旁邊的灰色區域點一下，或按 <code>F9</code>，設置一個斷點。執行程式時，當程式執行到斷點位置會自動暫停，進入 Debug 模式。</li>
+</ul>
+</li>
+<li><p><strong>查看「本地變數」視窗（Locals Window）</strong>：</p>
+<ul>
+<li>當程式暫停在斷點時，可以打開 <strong>Locals</strong> 視窗（「偵錯」 &gt; 「視窗」 &gt; 「本地變數」），會顯示當前範圍內所有變數的值和型別。</li>
+</ul>
+</li>
+<li><p><strong>使用「監視」視窗（Watch Window）</strong>：</p>
+<ul>
+<li>在 <strong>Watch</strong> 視窗中，你可以指定特定變數來觀察，甚至可以加入運算式來觀察其值變化。</li>
+<li>可以開啟 <strong>Watch</strong> 視窗：在 Debug 模式中選擇「偵錯」&gt;「視窗」&gt;「監視」，然後加入你想觀察的變數名稱或運算式。</li>
+</ul>
+</li>
+<li><p><strong>立即視窗（Immediate Window）</strong>：</p>
+<ul>
+<li>在 Debug 模式中，開啟 <strong>Immediate</strong> 視窗可以直接執行程式碼來檢查變數或執行方法。</li>
+<li>可使用 <strong>Immediate</strong> 視窗來檢查特定變數的值，比如輸入 <code>product.Price</code> 查看 <code>Price</code> 的變化。</li>
+</ul>
+</li>
+<li><p><strong>快速監視（Quick Watch）</strong>：</p>
+<ul>
+<li>在 Debug 模式下，右鍵點選某個變數或表達式，選擇 <strong>Quick Watch</strong>（快速監視），可以直接查看該變數的值並持續追蹤。</li>
+</ul>
+</li>
+</ol>
+<p>通過這些工具，你可以更精確地跟蹤程式執行時的每個變數變化，以了解其邏輯或排查問題。</p>
+<p>我:<br>Watch Window 找不到</p>
+<p>GPT:<br>若在 Visual Studio 2022 中找不到「<strong>Watch Window</strong>」（監視視窗），可以按照以下步驟來啟用它：</p>
+<ol>
+<li><p><strong>確保進入 Debug 模式</strong>：</p>
+<ul>
+<li>按 <code>F5</code> 或點擊工具列上的「開始偵錯」（Start Debugging）按鈕來啟動偵錯模式，讓程式執行到斷點或暫停。</li>
+</ul>
+</li>
+<li><p><strong>開啟 Watch 視窗</strong>：</p>
+<ul>
+<li>在 Debug 模式中，點選 Visual Studio 的頂部選單，依序選擇「<strong>Debug</strong>」 &gt; 「<strong>Windows</strong>」&gt; 「<strong>Watch</strong>」。</li>
+<li>Watch 共有四個窗口可以選擇（Watch 1、Watch 2、Watch 3、Watch 4），可以根據需求選擇其中一個來查看或監視變數。</li>
+</ul>
+</li>
+<li><p><strong>手動顯示 Watch 視窗</strong>（如果還是找不到）：</p>
+<ul>
+<li>按下 <code>Ctrl + Alt + W</code>，接著按 <code>1</code>，可以打開「Watch 1」窗口。如果需要使用其他 Watch 視窗，可以更改最後的數字（2、3、或 4）。</li>
+</ul>
+</li>
+<li><p><strong>確認視窗是否被最小化或隱藏</strong>：</p>
+<ul>
+<li>Watch 視窗可能停靠在 Visual Studio 的側邊欄，或以選項卡形式顯示。如果已開啟但沒有看到它，檢查 Visual Studio 側邊欄的窗口選項卡。</li>
+</ul>
+</li>
+</ol>
+<p>這樣應該可以找到並開啟 Watch 視窗來觀察變數。</p>
+<p>我:<br>    public class Product<br>    {<br>        public string ItemNo { get; set; } &#x3D; string.Empty;<br>        public string Name { get; set; } &#x3D; string.Empty;<br>        public string Description { get; set; } &#x3D; string.Empty;<br>        public decimal Price { get; set; } &#x3D; decimal.Zero;<br>    }<br>我想要在偵錯時,看上列這個 model  值的變化</p>
+<p>GPT：<br>要在偵錯時查看 <code>Product</code> 類別中的屬性值變化，可以使用 Visual Studio 中的 <strong>Watch</strong> 視窗或 <strong>Autos</strong> 視窗。以下是查看變數的方式：</p>
+<ol>
+<li><p><strong>設定斷點</strong>：在 <code>Product</code> 類別使用的代碼行上（如 <code>new Product()</code> 或呼叫 <code>AddItem</code> 時），點擊行號旁邊的灰色欄位，設置一個斷點。這樣，程式執行會暫停在該行。</p>
+</li>
+<li><p><strong>使用 Autos 或 Locals 視窗</strong>：當程式暫停時，您可以在 <strong>Autos</strong>（自動變數）或 <strong>Locals</strong>（本地變數）視窗中看到該行周圍變數的值。在這些視窗中，展開 <code>Product</code> 變數，即可查看 <code>ItemNo</code>、<code>Name</code>、<code>Description</code> 和 <code>Price</code> 的值。</p>
+</li>
+<li><p><strong>使用 Watch 視窗</strong>：如果找不到 <strong>Watch</strong> 視窗，可以從 <strong>Debug</strong> &gt; <strong>Windows</strong> &gt; <strong>Watch</strong> &gt; <strong>Watch 1</strong> 開啟。在視窗中輸入變數名稱，例如 <code>MyStorage.GetItems()[0].ItemNo</code>（查看第1個產品的 <code>ItemNo</code>）來監看特定屬性。</p>
+</li>
+</ol>
+<p>這樣您就可以在程式執行過程中觀察 <code>Product</code> 類別屬性的變化！</p>

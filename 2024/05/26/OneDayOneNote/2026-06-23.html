@@ -1,0 +1,22 @@
+<hr>
+<h2 id="title-2026-06-23-C-DI演進過程-最後演變成-DI-依賴注入-就符合-OCP原則date-2026-05-02-22-10-58categories-OneDayOneNotetags-系統開發流程-C-description-2026-06-23-C-DI演進過程-最後演變成-DI-依賴注入-就符合-OCP原則"><a href="#title-2026-06-23-C-DI演進過程-最後演變成-DI-依賴注入-就符合-OCP原則date-2026-05-02-22-10-58categories-OneDayOneNotetags-系統開發流程-C-description-2026-06-23-C-DI演進過程-最後演變成-DI-依賴注入-就符合-OCP原則" class="headerlink" title="title: 2026-06-23  C# DI演進過程, 最後演變成 DI 依賴注入, 就符合  OCP原則date: 2026-05-02 22:10:58categories: OneDayOneNotetags:  [系統開發流程, C#]description:   2026-06-23  C# DI演進過程, 最後演變成 DI 依賴注入, 就符合  OCP原則"></a>title: 2026-06-23  C# DI演進過程, 最後演變成 DI 依賴注入, 就符合  OCP原則<br>date: 2026-05-02 22:10:58<br>categories: OneDayOneNote<br>tags:  [系統開發流程, C#]<br>description:   2026-06-23  C# DI演進過程, 最後演變成 DI 依賴注入, 就符合  OCP原則</h2><h2 id="2026-06-23-C-DI演進過程-最後演變成-DI-依賴注入-就符合-OCP原則"><a href="#2026-06-23-C-DI演進過程-最後演變成-DI-依賴注入-就符合-OCP原則" class="headerlink" title="2026-06-23  C# DI演進過程, 最後演變成 DI 依賴注入, 就符合  OCP原則"></a>2026-06-23  C# DI演進過程, 最後演變成 DI 依賴注入, 就符合  OCP原則</h2><p>我：DI演進過程, 最後演變成 DI 依賴注入, 就符合  OCP原則.  是嗎?</p>
+<p>GPT：<br>完全正確！依賴注入（Dependency Injection，DI）的使用確實是設計模式演進過程的一部分，目的是解決早期設計中硬編碼依賴所帶來的問題。以下是一些要點來總結這個演變過程：</p>
+<h3 id="演進過程總結"><a href="#演進過程總結" class="headerlink" title="演進過程總結"></a>演進過程總結</h3><ol>
+<li><p><strong>硬編碼依賴 (Tightly Coupled Code)</strong>:</p>
+<ul>
+<li>在這個階段，類別之間有強烈的耦合，每個類別直接創建其依賴對象，這使得代碼難以測試和維護。當需要改變或擴展功能時，必須直接修改代碼。</li>
+</ul>
+</li>
+<li><p><strong>引入接口 (Programming to an Interface)</strong>:</p>
+<ul>
+<li>當引入接口時，類別開始依賴於抽象而不是具體實現。這樣做可以使代碼更靈活，但仍然需要在類別內部進行修改以更改依賴。這樣的設計雖然比硬編碼依賴有所改善，但在需要頻繁修改的場景中仍然不夠靈活。</li>
+</ul>
+</li>
+<li><p><strong>依賴注入 (Dependency Injection)</strong>:</p>
+<ul>
+<li>這個階段的主要目的是減少類別之間的耦合。通過將依賴作為參數傳遞給類別，開發者可以輕鬆地在不改變類別內部代碼的情況下更改其行為。這樣的設計符合開放-封閉原則（OCP），即對擴展開放，對修改封閉。這意味著你可以新增新的支付方式（或其他功能）而不需要改變已經存在的類別。</li>
+</ul>
+</li>
+</ol>
+<h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h3><p>DI 不僅提高了代碼的靈活性和可維護性，還使單元測試變得更加容易，因為你可以使用模擬對象來測試你的類別，而不需要依賴於具體的實現。</p>
+<p>這樣的設計模式使得系統架構更加清晰、可擴展且易於維護，並且能夠更好地應對未來的需求變更。</p>

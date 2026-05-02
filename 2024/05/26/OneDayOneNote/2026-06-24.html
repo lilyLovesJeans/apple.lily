@@ -1,0 +1,12 @@
+<hr>
+<h2 id="title-2026-06-24-C-有與List〈T〉-類別目似的類別嗎-date-2026-05-02-22-14-49categories-OneDayOneNotetags-系統開發流程-C-description-2026-06-24-C-有與List〈T〉-類別目似的類別嗎"><a href="#title-2026-06-24-C-有與List〈T〉-類別目似的類別嗎-date-2026-05-02-22-14-49categories-OneDayOneNotetags-系統開發流程-C-description-2026-06-24-C-有與List〈T〉-類別目似的類別嗎" class="headerlink" title="title: 2026-06-24  C# 有與List〈T〉 類別目似的類別嗎?date: 2026-05-02 22:14:49categories: OneDayOneNotetags:  [系統開發流程, C#]description:   2026-06-24  C# 有與List〈T〉 類別目似的類別嗎?"></a>title: 2026-06-24  C# 有與<code>List〈T〉</code> 類別目似的類別嗎?<br>date: 2026-05-02 22:14:49<br>categories: OneDayOneNote<br>tags:  [系統開發流程, C#]<br>description:   2026-06-24  C# 有與<code>List〈T〉</code> 類別目似的類別嗎?</h2><h2 id="2026-06-24-C-有與List〈T〉-類別目似的類別嗎"><a href="#2026-06-24-C-有與List〈T〉-類別目似的類別嗎" class="headerlink" title="2026-06-24  C# 有與List〈T〉 類別目似的類別嗎?"></a>2026-06-24  C# 有與<code>List〈T〉</code> 類別目似的類別嗎?</h2><p>我:<br>有與<code>List&lt;T&gt;</code> 類別目似的類別嗎?</p>
+<p>GPT:<br>是的，List<T> 是 C# 中最常用的泛型集合類別之一，但還有許多其他泛型集合類別具有類似的功能並能滿足不同場景的需求。以下是一些與 List<T> 類似的集合類別：</p>
+<ol>
+<li>LinkedList<T><br> •	特點：雙向鏈結串列，適合頻繁進行插入和刪除操作的場景。 <br> •	使用場景：當需要快速地在集合的任意位置插入或移除項目時。 </li>
+<li>HashSet<T><br> •	特點：無序集合，不允許重複的元素，並使用哈希表來存儲和查找項目。 <br> •	使用場景：當需要一個集合來存儲唯一項目，且不需要有序性時。例如，檢查唯一性或快速查找。 </li>
+<li>Queue<T><br> •	特點：先進先出（FIFO）結構，支援入列和出列操作。 <br> •	使用場景：適合處理排隊、資源請求等場景，如任務排程。 </li>
+<li>Stack<T><br> •	特點：後進先出（LIFO）結構，支援入棧和出棧操作。 <br> •	使用場景：適合需要後進先出的場景，如回溯操作或處理撤銷功能。 </li>
+<li>Dictionary&lt;TKey, TValue&gt;<br> •	特點：基於鍵值對的集合，允許通過鍵來快速找到對應的值。 <br> •	使用場景：適合需要通過鍵來快速存取值的場景，例如查找或儲存設定。 </li>
+<li>ObservableCollection<T><br> •	特點：與 List<T> 類似，但支援變更通知，適合於資料繫結。 <br> •	使用場景：當需要使用資料繫結，並且希望集合中的變更（如新增或刪除）自動更新 UI。 </li>
+<li>SortedList&lt;TKey, TValue&gt; 與 SortedDictionary&lt;TKey, TValue&gt;<br> •	特點：儲存有序的鍵值對。SortedList 是鍵值對列表，SortedDictionary 是二叉樹。 <br> •	使用場景：當需要有序的鍵值對並且支援快速查找時。 <br>這些集合類別各自具有獨特的特性，適用於不同的場景，因此可以根據具體需求選擇合適的類別。</li>
+</ol>

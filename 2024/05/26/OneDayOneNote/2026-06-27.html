@@ -1,0 +1,147 @@
+<hr>
+<h2 id="title-2026-06-27-C-創建了一個新的-List-T-實例-這個在C-內部做了什麼動作-date-2026-05-02-22-44-50categories-OneDayOneNotetags-系統開發流程-C-description-2026-06-27-C-創建了一個新的-List-T-實例-這個在C-內部做了什麼動作"><a href="#title-2026-06-27-C-創建了一個新的-List-T-實例-這個在C-內部做了什麼動作-date-2026-05-02-22-44-50categories-OneDayOneNotetags-系統開發流程-C-description-2026-06-27-C-創建了一個新的-List-T-實例-這個在C-內部做了什麼動作" class="headerlink" title="title: 2026-06-27  C# 創建了一個新的 List T  實例 , 這個在C#內部做了什麼動作?date: 2026-05-02 22:44:50categories: OneDayOneNotetags:  [系統開發流程, C#]description:     2026-06-27  C# 創建了一個新的 List T  實例 , 這個在C#內部做了什麼動作?"></a>title: 2026-06-27  C# 創建了一個新的 List T  實例 , 這個在C#內部做了什麼動作?<br>date: 2026-05-02 22:44:50<br>categories: OneDayOneNote<br>tags:  [系統開發流程, C#]<br>description:     2026-06-27  C# 創建了一個新的 List T  實例 , 這個在C#內部做了什麼動作?</h2><h2 id="2026-06-27-C-創建了一個新的-List-T-實例-這個在C-內部做了什麼動作"><a href="#2026-06-27-C-創建了一個新的-List-T-實例-這個在C-內部做了什麼動作" class="headerlink" title="2026-06-27  C# 創建了一個新的 List T  實例 , 這個在C#內部做了什麼動作?"></a>2026-06-27  C# 創建了一個新的 List T  實例 , 這個在C#內部做了什麼動作?</h2><p>我:<br>new List<T>() , 創建了一個新的 List<T> 實例 , 這個在C#內部做了什麼動作?<br>GPT:<br>在 C# 中，當你執行 <code>new List&lt;T&gt;()</code> 時，會發生以下幾個步驟：</p>
+<ol>
+<li><p><strong>分配記憶體</strong>：</p>
+<ul>
+<li><code>new List&lt;T&gt;()</code> 會在堆（heap）中分配一塊記憶體，以容納新的 <code>List&lt;T&gt;</code> 實例。這塊記憶體大小取決於 <code>List&lt;T&gt;</code> 的內部結構。</li>
+</ul>
+</li>
+<li><p><strong>呼叫建構子</strong>：</p>
+<ul>
+<li><p><code>List&lt;T&gt;</code> 類別有一個預設的建構子，當你使用 <code>new</code> 關鍵字時，這個建構子會被呼叫。預設建構子會執行一些初始化工作，例如：</p>
+<ul>
+<li>設定初始容量（通常是 0），以便 <code>List&lt;T&gt;</code> 能夠在開始時存儲元素。</li>
+<li>初始化內部儲存結構（例如一個數組），用來儲存集合中的元素。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>回傳參考</strong>：</p>
+<ul>
+<li><code>new</code> 運算子會返回一個指向剛剛創建的 <code>List&lt;T&gt;</code> 實例的參考。這個參考會被指派給變數（如 <code>items</code>），讓你可以使用這個 <code>List&lt;T&gt;</code>。</li>
+</ul>
+</li>
+<li><p><strong>內部邏輯處理</strong>：</p>
+<ul>
+<li><p>在建構子的執行過程中，會設置一些屬性，例如：</p>
+<ul>
+<li><code>_size</code>：表示當前儲存的元素數量。</li>
+<li><code>_items</code>：指向內部數組的參考，用來儲存實際的元素。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>這個過程確保了 <code>List&lt;T&gt;</code> 在使用前已經準備好，可以正常地添加、刪除和查詢元素。若有元素被添加至 <code>List&lt;T&gt;</code>，而超出目前的容量，內部的邏輯會自動擴展內部數組，以容納更多的元素。</p>
+<p>我:<br>所以當 添加、刪除和查詢元素時, 會自動異動記憶體的指標位置?</p>
+<p>GPT:<br>是的，當你對 <code>List&lt;T&gt;</code> 進行 <strong>添加、刪除和查詢</strong> 操作時，會涉及一些記憶體和內部指標位置的變動：</p>
+<h3 id="1-添加元素-Add"><a href="#1-添加元素-Add" class="headerlink" title="1. 添加元素 (Add)"></a>1. <strong>添加元素 (Add)</strong></h3><ul>
+<li><strong>自動擴展容量</strong>：若內部數組的容量不足以容納新元素，<code>List&lt;T&gt;</code> 會創建一個更大的數組（通常容量會加倍），並將現有的元素複製到新的數組中。這是一次性操作，所以它雖然花費更多資源，但會減少頻繁的內存調整。</li>
+<li><strong>更新指標</strong>：<code>_size</code> 指標（追蹤當前元素數量）會自動增加，以記錄新元素的加入位置。</li>
+</ul>
+<h3 id="2-刪除元素-Remove"><a href="#2-刪除元素-Remove" class="headerlink" title="2. 刪除元素 (Remove)"></a>2. <strong>刪除元素 (Remove)</strong></h3><ul>
+<li><strong>調整索引</strong>：刪除元素後，後續的元素會向前移動以填補空位，這會導致數組內部的索引發生變化，更新到正確的指標位置。</li>
+<li><strong>更新大小</strong>：<code>_size</code> 指標會隨之減少。</li>
+</ul>
+<h3 id="3-查詢元素-Indexing"><a href="#3-查詢元素-Indexing" class="headerlink" title="3. 查詢元素 (Indexing)"></a>3. <strong>查詢元素 (Indexing)</strong></h3><ul>
+<li><strong>記憶體位置查找</strong>：當你用索引查詢元素時，<code>List&lt;T&gt;</code> 會直接使用數組的基址加上索引位置，來計算內部數組中元素的實際記憶體位置。</li>
+<li><strong>不影響記憶體結構</strong>：查詢操作是只讀的，因此不會改變記憶體的指標或內部數組。</li>
+</ul>
+<h3 id="記憶體自動調整"><a href="#記憶體自動調整" class="headerlink" title="記憶體自動調整"></a>記憶體自動調整</h3><ul>
+<li>添加或刪除元素會涉及內部的數組大小調整與記憶體位置更新，<code>List&lt;T&gt;</code> 會自動處理這些變動，以確保內部數據在邏輯上保持一致，因此你無需手動管理指標或內存分配。</li>
+</ul>
+<p>我:<br>使用泛型可以避免裝箱和拆箱操作，從而提高性能<br>裝箱及拆箱是什麼意思?</p>
+<p>GPT:<br>在 C# 中，<strong>裝箱</strong>和<strong>拆箱</strong>是指在<strong>值類型</strong>與<strong>引用類型</strong>之間的轉換過程。</p>
+<h3 id="1-裝箱（Boxing）"><a href="#1-裝箱（Boxing）" class="headerlink" title="1. 裝箱（Boxing）"></a>1. 裝箱（Boxing）</h3><p>裝箱是指將<strong>值類型</strong>（例如 <code>int</code>, <code>double</code>, <code>struct</code> 等）轉換為<strong>引用類型</strong> <code>object</code> 的過程。<br>在裝箱過程中，值類型的值會被包裝到堆中的一個物件中，並創建一個指向該物件的引用，這樣才能當作引用類型使用。</p>
+<p><strong>範例：</strong></p>
+<pre><code class="csharp">int value = 123;
+object boxedValue = value; // 進行裝箱操作
+</code></pre>
+<p>在這裡，<code>value</code> 是一個值類型的變數（儲存在堆疊中），<code>boxedValue</code> 是它裝箱後的引用（儲存在堆中）。</p>
+<h3 id="2-拆箱（Unboxing）"><a href="#2-拆箱（Unboxing）" class="headerlink" title="2. 拆箱（Unboxing）"></a>2. 拆箱（Unboxing）</h3><p>拆箱是將<strong>引用類型</strong>（<code>object</code>）中的值取出，並轉回<strong>值類型</strong>的過程。拆箱需要顯式轉換，如果類型不匹配則會拋出錯誤。</p>
+<p><strong>範例：</strong></p>
+<pre><code class="csharp">object boxedValue = 123;   // 裝箱
+int unboxedValue = (int)boxedValue; // 拆箱
+</code></pre>
+<h3 id="裝箱和拆箱的影響"><a href="#裝箱和拆箱的影響" class="headerlink" title="裝箱和拆箱的影響"></a>裝箱和拆箱的影響</h3><p>裝箱和拆箱會影響性能，因為：</p>
+<ul>
+<li>裝箱會在<strong>堆</strong>中創建一個新的物件，並且需要額外的時間和內存分配。</li>
+<li>拆箱會進行類型檢查和轉換，對性能有影響。</li>
+</ul>
+<h3 id="泛型的優勢"><a href="#泛型的優勢" class="headerlink" title="泛型的優勢"></a>泛型的優勢</h3><p>在使用泛型時，例如 <code>List&lt;int&gt;</code>，因為 <code>int</code> 是直接使用的值類型，<strong>不需要裝箱和拆箱</strong>，從而減少了不必要的內存和計算成本，進而提高了性能。</p>
+<p>我:<br>不懂… 妳說的是指在值如何存在記憶體的過程嗎?<br>可以舉例,並把它在記憶體中的變化解釋給我聽</p>
+<p>GPT:<br>好的，讓我們一步一步來，用一個實際例子來說明裝箱和拆箱在記憶體中的變化。</p>
+<h3 id="裝箱和拆箱的記憶體變化"><a href="#裝箱和拆箱的記憶體變化" class="headerlink" title="裝箱和拆箱的記憶體變化"></a>裝箱和拆箱的記憶體變化</h3><p>在 C# 中，值類型（例如 <code>int</code>, <code>float</code>, <code>struct</code> 等）通常會儲存在「堆疊區」(stack) 中，引用類型（例如 <code>object</code>, <code>class</code> 等）則儲存在「堆區」(heap) 中。</p>
+<p>當我們將一個值類型轉換成引用類型時，會進行「裝箱」，這會將這個值類型的資料包裝成堆區中的物件，以便它可以被當作引用類型使用。而當我們將這個物件還原成值類型時，則會進行「拆箱」。</p>
+<h3 id="範例：裝箱和拆箱的記憶體過程"><a href="#範例：裝箱和拆箱的記憶體過程" class="headerlink" title="範例：裝箱和拆箱的記憶體過程"></a>範例：裝箱和拆箱的記憶體過程</h3><p>假設我們有以下程式碼：</p>
+<pre><code class="csharp">int number = 10;          // 宣告值類型變數 number
+object boxedNumber = number; // 進行裝箱
+int unboxedNumber = (int)boxedNumber; // 進行拆箱
+</code></pre>
+<h4 id="1-宣告-int-number-10"><a href="#1-宣告-int-number-10" class="headerlink" title="1. 宣告 int number = 10;"></a>1. 宣告 <code>int number = 10;</code></h4><ul>
+<li><code>number</code> 是一個 <strong>值類型</strong>，所以它會儲存在 <strong>堆疊區</strong> (stack) 中。</li>
+<li>記憶體中，<code>number</code> 會被直接存在堆疊區中，例如堆疊區的某個位址會儲存數值 <code>10</code>。</li>
+</ul>
+<h4 id="2-object-boxedNumber-number-（裝箱）"><a href="#2-object-boxedNumber-number-（裝箱）" class="headerlink" title="2. object boxedNumber = number; （裝箱）"></a>2. <code>object boxedNumber = number;</code> （裝箱）</h4><ul>
+<li>當我們將 <code>number</code> 賦值給 <code>boxedNumber</code> 時，會進行 <strong>裝箱</strong>。</li>
+<li>C# 會在 <strong>堆區</strong> (heap) 中分配一個空間，並將 <code>number</code> 的值 <code>10</code> 複製到這個新物件內。</li>
+<li><code>boxedNumber</code> 是一個 <strong>引用類型變數</strong>，因此它會指向堆區中的這個新物件的位址。</li>
+</ul>
+<p><strong>記憶體示意圖</strong>：</p>
+<pre><code>堆疊區 (Stack)         堆區 (Heap)
+-----------------------------------------
+number = 10             boxedNumber 指向的物件: 10
+boxedNumber -&gt;（指向堆區中的物件）
+</code></pre>
+<h4 id="3-int-unboxedNumber-int-boxedNumber-（拆箱）"><a href="#3-int-unboxedNumber-int-boxedNumber-（拆箱）" class="headerlink" title="3. int unboxedNumber = (int)boxedNumber; （拆箱）"></a>3. <code>int unboxedNumber = (int)boxedNumber;</code> （拆箱）</h4><ul>
+<li>這裡將 <code>boxedNumber</code> 轉換回 <code>int</code> 型別，這是 <strong>拆箱</strong> 過程。</li>
+<li>C# 從 <strong>堆區</strong> 中找到 <code>boxedNumber</code> 指向的物件，並提取它的數值 <code>10</code>，然後將它賦值給 <code>unboxedNumber</code>。</li>
+<li><code>unboxedNumber</code> 是值類型，所以它會再次被儲存在 <strong>堆疊區</strong> 中，並且不再指向堆區中的物件。</li>
+</ul>
+<p><strong>最終記憶體示意圖</strong>：</p>
+<pre><code>堆疊區 (Stack)         堆區 (Heap)
+-----------------------------------------
+number = 10             boxedNumber 指向的物件: 10
+boxedNumber -&gt; (指向堆區中的物件)
+unboxedNumber = 10
+</code></pre>
+<h3 id="為什麼裝箱和拆箱影響性能"><a href="#為什麼裝箱和拆箱影響性能" class="headerlink" title="為什麼裝箱和拆箱影響性能"></a>為什麼裝箱和拆箱影響性能</h3><p>裝箱和拆箱需要在堆區中分配空間、轉移數據，並建立引用指向，這些操作都會額外消耗記憶體和時間。</p>
+<h3 id="泛型如何避免裝箱和拆箱"><a href="#泛型如何避免裝箱和拆箱" class="headerlink" title="泛型如何避免裝箱和拆箱"></a>泛型如何避免裝箱和拆箱</h3><p>如果使用泛型容器（如 <code>List&lt;int&gt;</code>），<code>int</code> 可以直接在容器內儲存為值類型，無需裝箱和拆箱，從而節省了記憶體和時間。</p>
+<p>我:<br>  private List<T> items &#x3D; new List<T>();<br>List<T> 這是屬於那個 name space?</p>
+<p>GPT:<br><code>List&lt;T&gt;</code> 屬於 <code>System.Collections.Generic</code> 命名空間。</p>
+<p>若要在程式碼中使用 <code>List&lt;T&gt;</code>，需加上 <code>using System.Collections.Generic;</code>。例如：</p>
+<pre><code class="csharp">using System.Collections.Generic;
+
+public class MyClass&lt;T&gt;
+{
+    private List&lt;T&gt; items = new List&lt;T&gt;();
+}
+</code></pre>
+<p>這個命名空間包含多個泛型集合類別，例如 <code>List&lt;T&gt;</code>, <code>Dictionary&lt;TKey, TValue&gt;</code>, <code>Queue&lt;T&gt;</code>, <code>Stack&lt;T&gt;</code>，這些類別提供了各種高效的集合操作方法。</p>
+<p>我:<br>所以我也可以創建自己的命名空間?</p>
+<p>GPT:<br>是的！在 C# 中，你可以輕鬆地創建自己的命名空間來組織和分類類別、結構、介面等，這樣可以避免命名衝突並提高代碼的可讀性和可維護性。</p>
+<p>創建命名空間的語法如下：</p>
+<pre><code class="csharp">namespace MyCustomNamespace
+{
+    public class MyClass
+    {
+        public void MyMethod()
+        {
+            Console.WriteLine(&quot;This is my custom namespace!&quot;);
+        }
+    }
+}
+</code></pre>
+<p>然後，在其他地方使用這個命名空間中的類別時，只需加上 <code>using</code> 語句即可：</p>
+<pre><code class="csharp">using MyCustomNamespace;
+
+public class Program
+{
+    public static void Main()
+    {
+        MyClass myClass = new MyClass();
+        myClass.MyMethod();
+    }
+}
+</code></pre>
+<p>這樣，你的類別 <code>MyClass</code> 就被組織在 <code>MyCustomNamespace</code> 中，可以輕鬆地在不同檔案或專案中引用！</p>

@@ -1,0 +1,76 @@
+<hr>
+<h2 id="title-2026-06-25-C-泛型類型參數的聲明date-2026-05-02-22-33-29categories-OneDayOneNotetags-系統開發流程-C-description-2026-06-25-C-泛型類型參數的聲明"><a href="#title-2026-06-25-C-泛型類型參數的聲明date-2026-05-02-22-33-29categories-OneDayOneNotetags-系統開發流程-C-description-2026-06-25-C-泛型類型參數的聲明" class="headerlink" title="title: 2026-06-25  C# 泛型類型參數的聲明date: 2026-05-02 22:33:29categories: OneDayOneNotetags:  [系統開發流程, C#]description:    2026-06-25  C# 泛型類型參數的聲明"></a>title: 2026-06-25  C# 泛型類型參數的聲明<br>date: 2026-05-02 22:33:29<br>categories: OneDayOneNote<br>tags:  [系統開發流程, C#]<br>description:    2026-06-25  C# 泛型類型參數的聲明</h2><h2 id="2026-06-25-C-泛型類型參數的聲明"><a href="#2026-06-25-C-泛型類型參數的聲明" class="headerlink" title="2026-06-25  C# 泛型類型參數的聲明"></a>2026-06-25  C# 泛型類型參數的聲明</h2><p>我:<br><T>：這是泛型類型參數的聲明 ,比如說可儲存什麼類別參數?  包括物件?<br>GPT：<br>在 C# 中，<code>&lt;T&gt;</code> 是泛型的類型參數聲明，它表示集合可以用來儲存任何類型的資料，例如基本資料類型（如 <code>int</code>、<code>string</code>）、自定義類型（如 <code>Person</code> 類別），甚至其他泛型類型的資料（如 <code>List&lt;List&lt;int&gt;&gt;</code>）。以下是一些具體例子：</p>
+<h3 id="1-基本資料類型"><a href="#1-基本資料類型" class="headerlink" title="1. 基本資料類型"></a>1. <strong>基本資料類型</strong></h3><pre><code class="csharp">List&lt;int&gt; intList = new List&lt;int&gt;();     // 儲存整數
+List&lt;string&gt; stringList = new List&lt;string&gt;(); // 儲存字串
+</code></pre>
+<h3 id="2-自定義類型"><a href="#2-自定義類型" class="headerlink" title="2. 自定義類型"></a>2. <strong>自定義類型</strong></h3><p>假設有一個 <code>Person</code> 類別，可以使用泛型 <code>List&lt;T&gt;</code> 來儲存多個 <code>Person</code> 物件：</p>
+<pre><code class="csharp">public class Person
+{
+    public string Name { get; set; }
+    public int Age { get; set; }
+}
+
+List&lt;Person&gt; people = new List&lt;Person&gt;(); // 儲存 Person 類別物件
+</code></pre>
+<h3 id="3-其他泛型類型"><a href="#3-其他泛型類型" class="headerlink" title="3. 其他泛型類型"></a>3. <strong>其他泛型類型</strong></h3><p>泛型也可以嵌套使用，例如儲存其他泛型集合的資料：</p>
+<pre><code class="csharp">List&lt;List&lt;int&gt;&gt; listOfLists = new List&lt;List&lt;int&gt;&gt;(); // 儲存 List&lt;int&gt; 的列表
+</code></pre>
+<h3 id="4-物件型別"><a href="#4-物件型別" class="headerlink" title="4. 物件型別"></a>4. <strong>物件型別</strong></h3><p>泛型集合也能儲存任何繼承自 <code>object</code> 的類型，因為所有類別在 C# 中都繼承自 <code>object</code>：</p>
+<pre><code class="csharp">List&lt;object&gt; objectList = new List&lt;object&gt;(); // 可以儲存不同類型的物件
+objectList.Add(1);         // 加入整數
+objectList.Add(&quot;Hello&quot;);    // 加入字串
+objectList.Add(new Person { Name = &quot;Alice&quot;, Age = 30 }); // 加入 Person 類別物件
+</code></pre>
+<p>使用泛型 <code>T</code> 提供了更高的靈活性和型別安全性，讓你可以使用單一泛型類別來處理多種不同的資料類型。</p>
+<p>我:<br>那比如說, 我要創建create 一個資料庫的Table , 是否可以用List<object>?</p>
+<p>GPT:<br>使用 <code>List&lt;object&gt;</code> 可以儲存不同類型的資料，但在實際操作上並不建議這麼做來建立資料庫的表（Table）。以下是原因以及更合適的替代方案：</p>
+<ol>
+<li><p><strong>型別安全性</strong>：<code>List&lt;object&gt;</code> 缺乏型別安全性，因為 <code>object</code> 可以代表任何類型的資料。這樣會增加型別檢查和轉型的負擔，容易導致執行時錯誤。</p>
+</li>
+<li><p><strong>表結構定義不明確</strong>：資料庫表結構通常需要清晰的定義，例如每個欄位的名稱和型別。用 <code>List&lt;object&gt;</code> 來定義表結構會讓結構變得模糊，並且很難知道每個欄位的用途和資料型別。</p>
+</li>
+</ol>
+<h3 id="建議的做法：定義清晰的資料表類別"><a href="#建議的做法：定義清晰的資料表類別" class="headerlink" title="建議的做法：定義清晰的資料表類別"></a>建議的做法：定義清晰的資料表類別</h3><p>通常在 C# 中會先定義表的結構類別來代表資料庫中的一個表，並使用清楚的屬性名稱和型別。這樣做可以確保資料的一致性與型別安全性。例如：</p>
+<pre><code class="csharp">public class Employee
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public decimal Salary { get; set; }
+    public DateTime HireDate { get; set; }
+}
+</code></pre>
+<h3 id="使用泛型-List-來儲存物件資料"><a href="#使用泛型-List-來儲存物件資料" class="headerlink" title="使用泛型 List 來儲存物件資料"></a>使用泛型 List 來儲存物件資料</h3><p>如果需要儲存這些 <code>Employee</code> 類別的資料列集合，可以使用泛型 <code>List&lt;Employee&gt;</code>，這樣就能確保集合中每一個項目都是 <code>Employee</code> 類型的物件：</p>
+<pre><code class="csharp">List&lt;Employee&gt; employees = new List&lt;Employee&gt;();
+employees.Add(new Employee { Id = 1, Name = &quot;John Doe&quot;, Salary = 50000, HireDate = DateTime.Now });
+employees.Add(new Employee { Id = 2, Name = &quot;Jane Smith&quot;, Salary = 60000, HireDate = DateTime.Now });
+</code></pre>
+<h3 id="進階：使用-ORM-框架"><a href="#進階：使用-ORM-框架" class="headerlink" title="進階：使用 ORM 框架"></a>進階：使用 ORM 框架</h3><p>若你的需求是和資料庫互動並管理表結構，可以考慮使用 ORM（物件關聯映射）框架，例如 <strong>Entity Framework</strong>。這樣的框架可以自動生成資料庫表並進行查詢操作，並且使用清晰的類別來定義表結構。ORM 框架會更適合於定義和操作資料表的類別，並且提供額外的優勢，例如自動遷移和查詢語法糖。</p>
+<p>我:<br>所以這個 List<object> 的object , 建議是 model類?</p>
+<p>GPT:<br>是的，<code>List&lt;object&gt;</code> 的 <code>object</code> 建議替換為具體的 model 類別，例如 <code>Employee</code>、<code>Product</code> 或其他符合你需求的資料類別。使用具體 model 類別有以下優點：</p>
+<ol>
+<li><p><strong>型別安全性</strong>：使用具體的 model 類別，例如 <code>List&lt;Employee&gt;</code>，可以確保 <code>List</code> 中每個項目都符合 <code>Employee</code> 類型，減少型別轉換和潛在錯誤。</p>
+</li>
+<li><p><strong>可讀性與維護性</strong>：具體 model 類別能讓代碼更清晰，讓開發者知道集合中包含的是什麼類型的資料，這會增強代碼的可讀性。</p>
+</li>
+<li><p><strong>支援 LINQ 查詢和強型別操作</strong>：使用具體的 model 類別後，可以使用 LINQ 查詢進行強型別操作，例如篩選、排序和群組，而不需要轉換型別。</p>
+</li>
+<li><p><strong>方便擴展和調整</strong>：model 類別通常會反映資料庫中的一個表，若日後需要在表中新增欄位或更改欄位屬性，只需要更新 model 類別，維護上更加方便。</p>
+</li>
+</ol>
+<h3 id="範例"><a href="#範例" class="headerlink" title="範例"></a>範例</h3><p>假設我們有一個 <code>Employee</code> 類別，那麼用 <code>List&lt;Employee&gt;</code> 來儲存員工資料的集合會更直觀和安全：</p>
+<pre><code class="csharp">public class Employee
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public decimal Salary { get; set; }
+    public DateTime HireDate { get; set; }
+}
+
+// 使用具體類別的 List 來儲存 Employee 物件
+List&lt;Employee&gt; employees = new List&lt;Employee&gt;
+{
+    new Employee { Id = 1, Name = &quot;John Doe&quot;, Salary = 50000, HireDate = DateTime.Now },
+    new Employee { Id = 2, Name = &quot;Jane Smith&quot;, Salary = 60000, HireDate = DateTime.Now }
+};
+</code></pre>
+<p>這樣的集合就能確保每個項目都是 <code>Employee</code> 類型的物件，並且可以直接使用屬性來存取和操作每個員工的資料。</p>

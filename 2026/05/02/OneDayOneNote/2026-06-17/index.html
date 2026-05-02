@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2026-06-17  C# 接口與抽象類要怎麼練習這種思考呢?">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2026-06-17  C# 接口與抽象類要怎麼練習這種思考呢?">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2026/05/02/OneDayOneNote/2026-06-17/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2026-06-17  C# 接口與抽象類要怎麼練習這種思考呢?">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2026-05-02T13:05:45.000Z">
+<meta property="article:modified_time" content="2026-05-02T13:13:35.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="C#">
+<meta property="article:tag" content="系統開發流程">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2026/05/02/OneDayOneNote/2026-06-17/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2026/05/02/OneDayOneNote/2026-06-17/","path":"2026/05/02/OneDayOneNote/2026-06-17/","title":"2026-06-17  C# 接口與抽象類要怎麼練習這種思考呢?"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2026-06-17  C# 接口與抽象類要怎麼練習這種思考呢? | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2026-06-17-C-%E6%8E%A5%E5%8F%A3%E8%88%87%E6%8A%BD%E8%B1%A1%E9%A1%9E%E8%A6%81%E6%80%8E%E9%BA%BC%E7%B7%B4%E7%BF%92%E9%80%99%E7%A8%AE%E6%80%9D%E8%80%83%E5%91%A2"><span class="nav-number">1.</span> <span class="nav-text">2026-06-17  C# 接口與抽象類要怎麼練習這種思考呢?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E8%A8%AD%E8%A8%88%E6%8E%A5%E5%8F%A3%E4%BE%86%E6%8F%8F%E8%BF%B0%E5%85%B1%E5%90%8C%E6%93%8D%E4%BD%9C"><span class="nav-number">1.1.</span> <span class="nav-text">1. 設計接口來描述共同操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%BB%BA%E7%AB%8B%E5%85%B7%E9%AB%94%E7%9A%84%E6%94%AF%E4%BB%98%E9%A1%9E%E5%88%A5"><span class="nav-number">1.2.</span> <span class="nav-text">2. 建立具體的支付類別</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%87%89%E7%94%A8%E5%A0%B4%E6%99%AF"><span class="nav-number">1.3.</span> <span class="nav-text">3. 應用場景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%80%83%E7%B7%B4%E7%BF%92"><span class="nav-number">1.4.</span> <span class="nav-text">思考練習</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%B0%91%E4%BA%86%E9%9D%88%E6%B4%BB%E7%9A%84%E5%A5%91%E7%B4%84"><span class="nav-number">1.5.</span> <span class="nav-text">1. 少了靈活的契約</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%93%B4%E5%B1%95%E5%9B%B0%E9%9B%A3"><span class="nav-number">1.6.</span> <span class="nav-text">2. 擴展困難</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E7%BC%BA%E5%B0%91%E9%9D%88%E6%B4%BB%E7%9A%84%E8%A8%AD%E8%A8%88%E9%81%B8%E6%93%87"><span class="nav-number">1.7.</span> <span class="nav-text">3. 缺少靈活的設計選擇</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E5%AD%90%EF%BC%9A%E7%BC%BA%E5%B0%91%E6%8E%A5%E5%8F%A3%E7%9A%84%E8%A8%AD%E8%A8%88"><span class="nav-number">1.8.</span> <span class="nav-text">例子：缺少接口的設計</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B8%BD%E7%B5%90"><span class="nav-number">1.9.</span> <span class="nav-text">總結</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%83%85%E5%A2%83%E5%81%87%E8%A8%AD"><span class="nav-number">1.10.</span> <span class="nav-text">情境假設</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%83%85%E5%A2%83%E4%B8%80%EF%BC%9A%E5%A6%82%E6%9E%9C%E5%8F%AA%E4%BD%BF%E7%94%A8%E6%8A%BD%E8%B1%A1%E9%A1%9E"><span class="nav-number">1.11.</span> <span class="nav-text">情境一：如果只使用抽象類</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E8%83%BD%E7%9A%84%E5%85%BC%E5%AE%B9%E6%80%A7%E5%95%8F%E9%A1%8C"><span class="nav-number">1.12.</span> <span class="nav-text">可能的兼容性問題</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%83%85%E5%A2%83%E4%BA%8C%EF%BC%9A%E4%BD%BF%E7%94%A8%E6%8E%A5%E5%8F%A3%E4%BE%86%E5%A2%9E%E5%8A%A0%E5%B9%B4%E7%B5%82%E7%8D%8E%E9%87%91%E6%96%B9%E6%B3%95"><span class="nav-number">1.13.</span> <span class="nav-text">情境二：使用接口來增加年終獎金方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%99%E6%A8%A3%E8%A8%AD%E8%A8%88%E7%9A%84%E5%84%AA%E5%8B%A2"><span class="nav-number">1.14.</span> <span class="nav-text">這樣設計的優勢</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B8%BD%E7%B5%90-1"><span class="nav-number">1.15.</span> <span class="nav-text">總結</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%82%BA%E4%BB%80%E9%BA%BC%E6%8E%A5%E5%8F%A3%E6%8F%90%E9%AB%98%E6%93%B4%E5%B1%95%E6%80%A7%EF%BC%9F"><span class="nav-number">1.16.</span> <span class="nav-text">為什麼接口提高擴展性？</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">601</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">50</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2026/05/02/OneDayOneNote/2026-06-17/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2026-06-17  C# 接口與抽象類要怎麼練習這種思考呢? | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2026-06-17  C# 接口與抽象類要怎麼練習這種思考呢?">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2026-06-17  C# 接口與抽象類要怎麼練習這種思考呢?
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2026-05-02 21:05:45 / 修改時間：21:13:35" itemprop="dateCreated datePublished" datetime="2026-05-02T21:05:45+08:00">2026-05-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2026-06-17  C# 接口與抽象類要怎麼練習這種思考呢?</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2026-06-17-C-接口與抽象類要怎麼練習這種思考呢"><a href="#2026-06-17-C-接口與抽象類要怎麼練習這種思考呢" class="headerlink" title="2026-06-17  C# 接口與抽象類要怎麼練習這種思考呢?"></a>2026-06-17  C# 接口與抽象類要怎麼練習這種思考呢?</h2><p>我:<br>關於 C# 接口與抽象類 妳舉的例子什麼 animal 及  dog  bird 我可以理解,<br>但是實務上如何應用我就無法分析, 要怎麼練習這種思考呢?</p>
+<p>GPT:<br>理解如何將接口和抽象類應用到實際情境中確實可以加深你對它們的掌握。我們可以用更接近商業邏輯的範例來幫助你了解。比方說，你可以想像一個「支付系統」的場景，包含不同的支付方式，例如信用卡、PayPal 等。每種支付方式有相似的操作，但細節不同。以下是一個練習思考的方向：</p>
+<h3 id="1-設計接口來描述共同操作"><a href="#1-設計接口來描述共同操作" class="headerlink" title="1. 設計接口來描述共同操作"></a>1. 設計接口來描述共同操作</h3><p>假設每種支付方式都會有「付款」和「退款」的操作。你可以定義一個 <code>IPaymentMethod</code> 接口，包含 <code>ProcessPayment</code> 和 <code>ProcessRefund</code> 方法，這些是每個支付方式的基本操作。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IPaymentMethod</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">ProcessPayment</span>(<span class="params"><span class="built_in">decimal</span> amount</span>)</span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">ProcessRefund</span>(<span class="params"><span class="built_in">decimal</span> amount</span>)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-建立具體的支付類別"><a href="#2-建立具體的支付類別" class="headerlink" title="2. 建立具體的支付類別"></a>2. 建立具體的支付類別</h3><p>針對不同的支付方式（例如，信用卡和 PayPal），你可以實現 <code>IPaymentMethod</code> 接口並定義它們自己的付款和退款邏輯：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CreditCardPayment</span> : <span class="title">IPaymentMethod</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ProcessPayment</span>(<span class="params"><span class="built_in">decimal</span> amount</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">$&quot;Processing credit card payment of <span class="subst">&#123;amount&#125;</span>&quot;</span>);</span><br><span class="line">        <span class="comment">// 信用卡付款的具體邏輯</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ProcessRefund</span>(<span class="params"><span class="built_in">decimal</span> amount</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">$&quot;Processing credit card refund of <span class="subst">&#123;amount&#125;</span>&quot;</span>);</span><br><span class="line">        <span class="comment">// 信用卡退款的具體邏輯</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">PayPalPayment</span> : <span class="title">IPaymentMethod</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ProcessPayment</span>(<span class="params"><span class="built_in">decimal</span> amount</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">$&quot;Processing PayPal payment of <span class="subst">&#123;amount&#125;</span>&quot;</span>);</span><br><span class="line">        <span class="comment">// PayPal 付款的具體邏輯</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ProcessRefund</span>(<span class="params"><span class="built_in">decimal</span> amount</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">$&quot;Processing PayPal refund of <span class="subst">&#123;amount&#125;</span>&quot;</span>);</span><br><span class="line">        <span class="comment">// PayPal 退款的具體邏輯</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-應用場景"><a href="#3-應用場景" class="headerlink" title="3. 應用場景"></a>3. 應用場景</h3><p>假設你有一個網路商店系統，當用戶選擇支付方式時，你的系統就會根據選擇的支付方式來執行相應的付款或退款方法：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">PaymentProcessor</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> IPaymentMethod _paymentMethod;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">PaymentProcessor</span>(<span class="params">IPaymentMethod paymentMethod</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        _paymentMethod = paymentMethod;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">CompletePurchase</span>(<span class="params"><span class="built_in">decimal</span> amount</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        _paymentMethod.ProcessPayment(amount);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">RefundPurchase</span>(<span class="params"><span class="built_in">decimal</span> amount</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        _paymentMethod.ProcessRefund(amount);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="思考練習"><a href="#思考練習" class="headerlink" title="思考練習"></a>思考練習</h3><ol>
+<li><strong>思考有哪些共同特性</strong>：這可以幫助你決定哪些應該放在接口中，哪些放在具體類別中。</li>
+<li><strong>考慮不同實現細節</strong>：透過這些練習，你可以模擬支付方式之間的不同點，如不同的費用計算方式，讓你更理解如何在接口中設計共同特性並在具體類別中執行細節。</li>
+</ol>
+<p>這樣的練習可以幫助你逐步習慣在設計時如何運用接口和抽象類來實現系統的彈性和可擴展性。</p>
+<p>我:<br>但妳沒有說到抽象類 , 要不妳設計一個習題讓我思考 接口與抽象類</p>
+<p>GPT:<br>沒錯，將 <code>GetSalary()</code> 放在 <code>IEmployee</code> 接口中，主要是因為「每個員工類別都必須實現這個方法」。接口的作用就是為不同類型的員工（例如，正式員工、約聘員工）定義一組<strong>共同的操作契約</strong>，確保所有員工類別都會實現 <code>GetSalary()</code> 這個方法來計算薪資。</p>
+<p>這樣設計接口的原因主要有幾個：</p>
+<ol>
+<li><p><strong>統一行為</strong>：接口 <code>IEmployee</code> 保證所有員工類別都有 <code>GetSalary()</code> 的實現，這樣在處理員工薪資時，不論員工類型，系統都可以調用 <code>GetSalary()</code> 而不必知道具體類別。</p>
+</li>
+<li><p><strong>靈活擴展</strong>：透過接口，你可以輕鬆擴展新員工類型（例如，實習生）。新類別只要實現 <code>IEmployee</code>，就能確保新類別具備 <code>GetSalary()</code> 方法的實現，且與系統其他部分兼容。</p>
+</li>
+<li><p><strong>解耦性</strong>：接口將「應用程序需要什麼方法」和「具體如何實現這些方法」分離。這樣的解耦設計讓不同類型的員工可以各自實現自己的薪資計算邏輯，而不會影響整體系統。</p>
+</li>
+</ol>
+<p>所以，將 <code>GetSalary()</code> 放在接口中是為了定義一個「必須存在的」行為，以便所有員工類型都符合此統一標準。而抽象類（如 <code>EmployeeBase</code>）則可以用來進一步共享一些具體的基礎功能或屬性，但仍可將 <code>GetSalary()</code> 的實現交由具體子類別來完成。</p>
+<p>我:<br>所以說如果, 我設計沒有接口, 但只有抽象會發生什麼事呢?</p>
+<p>GPT：<br>如果只使用抽象類而不使用接口，仍然能夠達到類似的效果，但會在靈活性和擴展性上有所限制。讓我們看看會發生什麼情況：</p>
+<h3 id="1-少了靈活的契約"><a href="#1-少了靈活的契約" class="headerlink" title="1. 少了靈活的契約"></a>1. <strong>少了靈活的契約</strong></h3><p>使用接口可以明確定義一組必須實現的操作，而無需限制具體的繼承架構。也就是說，<strong>接口不限制類別的繼承關係</strong>，因此類別可以實現多個接口，但只能繼承一個抽象類。如果只有抽象類，其他類別必須繼承這個抽象類來實現相同的操作，這在多繼承受限的情況下會讓設計更不靈活。</p>
+<h3 id="2-擴展困難"><a href="#2-擴展困難" class="headerlink" title="2. 擴展困難"></a>2. <strong>擴展困難</strong></h3><p>如果將來你需要為不同員工類型引入更多操作（例如<strong>計算年終獎金</strong>），使用接口可以直接新增一個新的方法至接口，並讓所有實現該接口的類別繼續實現這個方法；但如果只用抽象類，添加新操作會強制每個子類重新實作並可能會帶來兼容性問題。</p>
+<h3 id="3-缺少靈活的設計選擇"><a href="#3-缺少靈活的設計選擇" class="headerlink" title="3. 缺少靈活的設計選擇"></a>3. <strong>缺少靈活的設計選擇</strong></h3><p>假設你想要在系統中有不同的員工類別來自不同來源（例如，有些是來自第三方系統的員工類別），這時接口更有彈性。因為接口只是行為的契約，不關心具體類別是如何組成的，第三方類別可以輕鬆地實現該接口而被系統接受。如果用抽象類，第三方類別必須繼承特定的基類才可兼容，這會增加不必要的依賴。</p>
+<h3 id="例子：缺少接口的設計"><a href="#例子：缺少接口的設計" class="headerlink" title="例子：缺少接口的設計"></a>例子：缺少接口的設計</h3><p>假設你在系統中只有 <code>EmployeeBase</code> 抽象類，而不使用 <code>IEmployee</code> 接口。這樣一來：</p>
+<ol>
+<li>**所有員工類別必須繼承 <code>EmployeeBase</code>**：這限制了其他類別的設計。例如，如果你想要引入來自外部的其他員工類別，但不希望它們依賴 <code>EmployeeBase</code>，則會出現問題。</li>
+<li><strong>擴展性受限</strong>：無法輕易為系統中所有員工類別強制實現特定方法，也無法輕鬆替換或添加不同的行為。這會在大型系統中造成擴展和維護困難。</li>
+</ol>
+<h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h3><p>接口主要用來提供一組契約，讓各類別可以根據自己的需求靈活實現。而抽象類則是提供共通的基礎行為或屬性，並可將具體方法留給子類實現。因此，在設計中同時使用接口與抽象類，能夠達到最大靈活性和良好的擴展性。</p>
+<p>我:<br>擴展困難<br>如果將來你需要為不同員工類型引入更多操作（例如計算年終獎金），使用接口可以直接新增一個新的方法至接口，並讓所有實現該接口的類別繼續實現這個方法；但如果只用抽象類，添加新操作會強制每個子類重新實作並可能會帶來兼容性問題。<br>這個妳可以具體解釋嗎?</p>
+<p>GPT：<br>當然，讓我更具體地說明「擴展困難」的情況，並解釋接口與抽象類在此方面的差異。</p>
+<h3 id="情境假設"><a href="#情境假設" class="headerlink" title="情境假設"></a>情境假設</h3><p>假設我們的系統中已經有不同的員工類別（例如 <code>PermanentEmployee</code> 和 <code>ContractEmployee</code>），每個類別都繼承自抽象類 <code>EmployeeBase</code>，並已經實現了基礎方法 <code>GetSalary()</code>。接著，公司希望在年末發放<strong>年終獎金</strong>，並需要計算每個員工的獎金。</p>
+<h3 id="情境一：如果只使用抽象類"><a href="#情境一：如果只使用抽象類" class="headerlink" title="情境一：如果只使用抽象類"></a>情境一：如果只使用抽象類</h3><p>假設你在 <code>EmployeeBase</code> 中添加了 <code>CalculateBonus()</code> 這個方法：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title">EmployeeBase</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> Name &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> EmployeeID &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="built_in">decimal</span> <span class="title">GetSalary</span>()</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 新增方法：計算年終獎金</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="built_in">decimal</span> <span class="title">CalculateBonus</span>()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這樣一來，每個繼承 <code>EmployeeBase</code> 的子類別都<strong>必須實現</strong> <code>CalculateBonus()</code> 方法，不然無法編譯。然而，可能有些員工類別不需要年終獎金，或獎金計算方式非常簡單，這樣一來，對於無需此功能的子類別也得實作，可能會造成額外的代碼負擔。</p>
+<h3 id="可能的兼容性問題"><a href="#可能的兼容性問題" class="headerlink" title="可能的兼容性問題"></a>可能的兼容性問題</h3><p>由於所有繼承 <code>EmployeeBase</code> 的類別都必須重新實現這個新方法（即使他們可能不需要），所以這樣的設計會帶來以下幾個問題：</p>
+<ol>
+<li><p><strong>無法靈活應用</strong>：假設有些類型的員工根本不應該參與年終獎金計算（如臨時員工），但它們依然必須提供這個方法，甚至只能返回 <code>0</code> 或擺放空的實現。這樣的設計不夠靈活。</p>
+</li>
+<li><p><strong>影響現有系統運行</strong>：如果你的應用程序中已經包含許多繼承 <code>EmployeeBase</code> 的現有類別，那麼現在修改基類會<strong>破壞所有子類的兼容性</strong>，使得它們必須都去實現 <code>CalculateBonus()</code> 方法，即使對部分類別而言它是無效的操作。這樣會增加系統維護成本。</p>
+</li>
+</ol>
+<h3 id="情境二：使用接口來增加年終獎金方法"><a href="#情境二：使用接口來增加年終獎金方法" class="headerlink" title="情境二：使用接口來增加年終獎金方法"></a>情境二：使用接口來增加年終獎金方法</h3><p>如果你使用的是接口，你可以創建一個新接口 <code>IBonusCalculable</code>，其中包含 <code>CalculateBonus()</code> 方法，然後<strong>只讓需要計算年終獎金的類別去實現它</strong>。例如：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IBonusCalculable</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="built_in">decimal</span> <span class="title">CalculateBonus</span>()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">PermanentEmployee</span> : <span class="title">EmployeeBase</span>, <span class="title">IBonusCalculable</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="built_in">decimal</span> <span class="title">GetSalary</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 實作薪資計算</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="built_in">decimal</span> <span class="title">CalculateBonus</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 實作年終獎金計算</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 臨時員工類別無需實現 IBonusCalculable</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ContractEmployee</span> : <span class="title">EmployeeBase</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="built_in">decimal</span> <span class="title">GetSalary</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 實作薪資計算</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="這樣設計的優勢"><a href="#這樣設計的優勢" class="headerlink" title="這樣設計的優勢"></a>這樣設計的優勢</h3><ol>
+<li><p><strong>更具靈活性</strong>：只需要年終獎金計算功能的類別才會去實現 <code>IBonusCalculable</code>，這樣臨時員工（或任何不需要年終獎金的類型）就不會被強迫去實現這個方法。</p>
+</li>
+<li><p><strong>保持現有代碼的兼容性</strong>：現有的 <code>EmployeeBase</code> 及其子類別不需要被更改。如果你需要在其他類型的員工中加入年終獎金計算，只需讓它們實現 <code>IBonusCalculable</code> 接口，而不需要修改基類或其他類別的代碼。</p>
+</li>
+<li><p><strong>接口的可組合性</strong>：在不同需求下，可以新增多個接口，比如 <code>IBonusCalculable</code> 和 <code>IOvertimeCalculable</code>，讓類別<strong>按需實現</strong>所需的接口，而不必被迫承擔所有功能。</p>
+</li>
+</ol>
+<h3 id="總結-1"><a href="#總結-1" class="headerlink" title="總結"></a>總結</h3><p>使用接口來增加新功能（如 <code>CalculateBonus()</code>）讓你可以選擇哪些類別需要實現，而不強制所有子類別進行修改，這樣的設計更有彈性，也不會影響系統中不需要此功能的類別。而僅使用抽象類的設計，會迫使所有繼承的類別都去實現這些功能，增加了不必要的代碼負擔和維護成本。</p>
+<p>我:<br>IOvertimeCalculable 中文是什麼?</p>
+<p>GPT:<br><code>IOvertimeCalculable</code> 的中文可以翻譯為「<strong>可計算加班</strong>」。在這個上下文中，它表示的是一個接口名稱，意指實現這個接口的類別能夠進行「加班費計算」。</p>
+<p>我:<br>所以設計接口是為了考慮擴展性?</p>
+<p>GPT:<br>是的，設計接口主要是為了提高系統的<strong>擴展性</strong>和<strong>靈活性</strong>。接口允許我們定義一組行為契約，讓不同類別在實現時只需關注它們需要的功能，避免不必要的依賴。</p>
+<h3 id="為什麼接口提高擴展性？"><a href="#為什麼接口提高擴展性？" class="headerlink" title="為什麼接口提高擴展性？"></a>為什麼接口提高擴展性？</h3><ol>
+<li><p><strong>靈活增加新功能</strong>：接口可以讓不同類別按需實現所需的功能，這樣可以輕鬆地引入新功能而不破壞現有代碼。每個類別可以根據需要選擇實現不同的接口，從而使系統具有更高的擴展能力。</p>
+</li>
+<li><p><strong>解耦代碼</strong>：接口將方法定義和具體實現分離，系統只需知道接口中的方法，而不需了解具體實現，這樣可以讓不同部分的代碼更獨立，減少相互影響。</p>
+</li>
+<li><p><strong>支持多態性</strong>：接口允許類別提供不同的實現，並在運行時進行不同的操作。這種多態性讓你可以更輕鬆地在系統中使用不同的類別而不需要修改邏輯。</p>
+</li>
+</ol>
+<p>接口設計是一種面向擴展的設計方式，讓系統能夠靈活應對需求變更和增長。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/C/" rel="tag"># C#</a>
+              <a href="/apple.lily/tags/%E7%B3%BB%E7%B5%B1%E9%96%8B%E7%99%BC%E6%B5%81%E7%A8%8B/" rel="tag"># 系統開發流程</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2026/04/28/OneDayOneNote/2026-06-16/" rel="prev" title="2026-06-16  一個完整系統開發流程">
+                  <i class="fa fa-angle-left"></i> 2026-06-16  一個完整系統開發流程
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2026/05/02/OneDayOneNote/2026-06-18/" rel="next" title="2026-06-18  C# 設計一個員工系統要如何思考類別及接口,抽象及繼承?">
+                  2026-06-18  C# 設計一個員工系統要如何思考類別及接口,抽象及繼承? <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/apple.lily/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

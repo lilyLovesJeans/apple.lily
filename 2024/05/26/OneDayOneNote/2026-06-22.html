@@ -1,0 +1,102 @@
+<hr>
+<h2 id="title-2026-06-22-C-新增實現-IPaymentMethod-的類別-要怎麼新增date-2026-05-02-21-43-41categories-OneDayOneNotetags-系統開發流程-C-description-2026-06-22-C-新增實現-IPaymentMethod-的類別-要怎麼新增"><a href="#title-2026-06-22-C-新增實現-IPaymentMethod-的類別-要怎麼新增date-2026-05-02-21-43-41categories-OneDayOneNotetags-系統開發流程-C-description-2026-06-22-C-新增實現-IPaymentMethod-的類別-要怎麼新增" class="headerlink" title="title: 2026-06-22  C# 新增實現 IPaymentMethod 的類別, 要怎麼新增date: 2026-05-02 21:43:41categories: OneDayOneNotetags:  [系統開發流程, C#]description:  2026-06-22  C# 新增實現 IPaymentMethod 的類別, 要怎麼新增"></a>title: 2026-06-22  C# 新增實現 IPaymentMethod 的類別, 要怎麼新增<br>date: 2026-05-02 21:43:41<br>categories: OneDayOneNote<br>tags:  [系統開發流程, C#]<br>description:  2026-06-22  C# 新增實現 IPaymentMethod 的類別, 要怎麼新增</h2><h2 id="2026-06-22-C-新增實現-IPaymentMethod-的類別-要怎麼新增"><a href="#2026-06-22-C-新增實現-IPaymentMethod-的類別-要怎麼新增" class="headerlink" title="2026-06-22  C# 新增實現 IPaymentMethod 的類別, 要怎麼新增"></a>2026-06-22  C# 新增實現 IPaymentMethod 的類別, 要怎麼新增</h2><p>我:<br>在 2. 引入接口 (Programming to an Interface)<br>public interface IPaymentMethod<br>{<br>    void ProcessPayment(decimal amount);<br>}</p>
+<p>public class CreditCardPayment : IPaymentMethod<br>{<br>    public void ProcessPayment(decimal amount)<br>    {<br>        Console.WriteLine($”Processing credit card payment of {amount}”);<br>    }<br>}</p>
+<p>public class PaymentProcessor<br>{<br>    private IPaymentMethod _paymentMethod &#x3D; new CreditCardPayment(); &#x2F;&#x2F; 依然是硬編碼的依賴</p>
+<pre><code>public void CompletePurchase(decimal amount)
+{
+    _paymentMethod.ProcessPayment(amount);
+}
+</code></pre>
+<p>}</p>
+<p>妳說增加支付方式時 , 只需新增實現 IPaymentMethod 的類別,<br>要怎麼新增, 比如說轉帳、 paypal</p>
+<p>GPT:<br>要新增不同的支付方式（例如銀行轉帳和 PayPal），我們可以創建新的類別，並讓這些類別實現 <code>IPaymentMethod</code> 介面。這樣就能保證每個支付方式都有 <code>ProcessPayment</code> 方法，並可以根據需要完成相應的處理。</p>
+<p>以下是如何新增兩種支付方式：銀行轉帳和 PayPal：</p>
+<pre><code class="csharp">public interface IPaymentMethod
+{
+    void ProcessPayment(decimal amount);
+}
+
+// CreditCardPayment 類別
+public class CreditCardPayment : IPaymentMethod
+{
+    public void ProcessPayment(decimal amount)
+    {
+        Console.WriteLine($&quot;Processing credit card payment of {amount}&quot;);
+    }
+}
+
+// BankTransferPayment 類別
+public class BankTransferPayment : IPaymentMethod
+{
+    public void ProcessPayment(decimal amount)
+    {
+        Console.WriteLine($&quot;Processing bank transfer payment of {amount}&quot;);
+    }
+}
+
+// PayPalPayment 類別
+public class PayPalPayment : IPaymentMethod
+{
+    public void ProcessPayment(decimal amount)
+    {
+        Console.WriteLine($&quot;Processing PayPal payment of {amount}&quot;);
+    }
+}
+
+// PaymentProcessor 類別
+public class PaymentProcessor
+{
+    private IPaymentMethod _paymentMethod = new CreditCardPayment(); // 這裡仍然是硬編碼
+
+    public void CompletePurchase(decimal amount)
+    {
+        _paymentMethod.ProcessPayment(amount);
+    }
+}
+</code></pre>
+<h3 id="如何使用新支付方式"><a href="#如何使用新支付方式" class="headerlink" title="如何使用新支付方式"></a>如何使用新支付方式</h3><p>如果要切換成 <code>BankTransferPayment</code> 或 <code>PayPalPayment</code>，你只需要將 <code>PaymentProcessor</code> 類別中的 <code>_paymentMethod</code> 改為新的實例。例如：</p>
+<pre><code class="csharp">private IPaymentMethod _paymentMethod = new PayPalPayment(); // 使用 PayPalPayment
+</code></pre>
+<p>或者</p>
+<pre><code class="csharp">private IPaymentMethod _paymentMethod = new BankTransferPayment(); // 使用 BankTransferPayment
+</code></pre>
+<p>這樣做會使 <code>PaymentProcessor</code> 能夠適配不同的支付方式，而不必改動其他代碼。</p>
+<p>我:<br>所以像 2. 引入接口 (Programming to an Interface)  的方式,<br>那如果要新增支付方式, 就還是要修改 public class PaymentProcessor {<br>裡面的這段程式:<br>private IPaymentMethod _paymentMethod &#x3D; new CreditCardPayment(); &#x2F;&#x2F; 這裡仍然是硬編碼<br>就是把 new CreditCardPayment() , 改成我要的支付方式,<br>比如是  轉帳 , 就是 new BankTransferPayment() , 對嗎?</p>
+<p>GPT:<br>是的，你的理解是正確的！在這種情況下，<code>PaymentProcessor</code> 類別內部的 <code>_paymentMethod</code> 仍然是硬編碼的依賴。這意味著如果你想新增支付方式，就需要在 <code>PaymentProcessor</code> 類別中手動修改這段程式碼。</p>
+<p>例如，如果你希望將支付方式從信用卡改為銀行轉帳，你需要將以下這行：</p>
+<pre><code class="csharp">private IPaymentMethod _paymentMethod = new CreditCardPayment(); // 這裡仍然是硬編碼
+</code></pre>
+<p>改成：</p>
+<pre><code class="csharp">private IPaymentMethod _paymentMethod = new BankTransferPayment(); // 改為銀行轉帳支付
+</code></pre>
+<h3 id="這樣的缺點"><a href="#這樣的缺點" class="headerlink" title="這樣的缺點"></a>這樣的缺點</h3><p>這種方式的缺點是你必須每次都手動更改 <code>PaymentProcessor</code> 類別的代碼，這可能導致代碼不易維護和擴展，尤其是在有多個地方使用 <code>PaymentProcessor</code> 的情況下。</p>
+<h3 id="如何改善？"><a href="#如何改善？" class="headerlink" title="如何改善？"></a>如何改善？</h3><p>為了避免這個問題，你可以使用依賴注入（Dependency Injection）來注入支付方法，這樣就不需要在 <code>PaymentProcessor</code> 類別中硬編碼支付方式。具體的做法可以參考以下示例：</p>
+<pre><code class="csharp">public class PaymentProcessor
+{
+    private IPaymentMethod _paymentMethod;
+
+    // 透過建構子注入支付方法
+    public PaymentProcessor(IPaymentMethod paymentMethod)
+    {
+        _paymentMethod = paymentMethod;
+    }
+
+    public void CompletePurchase(decimal amount)
+    {
+        _paymentMethod.ProcessPayment(amount);
+    }
+}
+
+// 使用示例
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        // 在這裡選擇使用哪一種支付方式
+        IPaymentMethod paymentMethod = new BankTransferPayment();
+        PaymentProcessor processor = new PaymentProcessor(paymentMethod);
+        processor.CompletePurchase(100.00m);
+    }
+}
+</code></pre>
+<p>這樣，你只需要在創建 <code>PaymentProcessor</code> 的時候決定使用哪一種支付方式，而不需要修改 <code>PaymentProcessor</code> 的內部代碼。這種方法更符合開放-封閉原則（Open&#x2F;Closed Principle），即對擴展開放，對修改封閉。</p>

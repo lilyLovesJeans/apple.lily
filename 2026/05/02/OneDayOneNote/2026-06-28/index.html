@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2026-06-28  可以在 visual studio 2022 run C# 時看變數的變化嗎?">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2026-06-28  可以在 visual studio 2022 run C# 時看變數的變化嗎?">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2026/05/02/OneDayOneNote/2026-06-28/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2026-06-28  可以在 visual studio 2022 run C# 時看變數的變化嗎?">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2026-05-02T14:47:42.000Z">
+<meta property="article:modified_time" content="2026-05-02T14:48:13.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="C#">
+<meta property="article:tag" content="系統開發流程">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2026/05/02/OneDayOneNote/2026-06-28/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2026/05/02/OneDayOneNote/2026-06-28/","path":"2026/05/02/OneDayOneNote/2026-06-28/","title":"2026-06-28  可以在 visual studio 2022 run C# 時看變數的變化嗎?"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2026-06-28  可以在 visual studio 2022 run C# 時看變數的變化嗎? | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2026-06-28-%E5%8F%AF%E4%BB%A5%E5%9C%A8-visual-studio-2022-run-C-%E6%99%82%E7%9C%8B%E8%AE%8A%E6%95%B8%E7%9A%84%E8%AE%8A%E5%8C%96%E5%97%8E"><span class="nav-number">1.</span> <span class="nav-text">2026-06-28  可以在 visual studio 2022 run C# 時看變數的變化嗎?</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">601</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">50</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2026/05/02/OneDayOneNote/2026-06-28/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2026-06-28  可以在 visual studio 2022 run C# 時看變數的變化嗎? | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2026-06-28  可以在 visual studio 2022 run C# 時看變數的變化嗎?">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2026-06-28  可以在 visual studio 2022 run C# 時看變數的變化嗎?
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2026-05-02 22:47:42 / 修改時間：22:48:13" itemprop="dateCreated datePublished" datetime="2026-05-02T22:47:42+08:00">2026-05-02</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2026-06-28  可以在 visual studio 2022 run C# 時看變數的變化嗎?</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2026-06-28-可以在-visual-studio-2022-run-C-時看變數的變化嗎"><a href="#2026-06-28-可以在-visual-studio-2022-run-C-時看變數的變化嗎" class="headerlink" title="2026-06-28  可以在 visual studio 2022 run C# 時看變數的變化嗎?"></a>2026-06-28  可以在 visual studio 2022 run C# 時看變數的變化嗎?</h2><p>我:<br>  可以在 visual studio 2022 run C# 時看變數的變化嗎?</p>
+<p>GPT:<br>在 Visual Studio 2022 中，你可以使用「偵錯模式」（Debug Mode）來查看程式執行時變數的變化。以下是幾個在 Debug Mode 中追蹤變數變化的常用方式：</p>
+<ol>
+<li><p><strong>設置斷點（Breakpoint）</strong>：</p>
+<ul>
+<li>在想要暫停的程式碼行號旁邊的灰色區域點一下，或按 <code>F9</code>，設置一個斷點。執行程式時，當程式執行到斷點位置會自動暫停，進入 Debug 模式。</li>
+</ul>
+</li>
+<li><p><strong>查看「本地變數」視窗（Locals Window）</strong>：</p>
+<ul>
+<li>當程式暫停在斷點時，可以打開 <strong>Locals</strong> 視窗（「偵錯」 &gt; 「視窗」 &gt; 「本地變數」），會顯示當前範圍內所有變數的值和型別。</li>
+</ul>
+</li>
+<li><p><strong>使用「監視」視窗（Watch Window）</strong>：</p>
+<ul>
+<li>在 <strong>Watch</strong> 視窗中，你可以指定特定變數來觀察，甚至可以加入運算式來觀察其值變化。</li>
+<li>可以開啟 <strong>Watch</strong> 視窗：在 Debug 模式中選擇「偵錯」&gt;「視窗」&gt;「監視」，然後加入你想觀察的變數名稱或運算式。</li>
+</ul>
+</li>
+<li><p><strong>立即視窗（Immediate Window）</strong>：</p>
+<ul>
+<li>在 Debug 模式中，開啟 <strong>Immediate</strong> 視窗可以直接執行程式碼來檢查變數或執行方法。</li>
+<li>可使用 <strong>Immediate</strong> 視窗來檢查特定變數的值，比如輸入 <code>product.Price</code> 查看 <code>Price</code> 的變化。</li>
+</ul>
+</li>
+<li><p><strong>快速監視（Quick Watch）</strong>：</p>
+<ul>
+<li>在 Debug 模式下，右鍵點選某個變數或表達式，選擇 <strong>Quick Watch</strong>（快速監視），可以直接查看該變數的值並持續追蹤。</li>
+</ul>
+</li>
+</ol>
+<p>通過這些工具，你可以更精確地跟蹤程式執行時的每個變數變化，以了解其邏輯或排查問題。</p>
+<p>我:<br>Watch Window 找不到</p>
+<p>GPT:<br>若在 Visual Studio 2022 中找不到「<strong>Watch Window</strong>」（監視視窗），可以按照以下步驟來啟用它：</p>
+<ol>
+<li><p><strong>確保進入 Debug 模式</strong>：</p>
+<ul>
+<li>按 <code>F5</code> 或點擊工具列上的「開始偵錯」（Start Debugging）按鈕來啟動偵錯模式，讓程式執行到斷點或暫停。</li>
+</ul>
+</li>
+<li><p><strong>開啟 Watch 視窗</strong>：</p>
+<ul>
+<li>在 Debug 模式中，點選 Visual Studio 的頂部選單，依序選擇「<strong>Debug</strong>」 &gt; 「<strong>Windows</strong>」&gt; 「<strong>Watch</strong>」。</li>
+<li>Watch 共有四個窗口可以選擇（Watch 1、Watch 2、Watch 3、Watch 4），可以根據需求選擇其中一個來查看或監視變數。</li>
+</ul>
+</li>
+<li><p><strong>手動顯示 Watch 視窗</strong>（如果還是找不到）：</p>
+<ul>
+<li>按下 <code>Ctrl + Alt + W</code>，接著按 <code>1</code>，可以打開「Watch 1」窗口。如果需要使用其他 Watch 視窗，可以更改最後的數字（2、3、或 4）。</li>
+</ul>
+</li>
+<li><p><strong>確認視窗是否被最小化或隱藏</strong>：</p>
+<ul>
+<li>Watch 視窗可能停靠在 Visual Studio 的側邊欄，或以選項卡形式顯示。如果已開啟但沒有看到它，檢查 Visual Studio 側邊欄的窗口選項卡。</li>
+</ul>
+</li>
+</ol>
+<p>這樣應該可以找到並開啟 Watch 視窗來觀察變數。</p>
+<p>我:<br>    public class Product<br>    {<br>        public string ItemNo { get; set; } &#x3D; string.Empty;<br>        public string Name { get; set; } &#x3D; string.Empty;<br>        public string Description { get; set; } &#x3D; string.Empty;<br>        public decimal Price { get; set; } &#x3D; decimal.Zero;<br>    }<br>我想要在偵錯時,看上列這個 model  值的變化</p>
+<p>GPT：<br>要在偵錯時查看 <code>Product</code> 類別中的屬性值變化，可以使用 Visual Studio 中的 <strong>Watch</strong> 視窗或 <strong>Autos</strong> 視窗。以下是查看變數的方式：</p>
+<ol>
+<li><p><strong>設定斷點</strong>：在 <code>Product</code> 類別使用的代碼行上（如 <code>new Product()</code> 或呼叫 <code>AddItem</code> 時），點擊行號旁邊的灰色欄位，設置一個斷點。這樣，程式執行會暫停在該行。</p>
+</li>
+<li><p><strong>使用 Autos 或 Locals 視窗</strong>：當程式暫停時，您可以在 <strong>Autos</strong>（自動變數）或 <strong>Locals</strong>（本地變數）視窗中看到該行周圍變數的值。在這些視窗中，展開 <code>Product</code> 變數，即可查看 <code>ItemNo</code>、<code>Name</code>、<code>Description</code> 和 <code>Price</code> 的值。</p>
+</li>
+<li><p><strong>使用 Watch 視窗</strong>：如果找不到 <strong>Watch</strong> 視窗，可以從 <strong>Debug</strong> &gt; <strong>Windows</strong> &gt; <strong>Watch</strong> &gt; <strong>Watch 1</strong> 開啟。在視窗中輸入變數名稱，例如 <code>MyStorage.GetItems()[0].ItemNo</code>（查看第1個產品的 <code>ItemNo</code>）來監看特定屬性。</p>
+</li>
+</ol>
+<p>這樣您就可以在程式執行過程中觀察 <code>Product</code> 類別屬性的變化！</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/C/" rel="tag"># C#</a>
+              <a href="/apple.lily/tags/%E7%B3%BB%E7%B5%B1%E9%96%8B%E7%99%BC%E6%B5%81%E7%A8%8B/" rel="tag"># 系統開發流程</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2026/05/02/OneDayOneNote/2026-06-27/" rel="prev" title="2026-06-27  C# 創建了一個新的 List T  實例 , 這個在C#內部做了什麼動作?">
+                  <i class="fa fa-angle-left"></i> 2026-06-27  C# 創建了一個新的 List T  實例 , 這個在C#內部做了什麼動作?
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/apple.lily/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple.lily/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/apple.lily/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/apple.lily/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/apple.lily/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/apple.lily/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lilylovesjeans.github.io","root":"/apple.lily/","images":"/apple.lily/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"}}</script><script src="/apple.lily/js/config.js"></script>
+
+    <meta name="description" content="2026-06-20  C# DI 的語法構造是什麼？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2026-06-20  C# DI 的語法構造是什麼？">
+<meta property="og:url" content="https://lilylovesjeans.github.io/apple.lily/2026/05/02/OneDayOneNote/2026-06-20/index.html">
+<meta property="og:site_name" content="Apple.Lily 前端學習筆記">
+<meta property="og:description" content="2026-06-20  C# DI 的語法構造是什麼？">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2026-05-02T13:35:27.000Z">
+<meta property="article:modified_time" content="2026-05-02T13:35:59.000Z">
+<meta property="article:author" content="Apple.Lily">
+<meta property="article:tag" content="C#">
+<meta property="article:tag" content="系統開發流程">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lilylovesjeans.github.io/apple.lily/2026/05/02/OneDayOneNote/2026-06-20/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://lilylovesjeans.github.io/apple.lily/2026/05/02/OneDayOneNote/2026-06-20/","path":"2026/05/02/OneDayOneNote/2026-06-20/","title":"2026-06-20  C# DI 的語法構造是什麼？"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2026-06-20  C# DI 的語法構造是什麼？ | Apple.Lily 前端學習筆記</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/apple.lily/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/apple.lily/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Apple.Lily 前端學習筆記</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">記錄 創作 設計</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/apple.lily/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-about"><a href="/apple.lily/about/" rel="section"><i class="fa-solid fa-face-smile fa-fw"></i>關於</a></li><li class="menu-item menu-item-tags"><a href="/apple.lily/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li><li class="menu-item menu-item-categories"><a href="/apple.lily/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-archives"><a href="/apple.lily/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2026-06-20-C-DI-%E7%9A%84%E8%AA%9E%E6%B3%95%E6%A7%8B%E9%80%A0%E6%98%AF%E4%BB%80%E9%BA%BC%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">2026-06-20  C# DI 的語法構造是什麼？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%BB%BA%E6%A7%8B%E5%AD%90%E6%B3%A8%E5%85%A5-Constructor-Injection"><span class="nav-number">1.1.</span> <span class="nav-text">1. 建構子注入 (Constructor Injection)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%B1%AC%E6%80%A7%E6%B3%A8%E5%85%A5-Property-Injection"><span class="nav-number">1.2.</span> <span class="nav-text">2. 屬性注入 (Property Injection)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%96%B9%E6%B3%95%E6%B3%A8%E5%85%A5-Method-Injection"><span class="nav-number">1.3.</span> <span class="nav-text">3. 方法注入 (Method Injection)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E4%BD%BF%E7%94%A8%E5%85%A7%E5%BB%BA%E7%9A%84%E4%BE%9D%E8%B3%B4%E6%B3%A8%E5%85%A5%E5%AE%B9%E5%99%A8"><span class="nav-number">1.4.</span> <span class="nav-text">4. 使用內建的依賴注入容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B8%BD%E7%B5%90"><span class="nav-number">1.5.</span> <span class="nav-text">總結</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DI-%E7%9A%84%E6%BC%94%E9%80%B2%E9%81%8E%E7%A8%8B"><span class="nav-number">1.6.</span> <span class="nav-text">DI 的演進過程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DI-%E7%9A%84%E5%84%AA%E5%8B%A2"><span class="nav-number">1.7.</span> <span class="nav-text">DI 的優勢</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B8%BD%E7%B5%90-1"><span class="nav-number">1.8.</span> <span class="nav-text">總結</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%A1%AC%E7%B7%A8%E7%A2%BC%E4%BE%9D%E8%B3%B4-Tightly-Coupled-Code"><span class="nav-number">1.9.</span> <span class="nav-text">1. 硬編碼依賴 (Tightly Coupled Code)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%95%8F%E9%A1%8C"><span class="nav-number">1.9.1.</span> <span class="nav-text">問題</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%BC%95%E5%85%A5%E6%8E%A5%E5%8F%A3-Programming-to-an-Interface"><span class="nav-number">1.10.</span> <span class="nav-text">2. 引入接口 (Programming to an Interface)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%84%AA%E9%BB%9E%E5%92%8C%E5%95%8F%E9%A1%8C"><span class="nav-number">1.10.1.</span> <span class="nav-text">優點和問題</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E4%BE%9D%E8%B3%B4%E6%B3%A8%E5%85%A5-Dependency-Injection"><span class="nav-number">1.11.</span> <span class="nav-text">3. 依賴注入 (Dependency Injection)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%84%AA%E9%BB%9E"><span class="nav-number">1.11.1.</span> <span class="nav-text">優點</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DI-%E7%B8%BD%E7%B5%90"><span class="nav-number">1.11.2.</span> <span class="nav-text">DI 總結</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Apple.Lily"
+      src="https://i.imgur.com/Qxhx2zz.png">
+  <p class="site-author-name" itemprop="name">Apple.Lily</p>
+  <div class="site-description" itemprop="description">Front End Engineer <br> 每日一筆記 不斷學習 趕上進度</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/apple.lily/archives/">
+          <span class="site-state-item-count">601</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/apple.lily/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/apple.lily/tags/">
+        <span class="site-state-item-count">50</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://lilylovesjeans.github.io/apple.lily/2026/05/02/OneDayOneNote/2026-06-20/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/Qxhx2zz.png">
+      <meta itemprop="name" content="Apple.Lily">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="Front End Engineer <br> 每日一筆記 不斷學習 趕上進度">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2026-06-20  C# DI 的語法構造是什麼？ | Apple.Lily 前端學習筆記">
+      <meta itemprop="description" content="2026-06-20  C# DI 的語法構造是什麼？">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2026-06-20  C# DI 的語法構造是什麼？
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2026-05-02 21:35:27 / 修改時間：21:35:59" itemprop="dateCreated datePublished" datetime="2026-05-02T21:35:27+08:00">2026-05-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/apple.lily/categories/OneDayOneNote/" itemprop="url" rel="index"><span itemprop="name">OneDayOneNote</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">2026-06-20  C# DI 的語法構造是什麼？</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2026-06-20-C-DI-的語法構造是什麼？"><a href="#2026-06-20-C-DI-的語法構造是什麼？" class="headerlink" title="2026-06-20  C# DI 的語法構造是什麼？"></a>2026-06-20  C# DI 的語法構造是什麼？</h2><p>我:<br>DI 的語法構造是什麼？</p>
+<p>GPT：<br>在 C# 中，依賴注入（Dependency Injection, DI）是一種設計模式，通常透過建構子注入、屬性注入或方法注入等方式來實現。依賴注入的主要目的是讓程式更具彈性和可測試性，因為具體實現可以在外部動態替換。</p>
+<h3 id="1-建構子注入-Constructor-Injection"><a href="#1-建構子注入-Constructor-Injection" class="headerlink" title="1. 建構子注入 (Constructor Injection)"></a>1. 建構子注入 (Constructor Injection)</h3><p>建構子注入是最常見的依賴注入方式。主要是在類的建構子中傳入依賴的物件，並將其儲存在類的私有欄位中。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 定義接口</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IPaymentMethod</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">ProcessPayment</span>(<span class="params"><span class="built_in">decimal</span> amount</span>)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 實現接口的具體類別</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CreditCardPayment</span> : <span class="title">IPaymentMethod</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ProcessPayment</span>(<span class="params"><span class="built_in">decimal</span> amount</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">$&quot;Processing credit card payment of <span class="subst">&#123;amount&#125;</span>&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. 依賴注入的類別，接收 IPaymentMethod 的實現作為依賴</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">PaymentProcessor</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> IPaymentMethod _paymentMethod;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">PaymentProcessor</span>(<span class="params">IPaymentMethod paymentMethod</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        _paymentMethod = paymentMethod;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">CompletePurchase</span>(<span class="params"><span class="built_in">decimal</span> amount</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        _paymentMethod.ProcessPayment(amount);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用時</span></span><br><span class="line">IPaymentMethod paymentMethod = <span class="keyword">new</span> CreditCardPayment();</span><br><span class="line">PaymentProcessor processor = <span class="keyword">new</span> PaymentProcessor(paymentMethod);</span><br><span class="line">processor.CompletePurchase(<span class="number">100</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-屬性注入-Property-Injection"><a href="#2-屬性注入-Property-Injection" class="headerlink" title="2. 屬性注入 (Property Injection)"></a>2. 屬性注入 (Property Injection)</h3><p>屬性注入是通過公共屬性將依賴注入進去。在某些情況下，如果依賴不是在建構子時就必須使用，這種方式可能會更靈活。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">PaymentProcessor</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> IPaymentMethod PaymentMethod &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">CompletePurchase</span>(<span class="params"><span class="built_in">decimal</span> amount</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        PaymentMethod?.ProcessPayment(amount); <span class="comment">// 需要確認非空</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用時</span></span><br><span class="line">PaymentProcessor processor = <span class="keyword">new</span> PaymentProcessor</span><br><span class="line">&#123;</span><br><span class="line">    PaymentMethod = <span class="keyword">new</span> CreditCardPayment() <span class="comment">// 設定依賴</span></span><br><span class="line">&#125;;</span><br><span class="line">processor.CompletePurchase(<span class="number">100</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-方法注入-Method-Injection"><a href="#3-方法注入-Method-Injection" class="headerlink" title="3. 方法注入 (Method Injection)"></a>3. 方法注入 (Method Injection)</h3><p>在方法注入中，依賴作為參數傳入到方法中，這通常適用於臨時需要的依賴，不一定要成為類的屬性或欄位。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">PaymentProcessor</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">CompletePurchase</span>(<span class="params"><span class="built_in">decimal</span> amount, IPaymentMethod paymentMethod</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        paymentMethod.ProcessPayment(amount);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用時</span></span><br><span class="line">PaymentProcessor processor = <span class="keyword">new</span> PaymentProcessor();</span><br><span class="line">processor.CompletePurchase(<span class="number">100</span>, <span class="keyword">new</span> CreditCardPayment());</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-使用內建的依賴注入容器"><a href="#4-使用內建的依賴注入容器" class="headerlink" title="4. 使用內建的依賴注入容器"></a>4. 使用內建的依賴注入容器</h3><p>在 ASP.NET Core 等框架中，內建了 DI 容器，可以更方便地管理和注入依賴。在 <code>Startup.cs</code> 中配置服務：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ConfigureServices</span>(<span class="params">IServiceCollection services</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 註冊 IPaymentMethod 的具體實現</span></span><br><span class="line">    services.AddScoped&lt;IPaymentMethod, CreditCardPayment&gt;();</span><br><span class="line">    services.AddScoped&lt;PaymentProcessor&gt;();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在使用時，透過依賴注入容器自動解析並注入：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SomeController</span> : <span class="title">ControllerBase</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> PaymentProcessor _processor;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SomeController</span>(<span class="params">PaymentProcessor processor</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        _processor = processor;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> IActionResult <span class="title">Purchase</span>(<span class="params"><span class="built_in">decimal</span> amount</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        _processor.CompletePurchase(amount);</span><br><span class="line">        <span class="keyword">return</span> Ok();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h3><ul>
+<li><strong>建構子注入</strong>：適合必須提供的依賴。</li>
+<li><strong>屬性注入</strong>：適合可選的依賴。</li>
+<li><strong>方法注入</strong>：適合臨時需要的依賴。</li>
+<li>使用<strong>DI 容器</strong>能夠自動解析依賴，簡化管理。</li>
+</ul>
+<p>通過這些模式和方法，依賴注入讓程式碼更加模組化，增強了可讀性、測試性和擴展性。</p>
+<p>我:<br>為什麼要用DI 注入？ 它有演進過程嗎？</p>
+<p>GPT：<br>依賴注入 (Dependency Injection, DI) 是一種用來實現鬆耦合設計的設計模式，目的是改善系統的彈性、可維護性和測試性。DI 的出現源於面向對象設計中的<strong>依賴倒置原則</strong>（Dependency Inversion Principle, DIP）以及<strong>控制反轉</strong>（Inversion of Control, IoC）的理念。這個過程經歷了幾個階段的演進。</p>
+<h3 id="DI-的演進過程"><a href="#DI-的演進過程" class="headerlink" title="DI 的演進過程"></a>DI 的演進過程</h3><ol>
+<li><p><strong>硬編碼依賴 (Tightly Coupled Code)</strong><br>最早期，物件之間的依賴是直接硬編碼的。例如，一個 <code>PaymentProcessor</code> 可能直接依賴於 <code>CreditCardPayment</code> 類別：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">PaymentProcessor</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> CreditCardPayment _paymentMethod = <span class="keyword">new</span> CreditCardPayment();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">CompletePurchase</span>(<span class="params"><span class="built_in">decimal</span> amount</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        _paymentMethod.ProcessPayment(amount);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這種硬編碼方式帶來很大的限制。每次要更改支付方式，都需要修改 <code>PaymentProcessor</code> 類別的程式碼，導致系統的擴展性和維護性變差。</p>
+</li>
+<li><p><strong>使用接口進行抽象 (Programming to an Interface)</strong><br>為了實現鬆耦合，我們可以引入接口。接口定義了支付方法的抽象，並允許不同的支付方式去實現該接口，但仍然有個缺點：我們還是必須在類別內部實例化具體的支付方式。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">PaymentProcessor</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> IPaymentMethod _paymentMethod = <span class="keyword">new</span> CreditCardPayment();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">CompletePurchase</span>(<span class="params"><span class="built_in">decimal</span> amount</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        _paymentMethod.ProcessPayment(amount);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>依賴注入的引入 (Dependency Injection)</strong><br>DI 將具體實例的創建移到外部，讓 <code>PaymentProcessor</code> 類別不再直接實例化支付方式，而是由外部在初始化時提供具體的依賴，從而達到完全的鬆耦合設計。現在，只需改變外部傳入的依賴即可變更支付方式，而無需修改 <code>PaymentProcessor</code> 類別。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">PaymentProcessor</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> IPaymentMethod _paymentMethod;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">PaymentProcessor</span>(<span class="params">IPaymentMethod paymentMethod</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        _paymentMethod = paymentMethod;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">CompletePurchase</span>(<span class="params"><span class="built_in">decimal</span> amount</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        _paymentMethod.ProcessPayment(amount);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用 DI，程式碼變得更具彈性，因為可以在建構 <code>PaymentProcessor</code> 時提供不同的支付方式，例如 <code>CreditCardPayment</code> 或 <code>PaypalPayment</code>。</p>
+</li>
+<li><p><strong>DI 容器和自動化依賴管理</strong><br>在大型應用程式中，手動管理依賴注入可能變得複雜，因此 DI 容器應運而生。DI 容器可以自動解析和管理依賴關係，從而簡化了注入過程。框架如 ASP.NET Core 提供了內建的 DI 容器，允許透過配置的方式在整個應用中管理依賴。</p>
+</li>
+</ol>
+<h3 id="DI-的優勢"><a href="#DI-的優勢" class="headerlink" title="DI 的優勢"></a>DI 的優勢</h3><ul>
+<li><strong>減少耦合性</strong>：物件之間的依賴關係變得靈活，不再直接依賴具體實現，而是依賴於抽象接口。</li>
+<li><strong>提高可測試性</strong>：通過 DI，可以輕易替換依賴的具體實現，例如在單元測試中注入模擬 (mock) 物件。</li>
+<li><strong>增強可擴展性</strong>：增加新功能或替換某個依賴時，不需要更改使用這些依賴的類別。</li>
+<li>**控制反轉 (IoC)**：透過 DI，對象的依賴由容器管理，不再由物件自己控制，這是 IoC 原則的具體應用。</li>
+</ul>
+<h3 id="總結-1"><a href="#總結-1" class="headerlink" title="總結"></a>總結</h3><p>DI 的引入是對系統設計演進過程中的一次重大改進，使系統的各個組件可以更加靈活地替換、測試和擴展。在應用 DI 模式時，建構一個高效的依賴管理系統（如 DI 容器）可以大幅簡化代碼，減少耦合，並提升整體代碼品質。</p>
+<p>我:<br>妳說的 1. 2. 3. 演進過程, 有點難懂, 可以用具體的程式碼說明, 每一個演進遇到的困難嗎?</p>
+<p>GPT：<br>當然可以，我們來看一個具體的範例，從最初的硬編碼依賴，到使用接口，再到依賴注入的改進，每一步都會展示程式碼如何演進，以及為什麼每個演進步驟更有利於系統的設計。</p>
+<h3 id="1-硬編碼依賴-Tightly-Coupled-Code"><a href="#1-硬編碼依賴-Tightly-Coupled-Code" class="headerlink" title="1. 硬編碼依賴 (Tightly Coupled Code)"></a>1. 硬編碼依賴 (Tightly Coupled Code)</h3><p>在最早期的設計中，我們會直接在類別中實例化依賴對象，比如說在 <code>PaymentProcessor</code> 中直接依賴 <code>CreditCardPayment</code> 類別：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CreditCardPayment</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ProcessPayment</span>(<span class="params"><span class="built_in">decimal</span> amount</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">$&quot;Processing credit card payment of <span class="subst">&#123;amount&#125;</span>&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">PaymentProcessor</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> CreditCardPayment _paymentMethod = <span class="keyword">new</span> CreditCardPayment();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">CompletePurchase</span>(<span class="params"><span class="built_in">decimal</span> amount</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        _paymentMethod.ProcessPayment(amount);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h4><ul>
+<li>如果未來需要支持其他支付方式（例如 PayPal 或銀行轉帳），我們需要改動 <code>PaymentProcessor</code> 類別，新增或替換具體的支付類別。</li>
+<li>系統的<strong>可擴展性差</strong>：每次需求變更都需要直接修改程式碼。</li>
+<li>測試難度增加：無法模擬 <code>CreditCardPayment</code> 來進行單元測試。</li>
+</ul>
+<h3 id="2-引入接口-Programming-to-an-Interface"><a href="#2-引入接口-Programming-to-an-Interface" class="headerlink" title="2. 引入接口 (Programming to an Interface)"></a>2. 引入接口 (Programming to an Interface)</h3><p>我們可以將支付方式抽象成一個接口 <code>IPaymentMethod</code>，讓不同支付方式各自實現這個接口。這樣，<code>PaymentProcessor</code> 類別可以依賴於 <code>IPaymentMethod</code> 而非具體的 <code>CreditCardPayment</code>。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IPaymentMethod</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">ProcessPayment</span>(<span class="params"><span class="built_in">decimal</span> amount</span>)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CreditCardPayment</span> : <span class="title">IPaymentMethod</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ProcessPayment</span>(<span class="params"><span class="built_in">decimal</span> amount</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">$&quot;Processing credit card payment of <span class="subst">&#123;amount&#125;</span>&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">PaymentProcessor</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> IPaymentMethod _paymentMethod = <span class="keyword">new</span> CreditCardPayment(); <span class="comment">// 依然是硬編碼的依賴</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">CompletePurchase</span>(<span class="params"><span class="built_in">decimal</span> amount</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        _paymentMethod.ProcessPayment(amount);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="優點和問題"><a href="#優點和問題" class="headerlink" title="優點和問題"></a>優點和問題</h4><ul>
+<li><strong>可擴展性提升</strong>：增加支付方式時，只需新增實現 <code>IPaymentMethod</code> 的類別，<code>PaymentProcessor</code> 不需要改動。</li>
+<li><strong>耦合性降低</strong>：<code>PaymentProcessor</code> 不再依賴於具體的支付方式。</li>
+<li><strong>問題仍然存在</strong>：<code>PaymentProcessor</code> 依然<strong>自己決定</strong>具體使用哪一個支付方式（仍然硬編碼了 <code>new CreditCardPayment()</code>），導致擴展性受限。如果需求更變，仍需修改 <code>PaymentProcessor</code> 類別的程式碼。</li>
+</ul>
+<h3 id="3-依賴注入-Dependency-Injection"><a href="#3-依賴注入-Dependency-Injection" class="headerlink" title="3. 依賴注入 (Dependency Injection)"></a>3. 依賴注入 (Dependency Injection)</h3><p>這一步，我們通過依賴注入來進一步改善設計，將 <code>PaymentProcessor</code> 的支付方式作為外部傳入的依賴，從而達到更高的靈活性。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IPaymentMethod</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">ProcessPayment</span>(<span class="params"><span class="built_in">decimal</span> amount</span>)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CreditCardPayment</span> : <span class="title">IPaymentMethod</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ProcessPayment</span>(<span class="params"><span class="built_in">decimal</span> amount</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">$&quot;Processing credit card payment of <span class="subst">&#123;amount&#125;</span>&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">PaypalPayment</span> : <span class="title">IPaymentMethod</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ProcessPayment</span>(<span class="params"><span class="built_in">decimal</span> amount</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">$&quot;Processing PayPal payment of <span class="subst">&#123;amount&#125;</span>&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">PaymentProcessor</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> IPaymentMethod _paymentMethod;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 建構子注入：在建構時由外部提供具體的支付方式</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">PaymentProcessor</span>(<span class="params">IPaymentMethod paymentMethod</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        _paymentMethod = paymentMethod;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">CompletePurchase</span>(<span class="params"><span class="built_in">decimal</span> amount</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        _paymentMethod.ProcessPayment(amount);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>現在，使用 <code>PaymentProcessor</code> 時，可以選擇傳入不同的支付方式：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">IPaymentMethod paymentMethod = <span class="keyword">new</span> CreditCardPayment();</span><br><span class="line">PaymentProcessor processor = <span class="keyword">new</span> PaymentProcessor(paymentMethod);</span><br><span class="line">processor.CompletePurchase(<span class="number">100</span>);</span><br><span class="line"></span><br><span class="line">paymentMethod = <span class="keyword">new</span> PaypalPayment();</span><br><span class="line">processor = <span class="keyword">new</span> PaymentProcessor(paymentMethod);</span><br><span class="line">processor.CompletePurchase(<span class="number">50</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="優點"><a href="#優點" class="headerlink" title="優點"></a>優點</h4><ul>
+<li><strong>完全鬆耦合</strong>：<code>PaymentProcessor</code> 不再負責創建具體支付方式。它的依賴由外部提供，使得系統更具彈性。</li>
+<li><strong>便於測試</strong>：可以在測試中傳入一個模擬 <code>IPaymentMethod</code>，來測試 <code>PaymentProcessor</code> 的功能，而不需要實際的支付方式。</li>
+<li><strong>擴展性更高</strong>：增加或更改支付方式時，無需修改 <code>PaymentProcessor</code> 的內部實現。</li>
+</ul>
+<h4 id="DI-總結"><a href="#DI-總結" class="headerlink" title="DI 總結"></a>DI 總結</h4><p>依賴注入將類別的依賴關係從內部創建轉移到外部提供，使系統更易擴展和維護。在大型應用中，依賴注入可以使用 DI 容器自動管理依賴，進一步簡化設計流程。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/apple.lily/tags/C/" rel="tag"># C#</a>
+              <a href="/apple.lily/tags/%E7%B3%BB%E7%B5%B1%E9%96%8B%E7%99%BC%E6%B5%81%E7%A8%8B/" rel="tag"># 系統開發流程</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/apple.lily/2026/05/02/OneDayOneNote/2026-06-19/" rel="prev" title="2026-06-19  C# 大型的物流財會系統 我要如何思考它們的元素?">
+                  <i class="fa fa-angle-left"></i> 2026-06-19  C# 大型的物流財會系統 我要如何思考它們的元素?
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/apple.lily/2026/05/02/OneDayOneNote/2026-06-21/" rel="next" title="2026-06-21  C# 硬編碼依賴 (Tightly Coupled Code) 的語法妳">
+                  2026-06-21  C# 硬編碼依賴 (Tightly Coupled Code) 的語法妳 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">若要轉載文章，麻煩請保留原作者名稱與原始連結。</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/apple.lily/js/comments.js"></script><script src="/apple.lily/js/utils.js"></script><script src="/apple.lily/js/motion.js"></script><script src="/apple.lily/js/sidebar.js"></script><script src="/apple.lily/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/apple.lily/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

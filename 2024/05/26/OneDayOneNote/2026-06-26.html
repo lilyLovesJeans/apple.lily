@@ -1,0 +1,144 @@
+<hr>
+<h2 id="title-2026-06-26-C-Entity-Framework-有支援-PL-SQL-或是-stored-procedure-date-2026-05-02-22-39-17categories-OneDayOneNotetags-系統開發流程-C-description-2026-06-25-C-泛型類型參數的聲明"><a href="#title-2026-06-26-C-Entity-Framework-有支援-PL-SQL-或是-stored-procedure-date-2026-05-02-22-39-17categories-OneDayOneNotetags-系統開發流程-C-description-2026-06-25-C-泛型類型參數的聲明" class="headerlink" title="title: 2026-06-26  C# Entity Framework 有支援 PL&#x2F;SQL 或是 stored procedure?date: 2026-05-02 22:39:17categories: OneDayOneNotetags:  [系統開發流程, C#]description:    2026-06-25  C# 泛型類型參數的聲明"></a>title: 2026-06-26  C# Entity Framework 有支援 PL&#x2F;SQL 或是 stored procedure?<br>date: 2026-05-02 22:39:17<br>categories: OneDayOneNote<br>tags:  [系統開發流程, C#]<br>description:    2026-06-25  C# 泛型類型參數的聲明</h2><h2 id="2026-06-26-C-Entity-Framework-有支援-PL-SQL-或是-stored-procedure"><a href="#2026-06-26-C-Entity-Framework-有支援-PL-SQL-或是-stored-procedure" class="headerlink" title="2026-06-26  C# Entity Framework 有支援 PL&#x2F;SQL 或是 stored procedure?"></a>2026-06-26  C# Entity Framework 有支援 PL&#x2F;SQL 或是 stored procedure?</h2><p>我:<br>Entity Framework 有支援 PL&#x2F;SQL 或是 stored procedure?</p>
+<p>GPT:<br>是的，Entity Framework（EF）支援 PL&#x2F;SQL 和 stored procedure。雖然 EF 的核心設計是針對簡化的 ORM 操作（例如增刪改查）來映射資料庫中的資料，但它也允許透過 stored procedure 來完成複雜查詢、批次操作以及 PL&#x2F;SQL 特定的功能需求。</p>
+<h3 id="使用-stored-procedure-的方法"><a href="#使用-stored-procedure-的方法" class="headerlink" title="使用 stored procedure 的方法"></a>使用 stored procedure 的方法</h3><p>以下是一些常見的方法來將 stored procedure 與 EF 結合使用：</p>
+<ol>
+<li><p><strong>以 Entity Framework Core 呼叫 stored procedure</strong>：<br>EF Core 支援以 <code>FromSqlRaw</code> 直接執行 SQL 查詢或 stored procedure，例如：</p>
+<pre><code class="csharp">var results = context.Employees
+    .FromSqlRaw(&quot;EXEC GetEmployeesByDepartment @DepartmentId = {0}&quot;, departmentId)
+    .ToList();
+</code></pre>
+<p>這裡的 <code>FromSqlRaw</code> 方法會執行 <code>GetEmployeesByDepartment</code> stored procedure，並將結果映射至 <code>Employees</code> 資料模型。</p>
+</li>
+<li><p><strong>將 stored procedure 結果映射至模型</strong>：<br>如果 stored procedure 回傳的資料不完全符合現有的資料模型，您可以創建一個 DTO（Data Transfer Object）或自訂類別來接收結果：</p>
+<pre><code class="csharp">public class EmployeeDto
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public string Department { get; set; }
+}
+
+var employeeDtos = context.EmployeeDtos
+    .FromSqlRaw(&quot;EXEC GetEmployeesByDepartment @DepartmentId = {0}&quot;, departmentId)
+    .ToList();
+</code></pre>
+</li>
+<li><p><strong>呼叫 stored procedure 來進行更新、插入或刪除操作</strong>：<br>使用 <code>ExecuteSqlRaw</code> 方法可以執行不返回資料的 stored procedure，常用於進行批量更新或刪除等操作。</p>
+<pre><code class="csharp">var rowsAffected = context.Database.ExecuteSqlRaw(&quot;EXEC UpdateEmployeeSalary @EmployeeId = {0}, @NewSalary = {1}&quot;, employeeId, newSalary);
+</code></pre>
+</li>
+<li><p><strong>使用輸入與輸出參數</strong>：<br>若需要使用輸出參數，可以透過 <code>SqlParameter</code> 的方式設定。</p>
+<pre><code class="csharp">var outputParam = new SqlParameter
+{
+    ParameterName = &quot;@TotalEmployees&quot;,
+    SqlDbType = SqlDbType.Int,
+    Direction = ParameterDirection.Output
+};
+
+context.Database.ExecuteSqlRaw(&quot;EXEC GetTotalEmployees @DepartmentId = {0}, @TotalEmployees OUT&quot;, departmentId, outputParam);
+
+var totalEmployees = (int)outputParam.Value;
+</code></pre>
+</li>
+</ol>
+<h3 id="特別考量"><a href="#特別考量" class="headerlink" title="特別考量"></a>特別考量</h3><p>由於 PL&#x2F;SQL 是 Oracle 特有的語法，因此與 SQL Server 的 T-SQL 會有一些差異。當使用 Oracle 的 EF Core provider（例如 Oracle.EntityFrameworkCore）時，需要考慮：</p>
+<ul>
+<li>檢查 PL&#x2F;SQL 中的資料類型是否正確對應 C# 中的資料型別。</li>
+<li>確保 stored procedure 或 function 已在 Oracle 中編譯完成並且可以被呼叫。</li>
+<li>使用適當的 <code>SqlParameter</code> 來處理輸入和輸出參數。</li>
+</ul>
+<p>這樣，Entity Framework 就能成功執行 PL&#x2F;SQL 的 stored procedure 並有效整合到 C# 應用程式中。</p>
+<p>我：<br>那麼 Entity Framework 要如何  using ? 跟   System.Data 有什麼不同?</p>
+<p>GPT：<br>在 C# 中，<code>Entity Framework</code> 和 <code>System.Data</code> 都與資料庫操作有關，但它們的作用、使用方式以及理念都有明顯的不同：</p>
+<h3 id="1-使用-Entity-Framework-EF"><a href="#1-使用-Entity-Framework-EF" class="headerlink" title="1. 使用 Entity Framework (EF)"></a>1. <strong>使用 <code>Entity Framework</code> (EF)</strong></h3><ul>
+<li><p><strong>套件</strong>：EF 是一個獨立的 ORM（物件關聯對映）框架，需要安裝相應的 NuGet 套件，例如 <code>Microsoft.EntityFrameworkCore</code>。</p>
+</li>
+<li><p><strong>導入命名空間</strong>：在安裝 NuGet 套件後，使用下列命名空間來啟用 EF 的功能：</p>
+<pre><code class="csharp">using Microsoft.EntityFrameworkCore;
+</code></pre>
+</li>
+<li><p><strong>主要目標</strong>：EF 的主要功能是將資料庫結構與 C# 類別進行映射，以物件導向的方式操作資料表。您可以使用 <code>LINQ</code> 語法查詢資料庫，而不需要直接撰寫 SQL。</p>
+</li>
+<li><p><strong>適用場景</strong>：EF 適合於使用以 <code>Code-First</code> 或 <code>Database-First</code> 方法快速建立資料模型，並簡化 CRUD 操作的應用場景。</p>
+</li>
+</ul>
+<h3 id="2-使用-System-Data"><a href="#2-使用-System-Data" class="headerlink" title="2. 使用 System.Data"></a>2. <strong>使用 <code>System.Data</code></strong></h3><ul>
+<li><p><strong>套件</strong>：<code>System.Data</code> 是 .NET Framework 中提供的基礎資料庫存取命名空間。它包含了低階的 ADO.NET 類別，例如 <code>SqlConnection</code>、<code>SqlCommand</code>、<code>DataTable</code> 等，直接支援 SQL 指令的執行。</p>
+</li>
+<li><p><strong>導入命名空間</strong>：<code>System.Data</code> 不需要額外安裝，是 .NET 的內建類別庫之一。導入方式如下：</p>
+<pre><code class="csharp">using System.Data;
+using System.Data.SqlClient; // 針對 SQL Server 特定的連接和命令
+</code></pre>
+</li>
+<li><p><strong>主要目標</strong>：ADO.NET（隸屬於 <code>System.Data</code>）提供低階、基於連接的資料操作方法，允許您手動管理 SQL 語句，適合需要高度自訂 SQL 查詢或精確控制連接的應用。</p>
+</li>
+<li><p><strong>適用場景</strong>：<code>System.Data</code> 適用於進行複雜查詢、批次更新、或對資料庫操作需要極高掌控力的情況，例如大型批次處理或需要細粒度交易管理的系統。</p>
+</li>
+</ul>
+<h3 id="比較"><a href="#比較" class="headerlink" title="比較"></a><strong>比較</strong></h3><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>Entity Framework</th>
+<th>System.Data (ADO.NET)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>抽象層級</strong></td>
+<td>高：ORM，物件導向</td>
+<td>低：直接執行 SQL，手動管理資料庫操作</td>
+</tr>
+<tr>
+<td><strong>適合用於</strong></td>
+<td>一般的 CRUD 操作，自動化模型管理</td>
+<td>複雜查詢，批量操作，精細控制</td>
+</tr>
+<tr>
+<td><strong>學習難度</strong></td>
+<td>容易：以 C# 語法為主</td>
+<td>較難：需手動撰寫 SQL 和管理連接</td>
+</tr>
+<tr>
+<td><strong>性能表現</strong></td>
+<td>中等：因抽象層較高</td>
+<td>快速：低階操作，無額外的 ORM 開銷</td>
+</tr>
+<tr>
+<td><strong>使用方式</strong></td>
+<td><code>DbContext</code> 管理模型與資料庫的連接</td>
+<td><code>SqlConnection</code>、<code>SqlCommand</code> 手動控制連接</td>
+</tr>
+</tbody></table>
+<h3 id="3-範例比較"><a href="#3-範例比較" class="headerlink" title="3. 範例比較"></a>3. <strong>範例比較</strong></h3><ul>
+<li><p><strong>Entity Framework</strong>（使用 LINQ 查詢）：</p>
+<pre><code class="csharp">using Microsoft.EntityFrameworkCore;
+
+public class MyDbContext : DbContext
+{
+    public DbSet&lt;Employee&gt; Employees { get; set; }
+}
+
+var context = new MyDbContext();
+var employees = context.Employees.Where(e =&gt; e.Salary &gt; 5000).ToList();
+</code></pre>
+</li>
+<li><p><strong>System.Data</strong>（使用 ADO.NET 查詢）：</p>
+<pre><code class="csharp">using System.Data;
+using System.Data.SqlClient;
+
+string connectionString = &quot;your_connection_string&quot;;
+using (SqlConnection connection = new SqlConnection(connectionString))
+{
+    connection.Open();
+    SqlCommand command = new SqlCommand(&quot;SELECT * FROM Employees WHERE Salary &gt; 5000&quot;, connection);
+    SqlDataReader reader = command.ExecuteReader();
+
+    while (reader.Read())
+    {
+        Console.WriteLine(reader[&quot;Name&quot;]);
+    }
+}
+</code></pre>
+</li>
+</ul>
+<h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h3><p>如果專案主要需要快速進行資料操作，並且表結構相對穩定，<code>Entity Framework</code> 會是更高效、可讀性更高的選擇；而如果專案需要直接操控資料庫結構、實施高效批量操作或處理複雜的 SQL 語句，則 <code>System.Data</code> 提供了更多的靈活性。</p>
